@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>se.elegnamnden.eidas</groupId>
+    <artifactId>cef-node-docker</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <developers>
+        <developer>
+            <name>Stefan Santesson</name>
+            <email>stefan@aaa-sec.com</email>
+            <organization>3xA Security AB</organization>
+            <organizationUrl>http://aaa-sec.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Martin Lindström</name>
+            <email>martin.lindstrom@litsec.se</email>
+            <organization>Litsec AB</organization>
+            <organizationUrl>http://www.litsec.se</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <tomcat.version>8.5.23</tomcat.version>
+        <docker.image.prefix>docker.eidastest.se:5000</docker.image.prefix>
+        <mockito.version>1.9.5</mockito.version>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <!-- https://maven.apache.org/plugins/maven-dependency-plugin/unpack-mojo.html -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <executions>
+
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.tomcat</groupId>
+                                    <artifactId>tomcat</artifactId>
+                                    <version>${tomcat.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/shibboleth/edit-webapp/WEB-INF/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

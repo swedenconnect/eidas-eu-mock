@@ -103,8 +103,12 @@ public final class KeyStoreSignatureConfigurator {
         KeyStore.PrivateKeyEntry signatureKeyAndCertificate =
                 keyStoreContent.getMatchingPrivateKeyEntry(serialNumber, issuer);
         ImmutableSet<X509Certificate> trustedCertificates = keyStoreContent.getCertificates();
-        //Customized addition by SE for injecting trusted PEM certificates
+
+        /*
+         * Customized addition by SE for injecting trusted PEM certificates
+         */
         trustedCertificates = trustedPemCerts.addTrustedCertificates(trustedCertificates, properties);
+
         String signatureAlgorithmWhiteListStr = SignatureKey.SIGNATURE_ALGORITHM_WHITE_LIST.getAsString(properties);
         String signatureAlgorithm = SignatureKey.SIGNATURE_ALGORITHM.getAsString(properties);
         KeyStore.PrivateKeyEntry metadataSigningKeyAndCertificate =

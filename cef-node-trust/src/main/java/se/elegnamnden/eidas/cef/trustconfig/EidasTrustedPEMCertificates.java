@@ -100,7 +100,7 @@ public class EidasTrustedPEMCertificates {
         String keyStorePath = params.get(KEY_STORE_PATH_PARAM);
         for (String constraint : constraints) {
             constraint = constraint.trim();
-            if (keyStorePath.equals(constraint) || keyStorePath.endsWith("/" + constraint)) {
+            if (keyStorePath.equals(constraint) || keyStorePath.endsWith(constraint)) {
                 return true;
             }
         }
