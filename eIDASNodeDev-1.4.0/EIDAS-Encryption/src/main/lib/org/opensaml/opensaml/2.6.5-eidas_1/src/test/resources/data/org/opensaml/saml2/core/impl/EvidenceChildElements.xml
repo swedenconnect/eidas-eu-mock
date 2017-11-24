@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2:Evidence xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+    <saml2:AssertionIDRef/>
+    <saml2:AssertionIDRef/>
+    <saml2:AssertionURIRef/>
+    <saml2:AssertionIDRef/>
+    <saml2:AssertionURIRef/>
+    <saml2:AssertionURIRef/>
+    <saml2:AssertionURIRef/>
+    <saml2:Assertion Version="2.0"/>
+    <saml2:EncryptedAssertion/>
+    <saml2:EncryptedAssertion/>
+    <saml2:Assertion Version="2.0"/>
+</saml2:Evidence>

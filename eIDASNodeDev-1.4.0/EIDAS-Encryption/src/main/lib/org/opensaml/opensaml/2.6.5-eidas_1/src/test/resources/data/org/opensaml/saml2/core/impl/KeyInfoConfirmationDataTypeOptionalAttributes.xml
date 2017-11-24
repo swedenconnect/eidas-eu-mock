@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2:SubjectConfirmationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xsi:type="saml2:KeyInfoConfirmationDataType" NotBefore="1984-08-26T10:01:30.043Z" NotOnOrAfter="1984-08-26T10:11:30.043Z" Recipient="recipient" Address="address" InResponseTo="inresponse"/>

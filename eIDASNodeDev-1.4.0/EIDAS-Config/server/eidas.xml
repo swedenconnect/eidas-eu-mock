@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- Connector  -->
+	<!-- QAALevel of the Demo SP -->
+	<entry key="DEMO-SP.qaalevel">3</entry>
+
+
+	<!-- IF a SP is not listed, the DEFAULT parameters it can access might be
+		(none|all|list;Of;Parameters) -->
+	<entry key="sp.default.parameters">all</entry>
+	<!-- Specific case for a listed SP (none|all|list;Of;Parameters) -->
+	<!-- <entry key="DEMO-SP">givenName;age;dateOfBirth;nationalityCode;isAgeOver;eIdentifier</entry> -->
+
+	<!-- Id of this Connector -->
+	<entry key="connector.id">CA</entry>
+	<!-- Connector assertion URL -->
+	<entry key="connector.assertion.url">http://eidasnode:8888/EidasNode/ColleagueResponse</entry>
+	<!-- Connector destination URL -->
+	<entry key="connector.destination.url">http://eidasnode:8888/EidasNode/ServiceProvider</entry>
+	<!--  Default SP attributes needed on the VIdP -->
+	<!-- SP Sector -->
+	<entry key="connector.spSector">DEMO-connector</entry>
+	<!-- SP Application -->
+	<entry key="connector.spApplication">DEMO-connector</entry>
+	<!-- SP Country-->
+	<entry key="connector.spCountry">CA</entry>
+	<!-- SP Institution-->
+	<entry key="connector.spInstitution">DEMO-connector</entry>
+	
+	<!-- specific engine in Connector -->
+	<entry key="saml.sp">SP-Specific</entry>	
+	<!-- Protocol engines for the Nodes -->
+	<entry key="saml.connector">Connector</entry>
+	<entry key="saml.service">Service</entry>	
+	<!-- specific engine in IdP -->
+	<entry key="saml.idp">Specific-IdP</entry>	
+
+	<!-- Number of known Service -->
+	<entry key="service.number">8</entry>
+
+    <entry key="service1.id">CA</entry>
+	<!-- Name of the second Service -->
+	<entry key="service1.name">LOCAL-EIDAS-CA</entry>
+	<!-- URL of the first Service -->
+	<entry key="service1.url">http://eidasnode:8888/EidasNode/ColleagueRequest</entry>
+	 <!-- Skew time for Service-->
+	<entry key="service1.skew.notbefore">0</entry>
+	<entry key="service1.skew.notonorafter">0</entry>
+	<!-- the url under which  service1 is publishing its metadata -->
+	<entry key="service1.metadata.url">http://eidasnode:8888/EidasNode/ServiceMetadata</entry>
+	<entry key="service2.id">CB</entry>
+	<!-- Name of the second Service -->
+	<entry key="service2.name">LOCAL-EIDAS-CB</entry>
+	<!-- URL of the first Service -->
+	<entry key="service2.url">http://eidasnode:8888/EidasNode/ColleagueRequest</entry>
+	<entry key="service2.skew.notbefore">0</entry>
+	<entry key="service2.skew.notonorafter">0</entry>
+	<entry key="service2.metadata.url">http://eidasnode:8888/EidasNode/ServiceMetadata</entry>
+	<entry key="service3.id">CC</entry>
+	<!-- Name of the second Service -->
+	<entry key="service3.name">LOCAL-EIDAS-CC</entry>
+	<!-- URL of the first Service -->
+	<entry key="service3.url">http://vs-cis-k2:8085/EidasNode/ColleagueRequest</entry>
+	<entry key="service3.skew.notbefore">0</entry>
+	<entry key="service3.skew.notonorafter">0</entry>
+	<entry key="service3.metadata.url">http://vs-cis-k2:8085/EidasNode/ServiceMetadata</entry>
+	<entry key="service4.id">CD</entry>
+	<!-- Name of the second Service -->
+	<entry key="service4.name">LOCAL-EIDAS-CD</entry>
+	<!-- URL of the first Service -->
+	<entry key="service4.url">http://vs-cis-k2:7001/EidasNode/ColleagueRequest</entry>
+	<entry key="service4.skew.notbefore">0</entry>
+	<entry key="service4.skew.notonorafter">0</entry>
+	<entry key="service4.metadata.url">http://vs-cis-k2:7001/EidasNode/ServiceMetadata</entry>
+	<entry key="service5.id">AT</entry>
+	<!-- Name of the second Service -->
+	<entry key="service5.name">AT-VIDP Local</entry>
+	<!-- URL of the first Service -->
+	<entry key="service5.url">http://vs-cis-k2:8185/VIDP-V-PEPS-web/SendPEPSAuthnRequest</entry>
+	<entry key="service5.skew.notbefore">0</entry>
+	<entry key="service5.skew.notonorafter">0</entry>
+	<entry key="service5.metadata.url">http://vs-cis-k2:8185/EidasNode/ServiceMetadata</entry>
+ 	<entry key="service6.id">DE</entry>
+	<!-- Name of the second Service -->
+	<entry key="service6.name">DE-Local</entry>
+	<!-- URL of the first Service -->
+	<entry key="service6.url">http://vs-cis-k2:8185/VIDP-V-PEPS-web/SendPEPSAuthnRequest</entry>
+	<entry key="service6.skew.notbefore">0</entry>
+	<entry key="service6.skew.notonorafter">0</entry>
+	<entry key="service6.metadata.url">http://vs-cis-k2:8185/EidasNode/ServiceMetadata</entry>
+	<entry key="service7.id">CF</entry>
+	<!-- Name of the second Service -->
+	<entry key="service7.name">LOCAL-EIDAS-CF</entry>
+	<entry key="service7.url">http://vs-cis-k2:9080/EidasNode/ColleagueRequest</entry>
+	<entry key="service7.skew.notbefore">0</entry>
+	<entry key="service7.skew.notonorafter">0</entry>
+	<entry key="service7.metadata.url">http://vs-cis-k2:9080/EidasNode/ServiceMetadata</entry>
+	   <entry key="service8.id">CE</entry>
+	<!-- Name of the second Service -->
+	<entry key="service8.name">LOCAL-EIDAS-CE</entry>
+	<entry key="service8.url">http://vs-cis-k2/EidasNode/ColleagueRequest</entry>
+	<entry key="service8.skew.notbefore">0</entry>
+	<entry key="service8.skew.notonorafter">0</entry>
+	<entry key="service8.metadata.url">http://vs-cis-k2/EidasNode/ServiceMetadata</entry>
+	<!-- URL of the first Service -->
+	<!-- service -->
+
+	<!-- Id of this Service -->
+	<entry key="service.id">CA</entry>
+	<!-- Country Code of this Service -->
+	<entry key="service.countrycode">CA</entry>
+	<!-- QAALevel of this Service -->
+	<entry key="service.maxQAAlevel">4</entry>
+
+	<!-- Present consent-type form? (true/false) -->
+	<entry key="service.askconsent.type">true</entry>
+	<!-- Present consent-value form? (true/false) -->
+	<entry key="service.askconsent.value">true</entry>
+	<!-- Display all attributes (eidas + additional)?
+		true : display all attributes
+		false: display only traditional eidas attributes-->
+	<entry key="service.askconsent.all.attributes">true</entry>
+	<!-- Display only attibute names or name-value pairs? (true/false)-->
+	<entry key="service.askconsent.attribute.names.only">false</entry>
+
+	<!-- Method to call after IdP -->
+	<entry key="service.specificidpredirect.url">http://eidasnode:8888/EidasNode/IdpResponse</entry>
+	<!-- Action of Citizen Consent -->
+	<entry key="service.citizenConsentUrl">CitizenConsent</entry>
+
+	<!-- SECURITY POLICY -->
+	<!-- Bypass SP validation -->
+	<entry key="validation.bypass">true</entry>
+	<!-- Validate SP by ID and Domain or only by Domain (spid|domain) -->
+	<entry key="validation.method">spid</entry>
+	<!-- limit of requests per IP during max.time.ip (-1 unlimited) -->
+	<entry key="max.requests.ip">-1</entry>
+	<!-- limit of requests per SP during max.time.ip (-1 unlimited) -->
+	<entry key="max.requests.sp">-1</entry>
+	<!-- time frame for IP requests (seconds) -->
+	<entry key="max.time.ip">60</entry>
+	<!-- time frame for SP requests (seconds) -->
+	<entry key="max.time.sp">60</entry>
+	<!-- allowed SP domains (none|all|list;Of;Domains) -->
+	<entry key="trusted.sp.domains">all</entry>
+	<!-- min QAA level allowed -->
+	<entry key="min.qaaLevel.value">1</entry>
+	<!-- max QAA level allowed -->
+	<entry key="max.qaaLevel.value">4</entry>
+	<!--  New Configuration -->
+	<!--  SP's ProviderName alias could be none or the PROVIDERNAME  -->
+	<entry key="DEMO-SP.validation">none</entry>
+	<entry key="DEMO-SP-CB.validation">none</entry>
+	<entry key="DEMO-SP-CC.validation">none</entry>
+	<entry key="DEMO-SP-CD.validation">none</entry>
+	<entry key="DEMO-SP-CE.validation">none</entry>
+	<entry key="DEMO-SP-CF.validation">none</entry>
+
+	<!-- PLugin connector -->
+        <entry key="active.module.connector">true</entry>
+
+	<!-- PLugin service -->
+        <entry key="active.module.service">true</entry>
+
+	<!-- Binding -->
+        <entry key="allow.redirect.binding">true</entry>
+	<entry key="validate.binding">true</entry>
+
+        <!-- Certificates -->
+        <entry key="check_certificate_validity_period">false</entry>
+        <entry key="disallow_self_signed_certificate">false</entry>
+
+        <!-- signing Algorithm SHA_512(default),SHA_384,SHA_256 -->
+		<!-- http://www.w3.org/2001/04/xmldsig-more#rsa-sha256 -->
+		<!-- http://www.w3.org/2001/04/xmldsig-more#rsa-sha384 -->
+		<!-- http://www.w3.org/2001/04/xmldsig-more#rsa-sha512 -->
+
+        <entry key="signature.algorithm">http://www.w3.org/2001/04/xmldsig-more#rsa-sha512</entry>
+
+        <!-- List of incoming Signature algorithms white list separated by ; (default all)
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha512;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-ripemd160;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512 -->
+
+        <entry key="signature.algorithm.whitelist">
+       		 http://www.w3.org/2001/04/xmldsig-more#rsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha512;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-ripemd160;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512;
+			 http://www.w3.org/2007/05/xmldsig-more#sha256-rsa-MGF1
+		</entry>
+
+       <!-- signing response assertion true/false (default false) -->
+        <entry key="response.sign.assertions">false</entry>
+
+       <!-- Encryption algorithm -->
+        <entry key="data.encryption.algorithm"></entry>
+        <!-- List of Encryption algorithms
+	   http://www.w3.org/2009/xmlenc11#aes128-gcm;
+	   http://www.w3.org/2009/xmlenc11#aes256-gcm;
+	   http://www.w3.org/2009/xmlenc11#aes192-gcm
+
+        -->
+     <!-- Decryption algorithm Whitelist-->
+
+       <entry key="encryption.algorithm.whitelist">
+              http://www.w3.org/2009/xmlenc11#aes128-gcm;
+	      http://www.w3.org/2009/xmlenc11#aes256-gcm;
+	      http://www.w3.org/2009/xmlenc11#aes192-gcm</entry>
+
+
+        <!--Metadata -->
+        <entry key="metadata.activate">true</entry>
+
+        <!--connector Metadata -->
+        <entry key="connector.node.url">http://eidasnode:8888/EidasNode/</entry>
+        <entry key="connector.contact.email">test@com</entry>
+        <entry key="connector.metadata.url">http://eidasnode:8888/EidasNode/ConnectorMetadata</entry>
+
+       <!--service Metadata -->
+        <entry key="service.node.url">hhttp://eidasnode:8888/EidasNode/</entry>
+        <entry key="service.contact.email">test@com</entry>
+        <entry key="service.metadata.url">http://eidasnode:8888/EidasNode/ServiceMetadata</entry>
+
+	<entry key="metadata.file.repository">c:\Pgm\projects\configeidas\tomcat\metadata</entry>
+	<entry key="metadata.http.retrieval">true</entry>
+
+         <!-- Eidas Node Service Metadata Single Sign On locations for ServiceMetadata-->
+	<entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://eidasnode:8888/EidasNode/ColleagueRequest</entry>
+	<entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://eidasnode:8888/EidasNode/ColleagueRequest</entry>
+
+         <!-- Eidas Node Service Metadata Single Sign On locations for ConnectorResponseMetadata-->
+	<entry key="ssos.connectorMetadataGeneratorIDP.redirect.location">http://eidasnode:8888/EidasNode/ServiceProvider</entry>
+	<entry key="ssos.connectorMetadataGeneratorIDP.post.location">http://eidasnode:8888/EidasNode/ServiceProvider</entry>
+
+	<!--
+        Check that the citizen country code in the SAMLRequest is the same than the country of the Service signing certificate
+    -->
+    <entry key="check.citizenCertificate.serviceCertificate">false</entry>
+
+    <!-- Feature selector for the security header added to the EidasNode-->
+    <!-- This feature once disabled, switch off the content security policy-->
+    <entry key="security.header.CSP.enabled">true</entry>
+    <!-- Header specific for mozilla browser backwards compatibility : xhr-src: 'self' -->
+    <entry key="security.header.CSP.includeMozillaDirectives">true</entry>
+    <!-- X-XSS-Protection:1; mode=block -->
+    <entry key="security.header.XXssProtection.block">true</entry>
+    <!-- X-Content-Type-Options:nosniff -->
+    <entry key="security.header.XContentTypeOptions.noSniff">true</entry>
+    <!-- X-Frame-Options:SAMEORIGIN -->
+    <entry key="security.header.XFrameOptions.sameOrigin">false</entry>
+    <!-- Strict-Transport-Security:max-age=600000; includeSubdomains -->
+    <entry key="security.header.HSTS.includeSubDomains">true</entry>
+	<!-- value of the SPType to be published in the metadata-->
+	<entry key="metadata.sector">public</entry>
+
+	<entry key="hashDigest.className">org.bouncycastle.crypto.digests.SHA512Digest</entry>
+
+	<!-- sets the mapprovider for req-rep correlations, antireplay and metadata to distributed - hazelcast needs to be configured for this option -->
+	<entry key="distributedMaps">false</entry>
+	<!-- Retention period for simple metadata cache in seconds, for distributed environment, set in hazelcast.xml -->
+	<entry key="nonDistributedMetadata.retention">86400</entry>
+
+	<!-- check signature of entitydescriptors in metadata -->
+	<entry key="metadata.check.signature">true</entry>
+	<!-- allows metadata retrieval only using https -->
+	<entry key="metadata.restrict.http">false</entry>
+	<!-- SSL/TLS enabled protocols-->
+	<entry key="tls.enabled.protocols">TLSv1.1,TLSv1.2</entry>
+	<!-- enforce encryption of the SAML response -->
+	<entry key="response.encryption.mandatory">false</entry>
+
+	<!-- disable the check that the list of attributes contains at least the minimum set (when set to true) -->
+	<entry key="disable.check.mandatory.eidas.attributes">false</entry>
+	<!-- disable the check of representative attributes in the request (when set to true) -->
+	<entry key="disable.check.representative.attributes">false</entry>
+
+	<!-- level of assurance for the service -->
+	<entry key="service.LoA">http://eidas.europa.eu/LoA/high</entry>
+	<!-- duration of validity for dynamic metadata (in seconds) -->
+	<entry key="metadata.validity.duration">86400000</entry>
+	<!-- list of urls corresponding to entity descriptors whose signatures have not to be checked
+		the format to use is
+		http://descriptorurl1;https://descriptorurl2;
+	-->
+	<entry key="node.metadata.not.signed.descriptors"></entry>
+	<!-- connector metadata url, advertising connector as IdP, for communication with the SP -->
+	<entry key="connector.responder.metadata.url">http://eidasnode:8888/EidasNode/ConnectorResponderMetadata</entry>
+	<!-- service/Specific metadata url, advertising connector as SP - for communication with the IdP -->
+	<entry key="service.requester.metadata.url">http://eidasnode:8888/EidasNode/ServiceRequesterMetadata</entry>
+
+	<!-- whether the connector supports SPs not able to create SAML requests -->
+	<entry key="eidas.supportFramingSamlRequest">false</entry>
+
+
+	<!-- METADATA configuration -->
+		<!-- Connector contact -->
+	<entry key="connector.contact.support.email">contact.support@eidas-connector.eu</entry>
+	<entry key="connector.contact.support.company">eIDAS Connector Operator</entry>
+	<entry key="connector.contact.support.givenname">John</entry>
+	<entry key="connector.contact.support.surname">Doe</entry>
+	<entry key="connector.contact.support.phone">+40 123456</entry>
+	<entry key="connector.contact.technical.email">contact.technical@eidas-connector.eu</entry>
+	<entry key="connector.contact.technical.company">eIDAS Connector Operator</entry>
+	<entry key="connector.contact.technical.givenname">John</entry>
+	<entry key="connector.contact.technical.surname">Doe</entry>
+	<entry key="connector.contact.technical.phone">+41 123456</entry>
+		<!-- Connector organization -->
+	<entry key="connector.organization.name">Sample Country Connector</entry>
+	<entry key="connector.organization.displayname">Connector</entry>
+	<entry key="connector.organization.url">https://connector.sample/info</entry>	
+		<!-- ProxyService contact -->
+	<entry key="service.contact.support.email">contact.support@eidas-proxyservice.eu</entry>
+	<entry key="service.contact.support.company">eIDAS ProxyService Operator</entry>
+	<entry key="service.contact.support.givenname">John</entry>
+	<entry key="service.contact.support.surname">Doe</entry>
+	<entry key="service.contact.support.phone">+42 123456</entry>
+	<entry key="service.contact.technical.email">contact.technical@eidas-proxyservice.eu</entry>
+	<entry key="service.contact.technical.company">eIDAS ProxyService Operator</entry>
+	<entry key="service.contact.technical.givenname">John</entry>
+	<entry key="service.contact.technical.surname">Doe</entry>
+	<entry key="service.contact.technical.phone">+43 123456</entry>	
+		<!-- ProxyService organization -->
+	<entry key="service.organization.name">Sample Country Proxy Service</entry>
+	<entry key="service.organization.displayname">Service</entry>
+	<entry key="service.organization.url">https://service.sample/info</entry>	
+	
+	<!-- sets the application able to understand eidas message format only (true)or able to understand eidas message format and STORK 1 message format (false)-->
+	<entry key="eidasNodeOnly">false</entry>
+
+</properties>

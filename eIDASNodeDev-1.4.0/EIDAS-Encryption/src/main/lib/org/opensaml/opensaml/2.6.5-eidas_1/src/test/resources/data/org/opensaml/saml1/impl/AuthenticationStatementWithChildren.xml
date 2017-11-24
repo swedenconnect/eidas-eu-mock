@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml:AuthenticationStatement xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion"><saml:Subject/><saml:SubjectLocality/><saml:AuthorityBinding/><saml:AuthorityBinding/></saml:AuthenticationStatement>

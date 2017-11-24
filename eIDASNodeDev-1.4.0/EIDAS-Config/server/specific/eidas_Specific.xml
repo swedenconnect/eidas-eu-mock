@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!-- Certificates -->
+	<entry key="check_certificate_validity_period">false</entry>
+	<entry key="disallow_self_signed_certificate">false</entry>
+	<!-- signing Algorithm SHA_512(default),SHA_384,SHA_256 -->
+	<!-- http://www.w3.org/2001/04/xmldsig-more#rsa-sha256 -->
+	<!-- http://www.w3.org/2001/04/xmldsig-more#rsa-sha384 -->
+	<!-- http://www.w3.org/2001/04/xmldsig-more#rsa-sha512 -->
+	<entry key="signature.algorithm">http://www.w3.org/2001/04/xmldsig-more#rsa-sha512</entry>
+	<!--
+	     http://www.w3.org/2001/04/xmldsig-more#rsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha512;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-ripemd160;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512
+	-->
+	<entry key="signature.algorithm.whitelist">
+       		 http://www.w3.org/2001/04/xmldsig-more#rsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-sha512;
+             http://www.w3.org/2001/04/xmldsig-more#rsa-ripemd160;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384;
+             http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512;
+			 http://www.w3.org/2007/05/xmldsig-more#sha256-rsa-MGF1
+	</entry>
+	<!-- signing response assertion true/false (default false) -->
+	<entry key="response.sign.assertions">true</entry>
+	<!-- Encryption algorithm -->
+	<!--<entry key="data.encryption.algorithm"></entry>-->
+	<!-- List of Encryption algorithms
+	   http://www.w3.org/2009/xmlenc11#aes128-gcm;
+	   http://www.w3.org/2009/xmlenc11#aes256-gcm;
+	   http://www.w3.org/2009/xmlenc11#aes192-gcm
+        -->
+	<!-- Decryption algorithm Whitelist-->
+	<entry key="encryption.algorithm.whitelist">
+              http://www.w3.org/2009/xmlenc11#aes128-gcm;
+	      http://www.w3.org/2009/xmlenc11#aes256-gcm;
+	      http://www.w3.org/2009/xmlenc11#aes192-gcm</entry>
+	<!-- enforce encryption of the SAML response -->
+	<entry key="response.encryption.mandatory">true</entry>
+
+	<!-- providers -->
+	<entry key="external.authentication">yes</entry>
+	<entry key="idp.url">http://idp:8888/IdP/AuthenticateCitizen</entry>
+	<entry key="idp.metadata.url">http://idp:8888/IdP/metadata</entry>
+	<!-- derivation -->
+	<entry key="deriveAttr.number">5</entry>
+	<entry key="deriveAttr1.id">isAgeOver</entry>
+	<entry key="deriveAttr1.name">dateOfBirth</entry>
+	<entry key="deriveAttr1.uri">http://eidas.europa.eu/attributes/naturalperson/DateOfBirth</entry>
+	<entry key="deriveAttr2.id">age</entry>
+	<entry key="deriveAttr2.name">dateOfBirth</entry>
+	<entry key="deriveAttr2.uri">http://eidas.europa.eu/attributes/naturalperson/DateOfBirth</entry>
+	<entry key="deriveAttr3.id">eIdentifier</entry>
+	<entry key="deriveAttr3.name">eIdentifier</entry>
+	<entry key="deriveAttr3.uri">http://www.stork.gov.eu/1.0/eIdentifier</entry>
+	<entry key="deriveAttr4.id">PersonIdentifier</entry>
+	<entry key="deriveAttr4.name">PersonIdentifier</entry>
+	<entry key="deriveAttr4.uri">http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier</entry>
+	<entry key="deriveAttr5.id">LegalPersonIdentifier</entry>
+	<entry key="deriveAttr5.name">LegalPersonIdentifier</entry>
+	<entry key="deriveAttr5.uri">http://eidas.europa.eu/attributes/legalperson/LegalPersonIdentifier</entry>
+	<!-- value's derivation -->
+	<entry key="dateOfBirth.stork.format">yyyyMMdd</entry>
+	<entry key="dateOfBirth.hasSeparator">true</entry>
+	<entry key="dateOfBirth.specific.separator">-</entry>
+	<entry key="dateOfBirth.implemention">eu.eidas.node.specific.normalisation.NormaliseDateOfBirth</entry>
+	<!-- validation -->
+	<entry key="allow.unknowns">true</entry>
+	<entry key="allow.derivation.all">true</entry>
+	<!-- specific classes -->
+	<entry key="derive.isAgeOver.impl">eu.eidas.node.specific.derivation.DeriveIsAgeOver</entry>
+	<entry key="derive.age.impl">eu.eidas.node.specific.derivation.DeriveAge</entry>
+	<entry key="derive.eId.impl">eu.eidas.node.specific.derivation.DeriveEid</entry>
+	<entry key="derive.eIDASID.impl">eu.eidas.node.specific.derivation.EidasDeriveEid</entry>
+	<entry key="validate.gender.impl">eu.eidas.node.specific.validation.ValidateGender</entry>
+	<entry key="validate.countryCodeOfBirth.impl">eu.eidas.node.specific.validation.ValidateCountryCodeOfBirth</entry>
+	<entry key="validate.nationalityCode.impl">eu.eidas.node.specific.validation.ValidateNationalityCode</entry>
+	<entry key="validate.maritalStatus.impl">eu.eidas.node.specific.validation.ValidateMaritalStatus</entry>
+</properties>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd"
+            xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol"
+            xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+            xmlns="http://www.opensaml.org/xmltooling-config">
+
+<!-- SAML 2.0 Protocol Object providers -->
+
+    <!--  SAML 2.0 Schema Validation Rules -->
+
+    <ValidatorSuites>
+        <ValidatorSuite id="storkRequestValidatorSuiteId">
+            <Validator qualifiedName="saml2p:Extensions"
+                       className="eu.eidas.auth.engine.core.validator.stork.ExtensionsSchemaValidator"/>
+
+        </ValidatorSuite>
+
+        <ValidatorSuite id="storkResponseValidatorSuiteId">
+            <Validator qualifiedName="saml2:Assertion"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkAssertionValidator"/>
+
+        </ValidatorSuite>
+
+
+        <ValidatorSuite id="eidasRequestValidatorSuiteId">
+            <Validator qualifiedName="saml2p:Extensions"
+                       className="eu.eidas.auth.engine.core.validator.eidas.ExtensionsSchemaValidator"/>
+        </ValidatorSuite>
+
+        <ValidatorSuite id="eidasResponseValidatorSuiteId">
+            <Validator qualifiedName="saml2p:Extensions"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasAssertionValidator"/>
+
+        </ValidatorSuite>
+
+
+    </ValidatorSuites>
+
+
+</XMLTooling>

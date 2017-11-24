@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idpdisco:DiscoveryResponse xmlns:idpdisco="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:binding:foo" Location="example.org" index="3" ResponseLocation="example.org/response" isDefault="true"/>

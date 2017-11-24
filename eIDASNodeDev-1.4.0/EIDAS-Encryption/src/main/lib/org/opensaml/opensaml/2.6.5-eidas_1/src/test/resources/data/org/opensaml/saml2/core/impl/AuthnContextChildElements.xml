@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2:AuthnContext xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:AuthnContextClassRef/><saml2:AuthnContextDecl/><saml2:AuthnContextDeclRef/><saml2:AuthenticatingAuthority/><saml2:AuthenticatingAuthority/></saml2:AuthnContext>

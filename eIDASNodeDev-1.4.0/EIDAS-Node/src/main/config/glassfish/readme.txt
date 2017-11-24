@@ -1,0 +1,1 @@
+This file has been provided to allow cookie disabling specially for the glassfish server.
