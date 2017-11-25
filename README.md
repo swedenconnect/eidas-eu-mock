@@ -30,4 +30,4 @@ EIDAS_TRUSTED_CERTS_CONSTRAINTS | eidasKeyStore_Connector_CA.jks,eidasKeyStore_S
 ## Docker image
 The image has internal configuration files with default values located at:
 
-> /opt/docker/internal/configEidas14
+> /opt/docker/internal/configEidas
