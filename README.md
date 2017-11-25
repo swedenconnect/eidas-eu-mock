@@ -1,7 +1,25 @@
 # EU eIDAS node reference implementation mockups
 providing Docker images for running eIDAS nodes in a test environment
 ---
+## Scope
+This project provide the means to build and deploy the EU reference eIDAS nodes as docker images.
+The eIDAS node code is the standard code version 1.4 with only 1 minor modification.
 
+The modification allows configuration of trust via an external PEM certificates file holding one or more trusted certificates.
+
+The docker container can be started with environment variable settings as specified below
+
+## Building the docker container
+In order to build the docker container, the following maven projects must be built in the specified order:
+
+project | build command
+---|---
+cef-node-trust | mvn clean install
+eIDASNodeDev-1.4.0 | mvn clean install -P tomcat
+cef-node-docker | mvn clean install dockerfile:build
+
+This will build a docker image with default internal configuration files.
+The user of internal configuration files can be overwritten by the environment variables as specified beolw.
 
 ## Environment variables
 The following environment variables influence the operation of eIDAS node instances.
