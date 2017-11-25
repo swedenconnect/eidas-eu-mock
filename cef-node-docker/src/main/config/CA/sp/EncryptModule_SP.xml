@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+    <comment>SWModule encrypt with JKS.</comment>
+    <entry key="check_certificate_validity_period">false</entry>
+    <entry key="disallow_self_signed_certificate">false</entry>
+
+
+   <entry key="response.encryption.mandatory">false</entry>
+    <!-- Data Encryption algorithm -->
+    <entry key="data.encryption.algorithm">http://www.w3.org/2009/xmlenc11#aes256-gcm</entry>
+    <!-- Decryption algorithm Whitelist-->
+    <entry key="encryption.algorithm.whitelist">
+        http://www.w3.org/2009/xmlenc11#aes128-gcm;
+        http://www.w3.org/2009/xmlenc11#aes256-gcm;
+        http://www.w3.org/2009/xmlenc11#aes192-gcm
+    </entry>
+    <!-- Key Encryption algorithm -->
+    <entry key="key.encryption.algorithm">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</entry>
+    <entry key="keyStorePath">../../keystore/eidasKeyStore_SP_CA.jks</entry>
+    <entry key="keyStorePassword">local-demo</entry>
+    <entry key="keyPassword">local-demo</entry>
+   <!-- Management of the encryption activation -->
+    <entry key="encryptionActivation">../encryptionConf.xml</entry>
+
+    <entry key="responseToPointIssuer.CA">CN=speps-ca-demo-certificate, OU=STORK, O=SPEPS, L=EU, ST=EU, C=CA</entry>
+    <entry key="responseToPointSerialNumber.CA">54C8FC88</entry>
+
+    <entry key="responseToPointIssuer.CB">CN=speps-cb-demo-certificate, OU=STORK, O=SPEPS, L=EU, ST=EU, C=CB</entry>
+    <entry key="responseToPointSerialNumber.CB">54C8FCC5</entry>
+
+    <entry key="responseToPointIssuer.CC">CN=speps-cc-demo-certificate, OU=STORK, O=SPEPS, L=EU, ST=EU, C=CC</entry>
+    <entry key="responseToPointSerialNumber.CC">54C8FCF8</entry>
+
+    <entry key="responseToPointIssuer.CD">CN=speps-cd-demo-certificate, OU=STORK, O=SPEPS, L=EU, ST=EU, C=CD</entry>
+    <entry key="responseToPointSerialNumber.CD">54C8FD2D</entry>
+
+    <entry key="responseToPointIssuer.CF">CN=speps-cf-demo-certificate, OU=STORK, O=SPEPS, L=EU, ST=EU, C=CF</entry>
+    <entry key="responseToPointSerialNumber.CF">54D7898C</entry>
+
+    <!--  If not present then no decryption will be applied on response -->
+    <!-- Certificate containing instance private key-->
+    <entry key="responseDecryptionIssuer">CN=sp-ca-demo-certificate, OU=STORK, O=SP, L=EU, ST=EU, C=CA</entry>
+    <entry key="serialNumber">54C8FB33</entry>
+
+    <entry key="keyStoreType">JKS</entry>
+</properties>
