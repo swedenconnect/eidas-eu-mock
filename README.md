@@ -49,3 +49,8 @@ EIDAS_TRUSTED_CERTS_CONSTRAINTS | eidasKeyStore_Connector_CA.jks,eidasKeyStore_S
 The image has internal configuration files with default values located at:
 
 > /opt/docker/internal/configEidas
+
+## Creating external configuration
+In order to connect this eIDAS nodes connector and proxy service services to other services, some configuration settings must be customised. This is easiest done by placing configuration files in an external folder and to specify its use through the environment variables at docker run.
+
+A full set of sample configuration files are provided in the cef-node-docker project under src/main/config.
