@@ -24,7 +24,6 @@
     <!-- Management of the encryption activation -->
     <entry key="encryptionActivation">encryptionConf.xml</entry>
 
-
     <!--  If not present then no encryption will be applied on response -->
     <entry key="responseToPointIssuer.CA">CN=speps-ca-demo-certificate, OU=STORK, O=SPEPS, L=EU, ST=EU, C=CA</entry>
     <entry key="responseToPointSerialNumber.CA">54C8FC88</entry>

@@ -7,7 +7,7 @@
     <entry key="disallow_self_signed_certificate">false</entry>
 
 
-   <entry key="response.encryption.mandatory">false</entry>
+    <entry key="response.encryption.mandatory">false</entry>
     <!-- Data Encryption algorithm -->
     <entry key="data.encryption.algorithm">http://www.w3.org/2009/xmlenc11#aes256-gcm</entry>
     <!-- Decryption algorithm Whitelist-->
