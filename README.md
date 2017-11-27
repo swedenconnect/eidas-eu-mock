@@ -31,11 +31,11 @@ This class is used to extend certificates provided in a JKS trust store in the C
 ## Building the docker container
 In order to build the docker container, the following maven projects must be built in the specified order:
 
-project | build command
----|---
-cef-node-trust | mvn clean install
-eIDASNodeDev-1.4.0 | mvn clean install -P tomcat
-cef-node-docker | mvn clean install dockerfile:build
+Module | Function | Build command
+---|---|---
+cef-node-trust | Builds PEM certificate trust extension| mvn clean install
+eIDASNodeDev-1.4.0 |Builds the CEF Digital eIDAS code with the trust extension| mvn clean install -P tomcat
+cef-node-docker |Builds a docker image with a configured tomcat instance| mvn clean install dockerfile:build
 
 This will build a docker image with default internal configuration files.
 The user of internal configuration files can be overwritten by the environment variables as specified beolw.
