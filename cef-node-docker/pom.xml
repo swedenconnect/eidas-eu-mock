@@ -179,7 +179,7 @@
                         <configuration>
                             <target>
                                 <echo>Copy eIDAS Node config</echo>
-                                <copy todir="${project.build.directory}/configEidas/" overwrite="true">
+                                <copy todir="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/configEidas/" overwrite="true">
                                     <fileset dir="${project.basedir}/src/main/config"/>
                                 </copy>
                             </target>
@@ -196,6 +196,7 @@
                             <target>
                                 <echo>Copy tomcat docker start script</echo>
                                 <copy file="${project.basedir}/src/main/scripts/dockerStart.sh" tofile="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/bin/dockerStart.sh" />
+                                <copy file="${project.basedir}/src/main/scripts/startEidas.sh" tofile="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/bin/startEidas.sh" />
                                 <echo>Copy tomcat override config</echo>
                                 <copy todir="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/conf/" overwrite="true">
                                     <fileset dir="${project.basedir}/src/main/tomcat/conf"/>
