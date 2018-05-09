@@ -16,6 +16,12 @@
     </parent>
 
     <dependencies>
+        <!-- TrustConfig -->
+        <dependency>
+            <groupId>se.elegnamnden.eidas.cef</groupId>
+            <artifactId>trustconfig</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- 1) Dependencies on other modules: -->
         <dependency>
             <groupId>eu.eidas</groupId>
