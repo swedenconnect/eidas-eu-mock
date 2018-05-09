@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+	<bean id="configUtil" class="eu.eidas.samlengineconfig.impl.tools.EidasConfigManagerUtil" scope="singleton">
+		<property name="fileService" ref="fileService"/>
+	</bean>
+	<bean id="fileService" class="eu.eidas.impl.file.FileService" scope="singleton">
+		<property name="repositoryDir" value="${eidasNode.engine.repo:}"/>
+		<property name="alternateLocation" ref="#{getObject('eidasNodeConfigDirectory')==null?'defaultEidasNodeConfigDirectory':'eidasNodeConfigDirectory'}"/>
+	</bean>
+	<bean id="engineUnmarshaller" class="eu.eidas.samlengineconfig.impl.marshaller.EngineInstanceUnmarshallerImpl" scope="singleton">
+		<property name="fileService" ref="fileService"/>
+	</bean>
+
+	<bean id="engineMarshaller" class="eu.eidas.samlengineconfig.impl.marshaller.EngineInstanceMarshallerImpl" scope="singleton">
+		<property name="fileService" ref="fileService"/>
+	</bean>
+	<bean id="fileConfigurationRepository" class="eu.eidas.config.impl.FileConfigurationRepository">
+		<property name="fileService" ref="fileService"/>
+	</bean>
+	<bean id="metaconfigProvider" class="eu.eidas.config.impl.EIDASNodeMetaconfigProviderImpl">
+	</bean>
+	<bean id="fileNodeConfiguration" class="eu.eidas.config.impl.FileEidasNodeConfiguration">
+		<property name="metaconfigProvider" ref="metaconfigProvider"/>
+		<property name="samlMetadataRepository" ref="metadataRepository"/>
+	</bean>
+	<bean id="eidasMasterConfiguration" class="eu.eidas.config.EIDASNodeMasterConfiguration">
+		<property name="repository" ref="fileConfigurationRepository"/>
+		<property name="nodeConfiguration" ref="fileNodeConfiguration"/>
+	</bean>
+	<bean id="engineConfiguration" class="eu.eidas.samlengineconfig.impl.CertificateManagerConfigurationImpl">
+		<property name="location" value="samlengine"/>
+		<property name="parentConfiguration" ref="fileNodeConfiguration"/>
+		<property name="configurationName" value="SamlEngine.xml"/><!-- to be externalized in props? -->
+		<property name="engineUnmarshaller" ref="engineUnmarshaller"/>
+	</bean>
+	<bean id="metadataFileService" class="eu.eidas.impl.file.FileService" scope="singleton">
+	</bean>
+	<bean id="metadataRepository" class="eu.eidas.config.impl.samlmetadata.MetadataRepositoryImpl">
+		<property name="fileService" ref="metadataFileService"/>
+	</bean>
+	<bean id="defaultEidasNodeConfigDirectory" class="java.lang.String">
+		<constructor-arg value=""/>
+	</bean>
+	
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Dynamic attributes</comment>
+
+    <entry key="1.NameUri">http://eidas.europa.eu/attributes/naturalperson/EidasAdditionalAttribute</entry>
+    <entry key="1.FriendlyName">EidasAdditionalAttribute</entry>
+    <entry key="1.PersonType">NaturalPerson</entry>
+    <entry key="1.Required">true</entry>
+    <entry key="1.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="1.XmlType.LocalPart">string</entry>
+    <entry key="1.XmlType.NamespacePrefix">xs</entry>
+    <entry key="1.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+</properties>

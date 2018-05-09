@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+	<import resource="classpath:environmentContext.xml" />
+
+	<import resource="classpath:specificCommunicationDefinitionApplicationContext.xml"/>
+
+    <bean id="eidasConfigFile" class="java.lang.String">
+        <constructor-arg value="eidas.xml" />
+    </bean>
+
+	<bean id="eidasConfigFileWithPath" class="java.lang.String">
+		<constructor-arg value="file:#{eidasConfigRepository}#{eidasConfigFile}"/>
+	</bean>
+
+	<bean id="nodeProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" ref="eidasConfigFileWithPath"/>
+	</bean>
+	<bean id="placeholderConfig"
+		  class="eu.eidas.node.utils.PropertiesUtil">
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="ignoreResourceNotFound" value="true"/>
+		<property name="order" value="0"/>
+		<property name="locations">
+			<list>
+				<ref bean="eidasConfigFileWithPath"/>
+				<ref bean="deploymentSpecificConnectorConfig"/>
+				<ref bean="deploymentSpecificProxyServiceConfig"/>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+	<bean id="deploymentSpecificConnectorConfig" class="java.lang.String">
+		<constructor-arg value="classpath:deploymentSpecificConnectorConfig.properties" />
+	</bean>
+
+	<bean id="deploymentSpecificProxyServiceConfig" class="java.lang.String">
+		<constructor-arg value="classpath:deploymentSpecificProxyServiceConfig.properties" />
+	</bean>
+
+	<bean id="specificConnectorJar" class="java.lang.Boolean">
+		<constructor-arg value="${specificConnectorDeployedJar}" />
+	</bean>
+
+	<bean id="specificProxyServiceJar" class="java.lang.Boolean">
+		<constructor-arg value="${specificProxyServiceDeployedJar}" />
+	</bean>
+
+
+	<!-- PROPERTIES -->
+    <bean id="applicationContextProvider" class="eu.eidas.node.ApplicationContextProvider"/>
+
+    <!-- Resource bundle to translate Service error codes -->
+    <bean id="transMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="eidastranslation"/>
+	</bean>
+
+	<!-- Resource bundle to log error messages to sys-admins -->
+    <bean id="sysadminMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="sysadmin"/>
+	</bean>
+
+	<!-- Resource bundle to log error messages -->
+    <bean id="errorMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="errors"/>
+	</bean>
+
+	<bean id="NodeProtocolEngineConfigurationFactory" class="eu.eidas.auth.engine.configuration.dom.ProtocolEngineConfigurationFactory" scope="singleton">
+		<constructor-arg value="SamlEngine.xml"/>
+		<constructor-arg value="#{eidasConfigFile}"/>
+		<constructor-arg value="#{eidasConfigRepository}"/>
+	</bean>
+
+	<bean id="NodeProtocolEngineFactory" class="eu.eidas.auth.engine.ProtocolEngineFactory" scope="singleton">
+		<constructor-arg ref="NodeProtocolEngineConfigurationFactory"/>
+	</bean>
+
+	<bean id="specificConnectorLightRequestCorrelationMap" class="eu.eidas.auth.commons.tx.StoredLightRequestCorrelationMap">
+		<constructor-arg ref="springConnectorCMapspecificLightCorProvider#{distributedEnvSuffix.toString()}"/>
+	</bean>
+
+    <bean id="connectorRequestCorrelationMap" class="eu.eidas.auth.commons.tx.StoredAuthenticationRequestCorrelationMap">
+		<constructor-arg ref="springConnectorCMapCorProvider#{distributedEnvSuffix.toString()}"/>
+	</bean>
+
+    <bean id="proxyServiceRequestCorrelationMap" class="eu.eidas.auth.commons.tx.StoredAuthenticationRequestCorrelationMap">
+		<constructor-arg ref="springServiceCMapCorProvider#{distributedEnvSuffix.toString()}"/>
+	</bean>
+
+	<!-- LOGGING -->
+	<bean id="ServiceLogger" class="eu.eidas.node.logging.EidasLoggerBean" />
+	<bean id="ConnectorLogger" class="eu.eidas.node.logging.EidasLoggerBean" />
+
+	<!-- SPECIFIC Classes -->
+
+     <bean id="springManagedSecurityConfig" class="eu.eidas.node.security.ConfigurationSecurityBean" scope="prototype">
+         <property name="ipMaxRequests" value="${max.requests.ip}" />
+         <property name="spMaxRequests" value="${max.requests.sp}" />
+         <property name="ipMaxTime" value="${max.time.ip}" />
+         <property name="spMaxTime" value="${max.time.sp}" />
+         <property name="trustedDomains" value="${trusted.sp.domains}" />
+         <property name="validationMethod" value="${validation.method}" />
+         <property name="messageSource" ref="errorMessageSource"/>
+         <property name="isContentSecurityPolicyActive" value="${security.header.CSP.enabled:true}"/>
+         <property name="isMoaActive" value="${isMoaActive:false}"/>
+         <property name="includeXXssProtection" value="${security.header.XXssProtection.block:true}"/>
+         <property name="includeXContentTypeOptions" value="${security.header.XContentTypeOptions.noSniff:true}"/>
+         <property name="includeXFrameOptions" value="${security.header.XFrameOptions.sameOrigin:true}"/>
+         <property name="includeHSTS" value="${security.header.HSTS.includeSubDomains:true}"/>
+		 <property name="cspFallbackCheck" value="${security.header.CSP.fallbackCheckMode:false}"/>
+         <property name="includeMozillaDirectives" value="${security.header.CSP.includeMozillaDirectives:true}"/>
+		 <property name="bypassValidation" value="${validation.bypass}" />
+     </bean>
+
+    <!-- Connector requests parameters via servlet -->
+    <bean id="connectorController" class="eu.eidas.node.connector.ConnectorControllerService" scope="prototype">
+        <property name="specificSpRequestCorrelationMap" ref="specificConnectorLightRequestCorrelationMap"/>
+        <property name="connectorRequestCorrelationMap" ref="connectorRequestCorrelationMap"/>
+		<property name="connectorService" ref="springManagedAUCONNECTOR" />
+		<property name="assertionConsUrl" value="${connector.assertion.url}" />
+	</bean>
+    <!-- Service requests parameters via servlet -->
+    <bean id="serviceController" class="eu.eidas.node.service.ServiceControllerService" scope="prototype">
+        <property name="proxyServiceRequestCorrelationMap" ref="proxyServiceRequestCorrelationMap"/>
+        <property name="proxyService" ref="springManagedAUSERVICE" />
+    </bean>
+
+	<!-- Node Classes -->
+	<!-- Service Classes -->
+	<bean id="springManagedAUSERVICE" class="eu.eidas.node.auth.service.AUSERVICE"
+		scope="prototype">
+		<property name="citizenService" ref="springManagedAUSERVICECitizen" />
+		<property name="samlService" ref="springManagedAUSERVICESAML" />
+		<property name="serviceUtil" ref="springManagedAUSERVICEUtil" />
+		<property name="serviceMetadataUrl" value="${service.metadata.url}"/>
+	</bean>
+
+	<bean id="springManagedAUSERVICECitizen" class="eu.eidas.node.auth.service.AUSERVICECitizen">
+		<property name="serviceUtil" ref="springManagedAUSERVICEUtil" />
+		<property name="samlService" ref="springManagedAUSERVICESAML" />
+	</bean>
+
+	<bean id="springManagedAUSERVICESAML" class="${AUSERVICESAMLclass:eu.eidas.node.auth.service.AUSERVICESAML}">
+		<property name="maxQAAlevel" value="${service.maxQAAlevel}" />
+		<property name="minQAA" value="${min.qaaLevel.value}" />
+		<property name="maxQAA" value="${max.qaaLevel.value}" />
+		<property name="countryCode" value="${service.countrycode}" />
+		<property name="loggerBean" ref="ServiceLogger" />
+		<property name="messageSource" ref="errorMessageSource"/>
+		<property name="serviceUtil" ref="springManagedAUSERVICEUtil" />
+		<property name="samlEngineInstanceName" value="${saml.service:Service}" />
+		<property name="serviceMetadataUrl" value="${service.metadata.url}"/>
+		<property name="metadataFetcher" ref="nodeMetadataFetcher"/>
+		<property name="nodeProtocolEngineFactory" ref="NodeProtocolEngineFactory"/>
+	</bean>
+	<!-- Connector Classes -->
+	<bean id="springManagedAUCONNECTOR" class="eu.eidas.node.auth.connector.AUCONNECTOR"
+		scope="prototype">
+		<property name="samlService" ref="springManagedAUCONNECTORSAML" />
+		<property name="connectorUtil" ref="springManagedAUCONNECTORUtil" />
+        <property name="specificSpRequestCorrelationMap" ref="specificConnectorLightRequestCorrelationMap"/>
+        <property name="connectorRequestCorrelationMap" ref="connectorRequestCorrelationMap"/>
+	</bean>
+
+	<bean id="springManagedAUCONNECTORSAML" class="eu.eidas.node.auth.connector.AUCONNECTORSAML">
+		<property name="samlServiceInstance" value="${saml.connector:Connector}" />
+		<property name="connectorUtil" ref="springManagedAUCONNECTORUtil" />
+		<property name="loggerBean" ref="ConnectorLogger" />
+		<property name="messageSource" ref="transMessageSource"/>
+        <property name="checkCitizenCertificateServiceCertificate" value="${check.citizenCertificate.serviceCertificate}" />
+		<property name="connectorMetadataUrl" value="${connector.metadata.url}"/>
+		<property name="metadataFetcher" ref="nodeMetadataFetcher"/>
+        <property name="nodeProtocolEngineFactory" ref="NodeProtocolEngineFactory"/>
+	</bean>
+
+	<bean id="runenvironment" class="java.lang.String">
+		<constructor-arg value="${node.run.environment:Prod}"/>
+	</bean>
+	<bean id="useDistributedMaps" class="java.lang.String">
+		<constructor-arg value="${distributedMaps}"/>
+	</bean>
+
+	<!-- suffix for some of the beans having two possible implementations - one for development and one for production -->
+	<bean id="distributedEnvSuffix" class="java.lang.String">
+		<constructor-arg value="#{useDistributedMaps.toString()=='false'?'Dev':'Prod'}"/>
+	</bean>
+
+	<!-- production environment hazelcast instance name -->
+	<bean id="defaultHazelcastInstance" class="java.lang.String">
+		<constructor-arg value="eidasHazelcastInstance"/>
+	</bean>
+	<!-- production environment hazelcast initializer bean - injected into map providers -->
+	<bean id="eidasHazelcastInstanceInitializer" class=" eu.eidas.auth.commons.cache.HazelcastInstanceInitializer" init-method="initializeInstance" lazy-init="true">
+		<property name="hazelcastConfigfileName" value="#{eidasConfigRepository}hazelcast.xml"/>
+		<property name="hazelcastInstanceName" ref="defaultHazelcastInstance"/>
+	</bean>
+
+	<!-- Defines the class used for the concurrent map implementation : functionality Session tracking & anti replay attack detection -->
+    <!-- For testing usage only : this implementation should not be the default one, only for development, there is no expiration implemented-->
+    <bean id="springConnectorCMapAntiReplayProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+		<property name="expireAfterAccess" value="1800"/>
+		<property name="maximumSize" value="1000"/>
+    </bean>
+    <bean id="springServiceCMapAntiReplayProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+		<property name="expireAfterAccess" value="1800"/>
+		<property name="maximumSize" value="1000"/>
+    </bean>
+	<!-- Correlation maps for simple dev mode -->
+	<bean id="springConnectorCMapCorProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+		<property name="expireAfterAccess" value="1800"/>
+		<property name="maximumSize" value="1000"/>
+	</bean>
+	<bean id="springServiceCMapCorProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+		<property name="expireAfterAccess" value="1800"/>
+		<property name="maximumSize" value="1000"/>
+	</bean>
+	<bean id="springConnectorCMapspecificLightCorProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+		<property name="expireAfterAccess" value="1800"/>
+		<property name="maximumSize" value="1000"/>
+	</bean>
+
+	<!-- Clustered and production ready implementation (use this in real world !) -->
+	<!-- AntiReplay cache -->
+    <bean id="springServiceCMapAntiReplayProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+        <property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
+        <property name="cacheName" value="antiReplayCacheService"/>
+    </bean>
+    <bean id="springConnectorCMapAntiReplayProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+        <property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
+        <property name="cacheName" value="antiReplayCacheConnector"/>
+    </bean>
+    <!-- Correlation maps provided by Hazelcast for distributed environment, use these in productions! -->
+	<bean id="springConnectorCMapCorProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+		<property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
+		<property name="cacheName" value="connectorRequestCorrelationCacheService"/>
+	</bean>
+	<bean id="springServiceCMapCorProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+		<property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
+		<property name="cacheName" value="proxyServiceRequestCorrelationCacheService"/>
+	</bean>
+	<bean id="springConnectorCMapspecificLightCorProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+		<property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
+		<property name="cacheName" value="specificConnectorLtRequestCorrelationCacheService"/>
+	</bean>
+
+	<bean id="springManagedAUCONNECTORUtil" class="eu.eidas.node.auth.connector.AUCONNECTORUtil">
+        <constructor-arg ref="springConnectorCMapAntiReplayProvider#{distributedEnvSuffix.toString()}"/>
+		<property name="configs" ref="nodeProps" />
+		<property name="bypassValidation" value="${validation.bypass}" />
+		<property name="minQAA" value="${min.qaaLevel.value}" />
+		<property name="maxQAA" value="${max.qaaLevel.value}" />
+	</bean>
+
+    <bean id="springManagedAUSERVICEUtil" class="eu.eidas.node.auth.service.AUSERVICEUtil">
+                <constructor-arg ref="springServiceCMapAntiReplayProvider#{distributedEnvSuffix.toString()}"/>
+		<property name="configs" ref="nodeProps" />
+	</bean>
+
+	<bean id="nodeFileMetadataProcessor" class="eu.eidas.auth.engine.metadata.impl.FileMetadataLoader">
+		<property name="repositoryPath" value="${metadata.file.repository}"/>
+	</bean>
+
+    <bean id="nodeMetadataFetcher" class="eu.eidas.auth.engine.metadata.impl.CachingMetadataFetcher" init-method="initProcessor">
+        <property name="cache" ref="metadataCache#{distributedEnvSuffix.toString()}"/>
+        <!-- node.run.environment:Prod -->
+        <property name="metadataLoaderPlugin" ref="nodeFileMetadataProcessor"/>
+		<property name="httpRetrievalEnabled" value="${metadata.http.retrieval}"/>
+		<property name="restrictHttp" value="${metadata.restrict.http}"/>
+        <property name="tlsEnabledProtocols" value="${tls.enabled.protocols}"/>
+        <property name="tlsEnabledCiphers" value="${tls.enabled.ciphers}"/>
+		<property name="validateEidasMetadataSignature" value="${metadata.check.signature}"/>
+        <property name="trustedEidasMetadataUrls" value="${node.metadata.not.signed.descriptors:}"/>
+    </bean>
+
+	<bean id="serviceMetadataGeneratorIDP" class="eu.eidas.node.utils.EidasNodeMetadataGenerator">
+		<property name="proxyServiceEngine" value="${saml.service:Service}"/>
+		<property name="proxyServiceMetadataUrl" value="${service.metadata.url}"/>
+		<property name="nodeProtocolEngineFactory" ref="NodeProtocolEngineFactory" />
+		<property name="nodeProps" ref="nodeProps" />
+		<property name="validityDuration" value="${metadata.validity.duration:86400}" />
+                <property name="singleSignOnServiceRedirectLocation" value="${ssos.serviceMetadataGeneratorIDP.redirect.location}" />
+                <property name="singleSignOnServicePostLocation" value="${ssos.serviceMetadataGeneratorIDP.post.location}" />
+	</bean>
+	<bean id="connectorMetadataGeneratorSP" class="eu.eidas.node.utils.EidasNodeMetadataGenerator">
+		<property name="connectorEngine" value="${saml.conenctor:Connector}"/>
+		<property name="connectorMetadataUrl" value="${connector.metadata.url}"/>
+		<property name="nodeProtocolEngineFactory" ref="NodeProtocolEngineFactory" />
+		<property name="assertionUrl" value="${connector.assertion.url}" />
+		<property name="nodeProps" ref="nodeProps" />
+		<property name="validityDuration" value="${metadata.validity.duration:86400}" />
+	</bean>
+	<bean id="eidasNodeConfigDirectory" class="java.lang.String">
+		<constructor-arg value="#{placeholderConfig.getEidasXmlLocation()}"/>
+	</bean>
+	<import resource="classpath:filecertmgmt.xml" />
+
+	<!--production -->
+	<bean id="metadataCacheProd" class="eu.eidas.node.auth.metadata.DistributedMetadataCaching" lazy-init="true">
+		<property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
+		<property name="cacheName" value="eidasmetadata"/>
+	</bean>
+
+	<!-- for development environment -->
+	<bean id="metadataCacheDev" class="eu.eidas.node.auth.metadata.SimpleMetadataCaching"  lazy-init="true">
+		<constructor-arg value="${nonDistributedMetadata.retention}" />
+	</bean>
+
+</beans>
+

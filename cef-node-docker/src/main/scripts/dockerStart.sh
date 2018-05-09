@@ -3,15 +3,15 @@
 TOMCAT_HOME=/opt/tomcat
 
 #
-# Environment variable settings
+# This is the docker run script that is placed in the $CATALINA_HOME/bin folder to be executed inside a docker container
 #
 
-: ${EIDAS_CONFIG_REPOSITORY:=/opt/docker/internal/configEidas/CA/}
-: ${SPECIFIC_CONFIG_REPOSITORY:=/opt/docker/internal/configEidas/CA/specific/}
-: ${SP_CONFIG_REPOSITORY:=/opt/docker/internal/configEidas/CA/sp/}
-: ${IDP_CONFIG_REPOSITORY:=/opt/docker/internal/configEidas/CA/idp/}
-: ${EIDAS_TRUSTED_CERTS_FILE:=/opt/docker/internal/configEidas/trust/trustedCerts.pem}
-: ${EIDAS_TRUSTED_CERTS_CONSTRAINTS:=eidasKeyStore_Connector_CA.jks,eidasKeyStore_Service_CA.jks}
+: ${EIDAS_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/}
+: ${SPECIFIC_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/specific/}
+: ${SP_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/sp/}
+: ${IDP_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/idp/}
+: ${EIDAS_TRUSTED_CERTS_FILE:=/opt/tomcat/configEidas/trust/trustedCerts.pem}
+: ${EIDAS_TRUSTED_CERTS_CONSTRAINTS:=eidasKeyStore_XA.jks}
 
 export EIDAS_CONFIG_REPOSITORY=$EIDAS_CONFIG_REPOSITORY
 export SPECIFIC_CONFIG_REPOSITORY=$SPECIFIC_CONFIG_REPOSITORY

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+    <comment>SWModule encrypt with JKS.</comment>
+    <entry key="check_certificate_validity_period">false</entry>
+    <entry key="disallow_self_signed_certificate">false</entry>
+    <entry key="response.encryption.mandatory">false</entry>
+    <!-- Data Encryption algorithm -->
+    <entry key="data.encryption.algorithm">http://www.w3.org/2009/xmlenc11#aes256-gcm</entry>
+    <!-- Decryption algorithm Whitelist-->
+    <entry key="encryption.algorithm.whitelist">
+        http://www.w3.org/2009/xmlenc11#aes128-gcm;
+        http://www.w3.org/2009/xmlenc11#aes256-gcm;
+        http://www.w3.org/2009/xmlenc11#aes192-gcm
+    </entry>
+    <!-- Key Encryption algorithm -->
+    <entry key="key.encryption.algorithm">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</entry>
+
+    <!-- Settings for activation of the encryption. If file not found then no encryption applies-->
+    <entry key="encryptionActivation">src/test/resources/encryptionConf.xml</entry>
+
+    <entry key="keyStorePath">src/test/resources/keyStoreCountry1.jks</entry>
+    <entry key="keyStorePassword">local-demo</entry>
+    <entry key="keyPassword">local-demo</entry>
+    <entry key="responseDecryptionIssuer">CN=local-demo-cert, OU=DIGIT, O=European Comission, L=Brussels, ST=Belgium,C=BE</entry>
+    <entry key="serialNumber">54D8A000</entry>
+    <entry key="keyStoreType">JKS</entry>
+
+
+    <!--  If not present then no encryption will be applied on response -->
+    <entry key="responseToPointIssuer.BE">CN=local-demo-cert, OU=DIGIT, O=European Comission, L=Brussels, ST=Belgium,C=BE</entry>
+    <entry key="responseToPointSerialNumber.BE">54D8A000</entry>
+
+</properties>
