@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>eu.eidas</groupId>
+	<artifactId>SimpleProtocol</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+
+	<name>SimpleProtocol</name>
+	<description>SimpleProtocol</description>
+
+	<parent>
+		<groupId>eu.eidas</groupId>
+		<artifactId>eidas-parent</artifactId>
+		<version>2.0.0</version>
+		<relativePath>../EIDAS-Parent/pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+<dependencies>
+	<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.moxy -->
+	<dependency>
+		<groupId>org.eclipse.persistence</groupId>
+		<artifactId>org.eclipse.persistence.moxy</artifactId>
+		<version>2.6.3</version>
+	</dependency>
+	<dependency>
+		<groupId>eu.eidas</groupId>
+		<artifactId>eidas-light-commons</artifactId>
+		<version>2.0.0</version>
+	</dependency>
+</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

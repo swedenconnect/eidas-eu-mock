@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <import resource="classpath:specificConnectorEnvironmentContext.xml" />
+
+    <import resource="classpath:specificCommunicationDefinitionApplicationContext.xml"/>
+
+    <bean id="applicationContextProvider" class="member_country_specific.specific.connector.SpecificConnectorApplicationContextProvider"/>
+
+    <bean id="specificConnectorConfigFile" class="java.lang.String">
+        <constructor-arg value="specificConnector.xml"/>
+    </bean>
+
+    <bean id="specificConnectorConfigWithPath" class="java.lang.String">
+        <constructor-arg value="file:#{specificConnectorConfigRepository}#{specificConnectorConfigFile}"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="order" value="0"/>
+        <property name="locations">
+            <list>
+                <ref bean="specificConnectorConfigWithPath"/>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8" />
+    </bean>
+
+    <bean id="useDistributedMapsSpecificConnector" class="java.lang.String">
+        <constructor-arg value="${distributedMapsSpecificConnector}"/>
+    </bean>
+
+    <!-- suffix for some of the beans having two possible implementations - one for development and one for production -->
+    <bean id="distributedEnvSuffixSpecificConnector" class="java.lang.String">
+        <constructor-arg value="#{useDistributedMapsSpecificConnector.toString()=='false'?'Dev':'Prod'}"/>
+    </bean>
+
+    <!-- production environment hazelcast instance name -->
+    <bean id="defaultHazelcastInstance" class="java.lang.String">
+        <constructor-arg value="eidasHazelcastInstance"/>
+    </bean>
+    <!-- production environment hazelcast initializer bean - injected into map providers -->
+    <bean id="eidasHazelcastInstanceInitializer" class=" eu.eidas.auth.commons.cache.HazelcastInstanceInitializer" init-method="initializeInstance" lazy-init="true">
+        <property name="hazelcastConfigfileName" value="#{eidasConfigRepository}hazelcast.xml"/>
+        <property name="hazelcastInstanceName" ref="defaultHazelcastInstance"/>
+    </bean>
+
+    <bean id="specificMSSpRequestCorrelationMap" class="member_country_specific.specific.connector.tx.StoredMSConnectorRequestCorrelationMap">
+        <constructor-arg ref="springServiceCMapspecificMSSpCorProvider#{distributedEnvSuffixSpecificConnector.toString()}"/>
+    </bean>
+
+    <!-- Correlation maps provided by Hazelcast for distributed environment, use these in productions! -->
+    <!-- Authreq correlation maps -->
+    <bean id="springServiceCMapspecificMSSpCorProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+        <property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
+        <property name="cacheName" value="specificSpRequestCorrelationCacheService"/>
+    </bean>
+
+    <!-- Correlation maps for simple dev mode -->
+    <!-- Authreq correlation maps for DEV -->
+    <bean id="springServiceCMapspecificMSSpCorProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+
+    <bean id="specificConnectorAttributesFile" class="java.lang.String">
+        <constructor-arg value="eidas-attributes.xml"/>
+    </bean>
+
+    <bean id="specificAdditionalAttributesFile" class="java.lang.String">
+        <constructor-arg value="additional-attributes.xml"/>
+    </bean>
+
+    <bean id="specificConnectorAttributesFileWithPath" class="java.lang.String">
+        <constructor-arg value="#{specificConnectorConfigRepository}#{specificConnectorAttributesFile}"/>
+    </bean>
+
+    <bean id="specificConnectorAdditionalAttributesFileWithPath" class="java.lang.String">
+        <constructor-arg value="#{specificConnectorConfigRepository}#{specificAdditionalAttributesFile}"/>
+    </bean>
+
+    <bean id="springManagedSpecificConnector" class="member_country_specific.specific.connector.communication.SpecificConnector" scope="prototype">
+        <property name="specificMSSpRequestCorrelationMap" ref="specificMSSpRequestCorrelationMap"/>
+        <property name="eidasAttributesFile" ref="specificConnectorAttributesFileWithPath"/>
+        <property name="additionalAttributesFile" ref="specificConnectorAdditionalAttributesFileWithPath"/>
+        <property name="issuerName" value="${issuer.name}"/>
+        <property name="specificConnectorRequestUrl" value="${specific.connector.request.url}"/>
+    </bean>
+</beans>

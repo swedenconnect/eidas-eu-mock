@@ -1,0 +1,44 @@
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="member_country_specific.sp" namespace="/" extends="struts-default">
+		<default-action-ref name="populateIndexPage" />
+		<global-exception-mappings>
+            <exception-mapping result="error" exception="java.lang.RuntimeException"/>
+        </global-exception-mappings>
+
+		
+		<action name="populateIndexPage" method="populate" class="member_country_specific.sp.IndexAction">
+			<result name="populate">/selectAttributes.jsp</result>
+			<result name="input">/selectAttributes.jsp</result>
+			<result name="success">/samlRequest.jsp</result>
+			<result name="error">/errorPage.jsp</result>
+		</action>
+		<action name="*IndexPage" method="{1}" class="member_country_specific.sp.IndexAction">
+			<result name="populate">/selectAttributes.jsp</result>
+			<result name="input">/selectAttributes.jsp</result>
+			<result name="success">/samlRequest.jsp</result>
+			<result name="error">/errorPage.jsp</result>
+		</action>
+        <action name="ReturnPage" method="execute" class="member_country_specific.sp.ReturnAction">
+			<result name="populate">/returnPage.jsp</result>
+			<result name="input">/samlResponse.jsp</result>
+			<result name="success">/samlResponse.jsp</result>
+			<result name="error">/errorPage.jsp</result>
+
+            <!--<allowed-methods>execute, populate</allowed-methods>-->
+		</action>
+        <action name="populateReturnPage" method="populate" class="member_country_specific.sp.ReturnAction">
+            <result name="populate">/returnPage.jsp</result>
+            <result name="input">/samlResponse.jsp</result>
+            <result name="success">/samlResponse.jsp</result>
+            <result name="error">/errorPage.jsp</result>
+
+            <!--<allowed-methods>execute, populate</allowed-methods>-->
+        </action>
+	</package>
+</struts>

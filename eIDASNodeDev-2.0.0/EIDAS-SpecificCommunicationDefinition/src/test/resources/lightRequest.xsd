@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lreq="http://cef.eidas.eu/LightRequest" xmlns:ep="http://europass.cedefop.europa.eu/Europass" targetNamespace="http://cef.eidas.eu/LightRequest" elementFormDefault="qualified">
+	<xs:import namespace="http://europass.cedefop.europa.eu/Europass" schemaLocation="EuropassISOCountries_V1.6.0.xsd"/>
+	<!-- http://europass.cedefop.europa.eu/xml/included/EuropassISOCountries_V1.6.0.xsd -->
+	<xs:element name="lightRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="citizenCountryCode" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Country code of the citizen, ie.: sending country code in 3166-1-alpha-2 format</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Internal unique ID what will be used to correlate the response</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="issuer" type="xs:string">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Issuer of the LightRequest or originating SP - not used</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="levelOfAssurance" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Level of assurance required to fulfill the request</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="http://eidas.europa.eu/LoA/low"/>
+							<xs:enumeration value="http://eidas.europa.eu/LoA/substantial"/>
+							<xs:enumeration value="http://eidas.europa.eu/LoA/high"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="nameIdFormat" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional instruction to the IdP what identifier format is requested (if supported).</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="providerName" type="xs:string" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Free format text identifier of service provider initiating the request.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="spType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional element specifying the sector of the SP or the Connector. Must not be used if the sector of the Connector is set up in the Metadata.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="public"/>
+							<xs:enumeration value="private"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="relayState" type="xs:string" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional state information expected to be returned with the LightResponse pair.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="requestedAttributes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="definition" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="value" type="xs:string" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

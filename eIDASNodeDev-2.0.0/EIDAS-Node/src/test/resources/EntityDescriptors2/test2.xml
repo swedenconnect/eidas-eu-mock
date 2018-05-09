@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" cacheDuration="P1DT0H0M0.000S" entityID="eumiddleware">
+   <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <md:KeyDescriptor use="signing">
+         <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+               <ds:X509Certificate>MIIEKTCCAxGgAwIBAgIJANd7jq8ySFguMA0GCSqGSIb3DQEBCwUAMIGqMQswCQYDVQQGEwJERTEPMA0GA1UECAwGQlJFTUVOMQ8wDQYDVQQHDAZCUkVNRU4xEzARBgNVBAoMCkdvdmVybmlrdXMxETAPBgNVBAsMCFRyaXBsZS1BMSIwIAYDVQQDDBlwb3NlaWRhcy10ZXN0LmJvcy10ZXN0LmRlMS0wKwYJKoZIhvcNAQkBFh5pbmZvQHBvc2VpZGFzLXRlc3QuYm9zLXRlc3QuZGUwHhcNMTUwNjA0MTQ1NzI5WhcNMjMwODIxMTQ1NzI5WjCBqjELMAkGA1UEBhMCREUxDzANBgNVBAgMBkJSRU1FTjEPMA0GA1UEBwwGQlJFTUVOMRMwEQYDVQQKDApHb3Zlcm5pa3VzMREwDwYDVQQLDAhUcmlwbGUtQTEiMCAGA1UEAwwZcG9zZWlkYXMtdGVzdC5ib3MtdGVzdC5kZTEtMCsGCSqGSIb3DQEJARYeaW5mb0Bwb3NlaWRhcy10ZXN0LmJvcy10ZXN0LmRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5SwAcg7JnwbPXfzzZuU63sAdDBDGqg6TdHm/ZZ9J5SjmNHltW9FkrxBn8o3yVj3ziJPVys6FVXVEOzAqDcHkjdbrVo0rEKtqCOzjk9g2JK+Np7axiNVcL83tnEju1DsBMtyy3gVuPUThy08b4DCpBCXdUsP6RdwpdLaN3J13PDFaVCYAEDI0sWYtjjovCppn9btwwukOyNsjcNqA5EGxqFMtrrVbdIaz16kNeIfuq5cbCqbNNaWWNXqW5S/5l1eoNIkiRmDl5ahCV0QEly3KBLWO9d8+D6ruIhalhJtl9U+BE2Ho+NNEOR4miWMPhCFHN6PzMsUU0yw0zkF03Vi9vQIDAQABo1AwTjAdBgNVHQ4EFgQUPDBZDSDOlo6LAn6D4v4HMJSqAAowHwYDVR0jBBgwFoAUPDBZDSDOlo6LAn6D4v4HMJSqAAowDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAOT/3nCPUnvpjj/02sNd8dlxVAL/SWaFY3VJ18Db5bLP7PwgPyoW/aLH4I/BYAsiPpKstcqP2Q8bBB6VoKH6uKB18hB65BEKHyLxeEpOpJ1RD8aDfnovtn5wYec35bzGQlFZA1e7WQtOj0ppjAbxiLFfYVK5d1KrKwlM0nhXD5ZfxQTVa0ekDiUufPZp6yn+oZrATYhlbbIh3adHVoZhxoeJrB+jgAHJ5ZAAHWTsKCDf3SPcCdniFynXWjWasGH4/u8iFMo3CvCvR+duXmx7RRMxd3rrRsHDzva1AHcPXo/Bosr7+Tk/HA4O4tf8CIble/NdSyBhk1acloWDr71EgzQ==</ds:X509Certificate>
+            </ds:X509Data>
+         </ds:KeyInfo>
+      </md:KeyDescriptor>
+      <md:KeyDescriptor use="encryption">
+         <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+               <ds:X509Certificate>MIIEKTCCAxGgAwIBAgIJANd7jq8ySFguMA0GCSqGSIb3DQEBCwUAMIGqMQswCQYDVQQGEwJERTEPMA0GA1UECAwGQlJFTUVOMQ8wDQYDVQQHDAZCUkVNRU4xEzARBgNVBAoMCkdvdmVybmlrdXMxETAPBgNVBAsMCFRyaXBsZS1BMSIwIAYDVQQDDBlwb3NlaWRhcy10ZXN0LmJvcy10ZXN0LmRlMS0wKwYJKoZIhvcNAQkBFh5pbmZvQHBvc2VpZGFzLXRlc3QuYm9zLXRlc3QuZGUwHhcNMTUwNjA0MTQ1NzI5WhcNMjMwODIxMTQ1NzI5WjCBqjELMAkGA1UEBhMCREUxDzANBgNVBAgMBkJSRU1FTjEPMA0GA1UEBwwGQlJFTUVOMRMwEQYDVQQKDApHb3Zlcm5pa3VzMREwDwYDVQQLDAhUcmlwbGUtQTEiMCAGA1UEAwwZcG9zZWlkYXMtdGVzdC5ib3MtdGVzdC5kZTEtMCsGCSqGSIb3DQEJARYeaW5mb0Bwb3NlaWRhcy10ZXN0LmJvcy10ZXN0LmRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5SwAcg7JnwbPXfzzZuU63sAdDBDGqg6TdHm/ZZ9J5SjmNHltW9FkrxBn8o3yVj3ziJPVys6FVXVEOzAqDcHkjdbrVo0rEKtqCOzjk9g2JK+Np7axiNVcL83tnEju1DsBMtyy3gVuPUThy08b4DCpBCXdUsP6RdwpdLaN3J13PDFaVCYAEDI0sWYtjjovCppn9btwwukOyNsjcNqA5EGxqFMtrrVbdIaz16kNeIfuq5cbCqbNNaWWNXqW5S/5l1eoNIkiRmDl5ahCV0QEly3KBLWO9d8+D6ruIhalhJtl9U+BE2Ho+NNEOR4miWMPhCFHN6PzMsUU0yw0zkF03Vi9vQIDAQABo1AwTjAdBgNVHQ4EFgQUPDBZDSDOlo6LAn6D4v4HMJSqAAowHwYDVR0jBBgwFoAUPDBZDSDOlo6LAn6D4v4HMJSqAAowDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAOT/3nCPUnvpjj/02sNd8dlxVAL/SWaFY3VJ18Db5bLP7PwgPyoW/aLH4I/BYAsiPpKstcqP2Q8bBB6VoKH6uKB18hB65BEKHyLxeEpOpJ1RD8aDfnovtn5wYec35bzGQlFZA1e7WQtOj0ppjAbxiLFfYVK5d1KrKwlM0nhXD5ZfxQTVa0ekDiUufPZp6yn+oZrATYhlbbIh3adHVoZhxoeJrB+jgAHJ5ZAAHWTsKCDf3SPcCdniFynXWjWasGH4/u8iFMo3CvCvR+duXmx7RRMxd3rrRsHDzva1AHcPXo/Bosr7+Tk/HA4O4tf8CIble/NdSyBhk1acloWDr71EgzQ==</ds:X509Certificate>
+            </ds:X509Data>
+         </ds:KeyInfo>
+      </md:KeyDescriptor>
+      <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://poseidas-test.bos-test.de:443/eu-middleware/RequestReceiver"/>
+      <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://poseidas-test.bos-test.de:443/eu-middleware/RequestReceiver"/>
+   </md:IDPSSODescriptor>
+   <md:Organization>
+      <md:OrganizationName xml:lang="de">GOVERNIKUS</md:OrganizationName>
+      <md:OrganizationDisplayName xml:lang="de">GOVERNIKUS</md:OrganizationDisplayName>
+      <md:OrganizationURL xml:lang="de">GOVERNIKUS.de</md:OrganizationURL>
+   </md:Organization>
+   <md:ContactPerson contactType="support">
+      <md:Company>GOVERNIKUS</md:Company>
+      <md:GivenName>ANDREAS HOHNHOLT</md:GivenName>
+      <md:EmailAddress>andreas.hohnholt@governikus.de</md:EmailAddress>
+      <md:TelephoneNumber>61</md:TelephoneNumber>
+   </md:ContactPerson>
+</md:EntityDescriptor>
