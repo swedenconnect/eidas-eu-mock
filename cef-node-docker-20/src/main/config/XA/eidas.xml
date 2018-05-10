@@ -1,41 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
 	<!-- Connector  -->
-	<!-- QAALevel of the Demo SP -->
-	<entry key="DEMO-SP-CA.qaalevel">3</entry>
 
-	
-	<!-- IF a SP is not listed, the DEFAULT parameters it can access might be 
-		(none|all|list;Of;Parameters) -->
-	<entry key="sp.default.parameters">all</entry>
-	<!-- Specific case for a listed SP (none|all|list;Of;Parameters) -->
-	<!-- <entry key="DEMO-SP">givenName;age;dateOfBirth;nationalityCode;isAgeOver;eIdentifier</entry> -->
-
-	<!-- Id of this Connector -->
-	<entry key="connector.id">XA</entry>
 	<!-- Connector assertion URL -->
-	<entry key="connector.assertion.url">http://localhost:8900/EidasNode/ColleagueResponse</entry>
+	<entry key="connector.assertion.url">http://localhost:8080/EidasNode/ColleagueResponse</entry>
 	<!-- Connector destination URL -->
-	<entry key="connector.destination.url">http://localhost:8900/EidasNode/ServiceProvider</entry>
-	<!--  Default SP attributes needed on the VIdP -->
-	<!-- SP Sector -->
-	<entry key="connector.spSector">DEMO-connector</entry>
-	<!-- SP Application -->
-	<entry key="connector.spApplication">DEMO-connector</entry>
-	<!-- SP Country-->
-	<entry key="connector.spCountry">XA</entry>
-	<!-- SP Institution-->
-	<entry key="connector.spInstitution">DEMO-connector</entry>
 
-	<!-- specific engine in Connector -->
-        <entry key="saml.sp">SP-Specific</entry>    
         <!-- Protocol engines for the Nodes -->
         <entry key="saml.connector">Connector</entry>
         <entry key="saml.service">Service</entry>    
-        <!-- specific engine in IdP -->
-        <entry key="saml.idp">Specific-IdP</entry>    
 
 	<!-- Number of known Service -->
 	<entry key="service.number">2</entry>
@@ -44,20 +37,21 @@
 	<!-- Name of the first Service -->
 	<entry key="service1.name">LOCAL-EIDAS-XA</entry>
 	<!-- URL of the first Service -->
-	<entry key="service1.url">http://localhost:8900/EidasNode/ColleagueRequest</entry>	
+	<entry key="service1.url">http://localhost:8080/EidasNode/ColleagueRequest</entry>	
 	 <!-- Skew time for Service-->
 	<entry key="service1.skew.notbefore">0</entry>
 	<entry key="service1.skew.notonorafter">0</entry>
 	<!-- the url under which  service11 is publishing its metadata -->
-	<entry key="service1.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>	
+	<entry key="service1.metadata.url">http://localhost:8080/EidasNode/ServiceMetadata</entry>	
 	<entry key="service2.id">XB</entry>
 	<!-- Name of the second Service -->
-	<entry key="service2.name">LOCAL-EIDAS-XB</entry>
+	<entry key="service2.name">LOCAL-EIDAS-CB</entry>
 	<!-- URL of the first Service -->
-	<entry key="service2.url">http://localhost:8901/EidasNode/ColleagueRequest</entry>	
+	<entry key="service2.url">http://localhost:8081/EidasNode/ColleagueRequest</entry>	
 	<entry key="service2.skew.notbefore">0</entry>
 	<entry key="service2.skew.notonorafter">0</entry>
-	<entry key="service2.metadata.url">http://localhost:8901/EidasNode/ServiceMetadata</entry>	
+	<entry key="service2.metadata.url">http://localhost:8081/EidasNode/ServiceMetadata</entry>	
+	<entry key="service3.id">CC</entry>
 
 	<!-- service -->
 	<!-- Id of this Service -->
@@ -66,21 +60,6 @@
 	<entry key="service.countrycode">XA</entry>
 	<!-- QAALevel of this Service -->
 	<entry key="service.maxQAAlevel">4</entry>
-	<!-- Present consent-type form? (true/false) -->
-	<entry key="service.askconsent.type">true</entry>
-	<!-- Present consent-value form? (true/false) -->
-	<entry key="service.askconsent.value">true</entry>
-	<!-- Display all attributes (eidas + additional)?
-		true : display all attributes
-		false: display only traditional eidas attributes-->
-	<entry key="service.askconsent.all.attributes">false</entry>
-	<!-- Display only attibute names or name-value pairs? (true/false)-->
-	<entry key="service.askconsent.attribute.names.only">false</entry>
-	<!-- Method to call after IdP -->
-	<!--entry key="service.specificidpredirect.url">http://localhost:8900/EidasNode/SpecificIdPResponse</entry-->
-	<entry key="service.specificidpredirect.url">http://localhost:8900/EidasNode/IdpResponse</entry>
-	<!-- Action of Citizen Consent -->
-	<entry key="service.citizenConsentUrl">CitizenConsent</entry>
 
 	<!-- SECURITY POLICY -->
 	<!-- Bypass SP validation -->
@@ -103,11 +82,8 @@
 	<entry key="max.qaaLevel.value">4</entry>
 	<!--  New Configuration -->
 	<!--  SP's ProviderName alias could be none or the PROVIDERNAME  -->
-	<entry key="DEMO-SP-CB.validation">none</entry>
-	<entry key="DEMO-SP-CA.validation">none</entry>
-	<entry key="DEMO-SP-CC.validation">none</entry>
-	<entry key="DEMO-SP-CD.validation">none</entry>
-	<entry key="DEMO-SP-CF.validation">none</entry> 
+	<entry key="DEMO-SP-XA.validation">none</entry>
+	<entry key="DEMO-SP-XB.validation">none</entry>
 	
 	<!-- PLugin connector -->
         <entry key="active.module.connector">true</entry>
@@ -175,25 +151,22 @@
         <entry key="metadata.activate">true</entry>
 
         <!--connector Metadata -->
-        <entry key="connector.node.url">http://localhost:8900/EidasNode/</entry>
+        <entry key="connector.node.url">http://localhost:8080/EidasNode/</entry>
         <entry key="connector.contact.email">test@com</entry>
-        <entry key="connector.metadata.url">http://localhost:8900/EidasNode/ConnectorMetadata</entry>
+        <entry key="connector.metadata.url">http://localhost:8080/EidasNode/ConnectorMetadata</entry>
 	
        <!--service Metadata -->
-        <entry key="service.node.url">http://localhost:8900/EidasNode/</entry>
+        <entry key="service.node.url">http://localhost:8080/EidasNode/</entry>
         <entry key="service.contact.email">test@com</entry>
-        <entry key="service.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>
+        <entry key="service.metadata.url">http://localhost:8080/EidasNode/ServiceMetadata</entry>
  	
 	<!--entry key="metadata.file.repository">c:\Pgm\projects\configEidas\tomcat\metadata</entry-->
 	<entry key="metadata.http.retrieval">true</entry>
 	
          <!-- Eidas Node Service Metadata Single Sign On locations for ServiceMetadata-->
-	<entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
-	<entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
+	<entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8080/EidasNode/ColleagueRequest</entry>
+	<entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8080/EidasNode/ColleagueRequest</entry>
         
-         <!-- Eidas Node Service Metadata Single Sign On locations for ConnectorResponseMetadata-->
-	<entry key="ssos.connectorMetadataGeneratorIDP.redirect.location">http://localhost:8900/EidasNode/ServiceProvider</entry>
-	<entry key="ssos.connectorMetadataGeneratorIDP.post.location">http://localhost:8900/EidasNode/ServiceProvider</entry>
                         
 	<!--
         Check that the citizen country code in the SAMLRequest is the same than the country of the Service signing certificate
@@ -221,7 +194,7 @@
 	<entry key="hashDigest.className">org.bouncycastle.crypto.digests.SHA512Digest</entry>
 
 	<!-- sets the mapprovider for req-rep correlations, antireplay and metadata to distributed - hazelcast needs to be configured for this option -->
-	<entry key="distributedMaps">false</entry>
+	<entry key="distributedMaps">true</entry>
 	<!-- Retention period for simple metadata cache in seconds, for distributed environment, set in hazelcast.xml -->
 	<entry key="nonDistributedMetadata.retention">86400</entry>	
 
@@ -231,6 +204,9 @@
 	<entry key="metadata.restrict.http">false</entry>
 	<!-- SSL/TLS enabled protocols-->
 	<entry key="tls.enabled.protocols">TLSv1.1,TLSv1.2</entry>
+	<!-- SSL/TLS enabled supported ciphers
+	empty means no restriction-->
+	<entry key="tls.enabled.ciphers"></entry>
 	<!-- enforce encryption of the SAML response -->
 	<entry key="response.encryption.mandatory">true</entry>
 
@@ -252,11 +228,7 @@
 		http://descriptorurl1;https://descriptorurl2;
 	-->
 	<entry key="node.metadata.not.signed.descriptors"></entry>
-	<!-- connector metadata url, advertising connector as IdP, for communication with the SP -->
-	<entry key="connector.responder.metadata.url">http://localhost:8900/EidasNode/ConnectorResponderMetadata</entry>
-	<!-- service/Specific metadata url, advertising connector as SP - for communication with the IdP -->
-	<entry key="service.requester.metadata.url">http://localhost:8900/EidasNode/ServiceRequesterMetadata</entry>
-	
+
 	<!-- METADATA configuration -->
 		<!-- Connector contact -->
 	<entry key="connector.contact.support.email">contact.support@eidas-connector.eu</entry>
@@ -288,5 +260,9 @@
 	<entry key="service.organization.name">Sample Country Proxy Service</entry>
 	<entry key="service.organization.displayname">Service</entry>
 	<entry key="service.organization.url">https://service.sample/info</entry>
+	<!--URL for specific-proxyService requests receiver only needed when specific  -->
+	<entry key="specific.proxyservice.request.receiver">http://localhost:8080/SpecificProxyService/ProxyServiceRequest</entry>
+	<!--URL for specific-connector response receiver -->
+	<entry key="specific.connector.response.receiver">http://localhost:8080/SpecificConnector/ConnectorResponse</entry>
 
 </properties>

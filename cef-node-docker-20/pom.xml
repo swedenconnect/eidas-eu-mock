@@ -27,7 +27,8 @@
         <tomcat.version>9.0.7</tomcat.version>
         <docker.image.prefix>docker.eidastest.se:5000</docker.image.prefix>
         <mockito.version>1.9.5</mockito.version>
-        <eidas.node.version>2.0</eidas.node.version>
+        <eidas.node.version>2.0.0</eidas.node.version>
+        <eidas.node.serializer.version>2.7.2</eidas.node.serializer.version>
     </properties>
 
     <repositories>
@@ -98,6 +99,20 @@
                                     <type>war</type>
                                     <destFileName>SP.war</destFileName>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>eu.eidas</groupId>
+                                    <artifactId>eidas-specific-connector</artifactId>
+                                    <version>${eidas.node.version}</version>
+                                    <type>war</type>
+                                    <destFileName>SpecificConnector.war</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>eu.eidas</groupId>
+                                    <artifactId>eidas-specific-proxyservice</artifactId>
+                                    <version>${eidas.node.version}</version>
+                                    <type>war</type>
+                                    <destFileName>SpecificProxyService.war</destFileName>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>
                                 ${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/webapps
@@ -122,7 +137,7 @@
                                 <artifactItem>
                                     <groupId>xalan</groupId>
                                     <artifactId>serializer</artifactId>
-                                    <version>2.7.2</version>
+                                    <version>${eidas.node.serializer.version}</version>
                                     <type>jar</type>
                                 </artifactItem>
                                 <artifactItem>
@@ -203,6 +218,9 @@
                                 </copy>
                                 <echo>Make tomcat executable</echo>
                                 <chmod perm="755" dir="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/bin" includes="**/*.sh"/>
+                                <echo>Rename serializer lib file</echo>
+                                <copy file="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer-${eidas.node.serializer.version}.jar" tofile="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer.jar" />
+                                <delete file="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer-${eidas.node.serializer.version}.jar"/>
                             </target>
                         </configuration>
                         <goals>

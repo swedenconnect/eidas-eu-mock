@@ -30,7 +30,7 @@
     <entry key="1.XmlType.NamespacePrefix">xs</entry>
     <entry key="1.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
 
-<!--    <entry key="2.NameUri">http://eidas.europa.eu/attributes/legalperson/LegalAdditionalAttribute</entry>
+    <entry key="2.NameUri">http://eidas.europa.eu/attributes/legalperson/LegalAdditionalAttribute</entry>
     <entry key="2.FriendlyName">LegalAdditionalAttribute</entry>
     <entry key="2.PersonType">LegalPerson</entry>
     <entry key="2.Required">false</entry>
@@ -38,5 +38,5 @@
     <entry key="2.XmlType.LocalPart">string</entry>
     <entry key="2.XmlType.NamespacePrefix">xs</entry>
     <entry key="2.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
--->
+
 </properties>
