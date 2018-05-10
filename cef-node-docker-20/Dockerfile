@@ -2,14 +2,16 @@ FROM openjdk:8-jre
 
 RUN mkdir /opt/docker
 RUN mkdir /opt/docker/internal
-ADD target/dependency/apache-tomcat-8.5.23 /opt/tomcat/
+ADD target/dependency/apache-tomcat-9.0.7 /opt/tomcat/
 #ADD target/configEidas /opt/docker/internal/configEidas/
 
 # Redirecting log directories
 RUN rm -rf /opt/tomcat/logs && ln -s /var/log/eidas-node/ /opt/tomcat/logs
+
+# Making scripts executable
 RUN chmod a+x /opt/tomcat/bin/*.sh
 
-#EXPOSE 8443
+EXPOSE 8443
 EXPOSE 8900
 EXPOSE 8909
 
