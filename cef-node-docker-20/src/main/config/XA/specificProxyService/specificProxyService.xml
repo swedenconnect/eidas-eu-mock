@@ -20,17 +20,17 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<!-- issuer name -->
-	<entry key="issuer.name">specificProxyServiceCA</entry>
+	<entry key="issuer.name">Proxy Service for XA</entry>
 	<!--hazelcast distributed maps activation-->
 	<entry key="distributedMapsSpecificProxyService">false</entry>
 	<!-- the IdP's url to where the simple protocol request is send -->
-	<entry key="idp.url">http://localhost:8080/IdP/AuthenticateCitizen</entry>
+	<entry key="idp.url">http://localhost:8900/IdP/AuthenticateCitizen</entry>
 	<!--specific service URL for processing IdP simple protocol responses-->
-	<entry key="specific.proxyservice.idp.response.service.url">http://localhost:8080/SpecificProxyService/IdpResponse</entry>
+	<entry key="specific.proxyservice.idp.response.service.url">http://localhost:8900/SpecificProxyService/IdpResponse</entry>
 	<!-- the specific service URL for processing IdP simple protocol responses: when specific modules are included in node as JAR-->
-	<entry key="default.specific.proxyservice.idp.response.service.url">http://localhost:8080/EidasNode/IdpResponse</entry>
+	<entry key="default.specific.proxyservice.idp.response.service.url">http://localhost:8900/EidasNode/IdpResponse</entry>
 	<!-- node's url to send the binary light token related to the request -->
-	<entry key="specific.proxyservice.response.url">http://localhost:8080/EidasNode/SpecificProxyServiceResponse</entry>
+	<entry key="specific.proxyservice.response.url">http://localhost:8900/EidasNode/SpecificProxyServiceResponse</entry>
 	<!-- ask consent for the request attributes -->
 	<entry key="ask.consent.request">true</entry>
 	<!-- ask consent for the response -->

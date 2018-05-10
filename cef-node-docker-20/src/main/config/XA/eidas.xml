@@ -23,7 +23,7 @@
 	<!-- Connector  -->
 
 	<!-- Connector assertion URL -->
-	<entry key="connector.assertion.url">http://localhost:8080/EidasNode/ColleagueResponse</entry>
+	<entry key="connector.assertion.url">http://localhost:8900/EidasNode/ColleagueResponse</entry>
 	<!-- Connector destination URL -->
 
         <!-- Protocol engines for the Nodes -->
@@ -37,12 +37,12 @@
 	<!-- Name of the first Service -->
 	<entry key="service1.name">LOCAL-EIDAS-XA</entry>
 	<!-- URL of the first Service -->
-	<entry key="service1.url">http://localhost:8080/EidasNode/ColleagueRequest</entry>	
+	<entry key="service1.url">http://localhost:8900/EidasNode/ColleagueRequest</entry>	
 	 <!-- Skew time for Service-->
 	<entry key="service1.skew.notbefore">0</entry>
 	<entry key="service1.skew.notonorafter">0</entry>
 	<!-- the url under which  service11 is publishing its metadata -->
-	<entry key="service1.metadata.url">http://localhost:8080/EidasNode/ServiceMetadata</entry>	
+	<entry key="service1.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>	
 	<entry key="service2.id">XB</entry>
 	<!-- Name of the second Service -->
 	<entry key="service2.name">LOCAL-EIDAS-CB</entry>
@@ -151,21 +151,21 @@
         <entry key="metadata.activate">true</entry>
 
         <!--connector Metadata -->
-        <entry key="connector.node.url">http://localhost:8080/EidasNode/</entry>
+        <entry key="connector.node.url">http://localhost:8900/EidasNode/</entry>
         <entry key="connector.contact.email">test@com</entry>
-        <entry key="connector.metadata.url">http://localhost:8080/EidasNode/ConnectorMetadata</entry>
+        <entry key="connector.metadata.url">http://localhost:8900/EidasNode/ConnectorMetadata</entry>
 	
        <!--service Metadata -->
-        <entry key="service.node.url">http://localhost:8080/EidasNode/</entry>
+        <entry key="service.node.url">http://localhost:8900/EidasNode/</entry>
         <entry key="service.contact.email">test@com</entry>
-        <entry key="service.metadata.url">http://localhost:8080/EidasNode/ServiceMetadata</entry>
+        <entry key="service.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>
  	
 	<!--entry key="metadata.file.repository">c:\Pgm\projects\configEidas\tomcat\metadata</entry-->
 	<entry key="metadata.http.retrieval">true</entry>
 	
          <!-- Eidas Node Service Metadata Single Sign On locations for ServiceMetadata-->
-	<entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8080/EidasNode/ColleagueRequest</entry>
-	<entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8080/EidasNode/ColleagueRequest</entry>
+	<entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
+	<entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
         
                         
 	<!--
@@ -261,8 +261,8 @@
 	<entry key="service.organization.displayname">Service</entry>
 	<entry key="service.organization.url">https://service.sample/info</entry>
 	<!--URL for specific-proxyService requests receiver only needed when specific  -->
-	<entry key="specific.proxyservice.request.receiver">http://localhost:8080/SpecificProxyService/ProxyServiceRequest</entry>
+	<entry key="specific.proxyservice.request.receiver">http://localhost:8900/SpecificProxyService/ProxyServiceRequest</entry>
 	<!--URL for specific-connector response receiver -->
-	<entry key="specific.connector.response.receiver">http://localhost:8080/SpecificConnector/ConnectorResponse</entry>
+	<entry key="specific.connector.response.receiver">http://localhost:8900/SpecificConnector/ConnectorResponse</entry>
 
 </properties>
