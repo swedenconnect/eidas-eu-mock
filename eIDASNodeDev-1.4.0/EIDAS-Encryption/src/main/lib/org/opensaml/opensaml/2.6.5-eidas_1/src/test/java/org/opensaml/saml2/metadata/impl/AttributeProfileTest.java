@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,38 +28,46 @@ import org.opensaml.saml2.metadata.AttributeProfile;
  * {@link org.opensaml.saml2.metadata.impl.AttributeProfileImpl}.
  */
 public class AttributeProfileTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected ProfileURI */
+
+    /**
+     * Expected ProfileURI
+     */
     private String expectedProfileURI;
-    
+
     /**
      * Constructor
      */
-    public AttributeProfileTest(){
+    public AttributeProfileTest() {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/AttributeProfile.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectedProfileURI = "http://example.org";
     }
 
-    /** {@inheritDoc} */
-    public void testSingleElementUnmarshall(){
+    /**
+     * {@inheritDoc}
+     */
+    public void testSingleElementUnmarshall() {
         AttributeProfile profile = (AttributeProfile) unmarshallElement(singleElementFile);
-        
+
         assertEquals("Profile URI has a value of " + profile.getProfileURI() + ", expected a value of " + expectedProfileURI, expectedProfileURI, profile.getProfileURI());
     }
 
-    /** {@inheritDoc} */
-    public void testSingleElementMarshall(){
+    /**
+     * {@inheritDoc}
+     */
+    public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AttributeProfile.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         AttributeProfile profile = (AttributeProfile) buildXMLObject(qname);
-        
+
         profile.setProfileURI(expectedProfileURI);
-        
+
         assertEquals(expectedDOM, profile);
     }
 }

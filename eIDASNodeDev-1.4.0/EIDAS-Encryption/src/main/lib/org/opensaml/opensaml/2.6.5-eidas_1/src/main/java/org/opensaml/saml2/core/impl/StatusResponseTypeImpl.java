@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -39,156 +39,214 @@ import org.opensaml.xml.XMLObject;
  */
 public abstract class StatusResponseTypeImpl extends AbstractSignableSAMLObject implements StatusResponseType {
 
-    /** SAML Version attribute. */
+    /**
+     * SAML Version attribute.
+     */
     private SAMLVersion version;
-    
-    /** ID attribute. */
+
+    /**
+     * ID attribute.
+     */
     private String id;
 
-    /** InResponseTo attribute. */
+    /**
+     * InResponseTo attribute.
+     */
     private String inResponseTo;
 
-    /** IssueInstant attribute. */
+    /**
+     * IssueInstant attribute.
+     */
     private DateTime issueInstant;
 
-    /** Destination attribute. */
+    /**
+     * Destination attribute.
+     */
     private String destination;
 
-    /** Consent attribute. */
+    /**
+     * Consent attribute.
+     */
     private String consent;
 
-    /** Issuer child element. */
+    /**
+     * Issuer child element.
+     */
     private Issuer issuer;
 
-    /** Extensions child element. */
+    /**
+     * Extensions child element.
+     */
     private Extensions extensions;
 
-    /** Status child element. */
+    /**
+     * Status child element.
+     */
     private Status status;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected StatusResponseTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         version = SAMLVersion.VERSION_20;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAMLVersion getVersion() {
         return version;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setVersion(SAMLVersion newVersion) {
         this.version = prepareForAssignment(this.version, newVersion);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return this.id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String newID) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, newID);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getInResponseTo() {
         return this.inResponseTo;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInResponseTo(String newInResponseTo) {
         this.inResponseTo = prepareForAssignment(this.inResponseTo, newInResponseTo);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getIssueInstant() {
         return this.issueInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssueInstant(DateTime newIssueInstant) {
         this.issueInstant = prepareForAssignment(this.issueInstant, newIssueInstant);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getDestination() {
         return this.destination;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setDestination(String newDestination) {
         this.destination = prepareForAssignment(this.destination, newDestination);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getConsent() {
         return this.consent;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setConsent(String newConsent) {
         this.consent = prepareForAssignment(this.consent, newConsent);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Issuer getIssuer() {
         return this.issuer;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssuer(Issuer newIssuer) {
         this.issuer = prepareForAssignment(this.issuer, newIssuer);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return this.extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions newExtensions) {
         this.extensions = prepareForAssignment(this.extensions, newExtensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Status getStatus() {
         return this.status;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatus(Status newStatus) {
         this.status = prepareForAssignment(this.status, newStatus);
     }
-    
-    /** {@inheritDoc} */
-    public String getSignatureReferenceID(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
-        if (issuer != null){
+        if (issuer != null) {
             children.add(issuer);
         }
-        if(getSignature() != null){
+        if (getSignature() != null) {
             children.add(getSignature());
         }
-        if (extensions != null){
+        if (extensions != null) {
             children.add(extensions);
         }
-        if (status != null){
+        if (status != null) {
             children.add(status);
         }
 

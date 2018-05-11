@@ -83,7 +83,7 @@ public class EidasResponseValidator extends ResponseSchemaValidator {
         if (resp.getConsent() != null) {
 
             String consent = resp.getConsent();
-            boolean allowedValue=CONSENT_ALLOWED_VALUE_1.equals(consent);
+            boolean allowedValue = CONSENT_ALLOWED_VALUE_1.equals(consent);
             allowedValue = allowedValue || CONSENT_ALLOWED_VALUE_2.equals(consent);
             allowedValue = allowedValue || CONSENT_ALLOWED_VALUE_3.equals(consent);
             allowedValue = allowedValue || CONSENT_ALLOWED_VALUE_4.equals(consent);
@@ -113,7 +113,7 @@ public class EidasResponseValidator extends ResponseSchemaValidator {
 
         if (resp.getStatus().getStatusCode().getValue().equals(StatusCode.SUCCESS.toString()) &&
                 (resp.getAssertions() == null || resp.getAssertions().isEmpty())) {
-                throw new ValidationException("Assertion is required");
+            throw new ValidationException("Assertion is required");
         }
 
     }

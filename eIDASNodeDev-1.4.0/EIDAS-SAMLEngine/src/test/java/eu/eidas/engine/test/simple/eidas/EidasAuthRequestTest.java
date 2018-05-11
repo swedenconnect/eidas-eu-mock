@@ -448,7 +448,7 @@ public class EidasAuthRequestTest {
 //        assertEquals("SPInstitution incorrect: ", request.getSpInstitution(), null);
 //        assertEquals("SPApplication incorrect: ", request.getSpApplication(), spApplication);
         assertEquals("Asserition consumer URL incorrect: ", request.getAssertionConsumerServiceURL(),
-                     assertConsumerUrl);
+                assertConsumerUrl);
 
 //        assertEquals("SP Country incorrect: ", request.getSpCountry(), spCountry);
 //        assertEquals("SP Id incorrect: ", request.getSPID(), spId);
@@ -643,7 +643,7 @@ public class EidasAuthRequestTest {
         IAuthenticationRequest authenticationRequest = getEngine().unmarshallRequestAndValidate(messageBytes, "ES");
 
         assertNull("The value shouldn't exist",
-                   authenticationRequest.getRequestedAttributes().getAttributeValuesByNameUri("unknown"));
+                authenticationRequest.getRequestedAttributes().getAttributeValuesByNameUri("unknown"));
         assertNotNull("The value should exist", authenticationRequest.getRequestedAttributes()
                 .getAttributeValuesByNameUri("http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier"));
 
@@ -702,9 +702,9 @@ public class EidasAuthRequestTest {
 
         assertTrue("The token must contain the chain 'isRequired=\"true\"'", token.contains("isRequired=\"true\""));
         assertTrue("The token must contain the chain 'isRequired=\"true\"'",
-                   reqTrueToken.contains("isRequired=\"true\""));
+                reqTrueToken.contains("isRequired=\"true\""));
         assertTrue("The token must contain the chain 'isRequired=\"false\"'",
-                   reqFalseToken.contains("isRequired=\"false\""));
+                reqFalseToken.contains("isRequired=\"false\""));
     }
 
     /**

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -38,117 +38,163 @@ import org.opensaml.xml.XMLObject;
  */
 public abstract class RequestAbstractTypeImpl extends AbstractSignableSAMLObject implements RequestAbstractType {
 
-    /** SAML Version of the request. */
+    /**
+     * SAML Version of the request.
+     */
     private SAMLVersion version;
 
-    /** Unique identifier of the request. */
+    /**
+     * Unique identifier of the request.
+     */
     private String id;
 
-    /** Date/time request was issued. */
+    /**
+     * Date/time request was issued.
+     */
     private DateTime issueInstant;
 
-    /** URI of the request destination. */
+    /**
+     * URI of the request destination.
+     */
     private String destination;
 
-    /** URI of the SAML user consent type. */
+    /**
+     * URI of the SAML user consent type.
+     */
     private String consent;
 
-    /** URI of the SAML user consent type. */
+    /**
+     * URI of the SAML user consent type.
+     */
     private Issuer issuer;
 
-    /** Extensions child element. */
+    /**
+     * Extensions child element.
+     */
     private Extensions extensions;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected RequestAbstractTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         version = SAMLVersion.VERSION_20;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAMLVersion getVersion() {
         return version;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setVersion(SAMLVersion newVersion) {
         this.version = prepareForAssignment(this.version, newVersion);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String newID) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, newID);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getIssueInstant() {
         return issueInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssueInstant(DateTime newIssueInstant) {
         this.issueInstant = prepareForAssignment(this.issueInstant, newIssueInstant);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getDestination() {
         return destination;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setDestination(String newDestination) {
         this.destination = prepareForAssignment(this.destination, newDestination);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getConsent() {
         return consent;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setConsent(String newConsent) {
         this.consent = prepareForAssignment(this.consent, newConsent);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Issuer getIssuer() {
         return issuer;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssuer(Issuer newIssuer) {
         this.issuer = prepareForAssignment(this.issuer, newIssuer);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return this.extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions newExtensions) {
         this.extensions = prepareForAssignment(this.extensions, newExtensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

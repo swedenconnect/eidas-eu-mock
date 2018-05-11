@@ -42,7 +42,7 @@ final class DomCachingHttpMetadataProvider extends HTTPMetadataResolver {
      * Contructor that sets the entityId to the URL.
      *
      * @param client the http client
-     * @param url the url of the metadata
+     * @param url    the url of the metadata
      * @throws ResolverException
      */
     public DomCachingHttpMetadataProvider(HttpClient client, String url) throws ResolverException {
@@ -55,7 +55,7 @@ final class DomCachingHttpMetadataProvider extends HTTPMetadataResolver {
      * Contructor that allows the entityId to be different from the URL.
      *
      * @param client the http client
-     * @param url the url of the metadata
+     * @param url    the url of the metadata
      * @throws ResolverException
      */
     public DomCachingHttpMetadataProvider(HttpClient client, String url, String entityId) throws ResolverException {
@@ -69,7 +69,7 @@ final class DomCachingHttpMetadataProvider extends HTTPMetadataResolver {
     public void initializeNonFinal() throws ComponentInitializationException {
         c.add(new EntityIdCriterion(entityId));
         setRequireValidMetadata(true);
-        setId("Resolver:"+url);
+        setId("Resolver:" + url);
         super.initialize();
     }
 

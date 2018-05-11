@@ -16,7 +16,7 @@ package org.apache.velocity.anakia;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.List;
@@ -69,14 +69,12 @@ import org.jdom.Element;
  * @author <a href="mailto:szegedia@freemail.hu">Attila Szegedi</a>
  * @version $Id: XPathTool.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class XPathTool
-{
+public class XPathTool {
     /**
      * Constructor does nothing, as this is mostly
      * just objectified static methods
      */
-    public XPathTool()
-    {
+    public XPathTool() {
         //        RuntimeSingleton.info("XPathTool::XPathTool()");
         // intentionally left blank
     }
@@ -85,45 +83,39 @@ public class XPathTool
      * Apply an XPath to a JDOM Document
      *
      * @param xpathSpec The XPath to apply
-     * @param doc The Document context
-     *
+     * @param doc       The Document context
      * @return A list of selected nodes
      */
     public NodeList applyTo(String xpathSpec,
-                        Document doc)
-    {
+                            Document doc) {
         //RuntimeSingleton.info("XPathTool::applyTo(String, Document)");
-        return new NodeList(XPathCache.getXPath(xpathSpec).applyTo( doc ), false);
+        return new NodeList(XPathCache.getXPath(xpathSpec).applyTo(doc), false);
     }
 
     /**
      * Apply an XPath to a JDOM Element
      *
      * @param xpathSpec The XPath to apply
-     * @param elem The Element context
-     *
+     * @param elem      The Element context
      * @return A list of selected nodes
      */
     public NodeList applyTo(String xpathSpec,
-                        Element elem)
-    {
+                            Element elem) {
         //RuntimeSingleton.info("XPathTool::applyTo(String, Element)");
-        return new NodeList(XPathCache.getXPath(xpathSpec).applyTo( elem ), false);
+        return new NodeList(XPathCache.getXPath(xpathSpec).applyTo(elem), false);
     }
 
     /**
      * Apply an XPath to a nodeset
      *
      * @param xpathSpec The XPath to apply
-     * @param nodeSet The nodeset context
-     *
+     * @param nodeSet   The nodeset context
      * @return A list of selected nodes
      */
     public NodeList applyTo(String xpathSpec,
-                        List nodeSet)
-    {
+                            List nodeSet) {
         //RuntimeSingleton.info("XPathTool::applyTo(String, List)");
-        return new NodeList(XPathCache.getXPath(xpathSpec).applyTo( nodeSet ), false);
+        return new NodeList(XPathCache.getXPath(xpathSpec).applyTo(nodeSet), false);
     }
 }
 

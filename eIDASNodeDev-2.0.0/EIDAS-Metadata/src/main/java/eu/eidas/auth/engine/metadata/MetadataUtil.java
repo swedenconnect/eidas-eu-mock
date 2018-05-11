@@ -103,7 +103,7 @@ public class MetadataUtil {
         if (cp.getTelephoneNumbers() != null && !cp.getTelephoneNumbers().isEmpty()) {
             contactBuilder.phone(cp.getTelephoneNumbers().get(0).getNumber());
         }
-        if (cp.getGivenName()!= null) {
+        if (cp.getGivenName() != null) {
             contactBuilder.givenName(cp.getGivenName().getName());
         }
         if (cp.getSurName() != null) {
@@ -186,7 +186,7 @@ public class MetadataUtil {
         }
     }
 
-    private static void convertRoleDescriptors(@Nonnull final  EntityDescriptor ed, @Nonnull final EidasMetadataParametersI params) throws EIDASMetadataException {
+    private static void convertRoleDescriptors(@Nonnull final EntityDescriptor ed, @Nonnull final EidasMetadataParametersI params) throws EIDASMetadataException {
         for (RoleDescriptor roleDescriptor : ed.getRoleDescriptors()) {
             if (roleDescriptor instanceof SPSSODescriptor) {
                 EidasMetadataRoleParametersI roleParams = convertSPSSODescriptorParams(roleDescriptor);

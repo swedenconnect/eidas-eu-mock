@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -39,8 +39,7 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @version $Id: MultipleFileResourcePathTestCase.java 832247 2009-11-03 01:29:30Z wglass $
  */
-public class MultipleFileResourcePathTestCase extends BaseTestCase
-{
+public class MultipleFileResourcePathTestCase extends BaseTestCase {
 
     /**
      * Path for templates. This property will override the
@@ -65,27 +64,24 @@ public class MultipleFileResourcePathTestCase extends BaseTestCase
     private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/multi/compare";
 
     VelocityEngine engine;
-    
+
     /**
      * Default constructor.
      */
-    public MultipleFileResourcePathTestCase(String name)
-    {
+    public MultipleFileResourcePathTestCase(String name) {
         super(name);
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(MultipleFileResourcePathTestCase.class);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULTS_DIR);
 
         engine = new VelocityEngine();
-        
+
         engine.addProperty(
                 RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH1);
 
@@ -101,22 +97,21 @@ public class MultipleFileResourcePathTestCase extends BaseTestCase
     /**
      * Runs the test.
      */
-    public void  testMultipleFileResources ()
-            throws Exception
-    {
+    public void testMultipleFileResources()
+            throws Exception {
         Template template1 = engine.getTemplate(
-            getFileName(null, "path1", TMPL_FILE_EXT));
+                getFileName(null, "path1", TMPL_FILE_EXT));
 
         Template template2 = engine.getTemplate(
-            getFileName(null, "path2", TMPL_FILE_EXT));
+                getFileName(null, "path2", TMPL_FILE_EXT));
 
         FileOutputStream fos1 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "path1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "path1", RESULT_FILE_EXT));
 
         FileOutputStream fos2 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "path2", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "path2", RESULT_FILE_EXT));
 
         Writer writer1 = new BufferedWriter(new OutputStreamWriter(fos1));
         Writer writer2 = new BufferedWriter(new OutputStreamWriter(fos2));
@@ -137,9 +132,8 @@ public class MultipleFileResourcePathTestCase extends BaseTestCase
 
         if (!isMatch(RESULTS_DIR, COMPARE_DIR, "path1",
                 RESULT_FILE_EXT, CMP_FILE_EXT) ||
-            !isMatch(RESULTS_DIR, COMPARE_DIR, "path2",
-                RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+                !isMatch(RESULTS_DIR, COMPARE_DIR, "path2",
+                        RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect.");
         }
     }

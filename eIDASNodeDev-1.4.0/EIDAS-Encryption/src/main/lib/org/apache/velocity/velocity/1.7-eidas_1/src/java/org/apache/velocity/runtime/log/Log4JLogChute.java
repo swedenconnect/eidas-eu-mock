@@ -16,11 +16,12 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
@@ -40,8 +41,7 @@ import org.apache.velocity.util.ExceptionUtils;
  * @since Velocity 1.5
  * @since 1.5
  */
-public class Log4JLogChute implements LogChute
-{
+public class Log4JLogChute implements LogChute {
     public static final String RUNTIME_LOG_LOG4J_LOGGER =
             "runtime.log.logsystem.log4j.logger";
     public static final String RUNTIME_LOG_LOG4J_LOGGER_LEVEL =
@@ -59,60 +59,49 @@ public class Log4JLogChute implements LogChute
     /**
      * @see org.apache.velocity.runtime.log.LogChute#init(org.apache.velocity.runtime.RuntimeServices)
      */
-    public void init(RuntimeServices rs) throws Exception
-    {
+    public void init(RuntimeServices rs) throws Exception {
         rsvc = rs;
 
         /* first see if there is a category specified and just use that - it allows
          * the application to make us use an existing logger
          */
-        String name = (String)rsvc.getProperty(RUNTIME_LOG_LOG4J_LOGGER);
-        if (name != null)
-        {
+        String name = (String) rsvc.getProperty(RUNTIME_LOG_LOG4J_LOGGER);
+        if (name != null) {
             logger = Logger.getLogger(name);
             log(DEBUG_ID, "Log4JLogChute using logger '" + name + '\'');
-        }
-        else
-        {
+        } else {
             // create a logger with this class name to avoid conflicts
             logger = Logger.getLogger(this.getClass().getName());
 
             // if we have a file property, then create a separate
             // rolling file log for velocity messages only
             String file = rsvc.getString(RuntimeConstants.RUNTIME_LOG);
-            if (file != null && file.length() > 0)
-            {
+            if (file != null && file.length() > 0) {
                 initAppender(file);
             }
         }
 
         /* get and set specified level for this logger */
         String lvl = rsvc.getString(RUNTIME_LOG_LOG4J_LOGGER_LEVEL);
-        if (lvl != null)
-        {
+        if (lvl != null) {
             Level level = Level.toLevel(lvl);
             logger.setLevel(level);
         }
-        
+
         /* Ok, now let's see if this version of log4j supports the trace level. */
-        try
-        {
+        try {
             Field traceLevel = Level.class.getField("TRACE");
             // we'll never get here in pre 1.2.12 log4j
             hasTrace = true;
-        }
-        catch (NoSuchFieldException e)
-        {
+        } catch (NoSuchFieldException e) {
             log(DEBUG_ID,
-                "The version of log4j being used does not support the \"trace\" level.");
+                    "The version of log4j being used does not support the \"trace\" level.");
         }
     }
 
     // This tries to create a file appender for the specified file name.
-    private void initAppender(String file) throws Exception
-    {
-        try
-        {
+    private void initAppender(String file) throws Exception {
+        try {
             // to add the appender
             PatternLayout layout = new PatternLayout("%d - %m%n");
             this.appender = new RollingFileAppender(layout, file, true);
@@ -125,25 +114,21 @@ public class Log4JLogChute implements LogChute
             // don't inherit appenders from higher in the logger heirarchy
             logger.setAdditivity(false);
             logger.addAppender(appender);
-            log(DEBUG_ID, "Log4JLogChute initialized using file '"+file+'\'');
-        }
-        catch (IOException ioe)
-        {
-            rsvc.getLog().error("Could not create file appender '"+file+'\'', ioe);
+            log(DEBUG_ID, "Log4JLogChute initialized using file '" + file + '\'');
+        } catch (IOException ioe) {
+            rsvc.getLog().error("Could not create file appender '" + file + '\'', ioe);
             throw ExceptionUtils.createRuntimeException("Error configuring Log4JLogChute : ", ioe);
         }
     }
 
     /**
-     *  logs messages
+     * logs messages
      *
-     *  @param level severity level
-     *  @param message complete error message
+     * @param level   severity level
+     * @param message complete error message
      */
-    public void log(int level, String message)
-    {
-        switch (level)
-        {
+    public void log(int level, String message) {
+        switch (level) {
             case LogChute.WARN_ID:
                 logger.warn(message);
                 break;
@@ -151,12 +136,9 @@ public class Log4JLogChute implements LogChute
                 logger.info(message);
                 break;
             case LogChute.TRACE_ID:
-                if (hasTrace)
-                {
+                if (hasTrace) {
                     logger.trace(message);
-                }
-                else
-                {
+                } else {
                     logger.debug(message);
                 }
                 break;
@@ -173,10 +155,8 @@ public class Log4JLogChute implements LogChute
     /**
      * @see org.apache.velocity.runtime.log.LogChute#log(int, java.lang.String, java.lang.Throwable)
      */
-    public void log(int level, String message, Throwable t)
-    {
-        switch (level)
-        {
+    public void log(int level, String message, Throwable t) {
+        switch (level) {
             case LogChute.WARN_ID:
                 logger.warn(message, t);
                 break;
@@ -184,12 +164,9 @@ public class Log4JLogChute implements LogChute
                 logger.info(message, t);
                 break;
             case LogChute.TRACE_ID:
-                if (hasTrace)
-                {
+                if (hasTrace) {
                     logger.trace(message, t);
-                }
-                else
-                {
+                } else {
                     logger.debug(message, t);
                 }
                 break;
@@ -206,21 +183,16 @@ public class Log4JLogChute implements LogChute
     /**
      * @see org.apache.velocity.runtime.log.LogChute#isLevelEnabled(int)
      */
-    public boolean isLevelEnabled(int level)
-    {
-        switch (level)
-        {
+    public boolean isLevelEnabled(int level) {
+        switch (level) {
             case LogChute.DEBUG_ID:
                 return logger.isDebugEnabled();
             case LogChute.INFO_ID:
                 return logger.isInfoEnabled();
             case LogChute.TRACE_ID:
-                if (hasTrace)
-                {
+                if (hasTrace) {
                     return logger.isTraceEnabled();
-                }
-                else
-                {
+                } else {
                     return logger.isDebugEnabled();
                 }
             case LogChute.WARN_ID:
@@ -235,18 +207,18 @@ public class Log4JLogChute implements LogChute
 
     /**
      * Also do a shutdown if the object is destroy()'d.
+     *
      * @throws Throwable
      */
-    protected void finalize() throws Throwable
-    {
+    protected void finalize() throws Throwable {
         shutdown();
     }
 
-    /** Close all destinations*/
-    public void shutdown()
-    {
-        if (appender != null)
-        {
+    /**
+     * Close all destinations
+     */
+    public void shutdown() {
+        if (appender != null) {
             logger.removeAppender(appender);
             appender.close();
             appender = null;

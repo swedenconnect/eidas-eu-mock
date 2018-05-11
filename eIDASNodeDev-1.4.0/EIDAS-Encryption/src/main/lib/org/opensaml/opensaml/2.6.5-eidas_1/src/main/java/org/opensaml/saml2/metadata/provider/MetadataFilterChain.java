@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,10 +31,14 @@ import org.slf4j.LoggerFactory;
  */
 public class MetadataFilterChain implements MetadataFilter {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private Logger log = LoggerFactory.getLogger(MetadataFilterChain.class);
 
-    /** Registered filters. */
+    /**
+     * Registered filters.
+     */
     private List<MetadataFilter> filters;
 
     /**
@@ -44,7 +48,9 @@ public class MetadataFilterChain implements MetadataFilter {
         filters = Collections.emptyList();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public final void doFilter(XMLObject xmlObject) throws FilterException {
         synchronized (filters) {
             if (filters == null || filters.isEmpty()) {
@@ -59,7 +65,7 @@ public class MetadataFilterChain implements MetadataFilter {
 
     /**
      * Gets the list of {@link MetadataFilter}s that make up this chain.
-     * 
+     *
      * @return the filters that make up this chain
      */
     public List<MetadataFilter> getFilters() {
@@ -68,7 +74,7 @@ public class MetadataFilterChain implements MetadataFilter {
 
     /**
      * Sets the list of {@link MetadataFilter}s that make up this chain.
-     * 
+     *
      * @param newFilters list of {@link MetadataFilter}s that make up this chain
      */
     public void setFilters(List<MetadataFilter> newFilters) {

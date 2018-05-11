@@ -20,17 +20,17 @@ import java.io.File;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/testcontext.xml")
+@ContextConfiguration(locations = "/testcontext.xml")
 @FixMethodOrder(MethodSorters.JVM)
 public class TestMetadataRepository {
-    private static final String FILEREPO_DIR="target/test/samlmetadatarepository/";
-    private static final String FILEREPO_SOURCE_DIR="src/test/resources/samlmetadatarepository/";
+    private static final String FILEREPO_DIR = "target/test/samlmetadatarepository/";
+    private static final String FILEREPO_SOURCE_DIR = "src/test/resources/samlmetadatarepository/";
     @Autowired
-    MetadataRepository metadataRepository=null;
+    MetadataRepository metadataRepository = null;
 
     @Before
-    public void setUp(){
-        java.io.File sampleNodeRepo=new java.io.File(FILEREPO_DIR);
+    public void setUp() {
+        java.io.File sampleNodeRepo = new java.io.File(FILEREPO_DIR);
         FileSystemUtils.deleteRecursively(sampleNodeRepo);
         sampleNodeRepo.mkdirs();
         FileUtils.copyFile(new File(FILEREPO_SOURCE_DIR), new File(FILEREPO_DIR));
@@ -38,19 +38,19 @@ public class TestMetadataRepository {
 
 
     @Test
-    public void testRead(){
+    public void testRead() {
         assertNotNull(metadataRepository);
-        ((((MetadataRepositoryImpl)metadataRepository).getFileService())).setRepositoryDir(FILEREPO_DIR);
+        ((((MetadataRepositoryImpl) metadataRepository).getFileService())).setRepositoryDir(FILEREPO_DIR);
         assertNotNull(metadataRepository.getIDs());
-        assertTrue(metadataRepository.getIDs().size()==2);
+        assertTrue(metadataRepository.getIDs().size() == 2);
 
-        String metadata1=metadataRepository.getIDs().get(0);
-        MetadataItem item=metadataRepository.getMetadataItem(metadata1);
+        String metadata1 = metadataRepository.getIDs().get(0);
+        MetadataItem item = metadataRepository.getMetadataItem(metadata1);
         assertNotNull(item);
         assertNotNull(item.getIssuerUrl());
     }
 
     @Test
-    public void testWrite(){
+    public void testWrite() {
     }
 }

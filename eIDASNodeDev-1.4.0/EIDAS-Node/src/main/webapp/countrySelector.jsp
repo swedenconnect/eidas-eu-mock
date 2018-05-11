@@ -4,13 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:setBundle basename="eu.eidas.node.package" var="i18n_eng"/>
 <%@taglib prefix="e" uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" %>
-    <meta http-equiv='pragma' content='no-cache'/>
-    <meta http-equiv='cache-control' content='no-cache, no-store, must-revalidate'/>
-	<meta http-equiv="Expires" content="-1"/>
+<meta http-equiv='pragma' content='no-cache'/>
+<meta http-equiv='cache-control' content='no-cache, no-store, must-revalidate'/>
+<meta http-equiv="Expires" content="-1"/>
 
 <form id="countrySelector" method="post" action="${e:forHtml(eidasAuth)}" target="_parent">
     <input type="hidden" id="SAMLRequest" name="SAMLRequest" value="<c:out value='${e:forHtml(SAMLRequest)}'/>"/>
-	<input type="hidden" id="spmetadataurl" name="spmetadataurl" value="<c:out value='${e:forHtml(spmetadataurl)}'/>"/>
+    <input type="hidden" id="spmetadataurl" name="spmetadataurl" value="<c:out value='${e:forHtml(spmetadataurl)}'/>"/>
     <select name="country">
         <c:forEach items="${countries}" var="country">
             <option value="${e:forHtml(country.countryId)}">${e:forHtml(country.countryName)}</option>

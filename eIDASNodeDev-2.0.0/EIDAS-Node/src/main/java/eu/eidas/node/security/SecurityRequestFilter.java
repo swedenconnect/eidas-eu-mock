@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * @author vanegdi
  */
-public class SecurityRequestFilter  extends AbstractSecurityRequest implements Filter {
+public class SecurityRequestFilter extends AbstractSecurityRequest implements Filter {
 
     /**
      * Logger object.
@@ -51,7 +51,7 @@ public class SecurityRequestFilter  extends AbstractSecurityRequest implements F
         this.setConfigurationSecurityBean((ConfigurationSecurityBean) context.getBean(NodeBeanNames.SECURITY_CONFIG.toString()));
 
         // Class Name of the Action being invoked
-        final String pathInvoked = StringUtils.remove(request.getServletPath(),"/");
+        final String pathInvoked = StringUtils.remove(request.getServletPath(), "/");
 
         if (!matchIncludedServlets(pathInvoked)) {
             LOG.debug("Not filtered");
@@ -64,7 +64,7 @@ public class SecurityRequestFilter  extends AbstractSecurityRequest implements F
 
         boolean performDomainCheck = !getConfigurationSecurityBean().getBypassValidation();
 
-        if("cspReportHandler".equals(pathInvoked)) {
+        if ("cspReportHandler".equals(pathInvoked)) {
             performDomainCheck = false;
         }
 
@@ -106,9 +106,9 @@ public class SecurityRequestFilter  extends AbstractSecurityRequest implements F
     }
 
     private boolean matchIncludedServlets(String url) {
-        if(!StringUtilities.isEmpty(url) && !StringUtilities.isEmpty(this.includedServlets)){
+        if (!StringUtilities.isEmpty(url) && !StringUtilities.isEmpty(this.includedServlets)) {
             List<String> servlets = Arrays.asList(this.includedServlets.split("\\s*,\\s*"));
-            if(servlets.contains(url)){
+            if (servlets.contains(url)) {
                 return true;
             }
         }

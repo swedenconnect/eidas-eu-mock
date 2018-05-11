@@ -269,18 +269,18 @@ public class AuthResponseTest {
         String ipAddress = "111.222.333.444";
 
 
-            ImmutableAttributeMap.Builder builder = ImmutableAttributeMap.builder();
+        ImmutableAttributeMap.Builder builder = ImmutableAttributeMap.builder();
 
-            builder.put(NaturalPersonSpec.Definitions.PERSON_IDENTIFIER, "john");
-            builder.put(NaturalPersonSpec.Definitions.CURRENT_FAMILY_NAME, "john2");
-            builder.put(NaturalPersonSpec.Definitions.CURRENT_GIVEN_NAME, "john3");
-            builder.put(NaturalPersonSpec.Definitions.DATE_OF_BIRTH);
-            builder.put(NaturalPersonSpec.Definitions.PLACE_OF_BIRTH, "Brussels");
+        builder.put(NaturalPersonSpec.Definitions.PERSON_IDENTIFIER, "john");
+        builder.put(NaturalPersonSpec.Definitions.CURRENT_FAMILY_NAME, "john2");
+        builder.put(NaturalPersonSpec.Definitions.CURRENT_GIVEN_NAME, "john3");
+        builder.put(NaturalPersonSpec.Definitions.DATE_OF_BIRTH);
+        builder.put(NaturalPersonSpec.Definitions.PLACE_OF_BIRTH, "Brussels");
         builder.put(NaturalPersonSpec.Definitions.BIRTH_NAME, "john4");
         builder.put(NaturalPersonSpec.Definitions.CURRENT_ADDRESS, getAddressValue());
         builder.put(NaturalPersonSpec.Definitions.GENDER, "Male");
 
-            attributeMap = builder.build();
+        attributeMap = builder.build();
 
     }
 
@@ -568,7 +568,7 @@ public class AuthResponseTest {
         try {
             authResponse = getEngine().generateResponseMessage(authenRequest, response, false, ipAddress).getMessageBytes();
             // In Conf1 ipValidate is false
-            getEngine().unmarshallResponseAndValidate(authResponse, null, 0, 0,null);
+            getEngine().unmarshallResponseAndValidate(authResponse, null, 0, 0, null);
         } catch (EIDASSAMLEngineException e) {
             LOG.error("Error " + e, e);
         }

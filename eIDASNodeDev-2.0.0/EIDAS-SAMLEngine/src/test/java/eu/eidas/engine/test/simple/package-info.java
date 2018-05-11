@@ -15,6 +15,7 @@
 
 /**
  * Provides the classes necessary to create a SAML message.
+ *
  * @since 1.0
  */
 package eu.eidas.engine.test.simple;

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.validator;
@@ -30,26 +30,30 @@ import org.opensaml.xml.validation.Validator;
  */
 public class EntitiesDescriptorSchemaValidator implements Validator<EntitiesDescriptor> {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public EntitiesDescriptorSchemaValidator() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(EntitiesDescriptor entitiesDescriptor) throws ValidationException {
         validateEntityDescriptors(entitiesDescriptor);
     }
 
     /**
      * Checks that at least one EntitiesDescriptor or EntityDescriptor is present.
-     * 
+     *
      * @param entitiesDescriptor
      * @throws ValidationException
      */
     protected void validateEntityDescriptors(EntitiesDescriptor entitiesDescriptor) throws ValidationException {
         if ((entitiesDescriptor.getEntitiesDescriptors() == null || entitiesDescriptor.getEntitiesDescriptors().size() < 1)
                 && (entitiesDescriptor.getEntityDescriptors() == null || entitiesDescriptor.getEntityDescriptors()
-                        .size() < 1)) {
+                .size() < 1)) {
             throw new ValidationException("Must have one or more EntitiesDescriptor or EntityDescriptor.");
         }
     }

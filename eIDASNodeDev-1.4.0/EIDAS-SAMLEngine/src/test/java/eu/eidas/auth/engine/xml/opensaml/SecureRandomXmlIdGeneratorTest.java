@@ -32,7 +32,7 @@ public final class SecureRandomXmlIdGeneratorTest {
             String id = SecureRandomXmlIdGenerator.INSTANCE.generateIdentifier(length);
             System.out.println("id = \"" + id + "\"");
             assertEquals(length, id.length());
-            Pattern pattern = Pattern.compile("_[A-Za-z0-9_\\.\\-]{" + (length-1) + "}");
+            Pattern pattern = Pattern.compile("_[A-Za-z0-9_\\.\\-]{" + (length - 1) + "}");
             assertTrue(pattern.matcher(id).matches());
         }
     }

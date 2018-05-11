@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,36 +29,40 @@ import org.w3c.dom.Element;
  */
 public class AttributeDesignatorTypeMarshaller extends AbstractXACMLObjectMarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public AttributeDesignatorTypeMarshaller() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement)
-	    throws MarshallingException {
-	AttributeDesignatorType attributeDesignatorType = (AttributeDesignatorType) xmlObject;
+            throws MarshallingException {
+        AttributeDesignatorType attributeDesignatorType = (AttributeDesignatorType) xmlObject;
 
-	if (!DatatypeHelper.isEmpty(attributeDesignatorType.getAttributeId())) {
-	    domElement.setAttribute(
-		    AttributeDesignatorType.ATTRIBUTE_ID_ATTRIB_NAME,
-		    attributeDesignatorType.getAttributeId());
-	}
-	if (!DatatypeHelper.isEmpty(attributeDesignatorType.getDataType())) {
-	    domElement.setAttribute(
-		    AttributeDesignatorType.DATA_TYPE_ATTRIB_NAME,
-		    attributeDesignatorType.getDataType());
-	}
-	if (!DatatypeHelper.isEmpty(attributeDesignatorType.getIssuer())) {
-	    domElement.setAttribute(AttributeDesignatorType.ISSUER_ATTRIB_NAME,
-		    attributeDesignatorType.getIssuer());
-	}
-	if (attributeDesignatorType.getMustBePresentXSBoolean() != null) {
-	    domElement.setAttribute(
-		    AttributeDesignatorType.MUST_BE_PRESENT_ATTRIB_NAME,
-		    Boolean.toString(attributeDesignatorType
-			    .getMustBePresentXSBoolean().getValue()));
-	}
+        if (!DatatypeHelper.isEmpty(attributeDesignatorType.getAttributeId())) {
+            domElement.setAttribute(
+                    AttributeDesignatorType.ATTRIBUTE_ID_ATTRIB_NAME,
+                    attributeDesignatorType.getAttributeId());
+        }
+        if (!DatatypeHelper.isEmpty(attributeDesignatorType.getDataType())) {
+            domElement.setAttribute(
+                    AttributeDesignatorType.DATA_TYPE_ATTRIB_NAME,
+                    attributeDesignatorType.getDataType());
+        }
+        if (!DatatypeHelper.isEmpty(attributeDesignatorType.getIssuer())) {
+            domElement.setAttribute(AttributeDesignatorType.ISSUER_ATTRIB_NAME,
+                    attributeDesignatorType.getIssuer());
+        }
+        if (attributeDesignatorType.getMustBePresentXSBoolean() != null) {
+            domElement.setAttribute(
+                    AttributeDesignatorType.MUST_BE_PRESENT_ATTRIB_NAME,
+                    Boolean.toString(attributeDesignatorType
+                            .getMustBePresentXSBoolean().getValue()));
+        }
 
     }
 

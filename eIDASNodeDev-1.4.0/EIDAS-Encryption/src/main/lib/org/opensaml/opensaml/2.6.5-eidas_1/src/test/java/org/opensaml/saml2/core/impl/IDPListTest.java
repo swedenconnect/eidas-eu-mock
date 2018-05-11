@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -33,8 +33,10 @@ import org.opensaml.saml2.core.IDPList;
  * {@link org.opensaml.saml2.core.impl.IDPEntryImpl}.
  */
 public class IDPListTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** The expected number of IDPEntry children */
+
+    /**
+     * The expected number of IDPEntry children
+     */
     private int expectedNumIDPEntryChildren;
 
     /**
@@ -44,53 +46,63 @@ public class IDPListTest extends BaseSAMLObjectProviderTestCase {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/IDPList.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/IDPListChildElements.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedNumIDPEntryChildren = 3;
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, IDPList.DEFAULT_ELEMENT_LOCAL_NAME);
         IDPList list = (IDPList) buildXMLObject(qname);
 
         assertEquals(expectedDOM, list);
     }
- 
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, IDPList.DEFAULT_ELEMENT_LOCAL_NAME);
         IDPList list = (IDPList) buildXMLObject(qname);
-        
+
         QName idpEntryQName = new QName(SAMLConstants.SAML20P_NS, IDPEntry.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
-        for (int i=0; i<expectedNumIDPEntryChildren; i++){
+        for (int i = 0; i < expectedNumIDPEntryChildren; i++) {
             list.getIDPEntrys().add((IDPEntry) buildXMLObject(idpEntryQName));
         }
-        
+
         QName getCompelteQName = new QName(SAMLConstants.SAML20P_NS, GetComplete.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         list.setGetComplete((GetComplete) buildXMLObject(getCompelteQName));
-        
+
         assertEquals(expectedChildElementsDOM, list);
-        
+
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         IDPList list = (IDPList) unmarshallElement(singleElementFile);
-        
+
         assertNotNull("IDPList", list);
         assertEquals("IDPEntry count", 0, list.getIDPEntrys().size());
         assertNull("GetComplete", list.getGetComplete());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         IDPList list = (IDPList) unmarshallElement(childElementsFile);
-        
+
         assertEquals("IDPEntry count", expectedNumIDPEntryChildren, list.getIDPEntrys().size());
         assertNotNull("GetComplete", list.getGetComplete());
     }

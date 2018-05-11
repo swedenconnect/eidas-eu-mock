@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,28 +28,42 @@ import org.opensaml.saml2.core.NameID;
  */
 public class NameIDTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Name value */
+    /**
+     * Expected Name value
+     */
     private String expectedName;
-    
-    /** Expected NameQualifier value */
+
+    /**
+     * Expected NameQualifier value
+     */
     private String expectedNameQualifier;
 
-    /** Expected SPNameQualifier value */
+    /**
+     * Expected SPNameQualifier value
+     */
     private String expectedSPNameQualifier;
 
-    /** Expected Format value */
+    /**
+     * Expected Format value
+     */
     private String expectedFormat;
 
-    /** Expected SPProvidedID value */
+    /**
+     * Expected SPProvidedID value
+     */
     private String expectedSPID;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public NameIDTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/NameID.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/NameIDOptionalAttributes.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +74,9 @@ public class NameIDTest extends BaseSAMLObjectProviderTestCase {
         expectedSPID = "spID";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         NameID nameID = (NameID) unmarshallElement(singleElementFile);
 
@@ -68,7 +84,9 @@ public class NameIDTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Name not as expected", name, expectedName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         NameID nameID = (NameID) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -88,7 +106,9 @@ public class NameIDTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("SPProviderID not as expected", spProvidedID, expectedSPID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, NameID.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         NameID nameID = (NameID) buildXMLObject(qname);
@@ -97,7 +117,9 @@ public class NameIDTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, nameID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, NameID.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         NameID nameID = (NameID) buildXMLObject(qname);

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -20,20 +20,28 @@ package org.opensaml.xacml.ctx.impl;
 import org.opensaml.xacml.ctx.AttributeValueType;
 import org.opensaml.xacml.impl.AbstractXACMLObjectBuilder;
 
-/** Builder for {@link AttributeValueType} objects. */
+/**
+ * Builder for {@link AttributeValueType} objects.
+ */
 public class AttributeValueTypeImplBuilder extends AbstractXACMLObjectBuilder<AttributeValueType> {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public AttributeValueTypeImplBuilder() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeValueType buildObject() {
         return buildObject(AttributeValueType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeValueType buildObject(String namespaceURI, String localName, String namespacePrefix) {
         return new AttributeValueTypeImpl(namespaceURI, localName, namespacePrefix);
     }

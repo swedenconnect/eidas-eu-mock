@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -25,16 +25,13 @@ import org.apache.velocity.exception.VelocityException;
 /**
  * This class tests VELOCITY-785.
  */
-public class Velocity785TestCase extends BaseTestCase
-{
-    public Velocity785TestCase(String name)
-    {
+public class Velocity785TestCase extends BaseTestCase {
+    public Velocity785TestCase(String name) {
         super(name);
         // DEBUG = true;
     }
 
-    public void testQuoteEscapes()
-    {
+    public void testQuoteEscapes() {
         assertEvalEquals("\"", "#set($double_double = \"\"\"\")$double_double");
         assertEvalEquals("'", "#set($single_single = '''')$single_single");
         assertEvalEquals("''", "#set($double_single = \"''\")$double_single");

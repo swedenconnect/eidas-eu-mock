@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -39,24 +39,34 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class AttributeConsumingServiceImpl extends AbstractSAMLObject implements AttributeConsumingService {
 
-    /** Index of this service */
+    /**
+     * Index of this service
+     */
     private int index;
 
-    /** isDefault attribute of this service */
+    /**
+     * isDefault attribute of this service
+     */
     private XSBooleanValue isDefault;
 
-    /** ServiceName children */
+    /**
+     * ServiceName children
+     */
     private final XMLObjectChildrenList<ServiceName> serviceNames;
 
-    /** ServiceDescription children */
+    /**
+     * ServiceDescription children
+     */
     private final XMLObjectChildrenList<ServiceDescription> serviceDescriptions;
 
-    /** RequestedAttribute children */
+    /**
+     * RequestedAttribute children
+     */
     private final XMLObjectChildrenList<RequestedAttribute> requestAttributes;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param namespaceURI
      * @param elementLocalName
      * @param namespacePrefix
@@ -68,63 +78,83 @@ public class AttributeConsumingServiceImpl extends AbstractSAMLObject implements
         requestAttributes = new XMLObjectChildrenList<RequestedAttribute>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public int getIndex() {
         return index;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIndex(int index) {
         if (this.index != index) {
             releaseThisandParentDOM();
             this.index = index;
         }
     }
-    
-    /** {@inheritDoc} */
-    public Boolean isDefault(){
-        if(isDefault != null){
+
+    /**
+     * {@inheritDoc}
+     */
+    public Boolean isDefault() {
+        if (isDefault != null) {
             return isDefault.getValue();
         }
-        
+
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue isDefaultXSBoolean() {
         return isDefault;
     }
-    
-    /** {@inheritDoc} */
-    public void setIsDefault(Boolean newIsDefault){
-        if(newIsDefault != null){
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setIsDefault(Boolean newIsDefault) {
+        if (newIsDefault != null) {
             isDefault = prepareForAssignment(isDefault, new XSBooleanValue(newIsDefault, false));
-        }else{
+        } else {
             isDefault = prepareForAssignment(isDefault, null);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIsDefault(XSBooleanValue newIsDefault) {
         isDefault = prepareForAssignment(isDefault, newIsDefault);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<ServiceName> getNames() {
         return serviceNames;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<ServiceDescription> getDescriptions() {
         return serviceDescriptions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RequestedAttribute> getRequestAttributes() {
         return requestAttributes;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

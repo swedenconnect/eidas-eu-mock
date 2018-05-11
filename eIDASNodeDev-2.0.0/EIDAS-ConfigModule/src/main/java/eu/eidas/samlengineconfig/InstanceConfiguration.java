@@ -23,6 +23,7 @@ import java.util.List;
 public abstract class InstanceConfiguration {
     String name;
     List<ConfigurationParameter> parameters;
+
     public List<ConfigurationParameter> getParameters() {
         return parameters;
     }

@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,28 +24,24 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-532.
  */
-public class Velocity532TestCase extends BaseTestCase
-{
-    public Velocity532TestCase(String name)
-    {
-       super(name);
+public class Velocity532TestCase extends BaseTestCase {
+    public Velocity532TestCase(String name) {
+        super(name);
     }
 
-    public void test532()
-    {
-        String template = "#macro( test )$velocityCount#end"+
-                          "#foreach( $i in [1..5] )#test()#end";
+    public void test532() {
+        String template = "#macro( test )$velocityCount#end" +
+                "#foreach( $i in [1..5] )#test()#end";
         assertEvalEquals("12345", template);
     }
 
-    public void test532b()
-    {
+    public void test532b() {
         // try something a little more like Matt's example
-        String template = "#macro( test $baz )"+
-                            "#if( $foo == $null )"+
-                              "#if( $velocityCount == 3 )bar#end"+
-                            "#end#end"+
-                          "#foreach( $i in [1..5] )#test($i)#end";
+        String template = "#macro( test $baz )" +
+                "#if( $foo == $null )" +
+                "#if( $velocityCount == 3 )bar#end" +
+                "#end#end" +
+                "#foreach( $i in [1..5] )#test($i)#end";
         assertEvalEquals("bar", template);
     }
 

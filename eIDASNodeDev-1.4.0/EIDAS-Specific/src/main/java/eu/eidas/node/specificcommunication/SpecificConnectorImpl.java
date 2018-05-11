@@ -69,7 +69,9 @@ public class SpecificConnectorImpl implements ISpecificConnector {
 
         String samlRequestFromSp = webRequest.getEncodedLastParameterValue(EidasParameterKeys.SAML_REQUEST);
 
-        if (samlRequestFromSp == null) { throw new SpecificException("missing Specific Request"); }
+        if (samlRequestFromSp == null) {
+            throw new SpecificException("missing Specific Request");
+        }
 
         NormalParameterValidator.paramName(EidasParameterKeys.SAML_REQUEST)
                 .paramValue(samlRequestFromSp)
@@ -90,7 +92,7 @@ public class SpecificConnectorImpl implements ISpecificConnector {
         IAUConnector specificNode = specificConnectorBean.getSpecificConnectorNode();
         try {
             BinaryAuthenticationExchange binaryAuthenticationExchange
-                     = specificNode.generateAuthenticationResponse(lightResponse, signResponseAssertion);
+                    = specificNode.generateAuthenticationResponse(lightResponse, signResponseAssertion);
 
             StoredAuthenticationRequest storedAuthenticationRequest =
                     binaryAuthenticationExchange.getStoredRequest();
@@ -108,7 +110,7 @@ public class SpecificConnectorImpl implements ISpecificConnector {
             httpServletRequest.setAttribute(SpecificParameterNames.RELAY_STATE.toString(), relayState);
 
             RequestDispatcher dispatcher = httpServletRequest.getRequestDispatcher(SpecificViewNames.COLLEAGUE_RESPONSE_REDIRECT
-                                                                                           .toString());
+                    .toString());
             dispatcher.forward(httpServletRequest, httpServletResponse);
 
         } catch (ServletException | IOException e) {

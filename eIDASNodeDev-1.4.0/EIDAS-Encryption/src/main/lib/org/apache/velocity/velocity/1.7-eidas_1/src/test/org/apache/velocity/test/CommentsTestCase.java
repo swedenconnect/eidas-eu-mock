@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -30,80 +30,78 @@ import org.apache.velocity.context.Context;
 
 /**
  * Test comments
- * 
+ *
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: CommentsTestCase.java 569256 2007-08-24 05:41:08Z wglass $
  */
-public class CommentsTestCase extends BaseTestCase
-{
+public class CommentsTestCase extends BaseTestCase {
 
-    public static Test suite()
-    {
-       return new TestSuite(CommentsTestCase.class);
+    public static Test suite() {
+        return new TestSuite(CommentsTestCase.class);
     }
-    
+
     /**
      * Default constructor.
+     *
      * @param name
      */
-    public CommentsTestCase(String name)
-    {
+    public CommentsTestCase(String name) {
         super(name);
     }
 
-    
+
     /**
      * Test multiline comments
+     *
      * @throws Exception
      */
     public void testMultiLine()
-    throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
-        
-        Context context = new VelocityContext();        
+
+        Context context = new VelocityContext();
         StringWriter writer = new StringWriter();
-        ve.evaluate(context, writer, "test","abc #* test\r\ntest2*#\r\ndef");
+        ve.evaluate(context, writer, "test", "abc #* test\r\ntest2*#\r\ndef");
         assertEquals("abc \r\ndef", writer.toString());
     }
 
     /**
      * Test single line comments
+     *
      * @throws Exception
      */
     public void testSingleLine()
-    throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
-        
-        Context context = new VelocityContext();        
+
+        Context context = new VelocityContext();
         StringWriter writer = new StringWriter();
-        ve.evaluate(context, writer, "test","123 ## test test\r\nabc");
-        assertEquals("123 abc", writer.toString());        
-    
-        context = new VelocityContext();        
+        ve.evaluate(context, writer, "test", "123 ## test test\r\nabc");
+        assertEquals("123 abc", writer.toString());
+
+        context = new VelocityContext();
         writer = new StringWriter();
-        ve.evaluate(context, writer, "test","123 \r\n## test test\r\nabc");
-        assertEquals("123 \r\nabc", writer.toString());        
-    
+        ve.evaluate(context, writer, "test", "123 \r\n## test test\r\nabc");
+        assertEquals("123 \r\nabc", writer.toString());
+
     }
 
     /**
      * Test combined comments
+     *
      * @throws Exception
      */
     public void testCombined()
-    throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
-        
-        Context context = new VelocityContext();        
+
+        Context context = new VelocityContext();
         StringWriter writer = new StringWriter();
-        ve.evaluate(context, writer, "test","test\r\n## #* *# ${user \r\nabc");
-        assertEquals("test\r\nabc", writer.toString());        
-    
+        ve.evaluate(context, writer, "test", "test\r\n## #* *# ${user \r\nabc");
+        assertEquals("test\r\nabc", writer.toString());
+
     }
 }

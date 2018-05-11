@@ -31,6 +31,7 @@ public class AUSERVICEUtil extends AUNODEUtil {
 
     /**
      * Setter for configs.
+     *
      * @param confs The configs to set.
      * @see Properties
      */
@@ -40,6 +41,7 @@ public class AUSERVICEUtil extends AUNODEUtil {
 
     /**
      * Getter for configs.
+     *
      * @return configs The configs value.
      * @see Properties
      */
@@ -49,19 +51,21 @@ public class AUSERVICEUtil extends AUNODEUtil {
 
     /**
      * Obtains the key property value from property file
+     *
      * @param key the key
      * @return the value
      * TODO : refactor this
      */
-    public String getProperty(String key){
-        if (StringUtils.isEmpty(key) || configs==null) {
+    public String getProperty(String key) {
+        if (StringUtils.isEmpty(key) || configs == null) {
             LOGGER.error("BUSINESS EXCEPTION : Config file is null {} or key to retrieve is null {}", configs, key);
             return null;
         }
         return configs.getProperty(key);
     }
-    public void setMetadatUrlToAuthnResponse(final String metadataUrl, AuthenticationResponse.Builder authnResponseBuilder){
-        if(metadataUrl!=null && !metadataUrl.isEmpty()) {
+
+    public void setMetadatUrlToAuthnResponse(final String metadataUrl, AuthenticationResponse.Builder authnResponseBuilder) {
+        if (metadataUrl != null && !metadataUrl.isEmpty()) {
             authnResponseBuilder.issuer(metadataUrl);
         }
     }

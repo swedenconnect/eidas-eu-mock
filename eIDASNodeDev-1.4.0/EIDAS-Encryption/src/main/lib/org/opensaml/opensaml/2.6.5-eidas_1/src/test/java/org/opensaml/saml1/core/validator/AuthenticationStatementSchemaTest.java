@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,9 @@ import org.opensaml.saml1.core.AuthenticationStatement;
  */
 public class AuthenticationStatementSchemaTest extends SubjectStatementSchemaTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthenticationStatementSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, AuthenticationStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
@@ -36,7 +38,9 @@ public class AuthenticationStatementSchemaTest extends SubjectStatementSchemaTes
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
 
@@ -44,15 +48,15 @@ public class AuthenticationStatementSchemaTest extends SubjectStatementSchemaTes
         authenticationStatement.setAuthenticationInstant(new DateTime());
         authenticationStatement.setAuthenticationMethod("Hi there!");
     }
-    
-    public void testMissingAuthenticationInstant(){
+
+    public void testMissingAuthenticationInstant() {
         AuthenticationStatement authenticationStatement = (AuthenticationStatement) target;
 
         authenticationStatement.setAuthenticationInstant(null);
         assertValidationFail("No AuthenticationInstant attribute - should fail");
     }
 
-    public void testMissingAuthenticationMethod(){
+    public void testMissingAuthenticationMethod() {
         AuthenticationStatement authenticationStatement = (AuthenticationStatement) target;
 
         authenticationStatement.setAuthenticationMethod("");

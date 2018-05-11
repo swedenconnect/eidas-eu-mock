@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -37,21 +37,27 @@ import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
  */
 public class AuthnContextDeclImpl extends AbstractSAMLObject implements AuthnContextDecl {
 
-    /** Child XMLObjects. */
+    /**
+     * Child XMLObjects.
+     */
     private IndexedXMLObjectChildrenList<XMLObject> unknownXMLObjects;
 
-    /** Attributes for this element. */
+    /**
+     * Attributes for this element.
+     */
     private AttributeMap unknownAttributes;
 
-    /** Text content of the element. */
+    /**
+     * Text content of the element.
+     */
     private String textContent;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AuthnContextDeclImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -60,32 +66,44 @@ public class AuthnContextDeclImpl extends AbstractSAMLObject implements AuthnCon
         unknownAttributes = new AttributeMap(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getTextContent() {
         return textContent;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setTextContent(String newContent) {
         textContent = prepareForAssignment(textContent, newContent);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getUnknownXMLObjects() {
         return unknownXMLObjects;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getUnknownXMLObjects(QName typeOrName) {
         return (List<XMLObject>) unknownXMLObjects.subList(typeOrName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return Collections.unmodifiableList(unknownXMLObjects);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeMap getUnknownAttributes() {
         return unknownAttributes;
     }

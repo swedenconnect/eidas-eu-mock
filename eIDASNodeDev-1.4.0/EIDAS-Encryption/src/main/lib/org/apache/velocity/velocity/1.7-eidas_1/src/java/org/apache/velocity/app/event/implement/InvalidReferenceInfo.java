@@ -16,39 +16,36 @@ package org.apache.velocity.app.event.implement;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.util.introspection.Info;
 
 /**
- * Convenience class to use when reporting out invalid syntax 
+ * Convenience class to use when reporting out invalid syntax
  * with line, column, and template name.
- * 
+ *
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain </a>
  * @version $Id: InvalidReferenceInfo.java 685685 2008-08-13 21:43:27Z nbubna $
  * @since 1.5
  */
-public class InvalidReferenceInfo extends Info
-{
+public class InvalidReferenceInfo extends Info {
     private String invalidReference;
-    
-    public InvalidReferenceInfo(String invalidReference, Info info)
-    {
-        super(info.getTemplateName(),info.getLine(),info.getColumn());
-        this.invalidReference = invalidReference; 
+
+    public InvalidReferenceInfo(String invalidReference, Info info) {
+        super(info.getTemplateName(), info.getLine(), info.getColumn());
+        this.invalidReference = invalidReference;
     }
 
     /**
      * Get the specific invalid reference string.
+     *
      * @return the invalid reference string
      */
-    public String getInvalidReference()
-    {
+    public String getInvalidReference() {
         return invalidReference;
     }
-    
-    
+
 
     /**
      * Formats a textual representation of this object as <code>SOURCE
@@ -56,9 +53,8 @@ public class InvalidReferenceInfo extends Info
      *
      * @return String representing this object.
      */
-    public String toString()
-    {
+    public String toString() {
         return getTemplateName() + " [line " + getLine() + ", column " +
-            getColumn() + "]: " + invalidReference;
+                getColumn() + "]: " + invalidReference;
     }
 }

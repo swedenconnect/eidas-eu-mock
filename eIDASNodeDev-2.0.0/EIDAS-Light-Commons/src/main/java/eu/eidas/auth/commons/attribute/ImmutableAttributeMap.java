@@ -66,17 +66,17 @@ import eu.eidas.util.Preconditions;
 @SuppressWarnings("ConstantConditions")
 @Immutable
 @ThreadSafe
-@XmlType(factoryMethod="newInstance")
+@XmlType(factoryMethod = "newInstance")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlSeeAlso(value= {AttributeDefinition.class})
+@XmlSeeAlso(value = {AttributeDefinition.class})
 public final class ImmutableAttributeMap implements Serializable {
 
-    private static ImmutableAttributeMap newInstance(){
-    	return new ImmutableAttributeMap(new Builder());
-    } 
-    
-	/**
+    private static ImmutableAttributeMap newInstance() {
+        return new ImmutableAttributeMap(new Builder());
+    }
+
+    /**
      * Effective Java, 2nd Ed. : Item 78: Serialization Proxy pattern.
      * <p>
      * The serialVersionUID of this class is not used because a Serialization Proxy is used instead.
@@ -188,7 +188,7 @@ public final class ImmutableAttributeMap implements Serializable {
          *
          * @return the {@link ImmutableAttributeMap} instance.
          * @throws IllegalArgumentException when the state of the builder is not consistent, for example when a
-         * mandatory transliteration is missing.
+         *                                  mandatory transliteration is missing.
          */
         @Nonnull
         public ImmutableAttributeMap build() {
@@ -277,9 +277,9 @@ public final class ImmutableAttributeMap implements Serializable {
          * Script for attribute definitions which have the {@link AttributeDefinition#isTransliterationMandatory()} flag
          * set to {@code true}.
          *
-         * @param attribute the definition
+         * @param attribute    the definition
          * @param primaryValue a value marshalled as a {@code String} which is to be unmarshalled first using the {@link
-         * AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
+         *                     AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
          * @return this Builder
          * @see #putPrimaryValues(AttributeDefinition, String...)
          * @since 1.1.1
@@ -330,9 +330,9 @@ public final class ImmutableAttributeMap implements Serializable {
          * attribute definitions which have the {@link AttributeDefinition#isTransliterationMandatory()} flag set to
          * {@code true}.
          *
-         * @param attribute the definition
+         * @param attribute     the definition
          * @param primaryValues values marshalled as {@code String}s which are to be unmarshalled first using the {@link
-         * AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
+         *                      AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
          * @return this Builder
          */
         @Nonnull
@@ -351,9 +351,9 @@ public final class ImmutableAttributeMap implements Serializable {
          * attribute definitions which have the {@link AttributeDefinition#isTransliterationMandatory()} flag set to
          * {@code true}.
          *
-         * @param attribute the definition
+         * @param attribute     the definition
          * @param primaryValues values marshalled as {@code String}s which are to be unmarshalled first using the {@link
-         * AttributeDefinition#getAttributeValueMarshaller()}  attribute-value marshaller}.
+         *                      AttributeDefinition#getAttributeValueMarshaller()}  attribute-value marshaller}.
          * @return this Builder
          * @since 1.1.1
          */

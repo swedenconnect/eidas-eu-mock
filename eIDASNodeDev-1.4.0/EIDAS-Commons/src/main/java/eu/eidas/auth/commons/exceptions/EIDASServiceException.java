@@ -30,8 +30,8 @@ public class EIDASServiceException extends AbstractEIDASException {
     /**
      * Exception Constructor with two Strings representing the errorCode and errorMessage as parameters.
      *
-     * @param code The error code value.
-     * @param message The error message value.
+     * @param code      The error code value.
+     * @param message   The error message value.
      * @param samlToken The SAML Token.
      */
     public EIDASServiceException(String code, String message, String samlToken) {
@@ -41,9 +41,9 @@ public class EIDASServiceException extends AbstractEIDASException {
     /**
      * Exception Constructor with two Strings representing the errorCode and errorMessage as parameters.
      *
-     * @param code The error code value.
-     * @param message The error message value.
-     * @param cause The original exception;
+     * @param code      The error code value.
+     * @param message   The error message value.
+     * @param cause     The original exception;
      * @param samlToken The SAML Token.
      */
     public EIDASServiceException(String code, String message, Throwable cause, String samlToken) {

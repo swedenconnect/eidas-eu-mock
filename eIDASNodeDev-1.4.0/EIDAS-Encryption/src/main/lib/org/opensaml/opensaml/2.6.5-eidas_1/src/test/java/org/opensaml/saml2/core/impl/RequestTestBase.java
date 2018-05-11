@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,37 +29,50 @@ import org.opensaml.saml2.core.Issuer;
 import org.opensaml.saml2.core.RequestAbstractType;
 
 /**
- * 
+ *
  */
 public abstract class RequestTestBase extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected ID value */
+    /**
+     * Expected ID value
+     */
     protected String expectedID;
 
-    /** Expected SAML version */
+    /**
+     * Expected SAML version
+     */
     protected SAMLVersion expectedSAMLVersion;
 
-    /** Expected IssueInstant attribute */
+    /**
+     * Expected IssueInstant attribute
+     */
     protected DateTime expectedIssueInstant;
 
-    /** Expected Destination attribute */
+    /**
+     * Expected Destination attribute
+     */
     protected String expectedDestination;
 
-    /** Expected Consent attribute */
+    /**
+     * Expected Consent attribute
+     */
     protected String expectedConsent;
 
-    /** Expected Issuer child element */
+    /**
+     * Expected Issuer child element
+     */
     protected Issuer expectedIssuer;
 
     /**
      * Constructor
-     * 
      */
     public RequestTestBase() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedID = "abc123";
@@ -73,15 +86,19 @@ public abstract class RequestTestBase extends BaseSAMLObjectProviderTestCase {
         expectedIssuer = (Issuer) buildXMLObject(issuerQName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public abstract void testSingleElementUnmarshall();
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public abstract void testSingleElementMarshall();
 
     /**
      * Used by subclasses to populate the required attribute values that this test expects.
-     * 
+     *
      * @param samlObject
      */
     protected void populateRequiredAttributes(SAMLObject samlObject) {
@@ -95,7 +112,7 @@ public abstract class RequestTestBase extends BaseSAMLObjectProviderTestCase {
 
     /**
      * Used by subclasses to populate the optional attribute values that this test expects.
-     * 
+     *
      * @param samlObject
      */
     protected void populateOptionalAttributes(SAMLObject samlObject) {
@@ -108,8 +125,7 @@ public abstract class RequestTestBase extends BaseSAMLObjectProviderTestCase {
 
     /**
      * Used by subclasses to populate the child elements that this test expects.
-     * 
-     * 
+     *
      * @param samlObject
      */
     protected void populateChildElements(SAMLObject samlObject) {

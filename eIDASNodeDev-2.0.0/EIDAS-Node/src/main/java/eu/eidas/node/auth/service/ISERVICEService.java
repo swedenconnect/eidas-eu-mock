@@ -35,10 +35,10 @@ public interface ISERVICEService {
     /**
      * Process the authentication request sent from the connector.
      *
-     * @param webRequest the webrequest containing the token
-     * @param relayState the relay state if needed to be propagated
+     * @param webRequest            the webrequest containing the token
+     * @param relayState            the relay state if needed to be propagated
      * @param requestCorrelationMap the request correlation map used
-     * @param remoteIpAddress the ipaddres
+     * @param remoteIpAddress       the ipaddres
      * @return the processed request
      */
     IAuthenticationRequest processAuthenticationRequest(@Nonnull WebRequest webRequest,
@@ -67,9 +67,9 @@ public interface ISERVICEService {
     /**
      * Generates an error SAML token.
      *
-     * @param authData The authentication request.
-     * @param statusCode The status code.
-     * @param errorId The status code to set.
+     * @param authData      The authentication request.
+     * @param statusCode    The status code.
+     * @param errorId       The status code to set.
      * @param ipUserAddress The citizen's IP address.
      * @return A {@link Base64} encoded SAML token.
      * @see EidasAuthenticationRequest
@@ -85,11 +85,11 @@ public interface ISERVICEService {
      * Generates an error SAML token.
      *
      * @param originalRequest The authentication request.
-     * @param statusCode The status code to set.
-     * @param errorCode The error code to set.
-     * @param subCode The sub status code to set.
-     * @param errorMessage Error message to set.
-     * @param ipUserAddress The citizen's IP address.
+     * @param statusCode      The status code to set.
+     * @param errorCode       The error code to set.
+     * @param subCode         The sub status code to set.
+     * @param errorMessage    Error message to set.
+     * @param ipUserAddress   The citizen's IP address.
      * @return A {@link Base64} encoded SAML token.
      * @see EidasAuthenticationRequest
      * @see EidasErrorKey

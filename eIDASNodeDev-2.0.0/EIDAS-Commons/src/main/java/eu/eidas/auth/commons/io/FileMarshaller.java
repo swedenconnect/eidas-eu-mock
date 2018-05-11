@@ -30,7 +30,7 @@ public interface FileMarshaller<T> {
      * Marshals the given newValue into a file.
      *
      * @param newValue the value to marshal into the file
-     * @param output the destination file
+     * @param output   the destination file
      * @throws IOException
      */
     void marshal(@Nonnull T newValue, @Nonnull File output) throws IOException;

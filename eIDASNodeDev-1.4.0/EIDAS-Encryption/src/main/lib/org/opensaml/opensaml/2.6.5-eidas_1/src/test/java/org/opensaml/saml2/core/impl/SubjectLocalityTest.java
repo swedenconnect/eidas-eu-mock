@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,19 +28,27 @@ import org.opensaml.saml2.core.SubjectLocality;
  */
 public class SubjectLocalityTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Address value */
+    /**
+     * Expected Address value
+     */
     private String expectedAddress;
 
-    /** Expected DNSName value */
+    /**
+     * Expected DNSName value
+     */
     private String expectedDNSName;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SubjectLocalityTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/SubjectLocality.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/SubjectLocalityOptionalAttributes.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +56,9 @@ public class SubjectLocalityTest extends BaseSAMLObjectProviderTestCase {
         expectedDNSName = "dns name";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SubjectLocality subjectLocality = (SubjectLocality) unmarshallElement(singleElementFile);
         String address = subjectLocality.getAddress();
@@ -57,7 +67,9 @@ public class SubjectLocalityTest extends BaseSAMLObjectProviderTestCase {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         SubjectLocality subjectLocality = (SubjectLocality) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -68,7 +80,9 @@ public class SubjectLocalityTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("DNSName was " + dnsName + ", expected " + expectedDNSName, expectedDNSName, dnsName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, SubjectLocality.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         SubjectLocality subjectLocality = (SubjectLocality) buildXMLObject(qname);
@@ -77,7 +91,9 @@ public class SubjectLocalityTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, subjectLocality);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, SubjectLocality.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         SubjectLocality subjectLocality = (SubjectLocality) buildXMLObject(qname);

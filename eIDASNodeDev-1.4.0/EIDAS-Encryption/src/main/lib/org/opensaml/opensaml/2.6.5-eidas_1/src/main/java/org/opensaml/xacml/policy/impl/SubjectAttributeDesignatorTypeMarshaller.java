@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,17 +28,21 @@ import org.w3c.dom.Element;
  */
 public class SubjectAttributeDesignatorTypeMarshaller extends AttributeDesignatorTypeMarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public SubjectAttributeDesignatorTypeMarshaller() {
         super();
     }
-    
-    /** {@inheritDoc} */
-    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {       
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
         SubjectAttributeDesignatorType subjectAttributeDesignatorType = (SubjectAttributeDesignatorType) xmlObject;
-        
-        if(!DatatypeHelper.isEmpty(subjectAttributeDesignatorType.getSubjectCategory())){            
-            domElement.setAttribute(SubjectAttributeDesignatorType.SUBJECT_CATEGORY_ATTRIB_NAME, 
+
+        if (!DatatypeHelper.isEmpty(subjectAttributeDesignatorType.getSubjectCategory())) {
+            domElement.setAttribute(SubjectAttributeDesignatorType.SUBJECT_CATEGORY_ATTRIB_NAME,
                     subjectAttributeDesignatorType.getSubjectCategory());
         }
         super.marshallAttributes(xmlObject, domElement);

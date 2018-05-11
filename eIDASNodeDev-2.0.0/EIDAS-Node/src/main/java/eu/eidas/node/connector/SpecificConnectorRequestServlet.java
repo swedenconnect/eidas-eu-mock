@@ -62,7 +62,7 @@ public class SpecificConnectorRequestServlet extends AbstractNodeServlet {
 
     private static final long serialVersionUID = 2037358134080320372L;
 
-    private Collection<AttributeDefinition<?>> REGISTRY; 
+    private Collection<AttributeDefinition<?>> REGISTRY;
 
     @Override
     protected Logger getLogger() {
@@ -71,21 +71,21 @@ public class SpecificConnectorRequestServlet extends AbstractNodeServlet {
 
     @Override
     public void init() throws ServletException {
-    	REGISTRY = retrieveAttributes();
+        REGISTRY = retrieveAttributes();
     }
 
-	private Collection<AttributeDefinition<?>> retrieveAttributes() {
-		ConnectorControllerService connectorController = (ConnectorControllerService) getApplicationContext().getBean(
+    private Collection<AttributeDefinition<?>> retrieveAttributes() {
+        ConnectorControllerService connectorController = (ConnectorControllerService) getApplicationContext().getBean(
                 NodeBeanNames.EIDAS_CONNECTOR_CONTROLLER.toString());
-    	Collection<AttributeDefinition<?>> registry=ImmutableSortedSet.copyOf(connectorController
-        		.getConnectorService()
-        		.getSamlService()
-        		.getSamlEngine()
-        		.getProtocolProcessor()
-        		.getAllSupportedAttributes());
-		return registry;
-	}
-    
+        Collection<AttributeDefinition<?>> registry = ImmutableSortedSet.copyOf(connectorController
+                .getConnectorService()
+                .getSamlService()
+                .getSamlEngine()
+                .getProtocolProcessor()
+                .getAllSupportedAttributes());
+        return registry;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -99,7 +99,7 @@ public class SpecificConnectorRequestServlet extends AbstractNodeServlet {
     /**
      * Post method
      *
-     * @param httpServletRequest the http servlet request
+     * @param httpServletRequest  the http servlet request
      * @param httpServletResponse the http servlet response
      * @throws ServletException
      * @throws IOException
@@ -124,7 +124,7 @@ public class SpecificConnectorRequestServlet extends AbstractNodeServlet {
         //maintain the same binding of the initial request
         httpServletRequest.setAttribute(EidasParameterKeys.BINDING.toString(), httpServletRequest.getMethod());
 
-        final ILightRequest lightRequest = getiLightRequest(httpServletRequest,retrieveAttributes());
+        final ILightRequest lightRequest = getiLightRequest(httpServletRequest, retrieveAttributes());
 
         // Obtains the parameters from httpRequest
         WebRequest webRequest = new IncomingRequest(httpServletRequest);
@@ -165,14 +165,14 @@ public class SpecificConnectorRequestServlet extends AbstractNodeServlet {
                 .validate();
 
         LOG.debug("sessionId is on cookies () or fromURL ", httpServletRequest.isRequestedSessionIdFromCookie(),
-                  httpServletRequest.isRequestedSessionIdFromURL());
+                httpServletRequest.isRequestedSessionIdFromURL());
         if (acceptsHttpRedirect() && EidasSamlBinding.REDIRECT == EidasSamlBinding.fromName(httpServletRequest.getMethod())) {
             httpServletRequest.setAttribute(EidasParameterKeys.BINDING.toString(), EidasSamlBinding.REDIRECT.getName());
         } else {
             httpServletRequest.setAttribute(EidasParameterKeys.BINDING.toString(), EidasSamlBinding.POST.getName());
         }
         httpServletRequest.setAttribute(NodeParameterNames.EIDAS_SERVICE_URL.toString(),
-                             encodeURL(serviceUrl, httpServletResponse)); // // Correct URl redirect cookie implementation
+                encodeURL(serviceUrl, httpServletResponse)); // // Correct URl redirect cookie implementation
         httpServletRequest.setAttribute(EidasParameterKeys.SAML_REQUEST.toString(), samlRequestTokenSaml);
         httpServletRequest.setAttribute(NodeParameterNames.RELAY_STATE.toString(), relayState);
         // Redirecting where it should be
@@ -185,14 +185,14 @@ public class SpecificConnectorRequestServlet extends AbstractNodeServlet {
     }
 
     private ILightRequest getiLightRequest(HttpServletRequest httpServletRequest,
-    		final Collection<AttributeDefinition<?>> registry) throws ServletException, IOException {
+                                           final Collection<AttributeDefinition<?>> registry) throws ServletException, IOException {
         final String tokenBase64 = httpServletRequest.getParameter(EidasParameterKeys.TOKEN.toString());
 
         final SpecificConnectorCommunicationServiceImpl springManagedSpecificConnectorCommunicationService = (SpecificConnectorCommunicationServiceImpl) getApplicationContext()
                 .getBean(SpecificCommunicationDefinitionBeanNames.SPECIFIC_CONNECTOR_COMMUNICATION_SERVICE.toString());
 
         try {
-            return springManagedSpecificConnectorCommunicationService.getAndRemoveRequest(tokenBase64,registry);
+            return springManagedSpecificConnectorCommunicationService.getAndRemoveRequest(tokenBase64, registry);
         } catch (SpecificCommunicationException e) {
             throw new ServletException(e);
         }

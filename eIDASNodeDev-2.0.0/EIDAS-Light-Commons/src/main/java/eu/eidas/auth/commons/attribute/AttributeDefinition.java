@@ -45,7 +45,7 @@ import java.net.URISyntaxException;
 @XmlType
 public final class AttributeDefinition<T> implements Comparable<AttributeDefinition<?>>, Serializable {
 
-	AttributeDefinition() {
+    AttributeDefinition() {
         nameUri = null;
         friendlyName = null;
         personType = null;
@@ -250,13 +250,13 @@ public final class AttributeDefinition<T> implements Comparable<AttributeDefinit
          * @serial
          */
         @Nonnull
-		private final String friendlyName;
+        private final String friendlyName;
 
         /**
          * @serial
          */
         @Nonnull
-		private final PersonType personType;
+        private final PersonType personType;
 
         /**
          * @serial
@@ -281,7 +281,7 @@ public final class AttributeDefinition<T> implements Comparable<AttributeDefinit
         /**
          * @serial
          */
-		private final String attributeValueMarshallerClassName;
+        private final String attributeValueMarshallerClassName;
 
         private SerializationProxy() {
             nameUri = null;
@@ -623,9 +623,9 @@ public final class AttributeDefinition<T> implements Comparable<AttributeDefinit
     Object writeReplace() throws ObjectStreamException {
         return new SerializationProxy<T>(this);
     }
-    
+
     @XmlElement
     private SerializationProxy<T> getSerializationProxy() throws ObjectStreamException {
-    	return (SerializationProxy<T>)writeReplace();
+        return (SerializationProxy<T>) writeReplace();
     }
 }

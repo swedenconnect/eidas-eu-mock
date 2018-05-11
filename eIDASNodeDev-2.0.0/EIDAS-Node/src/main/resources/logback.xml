@@ -42,7 +42,9 @@
     -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost}
+                -%msg%n
+            </pattern>
         </encoder>
     </appender>
 
@@ -56,9 +58,11 @@
             <level>INFO</level>
         </filter>
         <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost}
+                -%msg%n
+            </pattern>
         </encoder>
-        <param name="Append" value="true" />
+        <param name="Append" value="true"/>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <maxFileSize>500KB</maxFileSize>
         </triggeringPolicy>
@@ -84,9 +88,11 @@
             <onMatch>ACCEPT</onMatch>
         </filter>
         <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost}
+                -%msg%n
+            </pattern>
         </encoder>
-        <param name="Append" value="true" />
+        <param name="Append" value="true"/>
         <!-- Support multiple-JVM writing to the same log file -->
         <prudent>true</prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -111,9 +117,11 @@
             <onMatch>ACCEPT</onMatch>
         </filter>
         <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost}
+                -%msg%n
+            </pattern>
         </encoder>
-        <param name="Append" value="true" />
+        <param name="Append" value="true"/>
         <!-- Support multiple-JVM writing to the same log file -->
         <prudent>true</prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -136,9 +144,11 @@
             <onMatch>ACCEPT</onMatch>
         </filter>
         <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost}
+                -%msg%n
+            </pattern>
         </encoder>
-        <param name="Append" value="true" />
+        <param name="Append" value="true"/>
         <!-- Support multiple-JVM writing to the same log file -->
         <prudent>true</prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -151,7 +161,7 @@
         This define the API fine grained level
     -->
     <logger name="org.opensaml">
-        <level value="ERROR" />
+        <level value="ERROR"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="eIDASNodeDetail"/>
     </logger>
@@ -166,24 +176,24 @@
         <appender-ref ref="eIDASNodeDetail"/>
     </logger>
     <logger name="org.springframework">
-        <level value="WARN" />
+        <level value="WARN"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="eIDASNodeDetail"/>
     </logger>
     <logger name="org.apache.xml.security">
-        <level value="WARN" />
+        <level value="WARN"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="eIDASNodeDetail"/>
     </logger>
 
     <logger name="eu.eidas.communication.requests">
-        <level value="info" />
+        <level value="info"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="eIDASNodeDetail"/>
     </logger>
 
     <logger name="eu.eidas.communication.responses">
-        <level value="info" />
+        <level value="info"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="eIDASNodeDetail"/>
     </logger>
@@ -192,10 +202,10 @@
         The root level is set to debug for development purposes, for production environment it could be set to INFO
     -->
     <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="eIDASNodeSystem" />
-        <appender-ref ref="eIDASNodeSecurity" />
-        <appender-ref ref="eIDASNodeDetail" />
-        <appender-ref ref="eIDASNodeSAMLExchange" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeSystem"/>
+        <appender-ref ref="eIDASNodeSecurity"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+        <appender-ref ref="eIDASNodeSAMLExchange"/>
     </root>
 </configuration>

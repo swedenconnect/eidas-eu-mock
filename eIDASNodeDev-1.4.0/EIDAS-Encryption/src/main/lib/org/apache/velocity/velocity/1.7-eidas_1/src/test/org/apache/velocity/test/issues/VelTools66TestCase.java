@@ -36,24 +36,20 @@ import org.apache.velocity.util.introspection.Introspector;
  * Test Case for <a href="https://issues.apache.org/jira/browse/VELTOOLS-66">Velocity Tools Issue 66</a>.
  */
 public class VelTools66TestCase
-        extends BaseTestCase
-{
+        extends BaseTestCase {
     protected static boolean DEBUG = false;
 
     public VelTools66TestCase(final String name)
-            throws Exception
-    {
+            throws Exception {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(VelTools66TestCase.class);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         Velocity.setProperty(
                 Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
 
@@ -62,23 +58,19 @@ public class VelTools66TestCase
 
     }
 
-    protected static void log(String out)
-    {
+    protected static void log(String out) {
         Velocity.getLog().debug(out);
-        if (DEBUG)
-        {
+        if (DEBUG) {
             System.out.println(out);
         }
     }
 
-    public void tearDown()
-    {
+    public void tearDown() {
         System.setSecurityManager(null);
     }
 
     public void testVelTools66()
-            throws Exception
-    {
+            throws Exception {
         Method verifyMethod = TestInterface.class.getMethod("getTestValue", new Class[0]);
 
 
@@ -90,69 +82,56 @@ public class VelTools66TestCase
         assertEquals("Method object does not match!", verifyMethod, testMethod);
     }
 
-    public static interface TestInterface
-    {
+    public static interface TestInterface {
         String getTestValue();
 
         void setTestValue(String testValue);
     }
 
     public static final class TestObject
-            implements TestInterface
-    {
+            implements TestInterface {
         String testValue = null;
 
-        public TestObject()
-        {
+        public TestObject() {
         }
 
-        public String getTestValue()
-        {
+        public String getTestValue() {
             return testValue;
         }
 
-        public void setTestValue(final String testValue)
-        {
+        public void setTestValue(final String testValue) {
             this.testValue = testValue;
         }
     }
 
-    public static final class TestSecurityManager extends SecurityManager
-    {
+    public static final class TestSecurityManager extends SecurityManager {
         private final Class clazz = TestObject.class;
 
-        public TestSecurityManager()
-        {
+        public TestSecurityManager() {
             super();
         }
 
-        public void checkMemberAccess(final Class c, final int i)
-        {
+        public void checkMemberAccess(final Class c, final int i) {
             log("checkMemberAccess(" + c.getName() + ", " + i + ")");
 
-            if (c.equals(clazz))
-            {
+            if (c.equals(clazz)) {
                 throw new AccessControlException("You are not allowed to access TestObject directly!");
             }
         }
 
-        public void checkRead(final String file)
-        {
+        public void checkRead(final String file) {
             log("checkRead(" + file + ")");
         }
 
-        public void checkPackageAccess(final String s)
-        {
+        public void checkPackageAccess(final String s) {
             log("checkPackageAccess(" + s + ")");
         }
 
-        public void checkPropertyAccess(final String s)
-        {
+        public void checkPropertyAccess(final String s) {
             log("checkPropertyAccess(" + s + ")");
         }
 
-        public void checkPermission(final Permission p)
-        {
+        public void checkPermission(final Permission p) {
             log("checkPermission(" + p + ")");
         }
     }

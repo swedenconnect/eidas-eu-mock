@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,13 +32,17 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class OrganizationSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public OrganizationSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20MD_NS, Organization.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         validator = new OrganizationSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         Organization organization = (Organization) target;
@@ -55,7 +59,7 @@ public class OrganizationSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Tests for Organization Name failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testNameFailure() throws ValidationException {
@@ -67,7 +71,7 @@ public class OrganizationSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Tests for Organization Display Name failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testDisplayNameFailure() throws ValidationException {
@@ -79,7 +83,7 @@ public class OrganizationSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Tests for Organization URL failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testURLFailure() throws ValidationException {

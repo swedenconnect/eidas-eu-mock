@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,28 +26,32 @@ import org.opensaml.saml1.core.AuthorizationDecisionQuery;
 /**
  * Test case for {@link org.opensaml.saml1.core.validator.AuthorizationDecisionQuerySchemaValidator}.
  */
-public class AuthorizationDecisionQuerySchemaTest extends SubjectQuerySchemaTestBase  {
+public class AuthorizationDecisionQuerySchemaTest extends SubjectQuerySchemaTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthorizationDecisionQuerySchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML10P_NS, AuthorizationDecisionQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
         validator = new AuthorizationDecisionQuerySchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         AuthorizationDecisionQuery query = (AuthorizationDecisionQuery) target;
-        
+
         query.setResource("resource");
         QName qname = new QName(SAMLConstants.SAML1_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        query.getActions().add((Action)buildXMLObject(qname));
+        query.getActions().add((Action) buildXMLObject(qname));
     }
-    
+
     public void testMissingResource() {
         AuthorizationDecisionQuery query = (AuthorizationDecisionQuery) target;
-        
+
         query.setResource(null);
         assertValidationFail("Resource attribute is null , should raise a Validation Exception");
 
@@ -60,7 +64,7 @@ public class AuthorizationDecisionQuerySchemaTest extends SubjectQuerySchemaTest
 
     public void testMissingActions() {
         AuthorizationDecisionQuery query = (AuthorizationDecisionQuery) target;
-        
+
         query.getActions().clear();
         assertValidationFail("No Action elements, should raise a Validation Exception");
     }

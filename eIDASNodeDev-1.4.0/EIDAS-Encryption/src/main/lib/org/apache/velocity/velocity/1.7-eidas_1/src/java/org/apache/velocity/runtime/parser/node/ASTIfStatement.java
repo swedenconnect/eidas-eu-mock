@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -26,7 +26,7 @@ package org.apache.velocity.runtime.parser.node;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ASTIfStatement.java 517553 2007-03-13 06:09:58Z wglass $
-*/
+ */
 
 
 import java.io.IOException;
@@ -42,13 +42,11 @@ import org.apache.velocity.runtime.parser.Parser;
 /**
  *
  */
-public class ASTIfStatement extends SimpleNode
-{
+public class ASTIfStatement extends SimpleNode {
     /**
      * @param id
      */
-    public ASTIfStatement(int id)
-    {
+    public ASTIfStatement(int id) {
         super(id);
     }
 
@@ -56,8 +54,7 @@ public class ASTIfStatement extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTIfStatement(Parser p, int id)
-    {
+    public ASTIfStatement(Parser p, int id) {
         super(p, id);
     }
 
@@ -65,25 +62,22 @@ public class ASTIfStatement extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer)
      */
-    public boolean render( InternalContextAdapter context, Writer writer)
-        throws IOException,MethodInvocationException,
-        	ResourceNotFoundException, ParseErrorException
-    {
+    public boolean render(InternalContextAdapter context, Writer writer)
+            throws IOException, MethodInvocationException,
+            ResourceNotFoundException, ParseErrorException {
         /*
          * Check if the #if(expression) construct evaluates to true:
          * if so render and leave immediately because there
          * is nothing left to do!
          */
-        if (jjtGetChild(0).evaluate(context))
-        {
+        if (jjtGetChild(0).evaluate(context)) {
             jjtGetChild(1).render(context, writer);
             return true;
         }
@@ -99,10 +93,8 @@ public class ASTIfStatement extends SimpleNode
          * render itself and this method will return
          * as there is nothing left to do.
          */
-        for (int i = 2; i < totalNodes; i++)
-        {
-            if (jjtGetChild(i).evaluate(context))
-            {
+        for (int i = 2; i < totalNodes; i++) {
+            if (jjtGetChild(i).evaluate(context)) {
                 jjtGetChild(i).render(context, writer);
                 return true;
             }
@@ -120,8 +112,7 @@ public class ASTIfStatement extends SimpleNode
      * @param context
      * @param visitor
      */
-    public void process( InternalContextAdapter context, ParserVisitor visitor)
-    {
+    public void process(InternalContextAdapter context, ParserVisitor visitor) {
     }
 }
 

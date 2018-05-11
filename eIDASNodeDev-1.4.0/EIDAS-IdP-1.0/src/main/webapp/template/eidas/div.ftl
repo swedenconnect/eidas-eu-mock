@@ -26,7 +26,7 @@
     <#if parameters.cssClass??>         class="${parameters.cssClass?html}"    </#if>
     <#if parameters.cssStyle??>         style="${parameters.cssStyle?html}"    </#if>
     <#if parameters.title??>            title="${parameters.title?html}"<#rt/>
-        </#if>
+    </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />

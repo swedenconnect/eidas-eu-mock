@@ -28,7 +28,7 @@ import eu.eidas.auth.commons.EIDASValues;
  * This class is used by {@link AUCONNECTOR} to create the Country Selector and to check the selected Country.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.7 $, $Date: 2011-02-18 07:04:16 $
  * @see ICONNECTORCountrySelectorService
  */

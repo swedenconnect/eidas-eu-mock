@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -34,7 +34,6 @@ public class StatusSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Constructor
-     *
      */
     public StatusSchemaTest() {
         super();
@@ -42,14 +41,16 @@ public class StatusSchemaTest extends BaseSAMLObjectValidatorTestCase {
         validator = new StatusSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         Status status = (Status) target;
         StatusCode code = (StatusCode) buildXMLObject(new QName(SAMLConstants.SAML20P_NS, StatusCode.DEFAULT_ELEMENT_LOCAL_NAME));
         status.setStatusCode(code);
     }
-    
+
     public void testStatusCodeFailure() {
         Status status = (Status) target;
         status.setStatusCode(null);

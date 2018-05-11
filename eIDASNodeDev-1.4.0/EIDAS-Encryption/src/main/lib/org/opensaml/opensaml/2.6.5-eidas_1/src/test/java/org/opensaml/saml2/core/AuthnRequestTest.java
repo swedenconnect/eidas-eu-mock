@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,15 +31,17 @@ public class AuthnRequestTest extends BaseComplexSAMLObjectTestCase {
     /**
      * Constructor
      */
-    public AuthnRequestTest(){
+    public AuthnRequestTest() {
         elementFile = "/data/org/opensaml/saml2/core/AuthnRequest.xml";
     }
-    
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testUnmarshall() {
         AuthnRequest request = (AuthnRequest) unmarshallElement(elementFile);
-        
+
         assertNotNull("AuthnRequest was null", request);
         assertEquals("ForceAuthn", true, request.isForceAuthn().booleanValue());
         assertEquals("AssertionConsumerServiceURL", "http://www.example.com/", request.getAssertionConsumerServiceURL());
@@ -58,35 +60,37 @@ public class AuthnRequestTest extends BaseComplexSAMLObjectTestCase {
         assertEquals("RequestedAuthnContext/AuthnContextClassRef[1] contents", "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport", classRef.getAuthnContextClassRef());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testMarshall() {
         NameID nameid = (NameID) buildXMLObject(NameID.DEFAULT_ELEMENT_NAME);
         nameid.setFormat("urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress");
         nameid.setValue("j.doe@company.com");
-        
+
         Subject subject = (Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME);
         subject.setNameID(nameid);
-        
+
         Audience audience = (Audience) buildXMLObject(Audience.DEFAULT_ELEMENT_NAME);
         audience.setAudienceURI("urn:foo:sp.example.org");
-        
+
         AudienceRestriction ar = (AudienceRestriction) buildXMLObject(AudienceRestriction.DEFAULT_ELEMENT_NAME);
         ar.getAudiences().add(audience);
-        
+
         Conditions conditions = (Conditions) buildXMLObject(Conditions.DEFAULT_ELEMENT_NAME);
         conditions.getAudienceRestrictions().add(ar);
-        
+
         AuthnContextClassRef classRef = (AuthnContextClassRef) buildXMLObject(AuthnContextClassRef.DEFAULT_ELEMENT_NAME);
         classRef.setAuthnContextClassRef("urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport");
-        
+
         RequestedAuthnContext rac = (RequestedAuthnContext) buildXMLObject(RequestedAuthnContext.DEFAULT_ELEMENT_NAME);
         rac.getAuthnContextClassRefs().add(classRef);
-        
+
         AuthnRequest request = (AuthnRequest) buildXMLObject(AuthnRequest.DEFAULT_ELEMENT_NAME);
         request.setSubject(subject);
         request.setConditions(conditions);
         request.setRequestedAuthnContext(rac);
-        
+
         request.setForceAuthn(XSBooleanValue.valueOf("true"));
         request.setAssertionConsumerServiceURL("http://www.example.com/");
         request.setAttributeConsumingServiceIndex(0);
@@ -96,9 +100,9 @@ public class AuthnRequestTest extends BaseComplexSAMLObjectTestCase {
         request.setIssueInstant(new DateTime(2005, 1, 31, 12, 0, 0, 0, ISOChronology.getInstanceUTC()));
         request.setDestination("http://www.example.com/");
         request.setConsent("urn:oasis:names:tc:SAML:2.0:consent:obtained");
-        
+
         assertEquals("Marshalled AuthnRequest", expectedDOM, request);
-        
-        
+
+
     }
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,27 +22,39 @@ package org.opensaml.common;
  */
 public final class SAMLVersion {
 
-    /** SAML version 1.0. */
+    /**
+     * SAML version 1.0.
+     */
     public static final SAMLVersion VERSION_10 = new SAMLVersion(1, 0);
 
-    /** SAML Version 1.1. */
+    /**
+     * SAML Version 1.1.
+     */
     public static final SAMLVersion VERSION_11 = new SAMLVersion(1, 1);
 
-    /** SAML Version 2.0. */
+    /**
+     * SAML Version 2.0.
+     */
     public static final SAMLVersion VERSION_20 = new SAMLVersion(2, 0);
 
-    /** Major version number. */
+    /**
+     * Major version number.
+     */
     private int majorVersion;
 
-    /** Minor version number. */
+    /**
+     * Minor version number.
+     */
     private int minorVersion;
 
-    /** String representation of the version. */
+    /**
+     * String representation of the version.
+     */
     private String versionString;
 
     /**
      * Constructor.
-     * 
+     *
      * @param major SAML major version number
      * @param minor SAML minor version number
      */
@@ -55,10 +67,9 @@ public final class SAMLVersion {
 
     /**
      * Gets the SAMLVersion given the major and minor version number.
-     * 
+     *
      * @param majorVersion major version number
      * @param minorVersion minor version number
-     * 
      * @return the SAMLVersion
      */
     public static final SAMLVersion valueOf(int majorVersion, int minorVersion) {
@@ -79,9 +90,8 @@ public final class SAMLVersion {
 
     /**
      * Gets the SAMLVersion for a given version string, such as "2.0".
-     * 
+     *
      * @param version SAML version string
-     * 
      * @return SAMLVersion for the given string
      */
     public static final SAMLVersion valueOf(String version) {
@@ -91,7 +101,7 @@ public final class SAMLVersion {
 
     /**
      * Gets the major version of the SAML version.
-     * 
+     *
      * @return the major version of the SAML version
      */
     public int getMajorVersion() {
@@ -100,14 +110,16 @@ public final class SAMLVersion {
 
     /**
      * Gets the minor version of the SAML version.
-     * 
+     *
      * @return the minor version of the SAML version
      */
     public int getMinorVersion() {
         return minorVersion;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String toString() {
         return versionString;
     }

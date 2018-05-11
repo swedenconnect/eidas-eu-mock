@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -35,20 +35,17 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:jon@latchkey.com">Jon S. Stevens</a>
  * @version $Id: VelocityAppTestCase.java 704299 2008-10-14 03:13:16Z nbubna $
  */
-public class VelocityAppTestCase extends BaseTestCase implements TemplateTestBase
-{
+public class VelocityAppTestCase extends BaseTestCase implements TemplateTestBase {
     private StringWriter compare1 = new StringWriter();
     private String input1 = "My name is $name -> $Floog";
     private String result1 = "My name is jason -> floogie woogie";
 
-    public VelocityAppTestCase(String name)
-    {
+    public VelocityAppTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         Velocity.setProperty(
                 Velocity.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
 
@@ -58,36 +55,33 @@ public class VelocityAppTestCase extends BaseTestCase implements TemplateTestBas
         Velocity.init();
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(VelocityAppTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testVelocityApp ()
-            throws Exception
-    {
+    public void testVelocityApp()
+            throws Exception {
         VelocityContext context = new VelocityContext();
         context.put("name", "jason");
         context.put("Floog", "floogie woogie");
 
-            Velocity.evaluate(context, compare1, "evaltest", input1);
+        Velocity.evaluate(context, compare1, "evaltest", input1);
 
-/*
- *            @todo FIXME: Not tested right now.
- *
- *            StringWriter result2 = new StringWriter();
- *            Velocity.mergeTemplate("mergethis.vm",  context, result2);
- *
- *            StringWriter result3 = new StringWriter();
- *            Velocity.invokeVelocimacro("floog", "test", new String[2],
- *                                        context, result3);
- */
-            if (!result1.equals(compare1.toString()))
-            {
-                fail("Output incorrect.");
-            }
+        /*
+         *            @todo FIXME: Not tested right now.
+         *
+         *            StringWriter result2 = new StringWriter();
+         *            Velocity.mergeTemplate("mergethis.vm",  context, result2);
+         *
+         *            StringWriter result3 = new StringWriter();
+         *            Velocity.invokeVelocimacro("floog", "test", new String[2],
+         *                                        context, result3);
+         */
+        if (!result1.equals(compare1.toString())) {
+            fail("Output incorrect.");
+        }
     }
 }

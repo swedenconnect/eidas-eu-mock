@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -39,10 +39,10 @@ import org.springframework.mock.web.MockHttpServletResponse;
  * Unit test for redirect encoding.
  */
 public class HTTPRedirectDeflateEncoderTest extends BaseTestCase {
-    
+
     /**
      * Tests encoding a SAML message to an servlet response.
-     * 
+     *
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -73,13 +73,13 @@ public class HTTPRedirectDeflateEncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setOutboundSAMLMessage(samlMessage);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
         messageContext.setRelayState("relay");
-        
+
         HTTPRedirectDeflateEncoder encoder = new HTTPRedirectDeflateEncoder();
         encoder.encode(messageContext);
 
@@ -87,10 +87,10 @@ public class HTTPRedirectDeflateEncoderTest extends BaseTestCase {
         assertEquals("Unexpected cache controls", "no-cache, no-store", response.getHeader("Cache-control"));
         assertEquals(-178096905, response.getRedirectedUrl().hashCode());
     }
-    
+
     /**
      * Tests encoding a SAML message to an servlet response with simple sign.
-     * 
+     *
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -121,27 +121,27 @@ public class HTTPRedirectDeflateEncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setOutboundSAMLMessage(samlMessage);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
         messageContext.setRelayState("relay");
-        
+
         KeyPair kp = SecurityHelper.generateKeyPair("RSA", 1024, null);
         messageContext.setOutboundSAMLMessageSigningCredential(
                 SecurityHelper.getSimpleCredential(kp.getPublic(), kp.getPrivate()));
-        
+
         HTTPRedirectDeflateEncoder encoder = new HTTPRedirectDeflateEncoder();
         encoder.encode(messageContext);
-        
+
         String queryString = new URL(response.getRedirectedUrl()).getQuery();
-        
-        assertNotNull("Signature parameter was not found", 
+
+        assertNotNull("Signature parameter was not found",
                 HTTPTransportUtils.getRawQueryStringParameter(queryString, "Signature"));
-        assertNotNull("SigAlg parameter was not found", 
+        assertNotNull("SigAlg parameter was not found",
                 HTTPTransportUtils.getRawQueryStringParameter(queryString, "SigAlg"));
-        
+
         // Note: to test that actual signature is cryptographically correct, really need a known good test vector.
         // Need to verify that we're signing over the right data in the right byte[] encoded form.
     }

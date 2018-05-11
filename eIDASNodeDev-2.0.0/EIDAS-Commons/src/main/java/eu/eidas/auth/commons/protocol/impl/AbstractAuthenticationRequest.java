@@ -232,7 +232,7 @@ public abstract class AbstractAuthenticationRequest implements IAuthenticationRe
          * T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         private void internalValidate() throws IllegalArgumentException {
             Preconditions.checkNotBlank(destination, "destination");
@@ -243,7 +243,7 @@ public abstract class AbstractAuthenticationRequest implements IAuthenticationRe
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         protected abstract void validate() throws IllegalArgumentException;
 
@@ -453,7 +453,7 @@ public abstract class AbstractAuthenticationRequest implements IAuthenticationRe
             return false;
         }
         if (assertionConsumerServiceURL != null ? !assertionConsumerServiceURL.equals(that.assertionConsumerServiceURL)
-                                                : that.assertionConsumerServiceURL != null) {
+                : that.assertionConsumerServiceURL != null) {
             return false;
         }
         if (binding != null ? !binding.equals(that.binding) : that.binding != null) {
@@ -466,11 +466,11 @@ public abstract class AbstractAuthenticationRequest implements IAuthenticationRe
             return false;
         }
         if (serviceProviderCountryCode != null ? !serviceProviderCountryCode.equals(that.serviceProviderCountryCode)
-                                               : that.serviceProviderCountryCode != null) {
+                : that.serviceProviderCountryCode != null) {
             return false;
         }
         return originCountryCode != null ? originCountryCode.equals(that.originCountryCode)
-                                         : that.originCountryCode == null;
+                : that.originCountryCode == null;
 
     }
 

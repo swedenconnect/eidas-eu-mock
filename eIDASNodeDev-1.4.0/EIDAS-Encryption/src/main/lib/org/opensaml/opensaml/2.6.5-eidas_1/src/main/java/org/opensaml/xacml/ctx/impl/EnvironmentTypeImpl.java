@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,35 +27,43 @@ import org.opensaml.xacml.impl.AbstractXACMLObject;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 
-/** Concrete implementation of {@link EnvironmentType}. */
+/**
+ * Concrete implementation of {@link EnvironmentType}.
+ */
 public class EnvironmentTypeImpl extends AbstractXACMLObject implements EnvironmentType {
 
-    /** List of the values in the environment. */
+    /**
+     * List of the values in the environment.
+     */
     private XMLObjectChildrenList<AttributeType> attributes;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected EnvironmentTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         attributes = new XMLObjectChildrenList<AttributeType>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AttributeType> getAttributes() {
         return attributes;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
-        
+
         children.addAll(attributes);
-        
+
         return Collections.unmodifiableList(children);
     }
 }

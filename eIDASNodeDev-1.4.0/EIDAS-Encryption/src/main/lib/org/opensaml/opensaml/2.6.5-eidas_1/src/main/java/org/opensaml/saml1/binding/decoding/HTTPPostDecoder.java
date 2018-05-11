@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -37,17 +37,21 @@ import org.slf4j.LoggerFactory;
  */
 public class HTTPPostDecoder extends BaseSAML1MessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPPostDecoder.class);
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public HTTPPostDecoder() {
         super();
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param pool parser pool used to deserialize messages
      */
     public HTTPPostDecoder(ParserPool pool) {
@@ -56,9 +60,8 @@ public class HTTPPostDecoder extends BaseSAML1MessageDecoder {
 
     /**
      * Constructor.
-     * 
+     *
      * @param map Artifact to SAML map
-     * 
      * @deprecated
      */
     public HTTPPostDecoder(SAMLArtifactMap map) {
@@ -67,22 +70,25 @@ public class HTTPPostDecoder extends BaseSAML1MessageDecoder {
 
     /**
      * Constructor.
-     * 
-     * @param map used to map artifacts to SAML
+     *
+     * @param map  used to map artifacts to SAML
      * @param pool parser pool used to deserialize messages
-     * 
      * @deprecated
      */
     public HTTPPostDecoder(SAMLArtifactMap map, ParserPool pool) {
         super(map, pool);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML1_POST_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doDecode(MessageContext messageContext) throws MessageDecodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this decoder only support SAMLMessageContext");
@@ -122,7 +128,9 @@ public class HTTPPostDecoder extends BaseSAML1MessageDecoder {
         populateMessageContext(samlMsgCtx);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean isIntendedDestinationEndpointURIRequired(SAMLMessageContext samlMsgCtx) {
         return samlMsgCtx.getInboundSAMLMessage() instanceof ResponseAbstractType;
     }

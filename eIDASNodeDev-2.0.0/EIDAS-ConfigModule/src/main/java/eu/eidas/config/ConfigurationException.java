@@ -24,14 +24,16 @@ public class ConfigurationException extends RuntimeException {
      * Error message.
      */
     private String errorMessage;//NOSONAR
+
     public ConfigurationException(final String code, final String message) {
 
         super(message);
         this.errorCode = code;
         this.errorMessage = message;
     }
+
     public ConfigurationException(final String code, final String message,
-                                  final Throwable cause){
+                                  final Throwable cause) {
         super(cause);
         this.errorCode = code;
         this.errorMessage = message;

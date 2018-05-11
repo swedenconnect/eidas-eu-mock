@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.validator;
@@ -42,7 +42,9 @@ public class AttributeQuerySchemaValidator extends SubjectQuerySchemaValidator<A
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AttributeQuery query) throws ValidationException {
         super.validate(query);
         validateUniqueAttributeIdentifiers(query);
@@ -50,11 +52,10 @@ public class AttributeQuerySchemaValidator extends SubjectQuerySchemaValidator<A
 
     /**
      * Checks that all the attributes have a unique Name/NameFormat pair.
-     * 
+     *
      * @param query the attribute query to validate
-     * 
      * @throws ValidationException thrown if more than on Name/NameFormat pair is found in the list of attributes in
-     *             this query
+     *                             this query
      */
     protected void validateUniqueAttributeIdentifiers(AttributeQuery query) throws ValidationException {
         List<Attribute> attributes = query.getAttributes();
@@ -70,7 +71,7 @@ public class AttributeQuerySchemaValidator extends SubjectQuerySchemaValidator<A
                 // unspecified is in effect. This avoids bug in processing null value.
                 attributeNameFormat = Attribute.UNSPECIFIED;
             }
-            
+
             Pair<String, String> pair = new Pair<String, String>(attributeName, attributeNameFormat);
             if (encounteredNames.contains(pair)) {
                 throw new ValidationException(

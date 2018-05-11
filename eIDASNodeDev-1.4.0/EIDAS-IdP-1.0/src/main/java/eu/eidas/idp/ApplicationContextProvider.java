@@ -6,13 +6,16 @@ import org.springframework.context.ApplicationContextAware;
 
 public class ApplicationContextProvider implements ApplicationContextAware {
     private static ApplicationContext applicationContext = null;
+
     public void setApplicationContext(ApplicationContext ctx) throws BeansException {
         ApplicationContextProvider.setGlobalAppContext(ctx);
     }
-    public static ApplicationContext getApplicationContext(){
+
+    public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
-    private static void setGlobalAppContext(ApplicationContext ctx){
+
+    private static void setGlobalAppContext(ApplicationContext ctx) {
         applicationContext = ctx;
     }
 }

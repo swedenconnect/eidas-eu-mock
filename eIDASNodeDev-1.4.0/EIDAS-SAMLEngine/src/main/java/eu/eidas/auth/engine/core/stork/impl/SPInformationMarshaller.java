@@ -28,6 +28,6 @@ public class SPInformationMarshaller extends AbstractSAMLObjectMarshaller {
      * Instantiates a new SP Information marshaller.
      */
     public SPInformationMarshaller() {
-	super();
+        super();
     }
 }

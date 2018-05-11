@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -36,10 +36,14 @@ import org.opensaml.saml1.core.Subject;
  */
 public class AttributeQueryTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
-   /** The expected value of the Resource Identifier */
+    /**
+     * The expected value of the Resource Identifier
+     */
     private final String expectedResource;
 
     /**
@@ -53,7 +57,9 @@ public class AttributeQueryTest extends BaseSAMLObjectProviderTestCase {
         qname = new QName(SAMLConstants.SAML10P_NS, AttributeQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
 
         AttributeQuery attributeQuery;
@@ -64,7 +70,9 @@ public class AttributeQueryTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Count of AttributeDesignator elements", 0, attributeQuery.getAttributeDesignators().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AttributeQuery attributeQuery;
         attributeQuery = (AttributeQuery) unmarshallElement(singleElementOptionalAttributesFile);
@@ -74,7 +82,9 @@ public class AttributeQueryTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Count of AttributeDesignator elements", 0, attributeQuery.getAttributeDesignators().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AttributeQuery attributeQuery;
         attributeQuery = (AttributeQuery) unmarshallElement(childElementsFile);
@@ -83,12 +93,16 @@ public class AttributeQueryTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Count of AttributeDesignator elements", 4, attributeQuery.getAttributeDesignators().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         AttributeQuery attributeQuery;
         attributeQuery = (AttributeQuery) buildXMLObject(qname);
@@ -97,17 +111,19 @@ public class AttributeQueryTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, attributeQuery);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         AttributeQuery attributeQuery = (AttributeQuery) buildXMLObject(qname);
 
         attributeQuery.setSubject((Subject) buildXMLObject(new QName(SAMLConstants.SAML1_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX)));
-        List <AttributeDesignator> list = attributeQuery.getAttributeDesignators();
-        QName attqname = new QName(SAMLConstants.SAML1_NS, AttributeDesignator.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);  
+        List<AttributeDesignator> list = attributeQuery.getAttributeDesignators();
+        QName attqname = new QName(SAMLConstants.SAML1_NS, AttributeDesignator.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         list.add((AttributeDesignator) buildXMLObject(attqname));
         list.add((AttributeDesignator) buildXMLObject(attqname));
-        list.add((AttributeDesignator) buildXMLObject(attqname)); 
-        list.add((AttributeDesignator) buildXMLObject(attqname)); 
+        list.add((AttributeDesignator) buildXMLObject(attqname));
+        list.add((AttributeDesignator) buildXMLObject(attqname));
         assertEquals(expectedChildElementsDOM, attributeQuery);
 
     }

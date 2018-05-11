@@ -32,19 +32,19 @@ public class SPSectorBuilder extends AbstractSAMLObjectBuilder<SPSector> {
      * @return the service provider sector.
      */
     public final SPSector buildObject() {
-	return buildObject(SPSector.DEF_ELEMENT_NAME);
+        return buildObject(SPSector.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object SPSector.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the service provider sector
      */
     public final SPSector buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new SPSectorImpl(namespaceURI, localName, namespacePrefix);
+                                      final String localName, final String namespacePrefix) {
+        return new SPSectorImpl(namespaceURI, localName, namespacePrefix);
     }
 }

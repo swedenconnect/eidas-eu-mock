@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -48,10 +48,10 @@ import org.w3c.dom.Element;
 
 /**
  * A metadata provider that uses registered providers, in turn, to answer queries.
- * 
+ * <p>
  * When searching for entity specific information (entity metadata, roles, etc.) the entity descriptor used is the first
  * non-null descriptor found while iterating over the registered providers in insertion order.
- * 
+ * <p>
  * This chaining provider implements observation by registering an observer with each contained provider. When the
  * contained provider emits a change this provider will also emit a change to observers registered with it. As such,
  * developers should be careful not to register a the same observer with both container providers and this provider.
@@ -59,19 +59,29 @@ import org.w3c.dom.Element;
  */
 public class ChainingMetadataProvider extends BaseMetadataProvider implements ObservableMetadataProvider {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(ChainingMetadataProvider.class);
 
-    /** List of registered observers. */
+    /**
+     * List of registered observers.
+     */
     private List<Observer> observers;
 
-    /** Registered providers. */
+    /**
+     * Registered providers.
+     */
     private List<MetadataProvider> providers;
 
-    /** Lock used to block reads during write and vice versa. */
+    /**
+     * Lock used to block reads during write and vice versa.
+     */
     private ReadWriteLock providerLock;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public ChainingMetadataProvider() {
         super();
         observers = new CopyOnWriteArrayList<Observer>();
@@ -81,7 +91,7 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
 
     /**
      * Gets an immutable the list of currently registered providers.
-     * 
+     *
      * @return list of currently registered providers
      */
     public List<MetadataProvider> getProviders() {
@@ -90,9 +100,8 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
 
     /**
      * Replaces the current set of metadata providers with give collection.
-     * 
+     *
      * @param newProviders the metadata providers to replace the current providers with
-     * 
      * @throws MetadataProviderException thrown if there is a problem adding the metadata provider
      */
     public void setProviders(List<MetadataProvider> newProviders) throws MetadataProviderException {
@@ -117,9 +126,8 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
 
     /**
      * Adds a metadata provider to the list of registered providers.
-     * 
+     *
      * @param newProvider the provider to be added
-     * 
      * @throws MetadataProviderException thrown if there is a problem adding the metadata provider
      */
     public void addMetadataProvider(MetadataProvider newProvider) throws MetadataProviderException {
@@ -140,8 +148,8 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
      * providers {@link MetadataProvider#requireValidMetadata()} property is set to the value of this metadata
      * provider's property. If the given metadata provider is an instance of {@link ObservableMetadataProvider} then a
      * ContainedProviderObserver is added to it as well.
-     * 
-     * @param provider provider to be added to the collection
+     *
+     * @param provider     provider to be added to the collection
      * @param providerList collection to which the provider is added
      */
     protected void doAddMetadataProvider(MetadataProvider provider, List<MetadataProvider> providerList) {
@@ -158,7 +166,7 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
 
     /**
      * Removes a metadata provider from the list of registered providers.
-     * 
+     *
      * @param provider provider to be removed
      */
     public void removeMetadataProvider(MetadataProvider provider) {
@@ -180,7 +188,9 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRequireValidMetadata(boolean requireValidMetadata) {
         super.setRequireValidMetadata(requireValidMetadata);
 
@@ -195,27 +205,33 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public MetadataFilter getMetadataFilter() {
         log.warn("Attempt to access unsupported MetadataFilter property on ChainingMetadataProvider");
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setMetadataFilter(MetadataFilter newFilter) throws MetadataProviderException {
         throw new UnsupportedOperationException("Metadata filters are not supported on ChainingMetadataProviders");
     }
 
     /**
      * Gets the metadata from every registered provider and places each within a newly created EntitiesDescriptor.
-     * 
+     * <p>
      * {@inheritDoc}
      */
     public XMLObject getMetadata() throws MetadataProviderException {
         return new ChainingEntitiesDescriptor();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EntitiesDescriptor getEntitiesDescriptor(String name) throws MetadataProviderException {
         Lock readLock = providerLock.readLock();
         readLock.lock();
@@ -242,7 +258,9 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
         return descriptor;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EntityDescriptor getEntityDescriptor(String entityID) throws MetadataProviderException {
         Lock readLock = providerLock.readLock();
         readLock.lock();
@@ -269,7 +287,9 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
         return descriptor;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RoleDescriptor> getRole(String entityID, QName roleName) throws MetadataProviderException {
         Lock readLock = providerLock.readLock();
         readLock.lock();
@@ -296,7 +316,9 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
         return roleDescriptors;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public RoleDescriptor getRole(String entityID, QName roleName, String supportedProtocol)
             throws MetadataProviderException {
         Lock readLock = providerLock.readLock();
@@ -324,21 +346,25 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
         return roleDescriptor;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Observer> getObservers() {
         return observers;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public synchronized void destroy() {
         super.destroy();
-        
-        for(MetadataProvider provider : providers){
-            if(provider instanceof BaseMetadataProvider){
-                ((BaseMetadataProvider)provider).destroy();
+
+        for (MetadataProvider provider : providers) {
+            if (provider instanceof BaseMetadataProvider) {
+                ((BaseMetadataProvider) provider).destroy();
             }
         }
-        
+
         providers = Collections.emptyList();
         observers = Collections.emptyList();
     }
@@ -366,19 +392,27 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
      */
     private class ContainedProviderObserver implements Observer {
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void onEvent(MetadataProvider provider) {
             emitChangeEvent();
         }
     }
 
-    /** Class that wraps the currently list of providers and exposes it as an EntitiesDescriptors. */
+    /**
+     * Class that wraps the currently list of providers and exposes it as an EntitiesDescriptors.
+     */
     private class ChainingEntitiesDescriptor implements EntitiesDescriptor {
 
-        /** Metadata from the child metadata providers. */
+        /**
+         * Metadata from the child metadata providers.
+         */
         private ArrayList<XMLObject> childDescriptors;
 
-        /** Constructor. */
+        /**
+         * Constructor.
+         */
         public ChainingEntitiesDescriptor() {
             childDescriptors = new ArrayList<XMLObject>();
 
@@ -395,7 +429,9 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
             }
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public List<EntitiesDescriptor> getEntitiesDescriptors() {
             ArrayList<EntitiesDescriptor> descriptors = new ArrayList<EntitiesDescriptor>();
             for (XMLObject descriptor : childDescriptors) {
@@ -407,7 +443,9 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
             return descriptors;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public List<EntityDescriptor> getEntityDescriptors() {
             ArrayList<EntityDescriptor> descriptors = new ArrayList<EntityDescriptor>();
             for (XMLObject descriptor : childDescriptors) {
@@ -419,97 +457,135 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
             return descriptors;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public Extensions getExtensions() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public String getID() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public String getName() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setExtensions(Extensions extensions) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setID(String newID) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setName(String name) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public String getSignatureReferenceID() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public Signature getSignature() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public boolean isSigned() {
             return false;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setSignature(Signature newSignature) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void addNamespace(Namespace namespace) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void detach() {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public Element getDOM() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public QName getElementQName() {
             return EntitiesDescriptor.DEFAULT_ELEMENT_NAME;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public IDIndex getIDIndex() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public NamespaceManager getNamespaceManager() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public Set<Namespace> getNamespaces() {
             return new LazySet<Namespace>();
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public String getNoNamespaceSchemaLocation() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public List<XMLObject> getOrderedChildren() {
             ArrayList<XMLObject> descriptors = new ArrayList<XMLObject>();
             try {
@@ -523,140 +599,196 @@ public class ChainingMetadataProvider extends BaseMetadataProvider implements Ob
             return descriptors;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public XMLObject getParent() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public String getSchemaLocation() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public QName getSchemaType() {
             return EntitiesDescriptor.TYPE_NAME;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public boolean hasChildren() {
             return !getOrderedChildren().isEmpty();
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public boolean hasParent() {
             return false;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void releaseChildrenDOM(boolean propagateRelease) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void releaseDOM() {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void releaseParentDOM(boolean propagateRelease) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void removeNamespace(Namespace namespace) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public XMLObject resolveID(String id) {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public XMLObject resolveIDFromRoot(String id) {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setDOM(Element dom) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setNoNamespaceSchemaLocation(String location) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setParent(XMLObject parent) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setSchemaLocation(String location) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void deregisterValidator(Validator validator) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public List<Validator> getValidators() {
             return new ArrayList<Validator>();
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void registerValidator(Validator validator) {
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void validate(boolean validateDescendants) throws ValidationException {
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public DateTime getValidUntil() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public boolean isValid() {
             return true;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setValidUntil(DateTime validUntil) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public Long getCacheDuration() {
             return null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setCacheDuration(Long duration) {
 
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public Boolean isNil() {
             return Boolean.FALSE;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public XSBooleanValue isNilXSBoolean() {
             return new XSBooleanValue(Boolean.FALSE, false);
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setNil(Boolean arg0) {
             // do nothing
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void setNil(XSBooleanValue arg0) {
             // do nothing
         }

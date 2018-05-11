@@ -15,8 +15,10 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
+
 // Automatic Redirect of the form
 function submitRedirectFormAction() {
     document.getElementsByName('redirectForm')[0].submit();
 }
+
 window.addEventListener('load', submitRedirectFormAction());

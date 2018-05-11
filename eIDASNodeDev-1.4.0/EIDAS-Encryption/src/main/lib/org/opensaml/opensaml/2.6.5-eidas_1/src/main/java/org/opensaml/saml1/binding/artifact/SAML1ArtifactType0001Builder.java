@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,15 +34,21 @@ import org.slf4j.LoggerFactory;
  */
 public class SAML1ArtifactType0001Builder implements SAML1ArtifactBuilder<SAML1ArtifactType0001> {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(SAML1ArtifactType0001Builder.class);
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAML1ArtifactType0001 buildArtifact(byte[] artifact) {
         return SAML1ArtifactType0001.parseArtifact(artifact);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAML1ArtifactType0001 buildArtifact(
             SAMLMessageContext<RequestAbstractType, Response, NameIdentifier> requestContext, Assertion assertion) {
         try {

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.metadata.impl;
 
@@ -31,11 +31,11 @@ import org.opensaml.saml2.metadata.SingleSignOnService;
  * {@link org.opensaml.saml2.metadata.impl.SingleLogoutServiceImpl}.
  */
 public class SingleSignOnServiceTest extends BaseSAMLObjectProviderTestCase {
-    
+
     protected String expectedBinding;
     protected String expectedLocation;
     protected String expectedResponseLocation;
-    
+
     /**
      * Constructor
      */
@@ -43,49 +43,60 @@ public class SingleSignOnServiceTest extends BaseSAMLObjectProviderTestCase {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/SingleSignOnService.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/metadata/impl/SingleSignOnServiceOptionalAttributes.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectedBinding = "urn:binding:foo";
         expectedLocation = "example.org";
         expectedResponseLocation = "example.org/response";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
-        SingleSignOnService service = ( SingleSignOnService) unmarshallElement(singleElementFile);
-        
+        SingleSignOnService service = (SingleSignOnService) unmarshallElement(singleElementFile);
+
         assertEquals("Binding URI was not expected value", expectedBinding, service.getBinding());
         assertEquals("Location was not expected value", expectedLocation, service.getLocation());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
-        SingleSignOnService service = ( SingleSignOnService) unmarshallElement(singleElementOptionalAttributesFile);
-        
+        SingleSignOnService service = (SingleSignOnService) unmarshallElement(singleElementOptionalAttributesFile);
+
         assertEquals("Binding URI was not expected value", expectedBinding, service.getBinding());
         assertEquals("Location was not expected value", expectedLocation, service.getLocation());
-        assertEquals("ResponseLocation was not expected value", expectedResponseLocation, service.getResponseLocation());;
+        assertEquals("ResponseLocation was not expected value", expectedResponseLocation, service.getResponseLocation());
+        ;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
-        QName qname = new QName(SAMLConstants.SAML20MD_NS,  SingleSignOnService.DEFAULT_ELEMENT_LOCAL_NAME);
-        SingleSignOnService service = ( SingleSignOnService) buildXMLObject(qname);
-        
+        QName qname = new QName(SAMLConstants.SAML20MD_NS, SingleSignOnService.DEFAULT_ELEMENT_LOCAL_NAME);
+        SingleSignOnService service = (SingleSignOnService) buildXMLObject(qname);
+
         service.setBinding(expectedBinding);
         service.setLocation(expectedLocation);
 
         assertEquals(expectedDOM, service);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
-        QName qname = new QName(SAMLConstants.SAML20MD_NS,  SingleSignOnService.DEFAULT_ELEMENT_LOCAL_NAME);
-        SingleSignOnService service = ( SingleSignOnService) buildXMLObject(qname);
-        
+        QName qname = new QName(SAMLConstants.SAML20MD_NS, SingleSignOnService.DEFAULT_ELEMENT_LOCAL_NAME);
+        SingleSignOnService service = (SingleSignOnService) buildXMLObject(qname);
+
         service.setBinding(expectedBinding);
         service.setLocation(expectedLocation);
         service.setResponseLocation(expectedResponseLocation);

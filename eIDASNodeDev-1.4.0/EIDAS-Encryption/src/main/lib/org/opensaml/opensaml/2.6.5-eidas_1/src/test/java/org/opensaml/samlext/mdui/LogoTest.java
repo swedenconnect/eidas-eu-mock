@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.samlext.mdui;
 
@@ -31,19 +31,27 @@ import org.opensaml.samlext.saml2mdui.UIInfo;
  * {@link org.opensaml.saml2.metadata.OrganizationName}.
  */
 public class LogoTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected URL. */
+
+    /**
+     * Expected URL.
+     */
     private final String expectedURL;
-    
-    /** expected language. */
+
+    /**
+     * expected language.
+     */
     private final String expectedLang;
-    
-    /** expected height. */
+
+    /**
+     * expected height.
+     */
     private final Integer expectedHeight;
-    
-    /** expected width. */
+
+    /**
+     * expected width.
+     */
     private final Integer expectedWidth;
-    
+
     /**
      * Constructor.
      */
@@ -55,39 +63,47 @@ public class LogoTest extends BaseSAMLObjectProviderTestCase {
         expectedWidth = new Integer(23);
         expectedLang = "logoLang";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
-        super.setUp();      
+        super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Logo logo = (Logo) unmarshallElement(singleElementFile);
-        
+
         assertEquals("URL was not expected value", expectedURL, logo.getURL());
         assertEquals("height was not expected value", expectedHeight, logo.getHeight());
         assertEquals("width was not expected value", expectedWidth, logo.getWidth());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Logo logo = (Logo) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertEquals("URL was not expected value", expectedURL, logo.getURL());
         assertEquals("height was not expected value", expectedHeight, logo.getHeight());
         assertEquals("width was not expected value", expectedWidth, logo.getWidth());
         assertEquals("xml:lang was not the expected value", expectedLang, logo.getXMLLang());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
-        QName qname = new QName(UIInfo.MDUI_NS, 
-                                Logo.DEFAULT_ELEMENT_LOCAL_NAME, 
-                                UIInfo.MDUI_PREFIX);
-        
+        QName qname = new QName(UIInfo.MDUI_NS,
+                Logo.DEFAULT_ELEMENT_LOCAL_NAME,
+                UIInfo.MDUI_PREFIX);
+
         Logo logo = (Logo) buildXMLObject(qname);
-        
+
         logo.setURL(expectedURL);
         logo.setWidth(expectedWidth);
         logo.setHeight(expectedHeight);
@@ -95,14 +111,16 @@ public class LogoTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, logo);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
-        QName qname = new QName(UIInfo.MDUI_NS, 
-                                Logo.DEFAULT_ELEMENT_LOCAL_NAME, 
-                                UIInfo.MDUI_PREFIX);
-        
+        QName qname = new QName(UIInfo.MDUI_NS,
+                Logo.DEFAULT_ELEMENT_LOCAL_NAME,
+                UIInfo.MDUI_PREFIX);
+
         Logo logo = (Logo) buildXMLObject(qname);
-        
+
         logo.setURL(expectedURL);
         logo.setWidth(expectedWidth);
         logo.setHeight(expectedHeight);

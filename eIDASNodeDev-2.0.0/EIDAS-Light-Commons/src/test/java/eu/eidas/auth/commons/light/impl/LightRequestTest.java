@@ -139,7 +139,6 @@ public final class LightRequestTest {
     }
 
 
-
     @Test
     public void testGetRequestedAttributes() throws Exception {
         LightRequest lightRequest = new LightRequest.Builder().id(ID).issuer(ISSUER)

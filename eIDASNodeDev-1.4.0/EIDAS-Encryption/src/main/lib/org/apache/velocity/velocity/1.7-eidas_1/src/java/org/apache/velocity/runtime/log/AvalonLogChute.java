@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.File;
@@ -42,21 +42,19 @@ import org.apache.velocity.runtime.RuntimeServices;
  * @version $Id: AvalonLogChute.java 730039 2008-12-30 03:53:19Z byron $
  * @since 1.5
  */
-public class AvalonLogChute implements LogChute
-{
+public class AvalonLogChute implements LogChute {
     public static final String AVALON_LOGGER = "runtime.log.logsystem.avalon.logger";
- 
+
     public static final String AVALON_LOGGER_FORMAT = "runtime.log.logsystem.avalon.format";
-    
+
     public static final String AVALON_LOGGER_LEVEL = "runtime.log.logsystem.avalon.level";
 
     private Logger logger = null;
     private RuntimeServices rsvc = null;
-    
+
     private static final Map logLevels = new HashMap();
-    
-    static
-    {
+
+    static {
         logLevels.put("trace", Priority.DEBUG);
         logLevels.put("debug", Priority.DEBUG);
         logLevels.put("info", Priority.INFO);
@@ -67,39 +65,31 @@ public class AvalonLogChute implements LogChute
     /**
      * @see org.apache.velocity.runtime.log.LogChute#init(org.apache.velocity.runtime.RuntimeServices)
      */
-    public void init(RuntimeServices rs) throws Exception
-    {
+    public void init(RuntimeServices rs) throws Exception {
         this.rsvc = rs;
 
         // if a logger is specified, we will use this instead of the default
-        String name = (String)rsvc.getProperty(AVALON_LOGGER);
-        if (name != null)
-        {
+        String name = (String) rsvc.getProperty(AVALON_LOGGER);
+        if (name != null) {
             this.logger = Hierarchy.getDefaultHierarchy().getLoggerFor(name);
-        }
-        else
-        {
+        } else {
             // use the toString() of RuntimeServices to make a unique logger
             logger = Hierarchy.getDefaultHierarchy().getLoggerFor(rsvc.toString());
 
             // if we have a file property, use it to create a FileTarget
-            String file = (String)rsvc.getProperty(RuntimeConstants.RUNTIME_LOG);
-            if (StringUtils.isNotEmpty(file))
-            {
+            String file = (String) rsvc.getProperty(RuntimeConstants.RUNTIME_LOG);
+            if (StringUtils.isNotEmpty(file)) {
                 initTarget(file, rsvc);
             }
         }
     }
 
     // creates a file target using the specified file name
-    private void initTarget(final String file, final RuntimeServices rsvc) throws Exception
-    {
-        try
-        {
+    private void initTarget(final String file, final RuntimeServices rsvc) throws Exception {
+        try {
             String format = null;
             Priority level = null;
-            if (rsvc != null)
-            {
+            if (rsvc != null) {
                 format = rsvc.getString(AVALON_LOGGER_FORMAT, "%{time} %{message}\\n%{throwable}");
                 level = (Priority) logLevels.get(rsvc.getString(AVALON_LOGGER_LEVEL, "warn"));
             }
@@ -110,11 +100,9 @@ public class AvalonLogChute implements LogChute
             FileTarget target = new FileTarget(new File(file), false, vf);
 
             logger.setPriority(level);
-            logger.setLogTargets(new LogTarget[] { target });
-            log(DEBUG_ID, "AvalonLogChute initialized using file '"+file+'\'');
-        }
-        catch (IOException ioe)
-        {
+            logger.setLogTargets(new LogTarget[]{target});
+            log(DEBUG_ID, "AvalonLogChute initialized using file '" + file + '\'');
+        } catch (IOException ioe) {
             rsvc.getLog().error("Unable to create log file for AvalonLogChute", ioe);
             throw new Exception("Error configuring AvalonLogChute : " + ioe);
         }
@@ -124,11 +112,10 @@ public class AvalonLogChute implements LogChute
      * @param file
      * @throws Exception
      * @deprecated This method should not be used. It is here only to provide
-     *             backwards compatibility for the deprecated AvalonLogSystem
-     *             class, in case anyone used it and this method directly.
+     * backwards compatibility for the deprecated AvalonLogSystem
+     * class, in case anyone used it and this method directly.
      */
-    public void init(String file) throws Exception
-    {
+    public void init(String file) throws Exception {
         logger = Hierarchy.getDefaultHierarchy().getLoggerFor(rsvc.toString());
         initTarget(file, null);
         // nag the theoretical user
@@ -136,21 +123,19 @@ public class AvalonLogChute implements LogChute
     }
 
     /**
-     *  logs messages
+     * logs messages
      *
-     *  @param level severity level
-     *  @param message complete error message
+     * @param level   severity level
+     * @param message complete error message
      */
-    public void log(int level, String message)
-    {
+    public void log(int level, String message) {
         /*
          * based on level, call the right logger method
          * and prefix with the appropos prefix
          */
-        switch (level)
-        {
+        switch (level) {
             case WARN_ID:
-                logger.warn(WARN_PREFIX + message );
+                logger.warn(WARN_PREFIX + message);
                 break;
             case INFO_ID:
                 logger.info(INFO_PREFIX + message);
@@ -171,16 +156,14 @@ public class AvalonLogChute implements LogChute
     }
 
     /**
-     *  logs messages and error
+     * logs messages and error
      *
-     *  @param level severity level
-     *  @param message complete error message
+     * @param level   severity level
+     * @param message complete error message
      * @param t
      */
-    public void log(int level, String message, Throwable t)
-    {
-        switch (level)
-        {
+    public void log(int level, String message, Throwable t) {
+        switch (level) {
             case WARN_ID:
                 logger.warn(WARN_PREFIX + message, t);
                 break;
@@ -204,13 +187,12 @@ public class AvalonLogChute implements LogChute
 
     /**
      * Checks to see whether the specified level is enabled.
+     *
      * @param level
      * @return True if the specified level is enabled.
      */
-    public boolean isLevelEnabled(int level)
-    {
-        switch (level)
-        {
+    public boolean isLevelEnabled(int level) {
+        switch (level) {
             // For Avalon, no Trace exists. Log at debug level.
             case TRACE_ID:
             case DEBUG_ID:
@@ -228,16 +210,17 @@ public class AvalonLogChute implements LogChute
 
     /**
      * Also do a shutdown if the object is destroy()'d.
+     *
      * @throws Throwable
      */
-    protected void finalize() throws Throwable
-    {
+    protected void finalize() throws Throwable {
         shutdown();
     }
 
-    /** Close all destinations*/
-    public void shutdown()
-    {
+    /**
+     * Close all destinations
+     */
+    public void shutdown() {
         logger.unsetLogTargets();
     }
 

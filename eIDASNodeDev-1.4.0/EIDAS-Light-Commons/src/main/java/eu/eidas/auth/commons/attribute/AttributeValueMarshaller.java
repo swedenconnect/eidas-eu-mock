@@ -22,9 +22,9 @@ public interface AttributeValueMarshaller<T> {
     /**
      * Unmarshals the given {@link java.lang.String} as a typed value.
      *
-     * @param value the {@link java.lang.String} representation to unmarshal to a typed value.
+     * @param value                            the {@link java.lang.String} representation to unmarshal to a typed value.
      * @param isNonLatinScriptAlternateVersion indicates whether the provided value is the non-latin script alternate
-     * version of another attribute value.
+     *                                         version of another attribute value.
      * @return a typed value corresponding to the given {@link java.lang.String} representation.
      */
     @Nonnull

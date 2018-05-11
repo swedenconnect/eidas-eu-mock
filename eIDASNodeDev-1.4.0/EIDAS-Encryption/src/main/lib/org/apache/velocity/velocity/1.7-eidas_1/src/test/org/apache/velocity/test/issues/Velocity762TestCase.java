@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,29 +24,25 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-762.
  */
-public class Velocity762TestCase extends BaseTestCase
-{
-    public Velocity762TestCase(String name)
-    {
+public class Velocity762TestCase extends BaseTestCase {
+    public Velocity762TestCase(String name) {
         super(name);
     }
 
-    public void testForeachIsLast()
-    {
+    public void testForeachIsLast() {
         String template = "#foreach( $i in [1..3] )$foreach.last #end";
         assertEvalEquals("false false true ", template);
     }
 
-    public void testAllForeachProps()
-    {
-        String template = "#foreach( $number in [1..3] )"+
-                          "number:$number hasNext:$foreach.hasNext "+
-                           "first:$foreach.first last:$foreach.last "+
-                           "count:$foreach.count index:$foreach.index \n"+
-                          "#end";
-        String expect = "number:1 hasNext:true first:true last:false count:1 index:0 \n"+
-                        "number:2 hasNext:true first:false last:false count:2 index:1 \n"+
-                        "number:3 hasNext:false first:false last:true count:3 index:2 \n";
+    public void testAllForeachProps() {
+        String template = "#foreach( $number in [1..3] )" +
+                "number:$number hasNext:$foreach.hasNext " +
+                "first:$foreach.first last:$foreach.last " +
+                "count:$foreach.count index:$foreach.index \n" +
+                "#end";
+        String expect = "number:1 hasNext:true first:true last:false count:1 index:0 \n" +
+                "number:2 hasNext:true first:false last:false count:2 index:1 \n" +
+                "number:3 hasNext:false first:false last:true count:3 index:2 \n";
         assertEvalEquals(expect, template);
     }
 

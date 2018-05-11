@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -27,21 +27,17 @@ import org.apache.velocity.runtime.RuntimeConstants;
  * Error message reports correct line numbers.
  */
 
-public class Velocity627TestCase extends BaseTestCase
-{
-    public Velocity627TestCase(String name)
-    {
+public class Velocity627TestCase extends BaseTestCase {
+    public Velocity627TestCase(String name) {
         super(name);
     }
-  
-    public void setUp() throws Exception
-    {
+
+    public void setUp() throws Exception {
         super.setUp();
         engine.setProperty(RuntimeConstants.SKIP_INVALID_ITERATOR, Boolean.FALSE);
     }
-  
-    public void test627()
-    {
+
+    public void test627() {
         // Make sure the error ouput contains "line 3, column 16"
         assertEvalExceptionAt("##\n##\n#foreach($i in \"junk\")blaa#end", 3, 16);
     }

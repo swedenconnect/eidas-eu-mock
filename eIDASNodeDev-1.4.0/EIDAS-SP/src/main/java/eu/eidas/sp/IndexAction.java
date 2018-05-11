@@ -59,7 +59,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author iinigo
- *         This Action Generates a SAML Request with the data given by the user, then sends it to the selected node
+ * This Action Generates a SAML Request with the data given by the user, then sends it to the selected node
  */
 @SuppressWarnings("squid:S1948") //TODO get rid of Struts
 public class IndexAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
@@ -219,7 +219,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
         return Action.SUCCESS;
     }
 
-    private String getErrorMessageFromBundle(final String errorCode, final String errorMessage){
+    private String getErrorMessageFromBundle(final String errorCode, final String errorMessage) {
         return MessageFormat.format(resourceBundle.getString(errorMessage), errorCode);
     }
 

@@ -770,33 +770,33 @@
         <pluginManagement>
             <plugins>
 
-				<plugin>
-				    <groupId>com.orctom.mojo</groupId>
-				    <artifactId>was-maven-plugin</artifactId>
-				    <version>1.0.8</version>
-				    <configuration>
-				        <wasHome>c:/pgm/wlp</wasHome>
-				        <applicationName>${proj.name}</applicationName>
-				        <host>localhost</host>
-				        <server>server01</server>
-				        <node>node01</node>
-				        <virtualHost>default_host</virtualHost>
-				        <verbose>true</verbose>
-				    </configuration>
-				</plugin>            
+                <plugin>
+                    <groupId>com.orctom.mojo</groupId>
+                    <artifactId>was-maven-plugin</artifactId>
+                    <version>1.0.8</version>
+                    <configuration>
+                        <wasHome>c:/pgm/wlp</wasHome>
+                        <applicationName>${proj.name}</applicationName>
+                        <host>localhost</host>
+                        <server>server01</server>
+                        <node>node01</node>
+                        <virtualHost>default_host</virtualHost>
+                        <verbose>true</verbose>
+                    </configuration>
+                </plugin>
 
-				<plugin>
-					<groupId>org.apache.tomcat.maven</groupId>
-					<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>2.2</version>
-					<configuration>
-						<url>http://localhost:8080/manager/text</url>
-						<server>tomcat</server>
-						<path>/${proj.name}</path>
-						<username>admin</username>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <url>http://localhost:8080/manager/text</url>
+                        <server>tomcat</server>
+                        <path>/${proj.name}</path>
+                        <username>admin</username>
                         <password>admin</password>
-					</configuration>
-		        </plugin>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>

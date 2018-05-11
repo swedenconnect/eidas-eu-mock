@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,26 +24,22 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-355 and its twin, VELOCITY-552.
  */
-public class Velocity355And552TestCase extends BaseTestCase
-{
-    public Velocity355And552TestCase(String name)
-    {
-       super(name);
+public class Velocity355And552TestCase extends BaseTestCase {
+    public Velocity355And552TestCase(String name) {
+        super(name);
     }
 
-    public void testMissingDollar()
-    {
+    public void testMissingDollar() {
         String base = "export $VAR=$(echo $testme)\n";
         assertEvalEquals(base, base);
-        String literal = "#literal()\n"+base+"#end";
+        String literal = "#literal()\n" + base + "#end";
         assertEvalEquals(base, literal);
     }
 
-    public void testMissingPound()
-    {
+    public void testMissingPound() {
         String base = "#!/usr/bin/perl\n";
         assertEvalEquals(base, base);
-        String literal = "#literal()\n"+base+"#end";
+        String literal = "#literal()\n" + base + "#end";
         assertEvalEquals(base, literal);
     }
 }

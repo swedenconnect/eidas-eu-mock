@@ -24,37 +24,41 @@
 <%@ taglib prefix="e" uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" %>
 
 <html>
-    <head>
-        <jsp:include page="/internal/htmlHead.jsp"/>
-    </head>
-    <body>
-        <main>
-            <div class="wrapper">
-                <jsp:include page="/internal/centralSliderNoAnim.jsp"/>
-                <jsp:include page="/internal/leftColumn.jsp"/>
-                <div class="col-right">
-                    <div class="col-right-inner">
-                        <div class="col-right-content">
-                            <jsp:include page="/internal/content-security-header-deactivated.jsp"/>
-                            <h2 class="sub-title"><fmt:message key="msSpecificProxyServiceRedirecting.text" bundle="${i18n_eng}"/></h2>
-                            <form id="redirectForm" name="redirectForm" action="${e:forHtml(redirectUrl)}" method="${e:forHtml(binding)}">
-                                <input type="hidden" name="token" id="token" value="${e:forHtml(token)}"/>
-                            </form>
-                            <noscript>
-                                <h2 class="sub-title"><fmt:message key="msSpecificProxyServiceRedirect.text" bundle="${i18n_eng}"/></h2>
-                                <form id="noJavaScriptForm" name="noJavaScriptRedirectForm" action="${e:forHtml(redirectUrl)}" method="${e:forHtml(binding)}">
-                                    <input type="hidden" name="token" id="noJavaScriptToken" value="${e:forHtml(token)}"/>
-                                    <fmt:message var="btnMsg" key="accept.button" bundle="${i18n_eng}"/>
-                                    <input type="submit" id="submitButton1" class="btn btn-next" value="${btnMsg}"/>
-                                </form>
-                            </noscript>
-                        </div>
-                    </div>
+<head>
+    <jsp:include page="/internal/htmlHead.jsp"/>
+</head>
+<body>
+<main>
+    <div class="wrapper">
+        <jsp:include page="/internal/centralSliderNoAnim.jsp"/>
+        <jsp:include page="/internal/leftColumn.jsp"/>
+        <div class="col-right">
+            <div class="col-right-inner">
+                <div class="col-right-content">
+                    <jsp:include page="/internal/content-security-header-deactivated.jsp"/>
+                    <h2 class="sub-title"><fmt:message key="msSpecificProxyServiceRedirecting.text"
+                                                       bundle="${i18n_eng}"/></h2>
+                    <form id="redirectForm" name="redirectForm" action="${e:forHtml(redirectUrl)}"
+                          method="${e:forHtml(binding)}">
+                        <input type="hidden" name="token" id="token" value="${e:forHtml(token)}"/>
+                    </form>
+                    <noscript>
+                        <h2 class="sub-title"><fmt:message key="msSpecificProxyServiceRedirect.text"
+                                                           bundle="${i18n_eng}"/></h2>
+                        <form id="noJavaScriptForm" name="noJavaScriptRedirectForm" action="${e:forHtml(redirectUrl)}"
+                              method="${e:forHtml(binding)}">
+                            <input type="hidden" name="token" id="noJavaScriptToken" value="${e:forHtml(token)}"/>
+                            <fmt:message var="btnMsg" key="accept.button" bundle="${i18n_eng}"/>
+                            <input type="submit" id="submitButton1" class="btn btn-next" value="${btnMsg}"/>
+                        </form>
+                    </noscript>
                 </div>
             </div>
-        </main>
-        <script type="text/javascript" src="js/autocompleteOff.js"></script>
-        <script type="text/javascript" src="js/redirectOnload.js"></script>
-        <jsp:include page="/internal/footerScripts.jsp"/>
-    </body>
+        </div>
+    </div>
+</main>
+<script type="text/javascript" src="js/autocompleteOff.js"></script>
+<script type="text/javascript" src="js/redirectOnload.js"></script>
+<jsp:include page="/internal/footerScripts.jsp"/>
+</body>
 </html>

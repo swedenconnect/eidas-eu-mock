@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,44 +30,71 @@ import org.opensaml.common.xml.SAMLConstants;
  */
 public interface AuthenticationStatement extends SAMLObject, SubjectStatement {
 
-    /** Element name, no namespace. */
+    /**
+     * Element name, no namespace.
+     */
     public final static String DEFAULT_ELEMENT_LOCAL_NAME = "AuthenticationStatement";
-    
-    /** Default element name */
+
+    /**
+     * Default element name
+     */
     public final static QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML1_NS, DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-    
-    /** Local name of the XSI type */
-    public final static String TYPE_LOCAL_NAME = "AuthenticationStatementType"; 
-        
-    /** QName of the XSI type */
+
+    /**
+     * Local name of the XSI type
+     */
+    public final static String TYPE_LOCAL_NAME = "AuthenticationStatementType";
+
+    /**
+     * QName of the XSI type
+     */
     public final static QName TYPE_NAME = new QName(SAMLConstants.SAML1_NS, TYPE_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
 
-    /** Name of the AuthenticationMethod attribute */
+    /**
+     * Name of the AuthenticationMethod attribute
+     */
     public final static String AUTHENTICATIONMETHOD_ATTRIB_NAME = "AuthenticationMethod";
 
-    /** Name of the AuthenticationInstant attribute */
+    /**
+     * Name of the AuthenticationInstant attribute
+     */
     public final static String AUTHENTICATIONINSTANT_ATTRIB_NAME = "AuthenticationInstant";
 
-    /** Return the contents of the AuthenticationMethod attribute */
+    /**
+     * Return the contents of the AuthenticationMethod attribute
+     */
     public String getAuthenticationMethod();
 
-    /** Set the contents of the AuthenticationMethod attribute */
+    /**
+     * Set the contents of the AuthenticationMethod attribute
+     */
     public void setAuthenticationMethod(String authenticationMethod);
 
-    /** Return the contents of the AuthenticationInstant attribute */
+    /**
+     * Return the contents of the AuthenticationInstant attribute
+     */
     public DateTime getAuthenticationInstant();
 
-    /** Set the contents of the AuthenticationInstant attribute */
+    /**
+     * Set the contents of the AuthenticationInstant attribute
+     */
     public void setAuthenticationInstant(DateTime authenticationInstant);
 
-    /** Set the (single) SubjectLocality child element */
+    /**
+     * Set the (single) SubjectLocality child element
+     */
     public SubjectLocality getSubjectLocality();
 
-    /** Get the (single) SubjectLocality child element 
-     * @throws IllegalArgumentException */
+    /**
+     * Get the (single) SubjectLocality child element
+     *
+     * @throws IllegalArgumentException
+     */
     public void setSubjectLocality(SubjectLocality subjectLocality) throws IllegalArgumentException;
 
-    /** return all the AuthorityBinding subelement */
+    /**
+     * return all the AuthorityBinding subelement
+     */
     public List<AuthorityBinding> getAuthorityBindings();
 
 }

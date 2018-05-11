@@ -20,7 +20,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 
 <properties>
-	<comment>SWModule encrypt with JKS.</comment>
+    <comment>SWModule encrypt with JKS.</comment>
     <entry key="check_certificate_validity_period">false</entry>
     <entry key="disallow_self_signed_certificate">false</entry>
 
@@ -48,13 +48,13 @@
     <!--  If not present then no encryption will be applied on response -->
     <entry key="responseToPointIssuer.XA">C=XA, O=Swedish E-Identification Board, CN=eIDAS Test XA</entry>
     <entry key="responseToPointSerialNumber.XA">15ffa00d5b7</entry>
-    
+
     <entry key="responseToPointIssuer.XB">C=XB, O=Swedish E-Identification Board, CN=eIDAS Test XB</entry>
     <entry key="responseToPointSerialNumber.XB">15ffa081bd0</entry>
-    
+
     <!--  If not present then no decryption will be applied on response -->
     <!-- Certificate containing instance private key-->
     <entry key="responseDecryptionIssuer">C=XA, O=Swedish E-Identification Board, CN=eIDAS Test XA</entry>
     <entry key="serialNumber">15ffa00d5b7</entry>
-    
+
 </properties>

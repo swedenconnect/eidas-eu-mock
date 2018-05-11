@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -36,35 +36,45 @@ import org.slf4j.LoggerFactory;
  * A filter the removes roles, from an entity descriptor. For those roles specified within the SAML metadata
  * specification the role element QName is used to identify the role. For other roles, those that appear as
  * &lt;RoleDescriptor xsi:type="someRoleType"&gt; the role schema type is used to identify the role.
- * 
+ * <p>
  * If the entity descriptor does not contain any roles after filter it may, optionally be removed as well. If the root
  * element of the metadata document is an entity descriptor it will never be removed, regardless of of whether it still
  * contains roles.
- * 
+ * <p>
  * If and entities descriptor does not contains any entity descriptors after filter it may, optionally, be removed as
  * well. If the root element of the metadata document is an entities descriptor it will never be removed, regardless of
  * of whether it still contains entity descriptors.
  */
 public class EntityRoleFilter implements MetadataFilter {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(EntityRoleFilter.class);
 
-    /** List of roles that are NOT removed by this filter. */
+    /**
+     * List of roles that are NOT removed by this filter.
+     */
     private List<QName> roleWhiteList;
 
-    /** Whether to keep entity descriptors that contain no roles; default value: true. */
+    /**
+     * Whether to keep entity descriptors that contain no roles; default value: true.
+     */
     private boolean removeRolelessEntityDescriptors;
 
-    /** Whether to keep entities descriptors that contain no entity descriptors; default value: true. */
+    /**
+     * Whether to keep entities descriptors that contain no entity descriptors; default value: true.
+     */
     private boolean removeEmptyEntitiesDescriptors;
 
-    /** QName of extension role element. */
+    /**
+     * QName of extension role element.
+     */
     private final QName extRoleDescriptor = new QName(SAMLConstants.SAML20MD_NS, "RoleDescriptor");
 
     /**
      * Constructor.
-     * 
+     *
      * @param keptRoles list of roles NOT removed by this filter
      */
     public EntityRoleFilter(List<QName> keptRoles) {
@@ -81,7 +91,7 @@ public class EntityRoleFilter implements MetadataFilter {
 
     /**
      * Gets the unmodifiable list of roles that are NOT removed by this filter.
-     * 
+     *
      * @return unmodifiable list of roles that are NOT removed by this filter
      */
     public List<QName> getRoleWhiteList() {
@@ -90,7 +100,7 @@ public class EntityRoleFilter implements MetadataFilter {
 
     /**
      * Gets whether to remove an entity descriptor if it does not contain any roles after filtering.
-     * 
+     *
      * @return whether to remove an entity descriptor if it does not contain any roles after filtering
      */
     public boolean getRemoveRolelessEntityDescriptors() {
@@ -99,7 +109,7 @@ public class EntityRoleFilter implements MetadataFilter {
 
     /**
      * Sets whether to remove an entity descriptor if it does not contain any roles after filtering.
-     * 
+     *
      * @param remove whether to remove an entity descriptor if it does not contain any roles after filtering
      */
     public void setRemoveRolelessEntityDescriptors(boolean remove) {
@@ -109,9 +119,9 @@ public class EntityRoleFilter implements MetadataFilter {
     /**
      * Gets whether to remove an entities descriptor if it does not contain any entity descriptor or entities
      * descriptors.
-     * 
+     *
      * @return whether to remove an entities descriptor if it does not contain any entity descriptor or entities
-     *         descriptors
+     * descriptors
      */
     public boolean getRemoveEmptyEntitiesDescriptors() {
         return removeEmptyEntitiesDescriptors;
@@ -120,15 +130,17 @@ public class EntityRoleFilter implements MetadataFilter {
     /**
      * Sets whether to remove an entities descriptor if it does not contain any entity descriptor or entities
      * descriptors.
-     * 
+     *
      * @param remove whether to remove an entities descriptor if it does not contain any entity descriptor or entities
-     *            descriptors
+     *               descriptors
      */
     public void setRemoveEmptyEntitiesDescriptors(boolean remove) {
         removeEmptyEntitiesDescriptors = remove;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void doFilter(XMLObject metadata) throws FilterException {
         if (metadata == null) {
             return;
@@ -143,9 +155,8 @@ public class EntityRoleFilter implements MetadataFilter {
 
     /**
      * Filters entities descriptor.
-     * 
+     *
      * @param descriptor entities descriptor to filter
-     * 
      * @throws FilterException thrown if an effective role name can not be determined
      */
     protected void filterEntitiesDescriptor(EntitiesDescriptor descriptor) throws FilterException {
@@ -185,7 +196,7 @@ public class EntityRoleFilter implements MetadataFilter {
                     if ((entitiesDescriptor.getEntityDescriptors() == null || entitiesDescriptor.getEntityDescriptors()
                             .isEmpty())
                             && (entitiesDescriptor.getEntitiesDescriptors() == null || entitiesDescriptor
-                                    .getEntitiesDescriptors().isEmpty())) {
+                            .getEntitiesDescriptors().isEmpty())) {
                         log.trace("Filtering out entity descriptor {} from entity group {}", entitiesDescriptor
                                 .getName(), descriptor.getName());
                         emptyEntitiesDescriptors.add(entitiesDescriptor);
@@ -198,9 +209,8 @@ public class EntityRoleFilter implements MetadataFilter {
 
     /**
      * Filters entity descriptor roles.
-     * 
+     *
      * @param descriptor entity descriptor to filter
-     * 
      * @throws FilterException thrown if an effective role name can not be determined
      */
     protected void filterEntityDescriptor(EntityDescriptor descriptor) throws FilterException {
@@ -222,11 +232,9 @@ public class EntityRoleFilter implements MetadataFilter {
     /**
      * Gets the effective name for the role. This is either the element QName for roles defined within the SAML metadata
      * specification or the element schema type QName for those that are not.
-     * 
+     *
      * @param role role to get the effective name for
-     * 
      * @return effective name of the role
-     * 
      * @throws FilterException thrown if the effective role name can not be determined
      */
     protected QName getRoleName(RoleDescriptor role) throws FilterException {

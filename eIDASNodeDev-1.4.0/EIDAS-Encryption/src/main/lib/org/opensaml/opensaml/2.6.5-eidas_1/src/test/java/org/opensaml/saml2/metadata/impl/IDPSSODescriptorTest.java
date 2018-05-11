@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -40,23 +40,33 @@ import org.opensaml.saml2.metadata.SingleSignOnService;
 import org.opensaml.xml.schema.XSBooleanValue;
 
 /**
- * 
+ *
  */
 public class IDPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** List of expected supported protocols */
+    /**
+     * List of expected supported protocols
+     */
     protected ArrayList<String> expectedSupportedProtocol;
 
-    /** Expected cacheDuration value in miliseconds */
+    /**
+     * Expected cacheDuration value in miliseconds
+     */
     protected long expectedCacheDuration;
 
-    /** Expected validUntil value */
+    /**
+     * Expected validUntil value
+     */
     protected DateTime expectedValidUntil;
 
-    /** Expected error url */
+    /**
+     * Expected error url
+     */
     protected String expectedErrorURL;
 
-    /** expected value for WantAuthnRequestSigned attribute */
+    /**
+     * expected value for WantAuthnRequestSigned attribute
+     */
     protected XSBooleanValue expectedWantAuthnReqSigned;
 
     /**
@@ -100,7 +110,9 @@ public class IDPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .getWantAuthnRequestsSignedXSBoolean());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         IDPSSODescriptor descriptor = (IDPSSODescriptor) unmarshallElement(childElementsFile);
 
@@ -147,7 +159,9 @@ public class IDPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, IDPSSODescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         IDPSSODescriptor descriptor = (IDPSSODescriptor) buildXMLObject(qname);
@@ -211,13 +225,13 @@ public class IDPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
         }
         assertEquals(expectedChildElementsDOM, descriptor);
     }
-    
+
     /**
      * Test the proper behavior of the XSBooleanValue attributes.
      */
     public void testXSBooleanAttributes() {
         IDPSSODescriptor descriptor = (IDPSSODescriptor) buildXMLObject(IDPSSODescriptor.DEFAULT_ELEMENT_NAME);
-        
+
         descriptor.setWantAuthnRequestsSigned(Boolean.TRUE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.TRUE, descriptor.getWantAuthnRequestsSigned());
         assertNotNull("XSBooleanValue was null", descriptor.getWantAuthnRequestsSignedXSBoolean());
@@ -225,7 +239,7 @@ public class IDPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 descriptor.getWantAuthnRequestsSignedXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "true",
                 descriptor.getWantAuthnRequestsSignedXSBoolean().toString());
-        
+
         descriptor.setWantAuthnRequestsSigned(Boolean.FALSE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.FALSE, descriptor.getWantAuthnRequestsSigned());
         assertNotNull("XSBooleanValue was null", descriptor.getWantAuthnRequestsSignedXSBoolean());
@@ -233,7 +247,7 @@ public class IDPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 descriptor.getWantAuthnRequestsSignedXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "false",
                 descriptor.getWantAuthnRequestsSignedXSBoolean().toString());
-        
+
         descriptor.setWantAuthnRequestsSigned((Boolean) null);
         assertEquals("Unexpected default value for boolean attribute found", Boolean.FALSE, descriptor.getWantAuthnRequestsSigned());
         assertNull("XSBooleanValue was not null", descriptor.getWantAuthnRequestsSignedXSBoolean());

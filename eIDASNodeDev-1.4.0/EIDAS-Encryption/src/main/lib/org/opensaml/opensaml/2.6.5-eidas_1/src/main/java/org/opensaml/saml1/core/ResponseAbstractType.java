@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,62 +26,92 @@ import org.opensaml.common.SignableSAMLObject;
  */
 public interface ResponseAbstractType extends SignableSAMLObject {
 
-    /** Name for the attribute which defines InResponseTo. */
+    /**
+     * Name for the attribute which defines InResponseTo.
+     */
     public final static String INRESPONSETO_ATTRIB_NAME = "InResponseTo";
 
-    /** Name for the attribute which defines the Major Version (which must be "1". */
+    /**
+     * Name for the attribute which defines the Major Version (which must be "1".
+     */
     public final static String MAJORVERSION_ATTRIB_NAME = "MajorVersion";
 
-    /** Name for the attribute which defines the Minor Version. */
+    /**
+     * Name for the attribute which defines the Minor Version.
+     */
     public final static String MINORVERSION_ATTRIB_NAME = "MinorVersion";
 
-    /** Name for the attribute which defines the Issue Instant. */
+    /**
+     * Name for the attribute which defines the Issue Instant.
+     */
     public final static String ISSUEINSTANT_ATTRIB_NAME = "IssueInstant";
 
-    /** Name for the attribute which defines the Recipient. */
+    /**
+     * Name for the attribute which defines the Recipient.
+     */
     public final static String RECIPIENT_ATTRIB_NAME = "Recipient";
 
-    /** Name for the attribute which defines the Issue Instant. */
+    /**
+     * Name for the attribute which defines the Issue Instant.
+     */
     public final static String ID_ATTRIB_NAME = "ResponseID";
 
-   /** Return the InResponseTo (attribute). */
+    /**
+     * Return the InResponseTo (attribute).
+     */
     String getInResponseTo();
 
-    /** Set the InResponseTo (attribute). */
+    /**
+     * Set the InResponseTo (attribute).
+     */
     void setInResponseTo(String who);
 
-    /** Get the ID */
+    /**
+     * Get the ID
+     */
     public String getID();
-    
-    /** Set the ID */
+
+    /**
+     * Set the ID
+     */
     public void setID(String id);
-    
-    /** Return the Minor Version (attribute). */
+
+    /**
+     * Return the Minor Version (attribute).
+     */
     public int getMinorVersion();
-    
+
     /**
      * Gets the major version of this SAML message.
-     * 
+     *
      * @return the major version of this SAML message
      */
     public int getMajorVersion();
-    
+
     /**
      * Sets the SAML version for this message.
-     * 
+     *
      * @param version the SAML version for this message
      */
     public void setVersion(SAMLVersion version);
 
-    /** Return the Issue Instant (attribute). */
+    /**
+     * Return the Issue Instant (attribute).
+     */
     public DateTime getIssueInstant();
 
-    /** Set the Issue Instant (attribute). */
+    /**
+     * Set the Issue Instant (attribute).
+     */
     public void setIssueInstant(DateTime date);
 
-    /** Return the Recipient (attribute). */
+    /**
+     * Return the Recipient (attribute).
+     */
     public String getRecipient();
 
-    /** Set the Recipient (attribute). */
+    /**
+     * Set the Recipient (attribute).
+     */
     public void setRecipient(String recipient);
 }

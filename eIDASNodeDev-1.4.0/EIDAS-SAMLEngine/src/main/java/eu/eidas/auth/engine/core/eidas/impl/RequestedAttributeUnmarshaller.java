@@ -28,66 +28,64 @@ import eu.eidas.auth.engine.core.eidas.RequestedAttribute;
 
 /**
  * The Class RequestedAttributeUnmarshaller.
- *
  */
 public class RequestedAttributeUnmarshaller extends
-	AbstractSAMLObjectUnmarshaller {
+        AbstractSAMLObjectUnmarshaller {
 
     /**
      * Process child element.
      *
      * @param parentSAMLObject parent SAMLObject
-     * @param childSAMLObject child SAMLObject
-     *
+     * @param childSAMLObject  child SAMLObject
      * @throws UnmarshallingException error at unmarshall XML object
      */
     protected final void processChildElement(final XMLObject parentSAMLObject,
-	    final XMLObject childSAMLObject) throws UnmarshallingException {
+                                             final XMLObject childSAMLObject) throws UnmarshallingException {
 
-	final RequestedAttribute requestedAttr = (RequestedAttribute) parentSAMLObject;
+        final RequestedAttribute requestedAttr = (RequestedAttribute) parentSAMLObject;
 
-	final QName childQName = childSAMLObject.getElementQName();
-	if ("AttributeValue".equals(childQName.getLocalPart())
-		&& childQName.getNamespaceURI().equals(SAMLCore.EIDAS10_NS.getValue())) {
-	    requestedAttr.getAttributeValues().add(childSAMLObject);
-	} else {
-	    super.processChildElement(parentSAMLObject, childSAMLObject);
-	}
+        final QName childQName = childSAMLObject.getElementQName();
+        if ("AttributeValue".equals(childQName.getLocalPart())
+                && childQName.getNamespaceURI().equals(SAMLCore.EIDAS10_NS.getValue())) {
+            requestedAttr.getAttributeValues().add(childSAMLObject);
+        } else {
+            super.processChildElement(parentSAMLObject, childSAMLObject);
+        }
     }
 
     /**
      * Process attribute.
      *
      * @param samlObject the SAML object
-     * @param attribute the attribute
+     * @param attribute  the attribute
      * @throws UnmarshallingException the unmarshalling exception
      */
     protected final void processAttribute(final XMLObject samlObject,
-	    final Attr attribute) throws UnmarshallingException {
+                                          final Attr attribute) throws UnmarshallingException {
 
-	final RequestedAttribute requestedAttr = (RequestedAttribute) samlObject;
+        final RequestedAttribute requestedAttr = (RequestedAttribute) samlObject;
 
-	if (attribute.getLocalName()
-		.equals(RequestedAttribute.NAME_ATTRIB_NAME)) {
-	    requestedAttr.setName(attribute.getValue());
-	} else if (attribute.getLocalName().equals(
-		RequestedAttribute.NAME_FORMAT_ATTR)) {
-	    requestedAttr.setNameFormat(attribute.getValue());
-	} else if (attribute.getLocalName().equals(
-		RequestedAttribute.FRIENDLY_NAME_ATT)) {
-	    requestedAttr.setFriendlyName(attribute.getValue());
-	} else if (attribute.getLocalName().equals(
-		RequestedAttribute.IS_REQUIRED_ATTR)) {
-	    requestedAttr.setIsRequired(attribute
-		    .getValue());
+        if (attribute.getLocalName()
+                .equals(RequestedAttribute.NAME_ATTRIB_NAME)) {
+            requestedAttr.setName(attribute.getValue());
+        } else if (attribute.getLocalName().equals(
+                RequestedAttribute.NAME_FORMAT_ATTR)) {
+            requestedAttr.setNameFormat(attribute.getValue());
+        } else if (attribute.getLocalName().equals(
+                RequestedAttribute.FRIENDLY_NAME_ATT)) {
+            requestedAttr.setFriendlyName(attribute.getValue());
+        } else if (attribute.getLocalName().equals(
+                RequestedAttribute.IS_REQUIRED_ATTR)) {
+            requestedAttr.setIsRequired(attribute
+                    .getValue());
 
-	} else {
-	    final QName attribQName = XMLHelper.getNodeQName(attribute);
-	    if (attribute.isId()) {
-		requestedAttr.getUnknownAttributes().registerID(attribQName);
-	    }
-	    requestedAttr.getUnknownAttributes().put(attribQName,
-		    attribute.getValue());
-	}
+        } else {
+            final QName attribQName = XMLHelper.getNodeQName(attribute);
+            if (attribute.isId()) {
+                requestedAttr.getUnknownAttributes().registerID(attribQName);
+            }
+            requestedAttr.getUnknownAttributes().put(attribQName,
+                    attribute.getValue());
+        }
     }
 }

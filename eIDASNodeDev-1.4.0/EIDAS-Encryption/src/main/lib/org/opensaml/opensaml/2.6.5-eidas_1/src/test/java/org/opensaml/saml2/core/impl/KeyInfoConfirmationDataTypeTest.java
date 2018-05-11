@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,35 +34,53 @@ import org.opensaml.xml.signature.KeyInfo;
  */
 public class KeyInfoConfirmationDataTypeTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected NotBefore value. */
+    /**
+     * Expected NotBefore value.
+     */
     private DateTime expectedNotBefore;
 
-    /** Expected NotOnOrAfter value. */
+    /**
+     * Expected NotOnOrAfter value.
+     */
     private DateTime expectedNotOnOrAfter;
 
-    /** Expected Recipient value. */
+    /**
+     * Expected Recipient value.
+     */
     private String expectedRecipient;
 
-    /** Expected InResponseTo value. */
+    /**
+     * Expected InResponseTo value.
+     */
     private String expectedInResponseTo;
 
-    /** Expected Address value. */
+    /**
+     * Expected Address value.
+     */
     private String expectedAddress;
-    
-    /** Expected xsi:type value. */
+
+    /**
+     * Expected xsi:type value.
+     */
     private QName expectedType;
-    
-    /** Expected number of KeyInfo child elements. */
+
+    /**
+     * Expected number of KeyInfo child elements.
+     */
     private int expectedNumKeyInfoChildren;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public KeyInfoConfirmationDataTypeTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/KeyInfoConfirmationDataType.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/KeyInfoConfirmationDataTypeOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/KeyInfoConfirmationDataTypeChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedNotBefore = new DateTime(1984, 8, 26, 10, 01, 30, 43, ISOChronology.getInstanceUTC());
@@ -74,16 +92,20 @@ public class KeyInfoConfirmationDataTypeTest extends BaseSAMLObjectProviderTestC
         expectedNumKeyInfoChildren = 3;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         KeyInfoConfirmationDataType kicd = (KeyInfoConfirmationDataType) unmarshallElement(singleElementFile);
         assertNotNull("Object was null", kicd);
-        
+
         assertEquals("Object xsi:type was not the expected value", expectedType, kicd.getSchemaType());
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         KeyInfoConfirmationDataType kicd = (KeyInfoConfirmationDataType) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -103,25 +125,29 @@ public class KeyInfoConfirmationDataTypeTest extends BaseSAMLObjectProviderTestC
 
         String address = kicd.getAddress();
         assertEquals("Address was " + address + ", expected " + expectedAddress, expectedAddress, address);
-        
+
         assertEquals("Object xsi:type was not the expected value", expectedType, kicd.getSchemaType());
     }
-    
+
     public void testChildElementsUnmarshall() {
         KeyInfoConfirmationDataType kicd = (KeyInfoConfirmationDataType) unmarshallElement(childElementsFile);
-        
+
         assertEquals("Unexpected number of KeyInfo children", 3, kicd.getKeyInfos().size());
         assertEquals("Unexpected number of KeyInfo children", 3, kicd.getUnknownXMLObjects(KeyInfo.DEFAULT_ELEMENT_NAME).size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         KeyInfoConfirmationDataType kicd = buildXMLObject();
 
         assertEquals(expectedDOM, kicd);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         KeyInfoConfirmationDataType kicd = buildXMLObject();
 
@@ -133,24 +159,26 @@ public class KeyInfoConfirmationDataTypeTest extends BaseSAMLObjectProviderTestC
 
         assertEquals(expectedOptionalAttributesDOM, kicd);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         KeyInfoConfirmationDataType kicd = buildXMLObject();
-        
-        for (int i=0; i<expectedNumKeyInfoChildren; i++) {
+
+        for (int i = 0; i < expectedNumKeyInfoChildren; i++) {
             KeyInfo keyinfo = (KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME);
             kicd.getKeyInfos().add(keyinfo);
         }
-        
+
         assertEquals(expectedChildElementsDOM, kicd);
     }
-    
+
     public KeyInfoConfirmationDataType buildXMLObject() {
-        SAMLObjectBuilder builder = 
-            (SAMLObjectBuilder) Configuration.getBuilderFactory().getBuilder(KeyInfoConfirmationDataType.TYPE_NAME);
-        
-        if(builder == null){
+        SAMLObjectBuilder builder =
+                (SAMLObjectBuilder) Configuration.getBuilderFactory().getBuilder(KeyInfoConfirmationDataType.TYPE_NAME);
+
+        if (builder == null) {
             fail("Unable to retrieve builder for object QName " + KeyInfoConfirmationDataType.TYPE_NAME);
         }
         return (KeyInfoConfirmationDataType) builder.buildObject();

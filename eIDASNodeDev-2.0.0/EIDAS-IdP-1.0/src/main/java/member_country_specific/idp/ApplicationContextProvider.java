@@ -9,10 +9,12 @@ public class ApplicationContextProvider implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext ctx) {
         ApplicationContextProvider.setGlobalAppContext(ctx);
     }
-    public static ApplicationContext getApplicationContext(){
+
+    public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
-    private static void setGlobalAppContext(ApplicationContext ctx){
+
+    private static void setGlobalAppContext(ApplicationContext ctx) {
         applicationContext = ctx;
     }
 }

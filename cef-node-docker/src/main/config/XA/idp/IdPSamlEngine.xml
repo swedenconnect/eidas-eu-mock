@@ -36,7 +36,7 @@
                        value="saml-engine-eidas-attributes-TEMPLATE.xml" />
                        -->
             <parameter name="additionalAttributeRegistryFile"
-                       value="saml-engine-additional-attributes.xml" />
+                       value="saml-engine-additional-attributes.xml"/>
 
             <parameter name="metadataFetcherClass"
                        value="eu.eidas.idp.metadata.IDPCachingMetadataFetcher"/>

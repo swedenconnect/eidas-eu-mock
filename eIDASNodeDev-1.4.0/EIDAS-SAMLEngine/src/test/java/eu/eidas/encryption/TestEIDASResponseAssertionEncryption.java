@@ -87,8 +87,8 @@ public class TestEIDASResponseAssertionEncryption {
     @Test
     public void testEIDASAuthResponseAssertionEncryptDecrypt()
             throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException,
-                   UnrecoverableKeyException, EncryptionException, DecryptionException, UnmarshallException,
-                   MarshallException, InvalidKeySpecException, InvalidKeyException, SignatureException {
+            UnrecoverableKeyException, EncryptionException, DecryptionException, UnmarshallException,
+            MarshallException, InvalidKeySpecException, InvalidKeyException, SignatureException {
 
         log.info("CLASSPATH: " + System.getProperty("java.class.path"));
 
@@ -143,15 +143,15 @@ public class TestEIDASResponseAssertionEncryption {
         RSAPrivateCrtKey rsaPrivKey = (RSAPrivateCrtKey) privKey;
         RSAPrivateCrtKeyParameters caPrivateKey =
                 new RSAPrivateCrtKeyParameters(rsaPrivKey.getModulus(), rsaPrivKey.getPublicExponent(),
-                                               rsaPrivKey.getPrivateExponent(), rsaPrivKey.getPrimeP(),
-                                               rsaPrivKey.getPrimeQ(), rsaPrivKey.getPrimeExponentP(),
-                                               rsaPrivKey.getPrimeExponentQ(), rsaPrivKey.getCrtCoefficient());
+                        rsaPrivKey.getPrivateExponent(), rsaPrivKey.getPrimeP(),
+                        rsaPrivKey.getPrimeQ(), rsaPrivKey.getPrimeExponentP(),
+                        rsaPrivKey.getPrimeExponentQ(), rsaPrivKey.getCrtCoefficient());
 
         PrivateKey caPrivKey = KeyFactory.getInstance("RSA")
                 .generatePrivate(new RSAPrivateCrtKeySpec(caPrivateKey.getModulus(), caPrivateKey.getPublicExponent(),
-                                                          caPrivateKey.getExponent(), caPrivateKey.getP(),
-                                                          caPrivateKey.getQ(), caPrivateKey.getDP(),
-                                                          caPrivateKey.getDQ(), caPrivateKey.getQInv()));
+                        caPrivateKey.getExponent(), caPrivateKey.getP(),
+                        caPrivateKey.getQ(), caPrivateKey.getDP(),
+                        caPrivateKey.getDQ(), caPrivateKey.getQInv()));
 
         Signature sig = Signature.getInstance(sigOID.getId());
         sig.initSign(caPrivKey, sr);
@@ -196,9 +196,9 @@ public class TestEIDASResponseAssertionEncryption {
 
         DetailedDiff diffs = new DetailedDiff(
                 XMLUnit.compareXML(OpenSamlHelper.unmarshall(authResponse).getDOM().getOwnerDocument(),
-                                   OpenSamlHelper.unmarshall(decryptedSamlResponseMarashalled)
-                                           .getDOM()
-                                           .getOwnerDocument()));
+                        OpenSamlHelper.unmarshall(decryptedSamlResponseMarashalled)
+                                .getDOM()
+                                .getOwnerDocument()));
 
         Assert.assertEquals("XML Differences: " + diffs.toString(), 0, diffs.getAllDifferences().size());
 
@@ -207,8 +207,8 @@ public class TestEIDASResponseAssertionEncryption {
     @Test
     public void testEIDASAuthResponseAssertionEncryptDecryptWithLogHelper()
             throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException,
-                   UnrecoverableKeyException, EncryptionException, DecryptionException, UnmarshallException,
-                   MarshallException, InvalidKeySpecException, InvalidKeyException, SignatureException {
+            UnrecoverableKeyException, EncryptionException, DecryptionException, UnmarshallException,
+            MarshallException, InvalidKeySpecException, InvalidKeyException, SignatureException {
 
         log.info("CLASSPATH: " + System.getProperty("java.class.path"));
 
@@ -262,15 +262,15 @@ public class TestEIDASResponseAssertionEncryption {
         RSAPrivateCrtKey rsaPrivKey = (RSAPrivateCrtKey) privKey;
         RSAPrivateCrtKeyParameters caPrivateKey =
                 new RSAPrivateCrtKeyParameters(rsaPrivKey.getModulus(), rsaPrivKey.getPublicExponent(),
-                                               rsaPrivKey.getPrivateExponent(), rsaPrivKey.getPrimeP(),
-                                               rsaPrivKey.getPrimeQ(), rsaPrivKey.getPrimeExponentP(),
-                                               rsaPrivKey.getPrimeExponentQ(), rsaPrivKey.getCrtCoefficient());
+                        rsaPrivKey.getPrivateExponent(), rsaPrivKey.getPrimeP(),
+                        rsaPrivKey.getPrimeQ(), rsaPrivKey.getPrimeExponentP(),
+                        rsaPrivKey.getPrimeExponentQ(), rsaPrivKey.getCrtCoefficient());
 
         PrivateKey caPrivKey = KeyFactory.getInstance("RSA")
                 .generatePrivate(new RSAPrivateCrtKeySpec(caPrivateKey.getModulus(), caPrivateKey.getPublicExponent(),
-                                                          caPrivateKey.getExponent(), caPrivateKey.getP(),
-                                                          caPrivateKey.getQ(), caPrivateKey.getDP(),
-                                                          caPrivateKey.getDQ(), caPrivateKey.getQInv()));
+                        caPrivateKey.getExponent(), caPrivateKey.getP(),
+                        caPrivateKey.getQ(), caPrivateKey.getDP(),
+                        caPrivateKey.getDQ(), caPrivateKey.getQInv()));
 
         Signature sig = Signature.getInstance(sigOID.getId());
         sig.initSign(caPrivKey, sr);
@@ -309,9 +309,9 @@ public class TestEIDASResponseAssertionEncryption {
 
         DetailedDiff diffs = new DetailedDiff(
                 XMLUnit.compareXML(OpenSamlHelper.unmarshall(authResponse).getDOM().getOwnerDocument(),
-                                   OpenSamlHelper.unmarshall(decryptedSamlResponseMarashalled)
-                                           .getDOM()
-                                           .getOwnerDocument()));
+                        OpenSamlHelper.unmarshall(decryptedSamlResponseMarashalled)
+                                .getDOM()
+                                .getOwnerDocument()));
 
         Assert.assertEquals("XML Differences: " + diffs.toString(), 0, diffs.getAllDifferences().size());
     }

@@ -7,14 +7,14 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    
+
     <logger name="org.opensaml">
         <level value="WARN"/>
     </logger>
-    
+
     <root>
         <appender-ref ref="STDOUT"/>
         <level value="WARN"/>
     </root>
-    
+
 </configuration>

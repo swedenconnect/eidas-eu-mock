@@ -16,13 +16,25 @@ package eu.eidas.auth.engine.core;
 
 import javax.annotation.Nonnull;
 
-/** since 2.0.0 */
+/**
+ * since 2.0.0
+ */
 public interface SAMLExtensionFormat {
 
-    @Nonnull public String getAssertionNS();
-    @Nonnull public String getAssertionPrefix();
-    @Nonnull public String getName();
-    @Nonnull public String getProtocolNS();
-    @Nonnull public String getProtocolPrefix();
+    @Nonnull
+    public String getAssertionNS();
+
+    @Nonnull
+    public String getAssertionPrefix();
+
+    @Nonnull
+    public String getName();
+
+    @Nonnull
+    public String getProtocolNS();
+
+    @Nonnull
+    public String getProtocolPrefix();
+
     public String toString();
 }

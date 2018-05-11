@@ -56,11 +56,11 @@ public abstract class AbstractProtocolEncrypter extends AbstractProtocolCipher i
     protected AbstractProtocolEncrypter(@Nonnull EncryptionConfiguration encryptionConfiguration)
             throws SamlEngineConfigurationException {
         this(encryptionConfiguration.isCheckedValidityPeriod(),
-             encryptionConfiguration.isDisallowedSelfSignedCertificate(),
-             encryptionConfiguration.isResponseEncryptionMandatory(),
-             encryptionConfiguration.getEncryptionCertificates(), encryptionConfiguration.getDataEncryptionAlgorithm(),
-             encryptionConfiguration.getKeyEncryptionAlgorithm(), encryptionConfiguration.getJcaProviderName(),
-             encryptionConfiguration.getEncryptionAlgorithmWhiteList());
+                encryptionConfiguration.isDisallowedSelfSignedCertificate(),
+                encryptionConfiguration.isResponseEncryptionMandatory(),
+                encryptionConfiguration.getEncryptionCertificates(), encryptionConfiguration.getDataEncryptionAlgorithm(),
+                encryptionConfiguration.getKeyEncryptionAlgorithm(), encryptionConfiguration.getJcaProviderName(),
+                encryptionConfiguration.getEncryptionAlgorithmWhiteList());
     }
 
     protected AbstractProtocolEncrypter(boolean checkedValidityPeriod,
@@ -70,7 +70,7 @@ public abstract class AbstractProtocolEncrypter extends AbstractProtocolCipher i
                                         @Nonnull SAMLAuthnResponseEncrypter samlAuthnResponseEncrypter,
                                         @Nonnull ImmutableSet<String> encryptionAlgorithmWhiteList) {
         super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-              encryptionAlgorithmWhiteList);
+                encryptionAlgorithmWhiteList);
 
         Preconditions.checkNotEmpty(encryptionCertificates, "encryptionCertificates");
         Preconditions.checkNotNull(samlAuthnResponseEncrypter, "samlAuthnResponseEncrypter");
@@ -89,7 +89,7 @@ public abstract class AbstractProtocolEncrypter extends AbstractProtocolCipher i
                                         @Nullable String encryptionAlgorithmWhiteList)
             throws SamlEngineConfigurationException {
         super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-              encryptionAlgorithmWhiteList);
+                encryptionAlgorithmWhiteList);
 
         Preconditions.checkNotEmpty(encryptionCertificates, "encryptionCertificates");
         try {
@@ -115,7 +115,7 @@ public abstract class AbstractProtocolEncrypter extends AbstractProtocolCipher i
         } catch (Exception e) {
             LOG.error("AbstractSamlEngineEncryption init method: " + e, e);
             throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -125,7 +125,7 @@ public abstract class AbstractProtocolEncrypter extends AbstractProtocolCipher i
             throws EIDASSAMLEngineException {
         if (null == destinationCertificate) {
             throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorCode(),
-                                               EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
+                    EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
         }
 
         X509Credential credential = CertificateUtil.toCredential(destinationCertificate);

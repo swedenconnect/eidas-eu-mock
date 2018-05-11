@@ -48,6 +48,6 @@
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 ><#rt/>
 <#if parameters.nameValue??>
-<@s.property value="parameters.nameValue"/><#t/>
+    <@s.property value="parameters.nameValue"/><#t/>
 </#if>
 </textarea>

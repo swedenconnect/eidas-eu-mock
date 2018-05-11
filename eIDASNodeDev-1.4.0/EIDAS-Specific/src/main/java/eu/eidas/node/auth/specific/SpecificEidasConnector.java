@@ -167,9 +167,9 @@ public class SpecificEidasConnector implements IAUConnector {
 
             // Get the assertionConsumerUrl from metadata and validate
             String assertionConsumerUrl = MetadataUtil.getAssertionConsumerUrlFromMetadata(metadataFetcher,
-                                                                                           (MetadataSignerI) protocolEngine
-                                                                                                   .getSigner(),
-                                                                                           serviceProviderRequest);
+                    (MetadataSignerI) protocolEngine
+                            .getSigner(),
+                    serviceProviderRequest);
             NormalParameterValidator.paramName(EidasParameterKeys.SP_URL)
                     .paramValue(assertionConsumerUrl)
                     .eidasError(EidasErrorKey.SPROVIDER_SELECTOR_INVALID_SPREDIRECT)
@@ -234,13 +234,13 @@ public class SpecificEidasConnector implements IAUConnector {
 
                 responseMessage =
                         generateErrorAuthenticationResponse(spAuthenticationRequest, ipAddress, authenticationResponse,
-                                                            statusMessage);
+                                statusMessage);
             } else {
 
                 ProtocolEngineI protocolEngine = protocolEngineFactory.getProtocolEngine(getSamlEngine());
 
                 // Check if the specific SAML engine configuration is different than the default one injected by spring
-                boolean generateSignedAssertion = ((ProtocolEngine) protocolEngine).getCoreProperties()== null ? signAssertionParam :
+                boolean generateSignedAssertion = ((ProtocolEngine) protocolEngine).getCoreProperties() == null ? signAssertionParam :
                         Boolean.parseBoolean(((ProtocolEngine) protocolEngine).getCoreProperties().getProperty(EidasParameterKeys.RESPONSE_SIGN_ASSERTION.toString()));
 
                 responseMessage =
@@ -278,7 +278,7 @@ public class SpecificEidasConnector implements IAUConnector {
                     protocolEngine.generateResponseErrorMessage(request, samlResponseFail.build(), ipUserAddress);
 
             LOG.info("Generating ERROR SAML Response to request with ID {}, error is {} {}", inResponseTo,
-                     response.getSubStatusCode(), message);
+                    response.getSubStatusCode(), message);
 
             return responseMessage;
 
@@ -298,7 +298,7 @@ public class SpecificEidasConnector implements IAUConnector {
         if (null == authenticationRequest) {
             LOG.error("Invalid InResponseTo: \"" + inResponseTo + "\"");
             throw new InvalidSessionEIDASException(EidasErrors.get(EidasErrorKey.SESSION.errorCode()),
-                                                   EidasErrors.get(EidasErrorKey.SESSION.errorMessage()));
+                    EidasErrors.get(EidasErrorKey.SESSION.errorMessage()));
         }
         return authenticationRequest;
     }
@@ -309,9 +309,9 @@ public class SpecificEidasConnector implements IAUConnector {
 
         if ((isNotBlank(metadataSpType) && spType != null && !metadataSpType.equalsIgnoreCase(spType.toString()))
                 || (isBlank(metadataSpType) && spType == null)) {
-            LOG.error("BUSINESS EXCEPTION : SPType "+ spType +" is not supported ");
+            LOG.error("BUSINESS EXCEPTION : SPType " + spType + " is not supported ");
             throw new EidasNodeException(EidasErrors.get(EidasErrorKey.CONNECTOR_INVALID_SPTYPE.errorCode()),
-                                         EidasErrors.get(EidasErrorKey.CONNECTOR_INVALID_SPTYPE.errorMessage()));
+                    EidasErrors.get(EidasErrorKey.CONNECTOR_INVALID_SPTYPE.errorMessage()));
         }
     }
 }

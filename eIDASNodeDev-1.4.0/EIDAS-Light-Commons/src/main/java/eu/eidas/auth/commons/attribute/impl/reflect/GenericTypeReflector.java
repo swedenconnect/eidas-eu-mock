@@ -45,9 +45,9 @@ public final class GenericTypeReflector {
     /**
      * Maps type parameters in a type to their values.
      *
-     * @param toMapType Type possibly containing type arguments
+     * @param toMapType     Type possibly containing type arguments
      * @param typeAndParams must be either ParameterizedType, or (in case there are no type arguments, or it's a raw
-     * type) Class
+     *                      type) Class
      * @return toMapType, but with type parameters from typeAndParams replaced.
      */
     private static Type mapTypeParameters(Type toMapType, Type typeAndParams) {
@@ -141,7 +141,7 @@ public final class GenericTypeReflector {
 
             // the only supertype of an interface without superinterfaces is Object
             if (superClass == null && superInterfaces.length == 0 && clazz.isInterface()) {
-                return new Type[] {Object.class};
+                return new Type[]{Object.class};
             }
 
             Type[] result;

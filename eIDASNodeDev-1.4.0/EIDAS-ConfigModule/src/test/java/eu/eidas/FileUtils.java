@@ -17,19 +17,18 @@ public class FileUtils {
                     File source = new File(fSource, fList[i]);
                     copyFile(source, dest);
                 }
-            }
-            else {
+            } else {
                 copyOneFile(fSource, fDest);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             fail("Error initializing the test environment");
         }
     }
+
     private static void copyOneFile(File fSource, File fDest) throws IOException {
         FileInputStream fis = new FileInputStream(fSource);
         FileOutputStream fos = new FileOutputStream(fDest);
-        byte[] buffer = new byte[4*1024];
+        byte[] buffer = new byte[4 * 1024];
         int iBytesReads;
         while ((iBytesReads = fis.read(buffer)) >= 0) {
             fos.write(buffer, 0, iBytesReads);

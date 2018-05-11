@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -29,92 +29,109 @@ import org.opensaml.saml2.core.RequesterID;
 import org.opensaml.saml2.core.Scoping;
 
 /**
- *Test case for creating, marshalling, and unmarshalling
+ * Test case for creating, marshalling, and unmarshalling
  * {@link org.opensaml.saml2.core.impl.ScopingImpl}.
  */
 public class ScopingTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected ProxyCount*/
+
+    /**
+     * Expected ProxyCount
+     */
     private int expectedProxyCount;
 
-    /** Expected number of child RequesterID's */
+    /**
+     * Expected number of child RequesterID's
+     */
     private int expectedNumRequestIDs;
-    
+
     /**
      * Constructor
-     *
      */
     public ScopingTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Scoping.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/ScopingOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/ScopingChildElements.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedProxyCount = 5;
         expectedNumRequestIDs = 3;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, Scoping.DEFAULT_ELEMENT_LOCAL_NAME);
         Scoping scoping = (Scoping) buildXMLObject(qname);
-        
+
         assertEquals(expectedDOM, scoping);
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, Scoping.DEFAULT_ELEMENT_LOCAL_NAME);
         Scoping scoping = (Scoping) buildXMLObject(qname);
-        
+
         scoping.setProxyCount(new Integer(expectedProxyCount));
-        
+
         assertEquals(expectedOptionalAttributesDOM, scoping);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, Scoping.DEFAULT_ELEMENT_LOCAL_NAME);
         Scoping scoping = (Scoping) buildXMLObject(qname);
-        
+
         QName idpListQName = new QName(SAMLConstants.SAML20P_NS, IDPList.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         scoping.setIDPList((IDPList) buildXMLObject(idpListQName));
-        
+
         QName requesterIDQName = new QName(SAMLConstants.SAML20P_NS, RequesterID.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
-        for (int i = 0; i<expectedNumRequestIDs; i++){
+        for (int i = 0; i < expectedNumRequestIDs; i++) {
             scoping.getRequesterIDs().add((RequesterID) buildXMLObject(requesterIDQName));
         }
-        
+
         assertEquals(expectedChildElementsDOM, scoping);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Scoping scoping = (Scoping) unmarshallElement(singleElementFile);
-        
+
         assertNull("ProxyCount", scoping.getProxyCount());
         assertNull("IDPList", scoping.getIDPList());
-        assertEquals("RequesterID count", 0 , scoping.getRequesterIDs().size());
+        assertEquals("RequesterID count", 0, scoping.getRequesterIDs().size());
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Scoping scoping = (Scoping) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertNotNull("ProxyCount", scoping.getProxyCount());
         assertNull("IDPList", scoping.getIDPList());
         assertEquals("RequesterID count", 0, scoping.getRequesterIDs().size());
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Scoping scoping = (Scoping) unmarshallElement(childElementsFile);
-        
+
         assertNull("ProxyCount", scoping.getProxyCount());
         assertNotNull("IDPList", scoping.getIDPList());
         assertEquals("RequesterID count", expectedNumRequestIDs, scoping.getRequesterIDs().size());

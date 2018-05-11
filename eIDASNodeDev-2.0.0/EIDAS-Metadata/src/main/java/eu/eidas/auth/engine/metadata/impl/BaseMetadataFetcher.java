@@ -223,7 +223,7 @@ public abstract class BaseMetadataFetcher implements MetadataFetcherI {
 
     /**
      * Method that sets external configuration cipher suites in the TLSSocketFactoryBuilder.
-     *
+     * <p>
      * If no cipher suites are set from external configuration does not anything so the default will be used.
      *
      * @param tlsSocketFactoryBuilder the TLSSocketFactoryBuilder

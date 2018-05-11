@@ -30,10 +30,14 @@
     <entry key="encryptionActivation">encryptionConf.xml</entry>
 
     <!--  If not present then no encryption will be applied on response -->
-    <entry key="responseToPointIssuer.BE">CN=local-demo-cert, OU=DIGIT, O=European Comission, L=Brussels, ST=Belgium,C=BE</entry>
+    <entry key="responseToPointIssuer.BE">CN=local-demo-cert, OU=DIGIT, O=European Comission, L=Brussels,
+        ST=Belgium,C=BE
+    </entry>
     <entry key="responseToPointSerialNumber.BE">54C8F779</entry>
 
     <!--  If not present then no decryption will be applied on response -->
-    <entry key="responseDecryptionIssuer">CN=local-demo-cert, OU=DIGIT, O=European Comission, L=Brussels, ST=Belgium, C=BE</entry>
+    <entry key="responseDecryptionIssuer">CN=local-demo-cert, OU=DIGIT, O=European Comission, L=Brussels, ST=Belgium,
+        C=BE
+    </entry>
     <entry key="serialNumber">54C8F779</entry>
 </properties>

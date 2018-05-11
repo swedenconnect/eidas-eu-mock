@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 
@@ -25,32 +25,28 @@ package org.apache.velocity.test;
  * like java.lang.Math directly into the context in order to
  * use their methods.
  */
-public class StaticUtilityMethodsTestCase extends BaseTestCase
-{
-    public StaticUtilityMethodsTestCase(String name)
-    {
-       super(name);
+public class StaticUtilityMethodsTestCase extends BaseTestCase {
+    public StaticUtilityMethodsTestCase(String name) {
+        super(name);
     }
 
-    public void testMath()
-    {
+    public void testMath() {
         context.put("Math", Math.class);
         assertEvalEquals("java.lang.Math", "$Math.name");
         assertEvalEquals("3.0", "$Math.ceil(2.5)");
     }
 
-    public void testFoo()
-    {
+    public void testFoo() {
         context.put("Foo", Foo.class);
         assertEvalEquals("test", "$Foo.foo('test')");
     }
 
 
-    public static class Foo
-    {
-        private Foo() {}
-        public static String foo(String s)
-        {
+    public static class Foo {
+        private Foo() {
+        }
+
+        public static String foo(String s) {
             return s == null ? "foo" : s;
         }
     }

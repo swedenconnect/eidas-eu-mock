@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,30 +30,36 @@ import org.opensaml.xml.util.XMLHelper;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 
-/** Marshaller for {@link ResourceContentType} objects. */
+/**
+ * Marshaller for {@link ResourceContentType} objects.
+ */
 public class ResourceContentTypeMarshaller extends AbstractXACMLObjectMarshaller {
-    
-    /** Constructor. */
+
+    /**
+     * Constructor.
+     */
     public ResourceContentTypeMarshaller() {
         super();
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param targetNamespaceURI the namespace URI of either the schema type QName or element QName of the elements this
-     *            marshaller operates on
-     * @param targetLocalName the local name of either the schema type QName or element QName of the elements this
-     *            marshaller operates on
+     *                           marshaller operates on
+     * @param targetLocalName    the local name of either the schema type QName or element QName of the elements this
+     *                           marshaller operates on
      */
     protected ResourceContentTypeMarshaller(String targetNamespaceURI, String targetLocalName) {
         super(targetNamespaceURI, targetLocalName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        ResourceContentType resourceContent  = (ResourceContentType)xmlObject;
-        
+        ResourceContentType resourceContent = (ResourceContentType) xmlObject;
+
         Attr attribute;
         for (Entry<QName, String> entry : resourceContent.getUnknownAttributes().entrySet()) {
             attribute = XMLHelper.constructAttribute(domElement.getOwnerDocument(), entry.getKey());
@@ -66,11 +72,13 @@ public class ResourceContentTypeMarshaller extends AbstractXACMLObjectMarshaller
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
         ResourceContentType resourceContent = (ResourceContentType) xmlObject;
-        
-        if(resourceContent.getValue() != null){
+
+        if (resourceContent.getValue() != null) {
             XMLHelper.appendTextContent(domElement, resourceContent.getValue());
         }
     }

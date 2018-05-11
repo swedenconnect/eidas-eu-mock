@@ -16,37 +16,35 @@ package org.apache.velocity.app.event.implement;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * Escape all XML entities.
- * @see <a href="http://jakarta.apache.org/commons/lang/api/org/apache/commons/lang/StringEscapeUtils.html#escapeSql(java.lang.String)">StringEscapeUtils</a>
+ *
  * @author wglass
+ * @see <a href="http://jakarta.apache.org/commons/lang/api/org/apache/commons/lang/StringEscapeUtils.html#escapeSql(java.lang.String)">StringEscapeUtils</a>
  * @since 1.5
  */
-public class EscapeXmlReference extends EscapeReference
-{
+public class EscapeXmlReference extends EscapeReference {
 
     /**
      * Escape all XML entities.
-     * 
+     *
      * @param text
      * @return An escaped String.
      * @see <a href="http://jakarta.apache.org/commons/lang/api/org/apache/commons/lang/StringEscapeUtils.html#escapeSql(java.lang.String)">StringEscapeUtils</a>
      */
-    protected String escape(Object text)
-    {
+    protected String escape(Object text) {
         return StringEscapeUtils.escapeXml(text.toString());
     }
 
     /**
      * @return attribute "eventhandler.escape.xml.match"
      */
-    protected String getMatchAttribute()
-    {
+    protected String getMatchAttribute() {
         return "eventhandler.escape.xml.match";
     }
 

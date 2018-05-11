@@ -41,7 +41,7 @@ public abstract class KeyStoreSamlEngineEncryption extends AbstractSamlEngineEnc
         String issuer = EncryptionKey.RESPONSE_DECRYPTION_ISSUER.getAsString(properties);
         decryptionCertificate =
                 (X509Certificate) KeyStoreContent.getMatchingPrivateKeyEntry(getDecryptionKeyAndCertificates(),
-                                                                             serialNumber, issuer).getCertificate();
+                        serialNumber, issuer).getCertificate();
     }
 
     @Nonnull

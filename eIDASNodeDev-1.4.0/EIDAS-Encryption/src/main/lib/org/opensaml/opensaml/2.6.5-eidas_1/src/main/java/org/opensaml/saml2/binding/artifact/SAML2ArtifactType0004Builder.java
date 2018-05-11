@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -38,15 +38,21 @@ import org.slf4j.LoggerFactory;
  */
 public class SAML2ArtifactType0004Builder implements SAML2ArtifactBuilder<SAML2ArtifactType0004> {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(SAML2ArtifactType0004Builder.class);
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAML2ArtifactType0004 buildArtifact(byte[] artifact) {
         return SAML2ArtifactType0004.parseArtifact(artifact);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAML2ArtifactType0004 buildArtifact(SAMLMessageContext<SAMLObject, SAMLObject, NameID> requestContext) {
         try {
             IndexedEndpoint acsEndpoint = (IndexedEndpoint) getAcsEndpoint(requestContext);
@@ -76,9 +82,8 @@ public class SAML2ArtifactType0004Builder implements SAML2ArtifactBuilder<SAML2A
 
     /**
      * Gets the source location used to for the artifacts created by this encoder.
-     * 
+     *
      * @param requestContext current request context
-     * 
      * @return source location used to for the artifacts created by this encoder
      */
     protected Endpoint getAcsEndpoint(SAMLMessageContext<SAMLObject, SAMLObject, NameID> requestContext) {

@@ -46,114 +46,115 @@ import eu.eidas.specificcommunication.tx.CommunicationCache;
  */
 public class SpecificConnectorCommunicationServiceImpl implements SpecificCommunicationService {
 
-	private static LightJAXBCodec codec;
-	static {
-		try {
-			codec = new LightJAXBCodec(JAXBContext.newInstance(LightRequest.class, LightResponse.class,
-					ImmutableAttributeMap.class, AttributeDefinition.class));
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-	}
+    private static LightJAXBCodec codec;
 
-	private String lightTokenRequestIssuerName;
+    static {
+        try {
+            codec = new LightJAXBCodec(JAXBContext.newInstance(LightRequest.class, LightResponse.class,
+                    ImmutableAttributeMap.class, AttributeDefinition.class));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
 
-	private String lightTokenRequestSecret;
+    private String lightTokenRequestIssuerName;
 
-	private String lightTokenRequestAlgorithm;
+    private String lightTokenRequestSecret;
 
-	private String lightTokenResponseIssuerName;
+    private String lightTokenRequestAlgorithm;
 
-	private String lightTokenResponseSecret;
+    private String lightTokenResponseIssuerName;
 
-	private String lightTokenResponseAlgorithm;
+    private String lightTokenResponseSecret;
 
-	SpecificConnectorCommunicationServiceImpl(final String lightTokenRequestIssuerName,
-			final String lightTokenRequestSecret, final String lightTokenRequestAlgorithm,
-			final String lightTokenResponseIssuerName, final String lightTokenResponseSecret,
-			final String lightTokenResponseAlgorithm) {
+    private String lightTokenResponseAlgorithm;
 
-		this.lightTokenRequestIssuerName = lightTokenRequestIssuerName;
-		this.lightTokenRequestSecret = lightTokenRequestSecret;
-		this.lightTokenRequestAlgorithm = lightTokenRequestAlgorithm;
-		this.lightTokenResponseIssuerName = lightTokenResponseIssuerName;
-		this.lightTokenResponseSecret = lightTokenResponseSecret;
-		this.lightTokenResponseAlgorithm = lightTokenResponseAlgorithm;
-	}
+    SpecificConnectorCommunicationServiceImpl(final String lightTokenRequestIssuerName,
+                                              final String lightTokenRequestSecret, final String lightTokenRequestAlgorithm,
+                                              final String lightTokenResponseIssuerName, final String lightTokenResponseSecret,
+                                              final String lightTokenResponseAlgorithm) {
 
-	@Override
-	public BinaryLightToken putRequest(final ILightRequest iLightRequest) throws SpecificCommunicationException {
-		final BinaryLightToken binaryLightToken = BinaryLightTokenHelper.createBinaryLightToken(
-				getLightTokenRequestIssuerName(), getLightTokenRequestSecret(), getLightTokenRequestAlgorithm());
-		final String tokenId = binaryLightToken.getToken().getId();
-		final CommunicationCache specificNodeConnectorRequestProviderMap = getRequestCommunicationCache();
-		specificNodeConnectorRequestProviderMap.put(tokenId, codec.marshall(iLightRequest));
-		return binaryLightToken;
-	}
+        this.lightTokenRequestIssuerName = lightTokenRequestIssuerName;
+        this.lightTokenRequestSecret = lightTokenRequestSecret;
+        this.lightTokenRequestAlgorithm = lightTokenRequestAlgorithm;
+        this.lightTokenResponseIssuerName = lightTokenResponseIssuerName;
+        this.lightTokenResponseSecret = lightTokenResponseSecret;
+        this.lightTokenResponseAlgorithm = lightTokenResponseAlgorithm;
+    }
 
-	@Override
-	public ILightRequest getAndRemoveRequest(final String tokenBase64,
-			final Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
-		final String binaryLightTokenId = BinaryLightTokenHelper.getBinaryLightTokenId(tokenBase64,
-				getLightTokenRequestSecret(), getLightTokenRequestAlgorithm());
-		final CommunicationCache specificNodeConnectorRequestProviderMap = getRequestCommunicationCache();
-		ILightRequest req = codec.unmarshallRequest(specificNodeConnectorRequestProviderMap.remove(binaryLightTokenId),	registry);
-		return req;
-	}
+    @Override
+    public BinaryLightToken putRequest(final ILightRequest iLightRequest) throws SpecificCommunicationException {
+        final BinaryLightToken binaryLightToken = BinaryLightTokenHelper.createBinaryLightToken(
+                getLightTokenRequestIssuerName(), getLightTokenRequestSecret(), getLightTokenRequestAlgorithm());
+        final String tokenId = binaryLightToken.getToken().getId();
+        final CommunicationCache specificNodeConnectorRequestProviderMap = getRequestCommunicationCache();
+        specificNodeConnectorRequestProviderMap.put(tokenId, codec.marshall(iLightRequest));
+        return binaryLightToken;
+    }
 
-	private CommunicationCache getRequestCommunicationCache() {
-		return (CommunicationCache) SpecificCommunicationApplicationContextProvider
-				.getApplicationContext()
-				.getBean(SpecificCommunicationDefinitionBeanNames.SPECIFIC_NODE_CONNECTOR_MAP.toString());
-	}
+    @Override
+    public ILightRequest getAndRemoveRequest(final String tokenBase64,
+                                             final Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
+        final String binaryLightTokenId = BinaryLightTokenHelper.getBinaryLightTokenId(tokenBase64,
+                getLightTokenRequestSecret(), getLightTokenRequestAlgorithm());
+        final CommunicationCache specificNodeConnectorRequestProviderMap = getRequestCommunicationCache();
+        ILightRequest req = codec.unmarshallRequest(specificNodeConnectorRequestProviderMap.remove(binaryLightTokenId), registry);
+        return req;
+    }
 
-	@Override
-	public BinaryLightToken putResponse(final ILightResponse iLightResponse) throws SpecificCommunicationException {
-		final BinaryLightToken binaryLightToken = BinaryLightTokenHelper.createBinaryLightToken(
-				getLightTokenResponseIssuerName(), getLightTokenResponseSecret(), getLightTokenResponseAlgorithm());
-		final String tokenId = binaryLightToken.getToken().getId();
-		final CommunicationCache nodeSpecificConnectorRequestProviderMap = getResponseCommunicationCache();
-		nodeSpecificConnectorRequestProviderMap.put(tokenId, codec.marshall(iLightResponse));
-		return binaryLightToken;
-	}
+    private CommunicationCache getRequestCommunicationCache() {
+        return (CommunicationCache) SpecificCommunicationApplicationContextProvider
+                .getApplicationContext()
+                .getBean(SpecificCommunicationDefinitionBeanNames.SPECIFIC_NODE_CONNECTOR_MAP.toString());
+    }
 
-	@Override
-	public ILightResponse getAndRemoveResponse(final String tokenBase64,
-			final Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
-		final String binaryLightTokenId = BinaryLightTokenHelper.getBinaryLightTokenId(tokenBase64,
-				getLightTokenResponseSecret(), getLightTokenResponseAlgorithm());
-		final CommunicationCache nodeSpecificConnectorRequestProviderMap = getResponseCommunicationCache();
-		ILightResponse resp = codec.unmarshallResponse(nodeSpecificConnectorRequestProviderMap.remove(binaryLightTokenId), registry);
-		return resp;
-	}
+    @Override
+    public BinaryLightToken putResponse(final ILightResponse iLightResponse) throws SpecificCommunicationException {
+        final BinaryLightToken binaryLightToken = BinaryLightTokenHelper.createBinaryLightToken(
+                getLightTokenResponseIssuerName(), getLightTokenResponseSecret(), getLightTokenResponseAlgorithm());
+        final String tokenId = binaryLightToken.getToken().getId();
+        final CommunicationCache nodeSpecificConnectorRequestProviderMap = getResponseCommunicationCache();
+        nodeSpecificConnectorRequestProviderMap.put(tokenId, codec.marshall(iLightResponse));
+        return binaryLightToken;
+    }
 
-	private CommunicationCache getResponseCommunicationCache() {
-		return (CommunicationCache) SpecificCommunicationApplicationContextProvider
-				.getApplicationContext()
-				.getBean(SpecificCommunicationDefinitionBeanNames.NODE_SPECIFIC_CONNECTOR_MAP.toString());
-	}
+    @Override
+    public ILightResponse getAndRemoveResponse(final String tokenBase64,
+                                               final Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
+        final String binaryLightTokenId = BinaryLightTokenHelper.getBinaryLightTokenId(tokenBase64,
+                getLightTokenResponseSecret(), getLightTokenResponseAlgorithm());
+        final CommunicationCache nodeSpecificConnectorRequestProviderMap = getResponseCommunicationCache();
+        ILightResponse resp = codec.unmarshallResponse(nodeSpecificConnectorRequestProviderMap.remove(binaryLightTokenId), registry);
+        return resp;
+    }
 
-	private String getLightTokenRequestIssuerName() {
-		return lightTokenRequestIssuerName;
-	}
+    private CommunicationCache getResponseCommunicationCache() {
+        return (CommunicationCache) SpecificCommunicationApplicationContextProvider
+                .getApplicationContext()
+                .getBean(SpecificCommunicationDefinitionBeanNames.NODE_SPECIFIC_CONNECTOR_MAP.toString());
+    }
 
-	private String getLightTokenRequestSecret() {
-		return lightTokenRequestSecret;
-	}
+    private String getLightTokenRequestIssuerName() {
+        return lightTokenRequestIssuerName;
+    }
 
-	private String getLightTokenRequestAlgorithm() {
-		return lightTokenRequestAlgorithm;
-	}
+    private String getLightTokenRequestSecret() {
+        return lightTokenRequestSecret;
+    }
 
-	private String getLightTokenResponseIssuerName() {
-		return lightTokenResponseIssuerName;
-	}
+    private String getLightTokenRequestAlgorithm() {
+        return lightTokenRequestAlgorithm;
+    }
 
-	private String getLightTokenResponseSecret() {
-		return lightTokenResponseSecret;
-	}
+    private String getLightTokenResponseIssuerName() {
+        return lightTokenResponseIssuerName;
+    }
 
-	private String getLightTokenResponseAlgorithm() {
-		return lightTokenResponseAlgorithm;
-	}
+    private String getLightTokenResponseSecret() {
+        return lightTokenResponseSecret;
+    }
+
+    private String getLightTokenResponseAlgorithm() {
+        return lightTokenResponseAlgorithm;
+    }
 }

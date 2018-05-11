@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -32,20 +32,21 @@ public class GetCompleteSchemaValidator implements Validator<GetComplete> {
 
     /**
      * Constructor
-     *
      */
     public GetCompleteSchemaValidator() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(GetComplete gc) throws ValidationException {
         validateGetComplete(gc);
     }
 
     /**
      * Validate the GetComplete element content.
-     * 
+     *
      * @param gc
      * @throws ValidationException
      */
@@ -54,5 +55,5 @@ public class GetCompleteSchemaValidator implements Validator<GetComplete> {
             throw new ValidationException("GetComplete element must be non-empty");
         }
     }
-    
+
 }

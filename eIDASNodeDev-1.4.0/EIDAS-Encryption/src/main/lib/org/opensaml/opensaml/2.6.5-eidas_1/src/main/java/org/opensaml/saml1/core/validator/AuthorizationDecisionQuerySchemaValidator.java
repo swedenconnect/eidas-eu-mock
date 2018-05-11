@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.validator;
@@ -30,7 +30,9 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AuthorizationDecisionQuerySchemaValidator extends SubjectQuerySchemaValidator<AuthorizationDecisionQuery> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AuthorizationDecisionQuery query) throws ValidationException {
         super.validate(query);
         validateActions(query);
@@ -41,7 +43,7 @@ public class AuthorizationDecisionQuerySchemaValidator extends SubjectQuerySchem
 
     /**
      * Validates that the Resource attribute is present and valid
-     * 
+     *
      * @param query
      * @throws ValidationException
      */
@@ -53,7 +55,7 @@ public class AuthorizationDecisionQuerySchemaValidator extends SubjectQuerySchem
 
     /**
      * Validates that there is at least one Action Element present.
-     * 
+     *
      * @param query
      * @throws ValidationException
      */

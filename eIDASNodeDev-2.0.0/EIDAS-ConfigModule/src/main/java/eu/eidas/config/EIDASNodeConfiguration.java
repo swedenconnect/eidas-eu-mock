@@ -34,18 +34,21 @@ public abstract class EIDASNodeConfiguration {
     protected SamlEngineConfiguration samlEngineConfiguration;
     protected EIDASNodeMetaconfigProvider metadataProvider;
     protected MetadataRepository samlMetadataRepository;
+
     public abstract void load();
+
     public abstract void save();
 
     /**
-     *
      * @return name-value pairs
      */
     public abstract Properties getEidasProperties();
-    public Map<String, EIDASNodeParameter> getNodeParameters(){
+
+    public Map<String, EIDASNodeParameter> getNodeParameters() {
         return parameters;
     }
-    public List<EIDASNodeCountry> getEidasCountries(){
+
+    public List<EIDASNodeCountry> getEidasCountries() {
         return countries;
     }
 

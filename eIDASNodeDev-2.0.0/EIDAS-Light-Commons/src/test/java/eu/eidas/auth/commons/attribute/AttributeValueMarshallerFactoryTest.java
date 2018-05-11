@@ -94,7 +94,7 @@ public final class AttributeValueMarshallerFactoryTest {
 
     }
 
-    static class U<T2,T3,T1> extends Q<T1> implements OIntf<T2>, CIntf<T3> {
+    static class U<T2, T3, T1> extends Q<T1> implements OIntf<T2>, CIntf<T3> {
 
     }
 

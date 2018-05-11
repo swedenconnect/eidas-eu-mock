@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,12 +25,14 @@ import org.opensaml.common.binding.artifact.AbstractSAMLArtifact;
  */
 public abstract class AbstractSAML2Artifact extends AbstractSAMLArtifact {
 
-    /** 2 byte artifact endpoint index. */
+    /**
+     * 2 byte artifact endpoint index.
+     */
     private byte[] endpointIndex;
 
     /**
      * Constructor.
-     * 
+     *
      * @param artifactType artifact type code
      */
     protected AbstractSAML2Artifact(byte[] artifactType) {
@@ -39,12 +41,11 @@ public abstract class AbstractSAML2Artifact extends AbstractSAMLArtifact {
 
     /**
      * Constructor.
-     * 
+     *
      * @param artifactType artifact type code
-     * @param index 2 byte endpoint index of the artifact
-     * 
+     * @param index        2 byte endpoint index of the artifact
      * @throws IllegalArgumentException thrown if the endpoint index, source ID, or message handle arrays are not of the
-     *             right size
+     *                                  right size
      */
     public AbstractSAML2Artifact(byte[] artifactType, byte[] index) {
         super(artifactType);
@@ -53,7 +54,7 @@ public abstract class AbstractSAML2Artifact extends AbstractSAMLArtifact {
 
     /**
      * Gets the bytes for the artifact.
-     * 
+     *
      * @return the bytes for the artifact
      */
     public byte[] getArtifactBytes() {
@@ -69,7 +70,7 @@ public abstract class AbstractSAML2Artifact extends AbstractSAMLArtifact {
 
     /**
      * Gets the 2 byte endpoint index for this artifact.
-     * 
+     *
      * @return 2 byte endpoint index for this artifact
      */
     public byte[] getEndpointIndex() {
@@ -78,9 +79,8 @@ public abstract class AbstractSAML2Artifact extends AbstractSAMLArtifact {
 
     /**
      * Sets the 2 byte endpoint index for this artifact.
-     * 
+     *
      * @param newIndex 2 byte endpoint index for this artifact
-     * 
      * @throws IllegalArgumentException thrown if the given index is not 2 bytes
      */
     public void setEndpointIndex(byte[] newIndex) {

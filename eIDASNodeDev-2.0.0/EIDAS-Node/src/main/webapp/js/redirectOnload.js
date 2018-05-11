@@ -2,4 +2,5 @@
 function submitRedirectFormAction() {
     document.getElementsByName('redirectForm')[0].submit();
 }
+
 window.addEventListener('load', submitRedirectFormAction());

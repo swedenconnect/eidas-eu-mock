@@ -201,7 +201,7 @@ public abstract class AbstractLightResponse implements ILightResponse, Serializa
          * T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         private void internalValidate() throws IllegalArgumentException {
             Preconditions.checkNotBlank(id, "id");
@@ -222,7 +222,7 @@ public abstract class AbstractLightResponse implements ILightResponse, Serializa
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         protected abstract void validate() throws IllegalArgumentException;
 
@@ -292,7 +292,8 @@ public abstract class AbstractLightResponse implements ILightResponse, Serializa
     /**
      * @serial
      */
-    @Nonnull @XmlElement
+    @Nonnull
+    @XmlElement
     private final ResponseStatus status;
 
     /**
@@ -423,7 +424,7 @@ public abstract class AbstractLightResponse implements ILightResponse, Serializa
             return false;
         }
         if (levelOfAssurance != null ? !levelOfAssurance.equals(that.levelOfAssurance)
-                                     : that.levelOfAssurance != null) {
+                : that.levelOfAssurance != null) {
             return false;
         }
         return attributes.equals(that.attributes);

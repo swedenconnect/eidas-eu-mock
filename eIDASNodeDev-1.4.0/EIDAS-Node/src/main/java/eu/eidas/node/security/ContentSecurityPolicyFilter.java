@@ -13,20 +13,20 @@ import java.io.IOException;
 
 /**
  * This filter set CSP policies using all HTTP headers defined into W3C specification.<br/>
- *
+ * <p>
  * Purposes :
- *
+ * <p>
  * XSS countermeasures :
- *   1. Content Security Policy (CSP)
- *      Sample generated : X-Content-Security-Policy:default-src 'none'; object-src 'self'; style-src 'self'; img-src 'self'; xhr-src 'self'; connect-src 'self';script-src 'self'; report-uri http://node:8080/Node/cspReportHandler
- *    - X-Content-Security-Policy for backward compatibility
- *    - X-WebKit-CSP for backward compatibility
- *    - Content-Security-Policy
- *    - Report handler logging all the CSP violations
- *   2. X-XSS-Protection header
- *   3. X-Content-Type-Options: nosniff
+ * 1. Content Security Policy (CSP)
+ * Sample generated : X-Content-Security-Policy:default-src 'none'; object-src 'self'; style-src 'self'; img-src 'self'; xhr-src 'self'; connect-src 'self';script-src 'self'; report-uri http://node:8080/Node/cspReportHandler
+ * - X-Content-Security-Policy for backward compatibility
+ * - X-WebKit-CSP for backward compatibility
+ * - Content-Security-Policy
+ * - Report handler logging all the CSP violations
+ * 2. X-XSS-Protection header
+ * 3. X-Content-Type-Options: nosniff
  * Click-jacking countermeasures :
- *  X-Frame-Options header
+ * X-Frame-Options header
  *
  * @author vanegdi
  * @since 1.2.0
@@ -59,11 +59,11 @@ public class ContentSecurityPolicyFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain fchain) throws IOException, ServletException {
         try {
             HttpServletRequest httpRequest = (HttpServletRequest) request;
-            ExtendedServletResponseWrapper httpResponse = new ExtendedServletResponseWrapper((HttpServletResponse)response);
+            ExtendedServletResponseWrapper httpResponse = new ExtendedServletResponseWrapper((HttpServletResponse) response);
             LOGGER.trace("ContentSecurityPolicy FILTER for " + httpRequest.getServletPath());
             securityResponseHeaderHelper.populateResponseHeader(httpRequest, httpResponse);
             fchain.doFilter(httpRequest, httpResponse);
-        }catch(Exception e){
+        } catch (Exception e) {
             LOGGER.info("ERROR : ", e.getMessage());
             LOGGER.debug("ERROR : ", e);
             throw new ServletException(e);

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,28 +27,35 @@ import org.opensaml.xml.util.DatatypeHelper;
  */
 public class SAML1ArtifactType0002 extends AbstractSAML1Artifact {
 
-    /** Artifact type code (0x0002). */
-    public static final byte[] TYPE_CODE = { 0, 2 };
+    /**
+     * Artifact type code (0x0002).
+     */
+    public static final byte[] TYPE_CODE = {0, 2};
 
-    /** 20 byte assertion handle. */
+    /**
+     * 20 byte assertion handle.
+     */
     private byte[] assertionHandle;
 
-    /** Artifact source location component. */
+    /**
+     * Artifact source location component.
+     */
     private String sourceLocation;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public SAML1ArtifactType0002() {
         super(TYPE_CODE);
     }
 
     /**
      * Constructor.
-     * 
-     * @param handle 20 byte assertion handle artifact component
+     *
+     * @param handle   20 byte assertion handle artifact component
      * @param location source location artifact component
-     * 
      * @throws IllegalArgumentException thrown if the given assertion handle is not 20 bytes or the source location is
-     *             null or empty
+     *                                  null or empty
      */
     public SAML1ArtifactType0002(byte[] handle, String location) {
         super(TYPE_CODE);
@@ -59,14 +66,13 @@ public class SAML1ArtifactType0002 extends AbstractSAML1Artifact {
 
     /**
      * Constructs a SAML 1 artifact from its byte representation.
-     * 
+     *
      * @param artifact the byte array representing the artifact
      * @return the artifact parsed from the byte representation
-     * 
      * @throws IllegalArgumentException thrown if the artifact type is not 0x0002
      */
     public static SAML1ArtifactType0002 parseArtifact(byte[] artifact) {
-        byte[] typeCode = { artifact[0], artifact[1] };
+        byte[] typeCode = {artifact[0], artifact[1]};
         if (!Arrays.equals(typeCode, TYPE_CODE)) {
             throw new IllegalArgumentException("Artifact is not of appropriate type.");
         }
@@ -83,7 +89,7 @@ public class SAML1ArtifactType0002 extends AbstractSAML1Artifact {
 
     /**
      * Gets the artifiact's 20 byte assertion handle.
-     * 
+     *
      * @return artifiact's 20 byte assertion handle
      */
     public byte[] getAssertionHandle() {
@@ -92,7 +98,7 @@ public class SAML1ArtifactType0002 extends AbstractSAML1Artifact {
 
     /**
      * Sets the artifiact's 20 byte assertion handle.
-     * 
+     *
      * @param handle artifiact's 20 byte assertion handle
      */
     public void setAssertionHandle(byte[] handle) {
@@ -104,7 +110,7 @@ public class SAML1ArtifactType0002 extends AbstractSAML1Artifact {
 
     /**
      * Gets the source location component of this artifact.
-     * 
+     *
      * @return source location component of this artifact
      */
     public String getSourceLocation() {
@@ -113,9 +119,8 @@ public class SAML1ArtifactType0002 extends AbstractSAML1Artifact {
 
     /**
      * Sets source location component of this artifact.
-     * 
+     *
      * @param newLocation source location component of this artifact
-     * 
      * @throws IllegalArgumentException thrown if the given location is empty or null
      */
     protected void setSourceLocation(String newLocation) {
@@ -127,7 +132,9 @@ public class SAML1ArtifactType0002 extends AbstractSAML1Artifact {
         sourceLocation = location;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public byte[] getRemainingArtifact() {
         byte[] location = getSourceLocation().getBytes();
         byte[] remainingArtifact = new byte[20 + location.length];

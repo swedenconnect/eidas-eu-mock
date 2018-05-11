@@ -54,7 +54,7 @@ public class StorkSubjectConfirmationValidator extends
 
 
         if (method.equals(ALLOWED_METHOD_1) && confData.getNotBefore() != null) {
-                throw new ValidationException("NotBefore in SubjectConfirmationData not allowed if confirmation method is \"bearer\".");
+            throw new ValidationException("NotBefore in SubjectConfirmationData not allowed if confirmation method is \"bearer\".");
         }
 
         if (confData.getNotOnOrAfter() == null) {

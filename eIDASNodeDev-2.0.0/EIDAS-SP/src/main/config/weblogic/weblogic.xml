@@ -24,7 +24,7 @@
     </container-descriptor>
     <session-descriptor>
         <cookie-name>SESSIONID</cookie-name>
-		<cookie-path>/SP</cookie-path>
+        <cookie-path>/SP</cookie-path>
     </session-descriptor>
     <context-root>/SP</context-root>
 </weblogic-web-app>

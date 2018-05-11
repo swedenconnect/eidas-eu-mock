@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,24 +26,28 @@ import org.opensaml.saml1.core.Status;
 /**
  * Test case for {@link org.opensaml.saml1.core.validator.ResponseSchemaValidator}.
  */
-public class ResponseSchemaTest extends ResponseAbstractTypeSchemaTestBase  {
+public class ResponseSchemaTest extends ResponseAbstractTypeSchemaTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public ResponseSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML10P_NS, Response.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
         validator = new ResponseSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
-        
+
         Response response = (Response) target;
         QName qname = new QName(SAMLConstants.SAML10P_NS, Status.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
-        response.setStatus((Status)buildXMLObject(qname));
+        response.setStatus((Status) buildXMLObject(qname));
     }
-    
+
     public void testMissingStatus() {
         Response response = (Response) target;
         response.setStatus(null);

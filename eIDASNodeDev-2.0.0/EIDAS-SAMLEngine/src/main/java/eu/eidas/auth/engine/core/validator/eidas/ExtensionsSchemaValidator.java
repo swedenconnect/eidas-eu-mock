@@ -29,8 +29,11 @@ import org.slf4j.LoggerFactory;
  */
 public class ExtensionsSchemaValidator implements Validator<Extensions> {
 
-    /** The Constant LOG. */
+    /**
+     * The Constant LOG.
+     */
     private static final Logger LOG = LoggerFactory.getLogger(ExtensionsSchemaValidator.class.getName());
+
     /**
      * validate the extensions.
      *
@@ -47,7 +50,7 @@ public class ExtensionsSchemaValidator implements Validator<Extensions> {
         for (Object element : extensions.getUnknownXMLObjects()) {
             LOG.debug("element ClassName " + element.getClass().toString());
             if (element instanceof XSAnyImpl) {
-                LOG.debug("ExtensionsSchemaValidator validation "+ ((XSAnyImpl) element).getElementQName());
+                LOG.debug("ExtensionsSchemaValidator validation " + ((XSAnyImpl) element).getElementQName());
                 throw new ValidationException(
                         "Extensions element is not valid: " + ((XSAnyImpl) element).getElementQName());
             }

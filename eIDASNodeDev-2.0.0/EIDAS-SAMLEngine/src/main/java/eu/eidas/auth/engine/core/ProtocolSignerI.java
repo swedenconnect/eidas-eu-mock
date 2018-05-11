@@ -55,7 +55,7 @@ public interface ProtocolSignerI {
      * eu.eidas.auth.engine.metadata.MetadataSignerI#signMetadata(SignableXMLObject)} instead.
      *
      * @param signableObject the SAML object to sign (an Assertion, a Request or a Response).
-     * @param <T> the type of the XML object to sign
+     * @param <T>            the type of the XML object to sign
      * @return the signed SAML object (an Assertion, a Request or a Response)
      * @throws EIDASSAMLEngineException in case of signature errors
      */
@@ -76,10 +76,10 @@ public interface ProtocolSignerI {
      * dynamic or external trust source, {@code null} or an empty Collection can be passed as argument for the {code
      * trustedCertificates}.
      *
-     * @param signedObject the signed XML object to verify (an Assertion, a Request or a Response)
+     * @param signedObject        the signed XML object to verify (an Assertion, a Request or a Response)
      * @param trustedCertificates the collection of trusted certificates the signature must have been performed with
-     * according to the MetaData for example, or {@code null} or an empty collection to use the internal trust instead.
-     * @param <T> the type of the signed XML object of which the signature must be verified
+     *                            according to the MetaData for example, or {@code null} or an empty collection to use the internal trust instead.
+     * @param <T>                 the type of the signed XML object of which the signature must be verified
      * @return the signed SAML object (an Assertion, a Request or a Response)
      * @throws EIDASSAMLEngineException in case of an invalid signature
      */

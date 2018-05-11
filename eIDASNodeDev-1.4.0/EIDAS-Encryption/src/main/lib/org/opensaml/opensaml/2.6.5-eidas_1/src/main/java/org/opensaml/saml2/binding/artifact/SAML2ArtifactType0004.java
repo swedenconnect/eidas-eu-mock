@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,29 +25,36 @@ import java.util.Arrays;
  */
 public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
 
-    /** SAML 2 artifact type code (0x0004). */
-    public static final byte[] TYPE_CODE = { 0, 4 };
+    /**
+     * SAML 2 artifact type code (0x0004).
+     */
+    public static final byte[] TYPE_CODE = {0, 4};
 
-    /** 20 byte artifact source ID. */
+    /**
+     * 20 byte artifact source ID.
+     */
     private byte[] sourceID;
 
-    /** 20 byte message handle. */
+    /**
+     * 20 byte message handle.
+     */
     private byte[] messageHandle;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public SAML2ArtifactType0004() {
         super(TYPE_CODE);
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param endpointIndex 2 byte endpoint index of the artifact
-     * @param source 20 byte source ID of the artifact
-     * @param handle 20 byte message handle of the artifact
-     * 
+     * @param source        20 byte source ID of the artifact
+     * @param handle        20 byte message handle of the artifact
      * @throws IllegalArgumentException thrown if the endpoint index, source ID, or message handle arrays are not of the
-     *             right size
+     *                                  right size
      */
     public SAML2ArtifactType0004(byte[] endpointIndex, byte[] source, byte[] handle) {
         super(TYPE_CODE, endpointIndex);
@@ -57,11 +64,9 @@ public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
 
     /**
      * Constructs a SAML 2 artifact from its byte array representation.
-     * 
+     *
      * @param artifact the byte array representing the artifact
-     * 
      * @return the type 0x0004 artifact created from the byte array
-     * 
      * @throws IllegalArgumentException thrown if the artifact is not the right type or lenght (44 bytes)
      */
     public static SAML2ArtifactType0004 parseArtifact(byte[] artifact) {
@@ -69,12 +74,12 @@ public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
             throw new IllegalArgumentException("Artifact length must be 44 bytes it was " + artifact.length + "bytes");
         }
 
-        byte[] typeCode = { artifact[0], artifact[1] };
+        byte[] typeCode = {artifact[0], artifact[1]};
         if (!Arrays.equals(typeCode, TYPE_CODE)) {
             throw new IllegalArgumentException("Illegal artifact type code");
         }
 
-        byte[] endpointIndex = { artifact[2], artifact[3] };
+        byte[] endpointIndex = {artifact[2], artifact[3]};
 
         byte[] sourceID = new byte[20];
         System.arraycopy(artifact, 4, sourceID, 0, 20);
@@ -87,7 +92,7 @@ public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
 
     /**
      * Gets the 20 byte source ID of the artifact.
-     * 
+     *
      * @return the source ID of the artifact
      */
     public byte[] getSourceID() {
@@ -96,9 +101,8 @@ public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
 
     /**
      * Sets the 20 byte source ID of the artifact.
-     * 
+     *
      * @param newSourceID 20 byte source ID of the artifact
-     * 
      * @throws IllegalArgumentException thrown if the given source ID is not 20 bytes
      */
     public void setSourceID(byte[] newSourceID) {
@@ -110,7 +114,7 @@ public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
 
     /**
      * Gets the 20 byte message handle of the artifact.
-     * 
+     *
      * @return 20 byte message handle of the artifact
      */
     public byte[] getMessageHandle() {
@@ -119,7 +123,7 @@ public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
 
     /**
      * Sets the 20 byte message handle of the artifact.
-     * 
+     *
      * @param handle 20 byte message handle of the artifact
      */
     public void setMessageHandle(byte[] handle) {
@@ -129,7 +133,9 @@ public class SAML2ArtifactType0004 extends AbstractSAML2Artifact {
         messageHandle = handle;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public byte[] getRemainingArtifact() {
         byte[] remainingArtifact = new byte[40];
 

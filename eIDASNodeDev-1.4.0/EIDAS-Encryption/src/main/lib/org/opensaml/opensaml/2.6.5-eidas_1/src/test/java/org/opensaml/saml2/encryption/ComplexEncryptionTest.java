@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -43,29 +43,28 @@ import org.opensaml.xml.signature.RetrievalMethod;
 import org.opensaml.xml.util.DatatypeHelper;
 
 /**
- * Tests for encryption using single and multicast key encryption keys, 
+ * Tests for encryption using single and multicast key encryption keys,
  * and peer vs. inline key placement.
  */
 public class ComplexEncryptionTest extends BaseTestCase {
-    
+
     private Encrypter encrypter;
     private EncryptionParameters encParams;
     private List<KeyEncryptionParameters> kekParamsList;
     private KeyEncryptionParameters kekParamsRSA, kekParamsAES;
-    
+
     private KeyInfo keyInfo, kekKeyInfoRSA;
-    
+
     private String algoURI, kekURIRSA, kekURIAES;
     private String expectedKeyNameRSA;
     private String expectedRecipientRSA, expectedRecipientAES;
 
     /**
      * Constructor.
-     *
      */
     public ComplexEncryptionTest() {
         super();
-        
+
         expectedKeyNameRSA = "RSAKeyWrapper";
         expectedRecipientRSA = "RSARecipient";
         expectedRecipientAES = "AESRecipient";
@@ -73,29 +72,31 @@ public class ComplexEncryptionTest extends BaseTestCase {
         kekURIRSA = EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP;
         kekURIAES = EncryptionConstants.ALGO_ID_KEYWRAP_AES128;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         Credential encCred = SecurityHelper.generateKeyAndCredential(algoURI);
         Credential kekCredAES = SecurityHelper.generateKeyAndCredential(kekURIAES);
         Credential kekCredRSA = SecurityHelper.generateKeyPairAndCredential(kekURIRSA, 2048, false);
-        
+
         encParams = new EncryptionParameters();
         encParams.setAlgorithm(algoURI);
         encParams.setEncryptionCredential(encCred);
-        
+
         kekParamsAES = new KeyEncryptionParameters();
         kekParamsAES.setAlgorithm(kekURIAES);
         kekParamsAES.setEncryptionCredential(kekCredAES);
-        
+
         kekParamsRSA = new KeyEncryptionParameters();
         kekParamsRSA.setAlgorithm(kekURIRSA);
         kekParamsRSA.setEncryptionCredential(kekCredRSA);
-        
+
         kekParamsList = new ArrayList<KeyEncryptionParameters>();
-        
+
         keyInfo = (KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME);
         kekKeyInfoRSA = (KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME);
     }
@@ -105,16 +106,16 @@ public class ComplexEncryptionTest extends BaseTestCase {
      */
     public void testSingleKEKInline() {
         Assertion target = (Assertion) unmarshallElement("/data/org/opensaml/saml2/encryption/Assertion.xml");
-        
+
         KeyName keyName = (KeyName) buildXMLObject(KeyName.DEFAULT_ELEMENT_NAME);
         keyName.setValue(expectedKeyNameRSA);
         kekKeyInfoRSA.getKeyNames().add(keyName);
         kekParamsRSA.setKeyInfoGenerator(new StaticKeyInfoGenerator(kekKeyInfoRSA));
         kekParamsList.add(kekParamsRSA);
-        
+
         encrypter = new Encrypter(encParams, kekParamsList);
         encrypter.setKeyPlacement(Encrypter.KeyPlacement.INLINE);
-        
+
         EncryptedAssertion encTarget = null;
         XMLObject encObject = null;
         try {
@@ -122,54 +123,54 @@ public class ComplexEncryptionTest extends BaseTestCase {
         } catch (EncryptionException e) {
             fail("Object encryption failed: " + e);
         }
-        
+
         assertNotNull("Encrypted object was null", encObject);
-        assertTrue("Encrypted object was not an instance of the expected type", 
+        assertTrue("Encrypted object was not an instance of the expected type",
                 encObject instanceof EncryptedAssertion);
         encTarget = (EncryptedAssertion) encObject;
-        
-        assertEquals("Number of inline EncryptedKeys", 1, 
+
+        assertEquals("Number of inline EncryptedKeys", 1,
                 encTarget.getEncryptedData().getKeyInfo().getEncryptedKeys().size());
-        assertEquals("Number of peer EncryptedKeys", 0, 
+        assertEquals("Number of peer EncryptedKeys", 0,
                 encTarget.getEncryptedKeys().size());
-        
-        
+
+
         EncryptedKey encKey = encTarget.getEncryptedData().getKeyInfo().getEncryptedKeys().get(0);
         assertNotNull("EncryptedKey was null", encKey);
-        
-        assertEquals("Algorithm attribute", kekURIRSA, 
+
+        assertEquals("Algorithm attribute", kekURIRSA,
                 encKey.getEncryptionMethod().getAlgorithm());
         assertNotNull("KeyInfo", encKey.getKeyInfo());
-        assertEquals("KeyName", expectedKeyNameRSA, 
+        assertEquals("KeyName", expectedKeyNameRSA,
                 encKey.getKeyInfo().getKeyNames().get(0).getValue());
-        
+
         assertFalse("EncryptedKey ID attribute was empty",
                 DatatypeHelper.isEmpty(encKey.getID()));
-        
+
         EncryptedData encData = encTarget.getEncryptedData();
         assertNotNull("EncryptedData KeyInfo wasn't null", encData.getKeyInfo());
         assertEquals("EncryptedData improperly contained a RetrievalMethod", 0,
                 encData.getKeyInfo().getRetrievalMethods().size());
-        
+
         assertNull("EncryptedKey ReferenceList wasn't null", encKey.getReferenceList());
         assertNull("EncryptedKey CarriedKeyName wasn't null", encKey.getCarriedKeyName());
     }
-    
+
     /**
      * Test encryption with a single key encryption key with key placement as peer.
      */
     public void testSingleKEKPeer() {
         Assertion target = (Assertion) unmarshallElement("/data/org/opensaml/saml2/encryption/Assertion.xml");
-        
+
         KeyName keyName = (KeyName) buildXMLObject(KeyName.DEFAULT_ELEMENT_NAME);
         keyName.setValue(expectedKeyNameRSA);
         kekKeyInfoRSA.getKeyNames().add(keyName);
         kekParamsRSA.setKeyInfoGenerator(new StaticKeyInfoGenerator(kekKeyInfoRSA));
         kekParamsList.add(kekParamsRSA);
-        
+
         encrypter = new Encrypter(encParams, kekParamsList);
         encrypter.setKeyPlacement(Encrypter.KeyPlacement.PEER);
-        
+
         EncryptedAssertion encTarget = null;
         XMLObject encObject = null;
         try {
@@ -177,30 +178,30 @@ public class ComplexEncryptionTest extends BaseTestCase {
         } catch (EncryptionException e) {
             fail("Object encryption failed: " + e);
         }
-        
+
         assertNotNull("Encrypted object was null", encObject);
-        assertTrue("Encrypted object was not an instance of the expected type", 
+        assertTrue("Encrypted object was not an instance of the expected type",
                 encObject instanceof EncryptedAssertion);
         encTarget = (EncryptedAssertion) encObject;
-        
-        assertEquals("Number of inline EncryptedKeys", 0, 
+
+        assertEquals("Number of inline EncryptedKeys", 0,
                 encTarget.getEncryptedData().getKeyInfo().getEncryptedKeys().size());
-        assertEquals("Number of peer EncryptedKeys", 1, 
+        assertEquals("Number of peer EncryptedKeys", 1,
                 encTarget.getEncryptedKeys().size());
-        
-        
+
+
         EncryptedKey encKey = encTarget.getEncryptedKeys().get(0);
         assertNotNull("EncryptedKey was null", encKey);
-        
-        assertEquals("Algorithm attribute", kekURIRSA, 
+
+        assertEquals("Algorithm attribute", kekURIRSA,
                 encKey.getEncryptionMethod().getAlgorithm());
         assertNotNull("KeyInfo", encKey.getKeyInfo());
-        assertEquals("KeyName", expectedKeyNameRSA, 
+        assertEquals("KeyName", expectedKeyNameRSA,
                 encKey.getKeyInfo().getKeyNames().get(0).getValue());
-        
+
         assertFalse("EncryptedKey ID attribute was empty",
                 DatatypeHelper.isEmpty(encKey.getID()));
-        
+
         EncryptedData encData = encTarget.getEncryptedData();
         assertNotNull("EncryptedData KeyInfo wasn't null", encData.getKeyInfo());
         assertEquals("EncryptedData contained invalid number RetrievalMethods", 1,
@@ -210,7 +211,7 @@ public class ComplexEncryptionTest extends BaseTestCase {
                 EncryptionConstants.TYPE_ENCRYPTED_KEY, rm.getType());
         assertEquals("EncryptedData RetrievalMethod had incorrect URI value",
                 "#" + encKey.getID(), rm.getURI());
-        
+
         assertNotNull("EncryptedKey ReferenceList was null", encKey.getReferenceList());
         assertEquals("EncryptedKey contained invalid number DataReferences", 1,
                 encKey.getReferenceList().getDataReferences().size());
@@ -219,25 +220,27 @@ public class ComplexEncryptionTest extends BaseTestCase {
                 "#" + encData.getID(), dr.getURI());
         assertNull("EncryptedKey CarriedKeyName wasn't null", encKey.getCarriedKeyName());
     }
-    
-    /** Test encryption with multicast key encryption keys with key placement as peer. */
+
+    /**
+     * Test encryption with multicast key encryption keys with key placement as peer.
+     */
     public void testMulticastKEKPeer() {
         Assertion target = (Assertion) unmarshallElement("/data/org/opensaml/saml2/encryption/Assertion.xml");
-        
+
         String multicastKeyNameValue = "MulticastDataEncryptionKeyName";
         KeyName keyName = (KeyName) buildXMLObject(KeyName.DEFAULT_ELEMENT_NAME);
         keyName.setValue(multicastKeyNameValue);
         keyInfo.getKeyNames().add(keyName);
         encParams.setKeyInfoGenerator(new StaticKeyInfoGenerator(keyInfo));
-        
+
         kekParamsRSA.setRecipient(expectedRecipientRSA);
         kekParamsList.add(kekParamsRSA);
         kekParamsAES.setRecipient(expectedRecipientAES);
         kekParamsList.add(kekParamsAES);
-        
+
         encrypter = new Encrypter(encParams, kekParamsList);
         encrypter.setKeyPlacement(Encrypter.KeyPlacement.PEER);
-        
+
         EncryptedAssertion encTarget = null;
         XMLObject encObject = null;
         try {
@@ -245,33 +248,33 @@ public class ComplexEncryptionTest extends BaseTestCase {
         } catch (EncryptionException e) {
             fail("Object encryption failed: " + e);
         }
-        
+
         assertNotNull("Encrypted object was null", encObject);
-        assertTrue("Encrypted object was not an instance of the expected type", 
+        assertTrue("Encrypted object was not an instance of the expected type",
                 encObject instanceof EncryptedAssertion);
         encTarget = (EncryptedAssertion) encObject;
-        
-        assertEquals("Number of inline EncryptedKeys", 0, 
+
+        assertEquals("Number of inline EncryptedKeys", 0,
                 encTarget.getEncryptedData().getKeyInfo().getEncryptedKeys().size());
-        assertEquals("Number of peer EncryptedKeys", 2, 
+        assertEquals("Number of peer EncryptedKeys", 2,
                 encTarget.getEncryptedKeys().size());
-        
-        
+
+
         EncryptedKey encKeyRSA = encTarget.getEncryptedKeys().get(0);
         EncryptedKey encKeyAES = encTarget.getEncryptedKeys().get(1);
         assertNotNull("EncryptedKey was null", encKeyRSA);
         assertNotNull("EncryptedKey was null", encKeyAES);
-        
-        assertEquals("Algorithm attribute", kekURIRSA, 
+
+        assertEquals("Algorithm attribute", kekURIRSA,
                 encKeyRSA.getEncryptionMethod().getAlgorithm());
-        assertEquals("Algorithm attribute", kekURIAES, 
+        assertEquals("Algorithm attribute", kekURIAES,
                 encKeyAES.getEncryptionMethod().getAlgorithm());
-        
+
         assertFalse("EncryptedKey ID attribute was empty",
                 DatatypeHelper.isEmpty(encKeyRSA.getID()));
         assertFalse("EncryptedKey ID attribute was empty",
                 DatatypeHelper.isEmpty(encKeyAES.getID()));
-        
+
         EncryptedData encData = encTarget.getEncryptedData();
         assertNotNull("EncryptedData KeyInfo wasn't null", encData.getKeyInfo());
         assertEquals("EncryptedData contained invalid number RetrievalMethods", 0,
@@ -280,9 +283,9 @@ public class ComplexEncryptionTest extends BaseTestCase {
                 encData.getKeyInfo().getKeyNames().size());
         KeyName encDataKeyName = encData.getKeyInfo().getKeyNames().get(0);
         assertEquals("EncryptedData KeyName value", multicastKeyNameValue, encDataKeyName.getValue());
-        
+
         DataReference dr = null;
-        
+
         assertEquals("EncryptedKey recipient attribute had invalid value", expectedRecipientRSA,
                 encKeyRSA.getRecipient());
         assertNotNull("EncryptedKey ReferenceList was null", encKeyRSA.getReferenceList());
@@ -294,7 +297,7 @@ public class ComplexEncryptionTest extends BaseTestCase {
         assertNotNull("EncryptedKey CarriedKeyName wasn't null", encKeyRSA.getCarriedKeyName());
         assertEquals("EncrypteKey CarriedKeyName had incorrect value", multicastKeyNameValue,
                 encKeyRSA.getCarriedKeyName().getValue());
-        
+
         assertEquals("EncryptedKey recipient attribute had invalid value", expectedRecipientAES,
                 encKeyAES.getRecipient());
         assertNotNull("EncryptedKey ReferenceList was null", encKeyAES.getReferenceList());
@@ -307,44 +310,46 @@ public class ComplexEncryptionTest extends BaseTestCase {
         assertEquals("EncrypteKey CarriedKeyName had incorrect value", multicastKeyNameValue,
                 encKeyAES.getCarriedKeyName().getValue());
     }
-    
-    /** Test that reuse is allowed with same key encryption parameters. */
+
+    /**
+     * Test that reuse is allowed with same key encryption parameters.
+     */
     public void testReuse() {
         Assertion assertion = (Assertion) unmarshallElement("/data/org/opensaml/saml2/encryption/Assertion.xml");
-        
+
         Attribute target = assertion.getAttributeStatements().get(0).getAttributes().get(0);
         Attribute target2 = assertion.getAttributeStatements().get(0).getAttributes().get(1);
-        
+
         KeyName keyName = (KeyName) buildXMLObject(KeyName.DEFAULT_ELEMENT_NAME);
         keyName.setValue(expectedKeyNameRSA);
         kekKeyInfoRSA.getKeyNames().add(keyName);
         kekParamsRSA.setKeyInfoGenerator(new StaticKeyInfoGenerator(kekKeyInfoRSA));
-        
+
         kekParamsList.add(kekParamsRSA);
-        
+
         encrypter = new Encrypter(encParams, kekParamsList);
         encrypter.setKeyPlacement(KeyPlacement.PEER);
-        
+
         XMLObject encObject = null;
         try {
             encObject = encrypter.encrypt(target);
         } catch (EncryptionException e) {
             fail("Object encryption failed: " + e);
         }
-        
+
         assertNotNull("Encrypted object was null", encObject);
-        assertTrue("Encrypted object was not an instance of the expected type", 
+        assertTrue("Encrypted object was not an instance of the expected type",
                 encObject instanceof EncryptedAttribute);
-        
+
         XMLObject encObject2 = null;
         try {
             encObject2 = encrypter.encrypt(target2);
         } catch (EncryptionException e) {
             fail("Object encryption failed: " + e);
         }
-        
+
         assertNotNull("Encrypted object was null", encObject2);
-        assertTrue("Encrypted object was not an instance of the expected type", 
+        assertTrue("Encrypted object was not an instance of the expected type",
                 encObject2 instanceof EncryptedAttribute);
     }
 

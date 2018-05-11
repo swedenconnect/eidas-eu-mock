@@ -31,129 +31,129 @@ import eu.eidas.auth.commons.light.impl.LightResponse;
 import eu.eidas.specificcommunication.exception.SpecificCommunicationException;
 
 class LightJAXBCodec {
-	private static final Logger LOG = LoggerFactory.getLogger(AttributeRegistry.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AttributeRegistry.class);
 
-	JAXBContext jaxbCtx;
+    JAXBContext jaxbCtx;
 
-	LightJAXBCodec(JAXBContext jaxbCtx) throws JAXBException {
-		this.jaxbCtx = jaxbCtx;
-	}
+    LightJAXBCodec(JAXBContext jaxbCtx) throws JAXBException {
+        this.jaxbCtx = jaxbCtx;
+    }
 
-	public <T> String marshall(T input) throws SpecificCommunicationException {
-		if (input == null) {
-			return null;
-		}
-		StringWriter writer = new StringWriter();
-		try {
-			createMarshaller().marshal(input, writer);
-		} catch (JAXBException e) {
-			throw new SpecificCommunicationException(e);
-		}
-		return writer.toString();
-	}
+    public <T> String marshall(T input) throws SpecificCommunicationException {
+        if (input == null) {
+            return null;
+        }
+        StringWriter writer = new StringWriter();
+        try {
+            createMarshaller().marshal(input, writer);
+        } catch (JAXBException e) {
+            throw new SpecificCommunicationException(e);
+        }
+        return writer.toString();
+    }
 
-	public <T extends ILightRequest> T unmarshallRequest(String input,
-			Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
-		if (input == null) {
-			return null;
-		}
-		if (registry == null) {
-			throw new SpecificCommunicationException("missing registry");
-		}
-		try {
-			T unmarshalled = (T) createUnmarshaller().unmarshal(new StringReader(input));
-			LightRequest.Builder resultBuilder = LightRequest.builder(unmarshalled);
-			ImmutableAttributeMap.Builder mapBuilder = ImmutableAttributeMap.builder();
+    public <T extends ILightRequest> T unmarshallRequest(String input,
+                                                         Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
+        if (input == null) {
+            return null;
+        }
+        if (registry == null) {
+            throw new SpecificCommunicationException("missing registry");
+        }
+        try {
+            T unmarshalled = (T) createUnmarshaller().unmarshal(new StringReader(input));
+            LightRequest.Builder resultBuilder = LightRequest.builder(unmarshalled);
+            ImmutableAttributeMap.Builder mapBuilder = ImmutableAttributeMap.builder();
 
-			for (ImmutableAttributeEntry<?> entry : unmarshalled.getRequestedAttributes().entrySet()) {
-				URI nameUri = entry.getKey().getNameUri();
-				AttributeDefinition<?> definition = getByName(nameUri, registry);
+            for (ImmutableAttributeEntry<?> entry : unmarshalled.getRequestedAttributes().entrySet()) {
+                URI nameUri = entry.getKey().getNameUri();
+                AttributeDefinition<?> definition = getByName(nameUri, registry);
 
-				Iterable values = unmarshalValues(entry, definition);
-				mapBuilder.put(definition, values);
-			}
-			T result = (T) resultBuilder.requestedAttributes(mapBuilder.build()).build();
-			return result;
-		} catch (JAXBException | AttributeValueMarshallingException e) {
-			throw new SpecificCommunicationException(e);
-		}
-	}
+                Iterable values = unmarshalValues(entry, definition);
+                mapBuilder.put(definition, values);
+            }
+            T result = (T) resultBuilder.requestedAttributes(mapBuilder.build()).build();
+            return result;
+        } catch (JAXBException | AttributeValueMarshallingException e) {
+            throw new SpecificCommunicationException(e);
+        }
+    }
 
-	public <T extends ILightResponse> T unmarshallResponse(String input,
-			Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
-		if (input == null) {
-			return null;
-		}
-		if (registry == null) {
-			throw new SpecificCommunicationException("missing registry");
-		}
-		try {
-			T unmarshalled = (T) createUnmarshaller().unmarshal(new StringReader(input));
-			LightResponse.Builder resultBuilder = LightResponse.builder(unmarshalled);
+    public <T extends ILightResponse> T unmarshallResponse(String input,
+                                                           Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
+        if (input == null) {
+            return null;
+        }
+        if (registry == null) {
+            throw new SpecificCommunicationException("missing registry");
+        }
+        try {
+            T unmarshalled = (T) createUnmarshaller().unmarshal(new StringReader(input));
+            LightResponse.Builder resultBuilder = LightResponse.builder(unmarshalled);
 
-			ImmutableAttributeMap.Builder mapBuilder = ImmutableAttributeMap.builder();
+            ImmutableAttributeMap.Builder mapBuilder = ImmutableAttributeMap.builder();
 
-			if (unmarshalled.getAttributes() == null) {
-				LOG.error("\n>>>>>>>>>> UNMARSHALLED null attributes set >>>>>>>>>> \n" + unmarshalled);
-				LOG.error("\n>>>>>>>>>> INPUT was >>>>>>>>>> \n" + input);
-				throw new SpecificCommunicationException("missing registry");
-			}
+            if (unmarshalled.getAttributes() == null) {
+                LOG.error("\n>>>>>>>>>> UNMARSHALLED null attributes set >>>>>>>>>> \n" + unmarshalled);
+                LOG.error("\n>>>>>>>>>> INPUT was >>>>>>>>>> \n" + input);
+                throw new SpecificCommunicationException("missing registry");
+            }
 
-			for (ImmutableAttributeEntry<?> entry : unmarshalled.getAttributes().entrySet()) {
-				AttributeDefinition<?> definition = entry.getKey();
-				if (registry != null) {
-					URI nameUri = entry.getKey().getNameUri();
-					definition = getByName(nameUri, registry);
-				}
-				Iterable values = unmarshalValues(entry, definition);
-				mapBuilder.put(definition, values);
-			}
-			T result = (T) resultBuilder.attributes(mapBuilder.build()).build();
-			return result;
-		} catch (JAXBException | AttributeValueMarshallingException e) {
-			throw new SpecificCommunicationException(e);
-		}
-	}
+            for (ImmutableAttributeEntry<?> entry : unmarshalled.getAttributes().entrySet()) {
+                AttributeDefinition<?> definition = entry.getKey();
+                if (registry != null) {
+                    URI nameUri = entry.getKey().getNameUri();
+                    definition = getByName(nameUri, registry);
+                }
+                Iterable values = unmarshalValues(entry, definition);
+                mapBuilder.put(definition, values);
+            }
+            T result = (T) resultBuilder.attributes(mapBuilder.build()).build();
+            return result;
+        } catch (JAXBException | AttributeValueMarshallingException e) {
+            throw new SpecificCommunicationException(e);
+        }
+    }
 
-	private Iterable unmarshalValues(ImmutableAttributeEntry<?> entry, AttributeDefinition<?> definition)
-			throws AttributeValueMarshallingException {
-		ImmutableSet.Builder<AttributeValue<?>> valuesBuilder = ImmutableSet.builder();
+    private Iterable unmarshalValues(ImmutableAttributeEntry<?> entry, AttributeDefinition<?> definition)
+            throws AttributeValueMarshallingException {
+        ImmutableSet.Builder<AttributeValue<?>> valuesBuilder = ImmutableSet.builder();
 
-		for (Object value : entry.getValues()) {
-			AttributeValueMarshaller<?> valueMarshaller = definition.getAttributeValueMarshaller();
-			boolean nonLatin = definition.isTransliterationMandatory();
-			valuesBuilder.add(valueMarshaller.unmarshal(value.toString(), nonLatin));
-		}
-		return (Iterable) valuesBuilder.build();
-	}
+        for (Object value : entry.getValues()) {
+            AttributeValueMarshaller<?> valueMarshaller = definition.getAttributeValueMarshaller();
+            boolean nonLatin = definition.isTransliterationMandatory();
+            valuesBuilder.add(valueMarshaller.unmarshal(value.toString(), nonLatin));
+        }
+        return (Iterable) valuesBuilder.build();
+    }
 
-	private AttributeDefinition<? extends Object> getByName(URI nameUri,
-			Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
-		if (nameUri == null) {
-			throw new SpecificCommunicationException("Invalid lookup nameUri");
-		}
-		for (Iterator<AttributeDefinition<?>> iterator = registry.iterator(); iterator.hasNext();) {
-			AttributeDefinition<?> next = iterator.next();
-			if (next.getNameUri() == null)
-				throw new SpecificCommunicationException(
-						String.format("Attribute with null nameUri: %s , present in the registry", next));
-			if (next.getNameUri().equals(nameUri)) {
-				return next;
-			}
-		}
-		throw new SpecificCommunicationException(String.format("Attribute %s not present in the registry", nameUri));
-	}
+    private AttributeDefinition<? extends Object> getByName(URI nameUri,
+                                                            Collection<AttributeDefinition<?>> registry) throws SpecificCommunicationException {
+        if (nameUri == null) {
+            throw new SpecificCommunicationException("Invalid lookup nameUri");
+        }
+        for (Iterator<AttributeDefinition<?>> iterator = registry.iterator(); iterator.hasNext(); ) {
+            AttributeDefinition<?> next = iterator.next();
+            if (next.getNameUri() == null)
+                throw new SpecificCommunicationException(
+                        String.format("Attribute with null nameUri: %s , present in the registry", next));
+            if (next.getNameUri().equals(nameUri)) {
+                return next;
+            }
+        }
+        throw new SpecificCommunicationException(String.format("Attribute %s not present in the registry", nameUri));
+    }
 
-	private Marshaller createMarshaller() throws JAXBException {
-		Marshaller marshaller = jaxbCtx.createMarshaller();
-		marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8"); // NOI18N
-		marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		return marshaller;
-	}
+    private Marshaller createMarshaller() throws JAXBException {
+        Marshaller marshaller = jaxbCtx.createMarshaller();
+        marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8"); // NOI18N
+        marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        return marshaller;
+    }
 
-	private Unmarshaller createUnmarshaller() throws JAXBException {
-		Unmarshaller unmarshaller = jaxbCtx.createUnmarshaller();
-		return unmarshaller;
-	}
+    private Unmarshaller createUnmarshaller() throws JAXBException {
+        Unmarshaller unmarshaller = jaxbCtx.createUnmarshaller();
+        return unmarshaller;
+    }
 
 }

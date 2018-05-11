@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,14 +31,18 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AttributeConsumingServiceSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AttributeConsumingServiceSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20MD_NS, AttributeConsumingService.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
         validator = new AttributeConsumingServiceSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         AttributeConsumingService attributeConsumingService = (AttributeConsumingService) target;
@@ -53,7 +57,7 @@ public class AttributeConsumingServiceSchemaTest extends BaseSAMLObjectValidator
 
     /**
      * Tests for Index failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testIndexFailure() throws ValidationException {
@@ -65,7 +69,7 @@ public class AttributeConsumingServiceSchemaTest extends BaseSAMLObjectValidator
 
     /**
      * Tests for Service Name Failure
-     * 
+     *
      * @throws ValidationException
      */
     public void testServiceNameFailure() throws ValidationException {

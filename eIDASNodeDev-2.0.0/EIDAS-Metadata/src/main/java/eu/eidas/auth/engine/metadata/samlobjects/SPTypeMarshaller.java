@@ -26,7 +26,6 @@ import org.w3c.dom.Element;
 
 /**
  * The Class SPTypeMarshaller.
- *
  */
 public class SPTypeMarshaller extends AbstractSAMLObjectMarshaller {
 
@@ -38,8 +37,8 @@ public class SPTypeMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final SPType spType = (SPType) samlObject;
-	XMLHelper.appendTextContent(domElement, spType.getSPType());
+                                                final Element domElement) throws MarshallingException {
+        final SPType spType = (SPType) samlObject;
+        XMLHelper.appendTextContent(domElement, spType.getSPType());
     }
 }

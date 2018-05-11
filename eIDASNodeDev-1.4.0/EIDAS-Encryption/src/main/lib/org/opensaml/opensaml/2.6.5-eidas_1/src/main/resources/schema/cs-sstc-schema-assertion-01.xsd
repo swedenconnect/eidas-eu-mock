@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by Phill Hallam-Baker (VeriSign Inc.) -->
-<schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oasis:names:tc:SAML:1.0:assertion" elementFormDefault="unqualified">
-    
+<schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion"
+        xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oasis:names:tc:SAML:1.0:assertion"
+        elementFormDefault="unqualified">
+
     <import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="classpath:/schema/xmldsig-core-schema.xsd"/>
-        
+
     <annotation>
         <documentation>
             Document identifier: cs-sstc-schema-assertion-01 Location:

@@ -16,28 +16,28 @@ import java.util.Date;
 @XmlSeeAlso({StringAttribute.class, StringListAttribute.class, DateAttribute.class, AddressAttribute.class})
 public class Attribute implements Serializable {
 
-	private static final long serialVersionUID = 2710254527099932149L;
+    private static final long serialVersionUID = 2710254527099932149L;
 
-	protected String name;
+    protected String name;
 
-	protected Boolean required;
+    protected Boolean required;
 
-	@XmlElement(required=true, nillable=false)
-	public String getName() {
-		return name;
-	}
+    @XmlElement(required = true, nillable = false)
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@XmlElement(required=false)
-	public Boolean getRequired() {
-		return required;
-	}
+    @XmlElement(required = false)
+    public Boolean getRequired() {
+        return required;
+    }
 
-	public void setRequired(Boolean required) {
-		this.required = required;
-	}
+    public void setRequired(Boolean required) {
+        this.required = required;
+    }
 
 }

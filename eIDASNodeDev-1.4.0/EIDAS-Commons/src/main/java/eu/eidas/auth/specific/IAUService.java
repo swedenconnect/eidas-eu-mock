@@ -26,15 +26,15 @@ import eu.eidas.auth.commons.tx.StoredLightRequest;
  * Interface for Specific Authentication methods on the Proxy Service side.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com
+ * hugo.magalhaes@multicert.com
  */
 public interface IAUService {
 
     /**
      * Prepares the citizen to be redirected to the IdP.
      *
-     * @param lightRequest the request
-     * @param parameters the parameters
+     * @param lightRequest      the request
+     * @param parameters        the parameters
      * @param requestAttributes the request attributes
      * @return byte[] containing a SAML Request.
      */
@@ -55,12 +55,12 @@ public interface IAUService {
     /**
      * Generates a SAML Response in case of error.
      *
-     * @param inResponseTo The SAML's identifier to response.
-     * @param issuer The issuer value.
-     * @param assertionURL The assertion URL.
-     * @param code The error code.
-     * @param subcode The sub error code.
-     * @param message The error message.
+     * @param inResponseTo  The SAML's identifier to response.
+     * @param issuer        The issuer value.
+     * @param assertionURL  The assertion URL.
+     * @param code          The error code.
+     * @param subcode       The sub error code.
+     * @param message       The error message.
      * @param ipUserAddress The user IP address.
      * @return byte[] containing the SAML Response.
      */

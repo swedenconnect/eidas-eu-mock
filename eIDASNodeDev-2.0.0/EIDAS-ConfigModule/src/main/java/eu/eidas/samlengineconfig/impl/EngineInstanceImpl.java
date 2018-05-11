@@ -28,26 +28,29 @@ import eu.eidas.samlengineconfig.InstanceConfiguration;
 /**
  * used for jaxb marshalling/unmarshalling of EngineInstances
  */
-@XmlRootElement(name="EngineInstance")
+@XmlRootElement(name = "EngineInstance")
 @XmlAccessorType(XmlAccessType.NONE)
 public class EngineInstanceImpl extends EngineInstance {
-    public EngineInstanceImpl(){
+    public EngineInstanceImpl() {
         super();
     }
+
     @XmlElement(name = "configuration", type = InstanceConfigurationImpl.class)
     public List<InstanceConfiguration> getConfigurations() {
         return super.getConfigurations();
     }
 
-    @XmlAttribute(required = true, namespace="")
+    @XmlAttribute(required = true, namespace = "")
     @Override
-    public String getName(){
+    public String getName() {
         return super.getName();
     }
+
     @Override
-    public void setName(String name){
+    public void setName(String name) {
         super.setName(name);
     }
+
     public void setConfigurations(List<InstanceConfiguration> configurations) {
         super.setConfigurations(configurations);
     }

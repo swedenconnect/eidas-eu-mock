@@ -28,49 +28,41 @@ import org.apache.velocity.test.BaseTestCase;
  * @see https://issues.apache.org/jira/browse/VELOCITY-544
  */
 public class Velocity544TestCase
-        extends BaseTestCase
-{
+        extends BaseTestCase {
     public Velocity544TestCase(final String name)
-            throws Exception
-    {
+            throws Exception {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(Velocity544TestCase.class);
     }
 
     public void testBooleanPropertyExecutor()
-        throws Exception
-    {
+            throws Exception {
         context.put("foobarTrue", new Foobar(true));
         context.put("foobarFalse", new Foobar(false));
-        
+
         String template = "$foobarTrue.True $foobarFalse.True $foobarTrue.TrueObject $foobarFalse.TrueObject";
-        
+
         String result = evaluate(template);
-        
+
         super.assertEquals("true false true false", result);
     }
-    
-    public static class Foobar
-    {
+
+    public static class Foobar {
         private boolean value;
-        
-        public Foobar(boolean value)
-        {
+
+        public Foobar(boolean value) {
             this.value = value;
         }
-        
-        public boolean isTrue()
-        {
-            return(value);
+
+        public boolean isTrue() {
+            return (value);
         }
-        
-        public Boolean isTrueObject()
-        {
-            return(new Boolean(value));
-        }   
+
+        public Boolean isTrueObject() {
+            return (new Boolean(value));
+        }
     }
 }

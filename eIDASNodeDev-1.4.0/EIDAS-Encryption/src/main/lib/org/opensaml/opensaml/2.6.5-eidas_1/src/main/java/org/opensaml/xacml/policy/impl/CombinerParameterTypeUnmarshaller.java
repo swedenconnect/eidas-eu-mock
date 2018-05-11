@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,30 +30,36 @@ import org.w3c.dom.Attr;
  */
 public class CombinerParameterTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public CombinerParameterTypeUnmarshaller() {
         super();
     }
 
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
         CombinerParameterType combinerParameterType = (CombinerParameterType) xmlObject;
-      
-        if(attribute.getLocalName().equals(CombinerParameterType.PARAMETER_NAMEATTRIB_NAME)){
+
+        if (attribute.getLocalName().equals(CombinerParameterType.PARAMETER_NAMEATTRIB_NAME)) {
             combinerParameterType.setParameterName(DatatypeHelper.safeTrimOrNullString(attribute.getValue()));
         } else {
             super.processAttribute(xmlObject, attribute);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
             throws UnmarshallingException {
         CombinerParameterType combinerParameterType = (CombinerParameterType) parentXMLObject;
-        
-        if(childXMLObject instanceof AttributeValueType){
-            combinerParameterType.setAttributeValue((AttributeValueType)childXMLObject);
+
+        if (childXMLObject instanceof AttributeValueType) {
+            combinerParameterType.setAttributeValue((AttributeValueType) childXMLObject);
         } else {
             super.processChildElement(parentXMLObject, childXMLObject);
         }

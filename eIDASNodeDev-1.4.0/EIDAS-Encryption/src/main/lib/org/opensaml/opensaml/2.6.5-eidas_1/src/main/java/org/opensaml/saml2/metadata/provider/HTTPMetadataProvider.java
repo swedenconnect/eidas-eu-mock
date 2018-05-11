@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -44,41 +44,52 @@ import org.slf4j.LoggerFactory;
  * <li>The earliest validUntil time within the metadata is exceeded</li>
  * <li>The maximum cache duration is exceeded</li>
  * </ul>
- * 
+ * <p>
  * Metadata is filtered prior to determining the cache expiration data. This allows a filter to remove XMLObjects that
  * may effect the cache duration but for which the user of this provider does not care about.
- * 
+ * <p>
  * It is the responsibility of the caller to re-initialize, via {@link #initialize()}, if any properties of this
  * provider are changed.
  */
 public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPMetadataProvider.class);
 
-    /** HTTP Client used to pull the metadata. */
+    /**
+     * HTTP Client used to pull the metadata.
+     */
     private HttpClient httpClient;
 
-    /** URL to the Metadata. */
+    /**
+     * URL to the Metadata.
+     */
     private URI metadataURI;
 
-    /** The ETag provided when the currently cached metadata was fetched. */
+    /**
+     * The ETag provided when the currently cached metadata was fetched.
+     */
     private String cachedMetadataETag;
 
-    /** The Last-Modified information provided when the currently cached metadata was fetched. */
+    /**
+     * The Last-Modified information provided when the currently cached metadata was fetched.
+     */
     private String cachedMetadataLastModified;
 
-    /** URL scope that requires authentication. */
+    /**
+     * URL scope that requires authentication.
+     */
     private AuthScope authScope;
 
     /**
      * Constructor.
-     * 
-     * @param metadataURL the URL to fetch the metadata
+     *
+     * @param metadataURL    the URL to fetch the metadata
      * @param requestTimeout the time, in milliseconds, to wait for the metadata server to respond
-     * 
      * @throws MetadataProviderException thrown if the URL is not a valid URL or the metadata can not be retrieved from
-     *             the URL
+     *                                   the URL
      */
     @Deprecated
     public HTTPMetadataProvider(String metadataURL, int requestTimeout) throws MetadataProviderException {
@@ -99,11 +110,10 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Constructor.
-     * 
-     * @param client HTTP client used to pull in remote metadata
+     *
+     * @param client              HTTP client used to pull in remote metadata
      * @param backgroundTaskTimer timer used to schedule background metadata refresh tasks
-     * @param metadataURL URL to the remove remote metadata
-     * 
+     * @param metadataURL         URL to the remove remote metadata
      * @throws MetadataProviderException thrown if the HTTP client is null or the metadata URL provided is invalid
      */
     public HTTPMetadataProvider(Timer backgroundTaskTimer, HttpClient client, String metadataURL)
@@ -126,7 +136,7 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Gets the URL to fetch the metadata.
-     * 
+     *
      * @return the URL to fetch the metadata
      */
     public String getMetadataURI() {
@@ -136,7 +146,7 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
     /**
      * Sets the username and password used to access the metadata URL. To disable BASIC authentication set the username
      * and password to null;
-     * 
+     *
      * @param username the username
      * @param password the password
      */
@@ -151,7 +161,7 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Gets the length of time in milliseconds to wait for the server to respond.
-     * 
+     *
      * @return length of time in milliseconds to wait for the server to respond
      */
     public int getRequestTimeout() {
@@ -160,11 +170,9 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Sets the socket factory used to create sockets to the HTTP server.
-     * 
-     * @see <a href="http://jakarta.apache.org/commons/httpclient/sslguide.html">HTTPClient SSL guide</a>
-     * 
+     *
      * @param newSocketFactory the socket factory used to produce sockets used to connect to the server
-     * 
+     * @see <a href="http://jakarta.apache.org/commons/httpclient/sslguide.html">HTTPClient SSL guide</a>
      * @deprecated set this information on HTTP client used by provider
      */
     public void setSocketFactory(ProtocolSocketFactory newSocketFactory) {
@@ -176,9 +184,8 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Gets the maximum amount of time, in seconds, metadata will be cached for.
-     * 
+     *
      * @return maximum amount of time, in seconds, metadata will be cached for
-     * 
      * @deprecated use {@link #getMaxRefreshDelay()} instead
      */
     public int getMaxCacheDuration() {
@@ -187,9 +194,8 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Sets the maximum amount of time, in seconds, metadata will be cached for.
-     * 
+     *
      * @param newDuration maximum amount of time, in seconds, metadata will be cached for
-     * 
      * @deprecated use {@link #setMaxRefreshDelay(long)} instead
      */
     public void setMaxCacheDuration(int newDuration) {
@@ -198,9 +204,8 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Gets whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
+     *
      * @return whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
      * @deprecated use {@link #requireValidMetadata()} instead
      */
     public boolean maintainExpiredMetadata() {
@@ -209,37 +214,39 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Sets whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
+     *
      * @param maintain whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
      * @deprecated use {@link #setRequireValidMetadata(boolean)} instead
      */
     public void setMaintainExpiredMetadata(boolean maintain) {
         setRequireValidMetadata(!maintain);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public synchronized void destroy() {
         httpClient = null;
         metadataURI = null;
         cachedMetadataETag = null;
         cachedMetadataLastModified = null;
         authScope = null;
-        
+
         super.destroy();
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected String getMetadataIdentifier() {
         return metadataURI.toString();
     }
 
     /**
      * Gets the metadata document from the remote server.
-     * 
+     *
      * @return the metadata from remote server, or null if the metadata document has not changed since the last
-     *         retrieval
-     * 
+     * retrieval
      * @throws MetadataProviderException thrown if there is a problem retrieving the metadata from the remote server
      */
     protected byte[] fetchMetadata() throws MetadataProviderException {
@@ -272,7 +279,7 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
             String errMsg = "Error retrieving metadata from " + metadataURI;
             log.error(errMsg, e);
             throw new MetadataProviderException(errMsg, e);
-        }finally{
+        } finally {
             getMethod.releaseConnection();
         }
     }
@@ -281,7 +288,7 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
      * Builds the HTTP GET method used to fetch the metadata. The returned method advertises support for GZIP and
      * deflate compression, enables conditional GETs if the cached metadata came with either an ETag or Last-Modified
      * information, and sets up basic authentication if such is configured.
-     * 
+     *
      * @return the constructed GET method
      */
     protected GetMethod buildGetMethod() {
@@ -306,7 +313,7 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Records the ETag and Last-Modified headers, from the response, if they are present.
-     * 
+     *
      * @param getMethod GetMethod containing a valid HTTP response
      */
     protected void processConditionalRetrievalHeaders(GetMethod getMethod) {
@@ -323,11 +330,9 @@ public class HTTPMetadataProvider extends AbstractReloadingMetadataProvider {
 
     /**
      * Extracts the raw metadata bytes from the response taking in to account possible deflate and GZip compression.
-     * 
+     *
      * @param getMethod GetMethod containing a valid HTTP response
-     * 
      * @return the raw metadata bytes
-     * 
      * @throws MetadataProviderException thrown if there is a problem getting the raw metadata bytes from the response
      */
     protected byte[] getMetadataBytesFromResponse(GetMethod getMethod) throws MetadataProviderException {

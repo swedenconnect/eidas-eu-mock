@@ -33,7 +33,9 @@
         <div class="col-right">
             <div class="col-right-inner">
                 <div class="clearfix">
-                    <div class="menu-top"> <a class="item text-minus" href="#"></a> <a class="item text-plus" href="#"></a> <a class="item contrast" href="#"></a> </div>
+                    <div class="menu-top"><a class="item text-minus" href="#"></a> <a class="item text-plus"
+                                                                                      href="#"></a> <a
+                            class="item contrast" href="#"></a></div>
                 </div>
                 <div class="col-right-content">
                     <jsp:include page="internal/content-security-header-deactivated.jsp"/>
@@ -41,10 +43,13 @@
                         <span><fmt:message key="eidas.title" bundle="${i18n_eng}"/></span>
                     </h1>
                     <c:if test="${!empty exception.samlTokenFail}">
-                        <form action="${e:forHtml(errorRedirectUrl)}" name="redirectForm" id="redirectForm" method="post">
-                            <input type="hidden" name="SAMLResponse" id="SAMLResponse" value="${e:forHtml(exception.samlTokenFail)}" />
+                        <form action="${e:forHtml(errorRedirectUrl)}" name="redirectForm" id="redirectForm"
+                              method="post">
+                            <input type="hidden" name="SAMLResponse" id="SAMLResponse"
+                                   value="${e:forHtml(exception.samlTokenFail)}"/>
                             <c:if test="${!empty exception.relayState}">
-                                <input type="hidden" name="RelayState" id="RelayState" value="${e:forHtml(exception.relayState)}" />
+                                <input type="hidden" name="RelayState" id="RelayState"
+                                       value="${e:forHtml(exception.relayState)}"/>
                             </c:if>
                         </form>
                     </c:if>

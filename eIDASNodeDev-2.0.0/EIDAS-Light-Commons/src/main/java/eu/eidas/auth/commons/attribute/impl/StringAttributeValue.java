@@ -18,9 +18,9 @@ public final class StringAttributeValue extends AbstractAttributeValue<String> {
     /**
      * Constructor.
      *
-     * @param value the value
+     * @param value                            the value
      * @param isNonLatinScriptAlternateVersion whether the given value is a non-LatinScript alternate version of another
-     * value in LatinScript.
+     *                                         value in LatinScript.
      * @deprecated since 1.1.1, use {@link #StringAttributeValue(String)} instead.
      */
     @Deprecated
@@ -28,7 +28,7 @@ public final class StringAttributeValue extends AbstractAttributeValue<String> {
         this(value);
         if (isNonLatinScriptAlternateVersion() && !isNonLatinScriptAlternateVersion) {
             throw new IllegalArgumentException("Illegal argument: value \"" + value
-                                                       + "\" is non LatinScript but isNonLatinScriptAlternateVersion = false");
+                    + "\" is non LatinScript but isNonLatinScriptAlternateVersion = false");
         }
     }
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.ecp.impl;
@@ -33,20 +33,22 @@ import org.w3c.dom.Element;
  */
 public class SubjectConfirmationMarshaller extends AbstractSAMLObjectMarshaller {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallAttributes(XMLObject samlObject, Element domElement) throws MarshallingException {
         SubjectConfirmation sc = (SubjectConfirmation) samlObject;
 
         if (sc.isSOAP11MustUnderstandXSBoolean() != null) {
-            XMLHelper.marshallAttribute(SubjectConfirmation.SOAP11_MUST_UNDERSTAND_ATTR_NAME, 
+            XMLHelper.marshallAttribute(SubjectConfirmation.SOAP11_MUST_UNDERSTAND_ATTR_NAME,
                     sc.isSOAP11MustUnderstandXSBoolean().toString(), domElement, false);
         }
-        
+
         if (sc.getSOAP11Actor() != null) {
-            XMLHelper.marshallAttribute(SubjectConfirmation.SOAP11_ACTOR_ATTR_NAME, 
+            XMLHelper.marshallAttribute(SubjectConfirmation.SOAP11_ACTOR_ATTR_NAME,
                     sc.getSOAP11Actor(), domElement, false);
         }
-        
+
         if (sc.getMethod() != null) {
             domElement.setAttributeNS(null, SubjectConfirmation.METHOD_ATTRIB_NAME, sc.getMethod());
         }

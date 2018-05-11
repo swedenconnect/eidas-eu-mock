@@ -31,32 +31,37 @@ import eu.eidas.samlengineconfig.InstanceConfiguration;
  */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class InstanceConfigurationImpl extends InstanceConfiguration {
-    public InstanceConfigurationImpl(){
+    public InstanceConfigurationImpl() {
         super();
     }
-    public InstanceConfigurationImpl(String name, List<ConfigurationParameter> parameters){
+
+    public InstanceConfigurationImpl(String name, List<ConfigurationParameter> parameters) {
         setName(name);
-        if(parameters!=null) {
+        if (parameters != null) {
             setParameters(parameters);
-        }else {
+        } else {
             setParameters(new ArrayList<ConfigurationParameter>());
         }
     }
+
     @Override
-    @XmlAttribute(name="name")
-    public String getName(){
+    @XmlAttribute(name = "name")
+    public String getName() {
         return super.getName();
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         super.setName(name);
     }
+
     @Override
     @XmlJavaTypeAdapter(ConfigurationParameterAdapter.class)
     @XmlElement(name = "parameter", type = JAXBConfigurationParameter.class)
-    public List<ConfigurationParameter> getParameters(){
+    public List<ConfigurationParameter> getParameters() {
         return super.getParameters();
     }
-    public void setParameters(List<ConfigurationParameter> list){
+
+    public void setParameters(List<ConfigurationParameter> list) {
         super.setParameters(list);
     }
 

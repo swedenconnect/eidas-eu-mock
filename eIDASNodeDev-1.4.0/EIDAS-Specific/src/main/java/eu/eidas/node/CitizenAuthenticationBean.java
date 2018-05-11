@@ -3,43 +3,43 @@ package eu.eidas.node;
 import eu.eidas.auth.specific.IAUService;
 
 public class CitizenAuthenticationBean {
-  /**
-   * Specific Node service.
-   */
-  private transient IAUService specAuthenticationNode;
+    /**
+     * Specific Node service.
+     */
+    private transient IAUService specAuthenticationNode;
 
-  /**
-   * Is IdP external?
-   */
-  private boolean externalAuth;
+    /**
+     * Is IdP external?
+     */
+    private boolean externalAuth;
 
-  /**
-   * URL of IdP.
-   */
-  private String idpUrl;
+    /**
+     * URL of IdP.
+     */
+    private String idpUrl;
 
-  public boolean isExternalAuth() {
-    return externalAuth;
-  }
+    public boolean isExternalAuth() {
+        return externalAuth;
+    }
 
-  public void setExternalAuth(boolean externalAuth) {
-    this.externalAuth = externalAuth;
-  }
+    public void setExternalAuth(boolean externalAuth) {
+        this.externalAuth = externalAuth;
+    }
 
-  public String getIdpUrl() {
-    return idpUrl;
-  }
+    public String getIdpUrl() {
+        return idpUrl;
+    }
 
-  public void setIdpUrl(String idpUrl) {
-    this.idpUrl = idpUrl;
-  }
+    public void setIdpUrl(String idpUrl) {
+        this.idpUrl = idpUrl;
+    }
 
-  public IAUService getSpecAuthenticationNode() {
+    public IAUService getSpecAuthenticationNode() {
 
-    return specAuthenticationNode;
-  }
+        return specAuthenticationNode;
+    }
 
-  public void setSpecAuthenticationNode(IAUService specAuthenticationNode) {
-    this.specAuthenticationNode = specAuthenticationNode;
-  }
+    public void setSpecAuthenticationNode(IAUService specAuthenticationNode) {
+        this.specAuthenticationNode = specAuthenticationNode;
+    }
 }

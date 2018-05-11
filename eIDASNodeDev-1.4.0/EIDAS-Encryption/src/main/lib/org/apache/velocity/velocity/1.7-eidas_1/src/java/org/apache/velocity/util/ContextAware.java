@@ -16,7 +16,7 @@ package org.apache.velocity.util;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.context.Context;
@@ -38,12 +38,12 @@ import org.apache.velocity.context.Context;
  * @version $Id: ContextAware.java 685685 2008-08-13 21:43:27Z nbubna $
  * @since 1.5
  */
-public interface  ContextAware
-{
+public interface ContextAware {
     /**
      * Initialize the EventHandler.
+     *
      * @param context
      */
-    public void setContext( Context context );
+    public void setContext(Context context);
 
 }

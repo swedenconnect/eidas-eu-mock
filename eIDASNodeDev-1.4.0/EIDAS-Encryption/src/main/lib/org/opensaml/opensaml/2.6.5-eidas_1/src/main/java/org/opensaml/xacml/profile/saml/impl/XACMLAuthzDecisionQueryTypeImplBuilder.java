@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -21,21 +21,29 @@ import org.opensaml.common.impl.AbstractSAMLObjectBuilder;
 import org.opensaml.xacml.XACMLObjectBuilder;
 import org.opensaml.xacml.profile.saml.XACMLAuthzDecisionQueryType;
 
-/** Builder for {@link XACMLAuthzDecisionQueryType} objects. */
+/**
+ * Builder for {@link XACMLAuthzDecisionQueryType} objects.
+ */
 public class XACMLAuthzDecisionQueryTypeImplBuilder extends AbstractSAMLObjectBuilder<XACMLAuthzDecisionQueryType>
         implements XACMLObjectBuilder<XACMLAuthzDecisionQueryType> {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public XACMLAuthzDecisionQueryTypeImplBuilder() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XACMLAuthzDecisionQueryType buildObject() {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XACMLAuthzDecisionQueryType buildObject(String namespaceURI, String localName, String namespacePrefix) {
         return new XACMLAuthzDecisionQueryTypeImpl(namespaceURI, localName, namespacePrefix);
     }

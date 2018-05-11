@@ -16,7 +16,7 @@ package org.apache.velocity.app.event.implement;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.oro.text.perl.MalformedPerl5PatternException;
@@ -46,7 +46,7 @@ import org.apache.velocity.util.StringUtils;
  * </CODE>
  * </PRE>
  * <!-- note: ignore empty HTML comment above - breaks up star slash avoiding javadoc end -->
- *
+ * <p>
  * Regular expressions should follow the "Perl5" format used by the ORO regular expression
  * library.  More info is at
  * <a href="http://jakarta.apache.org/oro/api/org/apache/oro/text/perl/package-summary.html">http://jakarta.apache.org/oro/api/org/apache/oro/text/perl/package-summary.html</a>.
@@ -55,7 +55,7 @@ import org.apache.velocity.util.StringUtils;
  * @version $Id: EscapeReference.java 685685 2008-08-13 21:43:27Z nbubna $
  * @since 1.5
  */
-public abstract class EscapeReference implements ReferenceInsertionEventHandler,RuntimeServicesAware {
+public abstract class EscapeReference implements ReferenceInsertionEventHandler, RuntimeServicesAware {
 
 
     private Perl5Util perl = new Perl5Util();
@@ -79,71 +79,57 @@ public abstract class EscapeReference implements ReferenceInsertionEventHandler,
      * <pre><code>eventhandler.escape.XYZ.match</code></pre>
      *
      * <p>where <code>XYZ</code> is the type of escaping being done.
+     *
      * @return configuration attribute
      */
     protected abstract String getMatchAttribute();
 
     /**
      * Escape the provided text if it matches the configured regular expression.
-     * 
+     *
      * @param reference
      * @param value
      * @return Escaped text.
      */
-    public Object referenceInsert(String reference, Object value)
-    {
-        if(value == null)
-        {
+    public Object referenceInsert(String reference, Object value) {
+        if (value == null) {
             return value;
         }
 
-        if (matchRegExp == null)
-        {
+        if (matchRegExp == null) {
             return escape(value);
-        }
-
-        else if (perl.match(matchRegExp,reference))
-        {
+        } else if (perl.match(matchRegExp, reference)) {
             return escape(value);
-        }
-
-        else
-        {
+        } else {
             return value;
         }
     }
 
     /**
      * Called automatically when event cartridge is initialized.
-     * 
+     *
      * @param rs instance of RuntimeServices
      */
-    public void setRuntimeServices(RuntimeServices rs)
-    {
+    public void setRuntimeServices(RuntimeServices rs) {
         this.rs = rs;
 
         /**
          * Get the regular expression pattern.
          */
         matchRegExp = StringUtils.nullTrim(rs.getConfiguration().getString(getMatchAttribute()));
-        if ((matchRegExp != null) && (matchRegExp.length() == 0))
-        {
+        if ((matchRegExp != null) && (matchRegExp.length() == 0)) {
             matchRegExp = null;
         }
 
         /**
          * Test the regular expression for a well formed pattern
          */
-        if (matchRegExp != null)
-        {
-            try
-            {
-                perl.match(matchRegExp,"");
-            }
-            catch (MalformedPerl5PatternException E)
-            {
+        if (matchRegExp != null) {
+            try {
+                perl.match(matchRegExp, "");
+            } catch (MalformedPerl5PatternException E) {
                 rs.getLog().error("Invalid regular expression '" + matchRegExp
-                                  + "'.  No escaping will be performed.", E);
+                        + "'.  No escaping will be performed.", E);
                 matchRegExp = null;
             }
         }
@@ -153,11 +139,10 @@ public abstract class EscapeReference implements ReferenceInsertionEventHandler,
     /**
      * Retrieve a reference to RuntimeServices.  Use this for checking additional
      * configuration properties.
-     * 
+     *
      * @return The current runtime services object.
      */
-    protected RuntimeServices getRuntimeServices()
-    {
+    protected RuntimeServices getRuntimeServices() {
         return rs;
     }
 

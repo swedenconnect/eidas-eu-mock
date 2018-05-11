@@ -32,6 +32,7 @@ public class ConcurrentMapServiceDistributedImpl implements ConcurrentMapService
     public String getCacheName() {
         return cacheName;
     }
+
     public void setCacheName(String cacheName) {
         this.cacheName = cacheName;
     }

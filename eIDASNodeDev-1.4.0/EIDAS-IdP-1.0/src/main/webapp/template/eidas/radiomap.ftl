@@ -36,7 +36,7 @@
 <#if parameters.name??>
  name="${parameters.name?html}"<#rt/>
 </#if>
- id="${parameters.id?html}${itemKeyStr?html}"<#rt/>
+       id="${parameters.id?html}${itemKeyStr?html}"<#rt/>
 <#if tag.contains(parameters.nameValue?default(''), itemKeyStr)>
  checked="checked"<#rt/>
 </#if>

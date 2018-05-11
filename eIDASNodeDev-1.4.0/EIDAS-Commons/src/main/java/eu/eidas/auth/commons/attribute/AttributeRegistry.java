@@ -117,7 +117,7 @@ public final class AttributeRegistry {
                 }
             }
         } catch (IOException ioe) {
-            throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(),ioe.getMessage(),ioe);
+            throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(), ioe.getMessage(), ioe);
         }
         return false;
     }
@@ -136,7 +136,7 @@ public final class AttributeRegistry {
             }
             return getByFilter(ALL_FILTER);
         } catch (IOException ioe) {
-            throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(),ioe.getMessage(),ioe);
+            throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(), ioe.getMessage(), ioe);
         }
     }
 
@@ -158,7 +158,7 @@ public final class AttributeRegistry {
             }
             return builder.build();
         } catch (IOException ioe) {
-            throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(),ioe.getMessage(),ioe);
+            throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(), ioe.getMessage(), ioe);
         }
     }
 
@@ -257,11 +257,11 @@ public final class AttributeRegistry {
                     if (LOG.isTraceEnabled()) {
                         LOG.trace(
                                 "AttributeRegistry contains attributes" + (accessor instanceof ReloadableFileAccessor ?
-                                                                           " from file \"" + ((ReloadableFileAccessor<?>) accessor)
-                                                                                   .getFilename() + "\"" : "") + ": " + attributeDefinitions);
+                                        " from file \"" + ((ReloadableFileAccessor<?>) accessor)
+                                                .getFilename() + "\"" : "") + ": " + attributeDefinitions);
                     }
                 } catch (IOException ioe) {
-                    throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(),ioe.getMessage(),ioe);
+                    throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(), ioe.getMessage(), ioe);
                 }
             }
         }

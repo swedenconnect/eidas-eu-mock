@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -42,8 +42,7 @@ import org.apache.velocity.runtime.resource.loader.ResourceLoader;
  * @author <a href="mailto:wglass@apache.org">Will Glass-Husain</a>
  * @version $Id: ResourceLoaderInstanceTestCase.java 691334 2008-09-02 18:10:41Z nbubna $
  */
-public class ResourceLoaderInstanceTestCase extends BaseTestCase
-{
+public class ResourceLoaderInstanceTestCase extends BaseTestCase {
     /**
      * VTL file extension.
      */
@@ -80,21 +79,19 @@ public class ResourceLoaderInstanceTestCase extends BaseTestCase
     /**
      * Default constructor.
      */
-    public ResourceLoaderInstanceTestCase(String name)
-    {
+    public ResourceLoaderInstanceTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
 
         ResourceLoader rl = new FileResourceLoader();
 
         // pass in an instance to Velocity
-        Velocity.setProperty( "resource.loader", "testrl" );
-        Velocity.setProperty( "testrl.resource.loader.instance", rl );
-        Velocity.setProperty( "testrl.resource.loader.path", FILE_RESOURCE_LOADER_PATH );
+        Velocity.setProperty("resource.loader", "testrl");
+        Velocity.setProperty("testrl.resource.loader.instance", rl);
+        Velocity.setProperty("testrl.resource.loader.path", FILE_RESOURCE_LOADER_PATH);
 
         // actual instance of logger
         logger.on();
@@ -104,64 +101,58 @@ public class ResourceLoaderInstanceTestCase extends BaseTestCase
         Velocity.init();
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(ResourceLoaderInstanceTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testResourceLoaderInstance ()
-            throws Exception
-    {
+    public void testResourceLoaderInstance()
+            throws Exception {
 //caveman hacks to get gump to give more info
-try
-{
-        assureResultsDirectoryExists(RESULTS_DIR);
+        try {
+            assureResultsDirectoryExists(RESULTS_DIR);
 
-        Template template = RuntimeSingleton.getTemplate(
-                getFileName(null, "testfile", TMPL_FILE_EXT));
+            Template template = RuntimeSingleton.getTemplate(
+                    getFileName(null, "testfile", TMPL_FILE_EXT));
 
-        FileOutputStream fos =
-                new FileOutputStream (
-                        getFileName(RESULTS_DIR, "testfile", RESULT_FILE_EXT));
+            FileOutputStream fos =
+                    new FileOutputStream(
+                            getFileName(RESULTS_DIR, "testfile", RESULT_FILE_EXT));
 //caveman hack to get gump to give more info
-System.out.println("All needed files exist");
+            System.out.println("All needed files exist");
 
-        Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
+            Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
 
-        /*
-         *  put the Vector into the context, and merge both
-         */
+            /*
+             *  put the Vector into the context, and merge both
+             */
 
-        VelocityContext context = new VelocityContext();
+            VelocityContext context = new VelocityContext();
 
-        template.merge(context, writer);
-        writer.flush();
-        writer.close();
-}
-catch (Exception e)
-{
-    System.out.println("Log was: "+logger.getLog());
-    System.out.println(e);
-    e.printStackTrace();
-}
+            template.merge(context, writer);
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Log was: " + logger.getLog());
+            System.out.println(e);
+            e.printStackTrace();
+        }
 
-        if ( !isMatch(RESULTS_DIR, COMPARE_DIR, "testfile",
-                        RESULT_FILE_EXT, CMP_FILE_EXT) )
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "testfile",
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             String result = getFileContents(RESULT_DIR, "testfile", RESULT_FILE_EXT);
             String compare = getFileContents(COMPARE_DIR, "testfile", CMP_FILE_EXT);
 
-            String msg = "Processed template did not match expected output\n"+
-                "-----Result-----\n"+ result +
-                "----Expected----\n"+ compare +
-                "----------------";
-            
+            String msg = "Processed template did not match expected output\n" +
+                    "-----Result-----\n" + result +
+                    "----Expected----\n" + compare +
+                    "----------------";
+
 //caveman hack to get gump to give more info
-System.out.println(msg);
-System.out.println("Log was: "+logger.getLog());
+            System.out.println(msg);
+            System.out.println("Log was: " + logger.getLog());
             fail(msg);
         }
     }

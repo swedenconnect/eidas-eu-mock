@@ -52,13 +52,13 @@ var deployJava = {
     brand: null,
     locale: null,
     installType: null,
-    
+
     EAInstallEnabled: false,
     EarlyAccessURL: null,
-    
+
     // GetJava page
     getJavaURL: 'http://java.sun.com/webapps/getjava/BrowserRedirect?host=java.com',
-    
+
     // Apple redirect page
     appleRedirectPage: 'http://www.apple.com/support/downloads/',
 
@@ -70,30 +70,31 @@ var deployJava = {
 
 
     /**
-     * Returns an array of currently-installed JRE version strings.  
+     * Returns an array of currently-installed JRE version strings.
      * Version strings are of the form #.#[.#[_#]], with the function returning
-     * as much version information as it can determine, from just family 
+     * as much version information as it can determine, from just family
      * versions ("1.4.2", "1.5") through the full version ("1.5.0_06").
      *
-     * Detection is done on a best-effort basis.  Under some circumstances 
-     * only the highest installed JRE version will be detected, and 
+     * Detection is done on a best-effort basis.  Under some circumstances
+     * only the highest installed JRE version will be detected, and
      * JREs older than 1.4.2 will not always be detected.
      */
-    getJREs: function() {
+    getJREs: function () {
         var list = new Array();
         if (deployJava.isPluginInstalled()) {
-         var plugin =  deployJava.getPlugin();
-/*  			for (var i = 0; i < plugin.jvms.getLength(); i++) {
-                list[i] = plugin.jvms.get(i).version;
-            }
- */		/*bug fix firefox */
+            var plugin = deployJava.getPlugin();
+            /*  			for (var i = 0; i < plugin.jvms.getLength(); i++) {
+                            list[i] = plugin.jvms.get(i).version;
+                        }
+             */
+            /*bug fix firefox */
             var jvms = plugin.jvms;
             for (var i = 0; i < jvms.getLength(); i++) {
-            list[i] = jvms.get(i).version;
-            } 
+                list[i] = jvms.get(i).version;
+            }
         } else {
             var browser = deployJava.getBrowser();
-        
+
             if (browser == 'MSIE') {
                 if (deployJava.testUsingActiveX('1.8.0')) {
                     list[0] = '1.8.0';
@@ -135,32 +136,32 @@ var deployJava = {
                 }
             }
         }
-            
+
         if (deployJava.debug) {
             for (var i = 0; i < list.length; ++i) {
                 alert('We claim to have detected Java SE ' + list[i]);
             }
         }
-    
+
         return list;
     },
-    
+
     /**
-     * Triggers a JRE installation.  The exact effect of triggering an 
-     * installation varies based on platform, browser, and if the 
+     * Triggers a JRE installation.  The exact effect of triggering an
+     * installation varies based on platform, browser, and if the
      * Deployment Toolkit plugin is installed.
      *
-     * The requestVersion string is of the form #[.#[.#[_#]]][+|*], 
-     * which includes strings such as "1.4", "1.5.0*", and "1.6.0_02+".  
-     * A star (*) means "any version starting within this family" and 
-     * a plus (+) means "any version greater or equal to this".  
-     * "1.5.0*" * matches 1.5.0_06 but not 1.6.0_01, whereas 
+     * The requestVersion string is of the form #[.#[.#[_#]]][+|*],
+     * which includes strings such as "1.4", "1.5.0*", and "1.6.0_02+".
+     * A star (*) means "any version starting within this family" and
+     * a plus (+) means "any version greater or equal to this".
+     * "1.5.0*" * matches 1.5.0_06 but not 1.6.0_01, whereas
      * "1.5.0+" matches both.
      *
-     * If the Deployment Toolkit plugin is not present, this will just call 
-     * deployJava.installLatestJRE(). 
+     * If the Deployment Toolkit plugin is not present, this will just call
+     * deployJava.installLatestJRE().
      */
-    installJRE: function(requestVersion) {
+    installJRE: function (requestVersion) {
         var ret = false;
         if (deployJava.isPluginInstalled()) {
             if (deployJava.getPlugin().installJRE(requestVersion)) {
@@ -179,21 +180,21 @@ var deployJava = {
 
 
     /**
-     * Triggers a JRE installation.  The exact effect of triggering an 
-     * installation varies based on platform, browser, and if the 
+     * Triggers a JRE installation.  The exact effect of triggering an
+     * installation varies based on platform, browser, and if the
      * Deployment Toolkit plugin is installed.
      *
-     * In the simplest case, the browser window will be redirected to the 
-     * java.com JRE installation page, and (if possible) a redirect back to 
-     * the current URL upon successful installation.  The return redirect is 
-     * not always possible, as the JRE installation may require the browser to 
+     * In the simplest case, the browser window will be redirected to the
+     * java.com JRE installation page, and (if possible) a redirect back to
+     * the current URL upon successful installation.  The return redirect is
+     * not always possible, as the JRE installation may require the browser to
      * be restarted.
      *
      * In the best case (when the Deployment Toolkit plugin is present), this
-     * function will immediately cause a progress dialog to be displayed 
+     * function will immediately cause a progress dialog to be displayed
      * as the JRE is downloaded and installed.
      */
-    installLatestJRE: function() {
+    installLatestJRE: function () {
         if (deployJava.isPluginInstalled()) {
             if (deployJava.getPlugin().installLatestJRE()) {
                 deployJava.refresh();
@@ -207,13 +208,13 @@ var deployJava = {
         } else {
             var browser = deployJava.getBrowser();
             var platform = navigator.platform.toLowerCase();
-            if ((deployJava.EAInstallEnabled == 'true') && 
-                (platform.indexOf('win') != -1) && 
+            if ((deployJava.EAInstallEnabled == 'true') &&
+                (platform.indexOf('win') != -1) &&
                 (deployJava.EarlyAccessURL != null)) {
 
                 deployJava.preInstallJREList = deployJava.getJREs();
                 if (deployJava.returnPage != null) {
-                    deployJava.myInterval = 
+                    deployJava.myInterval =
                         setInterval("deployJava.poll()", 3000);
                 }
 
@@ -225,17 +226,17 @@ var deployJava = {
             } else {
                 if (browser == 'MSIE') {
                     return deployJava.IEInstall();
-                } else if ((browser == 'Netscape Family') && 
-                           (platform.indexOf('win32') != -1)) {
+                } else if ((browser == 'Netscape Family') &&
+                    (platform.indexOf('win32') != -1)) {
                     return deployJava.FFInstall();
                 } else {
-                    location.href = deployJava.getJavaURL + 
+                    location.href = deployJava.getJavaURL +
                         ((deployJava.returnPage != null) ?
-                        ('&returnPage=' + deployJava.returnPage) : '') + 
+                            ('&returnPage=' + deployJava.returnPage) : '') +
                         ((deployJava.locale != null) ?
-                        ('&locale=' + deployJava.locale) : '') +
-                        ((deployJava.brand != null) ? 
-                         ('&brand=' + deployJava.brand) : '');
+                            ('&locale=' + deployJava.locale) : '') +
+                        ((deployJava.brand != null) ?
+                            ('&brand=' + deployJava.brand) : '');
                 }
                 // we have to return false although there may be an install
                 // in progress now, when complete it may go to return page
@@ -247,24 +248,24 @@ var deployJava = {
 
     /**
      * Ensures that an appropriate JRE is installed and then runs an applet.
-     * minimumVersion is of the form #[.#[.#[_#]]], and is the minimum 
-     * JRE version necessary to run this applet.  minimumVersion is optional, 
-     * defaulting to the value "1.1" (which matches any JRE).  
-     * If an equal or greater JRE is detected, runApplet() will call 
-     * writeAppletTag(attributes, parameters) to output the applet tag, 
+     * minimumVersion is of the form #[.#[.#[_#]]], and is the minimum
+     * JRE version necessary to run this applet.  minimumVersion is optional,
+     * defaulting to the value "1.1" (which matches any JRE).
+     * If an equal or greater JRE is detected, runApplet() will call
+     * writeAppletTag(attributes, parameters) to output the applet tag,
      * otherwise it will call installJRE(minimumVersion + '+').
      *
-     * After installJRE() is called, the script will attempt to detect that the 
+     * After installJRE() is called, the script will attempt to detect that the
      * JRE installation has completed and begin running the applet, but there
      * are circumstances (such as when the JRE installation requires a browser
      * restart) when this cannot be fulfilled.
      *
-     * As with writeAppletTag(), this function should only be called prior to 
-     * the web page being completely rendered.  Note that version wildcards 
-     * (star (*) and plus (+)) are not supported, and including them in the 
+     * As with writeAppletTag(), this function should only be called prior to
+     * the web page being completely rendered.  Note that version wildcards
+     * (star (*) and plus (+)) are not supported, and including them in the
      * minimumVersion will result in an error message.
      */
-    runApplet: function(attributes, parameters, minimumVersion) {
+    runApplet: function (attributes, parameters, minimumVersion) {
         if (minimumVersion == 'undefined' || minimumVersion == null) {
             minimumVersion = '1.1';
         }
@@ -296,77 +297,76 @@ var deployJava = {
             }
         } else {
             if (deployJava.debug) {
-                alert('Invalid minimumVersion argument to runApplet():' + 
-                      minimumVersion);
+                alert('Invalid minimumVersion argument to runApplet():' +
+                    minimumVersion);
             }
         }
     },
 
-    
+
     /**
      * Outputs an applet tag with the specified attributes and parameters, where
-     * both attributes and parameters are associative arrays.  Each key/value 
+     * both attributes and parameters are associative arrays.  Each key/value
      * pair in attributes becomes an attribute of the applet tag itself, while
-     * key/value pairs in parameters become <PARAM> tags.  No version checking 
-     * or other special behaviors are performed; the tag is simply written to 
+     * key/value pairs in parameters become <PARAM> tags.  No version checking
+     * or other special behaviors are performed; the tag is simply written to
      * the page using document.writeln().
      *
-     * As document.writeln() is generally only safe to use while the page is 
-     * being rendered, you should never call this function after the page 
+     * As document.writeln() is generally only safe to use while the page is
+     * being rendered, you should never call this function after the page
      * has been completed.
      */
-    writeAppletTag: function(attributes, parameters) {
+    writeAppletTag: function (attributes, parameters) {
         var s = '<' + 'applet ';
         for (var attribute in attributes) {
             s += (' ' + attribute + '="' + attributes[attribute] + '"');
         }
         s += '>';
         document.write(s);
-    
+
         if (parameters != 'undefined' && parameters != null) {
             var codebaseParam = false;
             for (var parameter in parameters) {
                 if (parameter == 'codebase_lookup') {
                     codebaseParam = true;
                 }
-                s = '<param name="' + parameter + '" value="' + 
+                s = '<param name="' + parameter + '" value="' +
                     parameters[parameter] + '">';
                 document.write(s);
             }
             if (!codebaseParam) {
-              document.write('<param name="codebase_lookup" value="false">');
+                document.write('<param name="codebase_lookup" value="false">');
             }
         }
         document.write('<' + '/' + 'applet' + '>');
     },
-    
-    
-     /**
-      * Returns true if there is a matching JRE version currently installed 
-      * (among those detected by getJREs()).  The versionPattern string is 
-      * of the form #[.#[.#[_#]]][+|*], which includes strings such as "1.4", 
-      * "1.5.0*", and "1.6.0_02+".  
-      * A star (*) means "any version within this family" and a plus (+) means 
-      * "any version greater or equal to the specified version".  "1.5.0*"
-      * matches 1.5.0_06 but not 1.6.0_01, whereas "1.5.0+" matches both.
-      *
-      * If the versionPattern does not include all four version components 
-      * but does not end with a star or plus, it will be treated as if it 
-      * ended with a star.  "1.5" is exactly equivalent to "1.5*", and will 
-      * match any version number beginning with "1.5".
-      *
-      * If getJREs() is unable to detect the precise version number, a match 
-      * could be ambiguous.  For example if getJREs() detects "1.5", there is 
-      * no way to know whether the JRE matches "1.5.0_06+".  versionCheck() 
-      * compares only as much of the version information as could be detected, 
-      * so versionCheck("1.5.0_06+") would return true in in this case.
-      *
-      * Invalid versionPattern will result in a JavaScript error alert.  
-      * versionPatterns which are valid but do not match any existing JRE 
-      * release (e.g. "32.65+") will always return false.
-      */
-    versionCheck: function(versionPattern)
-    {
+
+
+    /**
+     * Returns true if there is a matching JRE version currently installed
+     * (among those detected by getJREs()).  The versionPattern string is
+     * of the form #[.#[.#[_#]]][+|*], which includes strings such as "1.4",
+     * "1.5.0*", and "1.6.0_02+".
+     * A star (*) means "any version within this family" and a plus (+) means
+     * "any version greater or equal to the specified version".  "1.5.0*"
+     * matches 1.5.0_06 but not 1.6.0_01, whereas "1.5.0+" matches both.
+     *
+     * If the versionPattern does not include all four version components
+     * but does not end with a star or plus, it will be treated as if it
+     * ended with a star.  "1.5" is exactly equivalent to "1.5*", and will
+     * match any version number beginning with "1.5".
+     *
+     * If getJREs() is unable to detect the precise version number, a match
+     * could be ambiguous.  For example if getJREs() detects "1.5", there is
+     * no way to know whether the JRE matches "1.5.0_06+".  versionCheck()
+     * compares only as much of the version information as could be detected,
+     * so versionCheck("1.5.0_06+") would return true in in this case.
+     *
+     * Invalid versionPattern will result in a JavaScript error alert.
+     * versionPatterns which are valid but do not match any existing JRE
+     * release (e.g. "32.65+") will always return false.
+     */
+    versionCheck: function (versionPattern) {
         var index = 0;
         var regex = "^(\\d+)(?:\\.(\\d+)(?:\\.(\\d+)(?:_(\\d+))?)?)?(\\*|\\+)?$";
 
@@ -386,39 +386,39 @@ var deployJava = {
                 }
             }
 
-            if (patternArray[patternArray.length-1] == '+') {
+            if (patternArray[patternArray.length - 1] == '+') {
                 familyMatch = false;
                 patternArray.length--;
             } else {
-                if (patternArray[patternArray.length-1] == '*') {
+                if (patternArray[patternArray.length - 1] == '*') {
                     patternArray.length--;
                 }
             }
 
-            var list = deployJava.getJREs();       
+            var list = deployJava.getJREs();
             for (var i = 0; i < list.length; ++i) {
-                if (deployJava.compareVersionToPattern(list[i], patternArray, 
-                                                       familyMatch)) {
+                if (deployJava.compareVersionToPattern(list[i], patternArray,
+                    familyMatch)) {
                     return true;
                 }
             }
-  
+
             return false;
         } else {
-            alert('Invalid versionPattern passed to versionCheck: ' + 
-                  versionPattern);
+            alert('Invalid versionPattern passed to versionCheck: ' +
+                versionPattern);
             return false;
         }
     },
 
 
     /**
-     * Returns true if an installation of Java Web Start of the specified 
-     * minimumVersion can be detected.  minimumVersion is optional, and 
-     * if not specified, '1.4.2' will be used. 
+     * Returns true if an installation of Java Web Start of the specified
+     * minimumVersion can be detected.  minimumVersion is optional, and
+     * if not specified, '1.4.2' will be used.
      * (Versions earlier than 1.4.2 may not be detected.)
      */
-    isWebStartInstalled: function(minimumVersion) {
+    isWebStartInstalled: function (minimumVersion) {
 
         var browser = deployJava.getBrowser();
         if ((browser == '?') || (browser == 'Safari')) {
@@ -444,25 +444,25 @@ var deployJava = {
         }
         return retval;
     },
-  
-  
+
+
     /**
-     * Outputs a launch button for the specified JNLP URL.  When clicked, the 
-     * button will ensure that an appropriate JRE is installed and then launch 
-     * the JNLP application.  minimumVersion is of the form #[.#[.#[_#]]], and 
-     * is the minimum JRE version necessary to run this JNLP application.  
-     * minimumVersion is optional, and if it is not specified, '1.4.2' 
+     * Outputs a launch button for the specified JNLP URL.  When clicked, the
+     * button will ensure that an appropriate JRE is installed and then launch
+     * the JNLP application.  minimumVersion is of the form #[.#[.#[_#]]], and
+     * is the minimum JRE version necessary to run this JNLP application.
+     * minimumVersion is optional, and if it is not specified, '1.4.2'
      * will be used.
-     * If an appropriate JRE or Web Start installation is detected, 
-     * the JNLP application will be launched, otherwise installLatestJRE() 
+     * If an appropriate JRE or Web Start installation is detected,
+     * the JNLP application will be launched, otherwise installLatestJRE()
      * will be called.
      *
-     * After installLatestJRE() is called, the script will attempt to detect 
+     * After installLatestJRE() is called, the script will attempt to detect
      * that the JRE installation has completed and launch the JNLP application,
-     * but there are circumstances (such as when the JRE installation 
+     * but there are circumstances (such as when the JRE installation
      * requires a browser restart) when this cannot be fulfilled.
      */
-    createWebStartLaunchButton: function(jnlp, minimumVersion) { 
+    createWebStartLaunchButton: function (jnlp, minimumVersion) {
 
         if (deployJava.returnPage == null) {
             // if there is an install, come back and run the jnlp file
@@ -470,40 +470,40 @@ var deployJava = {
         }
 
         var url = 'javascript:' +
-                  'if (!deployJava.isWebStartInstalled(&quot;' + 
-                      minimumVersion + '&quot;)) {' + 
-                      'if (deployJava.installLatestJRE()) {' + 
-                        'if (deployJava.launch(&quot;' + jnlp + '&quot;)) {}' +
-                      '}' +
-                  '} else {' +
-                      'if (deployJava.launch(&quot;' + jnlp + '&quot;)) {}' +
-                  '}';
+            'if (!deployJava.isWebStartInstalled(&quot;' +
+            minimumVersion + '&quot;)) {' +
+            'if (deployJava.installLatestJRE()) {' +
+            'if (deployJava.launch(&quot;' + jnlp + '&quot;)) {}' +
+            '}' +
+            '} else {' +
+            'if (deployJava.launch(&quot;' + jnlp + '&quot;)) {}' +
+            '}';
 
-        document.write('<' + 'a href="' + url + 
-                       '" onMouseOver="window.status=\'\'; ' +
-                       'return true;"><' + 'img ' +
-                       'src="' + deployJava.launchButtonPNG + '" ' + 
-                       'border="0" /><' + '/' + 'a' + '>');
+        document.write('<' + 'a href="' + url +
+            '" onMouseOver="window.status=\'\'; ' +
+            'return true;"><' + 'img ' +
+            'src="' + deployJava.launchButtonPNG + '" ' +
+            'border="0" /><' + '/' + 'a' + '>');
     },
 
 
     /**
      * Launch a JNLP application, (using the plugin if available)
      */
-    launch: function(jnlp) {
+    launch: function (jnlp) {
         if (deployJava.isPluginInstalled()) {
             return deployJava.getPlugin().launch(jnlp);
         } else {
-            document.location=jnlp;
+            document.location = jnlp;
             return true;
         }
     },
 
-    
+
     /*
      * returns true if the ActiveX or XPI plugin is installed
      */
-    isPluginInstalled: function() {
+    isPluginInstalled: function () {
         var plugin = deployJava.getPlugin();
         if (plugin && plugin.jvms) {
             return true;
@@ -511,11 +511,11 @@ var deployJava = {
             return false;
         }
     },
-    
+
     /* 
      * returns true if the plugin is installed and AutoUpdate is enabled
      */
-    isAutoUpdateEnabled: function() {
+    isAutoUpdateEnabled: function () {
         if (deployJava.isPluginInstalled()) {
             return deployJava.getPlugin().isAutoUpdateEnabled();
         }
@@ -525,9 +525,9 @@ var deployJava = {
     /* 
      * sets AutoUpdate on if plugin is installed
      */
-    setAutoUpdateEnabled: function() { 
-        if (deployJava.isPluginInstalled()) { 
-            return deployJava.getPlugin().setAutoUpdateEnabled(); 
+    setAutoUpdateEnabled: function () {
+        if (deployJava.isPluginInstalled()) {
+            return deployJava.getPlugin().setAutoUpdateEnabled();
         }
         return false;
     },
@@ -535,7 +535,7 @@ var deployJava = {
     /*
      * sets the preferred install type : null, online, kernel
      */
-    setInstallerType: function(type) {
+    setInstallerType: function (type) {
         deployJava.installType = type;
         if (deployJava.isPluginInstalled()) {
             return deployJava.getPlugin().setInstallerType(type);
@@ -546,10 +546,10 @@ var deployJava = {
     /*
      * sets additional package list - to be used by kernel installer
      */
-    setAdditionalPackages: function(packageList) {
+    setAdditionalPackages: function (packageList) {
         if (deployJava.isPluginInstalled()) {
             return deployJava.getPlugin().setAdditionalPackages(
-                                                     packageList);
+                packageList);
         }
         return false;
     },
@@ -557,14 +557,14 @@ var deployJava = {
     /*
      * sets preference to install Early Access versions if available
      */
-    setEarlyAccess: function(enabled) {
+    setEarlyAccess: function (enabled) {
         deployJava.EAInstallEnabled = enabled;
     },
 
     /*
      * Determines if the next generation plugin (Plugin II) is default
      */
-    isPlugin2: function() {
+    isPlugin2: function () {
         if (deployJava.isPluginInstalled()) {
             try {
                 return deployJava.getPlugin().isPlugin2();
@@ -574,25 +574,24 @@ var deployJava = {
         }
         return false;
     },
-       
 
-    getPlugin: function() {
+
+    getPlugin: function () {
         deployJava.refresh();
         var ret = document.getElementById('deployJavaPlugin');
         return ret;
     },
 
-    compareVersionToPattern: function(version, patternArray, familyMatch) {
+    compareVersionToPattern: function (version, patternArray, familyMatch) {
         var regex = "^(\\d+)(?:\\.(\\d+)(?:\\.(\\d+)(?:_(\\d+))?)?)?$";
-        var matchData = version.match(regex);  
+        var matchData = version.match(regex);
 
-        if (matchData != null) { 
+        if (matchData != null) {
             var index = 0;
             var result = new Array();
 
             for (var i = 1; i < matchData.length; ++i) {
-                if ((typeof matchData[i] == 'string') && (matchData[i] != ''))
-                {
+                if ((typeof matchData[i] == 'string') && (matchData[i] != '')) {
                     result[index] = matchData[i];
                     index++;
                 }
@@ -614,7 +613,7 @@ var deployJava = {
                         return true;
                     }
                 }
-                
+
                 return true;
             }
         } else {
@@ -622,15 +621,15 @@ var deployJava = {
         }
     },
 
-  
-    getBrowser: function() {
+
+    getBrowser: function () {
         var browser = navigator.userAgent.toLowerCase();
-    
+
         if (deployJava.debug) {
             alert('userAgent -> ' + browser);
         }
-    
-        if ((navigator.vendor) && 
+
+        if ((navigator.vendor) &&
             (navigator.vendor.toLowerCase().indexOf('apple') != -1) &&
             (browser.indexOf('safari') != -1)) {
             if (deployJava.debug) {
@@ -642,8 +641,8 @@ var deployJava = {
                 alert('We claim to have detected "IE".');
             }
             return 'MSIE';
-        } else if ((browser.indexOf('mozilla') != -1) || 
-                   (browser.indexOf('firefox') != -1)) {
+        } else if ((browser.indexOf('mozilla') != -1) ||
+            (browser.indexOf('firefox') != -1)) {
             if (deployJava.debug) {
                 alert('We claim to have detected a Netscape family browser.');
             }
@@ -655,27 +654,27 @@ var deployJava = {
             return '?';
         }
     },
-    
-    
-    testUsingActiveX: function(version) {
+
+
+    testUsingActiveX: function (version) {
         var objectName = 'JavaWebStart.isInstalled.' + version + '.0';
-    
+
         if (!ActiveXObject) {
             if (deployJava.debug) {
-              alert ('Browser claims to be IE, but no ActiveXObject object?');
+                alert('Browser claims to be IE, but no ActiveXObject object?');
             }
             return false;
         }
-    
+
         try {
             return (new ActiveXObject(objectName) != null);
         } catch (exception) {
             return false;
         }
     },
-    
 
-    testForMSVM: function() {
+
+    testForMSVM: function () {
         var clsid = '{08B0E5C0-4FCB-11CF-AAA5-00401C608500}';
 
         if (typeof oClientCaps != 'undefined') {
@@ -684,97 +683,97 @@ var deployJava = {
                 return false;
             } else {
                 return true;
-            } 
+            }
         } else {
             return false;
         }
     },
 
-    
-    testUsingMimeTypes: function(version) {
+
+    testUsingMimeTypes: function (version) {
         if (!navigator.mimeTypes) {
             if (deployJava.debug) {
-                alert ('Browser claims to be Netscape family, but no mimeTypes[] array?');
+                alert('Browser claims to be Netscape family, but no mimeTypes[] array?');
             }
             return false;
         }
-    
+
         for (var i = 0; i < navigator.mimeTypes.length; ++i) {
             s = navigator.mimeTypes[i].type;
             var m = s.match(/^application\/x-java-applet\x3Bversion=(1\.8|1\.7|1\.6|1\.5|1\.4\.2)$/);
             if (m != null) {
                 if (deployJava.compareVersions(m[1], version)) {
-                    return true;   
+                    return true;
                 }
             }
         }
         return false;
     },
-    
-    
-    testUsingPluginsArray: function(version) {
+
+
+    testUsingPluginsArray: function (version) {
         if ((!navigator.plugins) || (!navigator.plugins.length)) {
             if (deployJava.debug) {
-                alert ('Browser claims to be Safari, but no plugins[] array?');
+                alert('Browser claims to be Safari, but no plugins[] array?');
             }
             return false;
         }
 
         for (var i = 0; i < navigator.plugins.length; ++i) {
             s = navigator.plugins[i].description;
-    
+
             if (s.search(/^Java Switchable Plug-in/) != -1) {
                 return true;
             }
-    
+
             m = s.match(/^Java (1\.4\.2|1\.5|1\.6|1\.7).* Plug-in/);
             if (m != null) {
-                if (deployJava.compareVersions(m[1], version)) return true; 
+                if (deployJava.compareVersions(m[1], version)) return true;
             }
         }
         return false;
     },
-    
-    IEInstall: function() {
-    
-        location.href = deployJava.getJavaURL + 
-            ((deployJava.returnPage != null) ?
-            ('&returnPage=' + deployJava.returnPage) : '') +
-            ((deployJava.locale != null) ?
-            ('&locale=' + deployJava.locale) : '') +
-            ((deployJava.brand != null) ? ('&brand=' + deployJava.brand) : '') +
-            ((deployJava.installType != null) ? 
-             ('&type=' + deployJava.installType) : '');
 
-         // should not actually get here
-         return false;
-    },
-    
-    done: function (name, result) {
-    },
-    
-    FFInstall: function() {
+    IEInstall: function () {
 
-        location.href = deployJava.getJavaURL + 
+        location.href = deployJava.getJavaURL +
             ((deployJava.returnPage != null) ?
-            ('&returnPage=' + deployJava.returnPage) : '') +
+                ('&returnPage=' + deployJava.returnPage) : '') +
             ((deployJava.locale != null) ?
-            ('&locale=' + deployJava.locale) : '') +
+                ('&locale=' + deployJava.locale) : '') +
             ((deployJava.brand != null) ? ('&brand=' + deployJava.brand) : '') +
-            ((deployJava.installType != null) ? 
+            ((deployJava.installType != null) ?
                 ('&type=' + deployJava.installType) : '');
 
-         // should not actually get here
-         return false;
+        // should not actually get here
+        return false;
+    },
+
+    done: function (name, result) {
+    },
+
+    FFInstall: function () {
+
+        location.href = deployJava.getJavaURL +
+            ((deployJava.returnPage != null) ?
+                ('&returnPage=' + deployJava.returnPage) : '') +
+            ((deployJava.locale != null) ?
+                ('&locale=' + deployJava.locale) : '') +
+            ((deployJava.brand != null) ? ('&brand=' + deployJava.brand) : '') +
+            ((deployJava.installType != null) ?
+                ('&type=' + deployJava.installType) : '');
+
+        // should not actually get here
+        return false;
     },
 
     // return true if 'installed' (considered as a JRE version string) is
     // greater than or equal to 'required' (again, a JRE version string).
-    compareVersions: function(installed, required) {
+    compareVersions: function (installed, required) {
 
         var a = installed.split('.');
         var b = required.split('.');
-    
+
         for (var i = 0; i < a.length; ++i) {
             a[i] = Number(a[i]);
         }
@@ -782,40 +781,41 @@ var deployJava = {
             b[i] = Number(b[i]);
         }
         if (a.length == 2) {
-            a[2] = 0;      
+            a[2] = 0;
         }
-    
+
         if (a[0] > b[0]) return true;
         if (a[0] < b[0]) return false;
-    
+
         if (a[1] > b[1]) return true;
         if (a[1] < b[1]) return false;
-    
+
         if (a[2] > b[2]) return true;
         if (a[2] < b[2]) return false;
-    
+
         return true;
     },
-    
-    
-    enableAlerts: function() {
+
+
+    enableAlerts: function () {
         deployJava.debug = true;
     },
 
-    poll: function() {
+    poll: function () {
 
         deployJava.refresh();
-        var postInstallJREList = deployJava.getJREs();           
+        var postInstallJREList = deployJava.getJREs();
 
-        if ((deployJava.preInstallJREList.length == 0) && 
+        if ((deployJava.preInstallJREList.length == 0) &&
             (postInstallJREList.length != 0)) {
             clearInterval(deployJava.myInterval);
             if (deployJava.returnPage != null) {
                 location.href = deployJava.returnPage;
-            };
+            }
+            ;
         }
 
-        if ((deployJava.preInstallJREList.length != 0) && 
+        if ((deployJava.preInstallJREList.length != 0) &&
             (postInstallJREList.length != 0) &&
             (deployJava.preInstallJREList[0] != postInstallJREList[0])) {
             clearInterval(deployJava.myInterval);
@@ -825,29 +825,29 @@ var deployJava = {
         }
 
     },
-    
-    writePluginTag: function() {
+
+    writePluginTag: function () {
         var browser = deployJava.getBrowser();
         if (browser == 'MSIE') {
-            document.write('<' + 
+            document.write('<' +
                 'object classid="clsid:CAFEEFAC-DEC7-0000-0000-ABCDEFFEDCBA" ' +
                 'id="deployJavaPlugin" width="0" height="0">' +
                 '<' + '/' + 'object' + '>');
         } else if (browser == 'Netscape Family') {
-            if (navigator.mimeTypes != null) for (var i=0; 
-                    i < navigator.mimeTypes.length; i++) {
+            if (navigator.mimeTypes != null) for (var i = 0;
+                                                  i < navigator.mimeTypes.length; i++) {
                 if (navigator.mimeTypes[i].type == deployJava.mimeType) {
                     if (navigator.mimeTypes[i].enabledPlugin) {
-                        document.write('<' + 
-                            'embed id="deployJavaPlugin" type="' + 
+                        document.write('<' +
+                            'embed id="deployJavaPlugin" type="' +
                             deployJava.mimeType + '" hidden="true" />');
                     }
                 }
-           }
+            }
         }
     },
 
-    refresh: function() {
+    refresh: function () {
         navigator.plugins.refresh(false);
 
         var browser = deployJava.getBrowser();
@@ -855,8 +855,8 @@ var deployJava = {
             var plugin = document.getElementById('deployJavaPlugin');
             // only do this again if no plugin
             if (plugin == null) {
-                if (navigator.mimeTypes != null) for (var i=0;
-                    i < navigator.mimeTypes.length; i++) {
+                if (navigator.mimeTypes != null) for (var i = 0;
+                                                      i < navigator.mimeTypes.length; i++) {
                     if (navigator.mimeTypes[i].type == deployJava.mimeType) {
                         if (navigator.mimeTypes[i].enabledPlugin) {
                             document.write('<' +
@@ -864,35 +864,38 @@ var deployJava = {
                                 deployJava.mimeType + '" hidden="true" />');
                         }
                     }
-               }
+                }
             }
         }
     },
 
-    do_initialize: function() {
+    do_initialize: function () {
         deployJava.writePluginTag();
         if (deployJava.locale == null) {
             var loc = null;
 
             if (loc == null) try {
                 loc = navigator.userLanguage;
-            } catch (err) { }
+            } catch (err) {
+            }
 
             if (loc == null) try {
                 loc = navigator.systemLanguage;
-            } catch (err) { }
-    
+            } catch (err) {
+            }
+
             if (loc == null) try {
                 loc = navigator.language;
-            } catch (err) { }
-    
+            } catch (err) {
+            }
+
             if (loc != null) {
-                loc.replace("-","_")
+                loc.replace("-", "_")
                 deployJava.locale = loc;
             }
         }
     }
-      
+
 };
 deployJava.do_initialize();
 

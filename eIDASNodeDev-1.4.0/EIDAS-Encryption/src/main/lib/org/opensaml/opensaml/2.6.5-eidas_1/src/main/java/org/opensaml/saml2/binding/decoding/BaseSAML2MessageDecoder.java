@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -48,27 +48,33 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(BaseSAML2MessageDecoder.class);
-    
-    /** Constructor. */
+
+    /**
+     * Constructor.
+     */
     public BaseSAML2MessageDecoder() {
         super();
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param pool parser pool used to deserialize messages
      */
     public BaseSAML2MessageDecoder(ParserPool pool) {
         super(pool);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void decode(MessageContext messageContext) throws MessageDecodingException, SecurityException {
         super.decode(messageContext);
-        
+
         checkEndpointURI((SAMLMessageContext) messageContext);
     }
 
@@ -76,22 +82,20 @@ public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
      * Populates the message context with the message ID, issue instant, and issuer as well as the peer's entity
      * descriptor if a metadata provider is present in the message context and the peer's role descriptor if its entity
      * descriptor was retrieved and the message context has a populated peer role name.
-     * 
+     *
      * @param messageContext message context to populate
-     * 
      * @throws MessageDecodingException thrown if there is a problem populating the message context
      */
     protected void populateMessageContext(SAMLMessageContext messageContext) throws MessageDecodingException {
         populateMessageIdIssueInstantIssuer(messageContext);
         populateRelyingPartyMetadata(messageContext);
     }
-    
+
     /**
      * Extracts the message ID, issue instant, and issuer from the incoming SAML message and populates the message
      * context with it.
-     * 
+     *
      * @param messageContext current message context
-     * 
      * @throws MessageDecodingException thrown if there is a problem populating the message context
      */
     protected void populateMessageIdIssueInstantIssuer(SAMLMessageContext messageContext)
@@ -126,13 +130,12 @@ public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Extract information from a SAML StatusResponse message.
-     * 
+     *
      * @param messageContext current message context
      * @param statusResponse the SAML message to process
-     * 
      * @throws MessageDecodingException thrown if the response issuer has a format other than {@link NameIDType#ENTITY}
-     *             or, if the response does not contain an issuer, if the contained assertions contain issuers that are
-     *             not of {@link NameIDType#ENTITY} format or if the assertions contain different issuers
+     *                                  or, if the response does not contain an issuer, if the contained assertions contain issuers that are
+     *                                  not of {@link NameIDType#ENTITY} format or if the assertions contain different issuers
      */
     protected void extractResponseInfo(SAMLMessageContext messageContext, StatusResponseType statusResponse)
             throws MessageDecodingException {
@@ -168,10 +171,9 @@ public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Extract information from a SAML RequestAbstractType message.
-     * 
+     *
      * @param messageContext current message context
-     * @param request the SAML message to process
-     * 
+     * @param request        the SAML message to process
      * @throws MessageDecodingException thrown if the request issuer has a format other than {@link NameIDType#ENTITY}
      */
     protected void extractRequestInfo(SAMLMessageContext messageContext, RequestAbstractType request)
@@ -183,11 +185,9 @@ public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Extracts the entity ID from the SAML 2 Issuer.
-     * 
+     *
      * @param issuer issuer to extract the entityID from
-     * 
      * @return entity ID of the issuer
-     * 
      * @throws MessageDecodingException thrown if the given issuer has a format other than {@link NameIDType#ENTITY}
      */
     protected String extractEntityId(Issuer issuer) throws MessageDecodingException {
@@ -201,14 +201,13 @@ public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
 
         return null;
     }
-    
-    
+
+
     /**
      * Populates the peer's entity metadata if a metadata provide is present in the message context. Populates the
      * peer's role descriptor if the entity metadata was available and the role name is present in the message context.
-     * 
+     *
      * @param messageContext current message context
-     * 
      * @throws MessageDecodingException thrown if there is a problem populating the message context
      */
     protected void populateRelyingPartyMetadata(SAMLMessageContext messageContext) throws MessageDecodingException {
@@ -236,16 +235,15 @@ public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
     }
 
     /**
-     * {@inheritDoc} 
-     * 
+     * {@inheritDoc}
+     *
      * <p>This SAML 2-specific implementation extracts the value of the protocol message Destination attribute.</p>
-     * 
-     * */
+     */
     protected String getIntendedDestinationEndpointURI(SAMLMessageContext samlMsgCtx) throws MessageDecodingException {
         SAMLObject samlMessage = samlMsgCtx.getInboundSAMLMessage();
         String messageDestination = null;
         if (samlMessage instanceof RequestAbstractType) {
-            RequestAbstractType request =  (RequestAbstractType) samlMessage;
+            RequestAbstractType request = (RequestAbstractType) samlMessage;
             messageDestination = DatatypeHelper.safeTrimOrNullString(request.getDestination());
         } else if (samlMessage instanceof StatusResponseType) {
             StatusResponseType response = (StatusResponseType) samlMessage;
@@ -256,5 +254,5 @@ public abstract class BaseSAML2MessageDecoder extends BaseSAMLMessageDecoder {
         }
         return messageDestination;
     }
-    
+
 }

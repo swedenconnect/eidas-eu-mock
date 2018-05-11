@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -33,8 +33,6 @@ import org.apache.velocity.test.misc.UberspectTestException;
 import org.apache.velocity.util.introspection.Info;
 
 
-
-
 /**
  * Test that the Info class in the Introspector holds the correct information.
  *
@@ -42,25 +40,21 @@ import org.apache.velocity.util.introspection.Info;
  * @author <a href="mailto:isidore@setgame.com">Llewellyn Falco</a>
  * @version $Id: InfoTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class InfoTestCase extends BaseTestCase implements TemplateTestBase
-{
+public class InfoTestCase extends BaseTestCase implements TemplateTestBase {
     VelocityEngine ve;
 
     /**
      * Default constructor.
      */
-    public InfoTestCase(String name)
-    {
+    public InfoTestCase(String name) {
         super(name);
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(InfoTestCase.class);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         ve = new VelocityEngine();
         ve.setProperty(
                 "runtime.introspector.uberspect", "org.apache.velocity.test.misc.UberspectTestImpl");
@@ -72,22 +66,18 @@ public class InfoTestCase extends BaseTestCase implements TemplateTestBase
     }
 
 
-
-    public void testInfoProperty() throws Exception
-    {
+    public void testInfoProperty() throws Exception {
         // check property
         checkInfo("info1.vm", 1, 7);
     }
 
-    public void testInfoMethod() throws Exception
-    {
+    public void testInfoMethod() throws Exception {
         // check method
         checkInfo("info2.vm", 1, 7);
     }
 
     public void checkInfo(String templateName,
-            int expectedLine, int expectedCol) throws Exception
-    {
+                          int expectedLine, int expectedCol) throws Exception {
         Context context = new VelocityContext();
         StringWriter writer = new StringWriter();
         Template template = ve.getTemplate(templateName, "UTF-8");
@@ -95,26 +85,20 @@ public class InfoTestCase extends BaseTestCase implements TemplateTestBase
 
         context.put("main", this);
 
-        try
-        {
+        try {
             template.merge(context, writer);
             writer.flush();
             fail("Uberspect should have thrown an exception");
-        }
-        catch (UberspectTestException E)
-        {
+        } catch (UberspectTestException E) {
             info = E.getInfo();
-        }
-        finally
-        {
+        } finally {
             writer.close();
         }
         assertInfoEqual(info, templateName, expectedLine, expectedCol);
 
     }
 
-    private void assertInfoEqual(Info i, String name, int line, int column)
-    {
+    private void assertInfoEqual(Info i, String name, int line, int column) {
         assertEquals("Template Name", name, i.getTemplateName());
         assertEquals("Template Line", line, i.getLine());
         assertEquals("Template Column", column, i.getColumn());

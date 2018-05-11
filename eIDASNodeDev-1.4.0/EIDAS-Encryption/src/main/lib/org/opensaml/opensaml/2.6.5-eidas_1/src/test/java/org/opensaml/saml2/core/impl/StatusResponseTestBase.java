@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -36,40 +36,57 @@ import org.opensaml.saml2.core.StatusResponseType;
  *
  */
 public abstract class StatusResponseTestBase extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected ID attribute */
+
+    /**
+     * Expected ID attribute
+     */
     protected String expectedID;
-    
-    /** Expected InResponseTo attribute */
+
+    /**
+     * Expected InResponseTo attribute
+     */
     protected String expectedInResponseTo;
-    
-    /** Expected Version attribute */
+
+    /**
+     * Expected Version attribute
+     */
     protected SAMLVersion expectedSAMLVersion;
-    
-    /** Expected IssueInstant attribute */
+
+    /**
+     * Expected IssueInstant attribute
+     */
     protected DateTime expectedIssueInstant;
-    
-    /** Expected Destination attribute */
+
+    /**
+     * Expected Destination attribute
+     */
     protected String expectedDestination;
-    
-    /** Expected Consent attribute */
+
+    /**
+     * Expected Consent attribute
+     */
     protected String expectedConsent;
-    
-    /** Expected Issuer child element */
+
+    /**
+     * Expected Issuer child element
+     */
     protected Issuer expectedIssuer;
-    
-    /** Expected Status child element */
+
+    /**
+     * Expected Status child element
+     */
     protected Status expectedStatus;
 
     /**
      * Constructor
-     *
      */
     public StatusResponseTestBase() {
-        
+
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedID = "def456";
@@ -78,94 +95,97 @@ public abstract class StatusResponseTestBase extends BaseSAMLObjectProviderTestC
         expectedIssueInstant = new DateTime(2006, 2, 21, 16, 40, 0, 0, ISOChronology.getInstanceUTC());
         expectedDestination = "http://sp.example.org/endpoint";
         expectedConsent = "urn:string:consent";
-        
+
         QName issuerQName = new QName(SAMLConstants.SAML20_NS, Issuer.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         expectedIssuer = (Issuer) buildXMLObject(issuerQName);
-        
+
         QName statusQName = new QName(SAMLConstants.SAML20P_NS, Status.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         expectedStatus = (Status) buildXMLObject(statusQName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public abstract void testSingleElementUnmarshall();
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public abstract void testSingleElementMarshall();
-    
-    
+
+
     /**
      * Used by subclasses to populate the required attribute values
      * that this test expects.
-     * 
+     *
      * @param samlObject
      */
     protected void populateRequiredAttributes(SAMLObject samlObject) {
         StatusResponseType sr = (StatusResponseType) samlObject;
-        
+
         sr.setID(expectedID);
         sr.setIssueInstant(expectedIssueInstant);
         // NOTE:  the SAML Version attribute is set automatically by the impl superclas
-        
+
     }
-    
+
     /**
      * Used by subclasses to populate the optional attribute values
-     * that this test expects. 
-     * 
+     * that this test expects.
+     *
      * @param samlObject
      */
     protected void populateOptionalAttributes(SAMLObject samlObject) {
         StatusResponseType sr = (StatusResponseType) samlObject;
-        
+
         sr.setInResponseTo(expectedInResponseTo);
         sr.setConsent(expectedConsent);
         sr.setDestination(expectedDestination);
-        
+
     }
-    
+
     /**
      * Used by subclasses to populate the child elements that this test expects.
-     * 
-     * 
+     *
      * @param samlObject
      */
     protected void populateChildElements(SAMLObject samlObject) {
         StatusResponseType sr = (StatusResponseType) samlObject;
-        
+
         sr.setIssuer(expectedIssuer);
         sr.setStatus(expectedStatus);
-        
+
     }
-    
+
     protected void helperTestSingleElementUnmarshall(SAMLObject samlObject) {
         StatusResponseType sr = (StatusResponseType) samlObject;
-        
+
         assertEquals("Unmarshalled ID attribute was not the expected value", expectedID, sr.getID());
         assertEquals("Unmarshalled Version attribute was not the expected value", expectedSAMLVersion.toString(), sr.getVersion().toString());
         assertEquals("Unmarshalled IssueInstant attribute was not the expected value", 0, expectedIssueInstant.compareTo(sr.getIssueInstant()));
-        
+
         assertNull("InResponseTo was not null", sr.getInResponseTo());
         assertNull("Consent was not null", sr.getConsent());
         assertNull("Destination was not null", sr.getDestination());
-        
+
     }
-    
+
     protected void helperTestSingleElementOptionalAttributesUnmarshall(SAMLObject samlObject) {
         StatusResponseType sr = (StatusResponseType) samlObject;
-        
+
         assertEquals("Unmarshalled ID attribute was not the expected value", expectedID, sr.getID());
         assertEquals("Unmarshalled Version attribute was not the expected value", expectedSAMLVersion.toString(), sr.getVersion().toString());
         assertEquals("Unmarshalled IssueInstant attribute was not the expected value", 0, expectedIssueInstant.compareTo(sr.getIssueInstant()));
-        
+
         assertEquals("Unmarshalled InResponseTo attribute was not the expected value", expectedInResponseTo, sr.getInResponseTo());
         assertEquals("Unmarshalled Consent attribute was not the expected value", expectedConsent, sr.getConsent());
         assertEquals("Unmarshalled Destination attribute was not the expected value", expectedDestination, sr.getDestination());
-        
+
     }
 
     protected void helperTestChildElementsUnmarshall(SAMLObject samlObject) {
         StatusResponseType sr = (StatusResponseType) samlObject;
-        
+
         assertNotNull("Issuer was null", sr.getIssuer());
         assertNotNull("Status was null", sr.getIssuer());
     }

@@ -53,6 +53,7 @@ public class SimpleProtocolProcess {
 
 
     }
+
     public String convert2Json(Object object) throws JAXBException {
         // Now the other direction: marshall an existing (example) object to JSON to the screen
 

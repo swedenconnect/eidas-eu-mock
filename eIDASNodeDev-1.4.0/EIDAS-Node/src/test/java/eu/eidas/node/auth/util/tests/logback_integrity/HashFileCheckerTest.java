@@ -36,56 +36,63 @@ import eu.eidas.node.logging.integrity.HashFileChecker;
  */
 public class HashFileCheckerTest {
     @Test
-    public void testValidEntry() throws Exception{
+    public void testValidEntry() throws Exception {
         InputStream is = new ByteArrayInputStream(
                 EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #1# [+7ojMjYzoLMYIl8lzT7mgrI2SMSs4KLUWwcVBMquKlM=]\n"));
         Assert.assertTrue(HashFileChecker.check(is, "SHA-256"));
-    } @Test
-    public void testLongerValidFile() throws Exception{
+    }
+
+    @Test
+    public void testLongerValidFile() throws Exception {
         InputStream is = new ByteArrayInputStream(EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #1# [+7ojMjYzoLMYIl8lzT7mgrI2SMSs4KLUWwcVBMquKlM=]\n" +
-        "2015-03-26; 09:55:38.855 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #2# [EXCwHb/cO2R0XahMUctJVu2JMc5kKhEBK36xACWl85g=]\n" +
-        "2015-03-26; 09:55:38.857 [main] WARN  eu.test.appli  - - -Session is missing or invalid #3# [1l137/ppIbm0MhasxVYD0nwAY+ZKIZ1AnQMAA4kJFd0=]\n" +
-        "2015-03-26; 09:55:38.861 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #4# [7Q5VvImVlLOUfEGd2qRHUVQMs4Iv9Zce1BkM3w1q2Uo=]\n" +
-        "2015-03-26; 09:55:38.864 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #5# [KG73aXnqYmxJg1/8QYjVglwg4p/WWGLzXDxG9mGLIfA=]\n"));
+                "2015-03-26; 09:55:38.855 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #2# [EXCwHb/cO2R0XahMUctJVu2JMc5kKhEBK36xACWl85g=]\n" +
+                "2015-03-26; 09:55:38.857 [main] WARN  eu.test.appli  - - -Session is missing or invalid #3# [1l137/ppIbm0MhasxVYD0nwAY+ZKIZ1AnQMAA4kJFd0=]\n" +
+                "2015-03-26; 09:55:38.861 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #4# [7Q5VvImVlLOUfEGd2qRHUVQMs4Iv9Zce1BkM3w1q2Uo=]\n" +
+                "2015-03-26; 09:55:38.864 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #5# [KG73aXnqYmxJg1/8QYjVglwg4p/WWGLzXDxG9mGLIfA=]\n"));
         Assert.assertTrue(HashFileChecker.check(is, "SHA-256"));
     }
+
     /**
      * The number of log entry is not consistent.
      */
     @Test()
-    public void testInvalidText() throws Exception{
+    public void testInvalidText() throws Exception {
         InputStream is = new ByteArrayInputStream(EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #2# [+7ojMjYzoLMYIl8lzT7mgrI2SMSs4KLUWwcVBMquKlM=]\n"));
         Assert.assertFalse(HashFileChecker.check(is, "SHA-256"));
     }
+
     /**
      * The hash is not consistent
      */
     @Test
-    public void testInvalidHash() throws Exception{
+    public void testInvalidHash() throws Exception {
         InputStream is = new ByteArrayInputStream(EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #1# [+7ojMjYzM=]\n"));
         Assert.assertFalse(HashFileChecker.check(is, "SHA-256"));
     }
 
-    @Test(expected=IllegalStateException.class)
-    public void testMissingText() throws Exception{
+    @Test(expected = IllegalStateException.class)
+    public void testMissingText() throws Exception {
         InputStream is = new ByteArrayInputStream(EidasStringUtil.getBytes("[+7ojMjYzM=]\n"));
         HashFileChecker.check(is, "SHA-256");
     }
-    @Test(expected=IllegalStateException.class)
-    public void testMissingHash() throws Exception{
+
+    @Test(expected = IllegalStateException.class)
+    public void testMissingHash() throws Exception {
         InputStream is = new ByteArrayInputStream(EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #1#\n"));
         HashFileChecker.check(is, "SHA-256");
     }
-    @Test(expected=IllegalStateException.class)
-    public void testMissingTrailingHash() throws Exception{
+
+    @Test(expected = IllegalStateException.class)
+    public void testMissingTrailingHash() throws Exception {
         InputStream is = new ByteArrayInputStream(EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #1# []\n"));
         HashFileChecker.check(is, "SHA-256");
     }
+
     /**
      * Takes the longerValidFile without the line #3#.
      */
     @Test
-    public void testMissingEntry() throws Exception{
+    public void testMissingEntry() throws Exception {
         InputStream is = new ByteArrayInputStream(EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #1# [+7ojMjYzoLMYIl8lzT7mgrI2SMSs4KLUWwcVBMquKlM=]\n" +
                 "2015-03-26; 09:55:38.855 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #2# [EXCwHb/cO2R0XahMUctJVu2JMc5kKhEBK36xACWl85g=]\n" +
                 "2015-03-26; 09:55:38.861 [main] INFO  eu.test.appli  - - -== SESSION : Test.getAuthenticationRequest Called, size is 0 #4# [7Q5VvImVlLOUfEGd2qRHUVQMs4Iv9Zce1BkM3w1q2Uo=]\n" +

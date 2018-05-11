@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,29 +26,37 @@ import org.opensaml.common.xml.SAMLConstants;
  * SAML 2.0 Metadata EmailAddress
  */
 public interface EmailAddress extends SAMLObject {
-    
-    /** Element local name */
+
+    /**
+     * Element local name
+     */
     public final static String DEFAULT_ELEMENT_LOCAL_NAME = "EmailAddress";
-    
-    /** Default element name */
+
+    /**
+     * Default element name
+     */
     public final static QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML20MD_NS, DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
-    
-    /** Local name of the XSI type */
-    public final static String TYPE_LOCAL_NAME = "EmailAddressType"; 
-        
-    /** QName of the XSI type */
+
+    /**
+     * Local name of the XSI type
+     */
+    public final static String TYPE_LOCAL_NAME = "EmailAddressType";
+
+    /**
+     * QName of the XSI type
+     */
     public final static QName TYPE_NAME = new QName(SAMLConstants.SAML20MD_NS, TYPE_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
-    
+
     /**
      * Gets the email address.
-     * 
+     *
      * @return the email address
      */
     public String getAddress();
-    
+
     /**
      * Sets the email address.
-     * 
+     *
      * @param address email address
      */
     public void setAddress(String address);

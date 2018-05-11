@@ -20,7 +20,7 @@ import eu.eidas.util.Preconditions;
 
 /**
  * Defines which extensions to be processed in a saml message
- *
+ * <p>
  * // TODO this is incorrect as it uses the STORK namespace for eIDAS
  */
 @Deprecated

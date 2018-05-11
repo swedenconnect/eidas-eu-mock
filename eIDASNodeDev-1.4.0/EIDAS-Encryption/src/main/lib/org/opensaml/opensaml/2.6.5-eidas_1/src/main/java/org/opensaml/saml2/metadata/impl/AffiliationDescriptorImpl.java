@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -40,33 +40,49 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class AffiliationDescriptorImpl extends AbstractSignableSAMLObject implements AffiliationDescriptor {
 
-    /** ID of the owner of this affiliation */
+    /**
+     * ID of the owner of this affiliation
+     */
     private String ownerID;
-    
-    /** ID attribute*/
+
+    /**
+     * ID attribute
+     */
     private String id;
 
-    /** validUntil attribute */
+    /**
+     * validUntil attribute
+     */
     private DateTime validUntil;
 
-    /** cacheDurection attribute */
+    /**
+     * cacheDurection attribute
+     */
     private Long cacheDuration;
 
-    /** Extensions child */
+    /**
+     * Extensions child
+     */
     private Extensions extensions;
-    
-    /** "anyAttribute" attributes */
+
+    /**
+     * "anyAttribute" attributes
+     */
     private final AttributeMap unknownAttributes;
 
-    /** Members of this affiliation */
+    /**
+     * Members of this affiliation
+     */
     private final XMLObjectChildrenList<AffiliateMember> members;
 
-    /** Key descriptors for this role */
+    /**
+     * Key descriptors for this role
+     */
     private final XMLObjectChildrenList<KeyDescriptor> keyDescriptors;
 
     /**
      * Constructor
-     * 
+     *
      * @param namespaceURI
      * @param elementLocalName
      * @param namespacePrefix
@@ -78,99 +94,125 @@ public class AffiliationDescriptorImpl extends AbstractSignableSAMLObject implem
         keyDescriptors = new XMLObjectChildrenList<KeyDescriptor>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getOwnerID() {
         return ownerID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOwnerID(String newOwnerID) {
         if (newOwnerID != null && newOwnerID.length() > 1024) {
             throw new IllegalArgumentException("Owner ID can not exceed 1024 characters in length");
         }
         ownerID = prepareForAssignment(ownerID, newOwnerID);
     }
-    
+
     public String getID() {
         return id;
     }
-    
+
     public void setID(String newID) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, newID);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isValid() {
         if (null == validUntil) {
             return true;
         }
-        
+
         DateTime now = new DateTime();
         return now.isBefore(validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getValidUntil() {
         return validUntil;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setValidUntil(DateTime validUntil) {
         this.validUntil = prepareForAssignment(this.validUntil, validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Long getCacheDuration() {
         return cacheDuration;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCacheDuration(Long duration) {
         cacheDuration = prepareForAssignment(cacheDuration, duration);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions extensions) throws IllegalArgumentException {
         this.extensions = prepareForAssignment(this.extensions, extensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AffiliateMember> getMembers() {
         return members;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<KeyDescriptor> getKeyDescriptors() {
         return keyDescriptors;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public AttributeMap getUnknownAttributes() {
         return unknownAttributes;
     }
-    
-    /** {@inheritDoc} */
-    public String getSignatureReferenceID(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
-        if(getSignature() != null){
+        if (getSignature() != null) {
             children.add(getSignature());
         }
-        
+
         children.add(getExtensions());
 
         children.addAll(getMembers());

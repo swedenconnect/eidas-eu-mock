@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import junit.framework.TestCase;
@@ -29,18 +29,16 @@ import org.apache.velocity.runtime.RuntimeInstance;
 import org.apache.velocity.test.misc.TestContext;
 
 /**
- * Tests scope of EvaluateContext.  
- * 
+ * Tests scope of EvaluateContext.
+ *
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: EvaluateContextTestCase.java 753027 2009-03-12 21:47:56Z nbubna $
  */
-public class EvaluateContextTestCase extends TestCase
-{
-    public void testLocalscopePutDoesntLeakButGetDoes() 
-    throws Exception
-    {
+public class EvaluateContextTestCase extends TestCase {
+    public void testLocalscopePutDoesntLeakButGetDoes()
+            throws Exception {
         RuntimeInstance instance;
-        
+
         instance = new RuntimeInstance();
         instance.setProperty(RuntimeConstants.EVALUATE_CONTEXT_CLASS, VelocityContext.class.getName());
         instance.init();
@@ -62,17 +60,17 @@ public class EvaluateContextTestCase extends TestCase
         evc.put("outsideVar", "value3");
         assertEquals("value3", evc.get("outsideVar"));
         assertEquals("value1", base.get("outsideVar"));
-        
+
         assertEquals(2, evc.getKeys().length);
     }
 
     /**
      * Test that local context can be configured.
+     *
      * @throws Exception
      */
     public void testSetLocalContext()
-    throws Exception
-    {
+            throws Exception {
         RuntimeInstance instance = new RuntimeInstance();
         instance.setProperty(RuntimeConstants.EVALUATE_CONTEXT_CLASS, TestContext.class.getName());
         instance.init();
@@ -82,47 +80,44 @@ public class EvaluateContextTestCase extends TestCase
         EvaluateContext evc = new EvaluateContext(new InternalContextAdapterImpl(base), instance);
 
         // original entry
-        assertEquals(1,evc.getKeys().length);
-        
-        // original plus local entry
-        evc.put("test","result");
-        assertEquals(2,evc.getKeys().length);
-        
-        // local context is case insensitive, so the count remains the same
-        evc.put("TEST","result");
-        assertEquals(2,evc.getKeys().length);
+        assertEquals(1, evc.getKeys().length);
 
-        assertEquals("result",evc.get("test"));
-        assertEquals("result",evc.get("TEst"));
-    
+        // original plus local entry
+        evc.put("test", "result");
+        assertEquals(2, evc.getKeys().length);
+
+        // local context is case insensitive, so the count remains the same
+        evc.put("TEST", "result");
+        assertEquals(2, evc.getKeys().length);
+
+        assertEquals("result", evc.get("test"));
+        assertEquals("result", evc.get("TEst"));
+
         assertNull(evc.get("OUTSIDEVAR"));
     }
 
     public void testSetLocalContextWithErrors()
-    throws Exception
-    {
+            throws Exception {
         VelocityContext base = new VelocityContext();
 
-        try 
-        {
+        try {
             // initialize with bad class name
             RuntimeInstance instance = new RuntimeInstance();
             instance.setProperty(RuntimeConstants.EVALUATE_CONTEXT_CLASS, "org.apache");
             instance.init();
             EvaluateContext evc = new EvaluateContext(new InternalContextAdapterImpl(base), instance);
-            fail ("Expected an exception");
+            fail("Expected an exception");
+        } catch (Exception e) {
         }
-        catch (Exception e) {}
-        
-        try 
-        {
+
+        try {
             // initialize with class not implementing Context
             RuntimeInstance instance = new RuntimeInstance();
             instance.setProperty(RuntimeConstants.EVALUATE_CONTEXT_CLASS, org.apache.velocity.test.EvaluateContextTestCase.class.getName());
             instance.init();
             EvaluateContext evc = new EvaluateContext(new InternalContextAdapterImpl(base), instance);
-            fail ("Expected an exception");
+            fail("Expected an exception");
+        } catch (Exception e) {
         }
-        catch (Exception e) {}
-    }       
+    }
 }

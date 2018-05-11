@@ -60,16 +60,16 @@ public final class AssertionUtil {
      * Generates the assertion for the response.
      *
      * @param isFailure
-     * @param ipAddress    the IP address.
-     * @param request      the request for which the response is prepared
+     * @param ipAddress       the IP address.
+     * @param request         the request for which the response is prepared
      * @param responseIssuer
      * @param attributeMap
-     * @param notOnOrAfter the not on or after
+     * @param notOnOrAfter    the not on or after
      * @param formatEntity
      * @param responder
      * @param extensionFormat
      * @param isOneTimeUse
-     * @param currentTime the current time
+     * @param currentTime     the current time
      * @return the assertion
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -111,7 +111,7 @@ public final class AssertionUtil {
 
         LOG.trace("Generate Authentication Statement.");
         /**TODO SubjectoLocality will be added by decision made on optional elements later,
-        Address of entity is available in SubjectConfirmationData if provided */
+         Address of entity is available in SubjectConfirmationData if provided */
         AuthnStatement eidasAuthnStat = generateAuthStatement(null, null, currentTime);
         assertion.getAuthnStatements().add(eidasAuthnStat);
 
@@ -138,8 +138,8 @@ public final class AssertionUtil {
         LOG.trace("Generate SubjectConfirmationData.");
         SubjectConfirmationData dataBearer =
                 BuilderFactoryUtil.generateSubjectConfirmationData(currentTime,
-                                                                   request.getAssertionConsumerServiceURL(),
-                                                                   request.getId());
+                        request.getAssertionConsumerServiceURL(),
+                        request.getId());
 
         // Mandatory if urn:oasis:names:tc:SAML:2.0:cm:bearer.
         // Optional in other case.
@@ -177,7 +177,7 @@ public final class AssertionUtil {
         } else {
             // check if the request is coming with a format policym, and if yes, then the response has the right one
             if (StringUtils.isNotBlank(requestFormat) && !requestFormat.equals(responseFormat)) {
-                LOG.error("BUSINESS EXCEPTION : Invalid Response NameIDFormat in the Response, expected '"+requestFormat+"', got '"+responseFormat+"'");
+                LOG.error("BUSINESS EXCEPTION : Invalid Response NameIDFormat in the Response, expected '" + requestFormat + "', got '" + responseFormat + "'");
                 throw new EIDASSAMLEngineException(EidasErrorKey.IDP_SAML_RESPONSE.errorCode(),
                         EidasErrorKey.IDP_SAML_RESPONSE.errorCode());
             }
@@ -196,7 +196,6 @@ public final class AssertionUtil {
     }
 
     /**
-     *
      * @param attributeMap
      * @return
      * @throws EIDASSAMLEngineException
@@ -213,7 +212,7 @@ public final class AssertionUtil {
                 AttributeValueMarshaller<?> attributeValueMarshaller =
                         attributeDefinition.getAttributeValueMarshaller();
                 try {
-                    return attributeValueMarshaller.marshal((AttributeValue)values.iterator().next());
+                    return attributeValueMarshaller.marshal((AttributeValue) values.iterator().next());
                 } catch (AttributeValueMarshallingException e) {
                     LOG.error("BUSINESS EXCEPTION : Invalid Attribute Value " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
@@ -260,7 +259,7 @@ public final class AssertionUtil {
     /**
      * Generate authentication statement.
      *
-     * @param ipAddress the IP address
+     * @param ipAddress   the IP address
      * @param currentTime the saml engine clock
      * @return the authentication statement
      */

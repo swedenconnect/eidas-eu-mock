@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.Writer;
@@ -41,8 +41,7 @@ import org.apache.velocity.exception.TemplateInitException;
  * @author Nathan Bubna
  * @version $Id: Directive.java 778045 2009-05-23 22:17:46Z nbubna $
  */
-public abstract class Directive implements DirectiveConstants, Cloneable
-{
+public abstract class Directive implements DirectiveConstants, Cloneable {
     private int line = 0;
     private int column = 0;
     private boolean provideScope = false;
@@ -55,71 +54,71 @@ public abstract class Directive implements DirectiveConstants, Cloneable
 
     /**
      * Return the name of this directive.
+     *
      * @return The name of this directive.
      */
     public abstract String getName();
 
     /**
      * Get the directive type BLOCK/LINE.
+     *
      * @return The directive type BLOCK/LINE.
      */
     public abstract int getType();
 
     /**
      * Allows the template location to be set.
+     *
      * @param line
      * @param column
      */
-    public void setLocation( int line, int column )
-    {
+    public void setLocation(int line, int column) {
         this.line = line;
         this.column = column;
     }
 
     /**
      * Allows the template location to be set.
+     *
      * @param line
      * @param column
      */
-    public void setLocation(int line, int column, String templateName)
-    {
+    public void setLocation(int line, int column, String templateName) {
         setLocation(line, column);
         this.templateName = templateName;
     }
 
     /**
      * for log msg purposes
+     *
      * @return The current line for log msg purposes.
      */
-    public int getLine()
-    {
+    public int getLine() {
         return line;
     }
 
     /**
      * for log msg purposes
+     *
      * @return The current column for log msg purposes.
      */
-    public int getColumn()
-    {
+    public int getColumn() {
         return column;
     }
-    
+
     /**
-     * @return The template file name this directive was defined in, or null if not 
+     * @return The template file name this directive was defined in, or null if not
      * defined in a file.
      */
-    public String getTemplateName()
-    {
-      return templateName;
+    public String getTemplateName() {
+        return templateName;
     }
 
     /**
      * @returns the name to be used when a scope control is provided for this
      * directive.
      */
-    public String getScopeName()
-    {
+    public String getScopeName() {
         return getName();
     }
 
@@ -127,30 +126,30 @@ public abstract class Directive implements DirectiveConstants, Cloneable
      * @return true if there will be a scope control injected into the context
      * when rendering this directive.
      */
-    public boolean isScopeProvided()
-    {
+    public boolean isScopeProvided() {
         return provideScope;
     }
 
     /**
      * How this directive is to be initialized.
+     *
      * @param rs
      * @param context
      * @param node
      * @throws TemplateInitException
      */
-    public void init( RuntimeServices rs, InternalContextAdapter context,
-                      Node node)
-        throws TemplateInitException
-    {
+    public void init(RuntimeServices rs, InternalContextAdapter context,
+                     Node node)
+            throws TemplateInitException {
         rsvc = rs;
 
-        String property = getScopeName()+'.'+RuntimeConstants.PROVIDE_SCOPE_CONTROL;
+        String property = getScopeName() + '.' + RuntimeConstants.PROVIDE_SCOPE_CONTROL;
         this.provideScope = rsvc.getBoolean(property, provideScope);
     }
 
     /**
      * How this directive is to be rendered
+     *
      * @param context
      * @param writer
      * @param node
@@ -160,28 +159,25 @@ public abstract class Directive implements DirectiveConstants, Cloneable
      * @throws ParseErrorException
      * @throws MethodInvocationException
      */
-    public abstract boolean render( InternalContextAdapter context,
-                                    Writer writer, Node node )
-           throws IOException, ResourceNotFoundException, ParseErrorException,
-                MethodInvocationException;
+    public abstract boolean render(InternalContextAdapter context,
+                                   Writer writer, Node node)
+            throws IOException, ResourceNotFoundException, ParseErrorException,
+            MethodInvocationException;
 
 
     /**
      * This creates and places the scope control for this directive
      * into the context (if scope provision is turned on).
      */
-    protected void preRender(InternalContextAdapter context)
-    {
-        if (isScopeProvided())
-        {
+    protected void preRender(InternalContextAdapter context) {
+        if (isScopeProvided()) {
             String name = getScopeName();
             Object previous = context.get(name);
             context.put(name, makeScope(previous));
         }
     }
 
-    protected Scope makeScope(Object prev)
-    {
+    protected Scope makeScope(Object prev) {
         return new Scope(this, prev);
     }
 
@@ -189,31 +185,21 @@ public abstract class Directive implements DirectiveConstants, Cloneable
      * This cleans up any scope control for this directive after rendering,
      * assuming the scope control was turned on.
      */
-    protected void postRender(InternalContextAdapter context)
-    {
-        if (isScopeProvided())
-        {
+    protected void postRender(InternalContextAdapter context) {
+        if (isScopeProvided()) {
             String name = getScopeName();
             Object obj = context.get(name);
-            
-            try
-            {
-                Scope scope = (Scope)obj;
-                if (scope.getParent() != null)
-                {
+
+            try {
+                Scope scope = (Scope) obj;
+                if (scope.getParent() != null) {
                     context.put(name, scope.getParent());
-                }
-                else if (scope.getReplaced() != null)
-                {
+                } else if (scope.getReplaced() != null) {
                     context.put(name, scope.getReplaced());
-                }
-                else
-                {
+                } else {
                     context.remove(name);
                 }
-            }
-            catch (ClassCastException cce)
-            {
+            } catch (ClassCastException cce) {
                 // the user can override the scope with a #set,
                 // since that means they don't care about a replaced value
                 // and obviously aren't too keen on their scope control,

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.validator;
@@ -33,7 +33,9 @@ import org.opensaml.xml.validation.Validator;
  */
 public class StatusCodeSchemaValidator implements Validator<StatusCode> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(StatusCode statusCode) throws ValidationException {
         validateValue(statusCode);
         validateValueContent(statusCode);
@@ -41,9 +43,8 @@ public class StatusCodeSchemaValidator implements Validator<StatusCode> {
 
     /**
      * Validates that the status code has a value.
-     * 
+     *
      * @param statusCode status code to validate
-     * 
      * @throws ValidationException thrown if the status code does not have a value
      */
     protected void validateValue(StatusCode statusCode) throws ValidationException {
@@ -55,18 +56,17 @@ public class StatusCodeSchemaValidator implements Validator<StatusCode> {
 
     /**
      * Validates that the status code local name is one of the allowabled values.
-     * 
+     *
      * @param statusCode the status code to validate
-     * 
      * @throws ValidationException thrown if the status code local name is not an allowed value
      */
     protected void validateValueContent(StatusCode statusCode) throws ValidationException {
         QName statusValue = statusCode.getValue();
 
         if (SAMLConstants.SAML10P_NS.equals(statusValue.getNamespaceURI())) {
-            if (!(statusValue.equals(StatusCode.SUCCESS) 
+            if (!(statusValue.equals(StatusCode.SUCCESS)
                     || statusValue.equals(StatusCode.VERSION_MISMATCH)
-                    || statusValue.equals(StatusCode.REQUESTER) 
+                    || statusValue.equals(StatusCode.REQUESTER)
                     || statusValue.equals(StatusCode.RESPONDER)
                     || statusValue.equals(StatusCode.REQUEST_VERSION_TOO_HIGH)
                     || statusValue.equals(StatusCode.REQUEST_VERSION_TOO_LOW)

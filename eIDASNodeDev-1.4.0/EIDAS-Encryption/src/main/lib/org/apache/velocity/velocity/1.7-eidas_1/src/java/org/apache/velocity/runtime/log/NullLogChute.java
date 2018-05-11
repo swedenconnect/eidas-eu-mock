@@ -16,56 +16,51 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.RuntimeServices;
 
 /**
- *  Logger used in case of failure. Does nothing.
+ * Logger used in case of failure. Does nothing.
  *
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @author <a href="mailto:nbubna@optonline.net">Nathan Bubna.</a>
  * @version $Id: NullLogChute.java 730039 2008-12-30 03:53:19Z byron $
  * @since 1.5
  */
-public class NullLogChute implements LogChute
-{
+public class NullLogChute implements LogChute {
 
     /**
      * @see org.apache.velocity.runtime.log.LogChute#init(org.apache.velocity.runtime.RuntimeServices)
      */
-    public void init(RuntimeServices rs) throws Exception
-    {
+    public void init(RuntimeServices rs) throws Exception {
     }
 
     /**
      * logs messages to the great Garbage Collector in the sky
      *
-     *  @param level severity level
-     *  @param message complete error message
+     * @param level   severity level
+     * @param message complete error message
      */
-    public void log(int level, String message)
-    {
+    public void log(int level, String message) {
     }
 
     /**
      * logs messages and their accompanying Throwables
      * to the great Garbage Collector in the sky
      *
-     * @param level severity level
+     * @param level   severity level
      * @param message complete error message
-     * @param t the java.lang.Throwable
+     * @param t       the java.lang.Throwable
      */
-    public void log(int level, String message, Throwable t)
-    {
+    public void log(int level, String message, Throwable t) {
     }
 
     /**
      * @see org.apache.velocity.runtime.log.LogChute#isLevelEnabled(int)
      */
-    public boolean isLevelEnabled(int level)
-    {
+    public boolean isLevelEnabled(int level) {
         return false;
     }
 

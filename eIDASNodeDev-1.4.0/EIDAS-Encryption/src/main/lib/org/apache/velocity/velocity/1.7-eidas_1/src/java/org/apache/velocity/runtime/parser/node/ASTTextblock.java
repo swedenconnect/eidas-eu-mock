@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -29,12 +29,11 @@ import org.apache.velocity.runtime.parser.Token;
 
 /**
  * This node holds the "Textblock" data which should not be interpreted by Velocity.
- *
+ * <p>
  * Textblocks are marked in Velocity with #[[content here]]# notation. Velocity
  * will output everything between the markers and does not attempt to parse it in any way.
  */
-public class ASTTextblock extends SimpleNode
-{
+public class ASTTextblock extends SimpleNode {
     public static final String START = "#[[";
     public static final String END = "]]#";
     private char[] ctext;
@@ -42,8 +41,7 @@ public class ASTTextblock extends SimpleNode
     /**
      * @param id
      */
-    public ASTTextblock(int id)
-    {
+    public ASTTextblock(int id) {
         super(id);
     }
 
@@ -51,29 +49,26 @@ public class ASTTextblock extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTTextblock(Parser p, int id)
-    {
+    public ASTTextblock(Parser p, int id) {
         super(p, id);
     }
 
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#init(org.apache.velocity.context.InternalContextAdapter, java.lang.Object)
      */
-    public Object init( InternalContextAdapter context, Object data)
-    throws TemplateInitException
-    {
+    public Object init(InternalContextAdapter context, Object data)
+            throws TemplateInitException {
         Token t = getFirstToken();
-        
+
         String text = t.image;
-        
+
         // t.image is in format: #% <string> %#
         // we must strip away the hash tags
         text = text.substring(START.length(), text.length() - END.length());
@@ -85,9 +80,8 @@ public class ASTTextblock extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer)
      */
-    public boolean render( InternalContextAdapter context, Writer writer)
-        throws IOException
-    {
+    public boolean render(InternalContextAdapter context, Writer writer)
+            throws IOException {
         writer.write(ctext);
         return true;
     }

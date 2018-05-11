@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,54 +32,66 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  * A concrete implementation of {@link org.opensaml.saml2.core.EncryptedElementType}.
  */
 public class EncryptedElementTypeImpl extends AbstractSAMLObject implements EncryptedElementType {
-    
-    /** EncryptedData child element. */
+
+    /**
+     * EncryptedData child element.
+     */
     private EncryptedData encryptedData;
-    
-    /** EncryptedKey children. */
+
+    /**
+     * EncryptedKey children.
+     */
     private final XMLObjectChildrenList<EncryptedKey> encryptedKeys;
 
     /**
      * Constructor.
      *
-     * @param namespaceURI the namespace the element is in
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected EncryptedElementTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         encryptedKeys = new XMLObjectChildrenList<EncryptedKey>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EncryptedData getEncryptedData() {
         return this.encryptedData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setEncryptedData(EncryptedData newEncryptedData) {
         this.encryptedData = prepareForAssignment(this.encryptedData, newEncryptedData);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<EncryptedKey> getEncryptedKeys() {
         return this.encryptedKeys;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
-        
+
         if (encryptedData != null) {
             children.add(encryptedData);
         }
-        
+
         children.addAll(encryptedKeys);
-        
+
         if (children.size() == 0) {
             return null;
         }
-        
+
         return Collections.unmodifiableList(children);
     }
 

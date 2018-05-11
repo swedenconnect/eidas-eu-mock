@@ -68,7 +68,7 @@ public class TestMDGenerator {
 
     @Before
     public void setUp() {
-            OpenSamlHelper.initialize();
+        OpenSamlHelper.initialize();
     }
 
     @After
@@ -95,7 +95,7 @@ public class TestMDGenerator {
             mcp.setTechnicalContact(ContactData.builder().build());
             mcp.setSupportContact(ContactData.builder().build());
             mcp.setOrganization(OrganizationData.builder().name(TEST_COUNTRY_NAME).build());
-            mcp.setRoleDescriptors(Sets.newHashSet(mcrp ));
+            mcp.setRoleDescriptors(Sets.newHashSet(mcrp));
             EidasMetadata.Generator generator = EidasMetadata.generator(mcp);
             EidasMetadata metadata = generator.generate((MetadataSignerI) engine.getSigner());
             assertTrue(metadata != null && !metadata.getMetadata().isEmpty());

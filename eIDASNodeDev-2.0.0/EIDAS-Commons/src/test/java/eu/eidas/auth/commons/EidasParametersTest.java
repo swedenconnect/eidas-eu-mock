@@ -52,11 +52,10 @@ public class EidasParametersTest {
     /**
      * Method to test the retrieval of values loaded in {@link EidasParameters}
      * Must succed.
-     *
      */
     @Test
     public void testGet() {
-        assertEquals("300",EidasParameters.get(key));
+        assertEquals("300", EidasParameters.get(key));
     }
 
     /**
@@ -65,7 +64,7 @@ public class EidasParametersTest {
      */
     @Test
     public void testGetFail() {
-        assertNotEquals("301",EidasParameters.get(key));
+        assertNotEquals("301", EidasParameters.get(key));
     }
 
 }

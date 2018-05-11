@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,136 +34,192 @@ import org.opensaml.xacml.policy.VariableDefinitionType;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 
-/** Concrete implemenation of {@link PolicyType}. */
+/**
+ * Concrete implemenation of {@link PolicyType}.
+ */
 public class PolicyTypeImpl extends AbstractXACMLObject implements PolicyType {
 
-    /** Policy description. */
+    /**
+     * Policy description.
+     */
     private DescriptionType description;
 
-    /** Policy defaults. */
+    /**
+     * Policy defaults.
+     */
     private DefaultsType policyDefaults;
 
-    /** Policy target. */
+    /**
+     * Policy target.
+     */
     private TargetType target;
 
-    /** Elements within the choice group. */
+    /**
+     * Elements within the choice group.
+     */
     private IndexedXMLObjectChildrenList<? extends XACMLObject> choiceGroup;
 
-    /** Policy obligations. */
+    /**
+     * Policy obligations.
+     */
     private ObligationsType obligations;
 
-    /** ID of this policy. */
+    /**
+     * ID of this policy.
+     */
     private String policyId;
 
-    /** Version of this policy. */
+    /**
+     * Version of this policy.
+     */
     private String version;
 
-    /** Rule combinging algorithm ID. */
+    /**
+     * Rule combinging algorithm ID.
+     */
     private String ruleCombiningAlgo;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected PolicyTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         choiceGroup = new IndexedXMLObjectChildrenList<XACMLObject>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<CombinerParametersType> getCombinerParameters() {
         return (List<CombinerParametersType>) choiceGroup.subList(CombinerParametersType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DescriptionType getDescription() {
         return description;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ObligationsType getObligations() {
         return obligations;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DefaultsType getPolicyDefaults() {
         return policyDefaults;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getPolicyId() {
         return policyId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RuleCombinerParametersType> getRuleCombinerParameters() {
         return (List<RuleCombinerParametersType>) choiceGroup.subList(RuleCombinerParametersType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getRuleCombiningAlgoId() {
         return ruleCombiningAlgo;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RuleType> getRules() {
-       	return (List<RuleType>) choiceGroup.subList(RuleType.DEFAULT_ELEMENT_NAME);
+        return (List<RuleType>) choiceGroup.subList(RuleType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public TargetType getTarget() {
         return target;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<VariableDefinitionType> getVariableDefinitions() {
         return (List<VariableDefinitionType>) choiceGroup.subList(VariableDefinitionType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getVersion() {
         return version;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setDescription(DescriptionType newDescription) {
         this.description = prepareForAssignment(this.description, newDescription);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setObligations(ObligationsType newObligations) {
         this.obligations = prepareForAssignment(this.obligations, newObligations);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPolicyDefaults(DefaultsType defaults) {
         policyDefaults = prepareForAssignment(policyDefaults, defaults);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPolicyId(String id) {
         policyId = prepareForAssignment(policyId, id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRuleCombiningAlgoId(String id) {
         ruleCombiningAlgo = prepareForAssignment(ruleCombiningAlgo, id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setTarget(TargetType newTarget) {
         this.target = prepareForAssignment(this.target, newTarget);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setVersion(String newVersion) {
         this.version = prepareForAssignment(this.version, newVersion);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
         if (description != null) {

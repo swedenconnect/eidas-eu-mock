@@ -16,7 +16,7 @@ package org.apache.velocity.texen.util;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.FileInputStream;
@@ -34,39 +34,29 @@ import org.apache.velocity.texen.Generator;
  * @author <a href="mailto:sbailliez@apache.org">Stephane Bailliez</a>
  * @version $Id: PropertiesUtil.java 510628 2007-02-22 19:07:59Z nbubna $
  */
-public class PropertiesUtil
-{
+public class PropertiesUtil {
     /**
      * Load properties from either a file in the templatePath if there
      * is one or the classPath.
      *
      * @param propertiesFile the properties file to load through
-     * either the templatePath or the classpath.
+     *                       either the templatePath or the classpath.
      * @return a properties instance filled with the properties found
      * in the file or an empty instance if no file was found.
      */
-    public Properties load(final String propertiesFile)
-    {
+    public Properties load(final String propertiesFile) {
         Properties properties = null;
 
         String templatePath = Generator.getInstance().getTemplatePath();
-        try
-        {
-            if (templatePath != null)
-            {
+        try {
+            if (templatePath != null) {
                 properties = loadFromTemplatePath(propertiesFile);
-            }
-            else
-            {
+            } else {
                 properties = loadFromClassPath(propertiesFile);
             }
-        }
-        catch (RuntimeException e)
-        {
+        } catch (RuntimeException e) {
             throw e;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new RuntimeException("Could not load properties: " + e.getMessage());
         }
 
@@ -82,14 +72,13 @@ public class PropertiesUtil
      * process of loading templates.
      *
      * @param propertiesFile the properties file to load. It must be
-     * a relative pathname.
+     *                       a relative pathname.
      * @return a properties instance loaded with the properties from
      * the file. If no file can be found it returns an empty instance.
      * @throws Exception
      */
     protected Properties loadFromTemplatePath(final String propertiesFile)
-    	throws Exception
-    {
+            throws Exception {
         Properties properties = new Properties();
         String templatePath = Generator.getInstance().getTemplatePath();
 
@@ -106,12 +95,10 @@ public class PropertiesUtil
         // is not deprecated but it's use in templates
         // should be.
         StringTokenizer st = new StringTokenizer(templatePath, ",");
-        while (st.hasMoreTokens())
-        {
+        while (st.hasMoreTokens()) {
             String templateDir = st.nextToken();
             InputStream stream = null;
-            try
-            {
+            try {
                 // If the properties file is being pulled from the
                 // file system and someone is using the method whereby
                 // the properties file is assumed to be in the template
@@ -127,8 +114,7 @@ public class PropertiesUtil
 
                 // FIXME probably not that clever since there could be
                 // a mix of file separators and the test will fail :-(
-                if (!fullPath.startsWith(templateDir))
-                {
+                if (!fullPath.startsWith(templateDir)) {
                     fullPath = templateDir + "/" + propertiesFile;
                 }
 
@@ -137,13 +123,10 @@ public class PropertiesUtil
                 // first pick wins, we don't need to go further since
                 // we found a valid file.
                 break;
-            }
-            finally
-            {
-        	if (stream != null)
-        	{
-        	    stream.close();
-        	}
+            } finally {
+                if (stream != null) {
+                    stream.close();
+                }
             }
         }
         return properties;
@@ -158,15 +141,13 @@ public class PropertiesUtil
      * @throws Exception
      */
     protected Properties loadFromClassPath(final String propertiesName)
-    	throws Exception
-    {
+            throws Exception {
         Properties properties = new Properties();
         ClassLoader classLoader = this.getClass().getClassLoader();
 
         InputStream inputStream = null;
 
-        try
-        {
+        try {
             // This is a hack for now to make sure that properties
             // files referenced in the filesystem work in
             // a JAR file. We have to deprecate the use
@@ -176,17 +157,14 @@ public class PropertiesUtil
             // JAR files.
 
             String propertiesFile = propertiesName.startsWith("$generator")
-        	    ? propertiesName.substring("$generator.templatePath/".length())
-    		    : propertiesName;
+                    ? propertiesName.substring("$generator.templatePath/".length())
+                    : propertiesName;
 
-    	    inputStream = classLoader.getResourceAsStream(propertiesFile);
+            inputStream = classLoader.getResourceAsStream(propertiesFile);
             properties.load(inputStream);
-        }
-        finally
-        {
-            if (inputStream != null)
-            {
-        	inputStream.close();
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
             }
         }
         return properties;

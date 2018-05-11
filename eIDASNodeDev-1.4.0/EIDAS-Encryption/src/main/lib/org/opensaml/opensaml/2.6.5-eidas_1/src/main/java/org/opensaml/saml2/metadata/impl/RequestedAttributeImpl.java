@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -33,12 +33,14 @@ import org.opensaml.xml.schema.XSBooleanValue;
  */
 public class RequestedAttributeImpl extends AttributeImpl implements RequestedAttribute {
 
-    /** isRequired attribute */
+    /**
+     * isRequired attribute
+     */
     private XSBooleanValue isRequired;
 
     /**
      * Constructor
-     * 
+     *
      * @param namespaceURI
      * @param elementLocalName
      * @param namespacePrefix
@@ -46,37 +48,47 @@ public class RequestedAttributeImpl extends AttributeImpl implements RequestedAt
     protected RequestedAttributeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
-    
-    /** {@inheritDoc} */
-    public Boolean isRequired(){
-        if(isRequired != null){
+
+    /**
+     * {@inheritDoc}
+     */
+    public Boolean isRequired() {
+        if (isRequired != null) {
             return isRequired.getValue();
         }
-        
+
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue isRequiredXSBoolean() {
         return isRequired;
     }
-    
-    /** {@inheritDoc} */
-    public void setIsRequired(Boolean newIsRequired){
-        if(newIsRequired != null){
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setIsRequired(Boolean newIsRequired) {
+        if (newIsRequired != null) {
             isRequired = prepareForAssignment(isRequired, new XSBooleanValue(newIsRequired, false));
-        }else{
+        } else {
             isRequired = prepareForAssignment(isRequired, null);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIsRequired(XSBooleanValue newIsRequired) {
         isRequired = prepareForAssignment(isRequired, newIsRequired);
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return null;
     }

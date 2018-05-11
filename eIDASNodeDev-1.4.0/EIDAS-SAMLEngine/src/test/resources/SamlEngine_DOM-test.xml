@@ -20,10 +20,10 @@
         <configuration name="EncryptionConf">
             <!-- Specific signature module -->
             <parameter name="class"
-                       value="eu.eidas.auth.engine.core.impl.EncryptionSW" />
+                       value="eu.eidas.auth.engine.core.impl.EncryptionSW"/>
             <!-- Settings specific module
                  responseTo/FromPointAlias & requestTo/FromPointAlias parameters will be added -->
-            <parameter name="fileConfiguration" value="EncryptModule_DOM-test_empty.xml" />
+            <parameter name="fileConfiguration" value="EncryptModule_DOM-test_empty.xml"/>
         </configuration>
 
         <!-- Settings for the ExtensionProcessor module -->

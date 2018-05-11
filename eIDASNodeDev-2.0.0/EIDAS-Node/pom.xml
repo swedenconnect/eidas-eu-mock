@@ -204,19 +204,21 @@
         </plugins>
     </build>
     <profiles>
-    	<profile>
-    		<!-- jersey-spring in its own profile (active by default) , that can be deactivated  -P '!jersey-spring' -->
-    		<id>jersey-spring</id>
-    		<activation><activeByDefault>true</activeByDefault></activation>
-    		<dependencies>
-		        <!-- Jersey + Spring -->
-		        <dependency>
-		            <groupId>com.sun.jersey.contribs</groupId>
-		            <artifactId>jersey-spring</artifactId>
-		        </dependency>
-		        <!-- End Jersey + Spring -->
-    		</dependencies>
-    	</profile>
+        <profile>
+            <!-- jersey-spring in its own profile (active by default) , that can be deactivated  -P '!jersey-spring' -->
+            <id>jersey-spring</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <!-- Jersey + Spring -->
+                <dependency>
+                    <groupId>com.sun.jersey.contribs</groupId>
+                    <artifactId>jersey-spring</artifactId>
+                </dependency>
+                <!-- End Jersey + Spring -->
+            </dependencies>
+        </profile>
         <!-- tomcat & glassfish profile -->
         <profile>
             <id>tomcat</id>
@@ -471,7 +473,9 @@
                                     </outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${project.basedir}/src/main/config/specificConnector/jarPackaging</directory>
+                                            <directory>
+                                                ${project.basedir}/src/main/config/specificConnector/jarPackaging
+                                            </directory>
                                             <filtering>false</filtering>
                                         </resource>
                                     </resources>
@@ -507,7 +511,9 @@
                                     </outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${project.basedir}/src/main/config/specificConnector/warPackaging</directory>
+                                            <directory>
+                                                ${project.basedir}/src/main/config/specificConnector/warPackaging
+                                            </directory>
                                             <filtering>false</filtering>
                                         </resource>
                                     </resources>
@@ -549,7 +555,9 @@
                                     </outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${project.basedir}/src/main/config/specificProxyService/jarPackaging</directory>
+                                            <directory>
+                                                ${project.basedir}/src/main/config/specificProxyService/jarPackaging
+                                            </directory>
                                             <filtering>false</filtering>
                                         </resource>
                                     </resources>
@@ -585,7 +593,9 @@
                                     </outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${project.basedir}/src/main/config/specificProxyService/warPackaging</directory>
+                                            <directory>
+                                                ${project.basedir}/src/main/config/specificProxyService/warPackaging
+                                            </directory>
                                             <filtering>false</filtering>
                                         </resource>
                                     </resources>

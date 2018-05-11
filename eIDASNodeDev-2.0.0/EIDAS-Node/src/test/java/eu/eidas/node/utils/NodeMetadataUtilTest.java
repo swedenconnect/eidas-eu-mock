@@ -63,7 +63,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorTechnicalContact(Properties)}
      * when all technical contact properties are filled in.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields neither empty or null.
      */
     @Test
@@ -76,7 +76,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorTechnicalContact(Properties)}
      * when all technical contact properties are not existent.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields empty.
      */
     @Test
@@ -89,7 +89,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorSupportContact(Properties)}
      * when all connector support contact properties are filled in.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields neither empty or null.
      */
     @Test
@@ -102,7 +102,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorSupportContact(Properties)}
      * when all connector support contact properties are not existent.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields are empty.
      */
     @Test
@@ -115,7 +115,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorTechnicalContact(Properties)}
      * when all connector technical contact properties are filled in.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields neither empty or null.
      */
     @Test
@@ -128,7 +128,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorTechnicalContact(Properties)}
      * when all connector technical contact properties are not existent.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields empty.
      */
     @Test
@@ -141,7 +141,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createServiceSupportContact(Properties)}
      * when all service support contact properties are filled in.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields neither empty or null.
      */
     @Test
@@ -154,7 +154,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createServiceSupportContact(Properties)}
      * when all service support contact properties are not existent.
-     *
+     * <p>
      * Method must return {@link ContactData} with all fields are empty.
      */
     @Test
@@ -167,7 +167,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createServiceOrganization(Properties)}
      * when all service organization properties are filled in.
-     *
+     * <p>
      * Method must return {@link OrganizationData} with all fields neither empty or null.
      */
     @Test
@@ -180,7 +180,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createServiceOrganization(Properties)}
      * when all service organization properties are not existent.
-     *
+     * <p>
      * Method must return {@link OrganizationData} with all fields empty.
      */
     @Test
@@ -193,7 +193,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorOrganizationData(Properties)}
      * when all connector organization data properties are filled in.
-     *
+     * <p>
      * Method must return {@link OrganizationData} with all fields neither empty or null.
      */
     @Test
@@ -206,7 +206,7 @@ public class NodeMetadataUtilTest {
     /**
      * Test for {@link NodeMetadataUtil#createConnectorOrganizationData(Properties)}
      * when all connector organization data properties are not filled in.
-     *
+     * <p>
      * Method must return {@link OrganizationData} with all fields empty.
      */
     @Test
@@ -218,6 +218,7 @@ public class NodeMetadataUtilTest {
 
     /**
      * Method to assert that all fields of {@link ContactData} are not empty.
+     *
      * @param contactData the instance that contains the fields to be asserted.
      */
     private void assertAllFieldsNotEmpty(ContactData contactData) {
@@ -230,6 +231,7 @@ public class NodeMetadataUtilTest {
 
     /**
      * Method to assert that all fields of {@link OrganizationData} are not empty.
+     *
      * @param organizationData the instance that contains the fields to be asserted.
      */
     private void assertAllFieldsNotEmpty(OrganizationData organizationData) {
@@ -240,6 +242,7 @@ public class NodeMetadataUtilTest {
 
     /**
      * Method to assert that all fields of {@link ContactData} are empty.
+     *
      * @param contactData the instance that contains the fields to be asserted.
      */
     private void assertAllFieldsEmpty(ContactData contactData) {
@@ -252,6 +255,7 @@ public class NodeMetadataUtilTest {
 
     /**
      * Method to assert that all fields of {@link OrganizationData} are empty.
+     *
      * @param organizationData the instance that contains the fields to be asserted.
      */
     private void assertAllFieldsEmpty(OrganizationData organizationData) {

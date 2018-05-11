@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,10 +27,14 @@ import org.opensaml.xml.util.Base64;
  */
 public class SAML1ArtifactBuilderFactory {
 
-    /** Registered artifact builders. */
+    /**
+     * Registered artifact builders.
+     */
     private Map<String, SAML1ArtifactBuilder> artifactBuilders;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public SAML1ArtifactBuilderFactory() {
         artifactBuilders = new HashMap<String, SAML1ArtifactBuilder>(2);
         artifactBuilders.put(new String(SAML1ArtifactType0001.TYPE_CODE), new SAML1ArtifactType0001Builder());
@@ -39,7 +43,7 @@ public class SAML1ArtifactBuilderFactory {
 
     /**
      * Gets the currently registered artifact builders.
-     * 
+     *
      * @return currently registered artifact builders
      */
     public Map<String, SAML1ArtifactBuilder> getArtifactBuilders() {
@@ -48,38 +52,35 @@ public class SAML1ArtifactBuilderFactory {
 
     /**
      * Gets the artifact builder for the given type.
-     * 
+     *
      * @param type type of artifact to be built
-     * 
      * @return artifact builder for the given type
      */
     public SAML1ArtifactBuilder getArtifactBuilder(byte[] type) {
         return artifactBuilders.get(new String(type));
     }
-    
+
     /**
      * Convenience method for getting an artifact builder and parsing the given Base64 encoded artifact with it.
-     * 
+     *
      * @param base64Artifact Base64 encoded artifact to parse
-     * 
      * @return constructed artifact
      */
-    public AbstractSAML1Artifact buildArtifact(String base64Artifact){
+    public AbstractSAML1Artifact buildArtifact(String base64Artifact) {
         return buildArtifact(Base64.decode(base64Artifact));
     }
 
     /**
      * Convenience method for getting an artifact builder and parsing the given artifact with it.
-     * 
+     *
      * @param artifact artifact to parse
-     * 
      * @return constructed artifact
      */
     public AbstractSAML1Artifact buildArtifact(byte[] artifact) {
-        if(artifact == null){
+        if (artifact == null) {
             return null;
         }
-        
+
         byte[] type = new byte[2];
         type[0] = artifact[0];
         type[1] = artifact[1];

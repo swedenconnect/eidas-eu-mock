@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml1.core.impl;
 
@@ -39,15 +39,17 @@ import org.w3c.dom.Element;
  */
 public class RequestTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
     private final String expectedID;
-    
+
     private final DateTime expectedIssueInstant;
 
     private final int expectedMinorVersion;
-    
+
     public RequestTest() {
         expectedID = "ident";
         singleElementFile = "/data/org/opensaml/saml1/impl/singleRequest.xml";
@@ -56,14 +58,16 @@ public class RequestTest extends BaseSAMLObjectProviderTestCase {
         expectedMinorVersion = 1;
         qname = Request.DEFAULT_ELEMENT_NAME;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Request request = (Request) unmarshallElement(singleElementFile);
 
         String id = request.getID();
         assertNull("ID attribute has value " + id + "expected no value", id);
-        
+
         DateTime date = request.getIssueInstant();
         assertNull("IssueInstant attribute has a value of " + date + ", expected no value", date);
 
@@ -73,34 +77,36 @@ public class RequestTest extends BaseSAMLObjectProviderTestCase {
         assertNull("IssueInstance has value", request.getIssueInstant());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Request request = (Request) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertEquals("ID", expectedID, request.getID());
         assertEquals("MinorVersion", expectedMinorVersion, request.getMinorVersion());
         assertEquals("IssueInstant", expectedIssueInstant, request.getIssueInstant());
-        
+
     }
-    
+
     /**
-     * Test a few Requests with children 
+     * Test a few Requests with children
      */
     public void testSingleElementChildrenUnmarshall() {
-        Request request; 
-        
+        Request request;
+
         request = (Request) unmarshallElement("/data/org/opensaml/saml1/impl/RequestWithAssertionArtifact.xml");
-        
+
         assertNull("Query is not null", request.getQuery());
         assertEquals("AssertionId count", 0, request.getAssertionIDReferences().size());
         assertEquals("AssertionArtifact count", 2, request.getAssertionArtifacts().size());
-        
+
         request = (Request) unmarshallElement("/data/org/opensaml/saml1/impl/RequestWithQuery.xml");
-        
+
         assertNotNull("Query is null", request.getQuery());
         assertEquals("AssertionId count", 0, request.getAssertionIDReferences().size());
         assertEquals("AssertionArtifact count", 0, request.getAssertionArtifacts().size());
-        
+
         request = (Request) unmarshallElement("/data/org/opensaml/saml1/impl/RequestWithAssertionIDReference.xml");
         assertNull("Query is not null", request.getQuery());
         assertNotNull("AssertionId", request.getAssertionIDReferences());
@@ -108,14 +114,18 @@ public class RequestTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("AssertionArtifact count", 0, request.getAssertionArtifacts().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
-        
+
         Request request = (Request) buildXMLObject(qname);
 
         request.setID(expectedID);
@@ -124,26 +134,26 @@ public class RequestTest extends BaseSAMLObjectProviderTestCase {
     }
 
     /**
-     * Test a few Requests with children 
+     * Test a few Requests with children
      */
     public void testSingleElementChildrenMarshall() {
         QName oqname;
-        Request request; 
+        Request request;
         Document dom;
-                
-        
+
+
         try {
             dom = parser.parse(BaseSAMLObjectProviderTestCase.class
-                        .getResourceAsStream("/data/org/opensaml/saml1/impl/RequestWithAssertionArtifact.xml"));
-            request = (Request) buildXMLObject(qname); 
+                    .getResourceAsStream("/data/org/opensaml/saml1/impl/RequestWithAssertionArtifact.xml"));
+            request = (Request) buildXMLObject(qname);
             oqname = AssertionArtifact.DEFAULT_ELEMENT_NAME;
             request.getAssertionArtifacts().add((AssertionArtifact) buildXMLObject(oqname));
             request.getAssertionArtifacts().add((AssertionArtifact) buildXMLObject(oqname));
             assertEquals(dom, request);
-          
+
             dom = parser.parse(BaseSAMLObjectProviderTestCase.class
                     .getResourceAsStream("/data/org/opensaml/saml1/impl/RequestWithAssertionIDReference.xml"));
-            request = (Request) buildXMLObject(qname); 
+            request = (Request) buildXMLObject(qname);
             oqname = AssertionIDReference.DEFAULT_ELEMENT_NAME;
             request.getAssertionIDReferences().add((AssertionIDReference) buildXMLObject(oqname));
             request.getAssertionIDReferences().add((AssertionIDReference) buildXMLObject(oqname));
@@ -152,7 +162,7 @@ public class RequestTest extends BaseSAMLObjectProviderTestCase {
 
             dom = parser.parse(BaseSAMLObjectProviderTestCase.class
                     .getResourceAsStream("/data/org/opensaml/saml1/impl/RequestWithQuery.xml"));
-            request = (Request) buildXMLObject(qname); 
+            request = (Request) buildXMLObject(qname);
             oqname = AttributeQuery.DEFAULT_ELEMENT_NAME;
             request.setQuery((AttributeQuery) buildXMLObject(oqname));
             assertEquals(dom, request);
@@ -161,23 +171,23 @@ public class RequestTest extends BaseSAMLObjectProviderTestCase {
             fail(e.toString());
         }
     }
-    
+
     public void testSignatureUnmarshall() {
         Request request = (Request) unmarshallElement("/data/org/opensaml/saml1/impl/RequestWithSignature.xml");
-        
+
         assertNotNull("Request was null", request);
         assertNotNull("Signature was null", request.getSignature());
         assertNotNull("KeyInfo was null", request.getSignature().getKeyInfo());
     }
-    
+
     public void testDOMIDResolutionUnmarshall() {
         Request request = (Request) unmarshallElement("/data/org/opensaml/saml1/impl/RequestWithSignature.xml");
-        
+
         assertNotNull("Request was null", request);
         assertNotNull("Signature was null", request.getSignature());
         Document document = request.getSignature().getDOM().getOwnerDocument();
         Element idElem = request.getDOM();
-        
+
         assertNotNull("DOM ID resolution returned null", document.getElementById(expectedID));
         assertTrue("DOM elements were not equal", idElem.isSameNode(document.getElementById(expectedID)));
     }
@@ -186,12 +196,12 @@ public class RequestTest extends BaseSAMLObjectProviderTestCase {
         Request request = (Request) buildXMLObject(Request.DEFAULT_ELEMENT_NAME);
         request.setID(expectedID);
         request.setQuery((AttributeQuery) buildXMLObject(AttributeQuery.DEFAULT_ELEMENT_NAME));
-        
+
         marshallerFactory.getMarshaller(request).marshall(request);
-        
+
         Document document = request.getQuery().getDOM().getOwnerDocument();
         Element idElem = request.getDOM();
-        
+
         assertNotNull("DOM ID resolution returned null", document.getElementById(expectedID));
         assertTrue("DOM elements were not equal", idElem.isSameNode(document.getElementById(expectedID)));
     }

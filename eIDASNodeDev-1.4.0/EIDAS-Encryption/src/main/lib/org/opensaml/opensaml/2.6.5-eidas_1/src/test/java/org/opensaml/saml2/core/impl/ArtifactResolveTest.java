@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -33,7 +33,6 @@ public class ArtifactResolveTest extends RequestTestBase {
 
     /**
      * Constructor
-     *
      */
     public ArtifactResolveTest() {
         super();
@@ -42,67 +41,81 @@ public class ArtifactResolveTest extends RequestTestBase {
         childElementsFile = "/data/org/opensaml/saml2/core/impl/ArtifactResolveChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, ArtifactResolve.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         ArtifactResolve ar = (ArtifactResolve) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(ar);
-        
+
         assertEquals(expectedDOM, ar);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, ArtifactResolve.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         ArtifactResolve ar = (ArtifactResolve) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(ar);
         super.populateOptionalAttributes(ar);
-        
+
         assertEquals(expectedOptionalAttributesDOM, ar);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, ArtifactResolve.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         ArtifactResolve ar = (ArtifactResolve) buildXMLObject(qname);
-        
+
         super.populateChildElements(ar);
-        
+
         QName artifactQName = new QName(SAMLConstants.SAML20P_NS, Artifact.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         ar.setArtifact((Artifact) buildXMLObject(artifactQName));
-        
+
         assertEquals(expectedChildElementsDOM, ar);
     }
- 
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         ArtifactResolve ar = (ArtifactResolve) unmarshallElement(singleElementFile);
-        
+
         assertNotNull("ArtifactResolve was null", ar);
         super.helperTestSingleElementUnmarshall(ar);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         ArtifactResolve ar = (ArtifactResolve) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertNotNull("ArtifactResolve was null", ar);
         super.helperTestSingleElementOptionalAttributesUnmarshall(ar);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         ArtifactResolve ar = (ArtifactResolve) unmarshallElement(childElementsFile);
-        
+
         assertNotNull("Artifact was null", ar.getArtifact());
         super.helperTestChildElementsUnmarshall(ar);
     }

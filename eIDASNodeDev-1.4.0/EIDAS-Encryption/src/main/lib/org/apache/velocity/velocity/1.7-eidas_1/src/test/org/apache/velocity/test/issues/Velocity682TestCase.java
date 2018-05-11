@@ -16,48 +16,43 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
 import org.apache.velocity.runtime.RuntimeConstants;
 
 /**
- * This class tests VELOCITY-682. 
+ * This class tests VELOCITY-682.
  */
-public class Velocity682TestCase extends BaseTestCase
-{
-    public Velocity682TestCase(String name)
-    {
+public class Velocity682TestCase extends BaseTestCase {
+    public Velocity682TestCase(String name) {
         super(name);
         //DEBUG = true;
     }
-  
-    public void test682()
-    {
-        engine.setProperty(RuntimeConstants.VM_PERM_INLINE_LOCAL, Boolean.TRUE);      
+
+    public void test682() {
+        engine.setProperty(RuntimeConstants.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
         assertEvalEquals("foo1foo2", "#macro(eval $e)#evaluate($e)#end#eval('foo1')#eval('foo2')");
     }
 
-    public void test682b()
-    {
+    public void test682b() {
         String template = "#macro( eval $e )#evaluate($e)#end" +
-                          "#eval('foo')" +
-                          "#eval('bar')";
-        String expected = "foo"+
-                          "bar";
+                "#eval('foo')" +
+                "#eval('bar')";
+        String expected = "foo" +
+                "bar";
         assertEvalEquals(expected, template);
     }
 
-    public void test682c()
-    {
+    public void test682c() {
         //NOTE: #eval call is apparently swallowing preceding newlines. :(
         //      appears to be a parser issue unrelated to VELOCITY-682
         String template = "#macro( eval $e )#evaluate($e)#end" +
-                          "\n#eval('foo')" +
-                          "\n\n#eval('bar')";
-        String expected = "foo"+
-                          "\nbar";
+                "\n#eval('foo')" +
+                "\n\n#eval('bar')";
+        String expected = "foo" +
+                "\nbar";
         assertEvalEquals(expected, template);
     }
 }

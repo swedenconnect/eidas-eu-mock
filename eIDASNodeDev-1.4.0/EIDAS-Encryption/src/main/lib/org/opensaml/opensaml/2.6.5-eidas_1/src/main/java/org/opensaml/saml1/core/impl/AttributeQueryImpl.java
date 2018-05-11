@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,47 +31,59 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class AttributeQueryImpl extends SubjectQueryImpl implements AttributeQuery {
 
-    /** Contains the resource attribute */
+    /**
+     * Contains the resource attribute
+     */
     private String resource;
 
-    /** Contains all the child AttributeDesignators */
+    /**
+     * Contains all the child AttributeDesignators
+     */
     private final XMLObjectChildrenList<AttributeDesignator> attributeDesignators;
 
     /**
      * Constructor
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AttributeQueryImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         attributeDesignators = new XMLObjectChildrenList<AttributeDesignator>(this);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public String getResource() {
         return resource;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setResource(String resource) {
         this.resource = prepareForAssignment(this.resource, resource);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AttributeDesignator> getAttributeDesignators() {
         return attributeDesignators;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         List<XMLObject> list = new ArrayList<XMLObject>(attributeDesignators.size() + 1);
-        
+
         if (super.getOrderedChildren() != null) {
             list.addAll(super.getOrderedChildren());
         }
-        
+
         list.addAll(attributeDesignators);
         return Collections.unmodifiableList(list);
     }

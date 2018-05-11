@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.math.BigDecimal;
@@ -33,8 +33,7 @@ import org.apache.velocity.runtime.parser.Parser;
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @since 1.5
  */
-public class ASTFloatingPointLiteral extends SimpleNode
-{
+public class ASTFloatingPointLiteral extends SimpleNode {
 
     // This may be of type Double or BigDecimal
     private Number value = null;
@@ -42,8 +41,7 @@ public class ASTFloatingPointLiteral extends SimpleNode
     /**
      * @param id
      */
-    public ASTFloatingPointLiteral(int id)
-    {
+    public ASTFloatingPointLiteral(int id) {
         super(id);
     }
 
@@ -51,8 +49,7 @@ public class ASTFloatingPointLiteral extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTFloatingPointLiteral(Parser p, int id)
-    {
+    public ASTFloatingPointLiteral(Parser p, int id) {
         super(p, id);
     }
 
@@ -60,41 +57,38 @@ public class ASTFloatingPointLiteral extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 
     /**
-     *  Initialization method - doesn't do much but do the object
-     *  creation.  We only need to do it once.
+     * Initialization method - doesn't do much but do the object
+     * creation.  We only need to do it once.
+     *
      * @param context
      * @param data
      * @return The data object.
      * @throws TemplateInitException
      */
-    public Object init( InternalContextAdapter context, Object data)
-        throws TemplateInitException
-    {
+    public Object init(InternalContextAdapter context, Object data)
+            throws TemplateInitException {
         /*
          *  init the tree correctly
          */
 
-        super.init( context, data );
+        super.init(context, data);
 
         /**
          * Determine the size of the item and make it a Double or BigDecimal as appropriate.
          */
-         String str = getFirstToken().image;
-         try
-         {
-             value = new Double( str );
+        String str = getFirstToken().image;
+        try {
+            value = new Double(str);
 
-         } catch ( NumberFormatException E1 )
-         {
+        } catch (NumberFormatException E1) {
 
             // if there's still an Exception it will propogate out
-            value = new BigDecimal( str );
+            value = new BigDecimal(str);
 
         }
 
@@ -104,8 +98,7 @@ public class ASTFloatingPointLiteral extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#value(org.apache.velocity.context.InternalContextAdapter)
      */
-    public Object value( InternalContextAdapter context)
-    {
+    public Object value(InternalContextAdapter context) {
         return value;
     }
 

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,9 @@ import org.opensaml.saml1.core.AttributeDesignator;
  */
 public class AttributeDesignatorSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AttributeDesignatorSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, AttributeDesignator.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
@@ -36,7 +38,9 @@ public class AttributeDesignatorSchemaTest extends BaseSAMLObjectValidatorTestCa
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
 
@@ -45,7 +49,7 @@ public class AttributeDesignatorSchemaTest extends BaseSAMLObjectValidatorTestCa
         attributeDesignator.setAttributeName("Jimmy");
         attributeDesignator.setAttributeNamespace("Glaswegan");
     }
-    
+
     public void testName() {
         AttributeDesignator attributeDesignator = (AttributeDesignator) target;
 
@@ -54,7 +58,7 @@ public class AttributeDesignatorSchemaTest extends BaseSAMLObjectValidatorTestCa
 
         attributeDesignator.setAttributeName(null);
         assertValidationFail("AttributeName attribute is null - should throw");
-        
+
 
         attributeDesignator.setAttributeName("  ");
         assertValidationFail("AttributeName attribute is invalid  - should throw");

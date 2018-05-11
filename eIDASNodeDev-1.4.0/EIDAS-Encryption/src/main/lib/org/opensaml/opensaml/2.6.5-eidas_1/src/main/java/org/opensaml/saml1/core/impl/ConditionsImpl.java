@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -38,70 +38,94 @@ import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
  */
 public class ConditionsImpl extends AbstractSAMLObject implements Conditions {
 
-    /** Value saved in the NotBefore attribute */
+    /**
+     * Value saved in the NotBefore attribute
+     */
     private DateTime notBefore;
 
-    /** Value saved in the NotOnOrAfter attribute */
+    /**
+     * Value saved in the NotOnOrAfter attribute
+     */
     private DateTime notOnOrAfter;
 
-    /** Set containing all the Conditions */
+    /**
+     * Set containing all the Conditions
+     */
     private final IndexedXMLObjectChildrenList<Condition> conditions;
 
     /**
      * Constructor
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected ConditionsImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         conditions = new IndexedXMLObjectChildrenList<Condition>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getNotBefore() {
         return notBefore;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNotBefore(DateTime notBefore) {
         this.notBefore = prepareForAssignment(this.notBefore, notBefore);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getNotOnOrAfter() {
         return notOnOrAfter;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNotOnOrAfter(DateTime notOnOrAfter) {
         this.notOnOrAfter = prepareForAssignment(this.notOnOrAfter, notOnOrAfter);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Condition> getConditions() {
         return conditions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Condition> getConditions(QName typeOrName) {
         return conditions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AudienceRestrictionCondition> getAudienceRestrictionConditions() {
         QName qname = new QName(SAMLConstants.SAML1_NS, AudienceRestrictionCondition.DEFAULT_ELEMENT_LOCAL_NAME);
         return (List<AudienceRestrictionCondition>) conditions.subList(qname);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<DoNotCacheCondition> getDoNotCacheConditions() {
         QName qname = new QName(SAMLConstants.SAML1_NS, DoNotCacheCondition.DEFAULT_ELEMENT_LOCAL_NAME);
         return (List<DoNotCacheCondition>) conditions.subList(qname);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         if (conditions.size() == 0) {
             return null;

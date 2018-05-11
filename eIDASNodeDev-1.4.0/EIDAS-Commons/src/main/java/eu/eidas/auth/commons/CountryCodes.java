@@ -52,7 +52,7 @@ public final class CountryCodes {
                     iso3ToCountryLocales.put(alpha3CountryCode, countryLocale);
                 }
             } catch (MissingResourceException mre) {
-                LOG.trace("CountryCodeAlpha3 not available for "+alpha2CountryCode+" "+mre.getMessage());
+                LOG.trace("CountryCodeAlpha3 not available for " + alpha2CountryCode + " " + mre.getMessage());
             }
         }
         ISO_ALPHA2_TO_COUNTRY_LOCALES = Collections.unmodifiableMap(iso2ToCountryLocales);
@@ -72,7 +72,7 @@ public final class CountryCodes {
      * @param alpha2CountryCode The alpha2 Country code to search.
      * @return the CountryCode (3166-1 alpha3 format) or null if it does not exist
      * @throws MissingResourceException Throws MissingResourceException if the three-letter country abbreviation is not
-     * available for this countryCode.
+     *                                  available for this countryCode.
      * @since 1.1
      */
     public static String getCountryCodeAlpha3(final String alpha2CountryCode) throws MissingResourceException {
@@ -86,7 +86,7 @@ public final class CountryCodes {
                 return alpha3Country;
             }
         } catch (MissingResourceException mre) {
-            LOG.error("CountryCodeAlpha3 not available for "+alpha2CountryCode+" "+mre.getMessage());
+            LOG.error("CountryCodeAlpha3 not available for " + alpha2CountryCode + " " + mre.getMessage());
         }
         return null;
     }
@@ -97,7 +97,7 @@ public final class CountryCodes {
      * @param isoCountryCode The ISO alpha2 or alpha3 Country code to search.
      * @return the Country Locale or null if it does not exist
      * @throws MissingResourceException Throws MissingResourceException if the three-letter country abbreviation is not
-     * available for this countryCode.
+     *                                  available for this countryCode.
      * @since 1.1
      */
     public static Locale getCountryLocale(String isoCountryCode) throws MissingResourceException {
@@ -116,6 +116,7 @@ public final class CountryCodes {
 
     /**
      * Returns the Map of ISO Alpha2 country codes to corresponding Java Locales.
+     *
      * @return the Map of ISO Alpha2 country codes to corresponding Java Locales.
      * @since 1.1
      */
@@ -125,6 +126,7 @@ public final class CountryCodes {
 
     /**
      * Returns the Map of ISO Alpha3 country codes to corresponding Java Locales.
+     *
      * @return the Map of ISO Alpha3 country codes to corresponding Java Locales.
      * @since 1.1
      */

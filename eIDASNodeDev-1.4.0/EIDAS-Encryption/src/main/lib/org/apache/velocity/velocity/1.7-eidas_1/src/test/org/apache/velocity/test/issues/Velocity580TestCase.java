@@ -29,12 +29,11 @@ import org.apache.velocity.test.misc.TestLogChute;
 /**
  * Test Case for <a href="https://issues.apache.org/jira/browse/VELOCITY-580">Velocity Issue 580</a>.
  */
-public class Velocity580TestCase extends BaseTestCase
-{
+public class Velocity580TestCase extends BaseTestCase {
     /**
      * Comparison file extension.
      */
-    private static final String CMP_FILE_EXT    = "cmp";
+    private static final String CMP_FILE_EXT = "cmp";
 
     /**
      * Comparison file extension.
@@ -44,37 +43,34 @@ public class Velocity580TestCase extends BaseTestCase
     /**
      * Results relative to the build directory.
      */
-    private static final String RESULTS_DIR     = TEST_RESULT_DIR + "/issues/velocity-580";
+    private static final String RESULTS_DIR = TEST_RESULT_DIR + "/issues/velocity-580";
 
     /**
      * Template Directory
      */
-    private static final String TEMPLATE_DIR    = TEST_COMPARE_DIR + "/issues/velocity-580/templates";
+    private static final String TEMPLATE_DIR = TEST_COMPARE_DIR + "/issues/velocity-580/templates";
 
     /**
      * Results relative to the build directory.
      */
-    private static final String COMPARE_DIR     = TEST_COMPARE_DIR + "/issues/velocity-580/compare";
+    private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/issues/velocity-580/compare";
 
     VelocityEngine engine;
-    
-    public Velocity580TestCase(final String name) throws Exception
-    {
+
+    public Velocity580TestCase(final String name) throws Exception {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(Velocity580TestCase.class);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
 
         assureResultsDirectoryExists(RESULTS_DIR);
 
         engine = new VelocityEngine();
-        
+
         engine.addProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, TEMPLATE_DIR);
 
         engine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
@@ -82,13 +78,11 @@ public class Velocity580TestCase extends BaseTestCase
         engine.init();
     }
 
-    public void testVelocity580() throws Exception
-    {
+    public void testVelocity580() throws Exception {
         executeTest("velocity580.vm");
     }
 
-    protected Template executeTest(final String templateName) throws Exception
-    {
+    protected Template executeTest(final String templateName) throws Exception {
         Template template = engine.getTemplate(templateName);
 
         FileOutputStream fos = new FileOutputStream(getFileName(RESULTS_DIR, templateName, RESULT_FILE_EXT));
@@ -101,16 +95,15 @@ public class Velocity580TestCase extends BaseTestCase
         writer.flush();
         writer.close();
 
-        if (!isMatch(RESULTS_DIR, COMPARE_DIR, templateName, RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, templateName, RESULT_FILE_EXT, CMP_FILE_EXT)) {
             // just to be useful, output the output in the fail message
             StringWriter out = new StringWriter();
             template.merge(context, out);
 
             String compare = getFileContents(COMPARE_DIR, templateName, CMP_FILE_EXT);
 
-            fail("Output incorrect for Template: " + templateName + ": \""+out+"\""+
-                 "; it did not match: \""+compare+"\"");
+            fail("Output incorrect for Template: " + templateName + ": \"" + out + "\"" +
+                    "; it did not match: \"" + compare + "\"");
         }
 
         return template;

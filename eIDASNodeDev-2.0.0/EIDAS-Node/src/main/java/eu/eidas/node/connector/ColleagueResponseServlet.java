@@ -134,9 +134,9 @@ public final class ColleagueResponseServlet extends AbstractNodeServlet {
             AuthenticationExchange
                     authenticationExchange = controllerService.getConnectorService().getAuthenticationResponse(webRequest);
 
-			ImmutableAttributeMap respAttributes = authenticationExchange.getConnectorResponse().getAttributes();
+            ImmutableAttributeMap respAttributes = authenticationExchange.getConnectorResponse().getAttributes();
 
-			// Build the LightResponse
+            // Build the LightResponse
             LightResponse lightResponse =
                     LightResponse.builder(authenticationExchange.getConnectorResponse()).attributes(respAttributes).build();
 

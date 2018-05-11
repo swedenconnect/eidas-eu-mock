@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -35,18 +35,21 @@ public abstract class StatusResponseSchemaTestBase extends BaseSAMLObjectValidat
 
     /**
      * Constructor
-     *
      */
     public StatusResponseSchemaTestBase() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         StatusResponseType sr = (StatusResponseType) target;
@@ -56,40 +59,40 @@ public abstract class StatusResponseSchemaTestBase extends BaseSAMLObjectValidat
         sr.setIssueInstant(new DateTime());
         // note: Version attribute is set automatically by the implementation
     }
-    
+
     /**
-     *  Tests invalid Status child element.
+     * Tests invalid Status child element.
      */
     public void testStatusFailure() {
         StatusResponseType sr = (StatusResponseType) target;
         sr.setStatus(null);
         assertValidationFail("Status was null");
     }
-    
+
     /**
-     *  Tests invalid ID attribute.
+     * Tests invalid ID attribute.
      */
     public void testIDFailure() {
         StatusResponseType sr = (StatusResponseType) target;
-        
+
         sr.setID(null);
         assertValidationFail("ID attribute was null");
-        
+
         sr.setID("");
         assertValidationFail("ID attribute was empty");
-        
+
         sr.setID("               ");
         assertValidationFail("ID attribute was all whitespace");
     }
-    
+
     /**
-     *  Tests invalid IssueInstant attribute
+     * Tests invalid IssueInstant attribute
      */
     public void testIssueInstantFailure() {
         StatusResponseType sr = (StatusResponseType) target;
         sr.setIssueInstant(null);
         assertValidationFail("IssueInstant attribute was null");
     }
-    
+
 
 }

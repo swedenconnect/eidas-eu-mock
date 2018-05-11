@@ -16,49 +16,42 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 
 /**
  * This class tests support for string concatenation.
  */
-public class StringConcatenationTestCase extends BaseTestCase
-{
-    public StringConcatenationTestCase(String name)
-    {
-       super(name);
+public class StringConcatenationTestCase extends BaseTestCase {
+    public StringConcatenationTestCase(String name) {
+        super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         super.setUp();
         context.put("foo", "foo");
         context.put("baz", "baz");
     }
 
-    public void testStringRefLeft()
-    {
+    public void testStringRefLeft() {
         assertEvalEquals("foobar", "#set( $o = $foo + 'bar' )$o");
         assertEvalEquals("foo$bar", "#set( $o = $foo + $bar )$o");
         assertEvalEquals("foo1", "#set( $o = $foo + 1 )$o");
         assertEvalEquals("foobaz", "#set( $o = $foo + $baz )$o");
     }
 
-    public void testStringRefRight()
-    {
+    public void testStringRefRight() {
         assertEvalEquals("barfoo", "#set( $o = 'bar' + $foo )$o");
         assertEvalEquals("$barfoo", "#set( $o = $bar + $foo )$o");
         assertEvalEquals("1foo", "#set( $o = 1 + $foo )$o");
     }
 
-    public void testNoRef()
-    {
+    public void testNoRef() {
         assertEvalEquals("bar1", "#set( $o = 'bar' + 1 )$o");
     }
 
-    public void testAll()
-    {
+    public void testAll() {
         assertEvalEquals("foobar$bar1baz", "#set( $o = $foo + 'bar' + $bar + 1 + $baz )$o");
     }
 

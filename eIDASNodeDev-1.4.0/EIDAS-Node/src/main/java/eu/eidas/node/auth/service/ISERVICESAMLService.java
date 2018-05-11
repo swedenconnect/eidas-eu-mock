@@ -27,17 +27,18 @@ import eu.eidas.auth.engine.ProtocolEngineI;
  * Interface for communicating with the SAMLEngine.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.29 $, $Date: 2010-11-18 23:17:50 $
  */
 public interface ISERVICESAMLService {
 
     /**
      * Process the token received the connector.
+     *
      * @param bindingFromHttp post or redirect
-     * @param samlObj the byte[]
-     * @param ipUserAddress  The citizen's IP address.
-     * @param relayState the relay state
+     * @param samlObj         the byte[]
+     * @param ipUserAddress   The citizen's IP address.
+     * @param relayState      the relay state
      * @return the transformed token in an authenticationRequest
      */
     @Nonnull
@@ -50,8 +51,8 @@ public interface ISERVICESAMLService {
      * Process the response received from the IDP.
      *
      * @param originalRequest The original authentication request.
-     * @param ipUserAddress The citizen's IP address.
-     * @param isConsent Is a Citizen's consent page?
+     * @param ipUserAddress   The citizen's IP address.
+     * @param isConsent       Is a Citizen's consent page?
      * @return A byte array containing the SAML Response Token.
      * @see EidasAuthenticationRequest
      */
@@ -63,13 +64,13 @@ public interface ISERVICESAMLService {
     /**
      * Constructs a SAML response token in case of error.
      *
-     * @param authData The authentication request.
-     * @param statusCode The status code.
-     * @param errorCode The error code.
-     * @param subCode The sub status code.
-     * @param errorMessage The error message.
+     * @param authData      The authentication request.
+     * @param statusCode    The status code.
+     * @param errorCode     The error code.
+     * @param subCode       The sub status code.
+     * @param errorMessage  The error message.
      * @param ipUserAddress The citizen's IP address.
-     * @param isAuditable Is a auditable saml error?
+     * @param isAuditable   Is a auditable saml error?
      * @return A byte array containing the SAML Response.
      * @see EidasAuthenticationRequest
      */
@@ -101,10 +102,8 @@ public interface ISERVICESAMLService {
      *
      * @param requestedAttributes
      * @param responseAttributes
-     *
      * @return true if all mandatory attributes have values, false if at least one
      * attribute doesn't have value.
-     *
      */
     boolean checkMandatoryAttributes(@Nonnull ImmutableAttributeMap requestedAttributes, @Nonnull ImmutableAttributeMap responseAttributes);
 

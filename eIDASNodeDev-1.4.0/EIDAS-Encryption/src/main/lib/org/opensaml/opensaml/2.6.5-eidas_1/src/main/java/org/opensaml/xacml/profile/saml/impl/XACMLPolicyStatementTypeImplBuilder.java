@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -21,20 +21,28 @@ import org.opensaml.common.impl.AbstractSAMLObjectBuilder;
 import org.opensaml.saml2.core.Statement;
 import org.opensaml.xacml.profile.saml.XACMLPolicyStatementType;
 
-/** Builder for {@link org.opensaml.xacml.profile.saml.impl.XACMLPolicyStatementTypeImpl} objects. */
+/**
+ * Builder for {@link org.opensaml.xacml.profile.saml.impl.XACMLPolicyStatementTypeImpl} objects.
+ */
 public class XACMLPolicyStatementTypeImplBuilder extends AbstractSAMLObjectBuilder<XACMLPolicyStatementType> {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public XACMLPolicyStatementTypeImplBuilder() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XACMLPolicyStatementType buildObject() {
         return buildObject(Statement.DEFAULT_ELEMENT_NAME, XACMLPolicyStatementType.TYPE_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XACMLPolicyStatementType buildObject(String namespaceURI, String localName, String namespacePrefix) {
         return new XACMLPolicyStatementTypeImpl(namespaceURI, localName, namespacePrefix);
     }

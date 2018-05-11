@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -33,7 +33,6 @@ public class AuthzDecisionQuerySchemaTest extends SubjectQuerySchemaTestBase {
 
     /**
      * Constructor
-     *
      */
     public AuthzDecisionQuerySchemaTest() {
         super();
@@ -41,41 +40,43 @@ public class AuthzDecisionQuerySchemaTest extends SubjectQuerySchemaTestBase {
         validator = new AuthzDecisionQuerySchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         AuthzDecisionQuery query = (AuthzDecisionQuery) target;
         query.setResource("urn:string:resource");
-        Action action  = (Action) buildXMLObject(new QName(SAMLConstants.SAML20_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME));
+        Action action = (Action) buildXMLObject(new QName(SAMLConstants.SAML20_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME));
         query.getActions().add(action);
     }
-    
-    
+
+
     /**
-     *  Tests invalid Resource attribute
+     * Tests invalid Resource attribute
      */
     public void testResourceFailure() {
         AuthzDecisionQuery query = (AuthzDecisionQuery) target;
-        
+
         query.setResource(null);
         assertValidationFail("Resource attribute was null");
-        
+
         query.setResource("");
         assertValidationFail("Resource attribute was empty");
-        
+
         query.setResource("                ");
         assertValidationFail("Resource attribute was all whitespace");
     }
-    
+
     /**
-     *  Tests invalid Action child elements
+     * Tests invalid Action child elements
      */
     public void testActionFailure() {
         AuthzDecisionQuery query = (AuthzDecisionQuery) target;
-        
+
         query.getActions().clear();
         assertValidationFail("Action child element list was empty");
-        
+
     }
 }
 

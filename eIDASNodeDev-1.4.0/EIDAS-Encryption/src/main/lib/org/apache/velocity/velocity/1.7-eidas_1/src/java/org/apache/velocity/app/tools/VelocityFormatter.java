@@ -16,7 +16,7 @@ package org.apache.velocity.app.tools;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.Array;
@@ -39,16 +39,14 @@ import org.apache.velocity.context.Context;
  * $formatter.limitLen(30, $object.Description)
  * </pre></code>
  *
- * @deprecated This class has been replaced by NumberTool, DateTool,
- * DisplayTool, and AlternatorTool available from the Velocity-Tools sub-project.
- * VelocityFormatter will be removed in a future version of Velocity.
- *
  * @author <a href="sean@somacity.com">Sean Legassick</a>
  * @author <a href="dlr@collab.net">Daniel Rall</a>
  * @version $Id: VelocityFormatter.java 544641 2007-06-05 21:30:22Z nbubna $
+ * @deprecated This class has been replaced by NumberTool, DateTool,
+ * DisplayTool, and AlternatorTool available from the Velocity-Tools sub-project.
+ * VelocityFormatter will be removed in a future version of Velocity.
  */
-public class VelocityFormatter
-{
+public class VelocityFormatter {
     Context context = null;
 
     /**
@@ -56,8 +54,7 @@ public class VelocityFormatter
      *
      * @param context A Context.
      */
-    public VelocityFormatter(Context context)
-    {
+    public VelocityFormatter(Context context) {
         this.context = context;
     }
 
@@ -67,8 +64,7 @@ public class VelocityFormatter
      * @param date The date to format.
      * @return The formatted date as text.
      */
-    public String formatShortDate(Date date)
-    {
+    public String formatShortDate(Date date) {
         return DateFormat.getDateInstance(DateFormat.SHORT).format(date);
     }
 
@@ -78,8 +74,7 @@ public class VelocityFormatter
      * @param date The date to format.
      * @return The formatted date as text.
      */
-    public String formatLongDate(Date date)
-    {
+    public String formatLongDate(Date date) {
         return DateFormat.getDateInstance(DateFormat.LONG).format(date);
     }
 
@@ -89,11 +84,10 @@ public class VelocityFormatter
      * @param date The date to format.
      * @return The formatted date as text.
      */
-    public String formatShortDateTime(Date date)
-    {
+    public String formatShortDateTime(Date date) {
         return DateFormat
-            .getDateTimeInstance(DateFormat.SHORT,
-                                 DateFormat.SHORT).format(date);
+                .getDateTimeInstance(DateFormat.SHORT,
+                        DateFormat.SHORT).format(date);
     }
 
     /**
@@ -102,8 +96,7 @@ public class VelocityFormatter
      * @param date The date to format.
      * @return The formatted date as text.
      */
-    public String formatLongDateTime(Date date)
-    {
+    public String formatLongDateTime(Date date) {
         return DateFormat.getDateTimeInstance(
                 DateFormat.LONG, DateFormat.LONG).format(date);
     }
@@ -114,8 +107,7 @@ public class VelocityFormatter
      * @param array An Object.
      * @return A String.
      */
-    public String formatArray(Object array)
-    {
+    public String formatArray(Object array) {
         return formatArray(array, ", ", " and ");
     }
 
@@ -128,8 +120,7 @@ public class VelocityFormatter
      * @return A String.
      */
     public String formatArray(Object array,
-                              String delim)
-    {
+                              String delim) {
         return formatArray(array, delim, delim);
     }
 
@@ -137,29 +128,24 @@ public class VelocityFormatter
      * Formats an array into the form
      * "A&lt;delim&gt;B&lt;finaldelim&gt;C".
      *
-     * @param array An Object.
-     * @param delim A String.
+     * @param array      An Object.
+     * @param delim      A String.
      * @param finaldelim A String.
      * @return A String.
      */
     public String formatArray(Object array,
                               String delim,
-                              String finaldelim)
-    {
+                              String finaldelim) {
         StringBuffer sb = new StringBuffer();
         int arrayLen = Array.getLength(array);
-        for (int i = 0; i < arrayLen; i++)
-        {
+        for (int i = 0; i < arrayLen; i++) {
             // Use the Array.get method as this will automatically
             // wrap primitive types in a suitable Object-derived
             // wrapper if necessary.
             sb.append(Array.get(array, i).toString());
-            if (i  < arrayLen - 2)
-            {
+            if (i < arrayLen - 2) {
                 sb.append(delim);
-            }
-            else if (i < arrayLen - 1)
-            {
+            } else if (i < arrayLen - 1) {
                 sb.append(finaldelim);
             }
         }
@@ -172,21 +158,19 @@ public class VelocityFormatter
      * @param list The list of elements to format.
      * @return A String.
      */
-    public String formatVector(List list)
-    {
+    public String formatVector(List list) {
         return formatVector(list, ", ", " and ");
     }
 
     /**
      * Formats a vector into the form "A&lt;delim&gt;B&lt;delim&gt;C".
      *
-     * @param list The list of elements to format.
+     * @param list  The list of elements to format.
      * @param delim A String.
      * @return A String.
      */
     public String formatVector(List list,
-                               String delim)
-    {
+                               String delim) {
         return formatVector(list, delim, delim);
     }
 
@@ -194,26 +178,21 @@ public class VelocityFormatter
      * Formats a list into the form
      * "Adelim&gt;B&lt;finaldelim&gt;C".
      *
-     * @param list The list of elements to format.
-     * @param delim A String.
+     * @param list       The list of elements to format.
+     * @param delim      A String.
      * @param finaldelim A String.
      * @return A String.
      */
     public String formatVector(List list,
                                String delim,
-                               String finaldelim)
-    {
+                               String finaldelim) {
         StringBuffer sb = new StringBuffer();
         int size = list.size();
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             sb.append(list.get(i));
-            if (i < size - 2)
-            {
+            if (i < size - 2) {
                 sb.append(delim);
-            }
-            else if (i < size - 1)
-            {
+            } else if (i < size - 1) {
                 sb.append(finaldelim);
             }
         }
@@ -229,8 +208,7 @@ public class VelocityFormatter
      * @return A String.
      */
     public String limitLen(int maxlen,
-                           String string)
-    {
+                           String string) {
         return limitLen(maxlen, string, "...");
     }
 
@@ -245,11 +223,9 @@ public class VelocityFormatter
      */
     public String limitLen(int maxlen,
                            String string,
-                           String suffix)
-    {
+                           String suffix) {
         String ret = string;
-        if (string.length() > maxlen)
-        {
+        if (string.length() > maxlen) {
             ret = string.substring(0, maxlen - suffix.length()) + suffix;
         }
         return ret;
@@ -263,8 +239,7 @@ public class VelocityFormatter
      * object in a Velocity template.  For an example of usage see the
      * makeAlternator() method below.
      */
-    public class VelocityAlternator
-    {
+    public class VelocityAlternator {
         /**
          *
          */
@@ -279,8 +254,7 @@ public class VelocityFormatter
          *
          * @param alternates A String[].
          */
-        public VelocityAlternator(String[] alternates)
-        {
+        public VelocityAlternator(String[] alternates) {
             this.alternates = alternates;
         }
 
@@ -289,8 +263,7 @@ public class VelocityFormatter
          *
          * @return The current alternate in the sequence.
          */
-        public String alternate()
-        {
+        public String alternate() {
             current++;
             current %= alternates.length;
             return "";
@@ -301,8 +274,7 @@ public class VelocityFormatter
          *
          * @return A String.
          */
-        public String toString()
-        {
+        public String toString() {
             return alternates[current];
         }
     }
@@ -311,15 +283,13 @@ public class VelocityFormatter
      * As VelocityAlternator, but calls <code>alternate()</code>
      * automatically on rendering in a template.
      */
-    public class VelocityAutoAlternator extends VelocityAlternator
-    {
+    public class VelocityAutoAlternator extends VelocityAlternator {
         /**
          * Constructor takes an array of Strings.
          *
          * @param alternates A String[].
          */
-        public VelocityAutoAlternator(String[] alternates)
-        {
+        public VelocityAutoAlternator(String[] alternates) {
             super(alternates);
         }
 
@@ -330,8 +300,7 @@ public class VelocityFormatter
          *
          * @return The current alternate in the sequence.
          */
-        public final String toString()
-        {
+        public final String toString() {
             String s = alternates[current];
             alternate();
             return s;
@@ -361,9 +330,8 @@ public class VelocityFormatter
      */
     public String makeAlternator(String name,
                                  String alt1,
-                                 String alt2)
-    {
-        String[] alternates = { alt1, alt2 };
+                                 String alt2) {
+        String[] alternates = {alt1, alt2};
         context.put(name, new VelocityAlternator(alternates));
         return "";
     }
@@ -371,39 +339,37 @@ public class VelocityFormatter
     /**
      * Makes an alternator object that alternates between three
      * values.
+     *
      * @param name
      * @param alt1
      * @param alt2
      * @param alt3
      * @return alternated object.
-     *
      * @see #makeAlternator(String name, String alt1, String alt2)
      */
     public String makeAlternator(String name,
                                  String alt1,
                                  String alt2,
-                                 String alt3)
-    {
-        String[] alternates = { alt1, alt2, alt3 };
+                                 String alt3) {
+        String[] alternates = {alt1, alt2, alt3};
         context.put(name, new VelocityAlternator(alternates));
         return "";
     }
 
     /**
      * Makes an alternator object that alternates between four values.
+     *
      * @param name
      * @param alt1
      * @param alt2
      * @param alt3
      * @param alt4
      * @return Alternated object.
-     *
      * @see #makeAlternator(String name, String alt1, String alt2)
      */
     public String makeAlternator(String name, String alt1, String alt2,
-                                 String alt3, String alt4)
-    {
-        String[] alternates = { alt1, alt2, alt3, alt4 };
+                                 String alt3, String alt4) {
+        String[] alternates = {alt1, alt2, alt3, alt4};
         context.put(name, new VelocityAlternator(alternates));
         return "";
     }
@@ -411,34 +377,30 @@ public class VelocityFormatter
     /**
      * Makes an alternator object that alternates between two values
      * automatically.
+     *
      * @param name
      * @param alt1
      * @param alt2
      * @return Alternated object.
-     *
      * @see #makeAlternator(String name, String alt1, String alt2)
      */
-    public String makeAutoAlternator(String name, String alt1, String alt2)
-    {
-        String[] alternates = { alt1, alt2 };
+    public String makeAutoAlternator(String name, String alt1, String alt2) {
+        String[] alternates = {alt1, alt2};
         context.put(name, new VelocityAutoAlternator(alternates));
         return "";
     }
 
     /**
      * Returns a default value if the object passed is null.
+     *
      * @param o
      * @param dflt
      * @return Object or default value when object is null.
      */
-    public Object isNull(Object o, Object dflt)
-    {
-        if ( o == null )
-        {
+    public Object isNull(Object o, Object dflt) {
+        if (o == null) {
             return dflt;
-        }
-        else
-        {
+        } else {
             return o;
         }
     }

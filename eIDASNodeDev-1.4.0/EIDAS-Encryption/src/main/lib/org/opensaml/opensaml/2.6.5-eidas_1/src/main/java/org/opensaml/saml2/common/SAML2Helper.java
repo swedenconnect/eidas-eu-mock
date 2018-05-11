@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,9 +27,8 @@ public class SAML2Helper {
     /**
      * Checks to see if the given XMLObject is still valid. An XMLObject is valid if, and only if, itself and every
      * ancestral {@link TimeBoundSAMLObject} is valid.
-     * 
+     *
      * @param xmlObject the XML object tree to check
-     * 
      * @return true of the tree is valid, false if not
      */
     public static boolean isValid(XMLObject xmlObject) {
@@ -55,9 +54,8 @@ public class SAML2Helper {
      * <li>the earliest validUntil time on a {@link TimeBoundSAMLObject}</li>
      * <li>the shortest duration on a {@link CacheableSAMLObject} added to the current time</li>
      * </ul>
-     * 
+     *
      * @param xmlObject the XML object tree to get the earliest expiration time from
-     * 
      * @return the earliest expiration time
      */
     public static DateTime getEarliestExpiration(XMLObject xmlObject) {
@@ -67,11 +65,10 @@ public class SAML2Helper {
 
     /**
      * Gets the earliest expiration instant within a metadata tree.
-     * 
-     * @param xmlObject the metadata
+     *
+     * @param xmlObject          the metadata
      * @param earliestExpiration the earliest expiration instant
-     * @param now when this method was called
-     * 
+     * @param now                when this method was called
      * @return the earliest expiration instant within a metadata tree
      */
     public static DateTime getEarliestExpiration(XMLObject xmlObject, DateTime earliestExpiration, DateTime now) {

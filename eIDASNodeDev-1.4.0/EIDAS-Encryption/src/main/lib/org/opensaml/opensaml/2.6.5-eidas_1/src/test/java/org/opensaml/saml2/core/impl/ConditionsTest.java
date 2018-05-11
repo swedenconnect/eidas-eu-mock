@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,33 +34,47 @@ import org.opensaml.saml2.core.ProxyRestriction;
  */
 public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected NotBefore value */
+    /**
+     * Expected NotBefore value
+     */
     private DateTime expectedNotBefore;
 
-    /** Expected NotOnOrAfter value */
+    /**
+     * Expected NotOnOrAfter value
+     */
     private DateTime expectedNotOnOrAfter;
 
-    /** Count of Condition subelements */
+    /**
+     * Count of Condition subelements
+     */
     private int conditionCount = 6;
 
-    /** Count of AudienceRestriction subelements */
+    /**
+     * Count of AudienceRestriction subelements
+     */
     private int audienceRestrictionCount = 3;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public ConditionsTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Conditions.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/ConditionsOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/ConditionsChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedNotBefore = new DateTime(1984, 8, 26, 10, 01, 30, 43, ISOChronology.getInstanceUTC());
         expectedNotOnOrAfter = new DateTime(1984, 8, 26, 10, 11, 30, 43, ISOChronology.getInstanceUTC());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Conditions conditions = (Conditions) unmarshallElement(singleElementFile);
 
@@ -68,7 +82,9 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("NotBefore was " + notBefore + ", expected " + expectedNotBefore, expectedNotBefore, notBefore);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Conditions conditions = (Conditions) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -80,7 +96,9 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
                 notOnOrAfter);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Conditions.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Conditions conditions = (Conditions) buildXMLObject(qname);
@@ -89,7 +107,9 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, conditions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Conditions.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Conditions conditions = (Conditions) buildXMLObject(qname);
@@ -100,7 +120,9 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, conditions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Conditions conditions = (Conditions) unmarshallElement(childElementsFile);
         assertEquals("Condition count not as expected", conditionCount, conditions.getConditions().size());
@@ -108,24 +130,26 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
         assertNotNull("ProxyRestriction absent", conditions.getProxyRestriction());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Conditions.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Conditions conditions = (Conditions) buildXMLObject(qname);
 
         QName oneTimeUserQName = new QName(SAMLConstants.SAML20_NS, OneTimeUse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         conditions.getConditions().add((Condition) buildXMLObject(oneTimeUserQName));
-        
+
         QName audienceRestrictionQName = new QName(SAMLConstants.SAML20_NS, AudienceRestriction.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         for (int i = 0; i < audienceRestrictionCount; i++) {
             conditions.getAudienceRestrictions().add((AudienceRestriction) buildXMLObject(audienceRestrictionQName));
         }
-        
+
         conditions.getConditions().add((Condition) buildXMLObject(oneTimeUserQName));
-        
+
         QName proxyRestrictionQName = new QName(SAMLConstants.SAML20_NS, ProxyRestriction.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         conditions.getConditions().add((Condition) buildXMLObject(proxyRestrictionQName));
-        
+
         assertEquals(expectedChildElementsDOM, conditions);
     }
 }

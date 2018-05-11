@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -39,25 +39,24 @@ import org.apache.velocity.runtime.parser.node.Node;
  * @version $Id: Literal.java 746438 2009-02-21 05:41:24Z nbubna $
  * @deprecated Use the #[[unparsed content]]# syntax instead.
  */
-public class Literal extends Directive
-{
+public class Literal extends Directive {
     String literalText;
 
     /**
      * Return name of this directive.
+     *
      * @return The name of this directive.
      */
-    public String getName()
-    {
+    public String getName() {
         return "literal";
     }
 
     /**
      * Return type of this directive.
+     *
      * @return The type of this directive.
      */
-    public int getType()
-    {
+    public int getType() {
         return BLOCK;
     }
 
@@ -65,14 +64,14 @@ public class Literal extends Directive
      * Since there is no processing of content,
      * there is never a need for an internal scope.
      */
-    public boolean isScopeProvided()
-    {
+    public boolean isScopeProvided() {
         return false;
     }
 
     /**
      * Store the literal rendition of a node using
      * the Node.literal().
+     *
      * @param rs
      * @param context
      * @param node
@@ -80,9 +79,8 @@ public class Literal extends Directive
      */
     public void init(RuntimeServices rs, InternalContextAdapter context,
                      Node node)
-        throws TemplateInitException
-    {
-        super.init( rs, context, node );
+            throws TemplateInitException {
+        super.init(rs, context, node);
 
         literalText = node.jjtGetChild(0).literal();
     }
@@ -90,16 +88,16 @@ public class Literal extends Directive
     /**
      * Throw the literal rendition of the block between
      * #literal()/#end into the writer.
+     *
      * @param context
      * @param writer
      * @param node
      * @return True if the directive rendered successfully.
      * @throws IOException
      */
-    public boolean render( InternalContextAdapter context,
-                           Writer writer, Node node)
-        throws IOException
-    {
+    public boolean render(InternalContextAdapter context,
+                          Writer writer, Node node)
+            throws IOException {
         writer.write(literalText);
         return true;
     }

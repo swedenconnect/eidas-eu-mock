@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -25,59 +25,46 @@ import org.apache.velocity.test.BaseTestCase;
  * This class tests VELOCITY-579 and with some related stuff
  * from VELOCITY-70 thrown in.
  */
-public class Velocity579TestCase extends BaseTestCase
-{
-    public Velocity579TestCase(String name)
-    {
-       super(name);
+public class Velocity579TestCase extends BaseTestCase {
+    public Velocity579TestCase(String name) {
+        super(name);
     }
 
-    public void testPublicMethodInPrivateImplOfPublicInterface()
-    {
+    public void testPublicMethodInPrivateImplOfPublicInterface() {
         context.put("foo", new Foobar());
         assertEvalEquals("bar", "$foo.foo('bar')");
         assertEvalEquals("$foo.bar()", "$foo.bar()");
     }
 
-    public void testPublicMethodInheritedFromPrivateClass() throws Exception
-    {
+    public void testPublicMethodInheritedFromPrivateClass() throws Exception {
         context.put("bar", new MyBar());
         // ugly hack to avoid failed test when running JDK 1.5 or earlier
-        try
-        {
+        try {
             Class.forName("java.util.Deque");
             assertEvalEquals("bar", "$bar.bar()");
-        }
-        catch (ClassNotFoundException cnfe)
-        {
+        } catch (ClassNotFoundException cnfe) {
             //ignore this test in jdk 1.5-
             System.out.println("Skipping testPublicMethodInheritedFromPrivateClass for pre-1.6 JDK");
         }
     }
 
-    public static interface Foo
-    {
+    public static interface Foo {
         String foo(String s);
     }
 
-    private static abstract class FooImpl implements Foo
-    {
-        public String foo(String s)
-        {
+    private static abstract class FooImpl implements Foo {
+        public String foo(String s) {
             return s == null ? "foo" : s;
         }
     }
 
-    private static class Foobar extends FooImpl
-    {
-        public String bar()
-        {
+    private static class Foobar extends FooImpl {
+        public String bar() {
             return "bar";
         }
     }
 
-    public static class MyBar extends Foobar
-    {
+    public static class MyBar extends Foobar {
     }
 
 }

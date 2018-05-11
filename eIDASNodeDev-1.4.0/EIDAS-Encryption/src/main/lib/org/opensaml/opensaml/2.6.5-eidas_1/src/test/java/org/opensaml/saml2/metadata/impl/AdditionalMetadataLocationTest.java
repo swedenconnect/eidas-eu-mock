@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,10 +29,14 @@ import org.opensaml.saml2.metadata.AdditionalMetadataLocation;
  */
 public class AdditionalMetadataLocationTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected value of namespace attribute */
+    /**
+     * Expected value of namespace attribute
+     */
     protected String expectedNamespace;
 
-    /** Expected value of element content */
+    /**
+     * Expected value of element content
+     */
     protected String expectedContent;
 
     /**
@@ -42,7 +46,9 @@ public class AdditionalMetadataLocationTest extends BaseSAMLObjectProviderTestCa
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/AdditionalMetadataLocation.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +56,9 @@ public class AdditionalMetadataLocationTest extends BaseSAMLObjectProviderTestCa
         expectedContent = "http://example.org";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AdditionalMetadataLocation locationObj = (AdditionalMetadataLocation) unmarshallElement(singleElementFile);
 
@@ -61,7 +69,9 @@ public class AdditionalMetadataLocationTest extends BaseSAMLObjectProviderTestCa
         assertEquals("Namepsace URI was " + namespace + ", expected " + expectedNamespace, expectedNamespace, namespace);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AdditionalMetadataLocation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         AdditionalMetadataLocation location = (AdditionalMetadataLocation) buildXMLObject(qname);

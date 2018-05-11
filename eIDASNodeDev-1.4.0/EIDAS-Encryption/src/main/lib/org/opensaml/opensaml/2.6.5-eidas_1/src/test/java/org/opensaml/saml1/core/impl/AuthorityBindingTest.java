@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml1.core.impl;
 
@@ -27,26 +27,36 @@ import org.opensaml.common.xml.SAMLConstants;
 import org.opensaml.saml1.core.AttributeQuery;
 import org.opensaml.saml1.core.AuthorityBinding;
 
-/** Test for {@link AuthorityBinding}. */
+/**
+ * Test for {@link AuthorityBinding}.
+ */
 public class AuthorityBindingTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
-    /** Value of AuthorityKind in test file */
+    /**
+     * Value of AuthorityKind in test file
+     */
     private final QName expectedAuthorityKind;
 
-    /** Value of Location in test file */
+    /**
+     * Value of Location in test file
+     */
     private final String expectedLocation;
 
-    /** Value of Binding in test file */
+    /**
+     * Value of Binding in test file
+     */
     private final String expectedBinding;
 
     /**
      * Constructor
      */
     public AuthorityBindingTest() {
-        super(); 
+        super();
         //this attribute is a Schema QName type, e.g. AuthorityKind="samlp:AttributeQuery"
         expectedAuthorityKind = new QName(SAMLConstants.SAML10P_NS, AttributeQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
         expectedLocation = "here";
@@ -56,7 +66,9 @@ public class AuthorityBindingTest extends BaseSAMLObjectProviderTestCase {
         qname = new QName(SAMLConstants.SAML1_NS, AuthorityBinding.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementUnmarshall() {
         AuthorityBinding authorityBinding = (AuthorityBinding) unmarshallElement(singleElementFile);
@@ -65,22 +77,28 @@ public class AuthorityBindingTest extends BaseSAMLObjectProviderTestCase {
         assertNull("Location attribute present", authorityBinding.getLocation());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesUnmarshall() {
         AuthorityBinding authorityBinding = (AuthorityBinding) unmarshallElement(singleElementOptionalAttributesFile);
         assertEquals("AuthorityKind attribute", expectedAuthorityKind, authorityBinding.getAuthorityKind());
         assertEquals("Binding attribute", expectedBinding, authorityBinding.getBinding());
-        assertEquals("Location attribute", expectedLocation, authorityBinding.getLocation());        
+        assertEquals("Location attribute", expectedLocation, authorityBinding.getLocation());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesMarshall() {
         AuthorityBinding authorityBinding = (AuthorityBinding) buildXMLObject(qname);

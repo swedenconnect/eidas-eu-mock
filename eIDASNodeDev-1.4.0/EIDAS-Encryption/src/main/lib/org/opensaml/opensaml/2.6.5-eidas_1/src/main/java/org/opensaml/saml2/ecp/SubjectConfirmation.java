@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,49 +30,59 @@ import org.opensaml.ws.soap.soap11.MustUnderstandBearing;
  */
 public interface SubjectConfirmation extends SAMLObject, MustUnderstandBearing, ActorBearing {
 
-    /** Element local name. */
+    /**
+     * Element local name.
+     */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "SubjectConfirmation";
 
-    /** Default element name. */
+    /**
+     * Default element name.
+     */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML20ECP_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             SAMLConstants.SAML20ECP_PREFIX);
 
-    /** Local name of the XSI type. */
+    /**
+     * Local name of the XSI type.
+     */
     public static final String TYPE_LOCAL_NAME = "SubjectConfirmationType";
 
-    /** QName of the XSI type. */
+    /**
+     * QName of the XSI type.
+     */
     public static final QName TYPE_NAME = new QName(SAMLConstants.SAML20ECP_NS, TYPE_LOCAL_NAME,
             SAMLConstants.SAML20ECP_PREFIX);
 
-    /** Method attribute name. */
+    /**
+     * Method attribute name.
+     */
     public static final String METHOD_ATTRIB_NAME = "Method";
-    
+
     /**
      * Get the method used to confirm this subject.
-     * 
+     *
      * @return the method used to confirm this subject
      */
     public String getMethod();
 
     /**
      * Sets the method used to confirm this subject.
-     * 
+     *
      * @param newMethod the method used to confirm this subject
      */
     public void setMethod(String newMethod);
 
     /**
      * Gets the data about how this subject was confirmed or constraints on the confirmation.
-     * 
+     *
      * @return the data about how this subject was confirmed or constraints on the confirmation
      */
     public SubjectConfirmationData getSubjectConfirmationData();
 
     /**
      * Sets the data about how this subject was confirmed or constraints on the confirmation.
-     * 
+     *
      * @param newSubjectConfirmationData the data about how this subject was confirmed or constraints on the
-     *            confirmation
+     *                                   confirmation
      */
     public void setSubjectConfirmationData(SubjectConfirmationData newSubjectConfirmationData);
 }

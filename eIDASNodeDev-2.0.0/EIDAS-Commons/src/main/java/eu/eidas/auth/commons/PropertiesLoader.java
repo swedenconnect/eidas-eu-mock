@@ -58,7 +58,7 @@ public final class PropertiesLoader {
         try {
             if (StringUtils.isEmpty(xmlFilePath) || !StringUtils.endsWith(xmlFilePath, "xml")) {
                 throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                      EidasErrorKey.INTERNAL_ERROR.errorMessage(), "Not valid file!");
+                        EidasErrorKey.INTERNAL_ERROR.errorMessage(), "Not valid file!");
             }
             props = new Properties();
             fileProperties = new FileInputStream(xmlFilePath);
@@ -71,7 +71,7 @@ public final class PropertiesLoader {
         } catch (Exception e) {
             LOG.error("ERROR : " + e.getMessage());
             throw new InternalErrorEIDASException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                  EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         } finally {
             try {
                 if (fileProperties != null) {

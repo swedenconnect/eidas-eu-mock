@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,13 +27,13 @@ import org.opensaml.xml.util.XMLObjectHelper;
 
 /**
  * A basic factory for instances of {@link SAMLArtifactMapEntryFactory}.
- * 
+ *
  * <p>
  * If this implementation, if the SAMLObject being stored does not have a parent,
  * then it will be stored as-is.  If it does have a parent, it will first be cloned,
  * with its cloned and cached DOM rooted in a new Document.
  * </p>
- * 
+ *
  * <p>
  * If the <code>serializeMessage</code> property is true, then the SAMLObject held by the
  * entry will be internally serialized within the entry before it is returned.
@@ -41,16 +41,18 @@ import org.opensaml.xml.util.XMLObjectHelper;
  * </p>
  */
 public class BasicSAMLArtifactMapEntryFactory implements SAMLArtifactMapEntryFactory {
-    
-    /** Flag determining whether the SAMLObject message should be explicitly serialized
-     * on creation of the new artifact map entry. */
+
+    /**
+     * Flag determining whether the SAMLObject message should be explicitly serialized
+     * on creation of the new artifact map entry.
+     */
     private boolean serializeMessage;
 
-    /** 
+    /**
      * Set the flag determining whether the SAMLObject message should be explicitly serialized
      * on creation of the new artifact map entry. Defaults to false.
-     * 
-     * @param newSerializeMessage the new flag value 
+     *
+     * @param newSerializeMessage the new flag value
      */
     public void setSerializeMessage(boolean newSerializeMessage) {
         serializeMessage = newSerializeMessage;
@@ -59,22 +61,24 @@ public class BasicSAMLArtifactMapEntryFactory implements SAMLArtifactMapEntryFac
     /**
      * Get the flag determining whether the SAMLObject message should be explicitly serialized
      * on creation of the new artifact map entry. Defaults to false.
-     * 
+     *
      * @return the current flag value
      */
     public boolean isSerializeMessage() {
         return serializeMessage;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAMLArtifactMapEntry newEntry(String artifact, String issuerId, String relyingPartyId,
-            SAMLObject samlMessage, long lifetime) {
-        
+                                         SAMLObject samlMessage, long lifetime) {
+
         SAMLObject newSAMLMessage = getStorableSAMLMessage(samlMessage);
-        
-        BasicSAMLArtifactMapEntry  entry = 
-            new BasicSAMLArtifactMapEntry(artifact, issuerId, relyingPartyId, newSAMLMessage , lifetime);
-        
+
+        BasicSAMLArtifactMapEntry entry =
+                new BasicSAMLArtifactMapEntry(artifact, issuerId, relyingPartyId, newSAMLMessage, lifetime);
+
         if (serializeMessage) {
             entry.serializeMessage();
         }
@@ -83,13 +87,13 @@ public class BasicSAMLArtifactMapEntryFactory implements SAMLArtifactMapEntryFac
 
     /**
      * Get the SAMLObject which will actually be stored in the produced SAMLArtifactMapEntry.
-     * 
+     *
      * <p>
      * This may or may not be the same SAMLObject that is passed in.  If the SAMLObject does
      * not have a parent, the same object will be returned.  Otherwise, the object will be cloned
      * and the cloned instance returned.
      * </p>
-     * 
+     *
      * @param samlMessage the SAML message to process
      * @return an equivalent SAML Message
      */

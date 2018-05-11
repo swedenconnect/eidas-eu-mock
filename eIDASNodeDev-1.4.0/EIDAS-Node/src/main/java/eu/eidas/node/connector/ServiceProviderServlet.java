@@ -113,14 +113,14 @@ public class ServiceProviderServlet extends AbstractConnectorServlet {
                 .validate();
 
         LOG.debug("sessionId is on cookies () or fromURL ", request.isRequestedSessionIdFromCookie(),
-                  request.isRequestedSessionIdFromURL());
+                request.isRequestedSessionIdFromURL());
         if (acceptsHttpRedirect() && EidasSamlBinding.REDIRECT == EidasSamlBinding.fromName(request.getMethod())) {
             request.setAttribute(EidasParameterKeys.BINDING.toString(), EidasSamlBinding.REDIRECT.getName());
         } else {
             request.setAttribute(EidasParameterKeys.BINDING.toString(), EidasSamlBinding.POST.getName());
         }
         request.setAttribute(NodeParameterNames.EIDAS_SERVICE_URL.toString(),
-                             encodeURL(serviceUrl, response)); // // Correct URl redirect cookie implementation
+                encodeURL(serviceUrl, response)); // // Correct URl redirect cookie implementation
         request.setAttribute(EidasParameterKeys.SAML_REQUEST.toString(), samlRequestTokenSaml);
         request.setAttribute(NodeParameterNames.RELAY_STATE.toString(), relayState);
         // Redirecting where it should be
@@ -144,8 +144,8 @@ public class ServiceProviderServlet extends AbstractConnectorServlet {
     }
 
     private ILightRequest processSpecificRequest(HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        ConnectorControllerService connectorController) throws ServletException {
+                                                 HttpServletResponse response,
+                                                 ConnectorControllerService connectorController) throws ServletException {
         ILightRequest lightRequest;
         try {
             ISpecificConnector specificConnector = connectorController.getSpecificConnector();
@@ -155,7 +155,7 @@ public class ServiceProviderServlet extends AbstractConnectorServlet {
             // Illegal state: no request received from the specific
             throw new ServletException("Unable to process specific request: " + e, e);
         }
-        if (lightRequest == null)  {
+        if (lightRequest == null) {
             getLogger().error("SpecificException: Missing specific request");
             // Illegal state: no exception and no request received from the specific
             throw new ServletException("Missing specific response: no error and no success");

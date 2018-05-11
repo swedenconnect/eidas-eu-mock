@@ -23,23 +23,30 @@ import eu.eidas.auth.engine.core.SAMLCore;
 
 /**
  * The Interface SPCountry.
- *
  */
 public interface SPCountry extends SAMLObject {
 
-    /** The Constant DEFAULT_ELEMENT_LOCAL_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_LOCAL_NAME.
+     */
     String DEF_LOCAL_NAME = "spCountry";
 
-    /** The Constant DEFAULT_ELEMENT_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_NAME.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.EIDAS10_NS.getValue(), DEF_LOCAL_NAME,
-	    SAMLCore.EIDAS10_PREFIX.getValue());
+            SAMLCore.EIDAS10_PREFIX.getValue());
 
-    /** The Constant TYPE_LOCAL_NAME. */
+    /**
+     * The Constant TYPE_LOCAL_NAME.
+     */
     String TYPE_LOCAL_NAME = "spCountryType";
 
-    /** The Constant TYPE_NAME. */
+    /**
+     * The Constant TYPE_NAME.
+     */
     QName TYPE_NAME = new QName(SAMLCore.EIDAS10_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.EIDAS10_PREFIX.getValue());
+            SAMLCore.EIDAS10_PREFIX.getValue());
 
     /**
      * Gets the service provider country.

@@ -104,10 +104,10 @@ public final class DocumentBuilderFactoryUtil {
 
     /**
      * This method performs marshal on {@param node} and returns it in a byte array.
-     *
+     * <p>
      * Note that it does not protect against XXE. If necessary it should be done the {@param node} before.
      *
-     * @param node the object to marshall
+     * @param node               the object to marshall
      * @param omitXMLDeclaration the flag to omit XML Declaration
      * @return the marshalled node in a byte array
      * @throws TransformerException
@@ -203,7 +203,7 @@ public final class DocumentBuilderFactoryUtil {
      * See https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet for more details.
      * The default features set are: <ul> <li>{@link
      * javax.xml.XMLConstants#ACCESS_EXTERNAL_DTD} = ""</li> <li>{@link javax.xml.XMLConstants#ACCESS_EXTERNAL_STYLESHEET} = ""
-     *</li></ul>
+     * </li></ul>
      */
     @Nonnull
     public static Map<String, String> getSecureTransformerFactoryFeatures() {
@@ -226,7 +226,7 @@ public final class DocumentBuilderFactoryUtil {
         try {
             documentBuilder = DOCUMENT_BUILDER_POOL.poll();
             documentBuilder = validateDocumentBuilder(documentBuilder);
-            doc =  documentBuilder.parse(xmlInputStream);
+            doc = documentBuilder.parse(xmlInputStream);
         } finally {
             DOCUMENT_BUILDER_POOL.offer(documentBuilder);
             if (xmlInputStream != null) {

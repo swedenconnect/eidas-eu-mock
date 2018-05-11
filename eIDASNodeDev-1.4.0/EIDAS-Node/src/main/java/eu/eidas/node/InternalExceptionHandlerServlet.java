@@ -75,13 +75,13 @@ public final class InternalExceptionHandlerServlet extends AbstractNodeServlet {
      * @param response
      */
     private void handleError(HttpServletRequest request, HttpServletResponse response) {
-      /**
-       * Current exception.
-       */
-      Exception exception;
+        /**
+         * Current exception.
+         */
+        Exception exception;
 
-      //Default error page
-      String retVal = NodeViewNames.INTERNAL_ERROR.toString();
+        //Default error page
+        String retVal = NodeViewNames.INTERNAL_ERROR.toString();
         try {
             // Prevent cookies from being accessed through client-side script.
             setHTTPOnlyHeaderToSession(false, request, response);
@@ -90,7 +90,7 @@ public final class InternalExceptionHandlerServlet extends AbstractNodeServlet {
             exception = (Exception) request.getAttribute("javax.servlet.error.exception");
 
             //Websphere wraps another layer onto the thrown exception
-            if(exception instanceof ServletException && exception.getCause() instanceof ServletException) {
+            if (exception instanceof ServletException && exception.getCause() instanceof ServletException) {
                 exception = (Exception) exception.getCause();
             }
             if (exception.getCause() instanceof AbstractEIDASException) {
@@ -108,12 +108,12 @@ public final class InternalExceptionHandlerServlet extends AbstractNodeServlet {
                 //may have thrown it as ServletException
                 exception = (Exception) exception.getCause();
                 request.setAttribute("javax.servlet.error.exception", exception);
-            }else if (exception.getCause() instanceof AbstractEIDASException) {
+            } else if (exception.getCause() instanceof AbstractEIDASException) {
                 LOG.trace("Exception is instanceOf AbstractEIDASException");
                 retVal = "/EidasNodeExceptionHandler";
-                Object phase=request.getSession().getAttribute(EidasParameterKeys.SAML_PHASE.toString());
-                if(EIDASValues.EIDAS_SERVICE_REQUEST.equals(phase) || EIDASValues.EIDAS_SERVICE_RESPONSE.equals(phase)){
-                    retVal="/ServiceExceptionHandler";
+                Object phase = request.getSession().getAttribute(EidasParameterKeys.SAML_PHASE.toString());
+                if (EIDASValues.EIDAS_SERVICE_REQUEST.equals(phase) || EIDASValues.EIDAS_SERVICE_RESPONSE.equals(phase)) {
+                    retVal = "/ServiceExceptionHandler";
                 }
                 //Restore the exception with the original because filters
                 //may have thrown it as ServletException

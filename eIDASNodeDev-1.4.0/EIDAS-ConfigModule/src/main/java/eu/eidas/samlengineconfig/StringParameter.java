@@ -20,6 +20,7 @@ package eu.eidas.samlengineconfig;
 public class StringParameter extends ConfigurationParameter {
     String name;
     String value;
+
     @Override
     public String getName() {
         return name;
@@ -27,7 +28,7 @@ public class StringParameter extends ConfigurationParameter {
 
     @Override
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     @Override
@@ -37,7 +38,7 @@ public class StringParameter extends ConfigurationParameter {
 
     @Override
     public void setValue(Object value) {
-        this.value=value.toString();
+        this.value = value.toString();
     }
 
     @Override

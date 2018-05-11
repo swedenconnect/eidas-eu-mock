@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -39,8 +39,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
  * @author <a href="mailto:wglass@apache.org">Will Glass-Husain</a>
  * @version $Id: SetTestCase.java 599003 2007-11-28 13:55:49Z cbrisson $
  */
-public class SetTestCase extends BaseTestCase
-{
+public class SetTestCase extends BaseTestCase {
     /**
      * VTL file extension.
      */
@@ -75,19 +74,16 @@ public class SetTestCase extends BaseTestCase
     /**
      * Default constructor.
      */
-    public SetTestCase(String name)
-    {
+    public SetTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULTS_DIR);
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(SetTestCase.class);
     }
 
@@ -95,8 +91,7 @@ public class SetTestCase extends BaseTestCase
      * Runs the test.
      */
     public void testSetNull()
-            throws Exception
-    {
+            throws Exception {
         /**
          * Check that #set does not accept nulls
          */
@@ -105,7 +100,7 @@ public class SetTestCase extends BaseTestCase
         ve.addProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
         ve.init();
 
-        checkTemplate(ve,"set1");
+        checkTemplate(ve, "set1");
 
         /**
          * Check that setting the property is the same as the default
@@ -115,7 +110,7 @@ public class SetTestCase extends BaseTestCase
         ve.addProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
         ve.init();
 
-        checkTemplate(ve,"set1");
+        checkTemplate(ve, "set1");
 
         /**
          * Check that #set can accept nulls, and has the correct behaviour for complex LHS
@@ -125,31 +120,29 @@ public class SetTestCase extends BaseTestCase
         ve.addProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
         ve.init();
 
-        checkTemplate(ve,"set2");
+        checkTemplate(ve, "set2");
     }
 
     public void checkTemplate(VelocityEngine ve, String templateName)
-    throws Exception
-    {
+            throws Exception {
         Template template;
         FileOutputStream fos;
         Writer fwriter;
         Context context;
 
-        template = ve.getTemplate( getFileName(null, templateName, TMPL_FILE_EXT) );
+        template = ve.getTemplate(getFileName(null, templateName, TMPL_FILE_EXT));
 
-        fos = new FileOutputStream (
+        fos = new FileOutputStream(
                 getFileName(RESULTS_DIR, templateName, RESULT_FILE_EXT));
 
-        fwriter = new BufferedWriter( new OutputStreamWriter(fos) );
+        fwriter = new BufferedWriter(new OutputStreamWriter(fos));
 
         context = new VelocityContext();
         template.merge(context, fwriter);
         fwriter.flush();
         fwriter.close();
 
-        if (!isMatch(RESULTS_DIR, COMPARE_DIR, templateName, RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, templateName, RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect.");
         }
     }

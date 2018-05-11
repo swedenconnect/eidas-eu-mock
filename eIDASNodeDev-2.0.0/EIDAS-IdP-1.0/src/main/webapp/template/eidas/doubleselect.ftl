@@ -29,9 +29,9 @@
     <#assign startCount = startCount + 1/>
 </#if>
 
-<br />
+<br/>
 <select<#rt/>
- name="${parameters.doubleName?default("")?html}"<#rt/>
+        name="${parameters.doubleName?default("")?html}"<#rt/>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
@@ -62,17 +62,18 @@
 >
 </select>
 <#if parameters.doubleMultiple?default(false)>
-<input type="hidden" id="__multiselect_${parameters.doubleId?html}" name="__multiselect_${parameters.doubleName?default("")?html}" value=""<#rt/>
+<input type="hidden" id="__multiselect_${parameters.doubleId?html}"
+       name="__multiselect_${parameters.doubleName?default("")?html}" value=""<#rt/>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
- />
+/>
 </#if>
 <script type="text/javascript">
-<#assign itemCount = startCount/>
+    <#assign itemCount = startCount/>
     var ${parameters.id}Group = new Array(${parameters.listSize} + ${startCount});
     for (i = 0; i < (${parameters.listSize} + ${startCount}); i++)
-    ${parameters.id}Group[i] = new Array();
+        ${parameters.id}Group[i] = new Array();
 
 <@s.iterator value="parameters.list">
     <#if parameters.listKey??>
@@ -120,8 +121,9 @@
     <#assign itemCount = itemCount + 1/>
 </@s.iterator>
     ${parameters.id}Redirect(${redirectTo});
+
     function ${parameters.id}Redirect(x) {
-    	var selected = false;
+        var selected = false;
         for (m = ${parameters.id}Temp.options.length - 1; m >= 0; m--) {
             ${parameters.id}Temp.options[m] = null;
         }
@@ -129,24 +131,28 @@
         for (i = 0; i < ${parameters.id}Group[x].length; i++) {
             ${parameters.id}Temp.options[i] = new Option(${parameters.id}Group[x][i].text, ${parameters.id}Group[x][i].value);
             <#if parameters.doubleNameValue?exists>
-                   <#if parameters.doubleMultiple?exists>
-                         for (j = 0; j < ${parameters.doubleNameValue}.length; j++) {
-                             if (${parameters.id}Temp.options[i].value == ${parameters.doubleNameValue}[j]) {
-                               ${parameters.id}Temp.options[i].selected = true;
-                                selected = true;
-                             }
-                        }
-                   <#else>
-                        if (${parameters.id}Temp.options[i].value == '${parameters.doubleNameValue}') {
-                            ${parameters.id}Temp.options[i].selected = true;
+                <#if parameters.doubleMultiple?exists>
+                         for (j = 0; j < ${parameters.doubleNameValue}.
+                    length;
+                    j++
+                )
+                    {
+                        if (${parameters.id}Temp.options[i].value == ${parameters.doubleNameValue}[j]) {
+                                ${parameters.id}Temp.options[i].selected = true;
                             selected = true;
                         }
-                   </#if>
-             </#if>
-         }
+                    }
+                <#else>
+                        if (${parameters.id}Temp.options[i].value == '${parameters.doubleNameValue}') {
+                                ${parameters.id}Temp.options[i].selected = true;
+                            selected = true;
+                        }
+                </#if>
+            </#if>
+        }
 
-        if ((${parameters.id}Temp.options.length > 0) && (! selected)) {
-           	${parameters.id}Temp.options[0].selected = true;
+        if ((${parameters.id}Temp.options.length > 0) && (!selected)) {
+            ${parameters.id}Temp.options[0].selected = true;
         }
     }
 </script>

@@ -90,7 +90,7 @@ public final class ResponseUtil {
     /**
      * Extracts the verified assertion from the given response.
      *
-     * @param samlResponse the SAML response
+     * @param samlResponse  the SAML response
      * @param userIpAddress the user IP address
      * @return the assertion
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception

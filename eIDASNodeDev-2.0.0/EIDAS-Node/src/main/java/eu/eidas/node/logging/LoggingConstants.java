@@ -25,5 +25,5 @@ public interface LoggingConstants {
     /**
      * name of the system environment variable storing the directory where the log files will be placed
      */
-    String LOG_HOME_DIRECTORY_ENV="LOG_HOME";
+    String LOG_HOME_DIRECTORY_ENV = "LOG_HOME";
 }

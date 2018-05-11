@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,18 +28,22 @@ import org.opensaml.xml.io.UnmarshallingException;
  */
 public class ResourcesTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public ResourcesTypeUnmarshaller() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
             throws UnmarshallingException {
         ResourcesType resourcesType = (ResourcesType) parentXMLObject;
-        
-        if (childXMLObject instanceof ResourceType){
-            resourcesType.getResources().add((ResourceType)childXMLObject);
+
+        if (childXMLObject instanceof ResourceType) {
+            resourcesType.getResources().add((ResourceType) childXMLObject);
         } else {
             super.processChildElement(parentXMLObject, childXMLObject);
         }

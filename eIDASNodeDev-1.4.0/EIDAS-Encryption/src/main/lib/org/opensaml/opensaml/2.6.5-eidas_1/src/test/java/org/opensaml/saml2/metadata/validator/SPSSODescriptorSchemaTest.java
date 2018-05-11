@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,14 +29,18 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class SPSSODescriptorSchemaTest extends SSODescriptorSchemaTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SPSSODescriptorSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20MD_NS, SPSSODescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
         validator = new SPSSODescriptorSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         SPSSODescriptor spssoDescriptor = (SPSSODescriptor) target;
@@ -47,7 +51,7 @@ public class SPSSODescriptorSchemaTest extends SSODescriptorSchemaTestBase {
 
     /**
      * Tests for AssertionConsumerService failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testAssertionConsumerServiceFailure() throws ValidationException {

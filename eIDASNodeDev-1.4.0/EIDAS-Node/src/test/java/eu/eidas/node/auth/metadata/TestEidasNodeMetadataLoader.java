@@ -44,27 +44,29 @@ import eu.eidas.node.auth.util.tests.FileUtils;
 
 
 public class TestEidasNodeMetadataLoader {
-    private static final String FILEREPO_DIR_READ="src/test/resources/EntityDescriptors1/";
-    private static final String FILEREPO_DIR_WRITE="target/test/EntityDescriptors/";
-    private static final String FILEREPO_DIR_WRITE_EMPTY="target/test/EntityDescriptorsEmpty/";
-    private static final String ENTITY_ID="http://EidasNode:8888/EidasNode/ConnectorMetadata";
-    private static final String FILEREPO_SIGNATURE="src/test/resources/SignatureCheck/";
-    private static final String CONNECTOR_ENTITY_ID =ENTITY_ID;
+    private static final String FILEREPO_DIR_READ = "src/test/resources/EntityDescriptors1/";
+    private static final String FILEREPO_DIR_WRITE = "target/test/EntityDescriptors/";
+    private static final String FILEREPO_DIR_WRITE_EMPTY = "target/test/EntityDescriptorsEmpty/";
+    private static final String ENTITY_ID = "http://EidasNode:8888/EidasNode/ConnectorMetadata";
+    private static final String FILEREPO_SIGNATURE = "src/test/resources/SignatureCheck/";
+    private static final String CONNECTOR_ENTITY_ID = ENTITY_ID;
+
     @Before
-    public void setUp(){
-        File sampleNodeRepo=new File(FILEREPO_DIR_WRITE);
+    public void setUp() {
+        File sampleNodeRepo = new File(FILEREPO_DIR_WRITE);
         FileSystemUtils.deleteRecursively(sampleNodeRepo);
         sampleNodeRepo.mkdirs();
         FileUtils.copyFile(new File(FILEREPO_DIR_READ), sampleNodeRepo);
         new File(FILEREPO_DIR_WRITE_EMPTY).mkdirs();
         try {
             SAMLBootstrap.bootstrap();
-        }catch (ConfigurationException ce){
+        } catch (ConfigurationException ce) {
             Assert.assertTrue("opensaml configuration exception", false);
         }
     }
+
     @After
-    public void removeDir(){
+    public void removeDir() {
         FileSystemUtils.deleteRecursively(new File(FILEREPO_DIR_WRITE));
         FileSystemUtils.deleteRecursively(new File(FILEREPO_DIR_WRITE_EMPTY));
     }
@@ -81,19 +83,19 @@ public class TestEidasNodeMetadataLoader {
     }
 
     @Test
-    public void testValidatesignature(){
+    public void testValidatesignature() {
         CachingMetadataFetcher fetcher = new CachingMetadataFetcher();
         FileMetadataLoader loader = new FileMetadataLoader();
         fetcher.setCache(new SimpleMetadataCaching(86400));
         loader.setRepositoryPath(FILEREPO_SIGNATURE);
         fetcher.setMetadataLoaderPlugin(loader);
         fetcher.initProcessor();
-        try{
+        try {
             ProtocolEngineI engine = ProtocolEngineFactory.getDefaultProtocolEngine("METADATA");
             MetadataSignerI metadataSigner = (MetadataSignerI) engine.getSigner();
             fetcher.getEntityDescriptor(CONNECTOR_ENTITY_ID, metadataSigner);
         } catch (EIDASSAMLEngineException e) {
-            Assert.fail("got error checking the signature: "+ e);
+            Assert.fail("got error checking the signature: " + e);
             e.printStackTrace();
         }
     }

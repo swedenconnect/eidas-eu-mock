@@ -40,27 +40,30 @@ import java.util.Properties;
 /**
  * property loader for integration plugins
  */
-public class PluginPropertyLoader extends PropertyPlaceholderConfigurer  {
+public class PluginPropertyLoader extends PropertyPlaceholderConfigurer {
     private static final Logger LOGGER = LoggerFactory.getLogger(PluginPropertyLoader.class.getName());
-    String locationProp=null;
-    String[] locationNames=null;
-    Resource[] locations=null;
-    public void setLocationProp(String locationProp){
-        this.locationProp=locationProp;
+    String locationProp = null;
+    String[] locationNames = null;
+    Resource[] locations = null;
+
+    public void setLocationProp(String locationProp) {
+        this.locationProp = locationProp;
     }
-    public void setLocationNames(String[] locations){
-        if(locations!=null) {
+
+    public void setLocationNames(String[] locations) {
+        if (locations != null) {
             locationNames = new String[locations.length];
             System.arraycopy(locations, 0, locationNames, 0, locationNames.length);
         }
     }
+
     @Override
-    protected String resolvePlaceholder(String placeholder, Properties props){
-        String result=super.resolvePlaceholder(placeholder, props);
-        if(result==null || result.isEmpty()) {
+    protected String resolvePlaceholder(String placeholder, Properties props) {
+        String result = super.resolvePlaceholder(placeholder, props);
+        if (result == null || result.isEmpty()) {
             result = PropertiesUtil.getProperty(placeholder);
         }
-        if(result==null) {
+        if (result == null) {
             result = "";
         }
         return result;
@@ -68,36 +71,38 @@ public class PluginPropertyLoader extends PropertyPlaceholderConfigurer  {
 
     @Override
     protected void loadProperties(Properties props)
-            throws IOException{
+            throws IOException {
         updatePropLocation();
         LOGGER.info(LoggingMarkerMDC.SYSTEM_EVENT, "Loading properties");
-        if(props!=null && locations!=null && locations.length>0) {
+        if (props != null && locations != null && locations.length > 0) {
             super.loadProperties(props);
         }
     }
-    private boolean isLocationReadable(String locationPropValue){
-        for(int i=0;i<locationNames.length && locationPropValue!=null;i++) {
-            if(!locations[0].isReadable()){
-                LOGGER.error("Not readable config file "+locationNames[i]);
-                locations=null;
+
+    private boolean isLocationReadable(String locationPropValue) {
+        for (int i = 0; i < locationNames.length && locationPropValue != null; i++) {
+            if (!locations[0].isReadable()) {
+                LOGGER.error("Not readable config file " + locationNames[i]);
+                locations = null;
                 return false;
             }
         }
         return true;
 
     }
-    private void updatePropLocation(){
-        if(locationProp!=null && locationNames!=null && locationNames.length>0){
-            List<Resource> loadedLocations=new ArrayList<Resource>();
-            DefaultResourceLoader drl=new DefaultResourceLoader();
-            String locationPropValue=PropertiesUtil.getProperty(locationProp);
-            for(int i=0;i<locationNames.length && locationPropValue!=null;i++){
-                String currentLocation=locationPropValue+locationNames[i];
-                loadedLocations.add(drl.getResource("file:"+currentLocation.replace(File.separatorChar, '/')));
+
+    private void updatePropLocation() {
+        if (locationProp != null && locationNames != null && locationNames.length > 0) {
+            List<Resource> loadedLocations = new ArrayList<Resource>();
+            DefaultResourceLoader drl = new DefaultResourceLoader();
+            String locationPropValue = PropertiesUtil.getProperty(locationProp);
+            for (int i = 0; i < locationNames.length && locationPropValue != null; i++) {
+                String currentLocation = locationPropValue + locationNames[i];
+                loadedLocations.add(drl.getResource("file:" + currentLocation.replace(File.separatorChar, '/')));
             }
-            locations=new Resource[loadedLocations.size()];
+            locations = new Resource[loadedLocations.size()];
             loadedLocations.toArray(locations);
-            if(isLocationReadable(locationPropValue) && locations.length>0) {
+            if (isLocationReadable(locationPropValue) && locations.length > 0) {
                 setLocations(locations);
             }
         }

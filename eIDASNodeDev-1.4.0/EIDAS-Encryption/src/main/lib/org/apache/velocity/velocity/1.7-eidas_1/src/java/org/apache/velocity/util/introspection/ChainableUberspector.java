@@ -22,15 +22,14 @@ package org.apache.velocity.util.introspection;
 /**
  * Interface that marks uberspectors as chainable, meaning that multiple uberspectors can be
  * combined in a chain (using the Decorator pattern).
- * 
+ *
  * @version $Id: $
  * @since 1.6
  */
-public interface ChainableUberspector extends Uberspect
-{
+public interface ChainableUberspector extends Uberspect {
     /**
      * Specify the decorated Uberspector
-     * 
+     *
      * @param inner The decorated uberspector.
      */
     public void wrap(Uberspect inner);

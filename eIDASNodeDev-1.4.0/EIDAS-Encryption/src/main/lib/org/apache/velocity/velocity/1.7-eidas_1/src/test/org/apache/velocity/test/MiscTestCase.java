@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.ArrayList;
@@ -35,28 +35,23 @@ import org.apache.velocity.util.StringUtils;
  * @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
  * @version $Id: MiscTestCase.java 473760 2006-11-11 16:55:40Z wglass $
  */
-public class MiscTestCase extends BaseTestCase
-{
-    public MiscTestCase (String name)
-    {
+public class MiscTestCase extends BaseTestCase {
+    public MiscTestCase(String name) {
         super(name);
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(MiscTestCase.class);
     }
 
-    public void testRuntimeInstanceProperties()
-    {
+    public void testRuntimeInstanceProperties() {
         // check that runtime instance properties can be set and retrieved
         RuntimeInstance ri = new RuntimeInstance();
-        ri.setProperty("baabaa.test","the answer");
-        assertEquals("the answer",ri.getProperty("baabaa.test"));
+        ri.setProperty("baabaa.test", "the answer");
+        assertEquals("the answer", ri.getProperty("baabaa.test"));
     }
-    
-    public void testStringUtils()
-    {
+
+    public void testStringUtils() {
         /*
          *  some StringUtils tests
          */
@@ -64,21 +59,21 @@ public class MiscTestCase extends BaseTestCase
         String eol = "XY";
 
         String arg = "XY";
-        String res = StringUtils.chop(arg, 1, eol );
-        assertTrue( "Test 1", res.equals("") );
+        String res = StringUtils.chop(arg, 1, eol);
+        assertTrue("Test 1", res.equals(""));
 
         arg = "X";
-        res = StringUtils.chop( arg, 1, eol );
-        assertTrue( "Test 2", res.equals("") );
+        res = StringUtils.chop(arg, 1, eol);
+        assertTrue("Test 2", res.equals(""));
 
         arg = "ZXY";
-        res = StringUtils.chop( arg, 1, eol );
-        assertTrue( "Test 3", res.equals("Z") );
+        res = StringUtils.chop(arg, 1, eol);
+        assertTrue("Test 3", res.equals("Z"));
 
 
         arg = "Hello!";
-        res = StringUtils.chop( arg, 2, eol );
-        assertTrue( "Test 4", res.equals("Hell"));
+        res = StringUtils.chop(arg, 2, eol);
+        assertTrue("Test 4", res.equals("Hell"));
 
         arg = null;
         res = StringUtils.nullTrim(arg);
@@ -86,23 +81,23 @@ public class MiscTestCase extends BaseTestCase
 
         arg = " test ";
         res = StringUtils.nullTrim(arg);
-        assertEquals("test",res);
+        assertEquals("test", res);
 
         arg = "test";
         res = StringUtils.nullTrim(arg);
-        assertEquals("test",res);
+        assertEquals("test", res);
 
         List list = null;
         assertNull(StringUtils.trimStrings(list));
 
         list = new ArrayList();
-        assertEquals(new ArrayList(),StringUtils.trimStrings(list));
+        assertEquals(new ArrayList(), StringUtils.trimStrings(list));
 
         list.add("test");
         list.add(" abc");
         StringUtils.trimStrings(list);
-        assertEquals("test",list.get(0));
-        assertEquals("abc",list.get(1));
+        assertEquals("test", list.get(0));
+        assertEquals("abc", list.get(1));
 
     }
 

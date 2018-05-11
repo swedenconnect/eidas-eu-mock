@@ -95,6 +95,7 @@ public class EIDASAuthnRequestTest {
             new ImmutableAttributeMap.Builder().put(CURRENT_FAMILY_NAME, new StringAttributeValue("Juncker", false))
                     .put(CURRENT_GIVEN_NAME, new StringAttributeValue("Jean-Claude", false))
                     .build();
+
     @Test
     public void testCopyConstructor() {
 

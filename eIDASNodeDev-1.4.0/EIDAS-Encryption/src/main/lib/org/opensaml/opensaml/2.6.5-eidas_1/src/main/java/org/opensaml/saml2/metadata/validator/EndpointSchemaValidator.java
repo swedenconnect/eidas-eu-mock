@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.validator;
@@ -31,12 +31,16 @@ import org.opensaml.xml.validation.Validator;
  */
 public class EndpointSchemaValidator<EndpointType extends Endpoint> implements Validator<EndpointType> {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public EndpointSchemaValidator() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(EndpointType endpoint) throws ValidationException {
         validateBinding(endpoint);
         validateLocation(endpoint);
@@ -44,7 +48,7 @@ public class EndpointSchemaValidator<EndpointType extends Endpoint> implements V
 
     /**
      * Checks that Binding is present.
-     * 
+     *
      * @param endpoint
      * @throws ValidationException
      */
@@ -56,7 +60,7 @@ public class EndpointSchemaValidator<EndpointType extends Endpoint> implements V
 
     /**
      * Checks that Location is present.
-     * 
+     *
      * @param endpoint
      * @throws ValidationException
      */

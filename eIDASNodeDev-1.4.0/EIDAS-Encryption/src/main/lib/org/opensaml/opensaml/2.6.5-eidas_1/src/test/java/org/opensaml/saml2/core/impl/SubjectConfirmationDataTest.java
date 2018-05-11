@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,28 +31,42 @@ import org.opensaml.saml2.core.SubjectConfirmationData;
  */
 public class SubjectConfirmationDataTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected NotBefore value */
+    /**
+     * Expected NotBefore value
+     */
     private DateTime expectedNotBefore;
 
-    /** Expected NotOnOrAfter value */
+    /**
+     * Expected NotOnOrAfter value
+     */
     private DateTime expectedNotOnOrAfter;
 
-    /** Expected Recipient value */
+    /**
+     * Expected Recipient value
+     */
     private String expectedRecipient;
 
-    /** Expected InResponseTo value */
+    /**
+     * Expected InResponseTo value
+     */
     private String expectedInResponseTo;
 
-    /** Expected Address value */
+    /**
+     * Expected Address value
+     */
     private String expectedAddress;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SubjectConfirmationDataTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/SubjectConfirmationData.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/SubjectConfirmationDataOptionalAttributes.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedNotBefore = new DateTime(1984, 8, 26, 10, 01, 30, 43, ISOChronology.getInstanceUTC());
@@ -62,7 +76,9 @@ public class SubjectConfirmationDataTest extends BaseSAMLObjectProviderTestCase 
         expectedAddress = "address";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SubjectConfirmationData subjectCD = (SubjectConfirmationData) unmarshallElement(singleElementFile);
 
@@ -70,7 +86,9 @@ public class SubjectConfirmationDataTest extends BaseSAMLObjectProviderTestCase 
         assertEquals("NotBefore was " + notBefore + ", expected " + expectedNotBefore, expectedNotBefore, notBefore);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         SubjectConfirmationData subjectCD = (SubjectConfirmationData) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -92,7 +110,9 @@ public class SubjectConfirmationDataTest extends BaseSAMLObjectProviderTestCase 
         assertEquals("Address was " + address + ", expected " + expectedAddress, expectedAddress, address);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, SubjectConfirmationData.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX);
@@ -102,7 +122,9 @@ public class SubjectConfirmationDataTest extends BaseSAMLObjectProviderTestCase 
         assertEquals(expectedDOM, subjectCD);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, SubjectConfirmationData.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX);

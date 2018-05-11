@@ -139,7 +139,11 @@ public class AuthenticationRequest implements Serializable {
     }
 
     @XmlElement(name = "citizen_country")
-    public String getCitizenCountry() { return citizenCountry; }
+    public String getCitizenCountry() {
+        return citizenCountry;
+    }
 
-    public void setCitizenCountry(String citizen_country) { this.citizenCountry = citizen_country; }
+    public void setCitizenCountry(String citizen_country) {
+        this.citizenCountry = citizen_country;
+    }
 }

@@ -23,23 +23,32 @@ import eu.eidas.auth.engine.core.SAMLCore;
 
 /**
  * The Interface EIDCrossSectorShare.
+ *
  * @author fjquevedo
  */
 public interface EIDCrossSectorShare extends SAMLObject {
 
-    /** The Constant DEFAULT_ELEMENT_LOCAL_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_LOCAL_NAME.
+     */
     String ELEM_LOCAL_NAME = "eIDCrossSectorShare";
 
-    /** The Constant DEFAULT_ELEMENT_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_NAME.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.STORK10P_NS.getValue(), ELEM_LOCAL_NAME,
-	    SAMLCore.STORK10P_PREFIX.getValue());
+            SAMLCore.STORK10P_PREFIX.getValue());
 
-    /** The Constant TYPE_LOCAL_NAME. */
+    /**
+     * The Constant TYPE_LOCAL_NAME.
+     */
     String TYPE_LOCAL_NAME = "eIDCrossSectorShareType";
 
-    /** The Constant TYPE_NAME. */
+    /**
+     * The Constant TYPE_NAME.
+     */
     QName TYPE_NAME = new QName(SAMLCore.STORK10P_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.STORK10P_PREFIX.getValue());
+            SAMLCore.STORK10P_PREFIX.getValue());
 
     /**
      * Gets the eID cross sector share.

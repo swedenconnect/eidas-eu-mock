@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -44,39 +44,38 @@ import org.apache.velocity.runtime.log.LogChute;
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: FilteredEventHandlingTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class FilteredEventHandlingTestCase extends BaseTestCase implements LogChute
-{
+public class FilteredEventHandlingTestCase extends BaseTestCase implements LogChute {
 
     /**
-    * VTL file extension.
-    */
-   private static final String TMPL_FILE_EXT = "vm";
+     * VTL file extension.
+     */
+    private static final String TMPL_FILE_EXT = "vm";
 
-   /**
-    * Comparison file extension.
-    */
-   private static final String CMP_FILE_EXT = "cmp";
+    /**
+     * Comparison file extension.
+     */
+    private static final String CMP_FILE_EXT = "cmp";
 
-   /**
-    * Comparison file extension.
-    */
-   private static final String RESULT_FILE_EXT = "res";
+    /**
+     * Comparison file extension.
+     */
+    private static final String RESULT_FILE_EXT = "res";
 
-   /**
-    * Path for templates. This property will override the
-    * value in the default velocity properties file.
-    */
-   private final static String FILE_RESOURCE_LOADER_PATH = TEST_COMPARE_DIR + "/includeevent";
+    /**
+     * Path for templates. This property will override the
+     * value in the default velocity properties file.
+     */
+    private final static String FILE_RESOURCE_LOADER_PATH = TEST_COMPARE_DIR + "/includeevent";
 
-   /**
-    * Results relative to the build directory.
-    */
-   private static final String RESULTS_DIR = TEST_RESULT_DIR + "/includeevent";
+    /**
+     * Results relative to the build directory.
+     */
+    private static final String RESULTS_DIR = TEST_RESULT_DIR + "/includeevent";
 
-   /**
-    * Results relative to the build directory.
-    */
-   private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/includeevent/compare";
+    /**
+     * Results relative to the build directory.
+     */
+    private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/includeevent/compare";
 
 
     private String logString = null;
@@ -84,8 +83,7 @@ public class FilteredEventHandlingTestCase extends BaseTestCase implements LogCh
     /**
      * Default constructor.
      */
-    public FilteredEventHandlingTestCase(String name)
-    {
+    public FilteredEventHandlingTestCase(String name) {
         super(name);
     }
 
@@ -93,18 +91,15 @@ public class FilteredEventHandlingTestCase extends BaseTestCase implements LogCh
     /**
      * Required by LogChute
      */
-    public void init( RuntimeServices rs )
-    {
+    public void init(RuntimeServices rs) {
         /* don't need it...*/
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(FilteredEventHandlingTestCase.class);
     }
 
-    public void testFilteredEventHandling() throws Exception
-    {
+    public void testFilteredEventHandling() throws Exception {
         String handler1 = "org.apache.velocity.test.eventhandler.Handler1";
         String handler2 = "org.apache.velocity.test.eventhandler.Handler2";
         String sequence1 = handler1 + "," + handler2;
@@ -140,20 +135,18 @@ public class FilteredEventHandlingTestCase extends BaseTestCase implements LogCh
         // check reference insertion with both sequences
         context = new VelocityContext();
         w = new StringWriter();
-        context.put("test","abc");
-        ve.evaluate( context, w, "test", "$test" );
-        if ( !w.toString().equals( "ABCABC" ))
-        {
-            fail( "Reference insertion test 1");
+        context.put("test", "abc");
+        ve.evaluate(context, w, "test", "$test");
+        if (!w.toString().equals("ABCABC")) {
+            fail("Reference insertion test 1");
         }
 
         context = new VelocityContext();
         w = new StringWriter();
-        context.put("test","abc");
-        ve2.evaluate( context, w, "test", "$test" );
-        if ( !w.toString().equals( "ABCabc" ))
-        {
-            fail( "Reference insertion test 2");
+        context.put("test", "abc");
+        ve2.evaluate(context, w, "test", "$test");
+        if (!w.toString().equals("ABCabc")) {
+            fail("Reference insertion test 2");
         }
 
         // check method exception with both sequences
@@ -161,44 +154,39 @@ public class FilteredEventHandlingTestCase extends BaseTestCase implements LogCh
         // sequence 1
         context = new VelocityContext();
         w = new StringWriter();
-        context.put("test",new ArrayList());
+        context.put("test", new ArrayList());
 
-        try
-        {
-            ve.evaluate( context, w, "test", "$test.get(0)");
-            fail ( "Method exception event test 1" );
-        }
-        catch( MethodInvocationException mee )
-        {
+        try {
+            ve.evaluate(context, w, "test", "$test.get(0)");
+            fail("Method exception event test 1");
+        } catch (MethodInvocationException mee) {
             // do nothing
         }
 
         // sequence2
         context = new VelocityContext();
         w = new StringWriter();
-        context.put("test",new ArrayList());
+        context.put("test", new ArrayList());
 
-        ve2.evaluate( context, w, "test", "$test.get(0)");
+        ve2.evaluate(context, w, "test", "$test.get(0)");
 
         // check log on null set with both sequences
         // sequence 1
         context = new VelocityContext();
         w = new StringWriter();
         logString = null;
-        ve.evaluate( context, w, "test", "#set($test1 = $test2)" );
-        if ( logString != null)
-        {
-            fail( "log null set test 1");
+        ve.evaluate(context, w, "test", "#set($test1 = $test2)");
+        if (logString != null) {
+            fail("log null set test 1");
         }
 
         // sequence 2
         context = new VelocityContext();
         w = new StringWriter();
         logString = null;
-        ve2.evaluate( context, w, "test", "#set($test1 = $test2)" );
-        if ( logString != null)
-        {
-            fail( "log null set test 2");
+        ve2.evaluate(context, w, "test", "#set($test1 = $test2)");
+        if (logString != null) {
+            fail("log null set test 2");
         }
 
 
@@ -209,61 +197,54 @@ public class FilteredEventHandlingTestCase extends BaseTestCase implements LogCh
         FileOutputStream fos;
         Writer fwriter;
 
-        template = ve.getTemplate( getFileName(null, "test4", TMPL_FILE_EXT) );
+        template = ve.getTemplate(getFileName(null, "test4", TMPL_FILE_EXT));
 
-        fos = new FileOutputStream (
+        fos = new FileOutputStream(
                 getFileName(RESULTS_DIR, "test4", RESULT_FILE_EXT));
 
-        fwriter = new BufferedWriter( new OutputStreamWriter(fos) );
+        fwriter = new BufferedWriter(new OutputStreamWriter(fos));
 
         context = new VelocityContext();
         template.merge(context, fwriter);
         fwriter.flush();
         fwriter.close();
 
-        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "test4", RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "test4", RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect.");
         }
 
         // sequence 2
-        template = ve2.getTemplate( getFileName(null, "test5", TMPL_FILE_EXT) );
+        template = ve2.getTemplate(getFileName(null, "test5", TMPL_FILE_EXT));
 
-        fos = new FileOutputStream (
+        fos = new FileOutputStream(
                 getFileName(RESULTS_DIR, "test5", RESULT_FILE_EXT));
 
-        fwriter = new BufferedWriter( new OutputStreamWriter(fos) );
+        fwriter = new BufferedWriter(new OutputStreamWriter(fos));
 
         context = new VelocityContext();
         template.merge(context, fwriter);
         fwriter.flush();
         fwriter.close();
 
-        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "test5", RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "test5", RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect.");
         }
 
     }
 
 
-
-
     /**
-     *  handler for LogChute interface
+     * handler for LogChute interface
      */
-    public void log(int level, String message)
-    {
+    public void log(int level, String message) {
         logString = message;
     }
 
-    public void log(int level, String message, Throwable t)
-    {
+    public void log(int level, String message, Throwable t) {
         logString = message;
     }
 
-    public boolean isLevelEnabled(int level)
-    {
+    public boolean isLevelEnabled(int level) {
         return true;
     }
 

@@ -46,8 +46,8 @@ import java.io.IOException;
  * @since 2.0
  */
 @SuppressWarnings("squid:S1989") // due to the code uses correlation maps, not http sessions
-@WebServlet(urlPatterns={"/AfterCitizenConsentResponse"},
-        name="AfterCitizenConsentResponseServlet",
+@WebServlet(urlPatterns = {"/AfterCitizenConsentResponse"},
+        name = "AfterCitizenConsentResponseServlet",
         displayName = "AfterCitizenConsentResponseServlet",
         description = "Member State's After Citizen Consent Response Servlet")
 public final class AfterCitizenConsentResponseServlet extends AbstractSpecificProxyServiceServlet {
@@ -109,7 +109,7 @@ public final class AfterCitizenConsentResponseServlet extends AbstractSpecificPr
     }
 
     public SpecificProxyService getSpecificProxyService() {
-        return  (SpecificProxyService) getApplicationContext()
+        return (SpecificProxyService) getApplicationContext()
                 .getBean(SpecificProxyServiceBeanNames.SPECIFIC_PROXY_SERVICE.toString());
     }
 

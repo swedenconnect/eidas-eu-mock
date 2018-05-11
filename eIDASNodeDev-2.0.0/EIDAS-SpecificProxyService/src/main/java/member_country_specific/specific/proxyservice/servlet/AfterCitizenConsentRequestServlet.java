@@ -48,14 +48,13 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- *
  * Servlet to process the user consent for the request. Based on that consent creates the specific request and sents it to the IdP.
  *
  * @since 2.0
  */
 @SuppressWarnings("squid:S1989") // due to the code uses correlation maps, not http sessions
-@WebServlet(urlPatterns={"/AfterCitizenConsentRequest"},
-        name="AfterCitizenConsentRequestServlet",
+@WebServlet(urlPatterns = {"/AfterCitizenConsentRequest"},
+        name = "AfterCitizenConsentRequestServlet",
         displayName = "AfterCitizenConsentRequestServlet",
         description = "Member State's After Citizen Consent Request Attributes Servlet")
 public final class AfterCitizenConsentRequestServlet extends AbstractSpecificProxyServiceServlet {
@@ -119,7 +118,7 @@ public final class AfterCitizenConsentRequestServlet extends AbstractSpecificPro
 
         final String specificRequest;
         final ILightRequest consentedIlightRequest;
-        if (getSpecificProxyService().isAskConsentRequest()){
+        if (getSpecificProxyService().isAskConsentRequest()) {
             final CitizenConsent citizenConsent = processCitizenConsent(httpServletRequest, originalIlightRequest);
             consentedIlightRequest = createConsentedIlightRequest(originalIlightRequest, citizenConsent);
             specificRequest = createSpecificRequest(originalIlightRequest, consentedIlightRequest);
@@ -158,7 +157,7 @@ public final class AfterCitizenConsentRequestServlet extends AbstractSpecificPro
         WebRequest webRequest = new IncomingRequest(httpServletRequest);
         ImmutableAttributeMap consentedAttributes = iLightRequest.getRequestedAttributes();
         // construct citizen consent from the request
-       return getCitizenConsent(webRequest, consentedAttributes);
+        return getCitizenConsent(webRequest, consentedAttributes);
 
     }
 
@@ -229,7 +228,7 @@ public final class AfterCitizenConsentRequestServlet extends AbstractSpecificPro
     }
 
     public SpecificProxyService getSpecificProxyService() {
-        return  (SpecificProxyService) getApplicationContext()
+        return (SpecificProxyService) getApplicationContext()
                 .getBean(SpecificProxyServiceBeanNames.SPECIFIC_PROXY_SERVICE.toString());
     }
 

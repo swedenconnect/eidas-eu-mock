@@ -21,7 +21,10 @@ import eu.eidas.config.ConfigurationException;
 
 public interface MetadataRepository {
     List<String> getIDs() throws ConfigurationException;
+
     MetadataItem getMetadataItem(String id) throws ConfigurationException;
+
     void removeItem(String id) throws ConfigurationException;
+
     void addItemFromFile(File sourceFile, String newFileName) throws ConfigurationException;
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,13 +33,17 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AssertionSpecTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AssertionSpecTest() {
         targetQName = new QName(SAMLConstants.SAML20_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         validator = new AssertionSpecValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         Assertion assertion = (Assertion) target;
@@ -51,7 +55,7 @@ public class AssertionSpecTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Tests absent Subject failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testSubjectFailure() throws ValidationException {
@@ -62,17 +66,17 @@ public class AssertionSpecTest extends BaseSAMLObjectValidatorTestCase {
                 SAMLConstants.SAML20_PREFIX));
         AttributeStatement attributeStatement = (AttributeStatement) buildXMLObject(new QName(SAMLConstants.SAML20_NS, AttributeStatement.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX));
-        
+
         assertion.setSubject(null);
         assertValidationFail("Subject was null in the absence of statements, should raise a Validation Exception");
 
         assertion.getAuthnStatements().add(authnStatement);
         assertValidationFail("Subject was null in the presence of AuthnStatement, should raise a Validation Exception.");
-        
+
         assertion.getAuthnStatements().clear();
         assertion.getAuthzDecisionStatements().add(authzDecisionStatement);
         assertValidationFail("Subject was null in the presence of AuthzDecisionStatement, should raise a Validation Exception.");
-        
+
         assertion.getAuthzDecisionStatements().clear();
         assertion.getAttributeStatements().add(attributeStatement);
         assertValidationFail("Subject was null in the presence of AttributeStatement, should raise a Validation Exception.");

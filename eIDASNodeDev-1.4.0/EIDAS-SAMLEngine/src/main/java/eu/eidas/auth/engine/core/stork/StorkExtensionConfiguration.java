@@ -50,7 +50,8 @@ import eu.eidas.auth.engine.core.stork.impl.VIDPAuthenticationAttributesUnmarsha
 
 public final class StorkExtensionConfiguration {
 
-    private StorkExtensionConfiguration() {}
+    private StorkExtensionConfiguration() {
+    }
 
     public static void configureExtension() {
         Configuration.registerObjectProvider(QAAAttribute.DEF_ELEMENT_NAME,

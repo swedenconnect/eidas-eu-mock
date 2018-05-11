@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,21 +34,27 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class KeyDescriptorImpl extends AbstractSAMLObject implements KeyDescriptor {
 
-    /** Key usage type. */
+    /**
+     * Key usage type.
+     */
     private UsageType keyUseType;
 
-    /** Key information. */
+    /**
+     * Key information.
+     */
     private KeyInfo keyInfo;
 
-    /** Encryption methods supported by the entity. */
+    /**
+     * Encryption methods supported by the entity.
+     */
     private final XMLObjectChildrenList<EncryptionMethod> encryptionMethods;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected KeyDescriptorImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -56,12 +62,16 @@ public class KeyDescriptorImpl extends AbstractSAMLObject implements KeyDescript
         keyUseType = UsageType.UNSPECIFIED;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public UsageType getUse() {
         return keyUseType;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setUse(UsageType newType) {
         if (newType != null) {
             keyUseType = prepareForAssignment(keyUseType, newType);
@@ -70,22 +80,30 @@ public class KeyDescriptorImpl extends AbstractSAMLObject implements KeyDescript
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public KeyInfo getKeyInfo() {
         return keyInfo;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setKeyInfo(KeyInfo newKeyInfo) {
         keyInfo = prepareForAssignment(keyInfo, newKeyInfo);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<EncryptionMethod> getEncryptionMethods() {
         return encryptionMethods;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,7 +22,9 @@ package org.opensaml.common;
  */
 public class SAMLRuntimeException extends RuntimeException {
 
-    /** Serial version UID. */
+    /**
+     * Serial version UID.
+     */
     private static final long serialVersionUID = -593201582585161250L;
 
     /**
@@ -31,29 +33,29 @@ public class SAMLRuntimeException extends RuntimeException {
     public SAMLRuntimeException() {
         super();
     }
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param message exception message
      */
     public SAMLRuntimeException(String message) {
         super(message);
     }
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param wrappedException exception to be wrapped by this one
      */
     public SAMLRuntimeException(Exception wrappedException) {
         super(wrappedException);
     }
-    
+
     /**
      * Constructor.
-     * 
-     * @param message exception message
+     *
+     * @param message          exception message
      * @param wrappedException exception to be wrapped by this one
      */
     public SAMLRuntimeException(String message, Exception wrappedException) {

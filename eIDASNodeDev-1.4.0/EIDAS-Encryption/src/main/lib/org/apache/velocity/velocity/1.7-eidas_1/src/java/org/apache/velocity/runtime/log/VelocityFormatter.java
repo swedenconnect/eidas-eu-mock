@@ -16,34 +16,32 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.Date;
+
 import org.apache.log.format.PatternFormatter;
 
 /**
  *
  */
-public class VelocityFormatter extends PatternFormatter
-{
+public class VelocityFormatter extends PatternFormatter {
     /**
      * @param format
      */
-    public VelocityFormatter( String format )
-    {
-	super( format );
+    public VelocityFormatter(String format) {
+        super(format);
     }
 
     /**
      * Utility method to format time.
      *
-     * @param time the time
+     * @param time   the time
      * @param format ancilliary format parameter - allowed to be null
      * @return the formatted string
      */
-    protected String getTime( final long time, final String format )
-    {
+    protected String getTime(final long time, final String format) {
         return new Date().toString();
     }
 }

@@ -56,13 +56,13 @@ public class ProxyServiceMetadataGeneratorServlet extends AbstractNodeServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String generatorName = NodeBeanNames.SERVICE_METADATA_GENERATOR.toString();
-        EidasNodeMetadataGenerator generator = (EidasNodeMetadataGenerator)getApplicationContext().getBean(generatorName);
+        EidasNodeMetadataGenerator generator = (EidasNodeMetadataGenerator) getApplicationContext().getBean(generatorName);
         PropertiesUtil.checkProxyServiceActive();
-        if(PropertiesUtil.isMetadataEnabled()) {
+        if (PropertiesUtil.isMetadataEnabled()) {
             ServiceControllerService controllerService = (ServiceControllerService) getApplicationContext().getBean(
                     NodeBeanNames.EIDAS_SERVICE_CONTROLLER.toString());
             response.getOutputStream().print(generator.generateProxyServiceMetadata(controllerService.getProxyService().getSamlService().getSamlEngine()));
-        }else{
+        } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

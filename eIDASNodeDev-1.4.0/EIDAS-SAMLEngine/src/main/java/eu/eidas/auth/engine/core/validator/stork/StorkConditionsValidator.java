@@ -29,9 +29,9 @@ public class StorkConditionsValidator extends ConditionsSpecValidator {
 
     @Override
     public void validate(Conditions conditions) throws ValidationException {
-        LOG.debug("conditions.getNotBefore() "+ conditions.getNotBefore());
-        LOG.debug("conditions.getNotOnOrAfter() "+ conditions.getNotOnOrAfter());
-        LOG.debug("dateTime.now() "+ DateTime.now());
+        LOG.debug("conditions.getNotBefore() " + conditions.getNotBefore());
+        LOG.debug("conditions.getNotOnOrAfter() " + conditions.getNotOnOrAfter());
+        LOG.debug("dateTime.now() " + DateTime.now());
 
         super.validate(conditions);
 

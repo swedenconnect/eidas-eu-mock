@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -35,45 +35,67 @@ import org.opensaml.xml.util.DatatypeHelper;
 import org.opensaml.xml.util.LazyList;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 
-/** Concrete implementation of {@link org.opensaml.saml2.metadata.RoleDescriptor}. */
+/**
+ * Concrete implementation of {@link org.opensaml.saml2.metadata.RoleDescriptor}.
+ */
 public abstract class RoleDescriptorImpl extends AbstractSignableSAMLObject implements RoleDescriptor {
 
-    /** ID attribute. */
+    /**
+     * ID attribute.
+     */
     private String id;
 
-    /** validUntil attribute. */
+    /**
+     * validUntil attribute.
+     */
     private DateTime validUntil;
 
-    /** cacheDurection attribute. */
+    /**
+     * cacheDurection attribute.
+     */
     private Long cacheDuration;
 
-    /** Set of supported protocols. */
+    /**
+     * Set of supported protocols.
+     */
     private final List<String> supportedProtocols;
 
-    /** Error URL. */
+    /**
+     * Error URL.
+     */
     private String errorURL;
 
-    /** Extensions child. */
+    /**
+     * Extensions child.
+     */
     private Extensions extensions;
 
-    /** Organization administering this role. */
+    /**
+     * Organization administering this role.
+     */
     private Organization organization;
 
-    /** "anyAttribute" attributes. */
+    /**
+     * "anyAttribute" attributes.
+     */
     private final AttributeMap unknownAttributes;
 
-    /** Contact persons for this role. */
+    /**
+     * Contact persons for this role.
+     */
     private final XMLObjectChildrenList<ContactPerson> contactPersons;
 
-    /** Key descriptors for this role. */
+    /**
+     * Key descriptors for this role.
+     */
     private final XMLObjectChildrenList<KeyDescriptor> keyDescriptors;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected RoleDescriptorImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -83,59 +105,79 @@ public abstract class RoleDescriptorImpl extends AbstractSignableSAMLObject impl
         keyDescriptors = new XMLObjectChildrenList<KeyDescriptor>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String newID) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, newID);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isValid() {
         if (null == validUntil) {
             return true;
         }
-        
+
         DateTime now = new DateTime();
         return now.isBefore(validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getValidUntil() {
         return validUntil;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setValidUntil(DateTime validUntil) {
         this.validUntil = prepareForAssignment(this.validUntil, validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Long getCacheDuration() {
         return cacheDuration;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCacheDuration(Long duration) {
         cacheDuration = prepareForAssignment(cacheDuration, duration);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<String> getSupportedProtocols() {
         return Collections.unmodifiableList(supportedProtocols);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isSupportedProtocol(String protocol) {
         return supportedProtocols.contains(protocol);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void addSupportedProtocol(String protocol) {
         protocol = DatatypeHelper.safeTrimOrNullString(protocol);
         if (protocol != null && !supportedProtocols.contains(protocol)) {
@@ -144,7 +186,9 @@ public abstract class RoleDescriptorImpl extends AbstractSignableSAMLObject impl
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void removeSupportedProtocol(String protocol) {
         protocol = DatatypeHelper.safeTrimOrNullString(protocol);
         if (protocol != null && supportedProtocols.contains(protocol)) {
@@ -153,55 +197,75 @@ public abstract class RoleDescriptorImpl extends AbstractSignableSAMLObject impl
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void removeSupportedProtocols(Collection<String> protocols) {
         for (String protocol : protocols) {
             removeSupportedProtocol(protocol);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void removeAllSupportedProtocols() {
         supportedProtocols.clear();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getErrorURL() {
         return errorURL;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setErrorURL(String errorURL) {
 
         this.errorURL = prepareForAssignment(this.errorURL, errorURL);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions extensions) throws IllegalArgumentException {
         this.extensions = prepareForAssignment(this.extensions, extensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Organization getOrganization() {
         return organization;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOrganization(Organization organization) throws IllegalArgumentException {
         this.organization = prepareForAssignment(this.organization, organization);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<ContactPerson> getContactPersons() {
         return contactPersons;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<KeyDescriptor> getKeyDescriptors() {
         return keyDescriptors;
     }
@@ -213,12 +277,16 @@ public abstract class RoleDescriptorImpl extends AbstractSignableSAMLObject impl
         return unknownAttributes;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

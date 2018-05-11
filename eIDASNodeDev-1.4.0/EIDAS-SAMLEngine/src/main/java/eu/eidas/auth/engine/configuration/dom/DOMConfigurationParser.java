@@ -48,31 +48,48 @@ public final class DOMConfigurationParser {
 
         static final String TAG_NAME = "instance";
 
-        private InstanceTag() {};
+        private InstanceTag() {
+        }
+
+        ;
 
         static final class Attribute {
 
             static final String NAME = "name";
-            private Attribute() {};
+
+            private Attribute() {
+            }
+
+            ;
         }
 
         static final class ConfigurationTag {
 
             static final String TAG_NAME = "configuration";
 
-            private ConfigurationTag() {};
+            private ConfigurationTag() {
+            }
+
+            ;
 
             static final class Attribute {
 
                 static final String NAME = "name";
-                private Attribute() {};
+
+                private Attribute() {
+                }
+
+                ;
             }
 
             static final class ParameterTag {
 
                 static final String TAG_NAME = "parameter";
 
-                private ParameterTag() {};
+                private ParameterTag() {
+                }
+
+                ;
 
                 static final class Attribute {
 
@@ -80,7 +97,10 @@ public final class DOMConfigurationParser {
 
                     static final String VALUE = "value";
 
-                    private Attribute() {};
+                    private Attribute() {
+                    }
+
+                    ;
                 }
 
             }
@@ -118,7 +138,7 @@ public final class DOMConfigurationParser {
                 throw new SamlEngineConfigurationException(message);
             } else {
                 LOG.debug("SAML engine configuration file \"" + configurationFileName + "\" found at \""
-                                  + resource.toExternalForm() + "\"");
+                        + resource.toExternalForm() + "\"");
             }
             return parseConfiguration(configurationFileName, resource.openStream());
         } catch (IOException ex) {

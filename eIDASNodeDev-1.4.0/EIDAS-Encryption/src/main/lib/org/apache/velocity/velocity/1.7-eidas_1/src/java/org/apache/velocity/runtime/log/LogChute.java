@@ -31,40 +31,60 @@ import org.apache.velocity.runtime.RuntimeServices;
  * @version $Id: LogChute.java 730039 2008-12-30 03:53:19Z byron $
  * @since 1.5
  */
-public interface LogChute
-{
-    /** Prefix string for trace messages. */
+public interface LogChute {
+    /**
+     * Prefix string for trace messages.
+     */
     String TRACE_PREFIX = " [trace] ";
 
-    /** Prefix string for debug messages. */
+    /**
+     * Prefix string for debug messages.
+     */
     String DEBUG_PREFIX = " [debug] ";
 
-    /** Prefix string for info messages. */
-    String INFO_PREFIX  = "  [info] ";
+    /**
+     * Prefix string for info messages.
+     */
+    String INFO_PREFIX = "  [info] ";
 
-    /** Prefix string for warn messages. */
-    String WARN_PREFIX  = "  [warn] ";
+    /**
+     * Prefix string for warn messages.
+     */
+    String WARN_PREFIX = "  [warn] ";
 
-    /** Prefix string for error messages. */
+    /**
+     * Prefix string for error messages.
+     */
     String ERROR_PREFIX = " [error] ";
 
-    /** ID for trace messages. */
+    /**
+     * ID for trace messages.
+     */
     int TRACE_ID = -1;
 
-    /** ID for debug messages. */
+    /**
+     * ID for debug messages.
+     */
     int DEBUG_ID = 0;
 
-    /** ID for info messages. */
+    /**
+     * ID for info messages.
+     */
     int INFO_ID = 1;
 
-    /** ID for warning messages. */
+    /**
+     * ID for warning messages.
+     */
     int WARN_ID = 2;
 
-    /** ID for error messages. */
+    /**
+     * ID for error messages.
+     */
     int ERROR_ID = 3;
 
     /**
      * Initializes this LogChute.
+     *
      * @param rs
      * @throws Exception
      */
@@ -72,6 +92,7 @@ public interface LogChute
 
     /**
      * Send a log message from Velocity.
+     *
      * @param level
      * @param message
      */
@@ -79,6 +100,7 @@ public interface LogChute
 
     /**
      * Send a log message from Velocity along with an exception or error
+     *
      * @param level
      * @param message
      * @param t
@@ -87,6 +109,7 @@ public interface LogChute
 
     /**
      * Tell whether or not a log level is enabled.
+     *
      * @param level
      * @return True if a level is enabled.
      */

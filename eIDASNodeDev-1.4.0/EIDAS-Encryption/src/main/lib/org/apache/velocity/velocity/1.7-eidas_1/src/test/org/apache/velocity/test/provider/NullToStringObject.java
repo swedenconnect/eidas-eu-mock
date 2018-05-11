@@ -16,18 +16,17 @@ package org.apache.velocity.test.provider;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
  * Used to confirm that a null to string is processed properly
+ *
  * @author <a href="mailto:wglass@apache.org">Will Glass-Husain</a>
  * @version $Id: NullToStringObject.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class NullToStringObject
-{
-    public String toString()
-    {
+public class NullToStringObject {
+    public String toString() {
         return null;
     }
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,7 +29,9 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class SubjectConfirmationSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SubjectConfirmationSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20_NS, SubjectConfirmation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         validator = new SubjectConfirmationSchemaValidator();
@@ -43,7 +45,7 @@ public class SubjectConfirmationSchemaTest extends BaseSAMLObjectValidatorTestCa
 
     /**
      * Tests Method failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testMethodFailure() throws ValidationException {
@@ -51,10 +53,10 @@ public class SubjectConfirmationSchemaTest extends BaseSAMLObjectValidatorTestCa
 
         subjectConfirmation.setMethod(null);
         assertValidationFail("Method was null, should raise a Validation Exception");
-        
+
         subjectConfirmation.setMethod("");
         assertValidationFail("Method was empty string, should raise a Validation Exception");
-        
+
         subjectConfirmation.setMethod("    ");
         assertValidationFail("Method was white space, should raise a Validation Exception");
     }

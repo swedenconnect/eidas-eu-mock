@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -31,28 +31,35 @@ import org.opensaml.saml2.core.IDPEntry;
  * {@link org.opensaml.saml2.core.impl.IDPEntryImpl}.
  */
 public class IDPEntryTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected ProviderID */
+
+    /**
+     * Expected ProviderID
+     */
     private String expectedProviderID;
 
-    /** Expected ProviderID */
+    /**
+     * Expected ProviderID
+     */
     private String expectedName;
-    
-    /** Expected ProviderID */
+
+    /**
+     * Expected ProviderID
+     */
     private String expectedLocation;
-    
+
     /**
      * Constructor
-     *
      */
     public IDPEntryTest() {
         super();
         singleElementFile = "/data/org/opensaml/saml2/core/impl/IDPEntry.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/IDPEntryOptionalAttributes.xml";
     }
-    
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedProviderID = "urn:string:providerid";
@@ -61,46 +68,51 @@ public class IDPEntryTest extends BaseSAMLObjectProviderTestCase {
     }
 
 
-
-
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, IDPEntry.DEFAULT_ELEMENT_LOCAL_NAME);
         IDPEntry entry = (IDPEntry) buildXMLObject(qname);
-        
+
         entry.setProviderID(expectedProviderID);
 
         assertEquals(expectedDOM, entry);
     }
-    
-    
-    
-    /** {@inheritDoc} */
+
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, IDPEntry.DEFAULT_ELEMENT_LOCAL_NAME);
         IDPEntry entry = (IDPEntry) buildXMLObject(qname);
-        
+
         entry.setProviderID(expectedProviderID);
         entry.setName(expectedName);
         entry.setLoc(expectedLocation);
-        
+
         assertEquals(expectedOptionalAttributesDOM, entry);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         IDPEntry entry = (IDPEntry) unmarshallElement(singleElementFile);
-        
+
         assertEquals("The unmarshalled ProviderID attribute was not the expected value", expectedProviderID, entry.getProviderID());
 
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         IDPEntry entry = (IDPEntry) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertEquals("The unmarshalled Name attribute was not the expected value", expectedName, entry.getName());
         assertEquals("The unmarshalled Loc (location) attribute was not the expected value", expectedLocation, entry.getLoc());
     }

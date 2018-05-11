@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,27 +22,39 @@ package org.opensaml.saml2.metadata;
  */
 public final class ContactPersonTypeEnumeration {
 
-    /** "technical" contact type */
+    /**
+     * "technical" contact type
+     */
     public static final ContactPersonTypeEnumeration TECHNICAL = new ContactPersonTypeEnumeration("technical");
 
-    /** "support" contact type */
+    /**
+     * "support" contact type
+     */
     public static final ContactPersonTypeEnumeration SUPPORT = new ContactPersonTypeEnumeration("support");
 
-    /** "administrative" contact type */
+    /**
+     * "administrative" contact type
+     */
     public static final ContactPersonTypeEnumeration ADMINISTRATIVE = new ContactPersonTypeEnumeration("administrative");
 
-    /** "billing" contact type */
+    /**
+     * "billing" contact type
+     */
     public static final ContactPersonTypeEnumeration BILLING = new ContactPersonTypeEnumeration("billing");
 
-    /** "other" contact type */
+    /**
+     * "other" contact type
+     */
     public static final ContactPersonTypeEnumeration OTHER = new ContactPersonTypeEnumeration("other");
 
-    /** the contact type */
+    /**
+     * the contact type
+     */
     private String type;
 
     /**
      * Constructor
-     * 
+     *
      * @param type the contact type
      */
     protected ContactPersonTypeEnumeration(String type) {
@@ -51,7 +63,7 @@ public final class ContactPersonTypeEnumeration {
 
     /**
      * Gets the contact type as a string.
-     * 
+     *
      * @return the contact type
      */
     public String toString() {

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -21,25 +21,31 @@ import org.opensaml.common.BaseSAMLObjectValidatorTestCase;
 import org.opensaml.saml2.metadata.Endpoint;
 import org.opensaml.xml.validation.ValidationException;
 
-/** Test case for {@link EndpointSchemaValidator}. */
+/**
+ * Test case for {@link EndpointSchemaValidator}.
+ */
 public abstract class EndpointSchemaTestBase extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public EndpointSchemaTestBase() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         Endpoint endpoint = (Endpoint) target;
-        
+
         endpoint.setBinding("binding");
         endpoint.setLocation("location");
     }
 
     /**
      * Tests for absent Binding.
-     * 
+     *
      * @throws ValidationException
      */
     public void testBindingFailure() throws ValidationException {
@@ -54,10 +60,10 @@ public abstract class EndpointSchemaTestBase extends BaseSAMLObjectValidatorTest
         endpoint.setBinding("   ");
         assertValidationFail("Binding was white space, should raise a Validation Exception.");
     }
-    
+
     /**
      * Tests for absent Location.
-     * 
+     *
      * @throws ValidationException
      */
     public void testLocationFailure() throws ValidationException {

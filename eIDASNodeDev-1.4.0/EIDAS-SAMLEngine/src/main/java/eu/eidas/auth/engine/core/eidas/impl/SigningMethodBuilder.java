@@ -30,19 +30,19 @@ public class SigningMethodBuilder extends AbstractSAMLObjectBuilder<SigningMetho
      * @return the SigningMethod.
      */
     public final SigningMethod buildObject() {
-	return buildObject(SigningMethod.DEF_ELEMENT_NAME);
+        return buildObject(SigningMethod.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object SigningMethod.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the SigningMethod
      */
     public final SigningMethod buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new SigningMethodImpl(namespaceURI, localName, namespacePrefix);
+                                           final String localName, final String namespacePrefix) {
+        return new SigningMethodImpl(namespaceURI, localName, namespacePrefix);
     }
 }

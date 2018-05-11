@@ -80,14 +80,14 @@ public final class KeyStoreSignatureConfigurator {
 
         KeyStoreConfigurator.KeyStoreConfigurationKeys keyStoreConfigurationKeys =
                 new KeyStoreConfigurator.KeyStoreConfigurationKeys(keyStorePathConfigurationKey,
-                                                                   keyStoreTypeConfigurationKey,
-                                                                   keyStoreProviderConfigurationKey,
-                                                                   keyStorePasswordConfigurationKey,
-                                                                   keyAliasConfigurationKey,
-                                                                   keyPasswordConfigurationKey);
+                        keyStoreTypeConfigurationKey,
+                        keyStoreProviderConfigurationKey,
+                        keyStorePasswordConfigurationKey,
+                        keyAliasConfigurationKey,
+                        keyPasswordConfigurationKey);
 
         return new KeyStoreConfigurator(properties, keyStoreConfigurationKeys, defaultPath).loadPrivateKeyEntry(serialNumber,
-                                                                                                   issuer);
+                issuer);
     }
 
     public SignatureConfiguration getSignatureConfiguration(Map<String, String> properties, @Nullable String defaultPath)
@@ -113,10 +113,10 @@ public final class KeyStoreSignatureConfigurator {
         String signatureAlgorithm = SignatureKey.SIGNATURE_ALGORITHM.getAsString(properties);
         KeyStore.PrivateKeyEntry metadataSigningKeyAndCertificate =
                 getPrivateSigningKeyAndCertificate(properties, SignatureKey.METADATA_PREFIX.getKey(), serialNumber,
-                                                   issuer, defaultPath);
+                        issuer, defaultPath);
 
         return new SignatureConfiguration(checkedValidityPeriod, disallowedSelfSignedCertificate, responseSignAssertions,
-                                          signatureKeyAndCertificate, trustedCertificates, signatureAlgorithm,
-                                          signatureAlgorithmWhiteListStr, metadataSigningKeyAndCertificate);
+                signatureKeyAndCertificate, trustedCertificates, signatureAlgorithm,
+                signatureAlgorithmWhiteListStr, metadataSigningKeyAndCertificate);
     }
 }

@@ -3,7 +3,6 @@ package eu.eidas.node;
 import eu.eidas.auth.specific.IAUConnector;
 
 /**
- *
  * Class for handling spring bean definition
  *
  * @since 1.1

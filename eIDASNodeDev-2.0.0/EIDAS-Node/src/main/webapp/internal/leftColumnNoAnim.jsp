@@ -25,7 +25,7 @@
     <div class="col-left-inner">
         <div class="v-align">
             <h1 class="baseline">
-				<span class="eidas">eIDAS</span>
+                <span class="eidas">eIDAS</span>
             </h1>
         </div>
         <div class="illustration-fade-effect"></div>

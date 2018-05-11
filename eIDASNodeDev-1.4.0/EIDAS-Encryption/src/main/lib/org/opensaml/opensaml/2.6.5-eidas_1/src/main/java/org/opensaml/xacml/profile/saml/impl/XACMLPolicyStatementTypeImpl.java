@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,28 +30,36 @@ import org.opensaml.xacml.profile.saml.XACMLPolicyStatementType;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 
-/** Concrete implementation of {@link XACMLPolicyStatementType}. */
+/**
+ * Concrete implementation of {@link XACMLPolicyStatementType}.
+ */
 public class XACMLPolicyStatementTypeImpl extends AbstractSAMLObject implements XACMLPolicyStatementType {
 
-    /** Choice group in element. */
+    /**
+     * Choice group in element.
+     */
     private IndexedXMLObjectChildrenList<XACMLObject> choiceGroup;
 
-    /** ReferencedPolicie child. */
+    /**
+     * ReferencedPolicie child.
+     */
     private ReferencedPoliciesType referencedPolicies;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected XACMLPolicyStatementTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         choiceGroup = new IndexedXMLObjectChildrenList<XACMLObject>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
@@ -64,22 +72,30 @@ public class XACMLPolicyStatementTypeImpl extends AbstractSAMLObject implements 
         return Collections.unmodifiableList(children);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicyType> getPolicies() {
         return (List<PolicyType>) choiceGroup.subList(PolicyType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicySetType> getPolicySets() {
         return (List<PolicySetType>) choiceGroup.subList(PolicySetType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ReferencedPoliciesType getReferencedPolicies() {
         return referencedPolicies;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setReferencedPolicies(ReferencedPoliciesType policies) {
         referencedPolicies = prepareForAssignment(referencedPolicies, policies);
     }

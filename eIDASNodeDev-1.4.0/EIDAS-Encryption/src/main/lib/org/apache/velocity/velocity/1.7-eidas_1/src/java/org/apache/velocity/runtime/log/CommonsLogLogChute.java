@@ -41,35 +41,38 @@ import org.apache.velocity.runtime.log.LogChute;
  * runtime.log.logsystem.commons.logging.name = org.apache.velocity
  * </code>
  * </p>
- * 
+ *
  * @author Nathan Bubna
- * @since 1.6
  * @version $Id: CommonsLogLogChute.java 71982 2004-02-18 20:11:07Z nbubna $
+ * @since 1.6
  */
-public class CommonsLogLogChute implements LogChute
-{
+public class CommonsLogLogChute implements LogChute {
 
-    /** Property key for specifying the name for the log instance */
+    /**
+     * Property key for specifying the name for the log instance
+     */
     public static final String LOGCHUTE_COMMONS_LOG_NAME =
-        "runtime.log.logsystem.commons.logging.name";
+            "runtime.log.logsystem.commons.logging.name";
 
-    /** Default name for the commons-logging instance */
+    /**
+     * Default name for the commons-logging instance
+     */
     public static final String DEFAULT_LOG_NAME = "org.apache.velocity";
 
-    
-    /** the commons-logging Log instance */
+
+    /**
+     * the commons-logging Log instance
+     */
     protected Log log;
 
 
     /********** LogChute methods *************/
 
-    public void init(RuntimeServices rs) throws Exception
-    {
-        String name = 
-            (String)rs.getProperty(LOGCHUTE_COMMONS_LOG_NAME);
-        
-        if (name == null)
-        {
+    public void init(RuntimeServices rs) throws Exception {
+        String name =
+                (String) rs.getProperty(LOGCHUTE_COMMONS_LOG_NAME);
+
+        if (name == null) {
             name = DEFAULT_LOG_NAME;
         }
         log = LogFactory.getLog(name);
@@ -79,10 +82,8 @@ public class CommonsLogLogChute implements LogChute
     /**
      * Send a log message from Velocity.
      */
-    public void log(int level, String message)
-    {
-        switch (level) 
-        {
+    public void log(int level, String message) {
+        switch (level) {
             case LogChute.WARN_ID:
                 log.warn(message);
                 break;
@@ -105,10 +106,8 @@ public class CommonsLogLogChute implements LogChute
     /**
      * Send a log message from Velocity with an error.
      */
-    public void log(int level, String message, Throwable t)
-    {
-        switch (level) 
-        {
+    public void log(int level, String message, Throwable t) {
+        switch (level) {
             case LogChute.WARN_ID:
                 log.warn(message, t);
                 break;
@@ -131,10 +130,8 @@ public class CommonsLogLogChute implements LogChute
     /**
      * Checks whether the specified log level is enabled.
      */
-    public boolean isLevelEnabled(int level)
-    {
-        switch (level)
-        {
+    public boolean isLevelEnabled(int level) {
+        switch (level) {
             case LogChute.DEBUG_ID:
                 return log.isDebugEnabled();
             case LogChute.INFO_ID:

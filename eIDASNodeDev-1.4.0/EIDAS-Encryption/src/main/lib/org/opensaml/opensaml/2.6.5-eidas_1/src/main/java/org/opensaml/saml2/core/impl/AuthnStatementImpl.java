@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -37,83 +37,115 @@ import org.opensaml.xml.XMLObject;
  */
 public class AuthnStatementImpl extends AbstractSAMLObject implements AuthnStatement {
 
-    /** Subject Locality of the Authentication Statement. */
+    /**
+     * Subject Locality of the Authentication Statement.
+     */
     private SubjectLocality subjectLocality;
 
-    /** Authentication Context of the Authentication Statement. */
+    /**
+     * Authentication Context of the Authentication Statement.
+     */
     private AuthnContext authnContext;
 
-    /** Time of the authentication. */
+    /**
+     * Time of the authentication.
+     */
     private DateTime authnInstant;
 
-    /** Index of the session. */
+    /**
+     * Index of the session.
+     */
     private String sessionIndex;
 
-    /** Time at which the session ends. */
+    /**
+     * Time at which the session ends.
+     */
     private DateTime sessionNotOnOrAfter;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AuthnStatementImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SubjectLocality getSubjectLocality() {
         return subjectLocality;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubjectLocality(SubjectLocality newSubjectLocality) {
         this.subjectLocality = prepareForAssignment(this.subjectLocality, newSubjectLocality);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AuthnContext getAuthnContext() {
         return authnContext;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAuthnContext(AuthnContext newAuthnContext) {
         this.authnContext = prepareForAssignment(this.authnContext, newAuthnContext);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getAuthnInstant() {
         return authnInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAuthnInstant(DateTime newAuthnInstant) {
         this.authnInstant = prepareForAssignment(this.authnInstant, newAuthnInstant);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getSessionIndex() {
         return sessionIndex;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSessionIndex(String newSessionIndex) {
         this.sessionIndex = prepareForAssignment(this.sessionIndex, newSessionIndex);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getSessionNotOnOrAfter() {
         return sessionNotOnOrAfter;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSessionNotOnOrAfter(DateTime newSessionNotOnOrAfter) {
         this.sessionNotOnOrAfter = prepareForAssignment(this.sessionNotOnOrAfter, newSessionNotOnOrAfter);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,24 +29,28 @@ import org.opensaml.saml1.core.SubjectConfirmation;
  */
 public class SubjectConfirmationSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SubjectConfirmationSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, SubjectConfirmation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         validator = new SubjectConfirmationSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
 
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) target;
-        
+
         QName qname = new QName(SAMLConstants.SAML1_NS, ConfirmationMethod.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        subjectConfirmation.getConfirmationMethods().add((ConfirmationMethod)buildXMLObject(qname));
+        subjectConfirmation.getConfirmationMethods().add((ConfirmationMethod) buildXMLObject(qname));
     }
-    
-    public void testMissingConfirmationMethod(){
+
+    public void testMissingConfirmationMethod() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) target;
 
         subjectConfirmation.getConfirmationMethods().clear();

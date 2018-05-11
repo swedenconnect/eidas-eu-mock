@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -35,8 +35,7 @@ import org.apache.velocity.app.VelocityEngine;
  * @author <a href="mailto:wglass@apache.org">Will Glass-Husain</a>
  * @version $Id: ResourceCachingTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ResourceCachingTestCase extends BaseTestCase
-{
+public class ResourceCachingTestCase extends BaseTestCase {
     /**
      * Path for templates. This property will override the
      * value in the default velocity properties file.
@@ -47,30 +46,27 @@ public class ResourceCachingTestCase extends BaseTestCase
     /**
      * Default constructor.
      */
-    public ResourceCachingTestCase(String name)
-    {
+    public ResourceCachingTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
 
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(ResourceCachingTestCase.class);
     }
 
     /**
      * Tests for fix of bug VELOCITY-98 where a #include followed by #parse
      * of the same file throws ClassCastException when caching is on.
+     *
      * @throws Exception
      */
-    public void testIncludeParseCaching ()
-            throws Exception
-    {
+    public void testIncludeParseCaching()
+            throws Exception {
 
         VelocityEngine ve = new VelocityEngine();
 

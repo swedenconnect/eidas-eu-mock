@@ -16,11 +16,10 @@ package org.apache.velocity.test.misc;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.util.introspection.Info;
-
 
 
 /**
@@ -32,8 +31,7 @@ import org.apache.velocity.util.introspection.Info;
  * @author <a href="mailto:isidore@setgame.com">Llewellyn Falco</a>
  * @version $Id: UberspectTestException.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class UberspectTestException extends RuntimeException
-{
+public class UberspectTestException extends RuntimeException {
 
     /**
      * Version Id for serializable
@@ -42,20 +40,17 @@ public class UberspectTestException extends RuntimeException
 
     Info info;
 
-    public UberspectTestException(String message, Info i)
-    {
+    public UberspectTestException(String message, Info i) {
         super(message);
         info = i;
     }
 
-    public Info getInfo()
-    {
+    public Info getInfo() {
         return info;
     }
 
-    public String getMessage()
-    {
-      return super.getMessage() + "\n failed at " + info;
+    public String getMessage() {
+        return super.getMessage() + "\n failed at " + info;
     }
 
 }

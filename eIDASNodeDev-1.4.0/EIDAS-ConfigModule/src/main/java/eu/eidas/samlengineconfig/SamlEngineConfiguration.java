@@ -24,24 +24,26 @@ import java.util.Set;
  * (corresponds to SamlEngine.xml file)
  */
 public class SamlEngineConfiguration {
-    private List<EngineInstance> instances=new ArrayList<EngineInstance>();
-    private Set<String> instanceNames=new HashSet<String>();
+    private List<EngineInstance> instances = new ArrayList<EngineInstance>();
+    private Set<String> instanceNames = new HashSet<String>();
+
     public List<EngineInstance> getInstances() {
         return instances;
     }
 
     public void setInstances(List<EngineInstance> instances) {
-        if(instances==null) {
+        if (instances == null) {
             return;
         }
-        this.instances=new ArrayList<EngineInstance>();
-        instanceNames=new HashSet<String>();
+        this.instances = new ArrayList<EngineInstance>();
+        instanceNames = new HashSet<String>();
         for (EngineInstance instance : instances) {
             addInstance(instance);
         }
     }
-    public void addInstance(EngineInstance instance){
-        if(instance.getName()!=null && !instance.getName().isEmpty() && !instanceNames.contains(instance.getName())) {
+
+    public void addInstance(EngineInstance instance) {
+        if (instance.getName() != null && !instance.getName().isEmpty() && !instanceNames.contains(instance.getName())) {
             this.instances.add(instance);
             instanceNames.add(instance.getName());
         }

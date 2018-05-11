@@ -35,10 +35,10 @@ public class EidasNodeValidationUtilTestCase {
     @Test
     @Ignore
     //TODO check why this test fails, added Ignore here only to allow build with execution of all tests that do not fail
-    public void testIsRequestLoAValid(){
+    public void testIsRequestLoAValid() {
         final EidasAuthenticationRequest.Builder request = EidasAuthenticationRequest.builder();
         Assert.assertFalse("Null check for values", EidasNodeValidationUtil.isRequestLoAValid(null, null));
-        Assert.assertFalse("Null check for Level", EidasNodeValidationUtil.isRequestLoAValid(request.build() ,null));
+        Assert.assertFalse("Null check for Level", EidasNodeValidationUtil.isRequestLoAValid(request.build(), null));
         Assert.assertFalse("Null check for request", EidasNodeValidationUtil.isRequestLoAValid(null, LevelOfAssurance.HIGH.stringValue()));
         Assert.assertFalse("Null check for request.levelOfAssurance", EidasNodeValidationUtil.isRequestLoAValid(request.build(), LevelOfAssurance.HIGH.stringValue()));
         request.levelOfAssurance(LevelOfAssurance.LOW.stringValue());
@@ -54,9 +54,9 @@ public class EidasNodeValidationUtilTestCase {
         Assert.assertFalse("Error case HIGH<=substantial (minimum)", EidasNodeValidationUtil.isRequestLoAValid(request.build(), LevelOfAssurance.SUBSTANTIAL.stringValue()));
     }
 
-//    TODO check if testGetUserFriendlyLoa method
+    //    TODO check if testGetUserFriendlyLoa method
     @Test
-    public void testGetUserFriendlyLoa(){
+    public void testGetUserFriendlyLoa() {
         Assert.assertEquals(EidasAttributesUtil.getUserFriendlyLoa("http://eidas.europa.eu/LoA/"), "");
         Assert.assertEquals(EidasAttributesUtil.getUserFriendlyLoa("low"), "low");
         Assert.assertEquals(EidasAttributesUtil.getUserFriendlyLoa("http://eidas.europa.eu/LoA/low"), "low");

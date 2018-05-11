@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,16 +27,20 @@ import org.opensaml.ws.security.SecurityPolicyRule;
  */
 class StaticIssuerRule implements SecurityPolicyRule {
 
-    /** The issuer to set in the security policy context. */
+    /**
+     * The issuer to set in the security policy context.
+     */
     private String issuer;
 
-    /** State of issuer authentication. */
+    /**
+     * State of issuer authentication.
+     */
     private Boolean issuerAuthenticated;
 
     /**
      * Constructor.
-     * 
-     * @param newIssuer the issuer to set in the context
+     *
+     * @param newIssuer              the issuer to set in the context
      * @param newIssuerAuthenticated the issuer authenticated state to set
      */
     protected StaticIssuerRule(String newIssuer, Boolean newIssuerAuthenticated) {
@@ -44,7 +48,9 @@ class StaticIssuerRule implements SecurityPolicyRule {
         issuerAuthenticated = newIssuerAuthenticated;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void evaluate(MessageContext messageContext) throws SecurityPolicyException {
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
 

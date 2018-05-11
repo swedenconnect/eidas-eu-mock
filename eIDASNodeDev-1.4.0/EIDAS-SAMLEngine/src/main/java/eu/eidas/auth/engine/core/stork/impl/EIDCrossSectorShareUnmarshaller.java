@@ -27,19 +27,19 @@ import eu.eidas.auth.engine.core.stork.EIDCrossSectorShare;
  * @author fjquevedo
  */
 public class EIDCrossSectorShareUnmarshaller extends
-	AbstractSAMLObjectUnmarshaller {
+        AbstractSAMLObjectUnmarshaller {
 
-	/**
-	 * Process element content.
-	 *
-	 * @param samlObject the SAML object
-	 * @param domElement the DOM element
-	 * @throws MarshallingException the marshalling exception
-	 */
-	protected final void processElementContent(final XMLObject samlObject,
-			final String domElement)  {
+    /**
+     * Process element content.
+     *
+     * @param samlObject the SAML object
+     * @param domElement the DOM element
+     * @throws MarshallingException the marshalling exception
+     */
+    protected final void processElementContent(final XMLObject samlObject,
+                                               final String domElement) {
 
-		final EIDCrossSectorShare crossSectorShare = (EIDCrossSectorShare) samlObject;
-		crossSectorShare.setEIDCrossSectorShare(domElement);
-	}
+        final EIDCrossSectorShare crossSectorShare = (EIDCrossSectorShare) samlObject;
+        crossSectorShare.setEIDCrossSectorShare(domElement);
+    }
 }

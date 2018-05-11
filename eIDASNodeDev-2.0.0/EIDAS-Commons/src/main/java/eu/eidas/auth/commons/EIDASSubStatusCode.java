@@ -48,9 +48,7 @@ public enum EIDASSubStatusCode {
     /**
      * URI for RequestDenied status code.
      */
-    REQUEST_DENIED_URI("urn:oasis:names:tc:SAML:2.0:status:RequestDenied"),
-
-    ;
+    REQUEST_DENIED_URI("urn:oasis:names:tc:SAML:2.0:status:RequestDenied"),;
 
     /**
      * Represents the constant's value.

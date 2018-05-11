@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,37 +32,49 @@ import org.opensaml.xml.util.DatatypeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** Message decoder implementing the SAML 2.0 HTTP POST binding. */
+/**
+ * Message decoder implementing the SAML 2.0 HTTP POST binding.
+ */
 public class HTTPPostDecoder extends BaseSAML2MessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPPostDecoder.class);
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public HTTPPostDecoder() {
         super();
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param pool parser pool used to deserialize messages
      */
     public HTTPPostDecoder(ParserPool pool) {
         super(pool);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_POST_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean isIntendedDestinationEndpointURIRequired(SAMLMessageContext samlMsgCtx) {
         return isMessageSigned(samlMsgCtx);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doDecode(MessageContext messageContext) throws MessageDecodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this decoder only support SAMLMessageContext");
@@ -98,11 +110,9 @@ public class HTTPPostDecoder extends BaseSAML2MessageDecoder {
 
     /**
      * Gets the Base64 encoded message from the request and decodes it.
-     * 
+     *
      * @param transport inbound message transport
-     * 
      * @return decoded message
-     * 
      * @throws MessageDecodingException thrown if the message does not contain a base64 encoded SAML message
      */
     protected InputStream getBase64DecodedMessage(HTTPInTransport transport) throws MessageDecodingException {
@@ -120,7 +130,7 @@ public class HTTPPostDecoder extends BaseSAML2MessageDecoder {
 
         log.trace("Base64 decoding SAML message:\n{}", encodedMessage);
         byte[] decodedBytes = Base64.decode(encodedMessage);
-        if(decodedBytes == null){
+        if (decodedBytes == null) {
             log.error("Unable to Base64 decode SAML message");
             throw new MessageDecodingException("Unable to Base64 decode SAML message");
         }

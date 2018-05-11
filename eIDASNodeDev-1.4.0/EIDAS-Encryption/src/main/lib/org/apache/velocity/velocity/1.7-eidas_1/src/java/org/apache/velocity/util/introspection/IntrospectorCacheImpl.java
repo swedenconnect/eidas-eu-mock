@@ -16,7 +16,7 @@ package org.apache.velocity.util.introspection;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.HashMap;
@@ -33,17 +33,18 @@ import org.apache.velocity.runtime.log.Log;
  * @version $Id: IntrospectorCacheImpl.java 898032 2010-01-11 19:51:03Z nbubna $
  * @since 1.5
  */
-public final class IntrospectorCacheImpl implements IntrospectorCache
-{
+public final class IntrospectorCacheImpl implements IntrospectorCache {
     /**
      * define a public string so that it can be looked for if interested
      */
     public final static String CACHEDUMP_MSG =
-        "IntrospectorCache detected classloader change. Dumping cache.";
+            "IntrospectorCache detected classloader change. Dumping cache.";
 
-    /** Class logger */
+    /**
+     * Class logger
+     */
     private final Log log;
-    
+
     /**
      * Holds the method maps for the classes we know about. Map: Class --&gt; ClassMap object.
      */
@@ -53,25 +54,22 @@ public final class IntrospectorCacheImpl implements IntrospectorCache
      * Keep the names of the classes in another map. This is needed for a multi-classloader environment where it is possible
      * to have Class 'Foo' loaded by a classloader and then get asked to introspect on 'Foo' from another class loader. While these
      * two Class objects have the same name, a <code>classMethodMaps.get(Foo.class)</code> will return null. For that case, we
-     * keep a set of class names to recognize this case.  
+     * keep a set of class names to recognize this case.
      */
     private final Set classNameCache = new HashSet();
 
     /**
      * C'tor
      */
-    public IntrospectorCacheImpl(final Log log)
-    {
-	    this.log = log;
+    public IntrospectorCacheImpl(final Log log) {
+        this.log = log;
     }
 
     /**
      * Clears the internal cache.
      */
-    public void clear()
-    {
-        synchronized (classMapCache)
-        {
+    public void clear() {
+        synchronized (classMapCache) {
             classMapCache.clear();
             classNameCache.clear();
             log.debug(CACHEDUMP_MSG);
@@ -79,33 +77,28 @@ public final class IntrospectorCacheImpl implements IntrospectorCache
     }
 
     /**
-     * Lookup a given Class object in the cache. If it does not exist, 
+     * Lookup a given Class object in the cache. If it does not exist,
      * check whether this is due to a class change and purge the caches
      * eventually.
      *
      * @param c The class to look up.
      * @return A ClassMap object or null if it does not exist in the cache.
      */
-    public ClassMap get(final Class c)
-    {
-        if (c == null)
-        {
+    public ClassMap get(final Class c) {
+        if (c == null) {
             throw new IllegalArgumentException("class is null!");
         }
 
-        ClassMap classMap = (ClassMap)classMapCache.get(c);
-        if (classMap == null)
-        {
+        ClassMap classMap = (ClassMap) classMapCache.get(c);
+        if (classMap == null) {
             /*
              * check to see if we have it by name.
              * if so, then we have an object with the same
              * name but loaded through a different class loader.
              * In that case, we will just dump the cache to be sure.
              */
-            synchronized (classMapCache)
-            {
-                if (classNameCache.contains(c.getName()))
-                {
+            synchronized (classMapCache) {
+                if (classNameCache.contains(c.getName())) {
                     clear();
                 }
             }
@@ -121,11 +114,9 @@ public final class IntrospectorCacheImpl implements IntrospectorCache
      * @param c The class for which the class map gets generated.
      * @return A ClassMap object.
      */
-    public ClassMap put(final Class c)
-    {
+    public ClassMap put(final Class c) {
         final ClassMap classMap = new ClassMap(c, log);
-        synchronized (classMapCache)
-        {
+        synchronized (classMapCache) {
             classMapCache.put(c, classMap);
             classNameCache.add(c.getName());
         }

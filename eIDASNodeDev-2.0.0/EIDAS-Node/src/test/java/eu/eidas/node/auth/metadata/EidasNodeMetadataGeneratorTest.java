@@ -43,10 +43,10 @@ import java.util.Properties;
 public class EidasNodeMetadataGeneratorTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TestEidasNodeFileMetadataProcessor.class.getName());
-    private static final String SERVICE_METADATA_REPO="src/test/resources/ServiceMetadataRepo/";
-    private static final String FILEREPO_DIR_WRITE="target/test/EntityDescriptors1/";
-    private static final String ENTITY_ID="http://connectorasIdpurl";
-    private static final String SERVICE_METADATA_URL="http://localhost:8080/EidasNode/ServiceMetadata";
+    private static final String SERVICE_METADATA_REPO = "src/test/resources/ServiceMetadataRepo/";
+    private static final String FILEREPO_DIR_WRITE = "target/test/EntityDescriptors1/";
+    private static final String ENTITY_ID = "http://connectorasIdpurl";
+    private static final String SERVICE_METADATA_URL = "http://localhost:8080/EidasNode/ServiceMetadata";
     private static final String CONNECTOR_COUNTRY_B = "CB";
 
     private static final String SAML_CONNECTOR_IDP = "METADATA";
@@ -54,24 +54,25 @@ public class EidasNodeMetadataGeneratorTest {
     private static final String BINDING_LOCATION_URL_NOT_IN_PROPERTIES = "${ssos.serviceMetadataGeneratorIDP.redirect.location}";
 
     @BeforeClass
-    public static void setUp(){
+    public static void setUp() {
         LOGGER.debug("initializing directory " + FILEREPO_DIR_WRITE);
         new File(FILEREPO_DIR_WRITE).mkdirs();
-            OpenSamlHelper.initialize();
+        OpenSamlHelper.initialize();
     }
+
     @AfterClass
     public static void removeDir() {
         FileSystemUtils.deleteRecursively(new File(FILEREPO_DIR_WRITE));
     }
 
-    private void putMetadataInFile(String fileName, String metadataContent){
-        File f=new File(fileName);
+    private void putMetadataInFile(String fileName, String metadataContent) {
+        File f = new File(fileName);
         try {
             FileWriter fw = new FileWriter(f);
             fw.append(metadataContent);
             fw.close();
-        }catch(IOException ioe){
-            Assert.fail("error writing metadata contents: "+ioe);
+        } catch (IOException ioe) {
+            Assert.fail("error writing metadata contents: " + ioe);
         }
     }
 
@@ -86,7 +87,7 @@ public class EidasNodeMetadataGeneratorTest {
         String metadata = generator.generateConnectorMetadata(engine);
         Assert.assertTrue(metadata.contains("<?xml"));
 
-        putMetadataInFile(FILEREPO_DIR_WRITE+"/test.xml", metadata);
+        putMetadataInFile(FILEREPO_DIR_WRITE + "/test.xml", metadata);
         CachingMetadataFetcher fetcher = new CachingMetadataFetcher();
         FileMetadataLoader loader = new FileMetadataLoader();
         loader.setRepositoryPath(FILEREPO_DIR_WRITE);
@@ -98,7 +99,7 @@ public class EidasNodeMetadataGeneratorTest {
         Assert.assertNotNull(ed);
     }
 
-    private final static String CONTACT_SOURCE="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+    private final static String CONTACT_SOURCE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\">\n" +
             "<properties>" +
             "\t<entry key=\"connector.contact.support.email\">contact.support@eidas-connector.eu</entry>\n" +
@@ -123,7 +124,7 @@ public class EidasNodeMetadataGeneratorTest {
             "\t<entry key=\"service.contact.technical.surname\">Doe</entry>\n" +
             "\t<entry key=\"service.contact.technical.phone\">+43 123456</entry>\n" +
             "</properties>";
-    private final static String CONTACT_SOURCE_INCOMPLETE="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+    private final static String CONTACT_SOURCE_INCOMPLETE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\">\n" +
             "<properties>" +
             "\t<entry key=\"connector.contact.support.email\">contact.support@eidas-connector.eu</entry>\n" +
@@ -144,12 +145,12 @@ public class EidasNodeMetadataGeneratorTest {
             "\t<entry key=\"service.contact.technical.surname\">Doe</entry>\n" +
             "\t<entry key=\"service.contact.technical.phone\">+43 123456</entry>\n" +
             "</properties>";
-    private static final String EXPECTED_METADATA_CONTACT="GivenName>John</";
+    private static final String EXPECTED_METADATA_CONTACT = "GivenName>John</";
 
     @Test
     public void testGenerateMetadataWithContacts() throws Exception {
         EidasNodeMetadataGenerator generator = buildEidasNodeMetadataGenerator();
-        Properties contactProps=loadContactProps(CONTACT_SOURCE);
+        Properties contactProps = loadContactProps(CONTACT_SOURCE);
         generator.setNodeProps(contactProps);
         generator.setSingleSignOnServicePostLocation(BINDING_LOCATION_URL);
         generator.setSingleSignOnServiceRedirectLocation(BINDING_LOCATION_URL);
@@ -158,7 +159,7 @@ public class EidasNodeMetadataGeneratorTest {
         Assert.assertTrue(metadata.contains("<?xml"));
         Assert.assertTrue(metadata.contains(EXPECTED_METADATA_CONTACT));
 
-        contactProps=loadContactProps(CONTACT_SOURCE_INCOMPLETE);
+        contactProps = loadContactProps(CONTACT_SOURCE_INCOMPLETE);
         generator.setNodeProps(contactProps);
 
         metadata = generator.generateConnectorMetadata(ProtocolEngineFactory.getDefaultProtocolEngine("METADATA"));
@@ -166,21 +167,21 @@ public class EidasNodeMetadataGeneratorTest {
         Assert.assertTrue(metadata.contains(EXPECTED_METADATA_CONTACT));
     }
 
-    @Test (expected = EIDASServiceException.class)
+    @Test(expected = EIDASServiceException.class)
     public void testGenerateMetadataWithOutSSOSPostLocation() throws Exception {
         EidasNodeMetadataGenerator generator = buildEidasNodeMetadataGenerator();
         generator.setSingleSignOnServicePostLocation(BINDING_LOCATION_URL);
         generator.generateConnectorMetadata(ProtocolEngineFactory.getDefaultProtocolEngine("METADATA"));
     }
 
-    @Test (expected = EIDASServiceException.class)
+    @Test(expected = EIDASServiceException.class)
     public void testGenerateMetadataWithOutSSOSRedirectLocation() throws Exception {
         EidasNodeMetadataGenerator generator = buildEidasNodeMetadataGenerator();
         generator.setSingleSignOnServiceRedirectLocation(BINDING_LOCATION_URL);
         generator.generateConnectorMetadata(ProtocolEngineFactory.getDefaultProtocolEngine("METADATA"));
     }
 
-    @Test (expected = EIDASServiceException.class)
+    @Test(expected = EIDASServiceException.class)
     public void testGenerateMetadataWithoutSSOSRedirectLocationInpPropertiesFile() throws Exception {
         EidasNodeMetadataGenerator generator = buildEidasNodeMetadataGenerator();
         generator.setSingleSignOnServicePostLocation(BINDING_LOCATION_URL);
@@ -188,7 +189,7 @@ public class EidasNodeMetadataGeneratorTest {
         generator.generateConnectorMetadata(ProtocolEngineFactory.getDefaultProtocolEngine("METADATA"));
     }
 
-    @Test (expected = EIDASServiceException.class)
+    @Test(expected = EIDASServiceException.class)
     public void testGenerateMetadataWithoutSSOSPosttLocationInpPropertiesFile() throws Exception {
         EidasNodeMetadataGenerator generator = buildEidasNodeMetadataGenerator();
         generator.setSingleSignOnServicePostLocation(BINDING_LOCATION_URL_NOT_IN_PROPERTIES);
@@ -196,13 +197,13 @@ public class EidasNodeMetadataGeneratorTest {
         generator.generateConnectorMetadata(ProtocolEngineFactory.getDefaultProtocolEngine("METADATA"));
     }
 
-    private Properties loadContactProps(String source){
-        Properties props=new Properties();
+    private Properties loadContactProps(String source) {
+        Properties props = new Properties();
         try {
             InputStream stream = new ByteArrayInputStream(EidasStringUtil.getBytes(source));
             props.loadFromXML(stream);
-        }catch(Exception exc){
-            Assert.fail("cannot load properties "+exc);
+        } catch (Exception exc) {
+            Assert.fail("cannot load properties " + exc);
         }
         return props;
     }

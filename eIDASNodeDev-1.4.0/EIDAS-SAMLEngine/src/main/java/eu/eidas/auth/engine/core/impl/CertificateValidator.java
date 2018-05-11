@@ -32,9 +32,9 @@ public final class CertificateValidator {
     public static void checkCertificateIssuer(X509Certificate certificate) throws EIDASSAMLEngineException {
         if (CertificateUtil.isCertificateSelfSigned(certificate)) {
             LOG.error("ERROR : The certificate with reference '{}' failed check (selfsigned)",
-                      certificate.getIssuerDN());
+                    certificate.getIssuerDN());
             throw new EIDASSAMLEngineException(EidasErrorKey.INVALID_CERTIFICATE_SIGN.errorCode(),
-                                               EidasErrorKey.INVALID_CERTIFICATE_SIGN.errorMessage());
+                    EidasErrorKey.INVALID_CERTIFICATE_SIGN.errorMessage());
         }
     }
 
@@ -59,7 +59,7 @@ public final class CertificateValidator {
                     "ERROR : The certificate with reference '{}' failed check (out of date) [notBefore={}, notAfter={}]",
                     certificate.getIssuerDN(), notBefore, notAfter);
             throw new EIDASSAMLEngineException(EidasErrorKey.INVALID_CERTIFICATE_SIGN.errorCode(),
-                                               EidasErrorKey.INVALID_CERTIFICATE_SIGN.errorMessage());
+                    EidasErrorKey.INVALID_CERTIFICATE_SIGN.errorMessage());
         }
     }
 

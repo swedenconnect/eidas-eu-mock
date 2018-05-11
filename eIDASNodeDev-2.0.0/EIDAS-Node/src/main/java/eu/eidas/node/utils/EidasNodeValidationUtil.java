@@ -48,9 +48,9 @@ public class EidasNodeValidationUtil {
     private static final Logger LOG = LoggerFactory.getLogger(EidasNodeValidationUtil.class.getName());
 
     /**
-     *  Validates message destination property against URI accessible from configuration. Now it is using parameters form eidas.xml
-     *  same, as for metadata, but later this function to be refactored into samlengine, because destination check is a saml2
-     *  standard requirement. Also, TODO do not check web binding, check message binding instead.
+     * Validates message destination property against URI accessible from configuration. Now it is using parameters form eidas.xml
+     * same, as for metadata, but later this function to be refactored into samlengine, because destination check is a saml2
+     * standard requirement. Also, TODO do not check web binding, check message binding instead.
      *
      * @param authnRequest
      * @param serviceUtil
@@ -88,7 +88,7 @@ public class EidasNodeValidationUtil {
     }
 
     /**
-     *  Validates assertion consumer URL against Connector metadata.
+     * Validates assertion consumer URL against Connector metadata.
      *
      * @param authnRequest
      * @param metadataAssertationConsumerURL
@@ -124,12 +124,12 @@ public class EidasNodeValidationUtil {
                 || authRequest.getBinding() == null && !(BindingMethod.POST.equals(method) || BindingMethod.GET.equals(method))) {
             LOG.info("Expected auth request protocol binding {} but got {}", method, authRequest.getBinding());
             throw new EidasNodeException(EidasErrors.get(reportedErr.errorCode()),
-                                                  EidasErrors.get(reportedErr.errorMessage()),
-                                                  new InternalErrorEIDASException(EidasErrors.get(
-                                                          EidasErrorKey.INVALID_PROTOCOL_BINDING.errorCode()),
-                                                                                  EidasErrors.get(
-                                                                                          EidasErrorKey.INVALID_PROTOCOL_BINDING
-                                                                                                  .errorMessage())));
+                    EidasErrors.get(reportedErr.errorMessage()),
+                    new InternalErrorEIDASException(EidasErrors.get(
+                            EidasErrorKey.INVALID_PROTOCOL_BINDING.errorCode()),
+                            EidasErrors.get(
+                                    EidasErrorKey.INVALID_PROTOCOL_BINDING
+                                            .errorMessage())));
         }
     }
 

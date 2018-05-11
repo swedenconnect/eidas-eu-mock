@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.ArrayList;
@@ -28,15 +28,12 @@ import org.apache.velocity.runtime.RuntimeConstants;
 /**
  * This class tests support for strict foreach mode.
  */
-public class StrictForeachTestCase extends BaseTestCase
-{
-    public StrictForeachTestCase(String name)
-    {
-       super(name);
+public class StrictForeachTestCase extends BaseTestCase {
+    public StrictForeachTestCase(String name) {
+        super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         super.setUp();
         engine.setProperty(RuntimeConstants.SKIP_INVALID_ITERATOR, Boolean.FALSE);
         context.put("good", new GoodIterable());
@@ -44,65 +41,47 @@ public class StrictForeachTestCase extends BaseTestCase
         context.put("ugly", new UglyIterable());
     }
 
-    public void testGood()
-    {
-        try
-        {
+    public void testGood() {
+        try {
             evaluate("#foreach( $i in $good )$i#end");
-        }
-        catch (VelocityException ve)
-        {
+        } catch (VelocityException ve) {
             fail("Doing #foreach on $good should not have exploded!");
         }
     }
 
-    public void testBad()
-    {
-        try
-        {
+    public void testBad() {
+        try {
             evaluate("#foreach( $i in $bad )$i#end");
             fail("Doing #foreach on $bad should have exploded!");
-        }
-        catch (VelocityException ve)
-        {
+        } catch (VelocityException ve) {
             // success!
         }
     }
 
-    public void testUgly()
-    {
-        try
-        {
+    public void testUgly() {
+        try {
             evaluate("#foreach( $i in $ugly )$i#end");
             fail("Doing #foreach on $ugly should have exploded!");
-        }
-        catch (VelocityException ve)
-        {
+        } catch (VelocityException ve) {
             // success!
         }
     }
 
 
-    public static class GoodIterable
-    {
-        public Iterator iterator()
-        {
+    public static class GoodIterable {
+        public Iterator iterator() {
             return new ArrayList().iterator();
         }
     }
 
-    public static class BadIterable
-    {
-        public Object iterator()
-        {
+    public static class BadIterable {
+        public Object iterator() {
             return new Object();
         }
     }
 
-    public static class UglyIterable
-    {
-        public Iterator iterator()
-        {
+    public static class UglyIterable {
+        public Iterator iterator() {
             return null;
         }
     }

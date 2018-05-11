@@ -36,7 +36,7 @@ public final class LegalPersonSpec {
                 .required(true)
                 .transliterationMandatory(true)
                 .xmlType(Namespace.URI, "LegalNameType", Namespace.PREFIX)
-				.attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
+                .attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
                 .build();
 
         public static final AttributeDefinition<PostalAddress> LEGAL_PERSON_ADDRESS = AttributeDefinition.<PostalAddress>builder()
@@ -120,8 +120,8 @@ public final class LegalPersonSpec {
 
     public static final AttributeRegistry REGISTRY =
             AttributeRegistries.of(Definitions.LEGAL_PERSON_IDENTIFIER, Definitions.LEGAL_NAME,
-					Definitions.LEGAL_PERSON_ADDRESS,
-					Definitions.VAT_REGISTRATION_NUMBER,
+                    Definitions.LEGAL_PERSON_ADDRESS,
+                    Definitions.VAT_REGISTRATION_NUMBER,
                     Definitions.TAX_REFERENCE,
                     Definitions.D_2012_17_EU_IDENTIFIER, Definitions.LEI,
                     Definitions.EORI, Definitions.SEED, Definitions.SIC);

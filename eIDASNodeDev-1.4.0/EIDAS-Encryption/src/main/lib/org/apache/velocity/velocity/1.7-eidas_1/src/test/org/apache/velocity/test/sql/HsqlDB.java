@@ -16,7 +16,7 @@ package org.apache.velocity.test.sql;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.commons.lang.StringUtils;
@@ -66,14 +66,14 @@ public class HsqlDB {
             String commands = getFileContents(fileName);
 
             for (int targetPos = commands.indexOf(';'); targetPos > -1;
-                    targetPos = commands.indexOf(';')) {
+                 targetPos = commands.indexOf(';')) {
                 String cmd = commands.substring(0, targetPos + 1);
 
                 try {
                     statement.execute(cmd);
                 } catch (SQLException sqle) {
                     System.out.println("Statement: " + cmd + ": " +
-                        sqle.getMessage());
+                            sqle.getMessage());
                 }
 
                 commands = commands.substring(targetPos + 2);

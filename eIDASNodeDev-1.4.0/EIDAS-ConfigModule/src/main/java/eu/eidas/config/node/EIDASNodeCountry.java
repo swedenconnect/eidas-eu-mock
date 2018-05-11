@@ -27,25 +27,27 @@ public class EIDASNodeCountry {
     private String serviceUrl;
     private String serviceMetadataUrl;
     private int skewTime;
-    private boolean encryptionTo=false;
-    private boolean encryptionFrom=true;
+    private boolean encryptionTo = false;
+    private boolean encryptionFrom = true;
 
 
-    public EIDASNodeCountry(){
+    public EIDASNodeCountry() {
     }
-    public EIDASNodeCountry(String code, String name, String url, String skewTime){
+
+    public EIDASNodeCountry(String code, String name, String url, String skewTime) {
         this();
         setCode(code);
         setServiceUrl(url);
         setName(name);
-        int skewTimeSet=0;
+        int skewTimeSet = 0;
         try {
-            skewTimeSet=Integer.parseInt(skewTime);
-        }catch (NumberFormatException nfe){
+            skewTimeSet = Integer.parseInt(skewTime);
+        } catch (NumberFormatException nfe) {
             LOG.info("ERROR : invalid skewtime value {}", nfe.getMessage());
         }
         setSkewTime(skewTimeSet);
     }
+
     public String getCode() {
         return code;
     }

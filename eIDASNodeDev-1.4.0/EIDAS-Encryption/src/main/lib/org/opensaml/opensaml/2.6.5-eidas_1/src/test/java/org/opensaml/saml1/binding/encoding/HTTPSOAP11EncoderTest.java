@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -38,7 +38,9 @@ import org.springframework.mock.web.MockHttpServletResponse;
  */
 public class HTTPSOAP11EncoderTest extends BaseTestCase {
 
-    /** Tests encoding a simple SAML message. */
+    /**
+     * Tests encoding a simple SAML message.
+     */
     @SuppressWarnings("unchecked")
     public void testEncoding() throws Exception {
         SAMLObjectBuilder<Request> requestBuilder = (SAMLObjectBuilder<Request>) builderFactory
@@ -60,7 +62,7 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
         messageContext.setPeerEntityEndpoint(samlEndpoint);
         messageContext.setOutboundSAMLMessage(request);
         messageContext.setRelayState("relay");
-        
+
         HTTPSOAP11Encoder encoder = new HTTPSOAP11Encoder();
         encoder.encode(messageContext);
 
@@ -70,8 +72,10 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
         assertEquals("http://www.oasis-open.org/committees/security", response.getHeader("SOAPAction"));
         assertEquals(259113724, response.getContentAsString().hashCode());
     }
-    
-    /** Tests encoding a simple SAML message using a pre-existing SOAP Envelope. */
+
+    /**
+     * Tests encoding a simple SAML message using a pre-existing SOAP Envelope.
+     */
     @SuppressWarnings("unchecked")
     public void testExistingEnvelope() throws Exception {
         SAMLObjectBuilder<Request> requestBuilder = (SAMLObjectBuilder<Request>) builderFactory
@@ -86,16 +90,16 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
         Endpoint samlEndpoint = endpointBuilder.buildObject();
         samlEndpoint.setLocation("http://example.org");
         samlEndpoint.setResponseLocation("http://example.org/response");
-        
+
         SOAPObjectBuilder<Envelope> envelopeBuilder = (SOAPObjectBuilder<Envelope>) builderFactory
                 .getBuilder(Envelope.DEFAULT_ELEMENT_NAME);
         Envelope envelope = envelopeBuilder.buildObject();
-        
+
         SOAPObjectBuilder<Header> headerBuilder = (SOAPObjectBuilder<Header>) builderFactory
                 .getBuilder(Header.DEFAULT_ELEMENT_NAME);
         Header header = headerBuilder.buildObject();
         envelope.setHeader(header);
-        
+
         WSAddressingObjectBuilder<Action> actionBuilder = (WSAddressingObjectBuilder<Action>) builderFactory
                 .getBuilder(Action.ELEMENT_NAME);
         Action action = actionBuilder.buildObject();
@@ -109,7 +113,7 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
         messageContext.setOutboundSAMLMessage(request);
         messageContext.setOutboundMessage(envelope);
         messageContext.setRelayState("relay");
-        
+
         HTTPSOAP11Encoder encoder = new HTTPSOAP11Encoder();
         encoder.encode(messageContext);
 

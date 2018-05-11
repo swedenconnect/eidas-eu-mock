@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.Method;
@@ -30,7 +30,7 @@ import org.apache.velocity.runtime.RuntimeSingleton;
  * Test case for the Velocity Introspector which uses
  * the Java Reflection API to determine the correct
  * signature of the methods used in VTL templates.
- *
+ * <p>
  * This should be split into separate tests for each
  * of the methods searched for but this is a start
  * for now.
@@ -38,184 +38,197 @@ import org.apache.velocity.runtime.RuntimeSingleton;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @version $Id: IntrospectorTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class IntrospectorTestCase extends BaseTestCase
-{
+public class IntrospectorTestCase extends BaseTestCase {
     private static MethodProvider mp;
 
-    public void setUp()
-    {
+    public void setUp() {
         mp = new MethodProvider();
     }
 
     /**
      * Creates a new instance.
      */
-    public IntrospectorTestCase (String name)
-    {
+    public IntrospectorTestCase(String name) {
         super(name);
     }
 
     /**
-      * Get the containing <code>TestSuite</code>.  This is always
-      * <code>VelocityTestSuite</code>.
-      *
-      * @return The <code>TestSuite</code> to run.
-      */
-    public static Test suite ()
-    {
+     * Get the containing <code>TestSuite</code>.  This is always
+     * <code>VelocityTestSuite</code>.
+     *
+     * @return The <code>TestSuite</code> to run.
+     */
+    public static Test suite() {
         return new TestSuite(IntrospectorTestCase.class);
     }
 
     public void testIntrospectorBoolean()
-            throws Exception
-    {
+            throws Exception {
         // Test boolean primitive.
-        Object[] booleanParams = { new Boolean(true) };
+        Object[] booleanParams = {new Boolean(true)};
         String type = "boolean";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", booleanParams);
+                MethodProvider.class, type + "Method", booleanParams);
         String result = (String) method.invoke(mp, booleanParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorByte()
-            throws Exception
-    {
+            throws Exception {
         // Test byte primitive.
-        Object[] byteParams = { new Byte("1") };
+        Object[] byteParams = {new Byte("1")};
         String type = "byte";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", byteParams);
+                MethodProvider.class, type + "Method", byteParams);
         String result = (String) method.invoke(mp, byteParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorChar()
-            throws Exception
-    {
+            throws Exception {
         // Test char primitive.
-        Object[] characterParams = { new Character('a') };
+        Object[] characterParams = {new Character('a')};
         String type = "character";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", characterParams);
+                MethodProvider.class, type + "Method", characterParams);
         String result = (String) method.invoke(mp, characterParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorDouble()
-            throws Exception
-    {
+            throws Exception {
 
         // Test double primitive.
-        Object[] doubleParams = { new Double((double)1) };
+        Object[] doubleParams = {new Double((double) 1)};
         String type = "double";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", doubleParams);
+                MethodProvider.class, type + "Method", doubleParams);
         String result = (String) method.invoke(mp, doubleParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorFloat()
-            throws Exception
-    {
+            throws Exception {
 
         // Test float primitive.
-        Object[] floatParams = { new Float((float)1) };
+        Object[] floatParams = {new Float((float) 1)};
         String type = "float";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", floatParams);
+                MethodProvider.class, type + "Method", floatParams);
         String result = (String) method.invoke(mp, floatParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorInteger()
-            throws Exception
-    {
+            throws Exception {
 
         // Test integer primitive.
-        Object[] integerParams = { new Integer((int)1) };
+        Object[] integerParams = {new Integer((int) 1)};
         String type = "integer";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", integerParams);
+                MethodProvider.class, type + "Method", integerParams);
         String result = (String) method.invoke(mp, integerParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorPrimitiveLong()
-            throws Exception
-    {
+            throws Exception {
 
         // Test long primitive.
-        Object[] longParams = { new Long((long)1) };
+        Object[] longParams = {new Long((long) 1)};
         String type = "long";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", longParams);
+                MethodProvider.class, type + "Method", longParams);
         String result = (String) method.invoke(mp, longParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorPrimitiveShort()
-            throws Exception
-    {
+            throws Exception {
         // Test short primitive.
-        Object[] shortParams = { new Short((short)1) };
+        Object[] shortParams = {new Short((short) 1)};
         String type = "short";
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, type + "Method", shortParams);
+                MethodProvider.class, type + "Method", shortParams);
         String result = (String) method.invoke(mp, shortParams);
 
         assertEquals("Method could not be found", type, result);
     }
 
     public void testIntrospectorUntouchable()
-            throws Exception
-    {
+            throws Exception {
         // Test untouchable
 
         Object[] params = {};
 
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "untouchable", params);
+                MethodProvider.class, "untouchable", params);
 
         assertNull("able to access a private-access method.", method);
     }
 
     public void testIntrospectorReallyUntouchable()
-            throws Exception
-    {
+            throws Exception {
         // Test really untouchable
         Object[] params = {};
 
         Method method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "reallyuntouchable", params);
+                MethodProvider.class, "reallyuntouchable", params);
 
         assertNull("able to access a private-access method.", method);
     }
 
-    public static class MethodProvider
-    {
+    public static class MethodProvider {
         /*
          * Methods with native parameter types.
          */
-        public String booleanMethod (boolean p) { return "boolean"; }
-        public String byteMethod (byte p) { return "byte"; }
-        public String characterMethod (char p) { return "character"; }
-        public String doubleMethod (double p) { return "double"; }
-        public String floatMethod (float p) { return "float"; }
-        public String integerMethod (int p) { return "integer"; }
-        public String longMethod (long p) { return "long"; }
-        public String shortMethod (short p) { return "short"; }
+        public String booleanMethod(boolean p) {
+            return "boolean";
+        }
 
-        String untouchable() { return "yech";}
+        public String byteMethod(byte p) {
+            return "byte";
+        }
+
+        public String characterMethod(char p) {
+            return "character";
+        }
+
+        public String doubleMethod(double p) {
+            return "double";
+        }
+
+        public String floatMethod(float p) {
+            return "float";
+        }
+
+        public String integerMethod(int p) {
+            return "integer";
+        }
+
+        public String longMethod(long p) {
+            return "long";
+        }
+
+        public String shortMethod(short p) {
+            return "short";
+        }
+
+        String untouchable() {
+            return "yech";
+        }
+
         // don't remove! Used through introspection for testing!
-        private String reallyuntouchable() { return "yech!"; }
+        private String reallyuntouchable() {
+            return "yech!";
+        }
 
     }
 }

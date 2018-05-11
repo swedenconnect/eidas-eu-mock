@@ -109,10 +109,10 @@ public class SpecificProxyServiceImpl implements ISpecificProxyService {
                 parameters.put(EidasParameterKeys.IDP_URL.toString(), citizenAuthentication.getIdpUrl());
 
                 parameters.put(EidasParameterKeys.CITIZEN_COUNTRY_CODE.toString(),
-                               lightRequest.getCitizenCountryCode());
+                        lightRequest.getCitizenCountryCode());
                 parameters.put(EidasParameterKeys.SERVICE_PROVIDER_NAME.toString(), lightRequest.getProviderName());
                 parameters.put(EidasParameterKeys.CITIZEN_IP_ADDRESS.toString(),
-                               IncomingRequest.getRemoteAddress(httpServletRequest));
+                        IncomingRequest.getRemoteAddress(httpServletRequest));
 
                 httpServletRequest.setAttribute(EidasParameterKeys.BINDING.toString(), EidasSamlBinding.POST.getName());
 
@@ -122,14 +122,14 @@ public class SpecificProxyServiceImpl implements ISpecificProxyService {
                 parameters.put(EidasParameterKeys.SERVICE_PROVIDER_TYPE.toString(), lightRequest.getSpType());
 
                 byte[] samlTokenBytes = specificService.prepareCitizenAuthentication(lightRequest, attrMap, parameters,
-                                                                                     getHttpRequestAttributesHeaders(
-                                                                                             httpServletRequest));
+                        getHttpRequestAttributesHeaders(
+                                httpServletRequest));
                 // used by jsp
                 String samlToken = EidasStringUtil.encodeToBase64(samlTokenBytes);
 
                 httpServletRequest.setAttribute(SpecificParameterNames.SAML_TOKEN.toString(), samlToken);
                 httpServletRequest.setAttribute(SpecificParameterNames.IDP_URL.toString(),
-                                                citizenAuthentication.getIdpUrl());
+                        citizenAuthentication.getIdpUrl());
                 httpServletRequest.setAttribute(EidasParameterKeys.REQUEST_FORMAT.toString(), EIDAS_FORMAT_NAME);
 
             } else {
@@ -178,7 +178,7 @@ public class SpecificProxyServiceImpl implements ISpecificProxyService {
 
         } else {
             httpServletRequest.setAttribute(EidasParameterKeys.EIDAS_SERVICE_LOA.toString(),
-                                            specificResponse.getLevelOfAssurance());
+                    specificResponse.getLevelOfAssurance());
 
             ImmutableAttributeMap requestedAttributes = specificAuthnRequest.getRequestedAttributes();
 

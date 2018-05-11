@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -37,21 +37,27 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class RequestImpl extends RequestAbstractTypeImpl implements Request {
 
-    /** Saves the query (one of Query, SubjectQuery, AuthenticationQuery, AttributeQuery, AuthorizationDecisionQuery */
+    /**
+     * Saves the query (one of Query, SubjectQuery, AuthenticationQuery, AttributeQuery, AuthorizationDecisionQuery
+     */
     private Query query;
 
-    /** The List of AssertionIDReferences */
+    /**
+     * The List of AssertionIDReferences
+     */
     private final XMLObjectChildrenList<AssertionIDReference> assertionIDReferences;
 
-    /** The List of AssertionArtifacts */
+    /**
+     * The List of AssertionArtifacts
+     */
     private final XMLObjectChildrenList<AssertionArtifact> assertionArtifacts;
 
     /**
      * Constructor
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected RequestImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -59,47 +65,65 @@ public class RequestImpl extends RequestAbstractTypeImpl implements Request {
         assertionArtifacts = new XMLObjectChildrenList<AssertionArtifact>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Query getQuery() {
         return query;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SubjectQuery getSubjectQuery() {
         return (query instanceof SubjectQuery ? (SubjectQuery) query : null);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeQuery getAttributeQuery() {
         return (query instanceof AttributeQuery ? (AttributeQuery) query : null);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AuthenticationQuery getAuthenticationQuery() {
         return (query instanceof AuthenticationQuery ? (AuthenticationQuery) query : null);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AuthorizationDecisionQuery getAuthorizationDecisionQuery() {
         return (query instanceof AuthorizationDecisionQuery ? (AuthorizationDecisionQuery) query : null);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setQuery(Query query) throws IllegalArgumentException {
         this.query = prepareForAssignment(this.query, query);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AssertionIDReference> getAssertionIDReferences() {
         return assertionIDReferences;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AssertionArtifact> getAssertionArtifacts() {
         return assertionArtifacts;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
 
         List<XMLObject> list = new ArrayList<XMLObject>();

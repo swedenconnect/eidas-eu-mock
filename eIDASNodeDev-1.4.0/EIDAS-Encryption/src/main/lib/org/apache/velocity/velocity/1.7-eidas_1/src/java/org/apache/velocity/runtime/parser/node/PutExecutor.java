@@ -16,10 +16,11 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.apache.velocity.exception.VelocityException;
 import org.apache.velocity.runtime.log.Log;
 import org.apache.velocity.util.introspection.Introspector;
@@ -37,8 +38,7 @@ import org.apache.velocity.util.introspection.Introspector;
  * @version $Id: PutExecutor.java 687177 2008-08-19 22:00:32Z nbubna $
  * @since 1.5
  */
-public class PutExecutor extends SetExecutor
-{
+public class PutExecutor extends SetExecutor {
     private final Introspector introspector;
     private final String property;
 
@@ -50,8 +50,7 @@ public class PutExecutor extends SetExecutor
      * @param property
      */
     public PutExecutor(final Log log, final Introspector introspector,
-            final Class clazz, final Object arg, final String property)
-    {
+                       final Class clazz, final Object arg, final String property) {
         this.log = log;
         this.introspector = introspector;
         this.property = property;
@@ -63,9 +62,8 @@ public class PutExecutor extends SetExecutor
      * @param clazz
      * @param arg
      */
-    protected void discover(final Class clazz, final Object arg)
-    {
-        Object [] params;
+    protected void discover(final Class clazz, final Object arg) {
+        Object[] params;
 
         // If you passed in null as property, we don't use the value
         // for parameter lookup. Instead we just look for put(Object) without
@@ -74,29 +72,21 @@ public class PutExecutor extends SetExecutor
         // In any other case, the following condition will set up an array
         // for looking up put(String, Object) on the class.
 
-        if (property == null)
-        {
+        if (property == null) {
             // The passed in arg object is used by the Cache to look up the method.
-            params = new Object[] { arg };
-        }
-        else
-        {
-            params = new Object[] { property, arg };
+            params = new Object[]{arg};
+        } else {
+            params = new Object[]{property, arg};
         }
 
-        try
-        {
+        try {
             setMethod(introspector.getMethod(clazz, "put", params));
         }
         /**
          * pass through application level runtime exceptions
-         */
-        catch( RuntimeException e )
-        {
+         */ catch (RuntimeException e) {
             throw e;
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             String msg = "Exception while looking for put('" + params[0] + "') method";
             log.error(msg, e);
             throw new VelocityException(msg, e);
@@ -107,20 +97,15 @@ public class PutExecutor extends SetExecutor
      * @see org.apache.velocity.runtime.parser.node.SetExecutor#execute(java.lang.Object, java.lang.Object)
      */
     public Object execute(final Object o, final Object value)
-        throws IllegalAccessException,  InvocationTargetException
-    {
-        Object [] params;
+            throws IllegalAccessException, InvocationTargetException {
+        Object[] params;
 
-        if (isAlive())
-        {
+        if (isAlive()) {
             // If property != null, pass in the name for put(key, value). Else just put(value).
-            if (property == null)
-            {
-                params = new Object [] { value };
-            }
-            else
-            {
-                params = new Object [] { property, value };
+            if (property == null) {
+                params = new Object[]{value};
+            } else {
+                params = new Object[]{property, value};
             }
 
             return getMethod().invoke(o, params);

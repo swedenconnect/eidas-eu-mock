@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,14 +25,18 @@ import org.opensaml.xacml.policy.EffectType;
 import org.opensaml.xacml.policy.ObligationType;
 import org.opensaml.xacml.policy.ObligationsType;
 
-/** Unit test for {@link ObligationService}. */
+/**
+ * Unit test for {@link ObligationService}.
+ */
 public class ObligationServiceTest extends BaseTestCase {
 
     private ObligationProcessingContext processingCtx;
 
     int count;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -56,19 +60,19 @@ public class ObligationServiceTest extends BaseTestCase {
         obligation.setFulfillOn(EffectType.Permit);
         obligation.setObligationId("add1");
         obligations.getObligations().add(obligation);
-        
+
         obligation = (ObligationType) builderFactory.getBuilder(ObligationType.SCHEMA_TYPE_NAME)
-        .buildObject(ObligationType.DEFAULT_ELEMENT_QNAME);
-obligation.setFulfillOn(EffectType.Permit);
-obligation.setObligationId("add2");
-obligations.getObligations().add(obligation);
+                .buildObject(ObligationType.DEFAULT_ELEMENT_QNAME);
+        obligation.setFulfillOn(EffectType.Permit);
+        obligation.setObligationId("add2");
+        obligations.getObligations().add(obligation);
 
         obligation = (ObligationType) builderFactory.getBuilder(ObligationType.SCHEMA_TYPE_NAME).buildObject(
                 ObligationType.DEFAULT_ELEMENT_QNAME);
         obligation.setFulfillOn(EffectType.Permit);
         obligation.setObligationId("multiply1");
         obligations.getObligations().add(obligation);
-        
+
         obligation = (ObligationType) builderFactory.getBuilder(ObligationType.SCHEMA_TYPE_NAME).buildObject(
                 ObligationType.DEFAULT_ELEMENT_QNAME);
         obligation.setFulfillOn(EffectType.Permit);
@@ -84,7 +88,7 @@ obligations.getObligations().add(obligation);
         // Test basic precedence ordering
         obligSrvc.addObligationhandler(new AdditiveObligationHandler("add1", 1, 1));
         obligSrvc.addObligationhandler(new MultiplicitiveObligationHandler("multiply1", 2, 2));
-        
+
         // Test lexical ordering when two handlers have the same precedence
         obligSrvc.addObligationhandler(new AdditiveObligationHandler("add2", 3, 2));
         obligSrvc.addObligationhandler(new MultiplicitiveObligationHandler("multiply2", 3, 2));
@@ -103,7 +107,9 @@ obligations.getObligations().add(obligation);
             this.addFactor = addFactor;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void evaluateObligation(ObligationProcessingContext context, ObligationType obligation)
                 throws ObligationProcessingException {
             count += addFactor;
@@ -120,7 +126,9 @@ obligations.getObligations().add(obligation);
             this.multiplyFactor = multiplyFactor;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void evaluateObligation(ObligationProcessingContext context, ObligationType obligation)
                 throws ObligationProcessingException {
             count *= multiplyFactor;

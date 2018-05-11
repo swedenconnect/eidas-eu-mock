@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,27 +33,30 @@ import org.w3c.dom.Document;
  * A URL metadata provider that caches a copy of the retrieved metadata to disk so that, in the event that the metadata
  * may not be pulled from the URL it may be pulled from disk using the last fetched data. If the backing file does not
  * already exist it will be created.
- * 
+ * <p>
  * It is the responsibility of the caller to re-initialize, via {@link #initialize()}, if any properties of this
  * provider are changed.
  */
 public class FileBackedHTTPMetadataProvider extends HTTPMetadataProvider {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(FileBackedHTTPMetadataProvider.class);
 
-    /** File containing the backup of the metadata. */
+    /**
+     * File containing the backup of the metadata.
+     */
     private File metadataBackupFile;
 
     /**
      * Constructor.
-     * 
-     * @param metadataURL the URL to fetch the metadata
+     *
+     * @param metadataURL    the URL to fetch the metadata
      * @param requestTimeout the time, in milliseconds, to wait for the metadata server to respond
      * @param backupFilePath the file that will keep a backup copy of the metadata,
-     * 
      * @throws MetadataProviderException thrown if the URL is not a valid URL, the metadata can not be retrieved from
-     *             the URL
+     *                                   the URL
      */
     @Deprecated
     public FileBackedHTTPMetadataProvider(String metadataURL, int requestTimeout, String backupFilePath)
@@ -64,29 +67,32 @@ public class FileBackedHTTPMetadataProvider extends HTTPMetadataProvider {
 
     /**
      * Constructor.
-     * 
-     * @param client HTTP client used to fetch remove metadata
+     *
+     * @param client              HTTP client used to fetch remove metadata
      * @param backgroundTaskTimer timer used to schedule background metadata refresh tasks
-     * @param metadataURL the URL to fetch the metadata
-     * @param backupFilePath the file that will keep a backup copy of the metadata,
-     * 
+     * @param metadataURL         the URL to fetch the metadata
+     * @param backupFilePath      the file that will keep a backup copy of the metadata,
      * @throws MetadataProviderException thrown if the URL is not a valid URL, the metadata can not be retrieved from
-     *             the URL
+     *                                   the URL
      */
     public FileBackedHTTPMetadataProvider(Timer backgroundTaskTimer, HttpClient client, String metadataURL,
-            String backupFilePath) throws MetadataProviderException {
+                                          String backupFilePath) throws MetadataProviderException {
         super(backgroundTaskTimer, client, metadataURL);
         setBackupFile(backupFilePath);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public synchronized void destroy() {
         metadataBackupFile = null;
-        
+
         super.destroy();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doInitialization() throws MetadataProviderException {
         try {
             validateBackupFile(metadataBackupFile);
@@ -98,16 +104,15 @@ public class FileBackedHTTPMetadataProvider extends HTTPMetadataProvider {
                 log.error("Metadata backup file path was invalid, continuing without known good backup file");
             }
         }
-        
+
         super.doInitialization();
     }
 
     /**
      * Sets the file used to backup metadata. The given file path is checked to see if it is a read/writable file if it
      * exists or if can be created if it does not exist.
-     * 
+     *
      * @param backupFilePath path to the backup file
-     * 
      * @throws MetadataProviderException thrown if the backup file is not read/writable or creatable
      */
     protected void setBackupFile(String backupFilePath) throws MetadataProviderException {
@@ -116,7 +121,7 @@ public class FileBackedHTTPMetadataProvider extends HTTPMetadataProvider {
     }
 
     /**
-     * Validate the basic properties of the specified metadata backup file, for example that it 
+     * Validate the basic properties of the specified metadata backup file, for example that it
      * exists and/or can be created; that it is not a directory; and that it is readable and writable.
      *
      * @param backupFile the file to evaluate
@@ -148,13 +153,15 @@ public class FileBackedHTTPMetadataProvider extends HTTPMetadataProvider {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected byte[] fetchMetadata() throws MetadataProviderException {
         try {
             return super.fetchMetadata();
         } catch (MetadataProviderException e) {
             if (metadataBackupFile.exists()) {
-                log.warn("Problem reading metadata from remote source, processing existing backup file: {}", 
+                log.warn("Problem reading metadata from remote source, processing existing backup file: {}",
                         metadataBackupFile.getAbsolutePath());
                 try {
                     return DatatypeHelper.fileToByteArray(metadataBackupFile);
@@ -172,7 +179,9 @@ public class FileBackedHTTPMetadataProvider extends HTTPMetadataProvider {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void postProcessMetadata(byte[] metadataBytes, Document metadataDom, XMLObject metadata)
             throws MetadataProviderException {
         try {

@@ -25,6 +25,4 @@ import org.opensaml.common.impl.AbstractSAMLObjectMarshaller;
 public class AuthenticationAttributesMarshaller extends AbstractSAMLObjectMarshaller {
 
 
-
-
 }

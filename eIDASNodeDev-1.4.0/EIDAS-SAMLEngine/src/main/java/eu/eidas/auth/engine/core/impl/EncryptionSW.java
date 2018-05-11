@@ -105,10 +105,10 @@ public final class EncryptionSW extends KeyStoreSamlEngineEncryption {
                     }
                 }
                 throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorCode(),
-                                                   EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorMessage());
+                        EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorMessage());
             } else {
                 LOG.error("Encryption of SAML Response NOT done, because no \"" + issuerKey +
-                                  "\" configured!");
+                        "\" configured!");
             }
         }
         return null;

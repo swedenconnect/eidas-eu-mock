@@ -28,6 +28,6 @@ public class VIDPAuthenticationAttributesMarshaller extends AbstractSAMLObjectMa
      * Instantiates a new vIDP authentication attributes marshaller.
      */
     public VIDPAuthenticationAttributesMarshaller() {
-	super();
+        super();
     }
 }

@@ -184,7 +184,7 @@ public final class PreconditionsTest {
     @Test
     public void testIsAlphanumericSpaceWithAlphanumericSpaceArgument() throws Exception {
         Preconditions.isAlphanumericSpace("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ",
-                                          "reference");
+                "reference");
     }
 
     @Test
@@ -443,33 +443,33 @@ public final class PreconditionsTest {
     public void testCheckLengthArrayShorter() throws Exception {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("reference cannot be shorter than 5");
-        Preconditions.checkLength(new String[] {"1", "2", "3", "4"}, "reference", 5, 6);
+        Preconditions.checkLength(new String[]{"1", "2", "3", "4"}, "reference", 5, 6);
     }
 
     @Test
     public void testCheckLengthArrayLonger() throws Exception {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("reference cannot be longer than 6");
-        Preconditions.checkLength(new String[] {"1", "2", "3", "4", "5", "6", "7"}, "reference", 5, 6);
+        Preconditions.checkLength(new String[]{"1", "2", "3", "4", "5", "6", "7"}, "reference", 5, 6);
     }
 
     @Test
     public void testCheckLengthArrayOk01() throws Exception {
-        Preconditions.checkLength(new String[] {"1", "2", "3", "4", "5"}, "reference", 4, 5);
+        Preconditions.checkLength(new String[]{"1", "2", "3", "4", "5"}, "reference", 4, 5);
     }
 
     @Test
     public void testCheckLengthArrayOk02() throws Exception {
-        Preconditions.checkLength(new String[] {"1", "2", "3", "4", "5"}, "reference", 4, 6);
+        Preconditions.checkLength(new String[]{"1", "2", "3", "4", "5"}, "reference", 4, 6);
     }
 
     @Test
     public void testCheckLengthArrayOk03() throws Exception {
-        Preconditions.checkLength(new String[] {"1", "2", "3", "4", "5"}, "reference", 5, 5);
+        Preconditions.checkLength(new String[]{"1", "2", "3", "4", "5"}, "reference", 5, 5);
     }
 
     @Test
     public void testCheckLengthArrayOk04() throws Exception {
-        Preconditions.checkLength(new String[] {"1", "2", "3", "4", "5"}, "reference", 5, 6);
+        Preconditions.checkLength(new String[]{"1", "2", "3", "4", "5"}, "reference", 5, 6);
     }
 }

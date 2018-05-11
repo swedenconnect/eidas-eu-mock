@@ -62,43 +62,43 @@ public final class ReloadableConfigurationMap {
 
         SingletonAccessor<ImmutableMap<String, SamlEngineConfiguration>> fileAccessor =
                 SingletonAccessors.newFileAccessor(configurationFileName, defaultPath,
-                                                   new FileMarshaller<ImmutableMap<String, SamlEngineConfiguration>>() {
+                        new FileMarshaller<ImmutableMap<String, SamlEngineConfiguration>>() {
 
-                                                       @Override
-                                                       public void marshal(@Nonnull
-                                                                                   ImmutableMap<String, SamlEngineConfiguration> newValue,
-                                                                           @Nonnull File output)
-                                                               throws UnsupportedEncodingException {
-                                                           throw new UnsupportedEncodingException();
-                                                       }
+                            @Override
+                            public void marshal(@Nonnull
+                                                        ImmutableMap<String, SamlEngineConfiguration> newValue,
+                                                @Nonnull File output)
+                                    throws UnsupportedEncodingException {
+                                throw new UnsupportedEncodingException();
+                            }
 
-                                                       @Override
-                                                       public ImmutableMap<String, SamlEngineConfiguration> unmarshal(
-                                                               @Nonnull File input) throws IOException {
-                                                           return unmarshalStream(configurationFileName,
-                                                                   defaultPath,
-                                                                   new BufferedInputStream(
-                                                                                          new FileInputStream(input)),
-                                                                                  overrideFileName);
-                                                       }
-                                                   },
-                                                   new StreamMarshaller<ImmutableMap<String, SamlEngineConfiguration>>() {
+                            @Override
+                            public ImmutableMap<String, SamlEngineConfiguration> unmarshal(
+                                    @Nonnull File input) throws IOException {
+                                return unmarshalStream(configurationFileName,
+                                        defaultPath,
+                                        new BufferedInputStream(
+                                                new FileInputStream(input)),
+                                        overrideFileName);
+                            }
+                        },
+                        new StreamMarshaller<ImmutableMap<String, SamlEngineConfiguration>>() {
 
-                                                       @Override
-                                                       public void marshal(@Nonnull
-                                                                                   ImmutableMap<String, SamlEngineConfiguration> newValue,
-                                                                           @Nonnull OutputStream output)
-                                                               throws UnsupportedEncodingException {
-                                                           throw new UnsupportedEncodingException();
-                                                       }
+                            @Override
+                            public void marshal(@Nonnull
+                                                        ImmutableMap<String, SamlEngineConfiguration> newValue,
+                                                @Nonnull OutputStream output)
+                                    throws UnsupportedEncodingException {
+                                throw new UnsupportedEncodingException();
+                            }
 
-                                                       @Override
-                                                       public ImmutableMap<String, SamlEngineConfiguration> unmarshal(
-                                                               @Nonnull InputStream input) throws IOException {
-                                                           return unmarshalStream(configurationFileName, defaultPath, input,
-                                                                                  overrideFileName);
-                                                       }
-                                                   });
+                            @Override
+                            public ImmutableMap<String, SamlEngineConfiguration> unmarshal(
+                                    @Nonnull InputStream input) throws IOException {
+                                return unmarshalStream(configurationFileName, defaultPath, input,
+                                        overrideFileName);
+                            }
+                        });
         // each interface component in the returned configuration can be cached as a reference in client code,
         // therefore each such interface must be a proxy capable of reloading its configuration
         accessor = new ReloadableConfigurationProxyMapSingletonAccessor(fileAccessor);

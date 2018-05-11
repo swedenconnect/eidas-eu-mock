@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -31,10 +31,14 @@ import org.opensaml.saml1.core.SubjectConfirmationData;
 import org.opensaml.xml.schema.impl.XSAnyBuilder;
 import org.w3c.dom.Document;
 
-/** Test for {@link SubjectConfirmation}. */
+/**
+ * Test for {@link SubjectConfirmation}.
+ */
 public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
     private String fullElementsFile;
@@ -53,7 +57,9 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         qname = new QName(SAMLConstants.SAML1_NS, SubjectConfirmation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +67,9 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
                 .getResourceAsStream(fullElementsFile));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) unmarshallElement(singleElementFile);
 
@@ -71,7 +79,9 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
                 .getSubjectConfirmationData());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // No attributes
     }
@@ -86,12 +96,16 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         assertNotNull("Zero child SubjectConfirmationData elements", subjectConfirmation.getSubjectConfirmationData());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // No attributes
     }
@@ -106,7 +120,7 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         QName oqname = new QName(SAMLConstants.SAML1_NS, ConfirmationMethod.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         subjectConfirmation.getConfirmationMethods().add((ConfirmationMethod) buildXMLObject(oqname));
         subjectConfirmation.getConfirmationMethods().add((ConfirmationMethod) buildXMLObject(oqname));
-        
+
         XSAnyBuilder proxyBuilder = new XSAnyBuilder();
         oqname = new QName(SAMLConstants.SAML1_NS, SubjectConfirmationData.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         subjectConfirmation.setSubjectConfirmationData(proxyBuilder.buildObject(oqname));

@@ -24,24 +24,26 @@ import java.util.Set;
  */
 public class EngineInstance {
     private String name;
-    private List<InstanceConfiguration> configurations=new ArrayList<InstanceConfiguration>();
-    private Set<String> configurationNames=new HashSet<String>();
+    private List<InstanceConfiguration> configurations = new ArrayList<InstanceConfiguration>();
+    private Set<String> configurationNames = new HashSet<String>();
+
     public List<InstanceConfiguration> getConfigurations() {
         return configurations;
     }
 
     public void setConfigurations(List<InstanceConfiguration> configurations) {
-        if(configurations==null) {
+        if (configurations == null) {
             return;
         }
-        this.configurations=new ArrayList<InstanceConfiguration>();
-        configurationNames=new HashSet<String>();
-        for(InstanceConfiguration config:configurations){
+        this.configurations = new ArrayList<InstanceConfiguration>();
+        configurationNames = new HashSet<String>();
+        for (InstanceConfiguration config : configurations) {
             addConfiguration(config);
         }
     }
-    public void addConfiguration(InstanceConfiguration config){
-        if(config.getName()!=null && !config.getName().isEmpty() && !configurationNames.contains(config.getName())) {
+
+    public void addConfiguration(InstanceConfiguration config) {
+        if (config.getName() != null && !config.getName().isEmpty() && !configurationNames.contains(config.getName())) {
             this.configurations.add(config);
             configurationNames.add(config.getName());
         }

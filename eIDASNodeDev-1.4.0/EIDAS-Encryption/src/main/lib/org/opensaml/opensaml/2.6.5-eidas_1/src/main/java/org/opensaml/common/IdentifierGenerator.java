@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -19,21 +19,21 @@ package org.opensaml.common;
 
 /**
  * Interface for identifier generators.  This identifier can be used for things like
- * digital signature identifiers, opaque principal identifiers, etc. 
+ * digital signature identifiers, opaque principal identifiers, etc.
  */
 public interface IdentifierGenerator {
 
     /**
      * Generates a 16 byte identifier.
-     * 
+     *
      * @return an hex encoded identifier
      */
     public String generateIdentifier();
-    
-    /** Generates a random identifier.
-     * 
+
+    /**
+     * Generates a random identifier.
+     *
      * @param size number of bytes in the identifier
-     * 
      * @return the hex encoded identifier
      */
     public String generateIdentifier(int size);

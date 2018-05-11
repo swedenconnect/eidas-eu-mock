@@ -31,19 +31,21 @@ import eu.eidas.auth.engine.core.stork.SPSector;
  */
 public class SPSectorImpl extends AbstractSAMLObject implements SPSector {
 
-    /** The service provider sector. */
+    /**
+     * The service provider sector.
+     */
     private String spSector;
 
     /**
      * Instantiates a new Service provider sector implementation.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected SPSectorImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                           final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
@@ -51,11 +53,10 @@ public class SPSectorImpl extends AbstractSAMLObject implements SPSector {
      * Gets the service provider sector.
      *
      * @return the SP sector
-     *
      * @see eu.eidas.auth.engine.core.SPSector#getSPSector()
      */
     public final String getSPSector() {
-	return spSector;
+        return spSector;
     }
 
 
@@ -65,7 +66,7 @@ public class SPSectorImpl extends AbstractSAMLObject implements SPSector {
      * @param newSpSector the new service provider sector
      */
     public final void setSPSector(final String newSpSector) {
-	this.spSector = prepareForAssignment(this.spSector, newSpSector);
+        this.spSector = prepareForAssignment(this.spSector, newSpSector);
     }
 
 
@@ -75,7 +76,7 @@ public class SPSectorImpl extends AbstractSAMLObject implements SPSector {
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	    return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
     @Override

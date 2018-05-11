@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.validator;
@@ -30,12 +30,16 @@ import org.opensaml.xml.validation.Validator;
  */
 public class AttributeConsumingServiceSchemaValidator implements Validator<AttributeConsumingService> {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AttributeConsumingServiceSchemaValidator() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AttributeConsumingService attributeConsumingService) throws ValidationException {
         validateIndex(attributeConsumingService);
         validateServiceNames(attributeConsumingService);
@@ -44,7 +48,7 @@ public class AttributeConsumingServiceSchemaValidator implements Validator<Attri
 
     /**
      * Checks that Index is positive.
-     * 
+     *
      * @param attributeConsumingService
      * @throws ValidationException
      */
@@ -56,7 +60,7 @@ public class AttributeConsumingServiceSchemaValidator implements Validator<Attri
 
     /**
      * Checks that one or more Service Names are present.
-     * 
+     *
      * @param attributeConsumingService
      * @throws ValidationException
      */
@@ -68,7 +72,7 @@ public class AttributeConsumingServiceSchemaValidator implements Validator<Attri
 
     /**
      * Checks that one or more Requested Attributes are present.
-     * 
+     *
      * @param attributeConsumingService
      * @throws ValidationException
      */

@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -34,18 +34,17 @@ import org.apache.velocity.test.misc.TestLogChute;
  * Make sure that a forward referenced macro inside another macro definition does
  * not report an error in the log.
  * (VELOCITY-71).
- * 
+ *
  * @author <a href="mailto:henning@apache.org">Henning P. Schmiedehausen</a>
  * @version $Id: MacroForwardDefineTestCase.java 832247 2009-11-03 01:29:30Z wglass $
  */
-public class MacroForwardDefineTestCase 
-        extends BaseTestCase
-{
-   /**
-    * Path for templates. This property will override the
-    * value in the default velocity properties file.
-    */
-   private final static String FILE_RESOURCE_LOADER_PATH = TEST_COMPARE_DIR + "/macroforwarddefine";
+public class MacroForwardDefineTestCase
+        extends BaseTestCase {
+    /**
+     * Path for templates. This property will override the
+     * value in the default velocity properties file.
+     */
+    private final static String FILE_RESOURCE_LOADER_PATH = TEST_COMPARE_DIR + "/macroforwarddefine";
 
     /**
      * Results relative to the build directory.
@@ -63,42 +62,38 @@ public class MacroForwardDefineTestCase
     private TestLogChute logger = new TestLogChute();
 
     VelocityEngine engine;
-    
+
     /**
      * Default constructor.
      */
-    public MacroForwardDefineTestCase(String name)
-    {
+    public MacroForwardDefineTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-        throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULTS_DIR);
 
         engine = new VelocityEngine();
-        
+
         // use Velocity.setProperty (instead of properties file) so that we can use actual instance of log
-        engine.setProperty(RuntimeConstants.RESOURCE_LOADER,"file");
-        engine.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH );
-        engine.setProperty(RuntimeConstants.RUNTIME_LOG_REFERENCE_LOG_INVALID,"true");
+        engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "file");
+        engine.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
+        engine.setProperty(RuntimeConstants.RUNTIME_LOG_REFERENCE_LOG_INVALID, "true");
 
         // actual instance of logger
         logger = new TestLogChute(true, false);
-        engine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM,logger);
+        engine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM, logger);
         engine.setProperty(TestLogChute.TEST_LOGGER_LEVEL, "debug");
         engine.init();
     }
 
-    public static Test suite()
-    {
-       return new TestSuite(MacroForwardDefineTestCase.class);
+    public static Test suite() {
+        return new TestSuite(MacroForwardDefineTestCase.class);
     }
 
     public void testLogResult()
-        throws Exception
-    {
+            throws Exception {
         VelocityContext context = new VelocityContext();
         Template template = engine.getTemplate("macros.vm");
 
@@ -108,14 +103,13 @@ public class MacroForwardDefineTestCase
         logger.stopCapture();
 
         String resultLog = logger.getLog();
-        if ( !isMatch(resultLog, COMPARE_DIR, "velocity.log", "cmp"))
-        {
+        if (!isMatch(resultLog, COMPARE_DIR, "velocity.log", "cmp")) {
             String compare = getFileContents(COMPARE_DIR, "velocity.log", CMP_FILE_EXT);
 
-            String msg = "Log output was incorrect\n"+
-                "-----Result-----\n"+ resultLog +
-                "----Expected----\n"+ compare +
-                "----------------";
+            String msg = "Log output was incorrect\n" +
+                    "-----Result-----\n" + resultLog +
+                    "----Expected----\n" + compare +
+                    "----------------";
 
             fail(msg);
         }

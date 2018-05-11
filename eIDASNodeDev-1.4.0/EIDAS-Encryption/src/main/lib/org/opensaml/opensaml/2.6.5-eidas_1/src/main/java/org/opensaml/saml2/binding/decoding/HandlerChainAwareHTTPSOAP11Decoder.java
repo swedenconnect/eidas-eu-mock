@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,10 +34,14 @@ import org.slf4j.LoggerFactory;
  */
 public class HandlerChainAwareHTTPSOAP11Decoder extends HTTPSOAP11Decoder implements HandlerChainAware {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HandlerChainAwareHTTPSOAP11Decoder.class);
 
-    /** Constructor.  */
+    /**
+     * Constructor.
+     */
     public HandlerChainAwareHTTPSOAP11Decoder() {
         super();
     }
@@ -53,24 +57,26 @@ public class HandlerChainAwareHTTPSOAP11Decoder extends HTTPSOAP11Decoder implem
 
     // TODO: The rest of the methods here are copied from BaseHandlerChainAwareMessageDecoder and
     // should drop out once the SAML decoders are aligned to that base class.
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void decode(MessageContext messageContext) throws MessageDecodingException, SecurityException {
         log.debug("Beginning to decode message from inbound transport of type: {}", messageContext
                 .getInboundMessageTransport().getClass().getName());
-        
+
         doDecode(messageContext);
-        
+
         logDecodedMessage(messageContext);
 
         processPreSecurityInboundHandlerChain(messageContext);
         log.debug("Successfully processed pre-SecurityPolicy inbound handler chain.");
-        
+
         processSecurityPolicy(messageContext);
 
         processPostSecurityInboundHandlerChain(messageContext);
         log.debug("Successfully processed post-SecurityPolicy inbound handler chain.");
-        
+
         log.debug("Successfully decoded message.");
 
         // TODO: This gets executed by BaseSAML2MessageDecoder. Probably needs to be
@@ -80,7 +86,7 @@ public class HandlerChainAwareHTTPSOAP11Decoder extends HTTPSOAP11Decoder implem
 
     /**
      * Process the pre-SecurityPolicy inbound {@link HandlerChain} for the message context, if any.
-     * 
+     *
      * @param messageContext the message context to process
      * @throws MessageDecodingException thrown if a handler indicates a problem handling the message
      */
@@ -101,10 +107,10 @@ public class HandlerChainAwareHTTPSOAP11Decoder extends HTTPSOAP11Decoder implem
             }
         }
     }
-    
+
     /**
      * Process the post-SecurityPolicy inbound {@link HandlerChain} for the message context, if any.
-     * 
+     *
      * @param messageContext the message context to process
      * @throws MessageDecodingException thrown if a handler indicates a problem handling the message
      */
@@ -125,13 +131,12 @@ public class HandlerChainAwareHTTPSOAP11Decoder extends HTTPSOAP11Decoder implem
             }
         }
     }
-    
+
     /**
      * Invoke a handler chain on the specified message context.
-     * 
-     * @param handlerChain the handle chain to invoke
+     *
+     * @param handlerChain   the handle chain to invoke
      * @param messageContext the message context to process
-     * 
      * @throws HandlerException if handler chain encountered a problem handling the message context
      */
     protected void invokeHandlerChain(HandlerChain handlerChain, MessageContext messageContext)

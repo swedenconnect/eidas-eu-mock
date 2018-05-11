@@ -16,7 +16,7 @@ package org.apache.velocity.runtime;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.parser.Parser;
@@ -31,22 +31,24 @@ import org.apache.velocity.runtime.parser.Parser;
  * @version $Id: RuntimeInstance.java 384374 2006-03-08 23:19:30Z nbubna $
  * @since 1.5
  */
-public interface ParserPool
-{
+public interface ParserPool {
     /**
      * Initialize the pool so that it can begin serving parser instances.
+     *
      * @param svc
      */
     void initialize(RuntimeServices svc);
 
     /**
      * Retrieve an instance of a parser pool.
+     *
      * @return A parser object.
      */
     Parser get();
 
     /**
      * Return the parser to the pool so that it may be reused.
+     *
      * @param parser
      */
     void put(Parser parser);

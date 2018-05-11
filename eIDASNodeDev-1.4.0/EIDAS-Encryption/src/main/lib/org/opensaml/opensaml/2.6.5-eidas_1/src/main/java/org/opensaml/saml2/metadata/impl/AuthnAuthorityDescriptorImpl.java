@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -36,21 +36,27 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class AuthnAuthorityDescriptorImpl extends RoleDescriptorImpl implements AuthnAuthorityDescriptor {
 
-    /** AuthnQueryService endpoints. */
+    /**
+     * AuthnQueryService endpoints.
+     */
     private final XMLObjectChildrenList<AuthnQueryService> authnQueryServices;
 
-    /** AuthnQueryService endpoints. */
+    /**
+     * AuthnQueryService endpoints.
+     */
     private final XMLObjectChildrenList<AssertionIDRequestService> assertionIDRequestServices;
 
-    /** NameID formats supported by this descriptor. */
+    /**
+     * NameID formats supported by this descriptor.
+     */
     private final XMLObjectChildrenList<NameIDFormat> nameIDFormats;
 
     /**
      * Constructor .
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AuthnAuthorityDescriptorImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -59,41 +65,53 @@ public class AuthnAuthorityDescriptorImpl extends RoleDescriptorImpl implements 
         nameIDFormats = new XMLObjectChildrenList<NameIDFormat>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AuthnQueryService> getAuthnQueryServices() {
         return authnQueryServices;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AssertionIDRequestService> getAssertionIDRequestServices() {
         return assertionIDRequestServices;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<NameIDFormat> getNameIDFormats() {
         return nameIDFormats;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints() {
         List<Endpoint> endpoints = new ArrayList<Endpoint>();
         endpoints.addAll(authnQueryServices);
         endpoints.addAll(assertionIDRequestServices);
         return Collections.unmodifiableList(endpoints);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints(QName type) {
-        if(type.equals(AuthnQueryService.DEFAULT_ELEMENT_NAME)){
+        if (type.equals(AuthnQueryService.DEFAULT_ELEMENT_NAME)) {
             return Collections.unmodifiableList(new ArrayList<Endpoint>(authnQueryServices));
-        }else if(type.equals(AssertionIDRequestService.DEFAULT_ELEMENT_NAME)){
+        } else if (type.equals(AssertionIDRequestService.DEFAULT_ELEMENT_NAME)) {
             return Collections.unmodifiableList(new ArrayList<Endpoint>(assertionIDRequestServices));
         }
-        
+
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

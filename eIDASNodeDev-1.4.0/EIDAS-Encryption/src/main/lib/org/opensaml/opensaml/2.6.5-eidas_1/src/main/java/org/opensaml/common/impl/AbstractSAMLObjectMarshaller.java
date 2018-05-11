@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,7 +34,7 @@ public abstract class AbstractSAMLObjectMarshaller extends AbstractXMLObjectMars
     /**
      * No-op method. Extending implementations should override this method if they have attributes to marshall into the
      * Element.
-     * 
+     * <p>
      * {@inheritDoc}
      */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
@@ -44,14 +44,16 @@ public abstract class AbstractSAMLObjectMarshaller extends AbstractXMLObjectMars
     /**
      * No-op method. Extending implementations should override this method if they have text content to marshall into
      * the Element.
-     * 
+     * <p>
      * {@inheritDoc}
      */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Element marshall(XMLObject xmlObject, Document document) throws MarshallingException {
         if (xmlObject instanceof SignableSAMLObject) {
             SAMLObjectHelper.declareNonVisibleNamespaces((SignableSAMLObject) xmlObject);
@@ -59,13 +61,15 @@ public abstract class AbstractSAMLObjectMarshaller extends AbstractXMLObjectMars
         return super.marshall(xmlObject, document);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Element marshall(XMLObject xmlObject, Element parentElement) throws MarshallingException {
         if (xmlObject instanceof SignableSAMLObject) {
             SAMLObjectHelper.declareNonVisibleNamespaces((SignableSAMLObject) xmlObject);
         }
         return super.marshall(xmlObject, parentElement);
     }
-    
-    
+
+
 }

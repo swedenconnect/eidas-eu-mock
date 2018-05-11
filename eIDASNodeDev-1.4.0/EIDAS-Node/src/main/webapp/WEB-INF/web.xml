@@ -42,9 +42,9 @@
         <auth-constraint/>
     </security-constraint>
     <filter>
-       <filter-name>jersey</filter-name>
-       <filter-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</filter-class>
-     </filter>
+        <filter-name>jersey</filter-name>
+        <filter-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</filter-class>
+    </filter>
     <filter>
         <filter-name>securityFilter</filter-name>
         <filter-class>eu.eidas.node.security.SecurityRequestFilter</filter-class>
@@ -99,18 +99,18 @@
         <param-value>en_UK</param-value>
     </context-param>
 
-	<context-param>
-		<param-name>resteasy.scan</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<param-name>resteasy.scan.providers</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<param-name>resteasy.scan.resources</param-name>
-		<param-value>false</param-value>
-	</context-param>
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.providers</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.resources</param-name>
+        <param-value>false</param-value>
+    </context-param>
     <context-param>
         <param-name>buildDate</param-name>
         <param-value>${timestamp}</param-value>
@@ -126,7 +126,7 @@
 
     <!-- Spring request listener : used by struts -->
     <listener>
-            <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
     <!-- ****************** -->
@@ -234,7 +234,7 @@
         <url-pattern>/ColleagueRequest</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>CitizenConsentServlet</servlet-name>
+        <servlet-name>CitizenConsentServlet</servlet-name>
         <url-pattern>/CitizenConsent</url-pattern>
     </servlet-mapping>
 
@@ -4396,7 +4396,7 @@
         <extension>zmm</extension>
         <mime-type>application/vnd.handheld-entertainment+xml</mime-type>
     </mime-mapping>
-	<!-- for Clustering
-	<distributable/>
-	-->
+    <!-- for Clustering
+    <distributable/>
+    -->
 </web-app>

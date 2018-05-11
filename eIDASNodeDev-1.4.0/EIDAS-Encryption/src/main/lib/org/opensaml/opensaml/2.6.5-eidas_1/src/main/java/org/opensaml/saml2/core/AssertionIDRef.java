@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,23 +27,27 @@ import org.opensaml.common.xml.SAMLConstants;
  */
 public interface AssertionIDRef extends SAMLObject, Evidentiary {
 
-    /** Element local name. */
+    /**
+     * Element local name.
+     */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "AssertionIDRef";
 
-    /** Default element name. */
+    /**
+     * Default element name.
+     */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML20_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             SAMLConstants.SAML20_PREFIX);
 
     /**
      * Gets the ID of the assertion this references.
-     * 
+     *
      * @return the ID of the assertion this references
      */
     public String getAssertionID();
 
     /**
      * Sets the ID of the assertion this references.
-     * 
+     *
      * @param newID the ID of the assertion this references
      */
     public void setAssertionID(String newID);

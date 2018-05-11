@@ -28,25 +28,26 @@ import eu.eidas.auth.engine.core.eidas.RequestedAttributes;
 
 /**
  * The Class RequestedAttributesImpl.
- *
  */
 public class RequestedAttributesImpl extends AbstractSAMLObject implements
-	RequestedAttributes {
+        RequestedAttributes {
 
     /**
      * Instantiates a new requested attributes implement.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected RequestedAttributesImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
-	indexedChildren = new IndexedXMLObjectChildrenList<XMLObject>(this);
+                                      final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
+        indexedChildren = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
 
-    /** The indexed children. */
+    /**
+     * The indexed children.
+     */
     private final IndexedXMLObjectChildrenList<XMLObject> indexedChildren;
 
     /**
@@ -55,7 +56,7 @@ public class RequestedAttributesImpl extends AbstractSAMLObject implements
      * @return the indexed children
      */
     public final IndexedXMLObjectChildrenList<XMLObject> getIndexedChildren() {
-	return indexedChildren;
+        return indexedChildren;
     }
 
 
@@ -66,11 +67,11 @@ public class RequestedAttributesImpl extends AbstractSAMLObject implements
      */
     public final List<XMLObject> getOrderedChildren() {
 
-	final List<XMLObject> children = new ArrayList<XMLObject>();
+        final List<XMLObject> children = new ArrayList<XMLObject>();
 
-	children.addAll(indexedChildren);
+        children.addAll(indexedChildren);
 
-	return Collections.unmodifiableList(children);
+        return Collections.unmodifiableList(children);
 
     }
 
@@ -78,13 +79,12 @@ public class RequestedAttributesImpl extends AbstractSAMLObject implements
      * Gets the attributes.
      *
      * @return the attributes
-     *
      * @see RequestedAttributes#getAttributes()
      */
     @SuppressWarnings("unchecked")
     public final List<RequestedAttribute> getAttributes() {
-	return (List<RequestedAttribute>) indexedChildren
-		.subList(RequestedAttribute.DEF_ELEMENT_NAME);
+        return (List<RequestedAttribute>) indexedChildren
+                .subList(RequestedAttribute.DEF_ELEMENT_NAME);
     }
 
     @Override

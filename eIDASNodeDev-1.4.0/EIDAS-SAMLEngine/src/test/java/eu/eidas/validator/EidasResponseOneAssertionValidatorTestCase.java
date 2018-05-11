@@ -50,7 +50,6 @@ import eu.eidas.engine.exceptions.EIDASSAMLEngineException;
 
 /**
  * Functional testing class to {@link eu.eidas.auth.engine.core.validator.eidas.EidasResponseOneAssertionValidator}.
- *
  */
 
 public class EidasResponseOneAssertionValidatorTestCase {
@@ -60,7 +59,6 @@ public class EidasResponseOneAssertionValidatorTestCase {
 
     /**
      * Need to load the EIDASSAMLEngine.
-     *
      */
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -98,7 +96,6 @@ public class EidasResponseOneAssertionValidatorTestCase {
      * {@link EidasResponseOneAssertionValidator#validate(Response response)}
      * . Testing with wrong number of AttributeStatement in an Assertion. Must throw a
      * {@link ValidationException} with a specific message.
-     *
      */
     @Test
     public void testOneAuthnStatementZeroAttributeStatementInResponseAssertion() throws ValidationException, EIDASSAMLEngineException {
@@ -114,7 +111,6 @@ public class EidasResponseOneAssertionValidatorTestCase {
      * {@link EidasResponseOneAssertionValidator#validate(Response response)}
      * . Testing with wrong number of AttributeStatement in an Assertion. Must throw a
      * {@link ValidationException} with a specific message.
-     *
      */
     @Test
     public void testZeroAuthnStatementOneAttributeStatementInResponseAssertion() throws ValidationException, EIDASSAMLEngineException {
@@ -130,7 +126,6 @@ public class EidasResponseOneAssertionValidatorTestCase {
      * {@link EidasResponseOneAssertionValidator#validate(Response response)}
      * . Testing with wrong number of authStatement in Assertion. Must throw a
      * {@link ValidationException} with a specific message.
-     *
      */
     @Test
     public void testTwoAuthnStatementOneAttributeStatementInResponseAssertion() throws ValidationException, EIDASSAMLEngineException {
@@ -146,7 +141,6 @@ public class EidasResponseOneAssertionValidatorTestCase {
      * {@link EidasResponseOneAssertionValidator#validate(Response response)}
      * . Testing with wrong number of attributeStatement in an Assertion. Must throw a
      * {@link ValidationException} with a specific message.
-     *
      */
     @Test
     public void testOneAuthnStatementTwoAttributeStatementInResponseAssertion() throws ValidationException, EIDASSAMLEngineException {
@@ -162,12 +156,9 @@ public class EidasResponseOneAssertionValidatorTestCase {
      * {@link EidasResponseOneAssertionValidator#validate(Response response)}
      * a response must be generated.
      *
-     * @param numberAssertions  The number of Assertions to be generated.
-     *
-     * @param numberAuthnStatements  The number of AuthnStatements to be generated.
-     *
-     * @param numberAttributeStatements  The number of AttributeStatements to be generated.
-     *
+     * @param numberAssertions          The number of Assertions to be generated.
+     * @param numberAuthnStatements     The number of AuthnStatements to be generated.
+     * @param numberAttributeStatements The number of AttributeStatements to be generated.
      * @return The response.
      */
     private Response generateTestResponse(int numberAssertions, int numberAuthnStatements, int numberAttributeStatements) throws EIDASSAMLEngineException {
@@ -195,7 +186,7 @@ public class EidasResponseOneAssertionValidatorTestCase {
      * @return The list of assertions.
      */
     private List<Assertion> generateAssertion(int numberAssertions) throws EIDASSAMLEngineException {
-         List<Assertion> output = new ArrayList<Assertion>();
+        List<Assertion> output = new ArrayList<Assertion>();
         for (int i = 0; i < numberAssertions; i++) {
             final Issuer issuerAssertion = BuilderFactoryUtil.generateIssuer();
             final Assertion assertion = BuilderFactoryUtil.generateAssertion(
@@ -212,8 +203,7 @@ public class EidasResponseOneAssertionValidatorTestCase {
      * {@link EidasResponseOneAssertionValidator#validate(Response response)}
      * a list of authn statements must be generated to be included in an assertion.
      *
-     * @param numberStatements  The number Statements to be generated.
-     *
+     * @param numberStatements The number Statements to be generated.
      * @return The list of authn statements.
      */
     private List<AuthnStatement> generateAuthnStatements(int numberStatements) throws EIDASSAMLEngineException {
@@ -229,13 +219,12 @@ public class EidasResponseOneAssertionValidatorTestCase {
         return output;
     }
 
-     /**
+    /**
      * In order to test the
      * {@link EidasResponseOneAssertionValidator#validate(Response response)}
      * a list of attribute statements must be generated to be included in an assertion.
      *
-     * @param numberStatements  The number Statements to be generated.
-     *
+     * @param numberStatements The number Statements to be generated.
      * @return The list of attribute statements.
      */
     private List<AttributeStatement> generateAttributeStatements(int numberStatements) throws EIDASSAMLEngineException {

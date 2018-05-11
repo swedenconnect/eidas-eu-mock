@@ -25,37 +25,41 @@ import eu.eidas.config.impl.EIDASNodeConfFile;
  * stores metadata information and performs operation on it
  */
 public abstract class EIDASNodeMetaconfigProvider {
-    private Map<String, EIDASNodeParameterMeta> parameterMap=new HashMap<String, EIDASNodeParameterMeta>();
-    private List<String> parameterOrder=new ArrayList<String>();
-    private Map<String, List<EIDASNodeParameterMeta>> categorizedParameters=new HashMap<String, List<EIDASNodeParameterMeta>>();
-    private List<EIDASNodeParameterCategory> categories=new ArrayList<EIDASNodeParameterCategory>();
-    public void addMetadata(String paramName, EIDASNodeParameterMeta parameter){
+    private Map<String, EIDASNodeParameterMeta> parameterMap = new HashMap<String, EIDASNodeParameterMeta>();
+    private List<String> parameterOrder = new ArrayList<String>();
+    private Map<String, List<EIDASNodeParameterMeta>> categorizedParameters = new HashMap<String, List<EIDASNodeParameterMeta>>();
+    private List<EIDASNodeParameterCategory> categories = new ArrayList<EIDASNodeParameterCategory>();
+
+    public void addMetadata(String paramName, EIDASNodeParameterMeta parameter) {
         parameterMap.put(paramName, parameter);
         parameterOrder.add(paramName);
     }
-    public List<EIDASNodeParameterCategory> getCategories(){
+
+    public List<EIDASNodeParameterCategory> getCategories() {
         return categories;
     }
-    public EIDASNodeParameterMeta getMetadata(String parameterName){
+
+    public EIDASNodeParameterMeta getMetadata(String parameterName) {
         return parameterMap.get(parameterName);
     }
-    public List<EIDASNodeParameterMeta> getCategoryParameter(String categoryName){
+
+    public List<EIDASNodeParameterMeta> getCategoryParameter(String categoryName) {
         return getCategorizedParameters().get(categoryName);
     }
 
     public Map<String, List<EIDASNodeParameterMeta>> getCategorizedParameters() {
-        if(categorizedParameters.isEmpty()){
-            synchronized (EIDASNodeMetaconfigProvider.class){
-                if(categorizedParameters.isEmpty()) {
-                    for(EIDASNodeParameterCategory c:categories){
+        if (categorizedParameters.isEmpty()) {
+            synchronized (EIDASNodeMetaconfigProvider.class) {
+                if (categorizedParameters.isEmpty()) {
+                    for (EIDASNodeParameterCategory c : categories) {
                         categorizedParameters.put(c.getName(), new ArrayList<EIDASNodeParameterMeta>());
                     }
 
-                    for(String paramName:parameterOrder){
+                    for (String paramName : parameterOrder) {
                         EIDASNodeParameterMeta p = parameterMap.get(paramName);
-                        if(p!=null){
-                            for(String categoryName:p.getCategories()){
-                                if(categorizedParameters.containsKey(categoryName)){
+                        if (p != null) {
+                            for (String categoryName : p.getCategories()) {
+                                if (categorizedParameters.containsKey(categoryName)) {
                                     categorizedParameters.get(categoryName).add(p);
                                 }
                             }
@@ -71,5 +75,6 @@ public abstract class EIDASNodeMetaconfigProvider {
     public void setCategorizedParameters(Map<String, List<EIDASNodeParameterMeta>> categorizedParameter) {
         this.categorizedParameters = categorizedParameter;
     }
+
     public abstract EIDASNodeConfFile getDefaultConfFile();
 }

@@ -47,7 +47,7 @@ public class CertificateException extends Exception {
      * Instantiates a new CertificateException engine exception.
      *
      * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
-     * value is permitted, and indicates that the cause is nonexistent or unknown.)
+     *              value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
     public CertificateException(Throwable cause) {
         super(cause);
@@ -66,8 +66,8 @@ public class CertificateException extends Exception {
      * Instantiates a new CertificateException engine exception.
      *
      * @param message the detail message (which is saved for later retrieval by the {@link #getMessage()} method).
-     * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
-     * value is permitted, and indicates that the cause is nonexistent or unknown.)
+     * @param cause   the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
+     *                value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
     public CertificateException(String message, Throwable cause) {
         super(message, cause);
@@ -90,8 +90,8 @@ public class CertificateException extends Exception {
      *
      * @param newErrorCode the error code
      * @param errorMessage the error message
-     * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
-     * value is permitted, and indicates that the cause is nonexistent or unknown.)
+     * @param cause        the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
+     *                     value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
     public CertificateException(String newErrorCode, String errorMessage, Throwable cause) {
         super(errorMessage, cause);
@@ -102,8 +102,8 @@ public class CertificateException extends Exception {
     /**
      * Instantiates a new CertificateException engine exception.
      *
-     * @param newErrorCode the error code
-     * @param errorMessage the error message
+     * @param newErrorCode   the error code
+     * @param errorMessage   the error message
      * @param newErrorDetail the error detail
      */
     public CertificateException(String newErrorCode, String errorMessage, String newErrorDetail) {

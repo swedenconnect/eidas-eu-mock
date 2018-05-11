@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -31,17 +31,20 @@ import org.opensaml.saml2.core.Evidence;
  *
  */
 public class AuthzDecisionQueryTest extends SubjectQueryTestBase {
-    
-    /** Expected Resource attribute value */
+
+    /**
+     * Expected Resource attribute value
+     */
     private String expectedResource;
-    
-    /** Expected number of Action child elements */
+
+    /**
+     * Expected number of Action child elements
+     */
     private int expectedNumActions;
-    
+
 
     /**
      * Constructor
-     *
      */
     public AuthzDecisionQueryTest() {
         super();
@@ -50,79 +53,91 @@ public class AuthzDecisionQueryTest extends SubjectQueryTestBase {
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AuthzDecisionQueryChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedResource = "urn:string:resource";
         expectedNumActions = 2;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, AuthzDecisionQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         AuthzDecisionQuery query = (AuthzDecisionQuery) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(query);
         query.setResource(expectedResource);
-        
+
         assertEquals(expectedDOM, query);
     }
-    
-    
-    
-    /** {@inheritDoc} */
+
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, AuthzDecisionQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         AuthzDecisionQuery query = (AuthzDecisionQuery) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(query);
         super.populateOptionalAttributes(query);
         query.setResource(expectedResource);
-        
+
         assertEquals(expectedOptionalAttributesDOM, query);
     }
-    
-    
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, AuthzDecisionQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         AuthzDecisionQuery query = (AuthzDecisionQuery) buildXMLObject(qname);
-        
+
         super.populateChildElements(query);
-        
+
         QName actionQName = new QName(SAMLConstants.SAML20_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
-        for (int i=0; i<expectedNumActions; i++){
+        for (int i = 0; i < expectedNumActions; i++) {
             query.getActions().add((Action) buildXMLObject(actionQName));
         }
-        
+
         QName evidenceQName = new QName(SAMLConstants.SAML20_NS, Evidence.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         query.setEvidence((Evidence) buildXMLObject(evidenceQName));
-        
+
         assertEquals(expectedChildElementsDOM, query);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AuthzDecisionQuery query = (AuthzDecisionQuery) unmarshallElement(singleElementFile);
-        
+
         assertNotNull("AuthzDecisionQuery was null", query);
         assertEquals("Unmarshalled Resource attribute was not the expected value", expectedResource, query.getResource());
         super.helperTestSingleElementUnmarshall(query);
 
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AuthzDecisionQuery query = (AuthzDecisionQuery) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         super.helperTestSingleElementOptionalAttributesUnmarshall(query);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AuthzDecisionQuery query = (AuthzDecisionQuery) unmarshallElement(childElementsFile);
-        
+
         assertEquals("Action count", expectedNumActions, query.getActions().size());
         assertNotNull("Evidence was null", query.getEvidence());
         super.helperTestChildElementsUnmarshall(query);

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.samlext.mdui;
 
@@ -31,38 +31,46 @@ import org.opensaml.samlext.saml2mdui.UIInfo;
  * {@link org.opensaml.saml2.metadata.OrganizationName}.
  */
 public class DomainHintTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected name. */
+
+    /**
+     * Expected name.
+     */
     private String expectedHint;
-    
+
     /**
      * Constructor.
      */
     public DomainHintTest() {
         singleElementFile = "/data/org/opensaml/samlext/mdui/DomainHint.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedHint = ".ed.ac.uk";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         DomainHint hint = (DomainHint) unmarshallElement(singleElementFile);
-        
+
         assertEquals("Name was not expected value", expectedHint, hint.getHint());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
-        QName qname = new QName(UIInfo.MDUI_NS, 
-                                DomainHint.DEFAULT_ELEMENT_LOCAL_NAME, 
-                                UIInfo.MDUI_PREFIX);
-        
+        QName qname = new QName(UIInfo.MDUI_NS,
+                DomainHint.DEFAULT_ELEMENT_LOCAL_NAME,
+                UIInfo.MDUI_PREFIX);
+
         DomainHint hint = (DomainHint) buildXMLObject(qname);
-        
+
         hint.setHint(expectedHint);
 
         assertEquals(expectedDOM, hint);

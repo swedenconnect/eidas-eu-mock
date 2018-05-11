@@ -196,7 +196,7 @@ public abstract class AbstractStorkAuthenticationRequest extends AbstractAuthent
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         @Override
         protected final void validate() throws IllegalArgumentException {
@@ -208,7 +208,7 @@ public abstract class AbstractStorkAuthenticationRequest extends AbstractAuthent
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         protected abstract void validateOtherFields() throws IllegalArgumentException;
     }
@@ -219,48 +219,56 @@ public abstract class AbstractStorkAuthenticationRequest extends AbstractAuthent
      * The Service Provider ID.
      * <p/>
      * TODO This is probably the "provider name". TODO rename
+     *
      * @serial
      */
     private final String spId;
 
     /**
      * The Service provider sector.
+     *
      * @serial
      */
     private final String spSector;
 
     /**
      * The Service provider institution.
+     *
      * @serial
      */
     private final String spInstitution;
 
     /**
      * The Service provider application name.
+     *
      * @serial
      */
     private final String spApplication;
 
     /**
      * The e id cross border share.
+     *
      * @serial
      */
     private final boolean eidCrossBorderShare;
 
     /**
      * The e id cross sector share.
+     *
      * @serial
      */
     private final boolean eidCrossSectorShare;
 
     /**
      * The e id sector share.
+     *
      * @serial
      */
     private final boolean eidSectorShare;
 
     /**
      * The quality of assurance.
+     *
      * @serial
      */
     private final int qaa;

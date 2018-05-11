@@ -25,7 +25,7 @@ import eu.eidas.auth.commons.tx.AuthenticationExchange;
  * Interface for managing incoming requests.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.21 $, $Date: 2010-11-18 23:17:50 $
  */
 public interface ICONNECTORService {
@@ -34,7 +34,7 @@ public interface ICONNECTORService {
      * Validates the origin of the request and of the Country Selected, and creates a SAML token to send to the
      * ProxyService.
      *
-     * @param webRequest the current request.
+     * @param webRequest   the current request.
      * @param lightRequest The lightRequest received from the specific.
      * @return An authentication request.
      * @see EidasAuthenticationRequest

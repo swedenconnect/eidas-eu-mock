@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -35,12 +35,14 @@ import org.opensaml.xml.util.DatatypeHelper;
  */
 public class OrganizationURLImpl extends AbstractSAMLObject implements OrganizationURL {
 
-    /** Organization URL */
+    /**
+     * Organization URL
+     */
     private LocalizedString url;
 
     /**
      * Constructor
-     * 
+     *
      * @param namespaceURI
      * @param elementLocalName
      * @param namespacePrefix
@@ -49,12 +51,16 @@ public class OrganizationURLImpl extends AbstractSAMLObject implements Organizat
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public LocalizedString getURL() {
         return url;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setURL(LocalizedString newURL) {
         url = prepareForAssignment(url, newURL);
         boolean hasXMLLang = false;
@@ -64,7 +70,9 @@ public class OrganizationURLImpl extends AbstractSAMLObject implements Organizat
         manageQualifiedAttributeNamespace(LangBearing.XML_LANG_ATTR_NAME, hasXMLLang);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return null;
     }

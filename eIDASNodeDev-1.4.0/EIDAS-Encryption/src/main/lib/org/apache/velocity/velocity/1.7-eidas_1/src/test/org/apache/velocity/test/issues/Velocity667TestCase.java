@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,16 +24,13 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-667.  Make "#macro" throws a parse exception
  */
-public class Velocity667TestCase extends BaseTestCase
-{
-    public Velocity667TestCase(String name)
-    {
+public class Velocity667TestCase extends BaseTestCase {
+    public Velocity667TestCase(String name) {
         super(name);
     }
-  
-    public void test667()
-    {
-          assertEvalExceptionAt("#macro", 1, 1);
-          assertEvalExceptionAt("#macro #macro", 1, 1);
+
+    public void test667() {
+        assertEvalExceptionAt("#macro", 1, 1);
+        assertEvalExceptionAt("#macro #macro", 1, 1);
     }
 }

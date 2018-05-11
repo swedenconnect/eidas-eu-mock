@@ -22,76 +22,77 @@ import java.io.Serializable;
  * This class is a bean used to store the information relative to the Country.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com,
- *         luis.felix@multicert.com, hugo.magalhaes@multicert.com,
- *         paulo.ribeiro@multicert.com
+ * luis.felix@multicert.com, hugo.magalhaes@multicert.com,
+ * paulo.ribeiro@multicert.com
  * @version $Revision: 1.10 $, $Date: 2010-11-17 05:15:28 $
  */
 public final class Country implements Serializable {
-   private static final long serialVersionUID = 1135994036496370993L;
+    private static final long serialVersionUID = 1135994036496370993L;
 
-  /**
-   * Country Id.
-   */
-  private String countryId;
+    /**
+     * Country Id.
+     */
+    private String countryId;
 
-  /**
-   * Country Name.
-   */
-  private String countryName;
+    /**
+     * Country Name.
+     */
+    private String countryName;
 
-  /**
-   * Country Constructor.
-   *
-   * @param cId Id of the Country.
-   * @param cName Name of the Country.
-   */
-  public Country(final String cId, final String cName) {
+    /**
+     * Country Constructor.
+     *
+     * @param cId   Id of the Country.
+     * @param cName Name of the Country.
+     */
+    public Country(final String cId, final String cName) {
 
-    this.countryId = cId;
-    this.countryName = cName;
-  }
+        this.countryId = cId;
+        this.countryName = cName;
+    }
 
-  /**
-   * Getter for the countryId value.
-   *
-   * @return The countryId value.
-   */
-  public String getCountryId() {
+    /**
+     * Getter for the countryId value.
+     *
+     * @return The countryId value.
+     */
+    public String getCountryId() {
 
-    return countryId;
-  }
+        return countryId;
+    }
 
-  /**
-   * Setter for the countryId value.
-   *
-   * @param cId Id of the Country.
-   */
-  public void setCountryId(final String cId) {
+    /**
+     * Setter for the countryId value.
+     *
+     * @param cId Id of the Country.
+     */
+    public void setCountryId(final String cId) {
 
-    this.countryId = cId;
-  }
+        this.countryId = cId;
+    }
 
-  /**
-   * Getter for the countryName value.
-   *
-   * @return The countryName value.
-   */
-  public String getCountryName() {
+    /**
+     * Getter for the countryName value.
+     *
+     * @return The countryName value.
+     */
+    public String getCountryName() {
 
-    return countryName;
-  }
+        return countryName;
+    }
 
-  /**
-   * Setter for the countryName value.
-   *
-   * @param name Name of the Country.
-   */
-  public void setCountryName(final String name) {
+    /**
+     * Setter for the countryName value.
+     *
+     * @param name Name of the Country.
+     */
+    public void setCountryName(final String name) {
 
-    this.countryName = name;
-  }
+        this.countryName = name;
+    }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -106,7 +107,8 @@ public final class Country implements Serializable {
         return this.getCountryId().equals(country.getCountryId()) && this.getCountryName().equals(country.getCountryName());
     }
 
-    @Override public int hashCode(){
+    @Override
+    public int hashCode() {
         final int prime = 31;
         return prime * (countryId.hashCode() + countryName.hashCode());
     }

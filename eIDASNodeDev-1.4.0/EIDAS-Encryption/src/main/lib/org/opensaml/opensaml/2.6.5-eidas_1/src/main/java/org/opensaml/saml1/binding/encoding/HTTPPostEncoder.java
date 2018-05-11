@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -44,19 +44,25 @@ import org.slf4j.LoggerFactory;
  */
 public class HTTPPostEncoder extends BaseSAML1MessageEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPPostEncoder.class);
 
-    /** Velocity engine used to evaluate the template when performing POST encoding. */
+    /**
+     * Velocity engine used to evaluate the template when performing POST encoding.
+     */
     private VelocityEngine velocityEngine;
 
-    /** ID of the velocity template used when performing POST encoding. */
+    /**
+     * ID of the velocity template used when performing POST encoding.
+     */
     private String velocityTemplateId;
 
     /**
      * Constructor.
-     * 
-     * @param engine velocity engine instance used to create POST body
+     *
+     * @param engine     velocity engine instance used to create POST body
      * @param templateId ID of the template used to create POST body
      */
     public HTTPPostEncoder(VelocityEngine engine, String templateId) {
@@ -65,22 +71,30 @@ public class HTTPPostEncoder extends BaseSAML1MessageEncoder {
         velocityTemplateId = templateId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML1_POST_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageConfidentiality(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageIntegrity(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doEncode(MessageContext messageContext) throws MessageEncodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this encoder only support SAMLMessageContext");
@@ -114,10 +128,9 @@ public class HTTPPostEncoder extends BaseSAML1MessageEncoder {
 
     /**
      * Base64 and POST encodes the outbound message and writes it to the outbound transport.
-     * 
+     *
      * @param messageContext current message context
-     * @param endpointURL endpoint URL to encode message to
-     * 
+     * @param endpointURL    endpoint URL to encode message to
      * @throws MessageEncodingException thrown if there is a problem encoding the message
      */
     protected void postEncode(SAMLMessageContext messageContext, String endpointURL) throws MessageEncodingException {
@@ -152,7 +165,7 @@ public class HTTPPostEncoder extends BaseSAML1MessageEncoder {
             Writer out = new OutputStreamWriter(transportOutStream, "UTF-8");
             velocityEngine.mergeTemplate(velocityTemplateId, "UTF-8", context, out);
             out.flush();
-        }catch(UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e) {
             log.error("UTF-8 encoding is not supported, this VM is not Java compliant.");
             throw new MessageEncodingException("Unable to encode message, UTF-8 encoding is not supported");
         } catch (Exception e) {

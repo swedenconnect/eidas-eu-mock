@@ -163,7 +163,7 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             ProtocolEngineI engine = getSamlEngine();
             LOGGER.trace("check assertion consumer url of the partner requesting this");
             LOGGER.info(LoggingMarkerMDC.SAML_EXCHANGE, "ProxyService - Generating SAML Response to request with ID {}",
-                        originalRequest.getId());
+                    originalRequest.getId());
             AuthenticationResponse.Builder authnResponseBuilder = new AuthenticationResponse.Builder(response);
 
             boolean generateSignedAssertion = Boolean.parseBoolean(serviceUtil.getConfigs() == null ? null : serviceUtil
@@ -184,7 +184,7 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             // Generate SAMLResponse.
             IResponseMessage signedResponse =
                     engine.generateResponseMessage(originalRequest, authnResponseBuilder.build(),
-                                                   generateSignedAssertion, ipAddress);
+                            generateSignedAssertion, ipAddress);
 
             // Audit
             String message = EIDASValues.SUCCESS.toString() + EIDASValues.EID_SEPARATOR.toString()
@@ -199,8 +199,8 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             LOGGER.debug("BUSINESS EXCEPTION : Error generating SAMLToken", e);
             EidasNodeErrorUtil.processSAMLEngineException(e, LOGGER, EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML);
             throw new InternalErrorEIDASException(EidasErrors.get(EidasErrorKey.SERVICE_SAML_RESPONSE.errorCode()),
-                                                  EidasErrors.get(EidasErrorKey.SERVICE_SAML_RESPONSE.errorMessage()),
-                                                  e);
+                    EidasErrors.get(EidasErrorKey.SERVICE_SAML_RESPONSE.errorMessage()),
+                    e);
         }
     }
 
@@ -208,9 +208,9 @@ public class AUSERVICESAML implements ISERVICESAMLService {
         String errorMsg;
         try {
             if (StringUtils.isNumeric(errorCode)) {
-                errorMsg = messageSource.getMessage(errorId, new Object[] {errorCode}, Locale.getDefault());
+                errorMsg = messageSource.getMessage(errorId, new Object[]{errorCode}, Locale.getDefault());
             } else {
-                errorMsg = messageSource.getMessage(errorId, new Object[] {statusCode}, Locale.getDefault());
+                errorMsg = messageSource.getMessage(errorId, new Object[]{statusCode}, Locale.getDefault());
             }
         } catch (NoSuchMessageException nme) {//NOSONAR
             errorMsg = errorCode + " - " + errorId;
@@ -249,8 +249,8 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             }
 
             LOGGER.debug(LoggingMarkerMDC.SAML_EXCHANGE,
-                         "ProxyService - Generating ERROR SAML Response to request with ID {}, error is {} {}",
-                         authData.getId(), errorCode, errorMessage);
+                    "ProxyService - Generating ERROR SAML Response to request with ID {}, error is {} {}",
+                    authData.getId(), errorCode, errorMessage);
 
             eidasAuthnResponseError.statusMessage(resolveErrorMessage(errorCode, statusCode, errorMessage));
             serviceUtil.setMetadatUrlToAuthnResponse(getServiceMetadataUrl(), eidasAuthnResponseError);
@@ -301,8 +301,8 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             EidasAuthenticationRequest.Builder eIDASAuthnRequestBuilder = null;
             // retrieve AssertionConsumerURL from the metadata
             String assertionConsumerUrl = MetadataUtil.getAssertionConsumerUrlFromMetadata(metadataFetcher,
-                                                                                     (MetadataSignerI) engine.getSigner(),
-                                                                                     authnRequest);
+                    (MetadataSignerI) engine.getSigner(),
+                    authnRequest);
             // check AssertionConsumerURL if provided in the request
             if (isNotEmpty(authnRequest.getAssertionConsumerServiceURL())) {
                 LOGGER.info("validate assertion consumer service url");
@@ -319,7 +319,7 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             //the validation which follow should be able to generate fail responses if necessary
 
             LOGGER.info(LoggingMarkerMDC.SAML_EXCHANGE, "ProxyService - Processing SAML Request with ID {}",
-                        authnRequest.getId());
+                    authnRequest.getId());
 
             checkCountryCode(authnRequest, ipUserAddress, relayState);
             checkQaa(authnRequest, ipUserAddress, relayState);
@@ -330,14 +330,14 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             LOGGER.info("validate request binding against message");
             if (validateBindingConfig.booleanValue()) {
                 EidasNodeValidationUtil.validateBinding(authnRequest,
-                                                        IncomingRequest.Method.fromString(bindingFromHttp),
-                                                        EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML);
+                        IncomingRequest.Method.fromString(bindingFromHttp),
+                        EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML);
             }
 
             //TODO refactor this destination check to ProtocolEngine after metadata is easy to access there, because it is a SAML2 requirement
             LOGGER.info("validate destination match");
             EidasNodeValidationUtil.validateServiceDestination(authnRequest, serviceUtil, bindingFromHttp,
-                                                               EidasErrorKey.COLLEAGUE_REQ_INVALID_DEST_URL);
+                    EidasErrorKey.COLLEAGUE_REQ_INVALID_DEST_URL);
 
             // Validates Connector's Redirect URL
             if (authnRequest instanceof IEidasAuthenticationRequest) {
@@ -359,12 +359,11 @@ public class AUSERVICESAML implements ISERVICESAMLService {
                         EidasNodeValidationUtil.isRequestLoAValid(authnRequest, highestLevelOfAssuranceSupported);
 
                 LOGGER.debug("Checking validation for eidas 1,0 - max loa configured {}, validate binding config {}",
-                             highestLevelOfAssuranceSupported, validateBindingConfig);
+                        highestLevelOfAssuranceSupported, validateBindingConfig);
 
                 if (!isLevelOfAssuranceSupported || !engine.getProtocolProcessor()
                         .isAcceptableHttpRequest(authnRequest,
-                                                 validateBindingConfig.booleanValue() ? bindingFromHttp : null)) {
-
+                                validateBindingConfig.booleanValue() ? bindingFromHttp : null)) {
 
 
                     String errorMsgCons;
@@ -384,11 +383,11 @@ public class AUSERVICESAML implements ISERVICESAMLService {
 
                     byte[] samlTokenFail =
                             generateErrorAuthenticationResponse(authnRequest, EIDASStatusCode.REQUESTER_URI.toString(),
-                                                                errorCode, null, errorMessage, ipUserAddress, true);
+                                    errorCode, null, errorMessage, ipUserAddress, true);
 
                     throw new ResponseCarryingServiceException(errorCode, errorMessage,
-                                                               EidasStringUtil.encodeToBase64(samlTokenFail),
-                                                               assertionConsumerUrl, relayState);
+                            EidasStringUtil.encodeToBase64(samlTokenFail),
+                            assertionConsumerUrl, relayState);
                 }
                 //put spType in the request (EIDINT-1251)
                 if (isEmpty(authnRequest.getSpType())) {
@@ -410,11 +409,11 @@ public class AUSERVICESAML implements ISERVICESAMLService {
                     String errorMessage = EidasErrors.get(EidasErrorKey.MESSAGE_FORMAT_UNSUPPORTED.errorMessage());
                     byte[] samlTokenFail =
                             generateErrorAuthenticationResponse(authnRequest, EIDASStatusCode.RESPONDER_URI.toString(),
-                                                                errorCode, null, errorMessage, ipUserAddress, true);
+                                    errorCode, null, errorMessage, ipUserAddress, true);
 
                     throw new ResponseCarryingServiceException(errorCode, errorMessage,
-                                                               EidasStringUtil.encodeToBase64(samlTokenFail),
-                                                               assertionConsumerUrl, relayState);
+                            EidasStringUtil.encodeToBase64(samlTokenFail),
+                            assertionConsumerUrl, relayState);
                 }
 
                 NormalParameterValidator.paramName(EidasParameterKeys.EIDAS_CONNECTOR_REDIRECT_URL)
@@ -435,11 +434,11 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             LOGGER.info("BUSINESS EXCEPTION : Error validating SAMLToken", e);
             if (EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorCode()).equals(e.getErrorCode())) {
                 throw new EidasNodeException(EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorCode()),
-                                             EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorMessage()), e);
+                        EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorMessage()), e);
             }
             EidasNodeErrorUtil.processSAMLEngineException(e, LOGGER, EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML);
             throw new EidasNodeException(EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()),
-                                         EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()), e);
+                    EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()), e);
         }
     }
 
@@ -449,8 +448,8 @@ public class AUSERVICESAML implements ISERVICESAMLService {
             prepareReqLoggerBean(samlObj, authnRequest);
             saveLog(AUSERVICESAML.LOGGER_COM_REQ);
             throw new SecurityEIDASException(EidasErrors.get(EidasErrorKey.SPROVIDER_SELECTOR_INVALID_SAML.errorCode()),
-                                             EidasErrors.get(
-                                                     EidasErrorKey.SPROVIDER_SELECTOR_INVALID_SAML.errorMessage()));
+                    EidasErrors.get(
+                            EidasErrorKey.SPROVIDER_SELECTOR_INVALID_SAML.errorMessage()));
         }
 
     }
@@ -466,11 +465,11 @@ public class AUSERVICESAML implements ISERVICESAMLService {
 
             byte[] samlTokenFail =
                     generateErrorAuthenticationResponse(authnRequest, EIDASStatusCode.REQUESTER_URI.toString(),
-                                                        errorCode, null, errorMessage, ipUserAddress, true);
+                            errorCode, null, errorMessage, ipUserAddress, true);
 
             throw new ResponseCarryingServiceException(errorCode, errorMessage,
-                                                       EidasStringUtil.encodeToBase64(samlTokenFail),
-                                                       authnRequest.getAssertionConsumerServiceURL(), relayState);
+                    EidasStringUtil.encodeToBase64(samlTokenFail),
+                    authnRequest.getAssertionConsumerServiceURL(), relayState);
         }
     }
 
@@ -484,13 +483,13 @@ public class AUSERVICESAML implements ISERVICESAMLService {
 
                 byte[] samlTokenFail =
                         generateErrorAuthenticationResponse(authnRequest, EIDASStatusCode.REQUESTER_URI.toString(),
-                                                            null, EIDASSubStatusCode.QAA_NOT_SUPPORTED.toString(),
-                                                            EidasErrors.get(errorMsgCons), ipUserAddress, true);
+                                null, EIDASSubStatusCode.QAA_NOT_SUPPORTED.toString(),
+                                EidasErrors.get(errorMsgCons), ipUserAddress, true);
 
                 throw new ResponseCarryingServiceException(EidasErrors.get(errorCodeCons),
-                                                           EidasErrors.get(errorMsgCons),
-                                                           EidasStringUtil.encodeToBase64(samlTokenFail),
-                                                           authnRequest.getAssertionConsumerServiceURL(), relayState);
+                        EidasErrors.get(errorMsgCons),
+                        EidasStringUtil.encodeToBase64(samlTokenFail),
+                        authnRequest.getAssertionConsumerServiceURL(), relayState);
             }
         }
     }
@@ -499,8 +498,8 @@ public class AUSERVICESAML implements ISERVICESAMLService {
         // validates if the current countryCode is the same as the countryCode
         // in the request
         String samlCountryCode = authnRequest.getCitizenCountryCode() == null ? null
-                                                                              : authnRequest.getCitizenCountryCode()
-                                         .replace(EIDASValues.EIDAS_SERVICE_SUFFIX.toString(), StringUtils.EMPTY);
+                : authnRequest.getCitizenCountryCode()
+                .replace(EIDASValues.EIDAS_SERVICE_SUFFIX.toString(), StringUtils.EMPTY);
         if (isEmpty(countryCode) || !countryCode.equals(samlCountryCode)) {
 
             LOGGER.info("BUSINESS EXCEPTION : Invalid Country Code " + authnRequest.getCitizenCountryCode());
@@ -510,11 +509,11 @@ public class AUSERVICESAML implements ISERVICESAMLService {
 
             byte[] samlTokenFail =
                     generateErrorAuthenticationResponse(authnRequest, EIDASStatusCode.REQUESTER_URI.toString(),
-                                                        errorCode, null, errorMessage, ipUserAddress, true);
+                            errorCode, null, errorMessage, ipUserAddress, true);
 
             throw new ResponseCarryingServiceException(errorCode, errorMessage,
-                                                       EidasStringUtil.encodeToBase64(samlTokenFail),
-                                                       authnRequest.getAssertionConsumerServiceURL(), relayState);
+                    EidasStringUtil.encodeToBase64(samlTokenFail),
+                    authnRequest.getAssertionConsumerServiceURL(), relayState);
         }
 
     }
@@ -566,7 +565,7 @@ public class AUSERVICESAML implements ISERVICESAMLService {
     /**
      * Sets all the fields to audit the request.
      *
-     * @param samlObj The SAML token byte[].
+     * @param samlObj      The SAML token byte[].
      * @param authnRequest The Authentication Request object.
      * @see EidasAuthenticationRequest
      */
@@ -664,7 +663,7 @@ public class AUSERVICESAML implements ISERVICESAMLService {
     public int getMaxQAAlevel() {
         if (maxQAAlevel < getMinQAA() || maxQAAlevel > getMaxQAA()) {
             throw new InvalidParameterEIDASException(EidasErrors.get(EidasErrorKey.QAALEVEL.errorCode()),
-                                                     EidasErrors.get(EidasErrorKey.QAALEVEL.errorMessage()));
+                    EidasErrors.get(EidasErrorKey.QAALEVEL.errorMessage()));
         }
         return maxQAAlevel;
     }

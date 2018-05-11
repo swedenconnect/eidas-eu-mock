@@ -26,7 +26,9 @@ import org.opensaml.saml.saml2.core.Attribute;
  * TODO This class was created as a temporary solution for the removal of AttributeSchemaValidator from opensaml 3.
  */
 public abstract class AttributeSchemaValidator {
-    public void validate(Assertion assertion) throws ValidationException {}
+    public void validate(Assertion assertion) throws ValidationException {
+    }
 
-    public void validate(Attribute attr) throws ValidationException {}
+    public void validate(Attribute attr) throws ValidationException {
+    }
 }

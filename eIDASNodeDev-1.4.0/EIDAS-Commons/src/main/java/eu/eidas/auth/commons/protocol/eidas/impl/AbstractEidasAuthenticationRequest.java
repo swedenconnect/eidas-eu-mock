@@ -127,7 +127,7 @@ public abstract class AbstractEidasAuthenticationRequest extends AbstractAuthent
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         @Override
         protected final void validate() throws IllegalArgumentException {
@@ -141,7 +141,7 @@ public abstract class AbstractEidasAuthenticationRequest extends AbstractAuthent
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         protected abstract void validateOtherFields() throws IllegalArgumentException;
     }

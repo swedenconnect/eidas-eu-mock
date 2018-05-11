@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -35,121 +35,163 @@ import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
  */
 public class EntitiesDescriptorImpl extends AbstractSignableSAMLObject implements EntitiesDescriptor {
 
-    /** Name of this descriptor group. */
+    /**
+     * Name of this descriptor group.
+     */
     private String name;
 
-    /** ID attribute. */
+    /**
+     * ID attribute.
+     */
     private String id;
 
-    /** validUntil attribute. */
+    /**
+     * validUntil attribute.
+     */
     private DateTime validUntil;
 
-    /** cacheDurection attribute. */
+    /**
+     * cacheDurection attribute.
+     */
     private Long cacheDuration;
 
-    /** Extensions child. */
+    /**
+     * Extensions child.
+     */
     private Extensions extensions;
 
-    /** Ordered set of child Entity/Entities Descriptors. */
+    /**
+     * Ordered set of child Entity/Entities Descriptors.
+     */
     private final IndexedXMLObjectChildrenList<SAMLObject> orderedDescriptors;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected EntitiesDescriptorImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         orderedDescriptors = new IndexedXMLObjectChildrenList<SAMLObject>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getName() {
         return name;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setName(String newName) {
         this.name = prepareForAssignment(this.name, newName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String newID) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, newID);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isValid() {
         if (null == validUntil) {
             return true;
         }
-        
+
         DateTime now = new DateTime();
         return now.isBefore(validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getValidUntil() {
         return validUntil;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setValidUntil(DateTime newValidUntil) {
         validUntil = prepareForAssignment(validUntil, newValidUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Long getCacheDuration() {
         return cacheDuration;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCacheDuration(Long duration) {
         cacheDuration = prepareForAssignment(cacheDuration, duration);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions newExtensions) {
         extensions = prepareForAssignment(extensions, newExtensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<EntitiesDescriptor> getEntitiesDescriptors() {
         return (List<EntitiesDescriptor>) orderedDescriptors.subList(EntitiesDescriptor.ELEMENT_QNAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<EntityDescriptor> getEntityDescriptors() {
         return (List<EntityDescriptor>) orderedDescriptors.subList(EntityDescriptor.ELEMENT_QNAME);
     }
-    
-    /** {@inheritDoc} */
-    public String getSignatureReferenceID(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
-        if(getSignature() != null){
+        if (getSignature() != null) {
             children.add(getSignature());
         }
-        
+
         children.add(getExtensions());
         children.addAll(orderedDescriptors);
 

@@ -26,18 +26,18 @@ import eu.eidas.auth.engine.core.stork.EIDCrossBorderShare;
  * @author fjquevedo
  */
 public class EIDCrossBorderShareUnmarshaller extends
-		AbstractSAMLObjectUnmarshaller {
+        AbstractSAMLObjectUnmarshaller {
 
 
-	/**
-	 * Process element content.
-	 *
-	 * @param samlObject the SAML object
-	 * @param elementContent the element content
-	 */
-	protected final void processElementContent(final XMLObject samlObject,
-			final String elementContent) {
-		final EIDCrossBorderShare crossBorderShare = (EIDCrossBorderShare) samlObject;
-		crossBorderShare.setEIDCrossBorderShare(elementContent);
-	}
+    /**
+     * Process element content.
+     *
+     * @param samlObject     the SAML object
+     * @param elementContent the element content
+     */
+    protected final void processElementContent(final XMLObject samlObject,
+                                               final String elementContent) {
+        final EIDCrossBorderShare crossBorderShare = (EIDCrossBorderShare) samlObject;
+        crossBorderShare.setEIDCrossBorderShare(elementContent);
+    }
 }

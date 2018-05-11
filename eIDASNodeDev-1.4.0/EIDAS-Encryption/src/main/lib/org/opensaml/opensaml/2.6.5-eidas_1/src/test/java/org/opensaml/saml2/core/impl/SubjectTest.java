@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,33 +30,45 @@ import org.opensaml.saml2.core.SubjectConfirmation;
  */
 public class SubjectTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Count of SubjectConfirmation subelements */
+    /**
+     * Count of SubjectConfirmation subelements
+     */
     protected int expectedSubjectConfirmationCount = 2;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SubjectTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Subject.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/SubjectChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Subject subject = (Subject) unmarshallElement(singleElementFile);
 
         assertNotNull(subject);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Subject subject = (Subject) buildXMLObject(qname);
@@ -64,12 +76,16 @@ public class SubjectTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, subject);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Subject subject = (Subject) unmarshallElement(childElementsFile);
         assertNotNull("Identifier element not present", subject.getNameID());
@@ -77,14 +93,16 @@ public class SubjectTest extends BaseSAMLObjectProviderTestCase {
                 .getSubjectConfirmations().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Subject subject = (Subject) buildXMLObject(qname);
 
         QName nameIDQName = new QName(SAMLConstants.SAML20_NS, NameID.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         subject.setNameID((NameID) buildXMLObject(nameIDQName));
-        
+
         QName subjectConfirmationQName = new QName(SAMLConstants.SAML20_NS, SubjectConfirmation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         for (int i = 0; i < expectedSubjectConfirmationCount; i++) {
             subject.getSubjectConfirmations().add((SubjectConfirmation) buildXMLObject(subjectConfirmationQName));

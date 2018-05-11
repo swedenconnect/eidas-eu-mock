@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -39,24 +39,34 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class OrganizationImpl extends AbstractSAMLObject implements Organization {
 
-    /** element extensions */
+    /**
+     * element extensions
+     */
     private Extensions extensions;
 
-    /** OrganizationName children */
+    /**
+     * OrganizationName children
+     */
     private final XMLObjectChildrenList<OrganizationName> names;
 
-    /** OrganizationDisplayName children */
+    /**
+     * OrganizationDisplayName children
+     */
     private final XMLObjectChildrenList<OrganizationDisplayName> displayNames;
 
-    /** OrganizationURL children */
+    /**
+     * OrganizationURL children
+     */
     private final XMLObjectChildrenList<OrganizationURL> urls;
-    
-    /** "anyAttribute" attributes */
+
+    /**
+     * "anyAttribute" attributes
+     */
     private final AttributeMap unknownAttributes;
 
     /**
      * Constructor
-     * 
+     *
      * @param namespaceURI
      * @param elementLocalName
      * @param namespacePrefix
@@ -69,31 +79,41 @@ public class OrganizationImpl extends AbstractSAMLObject implements Organization
         unknownAttributes = new AttributeMap(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions extensions) throws IllegalArgumentException {
         this.extensions = prepareForAssignment(this.extensions, extensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<OrganizationName> getOrganizationNames() {
         return names;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<OrganizationDisplayName> getDisplayNames() {
         return displayNames;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<OrganizationURL> getURLs() {
         return urls;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -101,7 +121,9 @@ public class OrganizationImpl extends AbstractSAMLObject implements Organization
         return unknownAttributes;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

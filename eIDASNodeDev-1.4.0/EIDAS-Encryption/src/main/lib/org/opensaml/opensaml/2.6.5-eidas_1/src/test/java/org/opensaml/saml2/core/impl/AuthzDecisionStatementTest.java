@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,30 +32,42 @@ import org.opensaml.saml2.core.Evidence;
  */
 public class AuthzDecisionStatementTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Resource value */
+    /**
+     * Expected Resource value
+     */
     protected String expectedResource;
 
-    /** Expected Decision value */
+    /**
+     * Expected Decision value
+     */
     protected DecisionTypeEnumeration expectedDecision;
 
-    /** Count of Action subelements */
+    /**
+     * Count of Action subelements
+     */
     protected int expectedActionCount = 3;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthzDecisionStatementTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AuthzDecisionStatement.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/AuthzDecisionStatementOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AuthzDecisionStatementChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedResource = "resource name";
         expectedDecision = DecisionTypeEnumeration.DENY;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AuthzDecisionStatement authzDecisionStatement = (AuthzDecisionStatement) unmarshallElement(singleElementFile);
 
@@ -63,7 +75,9 @@ public class AuthzDecisionStatementTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Resource not as expected", expectedResource, resource);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AuthzDecisionStatement authzDecisionStatement = (AuthzDecisionStatement) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -74,7 +88,9 @@ public class AuthzDecisionStatementTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Decision not as expected", expectedDecision.toString(), decision.toString());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthzDecisionStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthzDecisionStatement authzDecisionStatement = (AuthzDecisionStatement) buildXMLObject(qname);
@@ -83,7 +99,9 @@ public class AuthzDecisionStatementTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, authzDecisionStatement);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthzDecisionStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthzDecisionStatement authzDecisionStatement = (AuthzDecisionStatement) buildXMLObject(qname);
@@ -94,14 +112,18 @@ public class AuthzDecisionStatementTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, authzDecisionStatement);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AuthzDecisionStatement authzDecisionStatement = (AuthzDecisionStatement) unmarshallElement(childElementsFile);
         assertEquals("Action Count", expectedActionCount, authzDecisionStatement.getActions().size());
         assertNotNull("Evidence element not present", authzDecisionStatement.getEvidence());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthzDecisionStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthzDecisionStatement authzDecisionStatement = (AuthzDecisionStatement) buildXMLObject(qname);
@@ -110,10 +132,10 @@ public class AuthzDecisionStatementTest extends BaseSAMLObjectProviderTestCase {
         for (int i = 0; i < expectedActionCount; i++) {
             authzDecisionStatement.getActions().add((Action) buildXMLObject(actionQName));
         }
-        
+
         QName evidenceQName = new QName(SAMLConstants.SAML20_NS, Evidence.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         authzDecisionStatement.setEvidence((Evidence) buildXMLObject(evidenceQName));
-        
+
         assertEquals(expectedChildElementsDOM, authzDecisionStatement);
     }
 }

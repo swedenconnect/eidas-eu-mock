@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,78 +22,90 @@ import javax.xml.namespace.QName;
 import org.opensaml.xacml.XACMLConstants;
 import org.opensaml.xacml.XACMLObject;
 
-/** XACML ResourceMatch schema type. */
+/**
+ * XACML ResourceMatch schema type.
+ */
 public interface ResourceMatchType extends XACMLObject {
-    
-    /** Local name of the element ResourceMatch. */
+
+    /**
+     * Local name of the element ResourceMatch.
+     */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "ResourceMatch";
 
-    /** QName of the element ResourceMatch. */
+    /**
+     * QName of the element ResourceMatch.
+     */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XACMLConstants.XACML20_NS,
             DEFAULT_ELEMENT_LOCAL_NAME, XACMLConstants.XACML_PREFIX);
 
-    /** Local name of the XSI type. */
+    /**
+     * Local name of the XSI type.
+     */
     public static final String SCHEMA_TYPE_LOCAL_NAME = "ResourceMatchType";
 
-    /** QName of the XSI type. */
+    /**
+     * QName of the XSI type.
+     */
     public static final QName SCHEMA_TYPE_NAME = new QName(XACMLConstants.XACML20_NS, SCHEMA_TYPE_LOCAL_NAME,
             XACMLConstants.XACML_PREFIX);
-    
-    /** MatchID attribute name. */
+
+    /**
+     * MatchID attribute name.
+     */
     public static final String MATCH_ID_ATTRIB_NAME = "MatchId";
 
     /**
      * Gets the attribute value for this match.
-     * 
+     *
      * @return attribute value for this match
      */
     public AttributeValueType getAttributeValue();
 
     /**
      * Sets the attribute value for this match.
-     * 
+     *
      * @param value attribute value for this match
      */
     public void setAttributeValue(AttributeValueType value);
 
     /**
      * Gets the resource attribute designator for this match.
-     * 
+     *
      * @return resource attribute designator for this match
      */
     public AttributeDesignatorType getResourceAttributeDesignator();
 
     /**
      * Sets the resource attribute designator for this match.
-     * 
+     *
      * @param attribute resource attribute designator for this match
      */
     public void setResourceAttributeDesignator(AttributeDesignatorType attribute);
 
     /**
      * Gets the attribute selector for this match.
-     * 
+     *
      * @return attribute selector for this match
      */
     public AttributeSelectorType getAttributeSelector();
 
     /**
      * Sets the attribute selector for this match.
-     * 
+     *
      * @param selector attribute selector for this match
      */
     public void setAttributeSelector(AttributeSelectorType selector);
-    
+
     /**
      * Gets the ID of this match.
-     * 
+     *
      * @return ID of this match
      */
     public String getMatchId();
-    
+
     /**
      * Sets the ID of this match.
-     * 
+     *
      * @param id ID of this match
      */
     public void setMatchId(String id);

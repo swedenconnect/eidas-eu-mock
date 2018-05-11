@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -42,16 +42,24 @@ import org.opensaml.xml.signature.SignatureConstants;
  */
 public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected entityID value */
+    /**
+     * Expected entityID value
+     */
     protected String expectedEntityID;
 
-    /** Expected ID value */
+    /**
+     * Expected ID value
+     */
     protected String expectedID;
 
-    /** Expected cacheDuration value in miliseconds */
+    /**
+     * Expected cacheDuration value in miliseconds
+     */
     protected long expectedCacheDuration;
 
-    /** Expected validUntil value */
+    /**
+     * Expected validUntil value
+     */
     protected DateTime expectedValidUntil;
 
     /**
@@ -63,7 +71,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
         childElementsFile = "/data/org/opensaml/saml2/metadata/impl/EntityDescriptorChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -73,7 +83,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
         expectedValidUntil = new DateTime(2005, 12, 7, 10, 21, 0, 0, ISOChronology.getInstanceUTC());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         EntityDescriptor descriptor = (EntityDescriptor) unmarshallElement(singleElementFile);
 
@@ -88,7 +100,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertNull("validUntil attribute has a value of " + validUntil + ", expected no value", validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         EntityDescriptor descriptor = (EntityDescriptor) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -108,7 +122,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .compareTo(validUntil));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         EntityDescriptor descriptor = (EntityDescriptor) unmarshallElement(childElementsFile);
 
@@ -125,7 +141,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("AdditionalMetadataLocation count", 3, descriptor.getAdditionalMetadataLocations().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, EntityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         EntityDescriptor descriptor = (EntityDescriptor) buildXMLObject(qname);
@@ -135,7 +153,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, EntityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         EntityDescriptor descriptor = (EntityDescriptor) buildXMLObject(qname);
@@ -148,7 +168,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, EntityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         EntityDescriptor descriptor = (EntityDescriptor) buildXMLObject(qname);
@@ -157,9 +179,9 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
         QName extensionsQName = new QName(SAMLConstants.SAML20MD_NS, Extensions.LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         descriptor.setExtensions((Extensions) buildXMLObject(extensionsQName));
-        
-        descriptor.setSignature( buildSignatureSkeleton() );
-        
+
+        descriptor.setSignature(buildSignatureSkeleton());
+
         QName idpSSOQName = new QName(SAMLConstants.SAML20MD_NS, IDPSSODescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         QName spSSOQName = new QName(SAMLConstants.SAML20MD_NS, SPSSODescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         QName authnAuthQName = new QName(SAMLConstants.SAML20MD_NS, AuthnAuthorityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
@@ -176,13 +198,13 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
         descriptor.getRoleDescriptors(AuthnAuthorityDescriptor.DEFAULT_ELEMENT_NAME).add((AuthnAuthorityDescriptor) buildXMLObject(authnAuthQName));
         descriptor.getRoleDescriptors(PDPDescriptor.DEFAULT_ELEMENT_NAME).add((PDPDescriptor) buildXMLObject(pdpQName));
         descriptor.setAffiliationDescriptor((AffiliationDescriptor) buildXMLObject(affilQName));
-        
+
         QName orgQName = new QName(SAMLConstants.SAML20MD_NS, Organization.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         descriptor.setOrganization((Organization) buildXMLObject(orgQName));
-        
+
         QName contactQName = new QName(SAMLConstants.SAML20MD_NS, ContactPerson.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         descriptor.getContactPersons().add((ContactPerson) buildXMLObject(contactQName));
-        
+
         QName addMDQName = new QName(SAMLConstants.SAML20MD_NS, AdditionalMetadataLocation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         for (int i = 0; i < 3; i++) {
             descriptor.getAdditionalMetadataLocations().add((AdditionalMetadataLocation) buildXMLObject(addMDQName));
@@ -193,7 +215,7 @@ public class EntityDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
     /**
      * Build a Signature skeleton to use in marshalling unit tests.
-     * 
+     *
      * @return minimally populated Signature element
      */
     private Signature buildSignatureSkeleton() {

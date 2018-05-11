@@ -16,117 +16,97 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
 import org.apache.velocity.test.BaseTestCase;
 import org.apache.velocity.VelocityContext;
 
 /**
  * This class tests VELOCITY-730.
  */
-public class Velocity730TestCase extends BaseTestCase
-{
-    public Velocity730TestCase(String name)
-    {
+public class Velocity730TestCase extends BaseTestCase {
+    public Velocity730TestCase(String name) {
         super(name);
         //DEBUG = true;
     }
 
-    public void setUpContext(VelocityContext ctx)
-    {
+    public void setUpContext(VelocityContext ctx) {
         ctx.put("foo", new Foo());
     }
 
-    public void testIt()
-    {
+    public void testIt() {
         String template = "$foo.foo #set( $foo.bar = 'foo' ) $foo.bar";
         assertEvalEquals("bar foo", template);
     }
 
-    public static interface MyMap extends Map
-    {
+    public static interface MyMap extends Map {
     }
 
-    public abstract static class MyMapImpl
-    {
+    public abstract static class MyMapImpl {
         private HashMap map = new HashMap();
 
-        protected Map map()
-        {
+        protected Map map() {
             return map;
         }
 
-        public void clear() 
-        {
+        public void clear() {
             map.clear();
         }
 
-        public boolean containsKey(Object key) 
-        {
+        public boolean containsKey(Object key) {
             return map.containsKey(key);
         }
 
-        public boolean containsValue(Object value) 
-        {
+        public boolean containsValue(Object value) {
             return map.containsValue(value);
         }
 
-        public boolean isEmpty() 
-        {
+        public boolean isEmpty() {
             return map.isEmpty();
         }
 
-        public Set keySet() 
-        {
+        public Set keySet() {
             return map.keySet();
         }
 
-        public void putAll(Map t) 
-        {
+        public void putAll(Map t) {
             map.putAll(t);
         }
 
-        public Object remove(Object key) 
-        {
+        public Object remove(Object key) {
             return map.remove(key);
         }
 
-        public int size() 
-        {
+        public int size() {
             return map.size();
         }
 
-        public Collection values() 
-        {
+        public Collection values() {
             return map.values();
         }
 
-        public Set entrySet()
-        {
+        public Set entrySet() {
             return map.entrySet();
         }
     }
 
-    private final static class Foo extends MyMapImpl implements MyMap
-    {
-        public Foo()
-        {
+    private final static class Foo extends MyMapImpl implements MyMap {
+        public Foo() {
             super();
-            put("foo","bar");
+            put("foo", "bar");
         }
 
-        public Object get(Object key) 
-        {
+        public Object get(Object key) {
             return map().get(key);
         }
 
-        public Object put(Object k, Object v)
-        {
+        public Object put(Object k, Object v) {
             return map().put(k, v);
         }
     }

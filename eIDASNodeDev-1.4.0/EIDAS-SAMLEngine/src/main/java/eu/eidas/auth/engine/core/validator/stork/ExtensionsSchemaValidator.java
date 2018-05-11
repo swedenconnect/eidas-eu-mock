@@ -40,35 +40,35 @@ public class ExtensionsSchemaValidator implements Validator<Extensions> {
      * validate the extensions.
      *
      * @param extensions the extensions
-     *
      * @throws ValidationException the validation exception
      */
     public final void validate(final Extensions extensions)
-    throws ValidationException {
-	if (extensions.getUnknownXMLObjects() == null
-		|| extensions.getUnknownXMLObjects().isEmpty()) {
-	    throw new ValidationException("Extension element is empty or not exist.");
-	}
-    //Unknown elements are unmarshalled as XSAnyImpl type objects
-	for(Object element: extensions.getUnknownXMLObjects()){
-        if(element instanceof XSAnyImpl){
-            throw new ValidationException(
-                    "Extensions element is not valid: "+((XSAnyImpl) element).getElementQName());
+            throws ValidationException {
+        if (extensions.getUnknownXMLObjects() == null
+                || extensions.getUnknownXMLObjects().isEmpty()) {
+            throw new ValidationException("Extension element is empty or not exist.");
         }
+        //Unknown elements are unmarshalled as XSAnyImpl type objects
+        for (Object element : extensions.getUnknownXMLObjects()) {
+            if (element instanceof XSAnyImpl) {
+                throw new ValidationException(
+                        "Extensions element is not valid: " + ((XSAnyImpl) element).getElementQName());
+            }
+        }
+        List<XMLObject> qaa = extensions.getUnknownXMLObjects(QAAAttribute.DEF_ELEMENT_NAME);
+
+        if (qaa.size() == 1 && qaa.get(0) instanceof QAAAttribute) {
+            final Validator<QAAAttribute> validatorQaa = new QAAAttributeSchemaValidator();
+            validatorQaa.validate((QAAAttribute) qaa.get(0));
+        } else {
+            throw new ValidationException(
+                    "Extensions must contain only one element QAALevel.");
+        }
+        checkChildren(extensions, QAAAttribute.DEF_ELEMENT_NAME);
+
+
     }
-	List<XMLObject> qaa = extensions.getUnknownXMLObjects(QAAAttribute.DEF_ELEMENT_NAME);
 
-	if (qaa.size() == 1 && qaa.get(0) instanceof QAAAttribute) {
-		final Validator<QAAAttribute> validatorQaa = new QAAAttributeSchemaValidator();
-		validatorQaa.validate((QAAAttribute) qaa.get(0));
-	} else {
-		throw new ValidationException(
-	    "Extensions must contain only one element QAALevel.");
-	}
-    checkChildren(extensions, QAAAttribute.DEF_ELEMENT_NAME);
-
-
-    }
     private void checkChildren(ElementExtensibleXMLObject parent, QName childQName) throws ValidationException {
         if (parent.getUnknownXMLObjects(childQName).isEmpty()) {
             throw new ValidationException(childQName + " must be present");

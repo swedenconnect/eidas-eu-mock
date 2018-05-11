@@ -21,7 +21,6 @@ import eu.eidas.auth.engine.core.eidas.SPID;
 
 /**
  * The Class SPIDBuilder.
- *
  */
 public class SPIDBuilder extends AbstractSAMLObjectBuilder<SPID> {
 
@@ -31,19 +30,19 @@ public class SPIDBuilder extends AbstractSAMLObjectBuilder<SPID> {
      * @return the SP ID
      */
     public final SPID buildObject() {
-	return buildObject(SPID.DEF_ELEMENT_NAME);
+        return buildObject(SPID.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the citizen country code
      */
     public final SPID buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new SPIDImpl(namespaceURI, localName, namespacePrefix);
+                                  final String localName, final String namespacePrefix) {
+        return new SPIDImpl(namespaceURI, localName, namespacePrefix);
     }
 }

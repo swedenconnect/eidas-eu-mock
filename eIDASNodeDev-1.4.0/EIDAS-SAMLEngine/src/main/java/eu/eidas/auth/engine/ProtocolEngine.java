@@ -120,8 +120,8 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException.", e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException.", e);
             throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                               EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage()),
-                                               e);
+                    EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage()),
+                    e);
         }
     }
 
@@ -146,8 +146,8 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         if (response.getAttributes() == null || response.getAttributes().isEmpty()) {
             LOG.error(SAML_EXCHANGE, "No attribute values in response.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "No attribute values in response.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "No attribute values in response.");
         }
     }
 
@@ -167,7 +167,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
             LOG.debug(SAML_EXCHANGE, "Sign and Marshall - null input");
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Sign and Marshall -null input");
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage());
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage());
         }
 
         // Validate mandatory parameters
@@ -183,16 +183,16 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
             LOG.debug(SAML_EXCHANGE, "Sign and Marshall.", e);
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Sign and Marshall.", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
     /**
      * Generate authentication response in one of the supported formats.
      *
-     * @param request the request
-     * @param response the authentication response from the IdP
-     * @param ipAddress the IP address
+     * @param request       the request
+     * @param response      the authentication response from the IdP
+     * @param ipAddress     the IP address
      * @param signAssertion whether to sign the attribute assertion
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
@@ -240,15 +240,15 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         } catch (EIDASSAMLEngineException e) {
             LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : Sign and Marshall: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
     /**
      * Generates an authentication response error message.
      *
-     * @param request the request
-     * @param response the response
+     * @param request   the request
+     * @param response  the response
      * @param ipAddress the IP address
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
@@ -282,8 +282,8 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         if (null == requestBytes) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Saml request bytes are null.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Saml request bytes are null.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Saml request bytes are null.");
         }
 
         Document document = XmlSchemaUtil.validateSamlSchema(requestBytes);
@@ -314,8 +314,8 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         if (null == requestBytes) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Saml authentication request is null.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Saml authentication request is null.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Saml authentication request is null.");
         }
         AuthnRequest originalSamlRequest = unmarshallRequest(requestBytes);
         LOG.trace("Generate EIDASAuthnSamlRequest.");
@@ -346,8 +346,8 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         if (null == responseBytes) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Saml response bytes are null.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Saml response bytes are null.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Saml response bytes are null.");
         }
 
         LOG.trace("Generate SAML Response.");
@@ -402,7 +402,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         } catch (EIDASSAMLEngineException e) {
             EIDASSAMLEngineException exc =
                     new EIDASSAMLEngineException(EidasErrorKey.INVALID_ASSERTION_SIGNATURE.errorCode(),
-                                                 EidasErrorKey.INVALID_ASSERTION_SIGNATURE.errorMessage(), e);
+                            EidasErrorKey.INVALID_ASSERTION_SIGNATURE.errorMessage(), e);
             throw exc;
         }
     }
@@ -410,7 +410,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
     /**
      * Validate parameters from response.
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response authentication request
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -431,7 +431,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         } catch (ValidationException e) {
             LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : validate AuthnRequest: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -445,7 +445,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
         } catch (ValidationException e) {
             LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : validate Response: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -458,7 +458,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
             }
             if (null == request.getIssuer()) {
                 throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   "The issuer cannot be null");
+                        "The issuer cannot be null");
             }
             try {
                 X509Certificate signatureCertificate =
@@ -467,7 +467,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
                         signatureCertificate));
             } catch (EIDASSAMLEngineException e) {
                 LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException validateSignature: " + e,
-                          e.getMessage(), e);
+                        e.getMessage(), e);
                 throw e;
             }
         }
@@ -492,7 +492,7 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
                 validateAssertionSignatures(validResponse);
             } catch (EIDASSAMLEngineException e) {
                 LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException validateSignature: " + e,
-                          e.getMessage(), e);
+                        e.getMessage(), e);
                 throw e;
             }
         }
@@ -502,10 +502,10 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
     /**
      * Validate authentication response.
      *
-     * @param unmarshalledResponse the token SAML
-     * @param userIpAddress the user IP
+     * @param unmarshalledResponse   the token SAML
+     * @param userIpAddress          the user IP
      * @param beforeSkewTimeInMillis the skew time for notBefore (value to be added)
-     * @param afterSkewTimeInMillis the skew time for notOnOrAfter (value to be added)
+     * @param afterSkewTimeInMillis  the skew time for notOnOrAfter (value to be added)
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -522,6 +522,6 @@ public class ProtocolEngine extends AbstractProtocolEngine implements ProtocolEn
 
         return getProtocolProcessor().unmarshallResponse(response, getCoreProperties().isIpValidation(), userIpAddress,
                 beforeSkewTimeInMillis, afterSkewTimeInMillis, getClock().getCurrentTime(),
-                                                         audienceRestriction);
+                audienceRestriction);
     }
 }

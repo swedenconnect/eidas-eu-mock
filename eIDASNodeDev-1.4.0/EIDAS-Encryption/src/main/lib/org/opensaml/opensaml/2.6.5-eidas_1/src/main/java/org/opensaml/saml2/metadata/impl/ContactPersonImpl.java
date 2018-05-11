@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -42,33 +42,49 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class ContactPersonImpl extends AbstractSAMLObject implements ContactPerson {
 
-    /** Contact person type */
+    /**
+     * Contact person type
+     */
     private ContactPersonTypeEnumeration type;
 
-    /** Extensions child object */
+    /**
+     * Extensions child object
+     */
     private Extensions extensions;
 
-    /** Company child element */
+    /**
+     * Company child element
+     */
     private Company company;
 
-    /** GivenName child objectobject */
+    /**
+     * GivenName child objectobject
+     */
     private GivenName givenName;
 
-    /** SurName child object */
+    /**
+     * SurName child object
+     */
     private SurName surName;
-    
-    /** "anyAttribute" attributes */
+
+    /**
+     * "anyAttribute" attributes
+     */
     private final AttributeMap unknownAttributes;
 
-    /** Child email address */
+    /**
+     * Child email address
+     */
     private final XMLObjectChildrenList<EmailAddress> emailAddresses;
 
-    /** Child telephone numbers */
+    /**
+     * Child telephone numbers
+     */
     private final XMLObjectChildrenList<TelephoneNumber> telephoneNumbers;
 
     /**
      * Constructor
-     * 
+     *
      * @param namespaceURI
      * @param elementLocalName
      * @param namespacePrefix
@@ -80,66 +96,90 @@ public class ContactPersonImpl extends AbstractSAMLObject implements ContactPers
         telephoneNumbers = new XMLObjectChildrenList<TelephoneNumber>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ContactPersonTypeEnumeration getType() {
         return type;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setType(ContactPersonTypeEnumeration type) {
         this.type = prepareForAssignment(this.type, type);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions extensions) throws IllegalArgumentException {
         this.extensions = prepareForAssignment(this.extensions, extensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Company getCompany() {
         return company;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCompany(Company company) {
         this.company = prepareForAssignment(this.company, company);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public GivenName getGivenName() {
         return givenName;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setGivenName(GivenName name) {
         givenName = prepareForAssignment(givenName, name);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SurName getSurName() {
         return surName;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSurName(SurName name) {
         surName = prepareForAssignment(surName, name);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<EmailAddress> getEmailAddresses() {
         return emailAddresses;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<TelephoneNumber> getTelephoneNumbers() {
         return telephoneNumbers;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -147,7 +187,9 @@ public class ContactPersonImpl extends AbstractSAMLObject implements ContactPers
         return unknownAttributes;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

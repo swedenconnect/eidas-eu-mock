@@ -23,8 +23,6 @@ import eu.eidas.auth.engine.core.eidas.RequestedAttribute;
 import eu.eidas.auth.engine.core.eidas.RequestedAttributes;
 
 
-
-
 public class EidasRequestedAttributesValidator implements
         Validator<RequestedAttributes> {
 

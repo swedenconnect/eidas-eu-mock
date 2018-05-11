@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -25,23 +25,19 @@ import org.apache.velocity.exception.VelocityException;
 /**
  * This class tests VELOCITY-729.
  */
-public class Velocity729TestCase extends BaseTestCase
-{
-    public Velocity729TestCase(String name)
-    {
+public class Velocity729TestCase extends BaseTestCase {
+    public Velocity729TestCase(String name) {
         super(name);
         // DEBUG = true;
     }
 
-    public void testDotRightAfterDollarReference()
-    {
+    public void testDotRightAfterDollarReference() {
         String s = "$.x schmoo $jee";
         context.put("jee", "foo");
         assertEvalEquals("$.x schmoo foo", s);
     }
 
-    public void testVelocity754jQueryPost()
-    {
-        assertSchmoo("$.post(\"someUrl\", \"\")"); 
+    public void testVelocity754jQueryPost() {
+        assertSchmoo("$.post(\"someUrl\", \"\")");
     }
 }

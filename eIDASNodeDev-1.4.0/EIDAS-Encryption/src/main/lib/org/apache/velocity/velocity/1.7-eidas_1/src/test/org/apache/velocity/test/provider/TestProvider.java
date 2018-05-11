@@ -16,7 +16,7 @@ package org.apache.velocity.test.provider;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.ArrayList;
@@ -33,8 +33,7 @@ import java.util.Vector;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @version $Id: TestProvider.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class TestProvider
-{
+public class TestProvider {
     String title = "lunatic";
     boolean state;
     Object ob = null;
@@ -44,13 +43,11 @@ public class TestProvider
     int stateint = 0;
 
 
-    public String getName()
-    {
+    public String getName() {
         return "jason";
     }
 
-    public Stack getStack()
-    {
+    public Stack getStack() {
         Stack stack = new Stack();
         stack.push("stack element 1");
         stack.push("stack element 2");
@@ -58,14 +55,12 @@ public class TestProvider
         return stack;
     }
 
-    public List getEmptyList()
-    {
+    public List getEmptyList() {
         List list = new ArrayList();
         return list;
     }
 
-    public List getList()
-    {
+    public List getList() {
         List list = new ArrayList();
         list.add("list element 1");
         list.add("list element 2");
@@ -74,8 +69,7 @@ public class TestProvider
         return list;
     }
 
-    public Hashtable getSearch()
-    {
+    public Hashtable getSearch() {
         Hashtable h = new Hashtable();
         h.put("Text", "this is some text");
         h.put("EscText", "this is escaped text");
@@ -91,8 +85,7 @@ public class TestProvider
         return h;
     }
 
-    public Hashtable getHashtable()
-    {
+    public Hashtable getHashtable() {
         Hashtable h = new Hashtable();
         h.put("key0", "value0");
         h.put("key1", "value1");
@@ -101,34 +94,29 @@ public class TestProvider
         return h;
     }
 
-    public ArrayList getRelSearches()
-    {
+    public ArrayList getRelSearches() {
         ArrayList al = new ArrayList();
         al.add(getSearch());
 
         return al;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public Object[] getMenu()
-    {
+    public Object[] getMenu() {
         //ArrayList al = new ArrayList();
         Object[] menu = new Object[3];
-        for (int i = 0; i < 3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             Hashtable item = new Hashtable();
-            item.put("id", "item" + Integer.toString(i+1));
-            item.put("name", "name" + Integer.toString(i+1));
-            item.put("label", "label" + Integer.toString(i+1));
+            item.put("id", "item" + Integer.toString(i + 1));
+            item.put("name", "name" + Integer.toString(i + 1));
+            item.put("label", "label" + Integer.toString(i + 1));
             //al.add(item);
             menu[i] = item;
         }
@@ -137,8 +125,7 @@ public class TestProvider
         return menu;
     }
 
-    public ArrayList getCustomers()
-    {
+    public ArrayList getCustomers() {
         ArrayList list = new ArrayList();
 
         list.add("ArrayList element 1");
@@ -149,8 +136,7 @@ public class TestProvider
         return list;
     }
 
-    public ArrayList getCustomers2()
-    {
+    public ArrayList getCustomers2() {
         ArrayList list = new ArrayList();
 
         list.add(new TestProvider());
@@ -161,18 +147,15 @@ public class TestProvider
         return list;
     }
 
-    public Object me()
-    {
+    public Object me() {
         return this;
     }
 
-    public String toString()
-    {
+    public String toString() {
         return ("test provider");
     }
 
-    public Vector getVector()
-    {
+    public Vector getVector() {
         Vector list = new Vector();
 
         list.addElement("vector element 1");
@@ -181,94 +164,78 @@ public class TestProvider
         return list;
     }
 
-    public String[] getArray()
-    {
+    public String[] getArray() {
         String[] strings = new String[2];
         strings[0] = "first element";
         strings[1] = "second element";
         return strings;
     }
 
-    public boolean theAPLRules()
-    {
+    public boolean theAPLRules() {
         return true;
     }
 
-    public boolean getStateTrue()
-    {
+    public boolean getStateTrue() {
         return true;
     }
 
-    public boolean getStateFalse()
-    {
+    public boolean getStateFalse() {
         return false;
     }
 
-    public String objectArrayMethod(Object[] o)
-    {
+    public String objectArrayMethod(Object[] o) {
         return "result of objectArrayMethod";
     }
 
-    public String concat(Object[] strings)
-    {
+    public String concat(Object[] strings) {
         StringBuffer result = new StringBuffer();
 
-        for (int i = 0; i < strings.length; i++)
-        {
+        for (int i = 0; i < strings.length; i++) {
             result.append((String) strings[i]).append(' ');
         }
 
         return result.toString();
     }
 
-    public String concat(List strings)
-    {
+    public String concat(List strings) {
         StringBuffer result = new StringBuffer();
 
-        for (int i = 0; i < strings.size(); i++)
-        {
+        for (int i = 0; i < strings.size(); i++) {
             result.append((String) strings.get(i)).append(' ');
         }
 
         return result.toString();
     }
 
-    public String objConcat(List objects)
-    {
+    public String objConcat(List objects) {
         StringBuffer result = new StringBuffer();
 
-        for (int i = 0; i < objects.size(); i++)
-        {
+        for (int i = 0; i < objects.size(); i++) {
             result.append(objects.get(i)).append(' ');
         }
 
         return result.toString();
     }
 
-    public String parse(String a, Object o, String c, String d)
-    {
+    public String parse(String a, Object o, String c, String d) {
         return a + o.toString() + c + d;
     }
 
-    public String concat(String a, String b)
-    {
+    public String concat(String a, String b) {
         return a + b;
     }
 
     // These two are for testing subclasses.
 
-    public Person getPerson()
-    {
+    public Person getPerson() {
         return new Person();
     }
 
-    public Child getChild()
-    {
+    public Child getChild() {
         return new Child();
     }
 
-    public String showPerson(Person person)
-    {
+    public String showPerson(Person person) {
         return person.getName();
     }
 
@@ -276,16 +243,14 @@ public class TestProvider
      * Chop i characters off the end of a string.
      *
      * @param string String to chop.
-     * @param i Number of characters to chop.
+     * @param i      Number of characters to chop.
      * @return String with processed answer.
      */
-    public String chop(String string, int i)
-    {
-        return(string.substring(0, string.length() - i));
+    public String chop(String string, int i) {
+        return (string.substring(0, string.length() - i));
     }
 
-    public boolean allEmpty(Object[] list)
-    {
+    public boolean allEmpty(Object[] list) {
         int size = list.length;
 
         for (int i = 0; i < size; i++)
@@ -311,19 +276,17 @@ public class TestProvider
      *
      */
 
-    public void setState(Boolean state)
-    {
+    public void setState(Boolean state) {
     }
 
-    public void setBangStart( Integer i )
-    {
-        System.out.println("SetBangStart() : called with val = " + i );
+    public void setBangStart(Integer i) {
+        System.out.println("SetBangStart() : called with val = " + i);
         stateint = i.intValue();
     }
-    public Integer bang()
-    {
-        System.out.println("Bang! : " + stateint );
-        Integer ret = new Integer( stateint );
+
+    public Integer bang() {
+        System.out.println("Bang! : " + stateint);
+        Integer ret = new Integer(stateint);
         stateint++;
         return ret;
     }
@@ -333,8 +296,7 @@ public class TestProvider
      * method for any object type, not just one
      * that implements the Map interface.
      */
-    public String get(String key)
-    {
+    public String get(String key) {
         return key;
     }
 
@@ -343,21 +305,18 @@ public class TestProvider
      * method for any object type, not just one
      * that implements the Map interface.
      */
-    public String put(String key, Object o)
-    {
+    public String put(String key, Object o) {
         ob = o;
         return key;
     }
 
     public String getFoo()
-        throws Exception
-    {
+            throws Exception {
         throw new Exception("From getFoo()");
     }
 
     public String getThrow()
-        throws Exception
-    {
-       throw new Exception("From getThrow()");
+            throws Exception {
+        throw new Exception("From getThrow()");
     }
 }

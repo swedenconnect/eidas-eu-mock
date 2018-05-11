@@ -605,8 +605,8 @@ public class AuthRequestTest {
                 levelOfAssurance("high").
                 build();
 
-            ProtocolEngineI engine = ProtocolEngineFactory.getDefaultProtocolEngine("default");
-            assertNull(engine);
+        ProtocolEngineI engine = ProtocolEngineFactory.getDefaultProtocolEngine("default");
+        assertNull(engine);
     }
 
     /**
@@ -681,7 +681,7 @@ public class AuthRequestTest {
         assertEquals("SPInstitution incorrect: ", request.getSpInstitution(), null);
         assertEquals("SPApplication incorrect: ", request.getSpApplication(), spApplication);
         assertEquals("Asserition consumer URL incorrect: ", request.getAssertionConsumerServiceURL(),
-                     assertConsumerUrl);
+                assertConsumerUrl);
 
         assertEquals("SP Country incorrect: ", request.getServiceProviderCountryCode(), spCountry);
         assertEquals("SP Id incorrect: ", request.getSpId(), spId);
@@ -903,9 +903,9 @@ public class AuthRequestTest {
                 (IStorkAuthenticationRequest) engine1.unmarshallRequestAndValidate(tokenSaml, "ES");
 
         assertNull("The value shouldn't exist",
-                   authenticationRequest.getRequestedAttributes().getDefinitionsByFriendlyName("unknown"));
+                authenticationRequest.getRequestedAttributes().getDefinitionsByFriendlyName("unknown"));
         assertNotNull("The value should exist",
-                      authenticationRequest.getRequestedAttributes().getDefinitionsByFriendlyName("eIdentifier"));
+                authenticationRequest.getRequestedAttributes().getDefinitionsByFriendlyName("eIdentifier"));
     }
 
     /**
@@ -955,7 +955,7 @@ public class AuthRequestTest {
         System.out.println();
 
         assertTrue("The token must contain the chain 'isRequired=\"false\"'",
-                   reqFalseToken.contains("isRequired=\"false\""));
+                reqFalseToken.contains("isRequired=\"false\""));
 
     }
 

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,9 +22,11 @@ import org.opensaml.common.SAMLException;
 /**
  * Base exception for errors that occur when messages are encoded/decoded for a specific binding.
  */
-public class BindingException extends SAMLException{
+public class BindingException extends SAMLException {
 
-    /** Serial version UID. */
+    /**
+     * Serial version UID.
+     */
     private static final long serialVersionUID = 8759204244381246777L;
 
     /**
@@ -33,32 +35,32 @@ public class BindingException extends SAMLException{
     public BindingException() {
         super();
     }
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param message exception message
      */
     public BindingException(String message) {
         super(message);
     }
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param wrappedException exception to be wrapped by this one
      */
     public BindingException(Exception wrappedException) {
         super(wrappedException);
     }
-    
+
     /**
      * Constructor.
-     * 
-     * @param message exception message
+     *
+     * @param message          exception message
      * @param wrappedException exception to be wrapped by this one
      */
     public BindingException(String message, Exception wrappedException) {
         super(message, wrappedException);
-    }    
+    }
 }

@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -40,29 +40,25 @@ import org.apache.velocity.test.provider.TestProvider;
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: ExceptionTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ExceptionTestCase extends BaseTestCase implements TemplateTestBase
-{
+public class ExceptionTestCase extends BaseTestCase implements TemplateTestBase {
     VelocityEngine ve;
 
     /**
      * Default constructor.
      */
-    public ExceptionTestCase(String name)
-    {
+    public ExceptionTestCase(String name) {
         super(name);
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(ExceptionTestCase.class);
     }
 
 
     public void testReferenceInsertionEventHandlerException()
-    throws Exception
-    {
+            throws Exception {
         ve = new VelocityEngine();
-        ve.setProperty(RuntimeConstants.EVENTHANDLER_REFERENCEINSERTION,ExceptionGeneratingEventHandler.class.getName());
+        ve.setProperty(RuntimeConstants.EVENTHANDLER_REFERENCEINSERTION, ExceptionGeneratingEventHandler.class.getName());
         ve.init();
         assertException(ve);
     }
@@ -70,109 +66,92 @@ public class ExceptionTestCase extends BaseTestCase implements TemplateTestBase
     /**
      * Note - this is the one case where RuntimeExceptions *are not* passed through
      * verbatim.
+     *
      * @throws Exception
      */
     public void testMethodExceptionEventHandlerException()
-    throws Exception
-    {
+            throws Exception {
         ve = new VelocityEngine();
-        ve.setProperty(RuntimeConstants.EVENTHANDLER_METHODEXCEPTION,ExceptionGeneratingEventHandler.class.getName());
+        ve.setProperty(RuntimeConstants.EVENTHANDLER_METHODEXCEPTION, ExceptionGeneratingEventHandler.class.getName());
         ve.init();
         Context context = new VelocityContext();
-        context.put ("test",new TestProvider());
-        assertMethodInvocationException(ve,context,"$test.getThrow()");
-        assertMethodInvocationException(ve,context,"$test.throw");
+        context.put("test", new TestProvider());
+        assertMethodInvocationException(ve, context, "$test.getThrow()");
+        assertMethodInvocationException(ve, context, "$test.throw");
     }
 
     public void testNullSetEventHandlerException()
-    throws Exception
-    {
+            throws Exception {
         ve = new VelocityEngine();
-        ve.setProperty(RuntimeConstants.EVENTHANDLER_NULLSET,ExceptionGeneratingEventHandler.class.getName());
+        ve.setProperty(RuntimeConstants.EVENTHANDLER_NULLSET, ExceptionGeneratingEventHandler.class.getName());
         ve.init();
-        assertException(ve,"#set($test = $abc)");
+        assertException(ve, "#set($test = $abc)");
     }
 
     public void testIncludeEventHandlerException()
-    throws Exception
-    {
+            throws Exception {
         ve = new VelocityEngine();
-        ve.setProperty(RuntimeConstants.EVENTHANDLER_INCLUDE,ExceptionGeneratingEventHandler.class.getName());
+        ve.setProperty(RuntimeConstants.EVENTHANDLER_INCLUDE, ExceptionGeneratingEventHandler.class.getName());
         ve.init();
-        assertException(ve,"#include('dummy')");
+        assertException(ve, "#include('dummy')");
     }
 
     public void testResourceLoaderException()
-    throws Exception
-    {
+            throws Exception {
         ve = new VelocityEngine();
-        ve.setProperty(RuntimeConstants.RESOURCE_LOADER,"except");
-        ve.setProperty("except.resource.loader.class",ExceptionGeneratingResourceLoader.class.getName());
-        try
-        {
+        ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "except");
+        ve.setProperty("except.resource.loader.class", ExceptionGeneratingResourceLoader.class.getName());
+        try {
             ve.init();  // tries to get the macro file
             ve.getTemplate("test.txt");
             fail("Should have thrown RuntimeException");
-        }
-        catch (RuntimeException E)
-        {
+        } catch (RuntimeException E) {
             // do nothing
         }
     }
 
 
     public void testDirectiveException()
-    throws Exception
-    {
+            throws Exception {
         ve = new VelocityEngine();
-        ve.setProperty("userdirective",ExceptionGeneratingDirective.class.getName());
+        ve.setProperty("userdirective", ExceptionGeneratingDirective.class.getName());
         ve.init();
-        assertException(ve,"#Exception() test #end");
+        assertException(ve, "#Exception() test #end");
     }
-
 
 
     public void assertException(VelocityEngine ve)
-    throws Exception
-    {
+            throws Exception {
         Context context = new VelocityContext();
-        context.put ("test","test");
-        assertException(ve,context,"this is a $test");
+        context.put("test", "test");
+        assertException(ve, context, "this is a $test");
     }
 
     public void assertException(VelocityEngine ve, String input)
-    throws Exception
-    {
+            throws Exception {
         Context context = new VelocityContext();
-        context.put ("test","test");
-        assertException(ve,context,input);
+        context.put("test", "test");
+        assertException(ve, context, input);
     }
 
     public void assertException(VelocityEngine ve, Context context, String input)
-    throws Exception
-    {
-        try
-        {
+            throws Exception {
+        try {
             StringWriter writer = new StringWriter();
-            ve.evaluate(context,writer,"test",input);
+            ve.evaluate(context, writer, "test", input);
             fail("Expected RuntimeException");
-        }
-        catch (RuntimeException E)
-        {
+        } catch (RuntimeException E) {
             // do nothing
         }
     }
+
     public void assertMethodInvocationException(VelocityEngine ve, Context context, String input)
-    throws Exception
-    {
-        try
-        {
+            throws Exception {
+        try {
             StringWriter writer = new StringWriter();
-            ve.evaluate(context,writer,"test",input);
+            ve.evaluate(context, writer, "test", input);
             fail("Expected MethodInvocationException");
-        }
-        catch (MethodInvocationException E)
-        {
+        } catch (MethodInvocationException E) {
             // do nothing
         }
     }

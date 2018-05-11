@@ -16,7 +16,7 @@ package org.apache.velocity.io;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -31,26 +31,25 @@ import java.io.Writer;
  * @author Anil K. Vijendran
  * @version $Id: VelocityWriter.java 463298 2006-10-12 16:10:32Z henning $
  */
-public final class VelocityWriter extends Writer
-{
+public final class VelocityWriter extends Writer {
     /**
      * constant indicating that the Writer is not buffering output
      */
-    public static final int	NO_BUFFER = 0;
+    public static final int NO_BUFFER = 0;
 
     /**
      * constant indicating that the Writer is buffered and is using the
      * implementation default buffer size
      */
-    public static final int	DEFAULT_BUFFER = -1;
+    public static final int DEFAULT_BUFFER = -1;
 
     /**
      * constant indicating that the Writer is buffered and is unbounded;
      * this is used in BodyContent
      */
-    public static final int	UNBOUNDED_BUFFER = -2;
+    public static final int UNBOUNDED_BUFFER = -2;
 
-    private int     bufferSize;
+    private int bufferSize;
     private boolean autoFlush;
 
     private Writer writer;
@@ -64,20 +63,18 @@ public final class VelocityWriter extends Writer
      * Create a buffered character-output stream that uses a default-sized
      * output buffer.
      *
-     * @param  writer  Writer to wrap around
+     * @param writer Writer to wrap around
      */
-    public VelocityWriter(Writer writer)
-    {
+    public VelocityWriter(Writer writer) {
         this(writer, defaultCharBufferSize, true);
     }
 
     /**
      * private constructor.
      */
-    private VelocityWriter(int bufferSize, boolean autoFlush)
-    {
+    private VelocityWriter(int bufferSize, boolean autoFlush) {
         this.bufferSize = bufferSize;
-        this.autoFlush  = autoFlush;
+        this.autoFlush = autoFlush;
     }
 
     /**
@@ -85,28 +82,30 @@ public final class VelocityWriter extends Writer
      *
      * @return the size of the buffer in bytes, or 0 is unbuffered.
      */
-    public int getBufferSize() { return bufferSize; }
+    public int getBufferSize() {
+        return bufferSize;
+    }
 
     /**
      * This method indicates whether the JspWriter is autoFlushing.
      *
      * @return if this JspWriter is auto flushing or throwing IOExceptions on
-     *         buffer overflow conditions
+     * buffer overflow conditions
      */
-    public boolean isAutoFlush() { return autoFlush; }
+    public boolean isAutoFlush() {
+        return autoFlush;
+    }
 
     /**
      * Create a new buffered character-output stream that uses an output
      * buffer of the given size.
      *
-     * @param  writer  Writer to wrap around
-     * @param  sz   	Output-buffer size, a positive integer
+     * @param writer    Writer to wrap around
+     * @param sz        Output-buffer size, a positive integer
      * @param autoFlush
-     *
-     * @exception  IllegalArgumentException  If sz is <= 0
+     * @throws IllegalArgumentException If sz is <= 0
      */
-    public VelocityWriter(Writer writer, int sz, boolean autoFlush)
-    {
+    public VelocityWriter(Writer writer, int sz, boolean autoFlush) {
         this(sz, autoFlush);
         if (sz < 0)
             throw new IllegalArgumentException("Buffer size <= 0");
@@ -120,8 +119,7 @@ public final class VelocityWriter extends Writer
      * flushing the stream itself.  This method is non-private only so that it
      * may be invoked by PrintStream.
      */
-    private final void flushBuffer() throws IOException
-    {
+    private final void flushBuffer() throws IOException {
         if (bufferSize == 0)
             return;
         if (nextChar == 0)
@@ -133,34 +131,30 @@ public final class VelocityWriter extends Writer
     /**
      * Discard the output buffer.
      */
-    public final void clear()
-    {
+    public final void clear() {
         nextChar = 0;
     }
 
-    private final void bufferOverflow() throws IOException
-    {
+    private final void bufferOverflow() throws IOException {
         throw new IOException("overflow");
     }
 
     /**
      * Flush the stream.
-     * @throws IOException
      *
+     * @throws IOException
      */
-    public final void flush()  throws IOException
-    {
+    public final void flush() throws IOException {
         flushBuffer();
-        if (writer != null)
-        {
+        if (writer != null) {
             writer.flush();
         }
     }
 
     /**
      * Close the stream.
-     * @throws IOException
      *
+     * @throws IOException
      */
     public final void close() throws IOException {
         if (writer == null)
@@ -171,25 +165,20 @@ public final class VelocityWriter extends Writer
     /**
      * @return the number of bytes unused in the buffer
      */
-    public final int getRemaining()
-    {
+    public final int getRemaining() {
         return bufferSize - nextChar;
     }
 
     /**
      * Write a single character.
+     *
      * @param c
      * @throws IOException
-     *
      */
-    public final void write(int c) throws IOException
-    {
-        if (bufferSize == 0)
-        {
+    public final void write(int c) throws IOException {
+        if (bufferSize == 0) {
             writer.write(c);
-        }
-        else
-        {
+        } else {
             if (nextChar >= bufferSize)
                 if (autoFlush)
                     flushBuffer();
@@ -204,9 +193,8 @@ public final class VelocityWriter extends Writer
      * <code>java.lang.Math</code> if we've run out of file
      * descriptors and we're trying to print a stack trace.
      */
-    private final int min(int a, int b)
-    {
-	    return (a < b ? a : b);
+    private final int min(int a, int b) {
+        return (a < b ? a : b);
     }
 
     /**
@@ -219,28 +207,23 @@ public final class VelocityWriter extends Writer
      * directly to the underlying stream.  Thus redundant
      * <code>DiscardableBufferedWriter</code>s will not copy data unnecessarily.
      *
-     * @param  cbuf  A character array
-     * @param  off   Offset from which to start reading characters
-     * @param  len   Number of characters to write
+     * @param cbuf A character array
+     * @param off  Offset from which to start reading characters
+     * @param len  Number of characters to write
      * @throws IOException
-     *
      */
     public final void write(char cbuf[], int off, int len)
-        throws IOException
-    {
-        if (bufferSize == 0)
-        {
+            throws IOException {
+        if (bufferSize == 0) {
             writer.write(cbuf, off, len);
             return;
         }
 
-        if (len == 0)
-        {
+        if (len == 0) {
             return;
         }
 
-        if (len >= bufferSize)
-        {
+        if (len >= bufferSize) {
             /* If the request length exceeds the size of the output buffer,
             flush the buffer and then write the data directly.  In this
             way buffered streams will cascade harmlessly. */
@@ -248,13 +231,12 @@ public final class VelocityWriter extends Writer
                 flushBuffer();
             else
                 bufferOverflow();
-                writer.write(cbuf, off, len);
+            writer.write(cbuf, off, len);
             return;
         }
 
         int b = off, t = off + len;
-        while (b < t)
-        {
+        while (b < t) {
             int d = min(bufferSize - nextChar, t - b);
             System.arraycopy(cbuf, b, cb, nextChar, d);
             b += d;
@@ -270,33 +252,29 @@ public final class VelocityWriter extends Writer
     /**
      * Write an array of characters.  This method cannot be inherited from the
      * Writer class because it must suppress I/O exceptions.
+     *
      * @param buf
      * @throws IOException
      */
-    public final void write(char buf[]) throws IOException
-    {
-    	write(buf, 0, buf.length);
+    public final void write(char buf[]) throws IOException {
+        write(buf, 0, buf.length);
     }
 
     /**
      * Write a portion of a String.
      *
-     * @param  s     String to be written
-     * @param  off   Offset from which to start reading characters
-     * @param  len   Number of characters to be written
+     * @param s   String to be written
+     * @param off Offset from which to start reading characters
+     * @param len Number of characters to be written
      * @throws IOException
-     *
      */
-    public final void write(String s, int off, int len) throws IOException
-    {
-        if (bufferSize == 0)
-        {
+    public final void write(String s, int off, int len) throws IOException {
+        if (bufferSize == 0) {
             writer.write(s, off, len);
             return;
         }
         int b = off, t = off + len;
-        while (b < t)
-        {
+        while (b < t) {
             int d = min(bufferSize - nextChar, t - b);
             s.getChars(b, b + d, cb, nextChar);
             b += d;
@@ -312,24 +290,22 @@ public final class VelocityWriter extends Writer
     /**
      * Write a string.  This method cannot be inherited from the Writer class
      * because it must suppress I/O exceptions.
+     *
      * @param s
      * @throws IOException
      */
-    public final void write(String s) throws IOException
-    {
-        if (s != null)
-        {
+    public final void write(String s) throws IOException {
+        if (s != null) {
             write(s, 0, s.length());
         }
     }
 
     /**
      * resets this class so that it can be reused
-     * @param writer
      *
+     * @param writer
      */
-    public final void recycle(Writer writer)
-    {
+    public final void recycle(Writer writer) {
         this.writer = writer;
         clear();
     }

@@ -20,7 +20,9 @@
         <div class="col-right">
             <div class="col-right-inner">
                 <div class="clearfix">
-                    <div class="menu-top"> <a class="item text-minus" href="#"></a> <a class="item text-plus" href="#"></a> <a class="item contrast" href="#"></a> </div>
+                    <div class="menu-top"><a class="item text-minus" href="#"></a> <a class="item text-plus"
+                                                                                      href="#"></a> <a
+                            class="item contrast" href="#"></a></div>
                 </div>
                 <div class="col-right-content">
                     <jsp:include page="internal/content-security-header-deactivated.jsp"/>

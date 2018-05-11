@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -23,7 +23,7 @@ import org.opensaml.xml.AbstractXMLObjectBuilder;
 
 /**
  * Base builder for {@link org.opensaml.common.SAMLObject}s.
- * 
+ *
  * @param <SAMLObjectType> the SAML object type built
  */
 public abstract class AbstractSAMLObjectBuilder<SAMLObjectType extends SAMLObject> extends
@@ -31,7 +31,7 @@ public abstract class AbstractSAMLObjectBuilder<SAMLObjectType extends SAMLObjec
 
     /**
      * Builds a SAMLObject using the default name and namespace information provided SAML specifications.
-     * 
+     *
      * @return built SAMLObject
      */
     public abstract SAMLObjectType buildObject();

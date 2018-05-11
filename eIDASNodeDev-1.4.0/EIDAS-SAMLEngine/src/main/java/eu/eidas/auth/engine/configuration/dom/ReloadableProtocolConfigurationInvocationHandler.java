@@ -50,8 +50,7 @@ public final class ReloadableProtocolConfigurationInvocationHandler<T> implement
     }
 
     ReloadableProtocolConfigurationInvocationHandler(@Nonnull final String nameVal,
-                                                     @Nonnull
-                                                     final SingletonAccessor<ImmutableMap<String, ProtocolEngineConfiguration>> fileAccessorVal,
+                                                     @Nonnull final SingletonAccessor<ImmutableMap<String, ProtocolEngineConfiguration>> fileAccessorVal,
                                                      @Nonnull final ConfigurationGetter<T> getterVal) {
         name = nameVal;
         fileAccessor = fileAccessorVal;
@@ -80,14 +79,14 @@ public final class ReloadableProtocolConfigurationInvocationHandler<T> implement
                                                                      SingletonAccessor<ImmutableMap<String, ProtocolEngineConfiguration>> accessor) {
         SamlEngineCoreProperties samlEngineCoreProperties =
                 newProxyInstance(SamlEngineCoreProperties.class, name, accessor,
-                                 new ConfigurationGetter<SamlEngineCoreProperties>() {
+                        new ConfigurationGetter<SamlEngineCoreProperties>() {
 
-                                     @Override
-                                     public SamlEngineCoreProperties get(
-                                             @Nonnull ProtocolEngineConfiguration configuration) {
-                                         return configuration.getCoreProperties();
-                                     }
-                                 });
+                            @Override
+                            public SamlEngineCoreProperties get(
+                                    @Nonnull ProtocolEngineConfiguration configuration) {
+                                return configuration.getCoreProperties();
+                            }
+                        });
         ProtocolSignerI signer =
                 newProxyInstance(ProtocolSignerI.class, name, accessor, new ConfigurationGetter<ProtocolSignerI>() {
 
@@ -105,14 +104,14 @@ public final class ReloadableProtocolConfigurationInvocationHandler<T> implement
                     }
                 });
         ProtocolProcessorI protocolProcessor = newProxyInstance(ProtocolProcessorI.class, name, accessor,
-                                                                new ConfigurationGetter<ProtocolProcessorI>() {
+                new ConfigurationGetter<ProtocolProcessorI>() {
 
-                                                                    @Override
-                                                                    public ProtocolProcessorI get(@Nonnull
-                                                                                                          ProtocolEngineConfiguration configuration) {
-                                                                        return configuration.getProtocolProcessor();
-                                                                    }
-                                                                });
+                    @Override
+                    public ProtocolProcessorI get(@Nonnull
+                                                          ProtocolEngineConfiguration configuration) {
+                        return configuration.getProtocolProcessor();
+                    }
+                });
         SamlEngineClock clock =
                 newProxyInstance(SamlEngineClock.class, name, accessor, new ConfigurationGetter<SamlEngineClock>() {
 
@@ -148,7 +147,7 @@ public final class ReloadableProtocolConfigurationInvocationHandler<T> implement
                 new ReloadableProtocolConfigurationInvocationHandler<>(name, accessor, getter);
 
         return ReflectionUtil.newProxyInstance(ReloadableConfigurationMap.class.getClassLoader(), type,
-                                               (Class<? extends T>) proxiedObject.getClass(), invocationHandler);
+                (Class<? extends T>) proxiedObject.getClass(), invocationHandler);
     }
 
     public T getProxiedObject() {

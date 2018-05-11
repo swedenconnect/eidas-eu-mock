@@ -22,20 +22,18 @@ import org.apache.velocity.runtime.log.Log;
  */
 
 
-
 /**
- *  Application-level exception thrown when a reference method is
- *  invoked and an exception is thrown.
- *  <br>
- *  When this exception is thrown, a best effort will be made to have
- *  useful information in the exception's message.  For complete
- *  information, consult the runtime log.
+ * Application-level exception thrown when a reference method is
+ * invoked and an exception is thrown.
+ * <br>
+ * When this exception is thrown, a best effort will be made to have
+ * useful information in the exception's message.  For complete
+ * information, consult the runtime log.
  *
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: MethodInvocationException.java 898032 2010-01-11 19:51:03Z nbubna $
  */
-public class MethodInvocationException extends VelocityException implements ExtendedParseException
-{
+public class MethodInvocationException extends VelocityException implements ExtendedParseException {
     /**
      * Version Id for serializable
      */
@@ -44,22 +42,21 @@ public class MethodInvocationException extends VelocityException implements Exte
     private String referenceName = "";
 
     private final String methodName;
-    
+
     private final int lineNumber;
     private final int columnNumber;
     private final String templateName;
 
     /**
-     *  CTOR - wraps the passed in exception for
-     *  examination later
+     * CTOR - wraps the passed in exception for
+     * examination later
      *
-     *  @param message
-     *  @param e Throwable that we are wrapping
-     *  @param methodName name of method that threw the exception
-     *  @param templateName The name of the template where the exception occured.
+     * @param message
+     * @param e            Throwable that we are wrapping
+     * @param methodName   name of method that threw the exception
+     * @param templateName The name of the template where the exception occured.
      */
-    public MethodInvocationException(final String message, final Throwable e, final String methodName, final String templateName, final int lineNumber, final int columnNumber)
-    {
+    public MethodInvocationException(final String message, final Throwable e, final String methodName, final String templateName, final int lineNumber, final int columnNumber) {
         super(message, e);
 
         this.methodName = methodName;
@@ -69,34 +66,31 @@ public class MethodInvocationException extends VelocityException implements Exte
     }
 
     /**
-     *  Returns the name of the method that threw the
-     *  exception.
+     * Returns the name of the method that threw the
+     * exception.
      *
-     *  @return String name of method
+     * @return String name of method
      */
-    public String getMethodName()
-    {
+    public String getMethodName() {
         return methodName;
     }
 
     /**
-     *  Sets the reference name that threw this exception.
+     * Sets the reference name that threw this exception.
      *
-     *  @param ref name of reference
+     * @param ref name of reference
      */
-    public void setReferenceName(String ref)
-    {
+    public void setReferenceName(String ref) {
         referenceName = ref;
     }
 
     /**
-     *  Retrieves the name of the reference that caused the
-     *  exception.
+     * Retrieves the name of the reference that caused the
+     * exception.
      *
-     *  @return name of reference.
+     * @return name of reference.
      */
-    public String getReferenceName()
-    {
+    public String getReferenceName() {
         return referenceName;
     }
 
@@ -104,35 +98,31 @@ public class MethodInvocationException extends VelocityException implements Exte
      * @see ExtendedParseException#getColumnNumber()
      * @since 1.5
      */
-    public int getColumnNumber()
-    {
-	    return columnNumber;
+    public int getColumnNumber() {
+        return columnNumber;
     }
 
     /**
      * @see ExtendedParseException#getLineNumber()
      * @since 1.5
      */
-    public int getLineNumber()
-    {
-	    return lineNumber;
+    public int getLineNumber() {
+        return lineNumber;
     }
 
     /**
      * @see ExtendedParseException#getTemplateName()
      * @since 1.5
      */
-    public String getTemplateName()
-    {
-	    return templateName;
+    public String getTemplateName() {
+        return templateName;
     }
 
     /**
      * @see Exception#getMessage()
      * @since 1.5
      */
-    public String getMessage()
-    {
+    public String getMessage() {
         StringBuffer message = new StringBuffer();
         message.append(super.getMessage());
         message.append(" at ");

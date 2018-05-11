@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,31 +26,38 @@ import org.opensaml.common.xml.SAMLConstants;
  * SAML 2.0 Metadata AffiliateMember
  */
 public interface AffiliateMember extends SAMLObject {
-    
-    /** Element name, no namespace */
+
+    /**
+     * Element name, no namespace
+     */
     public final static String DEFAULT_ELEMENT_LOCAL_NAME = "AffiliateMember";
-    
-    /** Default element name */
+
+    /**
+     * Default element name
+     */
     public final static QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML20MD_NS, DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
-    
-    /** Local name of the XSI type */
-    public final static String TYPE_LOCAL_NAME = "entityIDType"; 
-        
-    /** QName of the XSI type */
+
+    /**
+     * Local name of the XSI type
+     */
+    public final static String TYPE_LOCAL_NAME = "entityIDType";
+
+    /**
+     * QName of the XSI type
+     */
     public final static QName TYPE_NAME = new QName(SAMLConstants.SAML20MD_NS, TYPE_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
-    
+
     /**
      * Gets the member's entity ID.
-     * 
+     *
      * @return the member's ID
      */
     public String getID();
-    
+
     /**
      * Sets the member's entity ID.
-     * 
+     *
      * @param memberID the member's ID
-     * 
      * @throws IllegalArgumentException thrown if the ID is over 1024 characters long
      */
     public void setID(String memberID) throws IllegalArgumentException;

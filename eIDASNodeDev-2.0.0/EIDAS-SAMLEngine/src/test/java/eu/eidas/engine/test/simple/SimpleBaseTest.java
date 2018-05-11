@@ -37,7 +37,7 @@ public class SimpleBaseTest extends TestCase {
      */
     @Test
     public final void testSamlEngineCorrectInit() {
-            Assert.assertNotNull(ProtocolEngineFactory.getDefaultProtocolEngine("CONF1"));
+        Assert.assertNotNull(ProtocolEngineFactory.getDefaultProtocolEngine("CONF1"));
     }
 
     /**
@@ -45,7 +45,7 @@ public class SimpleBaseTest extends TestCase {
      */
     @Test
     public final void testSamlEngineErrorNameConf() {
-            Assert.assertNull(ProtocolEngineFactory.getDefaultProtocolEngine("CONF_ERROR"));
+        Assert.assertNull(ProtocolEngineFactory.getDefaultProtocolEngine("CONF_ERROR"));
     }
 
     /**
@@ -56,7 +56,7 @@ public class SimpleBaseTest extends TestCase {
         try {
             ProtocolEngineFactory.getDefaultProtocolEngine(null);
             fail("Expected IllegalArgumentException");
-        } catch (IllegalArgumentException expected){
+        } catch (IllegalArgumentException expected) {
             assertEquals("instanceName cannot be null, empty or blank", expected.getMessage());
         }
     }
@@ -66,16 +66,17 @@ public class SimpleBaseTest extends TestCase {
      */
     @Test
     public final void testSamlEngineErrorNameSpaces() {
-            Assert.assertNotNull(ProtocolEngineFactory.getDefaultProtocolEngine("   CONF1    "));
+        Assert.assertNotNull(ProtocolEngineFactory.getDefaultProtocolEngine("   CONF1    "));
     }
 
     @Test
-    public final void testSamlEngineUtils() throws EIDASSAMLEngineException{
+    public final void testSamlEngineUtils() throws EIDASSAMLEngineException {
         Assert.assertNotNull(SAMLEngineUtils.encode("TEST", SAMLEngineUtils.SHA_512));
         Assert.assertNotNull(BuilderFactoryUtil.generateKeyInfo());
         Assert.assertNotNull(BuilderFactoryUtil.generateNameID());
 
     }
+
     @Test
     public final void testX509PrincipalsUtils() {
         System.out.println("*********************************************");

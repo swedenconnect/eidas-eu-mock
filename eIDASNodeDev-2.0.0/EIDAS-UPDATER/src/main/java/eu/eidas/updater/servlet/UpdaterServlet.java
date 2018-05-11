@@ -38,8 +38,8 @@ import java.io.PrintWriter;
  *
  * @since 2.0
  */
-@WebServlet(urlPatterns={"/updater/refresh"},
-        name="nodeUpdater",
+@WebServlet(urlPatterns = {"/updater/refresh"},
+        name = "nodeUpdater",
         displayName = "nodeUpdater",
         description = "Reloads application context and external properties")
 public class UpdaterServlet extends HttpServlet {

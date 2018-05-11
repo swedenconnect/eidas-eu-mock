@@ -146,11 +146,11 @@ public class ReturnAction extends ActionSupport implements ServletRequestAware, 
     public void setServletResponse(HttpServletResponse response) {
     }
 
-    public void setAttrMap( ImmutableMap<AttributeDefinition<?>, ImmutableSet<? extends AttributeValue<?>>> attrMap) {
+    public void setAttrMap(ImmutableMap<AttributeDefinition<?>, ImmutableSet<? extends AttributeValue<?>>> attrMap) {
         this.attrMap = attrMap;
     }
 
-    public  ImmutableMap<AttributeDefinition<?>, ImmutableSet<? extends AttributeValue<?>>> getAttrMap() {
+    public ImmutableMap<AttributeDefinition<?>, ImmutableSet<? extends AttributeValue<?>>> getAttrMap() {
         return attrMap;
     }
 

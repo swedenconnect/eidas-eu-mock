@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,30 +32,36 @@ import org.slf4j.LoggerFactory;
 
 /**
  * SAML 1.X HTTP Artifact message decoder.
- * 
+ *
  * <strong>NOTE: This decoder is not yet implemented.</strong>
  */
 public class HTTPArtifactDecoder extends BaseSAML1MessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPArtifactDecoder.class);
 
     /**
      * Constructor.
-     * 
-     * @param map used to map artifacts to SAML
+     *
+     * @param map  used to map artifacts to SAML
      * @param pool parser pool used to deserialize messages
      */
     public HTTPArtifactDecoder(SAMLArtifactMap map, ParserPool pool) {
         super(map, pool);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML1_ARTIFACT_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doDecode(MessageContext messageContext) throws MessageDecodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this decoder only support SAMLMessageContext");
@@ -70,7 +76,7 @@ public class HTTPArtifactDecoder extends BaseSAML1MessageDecoder {
         }
 
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
-        
+
         decodeTarget(samlMsgCtx);
         processArtifacts(samlMsgCtx);
 
@@ -79,9 +85,8 @@ public class HTTPArtifactDecoder extends BaseSAML1MessageDecoder {
 
     /**
      * Decodes the TARGET parameter and adds it to the message context.
-     * 
+     *
      * @param samlMsgCtx current message context
-     * 
      * @throws MessageDecodingException thrown if there is a problem decoding the TARGET parameter.
      */
     protected void decodeTarget(SAMLMessageContext samlMsgCtx) throws MessageDecodingException {
@@ -96,11 +101,10 @@ public class HTTPArtifactDecoder extends BaseSAML1MessageDecoder {
     }
 
     /**
-     * Process the incoming artifacts by decoding the artifacts, dereferencing them from the artifact source and 
+     * Process the incoming artifacts by decoding the artifacts, dereferencing them from the artifact source and
      * storing the resulting response (with assertions) in the message context.
-     * 
+     *
      * @param samlMsgCtx current message context
-     * 
      * @throws MessageDecodingException thrown if there is a problem decoding or dereferencing the artifacts
      */
     protected void processArtifacts(SAMLMessageContext samlMsgCtx) throws MessageDecodingException {
@@ -110,18 +114,22 @@ public class HTTPArtifactDecoder extends BaseSAML1MessageDecoder {
             log.error("URL SAMLart parameter was missing or did not contain a value.");
             throw new MessageDecodingException("URL SAMLart parameter was missing or did not contain a value.");
         }
-        
+
         // TODO decode artifact(s); resolve issuer resolution endpoint; dereference using 
         // Request/AssertionArtifact(s) over synchronous backchannel binding;
         // store response as the inbound SAML message.
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean isIntendedDestinationEndpointURIRequired(SAMLMessageContext samlMsgCtx) {
         return false;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected String getIntendedDestinationEndpointURI(SAMLMessageContext samlMsgCtx) throws MessageDecodingException {
         // Not relevant in this binding/profile, there is neither SAML message
         // nor binding parameter with this information

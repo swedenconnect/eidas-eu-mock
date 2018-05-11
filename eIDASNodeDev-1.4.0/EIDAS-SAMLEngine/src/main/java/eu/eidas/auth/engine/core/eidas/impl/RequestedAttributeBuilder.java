@@ -21,10 +21,9 @@ import eu.eidas.auth.engine.core.eidas.RequestedAttribute;
 
 /**
  * The Class RequestedAttributeBuilder.
- *
  */
 public class RequestedAttributeBuilder extends
-	AbstractSAMLObjectBuilder<RequestedAttribute> {
+        AbstractSAMLObjectBuilder<RequestedAttribute> {
 
 
     /**
@@ -33,21 +32,21 @@ public class RequestedAttributeBuilder extends
      * @return the requested attribute
      */
     public final RequestedAttribute buildObject() {
-	return buildObject(RequestedAttribute.DEF_ELEMENT_NAME);
+        return buildObject(RequestedAttribute.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the requested attribute
      */
     public final RequestedAttribute buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new RequestedAttributeImpl(namespaceURI, localName,
-		namespacePrefix);
+                                                final String localName, final String namespacePrefix) {
+        return new RequestedAttributeImpl(namespaceURI, localName,
+                namespacePrefix);
     }
 
 }

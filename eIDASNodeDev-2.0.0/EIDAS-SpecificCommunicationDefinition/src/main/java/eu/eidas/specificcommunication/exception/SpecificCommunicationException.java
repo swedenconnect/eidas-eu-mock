@@ -21,11 +21,10 @@ package eu.eidas.specificcommunication.exception;
 import java.security.PrivilegedActionException;
 
 /**
- *  This exception is thrown when a catchable exception occurred within
- *  the SpecificCommunicationDefinition module.
- *
- *  Catchable exceptions are to be included in this exception.
- *
+ * This exception is thrown when a catchable exception occurred within
+ * the SpecificCommunicationDefinition module.
+ * <p>
+ * Catchable exceptions are to be included in this exception.
  */
 public class SpecificCommunicationException extends Exception {
 

@@ -33,19 +33,19 @@ public class DigestMethodBuilder extends AbstractSAMLObjectBuilder<DigestMethod>
      * @return the SigningMethod.
      */
     public final DigestMethod buildObject() {
-	return buildObject(DigestMethod.DEF_ELEMENT_NAME);
+        return buildObject(DigestMethod.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object SigningMethod.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the SigningMethod
      */
     public final DigestMethod buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new DigestMethodImpl(namespaceURI, localName, namespacePrefix);
+                                          final String localName, final String namespacePrefix) {
+        return new DigestMethodImpl(namespaceURI, localName, namespacePrefix);
     }
 }

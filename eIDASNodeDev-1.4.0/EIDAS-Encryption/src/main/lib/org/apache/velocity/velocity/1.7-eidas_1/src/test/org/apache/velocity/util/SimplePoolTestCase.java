@@ -16,7 +16,7 @@ package org.apache.velocity.util;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import junit.framework.Test;
@@ -24,34 +24,28 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- *  Simpletest for the SimplePool
+ * Simpletest for the SimplePool
  *
  * @version $Id: SimplePoolTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class SimplePoolTestCase extends TestCase
-{
-    public static Test suite()
-    {
+public class SimplePoolTestCase extends TestCase {
+    public static Test suite() {
         return new TestSuite(SimplePoolTestCase.class);
     }
 
-    public SimplePoolTestCase(String testName)
-    {
+    public SimplePoolTestCase(String testName) {
         super(testName);
     }
 
     public void testPool()
-        throws Exception
-    {
+            throws Exception {
         SimplePool sp = new SimplePool(10);
 
-        for (int i=0; i<10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             sp.put(new Integer(i));
         }
 
-        for (int i=9; i>=0; i--)
-        {
+        for (int i = 9; i >= 0; i--) {
             Integer obj = (Integer) sp.get();
 
             assertTrue(i == obj.intValue());
@@ -59,8 +53,7 @@ public class SimplePoolTestCase extends TestCase
 
         Object[] pool = sp.getPool();
 
-        for (int i=0; i<10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             assertTrue("Pool not empty", pool[i] == null);
         }
     }

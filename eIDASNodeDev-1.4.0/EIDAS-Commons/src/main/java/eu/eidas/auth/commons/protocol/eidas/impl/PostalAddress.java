@@ -309,7 +309,7 @@ public final class PostalAddress implements Serializable {
             return false;
         }
         if (locatorDesignator != null ? !locatorDesignator.equals(that.locatorDesignator)
-                                      : that.locatorDesignator != null) {
+                : that.locatorDesignator != null) {
             return false;
         }
         if (locatorName != null ? !locatorName.equals(that.locatorName) : that.locatorName != null) {
@@ -325,11 +325,11 @@ public final class PostalAddress implements Serializable {
             return false;
         }
         if (adminUnitFirstLine != null ? !adminUnitFirstLine.equals(that.adminUnitFirstLine)
-                                       : that.adminUnitFirstLine != null) {
+                : that.adminUnitFirstLine != null) {
             return false;
         }
         if (adminUnitSecondLine != null ? !adminUnitSecondLine.equals(that.adminUnitSecondLine)
-                                        : that.adminUnitSecondLine != null) {
+                : that.adminUnitSecondLine != null) {
             return false;
         }
         if (fullCvaddress != null ? !fullCvaddress.equals(that.fullCvaddress)
@@ -360,27 +360,27 @@ public final class PostalAddress implements Serializable {
     public String toString() {
         StringBuffer ret = new StringBuffer();
         if (addressId != null)
-            ret.append("addressId: "+addressId+"\n");
+            ret.append("addressId: " + addressId + "\n");
         if (poBox != null)
-            ret.append("poBox: "+poBox+"\n");
+            ret.append("poBox: " + poBox + "\n");
         if (locatorDesignator != null)
-            ret.append("locatorDesignator: "+locatorDesignator+"\n");
+            ret.append("locatorDesignator: " + locatorDesignator + "\n");
         if (locatorName != null)
-            ret.append("locatorName: "+locatorName+"\n");
+            ret.append("locatorName: " + locatorName + "\n");
         if (cvAddressArea != null)
-            ret.append("cvAddressArea: "+cvAddressArea+"\n");
+            ret.append("cvAddressArea: " + cvAddressArea + "\n");
         if (thoroughfare != null)
-            ret.append("thoroughfare: "+thoroughfare+"\n");
+            ret.append("thoroughfare: " + thoroughfare + "\n");
         if (postName != null)
-            ret.append("postName: "+postName+"\n");
+            ret.append("postName: " + postName + "\n");
         if (adminUnitFirstLine != null)
-            ret.append("adminUnitFirstLine: "+adminUnitFirstLine+"\n");
+            ret.append("adminUnitFirstLine: " + adminUnitFirstLine + "\n");
         if (adminUnitSecondLine != null)
-            ret.append("adminUnitSecondLine: "+adminUnitSecondLine+"\n");
+            ret.append("adminUnitSecondLine: " + adminUnitSecondLine + "\n");
         if (postCode != null)
-            ret.append("postCode: "+postCode+"\n");
+            ret.append("postCode: " + postCode + "\n");
         if (fullCvaddress != null)
-            ret.append("fullCvaddress: "+fullCvaddress+"\n");
+            ret.append("fullCvaddress: " + fullCvaddress + "\n");
         return ret.toString();
     }
 

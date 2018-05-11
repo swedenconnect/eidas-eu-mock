@@ -29,7 +29,7 @@ import eu.eidas.util.Preconditions;
 @SuppressWarnings("ConstantConditions")
 public abstract class AbstractLightRequest implements ILightRequest, Serializable {
 
-    private AbstractLightRequest (){
+    private AbstractLightRequest() {
         id = null;
         issuer = null;
         citizenCountryCode = null;
@@ -164,7 +164,7 @@ public abstract class AbstractLightRequest implements ILightRequest, Serializabl
          * T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         private void internalValidate() throws IllegalArgumentException {
             Preconditions.checkNotBlank(id, "id");
@@ -180,7 +180,7 @@ public abstract class AbstractLightRequest implements ILightRequest, Serializabl
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         protected abstract void validate() throws IllegalArgumentException;
 
@@ -344,22 +344,22 @@ public abstract class AbstractLightRequest implements ILightRequest, Serializabl
             return false;
         }
         if (citizenCountryCode != null ? !citizenCountryCode.equals(lightRequestObj.citizenCountryCode)
-                                       : lightRequestObj.citizenCountryCode != null) {
+                : lightRequestObj.citizenCountryCode != null) {
             return false;
         }
         if (!issuer.equals(lightRequestObj.issuer)) {
             return false;
         }
         if (levelOfAssurance != null ? !levelOfAssurance.equals(lightRequestObj.levelOfAssurance)
-                                     : lightRequestObj.levelOfAssurance != null) {
+                : lightRequestObj.levelOfAssurance != null) {
             return false;
         }
         if (providerName != null ? !providerName.equals(lightRequestObj.providerName)
-                                 : lightRequestObj.providerName != null) {
+                : lightRequestObj.providerName != null) {
             return false;
         }
         if (nameIdFormat != null ? !nameIdFormat.equals(lightRequestObj.nameIdFormat)
-                                 : lightRequestObj.nameIdFormat != null) {
+                : lightRequestObj.nameIdFormat != null) {
             return false;
         }
         if (spType != null ? !spType.equals(lightRequestObj.spType)

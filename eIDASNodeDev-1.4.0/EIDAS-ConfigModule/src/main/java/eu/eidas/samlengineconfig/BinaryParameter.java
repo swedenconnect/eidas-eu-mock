@@ -14,10 +14,11 @@
  */
 package eu.eidas.samlengineconfig;
 
-public class BinaryParameter extends ConfigurationParameter{
+public class BinaryParameter extends ConfigurationParameter {
     String name;
     byte[] value;
     String url;
+
     @Override
     public String getName() {
         return name;
@@ -25,23 +26,23 @@ public class BinaryParameter extends ConfigurationParameter{
 
     @Override
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     @Override
     public Object getValue() {
         //TODO may be changed to provide lazily the binary contents
         //also may provide a cache
-        if(value==null){
+        if (value == null) {
             return null;
-        }else{
+        } else {
             return value.clone();
         }
     }
 
     @Override
     public void setValue(Object value) {
-        this.value=value instanceof byte[]?(byte[])value:null;
+        this.value = value instanceof byte[] ? (byte[]) value : null;
     }
 
     @Override

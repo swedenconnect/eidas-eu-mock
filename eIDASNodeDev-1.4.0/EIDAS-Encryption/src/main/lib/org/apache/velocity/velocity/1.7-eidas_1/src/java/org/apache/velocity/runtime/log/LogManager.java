@@ -16,12 +16,13 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import org.apache.velocity.exception.VelocityException;
 import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -37,21 +38,21 @@ import org.apache.velocity.util.ClassUtils;
  * </p>
  * <ul>
  * <li>
- *      First try to see if the user is passing in a living object
- *      that is a LogChute, allowing the app to give its living
- *      custom loggers.
- *  </li>
- *  <li>
- *       Next, run through the (possible) list of classes specified
- *       specified as loggers, taking the first one that appears to
- *       work.  This is how we support finding logkit, log4j or
- *       jdk logging, whichever is in the classpath and found first,
- *       as all three are listed as defaults.
- *  </li>
- *  <li>
- *      Finally, we turn to the System.err stream and print log messages
- *      to it if nothing else works.
- *  </li>
+ * First try to see if the user is passing in a living object
+ * that is a LogChute, allowing the app to give its living
+ * custom loggers.
+ * </li>
+ * <li>
+ * Next, run through the (possible) list of classes specified
+ * specified as loggers, taking the first one that appears to
+ * work.  This is how we support finding logkit, log4j or
+ * jdk logging, whichever is in the classpath and found first,
+ * as all three are listed as defaults.
+ * </li>
+ * <li>
+ * Finally, we turn to the System.err stream and print log messages
+ * to it if nothing else works.
+ * </li>
  *
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @author <a href="mailto:jon@latchkey.com">Jon S. Stevens</a>
@@ -59,56 +60,43 @@ import org.apache.velocity.util.ClassUtils;
  * @author <a href="mailto:nbubna@apache.org">Nathan Bubna</a>
  * @version $Id: LogManager.java 991708 2010-09-01 21:17:56Z nbubna $
  */
-public class LogManager
-{
+public class LogManager {
     // Creates a new logging system or returns an existing one
     // specified by the application.
-    private static LogChute createLogChute(RuntimeServices rsvc) throws Exception
-    {
+    private static LogChute createLogChute(RuntimeServices rsvc) throws Exception {
         Log log = rsvc.getLog();
 
         /* If a LogChute or LogSystem instance was set as a configuration
          * value, use that.  This is any class the user specifies.
          */
         Object o = rsvc.getProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM);
-        if (o != null)
-        {
+        if (o != null) {
             // first check for a LogChute
-            if (o instanceof LogChute)
-            {
-                try
-                {
-                    ((LogChute)o).init(rsvc);
-                    return (LogChute)o;
-                }
-                catch (Exception e)
-                {
+            if (o instanceof LogChute) {
+                try {
+                    ((LogChute) o).init(rsvc);
+                    return (LogChute) o;
+                } catch (Exception e) {
                     String msg = "Could not init runtime.log.logsystem " + o;
                     log.error(msg, e);
                     throw new VelocityException(msg, e);
                 }
             }
             // then check for a LogSystem
-            else if (o instanceof LogSystem)
-            {
+            else if (o instanceof LogSystem) {
                 // inform the user about the deprecation
                 log.debug("LogSystem has been deprecated. Please use a LogChute implementation.");
-                try
-                {
+                try {
                     // wrap the LogSystem into a chute.
-                    LogChute chute = new LogChuteSystem((LogSystem)o);
+                    LogChute chute = new LogChuteSystem((LogSystem) o);
                     chute.init(rsvc);
                     return chute;
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     String msg = "Could not init runtime.log.logsystem " + o;
                     log.error(msg, e);
                     throw new VelocityException(msg, e);
                 }
-            }
-            else
-            {
+            } else {
                 String msg = o.getClass().getName() + " object set as runtime.log.logsystem is not a valid log implementation.";
                 log.error(msg);
                 throw new VelocityException(msg);
@@ -124,18 +112,15 @@ public class LogManager
          * convenience - so we use whichever we works first.
          */
         List classes = new ArrayList();
-        Object obj = rsvc.getProperty( RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS );
+        Object obj = rsvc.getProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS);
 
         /*
          *  we might have a list, or not - so check
          */
-        if ( obj instanceof List)
-        {
+        if (obj instanceof List) {
             classes = (List) obj;
-        }
-        else if ( obj instanceof String)
-        {
-            classes.add( obj );
+        } else if (obj instanceof String) {
+            classes.add(obj);
         }
 
         /*
@@ -143,81 +128,60 @@ public class LogManager
          *  fail with a class not found, as we do this to also
          *  search out a default simple file logger
          */
-        for( Iterator ii = classes.iterator(); ii.hasNext(); )
-        {
+        for (Iterator ii = classes.iterator(); ii.hasNext(); ) {
             String claz = (String) ii.next();
-            if (claz != null && claz.length() > 0 )
-            {
-                log.debug("Trying to use logger class " + claz );
-                try
-                {
-                    o = ClassUtils.getNewInstance( claz );
-                    if (o instanceof LogChute)
-                    {
-                        ((LogChute)o).init(rsvc);
+            if (claz != null && claz.length() > 0) {
+                log.debug("Trying to use logger class " + claz);
+                try {
+                    o = ClassUtils.getNewInstance(claz);
+                    if (o instanceof LogChute) {
+                        ((LogChute) o).init(rsvc);
                         log.debug("Using logger class " + claz);
-                        return (LogChute)o;
-                    }
-                    else if (o instanceof LogSystem)
-                    {
+                        return (LogChute) o;
+                    } else if (o instanceof LogSystem) {
                         // inform the user about the deprecation
                         log.debug("LogSystem has been deprecated. Please use a LogChute implementation.");
-                        LogChute chute = new LogChuteSystem((LogSystem)o);
+                        LogChute chute = new LogChuteSystem((LogSystem) o);
                         chute.init(rsvc);
                         return chute;
-                    }
-                    else
-                    {
+                    } else {
                         String msg = "The specified logger class " + claz +
-                                     " does not implement the "+LogChute.class.getName()+" interface.";
+                                " does not implement the " + LogChute.class.getName() + " interface.";
                         log.error(msg);
                         // be extra informative if it appears to be a classloader issue
                         // this should match all our provided LogChutes
-                        if (isProbablyProvidedLogChute(claz))
-                        {
+                        if (isProbablyProvidedLogChute(claz)) {
                             // if it's likely to be ours, tip them off about classloader stuff
                             log.error("This appears to be a ClassLoader issue.  Check for multiple Velocity jars in your classpath.");
                         }
                         throw new VelocityException(msg);
                     }
-                }
-                catch(NoClassDefFoundError ncdfe)
-                {
+                } catch (NoClassDefFoundError ncdfe) {
                     // note these errors for anyone debugging the app
-                    if (isProbablyProvidedLogChute(claz))
-                    {
+                    if (isProbablyProvidedLogChute(claz)) {
                         log.debug("Target log system for " + claz +
-                                  " is not available (" + ncdfe.toString() +
-                                  ").  Falling back to next log system...");
-                    }
-                    else
-                    {
+                                " is not available (" + ncdfe.toString() +
+                                ").  Falling back to next log system...");
+                    } else {
                         log.debug("Couldn't find class " + claz +
-                                  " or necessary supporting classes in classpath.",
-                                  ncdfe);
+                                        " or necessary supporting classes in classpath.",
+                                ncdfe);
                     }
-                }
-                catch(UnsupportedOperationException uoe)
-                {
+                } catch (UnsupportedOperationException uoe) {
                     // note these errors for anyone debugging the app
-                    if (isProbablyProvidedLogChute(claz))
-                    {
+                    if (isProbablyProvidedLogChute(claz)) {
                         log.debug("Target log system for " + claz +
-                                  " is not supported (" + uoe.toString() +
-                                  ").  Falling back to next log system...");
+                                " is not supported (" + uoe.toString() +
+                                ").  Falling back to next log system...");
+                    } else {
+                        log.debug("Couldn't find necessary resources for " + claz, uoe);
                     }
-                    else
-                    {
-                        log.debug("Couldn't find necessary resources for "+claz, uoe);
-                    }
-                }
-                catch(Exception e)
-                {
+                } catch (Exception e) {
                     String msg = "Failed to initialize an instance of " + claz +
-                                 " with the current runtime configuration.";
+                            " with the current runtime configuration.";
                     // log unexpected init exception at higher priority
                     log.error(msg, e);
-                    throw new VelocityException(msg,e);
+                    throw new VelocityException(msg, e);
                 }
             }
         }
@@ -242,14 +206,10 @@ public class LogManager
      * it'll probably always be right.  In any case, this method shouldn't
      * be relied upon for anything important.
      */
-    private static boolean isProbablyProvidedLogChute(String claz)
-    {
-        if (claz == null)
-        {
+    private static boolean isProbablyProvidedLogChute(String claz) {
+        if (claz == null) {
             return false;
-        }
-        else
-        {
+        } else {
             return (claz.startsWith("org.apache.velocity.runtime.log")
                     && claz.endsWith("LogChute"));
         }
@@ -258,13 +218,13 @@ public class LogManager
     /**
      * Update the Log instance with the appropriate LogChute and other
      * settings determined by the RuntimeServices.
+     *
      * @param log
      * @param rsvc
      * @throws Exception
      * @since 1.5
      */
-    public static void updateLog(Log log, RuntimeServices rsvc) throws Exception
-    {
+    public static void updateLog(Log log, RuntimeServices rsvc) throws Exception {
         // create a new LogChute using the RuntimeServices
         LogChute newLogChute = createLogChute(rsvc);
         LogChute oldLogChute = log.getLogChute();
@@ -276,9 +236,8 @@ public class LogManager
 
         // If the old LogChute was the pre-Init logger,
         // dump its messages into the new system.
-        if (oldLogChute instanceof HoldingLogChute)
-        {
-            HoldingLogChute hlc = (HoldingLogChute)oldLogChute;
+        if (oldLogChute instanceof HoldingLogChute) {
+            HoldingLogChute hlc = (HoldingLogChute) oldLogChute;
             hlc.transferTo(newLogChute);
         }
     }

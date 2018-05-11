@@ -31,7 +31,6 @@ import eu.eidas.auth.engine.core.eidas.RequestedAttribute;
 
 /**
  * The Class RequestedAttributeMarshaller.
- *
  */
 public class RequestedAttributeMarshaller extends AbstractSAMLObjectMarshaller {
 
@@ -39,50 +38,50 @@ public class RequestedAttributeMarshaller extends AbstractSAMLObjectMarshaller {
      * Marshall attributes.
      *
      * @param samlElement the SAML element
-     * @param domElement the DOM element
+     * @param domElement  the DOM element
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallAttributes(final XMLObject samlElement,
-	    final Element domElement) throws MarshallingException {
-	final RequestedAttribute requestedAttr = (RequestedAttribute) samlElement;
+                                            final Element domElement) throws MarshallingException {
+        final RequestedAttribute requestedAttr = (RequestedAttribute) samlElement;
 
-	if (requestedAttr.getName() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.NAME_ATTRIB_NAME, requestedAttr
-			    .getName());
-	}
+        if (requestedAttr.getName() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.NAME_ATTRIB_NAME, requestedAttr
+                            .getName());
+        }
 
-	if (requestedAttr.getNameFormat() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.NAME_FORMAT_ATTR, requestedAttr
-			    .getNameFormat());
-	}
+        if (requestedAttr.getNameFormat() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.NAME_FORMAT_ATTR, requestedAttr
+                            .getNameFormat());
+        }
 
-	if (requestedAttr.getFriendlyName() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.FRIENDLY_NAME_ATT, requestedAttr
-			    .getFriendlyName());
-	}
+        if (requestedAttr.getFriendlyName() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.FRIENDLY_NAME_ATT, requestedAttr
+                            .getFriendlyName());
+        }
 
-	if (requestedAttr.getIsRequiredXSBoolean() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.IS_REQUIRED_ATTR, requestedAttr
-			    .getIsRequiredXSBoolean());
-	}
+        if (requestedAttr.getIsRequiredXSBoolean() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.IS_REQUIRED_ATTR, requestedAttr
+                            .getIsRequiredXSBoolean());
+        }
 
-	Attr attr;
-	for (Entry<QName, String> entry : requestedAttr.getUnknownAttributes()
-		.entrySet()) {
-	    attr = XMLHelper.constructAttribute(domElement.getOwnerDocument(),
-		    entry.getKey());
-	    attr.setValue(entry.getValue());
-	    domElement.setAttributeNodeNS(attr);
-	    if (Configuration.isIDAttribute(entry.getKey())
-		    || requestedAttr.getUnknownAttributes().isIDAttribute(
-			    entry.getKey())) {
-		attr.getOwnerElement().setIdAttributeNode(attr, true);
-	    }
-	}
+        Attr attr;
+        for (Entry<QName, String> entry : requestedAttr.getUnknownAttributes()
+                .entrySet()) {
+            attr = XMLHelper.constructAttribute(domElement.getOwnerDocument(),
+                    entry.getKey());
+            attr.setValue(entry.getValue());
+            domElement.setAttributeNodeNS(attr);
+            if (Configuration.isIDAttribute(entry.getKey())
+                    || requestedAttr.getUnknownAttributes().isIDAttribute(
+                    entry.getKey())) {
+                attr.getOwnerElement().setIdAttributeNode(attr, true);
+            }
+        }
     }
 
 }

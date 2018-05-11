@@ -39,7 +39,9 @@
         <div class="col-right">
             <div class="col-right-inner">
                 <div class="clearfix">
-                    <div class="menu-top"> <a class="item text-minus" href="#"></a> <a class="item text-plus" href="#"></a> <a class="item contrast" href="#"></a> </div>
+                    <div class="menu-top"><a class="item text-minus" href="#"></a> <a class="item text-plus"
+                                                                                      href="#"></a> <a
+                            class="item contrast" href="#"></a></div>
                 </div>
                 <div class="col-right-content">
                     <jsp:include page="internal/content-security-header-deactivated.jsp"/>
@@ -49,35 +51,35 @@
                     <h2 class="sub-title">
                         <span><fmt:message key="unexpected.error" bundle="${i18n_error}"/></span>
                     </h2>
-                    <h3><fmt:message key="report.error" bundle="${i18n_error}" /></h3>
-                    <h3><span><fmt:message key="thank.message" bundle="${i18n_error}" /></span></h3>
+                    <h3><fmt:message key="report.error" bundle="${i18n_error}"/></h3>
+                    <h3><span><fmt:message key="thank.message" bundle="${i18n_error}"/></span></h3>
                     <%
                         Logger LOG = LoggerFactory.getLogger("InternalErrorPage.jsp");
                         boolean HttpStatusLogged = false; // Set to true after loggin of the error
-                        if(pageContext != null) {
-                            ErrorData errorData=null;
+                        if (pageContext != null) {
+                            ErrorData errorData = null;
                             try {
                                 errorData = pageContext.getErrorData();
-                            } catch(NullPointerException ne) {
+                            } catch (NullPointerException ne) {
                                 // If the error page was accessed directly, a NullPointerException
                                 // is thrown at (PageContext.java:514).
                                 // Catch and ignore it... it effectively means we can't use the ErrorData
                                 LOG.info("errorData is null {}", ne.getMessage());
                                 LOG.debug("errorData is null {}", ne);
                             }
-                            if (errorData!=null){
+                            if (errorData != null) {
                                 LOG.info("HTTP error {} at {}", errorData.getStatusCode(), errorData.getRequestURI());
                                 LOG.info("HTTP error throwable {}", errorData.getThrowable());
                             }
-                            HttpStatusLogged =true;
+                            HttpStatusLogged = true;
                         }
-                        if(!HttpStatusLogged) { // when the page is directly accessed
+                        if (!HttpStatusLogged) { // when the page is directly accessed
                             LOG.info("Direct access to the error page");
                         }
                     %>
                     <div id="cspMessage" class="warningCsp"></div>
                     <jsp:include page="internal/footer-img.jsp"/>
-                 </div>
+                </div>
             </div>
         </div>
     </div>

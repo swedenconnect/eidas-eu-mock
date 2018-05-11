@@ -2,4 +2,5 @@
 function submitRedirectFormAction() {
     document.getElementById('moa').submit();
 }
+
 window.addEventListener('load', submitRedirectFormAction());

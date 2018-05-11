@@ -32,19 +32,19 @@ public class CitizenCountryCodeBuilder extends AbstractSAMLObjectBuilder<Citizen
      * @return the citizen country code
      */
     public final CitizenCountryCode buildObject() {
-	return buildObject(CitizenCountryCode.DEF_ELEMENT_NAME);
+        return buildObject(CitizenCountryCode.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the citizen country code
      */
     public final CitizenCountryCode buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new CitizenCountryCodeImpl(namespaceURI, localName, namespacePrefix);
+                                                final String localName, final String namespacePrefix) {
+        return new CitizenCountryCodeImpl(namespaceURI, localName, namespacePrefix);
     }
 }

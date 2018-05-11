@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.Writer;
@@ -33,27 +33,26 @@ import org.apache.velocity.runtime.parser.node.Node;
  * will accept a single message argument with info about the reason for
  * stopping.
  */
-public class Stop extends Directive
-{  
+public class Stop extends Directive {
     private static final StopCommand STOP_ALL = new StopCommand("StopCommand to exit merging");
 
     private boolean hasMessage = false;
 
     /**
      * Return name of this directive.
+     *
      * @return The name of this directive.
      */
-    public String getName()
-    {
+    public String getName() {
         return "stop";
     }
 
     /**
      * Return type of this directive.
+     *
      * @return The type of this directive.
      */
-    public int getType()
-    {
+    public int getType() {
         return LINE;
     }
 
@@ -61,31 +60,24 @@ public class Stop extends Directive
      * Since there is no processing of content,
      * there is never a need for an internal scope.
      */
-    public boolean isScopeProvided()
-    {
+    public boolean isScopeProvided() {
         return false;
     }
 
-    public void init(RuntimeServices rs, InternalContextAdapter context, Node node)
-    {
+    public void init(RuntimeServices rs, InternalContextAdapter context, Node node) {
         super.init(rs, context, node);
 
         int kids = node.jjtGetNumChildren();
-        if (kids > 1)
-        {  
+        if (kids > 1) {
             throw new VelocityException("The #stop directive only accepts a single message parameter at "
-                 + Log.formatFileString(this));
-        }
-        else
-        {
+                    + Log.formatFileString(this));
+        } else {
             hasMessage = (kids == 1);
         }
     }
 
-    public boolean render(InternalContextAdapter context, Writer writer, Node node)
-    {
-        if (!hasMessage)
-        {
+    public boolean render(InternalContextAdapter context, Writer writer, Node node) {
+        if (!hasMessage) {
             throw STOP_ALL;
         }
 

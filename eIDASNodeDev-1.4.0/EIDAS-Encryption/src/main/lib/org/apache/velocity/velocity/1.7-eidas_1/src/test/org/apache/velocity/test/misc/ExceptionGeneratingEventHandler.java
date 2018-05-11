@@ -16,7 +16,7 @@ package org.apache.velocity.test.misc;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.app.event.IncludeEventHandler;
@@ -32,27 +32,22 @@ import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
  * @version $Id: ExceptionGeneratingEventHandler.java 463298 2006-10-12 16:10:32Z henning $
  */
 public class ExceptionGeneratingEventHandler implements IncludeEventHandler,
-        MethodExceptionEventHandler, NullSetEventHandler, ReferenceInsertionEventHandler
-{
+        MethodExceptionEventHandler, NullSetEventHandler, ReferenceInsertionEventHandler {
 
     public String includeEvent(String includeResourcePath, String currentResourcePath,
-            String directiveName)
-    {
+                               String directiveName) {
         throw new RuntimeException("exception");
     }
 
-    public Object methodException(Class claz, String method, Exception e) throws Exception
-    {
+    public Object methodException(Class claz, String method, Exception e) throws Exception {
         throw new RuntimeException("exception");
     }
 
-    public boolean shouldLogOnNullSet(String lhs, String rhs)
-    {
+    public boolean shouldLogOnNullSet(String lhs, String rhs) {
         throw new RuntimeException("exception");
     }
 
-    public Object referenceInsert(String reference, Object value)
-    {
+    public Object referenceInsert(String reference, Object value) {
         throw new RuntimeException("exception");
     }
 

@@ -81,7 +81,7 @@ public class ResignAction extends ActionSupport implements ServletRequestAware, 
             EidasAuthenticationRequest authnRequest = reqBuilder.build();
             IRequestMessage requestMessage =
                     defaultSamlEngine.resignEIDASAuthnRequest(new BinaryRequestMessage(authnRequest, messageBytes),
-                                                              true);
+                            true);
             result = requestMessage.getMessageBytes();
         } catch (EIDASSAMLEngineException ssee) {
             logger.info("Error during resigning with validation", ssee);
@@ -93,7 +93,7 @@ public class ResignAction extends ActionSupport implements ServletRequestAware, 
 
     public String reSign() {
 
-        byte[] reSigned = new byte[] {};
+        byte[] reSigned = new byte[]{};
 
         try {
             reSigned = SpProtocolEngineFactory.getSpProtocolEngine(SP_CONF).reSignRequest(EidasStringUtil.getBytes(samlRequestXML));

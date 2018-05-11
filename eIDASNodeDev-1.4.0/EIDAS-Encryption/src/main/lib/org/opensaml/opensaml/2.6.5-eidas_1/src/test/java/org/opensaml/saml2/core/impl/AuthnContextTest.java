@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,33 +32,45 @@ import org.opensaml.saml2.core.AuthnContextDeclRef;
  */
 public class AuthnContextTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Count of AuthenticatingAuthority subelements */
+    /**
+     * Count of AuthenticatingAuthority subelements
+     */
     protected int expectedAuthenticatingAuthorityCount = 2;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthnContextTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AuthnContext.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AuthnContextChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AuthnContext authnContext = (AuthnContext) unmarshallElement(singleElementFile);
 
         assertNotNull(authnContext);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthnContext.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthnContext authnContext = (AuthnContext) buildXMLObject(qname);
@@ -66,12 +78,16 @@ public class AuthnContextTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, authnContext);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AuthnContext authnContext = (AuthnContext) unmarshallElement(childElementsFile);
 
@@ -82,20 +98,22 @@ public class AuthnContextTest extends BaseSAMLObjectProviderTestCase {
                 .getAuthenticatingAuthorities().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthnContext.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthnContext authnContext = (AuthnContext) buildXMLObject(qname);
 
         QName authnContextClassRefQName = new QName(SAMLConstants.SAML20_NS, AuthnContextClassRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         authnContext.setAuthnContextClassRef((AuthnContextClassRef) buildXMLObject(authnContextClassRefQName));
-        
+
         QName authnContextDeclQName = new QName(SAMLConstants.SAML20_NS, AuthnContextDecl.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         authnContext.setAuthnContextDecl((AuthnContextDecl) buildXMLObject(authnContextDeclQName));
-        
+
         QName authnContextDeclRefQName = new QName(SAMLConstants.SAML20_NS, AuthnContextDeclRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         authnContext.setAuthnContextDeclRef((AuthnContextDeclRef) buildXMLObject(authnContextDeclRefQName));
-        
+
         QName authenticatingAuthorityQName = new QName(SAMLConstants.SAML20_NS, AuthenticatingAuthority.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         for (int i = 0; i < expectedAuthenticatingAuthorityCount; i++) {
             authnContext.getAuthenticatingAuthorities().add((AuthenticatingAuthority) buildXMLObject(authenticatingAuthorityQName));

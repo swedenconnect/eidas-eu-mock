@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,22 +22,28 @@ package org.opensaml.saml2.metadata;
  */
 public class LocalizedString {
 
-    /** Localized string. */
+    /**
+     * Localized string.
+     */
     private String localizedString;
 
-    /** Language of the localized string. */
+    /**
+     * Language of the localized string.
+     */
     private String language;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public LocalizedString() {
 
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param localString the localized string
-     * @param language the language of the string
+     * @param language    the language of the string
      */
     public LocalizedString(String localString, String language) {
         localizedString = localString;
@@ -46,7 +52,7 @@ public class LocalizedString {
 
     /**
      * Gets the localized string.
-     * 
+     *
      * @return the localized string
      */
     public String getLocalString() {
@@ -55,7 +61,7 @@ public class LocalizedString {
 
     /**
      * Sets the localized string.
-     * 
+     *
      * @param newString the localized string
      */
     public void setLocalizedString(String newString) {
@@ -64,7 +70,7 @@ public class LocalizedString {
 
     /**
      * Gets the language of the string.
-     * 
+     *
      * @return the language of the string
      */
     public String getLanguage() {
@@ -73,7 +79,7 @@ public class LocalizedString {
 
     /**
      * Sets the language of the string.
-     * 
+     *
      * @param newLanguage the language of the string
      */
     public void setLanguage(String newLanguage) {
@@ -93,9 +99,8 @@ public class LocalizedString {
     /**
      * Determines if two LocalizedStrings are equal, that is, if both thier localized string and language have
      * case-sentivite equality.
-     * 
+     *
      * @param obj the object this object is compared with
-     * 
      * @return true if the objects are equal, false if not
      */
     public boolean equals(Object obj) {

@@ -27,9 +27,7 @@ import javax.annotation.Nonnull;
  */
 public enum SpecificProxyServiceBeanNames {
 
-    SPECIFIC_PROXY_SERVICE("springManagedSpecificProxyService"),
-
-    ;
+    SPECIFIC_PROXY_SERVICE("springManagedSpecificProxyService"),;
 
     /**
      * constant name.
@@ -39,9 +37,10 @@ public enum SpecificProxyServiceBeanNames {
 
     /**
      * Constructor
+     *
      * @param name name of the bean
      */
-    SpecificProxyServiceBeanNames(@Nonnull final String name){
+    SpecificProxyServiceBeanNames(@Nonnull final String name) {
         this.name = name;
     }
 

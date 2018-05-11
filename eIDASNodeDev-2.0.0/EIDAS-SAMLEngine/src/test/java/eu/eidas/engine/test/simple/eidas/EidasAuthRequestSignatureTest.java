@@ -49,7 +49,7 @@ public class EidasAuthRequestSignatureTest {
         final AttributeDefinition dateOfBirth = newEidasAttributeDefinition("DateOfBirth", "DateOfBirth", true);
         final AttributeDefinition eIDNumber = newEidasAttributeDefinition("PersonIdentifier", "PersonIdentifier", true, true, false);
 
-        immutableAttributeMap= new ImmutableAttributeMap.Builder().put(dateOfBirth).put(eIDNumber).build();
+        immutableAttributeMap = new ImmutableAttributeMap.Builder().put(dateOfBirth).put(eIDNumber).build();
 
         destination = "http://EidasService.gov.xx/EIDASNODE/ColleagueRequest";
         assertConsumerUrl = "http://EidasConnector.gov.xx/EIDASNODE/ColleagueResponse";

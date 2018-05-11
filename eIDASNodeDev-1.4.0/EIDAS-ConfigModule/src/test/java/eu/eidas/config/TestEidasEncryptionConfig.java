@@ -20,36 +20,36 @@ import static org.junit.Assert.*;
 
 /**
  * write a node configuration, also an encryptionConf.xml file
- *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/testcontext.xml")
+@ContextConfiguration(locations = "/testcontext.xml")
 @FixMethodOrder(MethodSorters.JVM)
 public class TestEidasEncryptionConfig {
-    private static final String FILEREPO_DIR_READ="src/test/resources/config/";
-    private static final String FILEREPO_DIR_WRITE="target/test/samplenodeconfig/";
+    private static final String FILEREPO_DIR_READ = "src/test/resources/config/";
+    private static final String FILEREPO_DIR_WRITE = "target/test/samplenodeconfig/";
     @Autowired
     private EIDASNodeMasterConfiguration nodeMasterConfiguration = null;
     @Autowired
     private EidasConfigManagerUtil configUtil = null;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         assertNotNull(nodeMasterConfiguration);
-        java.io.File sampleNodeRepo=new java.io.File(FILEREPO_DIR_WRITE);
+        java.io.File sampleNodeRepo = new java.io.File(FILEREPO_DIR_WRITE);
         FileSystemUtils.deleteRecursively(sampleNodeRepo);
         sampleNodeRepo.mkdirs();
-        (new java.io.File(FILEREPO_DIR_WRITE+"samlengine/")).mkdirs();
+        (new java.io.File(FILEREPO_DIR_WRITE + "samlengine/")).mkdirs();
         configUtil.getFileService().setRepositoryDir(FILEREPO_DIR_READ);
     }
+
     @After
-    public void removeDir(){
-        java.io.File sampleNodeRepo=new java.io.File(FILEREPO_DIR_WRITE);
+    public void removeDir() {
+        java.io.File sampleNodeRepo = new java.io.File(FILEREPO_DIR_WRITE);
         FileSystemUtils.deleteRecursively(sampleNodeRepo);
     }
 
     @Test
-    public void testWriteNodeXMLConfig(){
+    public void testWriteNodeXMLConfig() {
         nodeMasterConfiguration.getNodeConfiguration().load();
         Properties nodeProps = nodeMasterConfiguration.getNodeConfiguration().getEidasProperties();
         assertNotNull(nodeProps);
@@ -59,7 +59,7 @@ public class TestEidasEncryptionConfig {
         assertNotNull(nodeMasterConfiguration.getNodeConfiguration().getEidasCountries());
         assertFalse(nodeMasterConfiguration.getNodeConfiguration().getEidasCountries().isEmpty());
         assertEquals(2, nodeMasterConfiguration.getNodeConfiguration().getEidasCountries().size());
-        for(int i=0;i<2;i++){
+        for (int i = 0; i < 2; i++) {
             EIDASNodeCountry country = nodeMasterConfiguration.getNodeConfiguration().getEidasCountries().get(i);
             country.setEncryptionTo(true);
             country.setEncryptionFrom(false);

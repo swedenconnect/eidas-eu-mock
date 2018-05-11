@@ -72,7 +72,7 @@ public abstract class AbstractParameterValidator<V extends AbstractParameterVali
      * <p/>
      * Checks that the given value is not empty and is not greater than the configured maximum length.
      *
-     * @param paramName The name of the parameter to validate.
+     * @param paramName  The name of the parameter to validate.
      * @param paramValue The value of the parameter to validate.
      * @return true if the parameter is valid.
      */

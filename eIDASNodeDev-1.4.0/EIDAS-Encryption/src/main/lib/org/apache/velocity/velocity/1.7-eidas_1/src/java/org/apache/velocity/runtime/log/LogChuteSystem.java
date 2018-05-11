@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.RuntimeServices;
@@ -30,34 +30,31 @@ import org.apache.velocity.util.StringUtils;
  * @version $Id: LogChuteSystem.java 730039 2008-12-30 03:53:19Z byron $
  * @since 1.5
  */
-public class LogChuteSystem implements LogChute
-{
+public class LogChuteSystem implements LogChute {
 
     private LogSystem logSystem;
 
     /**
      * Only classes in this package should be creating this.
      * Users should not have to mess with this class.
+     *
      * @param wrapMe
      */
-    protected LogChuteSystem(LogSystem wrapMe)
-    {
+    protected LogChuteSystem(LogSystem wrapMe) {
         this.logSystem = wrapMe;
     }
 
     /**
      * @see org.apache.velocity.runtime.log.LogChute#init(org.apache.velocity.runtime.RuntimeServices)
      */
-    public void init(RuntimeServices rs) throws Exception
-    {
+    public void init(RuntimeServices rs) throws Exception {
         logSystem.init(rs);
     }
 
     /**
      * @see org.apache.velocity.runtime.log.LogChute#log(int, java.lang.String)
      */
-    public void log(int level, String message)
-    {
+    public void log(int level, String message) {
         logSystem.logVelocityMessage(level, message);
     }
 
@@ -65,12 +62,12 @@ public class LogChuteSystem implements LogChute
      * First passes off the message at the specified level,
      * then passes off stack trace of the Throwable as a
      * 2nd message at the same level.
+     *
      * @param level
      * @param message
      * @param t
      */
-    public void log(int level, String message, Throwable t)
-    {
+    public void log(int level, String message, Throwable t) {
         logSystem.logVelocityMessage(level, message);
         logSystem.logVelocityMessage(level, StringUtils.stackTrace(t));
     }
@@ -78,8 +75,7 @@ public class LogChuteSystem implements LogChute
     /**
      * @see org.apache.velocity.runtime.log.LogChute#isLevelEnabled(int)
      */
-    public boolean isLevelEnabled(int level)
-    {
+    public boolean isLevelEnabled(int level) {
         return true;
     }
 

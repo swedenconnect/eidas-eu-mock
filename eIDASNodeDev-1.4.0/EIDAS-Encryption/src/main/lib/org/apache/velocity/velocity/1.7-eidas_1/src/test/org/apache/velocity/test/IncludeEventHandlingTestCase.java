@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -39,15 +39,14 @@ import org.apache.velocity.test.misc.TestLogChute;
 import org.apache.velocity.util.RuntimeServicesAware;
 
 /**
- *  Tests event handling
+ * Tests event handling
  *
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: IncludeEventHandlingTestCase.java 898032 2010-01-11 19:51:03Z nbubna $
  */
-public class IncludeEventHandlingTestCase extends BaseTestCase implements IncludeEventHandler,RuntimeServicesAware
-{
+public class IncludeEventHandlingTestCase extends BaseTestCase implements IncludeEventHandler, RuntimeServicesAware {
 
-     /**
+    /**
      * VTL file extension.
      */
     private static final String TMPL_FILE_EXT = "vm";
@@ -79,29 +78,27 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
     private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/includeevent/compare";
 
 
-    private static final int PASS_THROUGH=0;
-    private static final int RELATIVE_PATH=1;
-    private static final int BLOCK=2;
+    private static final int PASS_THROUGH = 0;
+    private static final int RELATIVE_PATH = 1;
+    private static final int BLOCK = 2;
 
     private int EventHandlerBehavior = PASS_THROUGH;
 
     VelocityEngine engine;
-    
+
     /**
      * Default constructor.
      */
-    public IncludeEventHandlingTestCase(String name)
-    {
+    public IncludeEventHandlingTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULTS_DIR);
 
         engine = new VelocityEngine();
-        
+
         engine.addProperty(
                 RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
 
@@ -114,23 +111,21 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
     }
 
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(IncludeEventHandlingTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testIncludeEventHandlingPassThrough ()
-            throws Exception
-    {
+    public void testIncludeEventHandlingPassThrough()
+            throws Exception {
         Template template1 = engine.getTemplate(
-            getFileName(null, "test1", TMPL_FILE_EXT));
+                getFileName(null, "test1", TMPL_FILE_EXT));
 
         FileOutputStream fos1 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "test1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "test1", RESULT_FILE_EXT));
 
         Writer writer1 = new BufferedWriter(new OutputStreamWriter(fos1));
 
@@ -138,7 +133,7 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
         Context context = new VelocityContext();
         EventCartridge ec = new EventCartridge();
         ec.addEventHandler(this);
-        ec.attachToContext( context );
+        ec.attachToContext(context);
 
         // BEHAVIOR A: pass through #input and #parse with no change
         EventHandlerBehavior = PASS_THROUGH;
@@ -155,14 +150,13 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
      * Runs the test.
      */
     public void testIncludeEventHandlingRelative()
-            throws Exception
-    {
+            throws Exception {
         Template template2 = engine.getTemplate(
-            getFileName(null, "subdir/test2", TMPL_FILE_EXT));
+                getFileName(null, "subdir/test2", TMPL_FILE_EXT));
 
         FileOutputStream fos2 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "test2", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "test2", RESULT_FILE_EXT));
 
         Writer writer2 = new BufferedWriter(new OutputStreamWriter(fos2));
 
@@ -170,7 +164,7 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
         Context context = new VelocityContext();
         EventCartridge ec = new EventCartridge();
         ec.addEventHandler(this);
-        ec.attachToContext( context );
+        ec.attachToContext(context);
 
         // BEHAVIOR B: pass through #input and #parse with using a relative path
         EventHandlerBehavior = RELATIVE_PATH;
@@ -187,14 +181,13 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
      * Runs the test.
      */
     public void testIncludeEventHandlingBlock()
-            throws Exception
-    {
+            throws Exception {
         Template template3 = engine.getTemplate(
-            getFileName(null, "test3", TMPL_FILE_EXT));
+                getFileName(null, "test3", TMPL_FILE_EXT));
 
         FileOutputStream fos3 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "test3", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "test3", RESULT_FILE_EXT));
 
         Writer writer3 = new BufferedWriter(new OutputStreamWriter(fos3));
 
@@ -202,7 +195,7 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
         Context context = new VelocityContext();
         EventCartridge ec = new EventCartridge();
         ec.addEventHandler(this);
-        ec.attachToContext( context );
+        ec.attachToContext(context);
 
         // BEHAVIOR C: refuse to pass through #input and #parse
         EventHandlerBehavior = BLOCK;
@@ -219,14 +212,13 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
      * Check bug VELOCITY-717.
      */
     public void testIncludeEventHandlingBlockMacros()
-            throws Exception
-    {
+            throws Exception {
         Template template = engine.getTemplate(
-            getFileName(null, "test7", TMPL_FILE_EXT));
+                getFileName(null, "test7", TMPL_FILE_EXT));
 
         FileOutputStream fos =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "test7", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "test7", RESULT_FILE_EXT));
 
         Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
 
@@ -234,8 +226,8 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
         Context context = new VelocityContext();
         EventCartridge ec = new EventCartridge();
         ec.addEventHandler(this);
-        ec.attachToContext( context );
-        
+        ec.attachToContext(context);
+
         EventHandlerBehavior = BLOCK;
         template.merge(context, writer);
         writer.flush();
@@ -246,46 +238,42 @@ public class IncludeEventHandlingTestCase extends BaseTestCase implements Includ
     }
 
 
-    public void setRuntimeServices( RuntimeServices rs )
-    {
+    public void setRuntimeServices(RuntimeServices rs) {
     }
 
     /**
      * Sample handler with different behaviors for the different tests.
      */
-    public String includeEvent( String includeResourcePath, String currentResourcePath, String directiveName)
-    {
+    public String includeEvent(String includeResourcePath, String currentResourcePath, String directiveName) {
         if (EventHandlerBehavior == PASS_THROUGH)
             return includeResourcePath;
 
 
-        // treat as relative path
-        else if (EventHandlerBehavior == RELATIVE_PATH)
-        {
+            // treat as relative path
+        else if (EventHandlerBehavior == RELATIVE_PATH) {
             // if the resource name starts with a slash, it's not a relative path
-            if (includeResourcePath.startsWith("/") || includeResourcePath.startsWith("\\") ) {
+            if (includeResourcePath.startsWith("/") || includeResourcePath.startsWith("\\")) {
                 return includeResourcePath;
             }
 
             int lastslashpos = Math.max(
                     currentResourcePath.lastIndexOf("/"),
                     currentResourcePath.lastIndexOf("\\")
-                    );
+            );
 
             // root of resource tree
-            if ( (lastslashpos == -1))
+            if ((lastslashpos == -1))
                 return includeResourcePath;
 
-            // prepend path to the input path
+                // prepend path to the input path
             else
-                return currentResourcePath.substring(0,lastslashpos) + "/" + includeResourcePath;
-
+                return currentResourcePath.substring(0, lastslashpos) + "/" + includeResourcePath;
 
 
         } else if (EventHandlerBehavior == BLOCK)
             return null;
 
-        // should never happen
+            // should never happen
         else
             return null;
 

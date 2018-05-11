@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,18 +28,24 @@ import org.opensaml.saml1.core.StatusCode;
  */
 public class StatusCodeTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects. */
+    /**
+     * name used to generate objects.
+     */
     private final QName qname;
 
-    /**Constructor. */
+    /**
+     * Constructor.
+     */
     public StatusCodeTest() {
         childElementsFile = "/data/org/opensaml/saml1/impl/FullStatusCode.xml";
         singleElementFile = "/data/org/opensaml/saml1/impl/singleStatusCode.xml";
-        
+
         qname = new QName(SAMLConstants.SAML10P_NS, StatusCode.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementUnmarshall() {
 
@@ -48,7 +54,9 @@ public class StatusCodeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Single Element Value wrong", StatusCode.SUCCESS, code.getValue());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsUnmarshall() {
 
@@ -57,7 +65,9 @@ public class StatusCodeTest extends BaseSAMLObjectProviderTestCase {
         assertNotNull("Child StatusCode", code.getStatusCode());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementMarshall() {
         StatusCode code = (StatusCode) buildXMLObject(qname);
@@ -67,7 +77,9 @@ public class StatusCodeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, code);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsMarshall() {
 

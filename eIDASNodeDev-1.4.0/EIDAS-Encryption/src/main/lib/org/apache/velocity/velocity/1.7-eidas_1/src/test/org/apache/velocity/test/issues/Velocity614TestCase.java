@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.exception.ParseErrorException;
@@ -26,33 +26,27 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-614.
  */
-public class Velocity614TestCase extends BaseTestCase
-{
-    public Velocity614TestCase(String name)
-    {
-       super(name);
+public class Velocity614TestCase extends BaseTestCase {
+    public Velocity614TestCase(String name) {
+        super(name);
     }
 
-    public void testSchmoo()
-    {
+    public void testSchmoo() {
         String template = "#something(Stuff)";
         assertEvalEquals(template, template);
     }
 
-    public void testEscapeSchmooButNotReallySinceSchmooHasNoEscaping()
-    {
+    public void testEscapeSchmooButNotReallySinceSchmooHasNoEscaping() {
         String template = "\\#something(Stuff)";
         assertEvalEquals(template, template);
     }
 
-    public void testEscapeMacroWithBadArg()
-    {
+    public void testEscapeMacroWithBadArg() {
         String template = "#macro( evil $arg )$arg#end \\#evil(bar)";
         assertEvalEquals(" #evil(bar)", template);
     }
 
-    public void testEarlyDefinedMacroWithBadArg()
-    {
+    public void testEarlyDefinedMacroWithBadArg() {
         // make sure this still bombs, but don't spam sysout
         log.off();
         assertEvalException("#macro( evil $arg )$arg#end #evil(bar)");
@@ -60,14 +54,12 @@ public class Velocity614TestCase extends BaseTestCase
     }
 
     // just make sure this doesn't get broken
-    public void testLateDefinedMacroWithGoodArg()
-    {
+    public void testLateDefinedMacroWithGoodArg() {
         String good = "#good('bar') #macro( good $arg )$arg#end";
         assertEvalEquals("bar ", good);
     }
 
-    public void testDirectivesWithBadArg()
-    {
+    public void testDirectivesWithBadArg() {
         // make sure these all still bomb, but don't spam sysout
         log.off();
         assertEvalException("#foreach(Stuff in That)foo#end");
@@ -81,8 +73,7 @@ public class Velocity614TestCase extends BaseTestCase
         log.on();
     }
 
-    public void testLateDefinedMacroWithBadArg()
-    {
+    public void testLateDefinedMacroWithBadArg() {
         String evil = "#evil(bar) #macro( evil $arg )$arg#end";
         assertEvalException(evil, TemplateInitException.class);
     }

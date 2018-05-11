@@ -54,13 +54,13 @@ public class ConnectorMetadataGeneratorServlet extends AbstractNodeServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String generatorName = NodeBeanNames.CONNECTOR_METADATA_GENERATOR.toString();
-        EidasNodeMetadataGenerator generator = (EidasNodeMetadataGenerator)getApplicationContext().getBean(generatorName);
+        EidasNodeMetadataGenerator generator = (EidasNodeMetadataGenerator) getApplicationContext().getBean(generatorName);
         PropertiesUtil.checkConnectorActive();
-        if(PropertiesUtil.isMetadataEnabled()) {
+        if (PropertiesUtil.isMetadataEnabled()) {
             ConnectorControllerService controllerService = (ConnectorControllerService) getApplicationContext().getBean(
                     NodeBeanNames.EIDAS_CONNECTOR_CONTROLLER.toString());
             response.getOutputStream().print(generator.generateConnectorMetadata(controllerService.getConnectorService().getSamlService().getSamlEngine()));
-        }else{
+        } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

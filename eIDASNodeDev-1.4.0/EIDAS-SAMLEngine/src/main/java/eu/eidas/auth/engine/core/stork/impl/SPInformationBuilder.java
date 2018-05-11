@@ -28,12 +28,16 @@ import eu.eidas.auth.engine.core.stork.SPInformation;
 public final class SPInformationBuilder extends AbstractSAMLObjectBuilder<SPInformation> {
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SPInformation buildObject() {
         return buildObject(SAMLCore.STORK10P_NS.getValue(), SPInformation.DEF_LOCAL_NAME, SAMLCore.STORK10P_PREFIX.getValue());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SPInformation buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
         return new SPInformationImpl(namespaceURI, localName, namespacePrefix);
     }

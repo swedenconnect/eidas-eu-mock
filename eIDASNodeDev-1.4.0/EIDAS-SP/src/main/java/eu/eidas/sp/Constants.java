@@ -2,22 +2,22 @@ package eu.eidas.sp;
 
 
 public final class Constants {
-    private  Constants(){
+    private Constants() {
         // Empty default constructor
     }
 
     public static final String SP_PROPERTIES = "sp.properties";
-    
+
     public static final String SP_QAALEVEL = "sp.qaalevel";
-    
+
     public static final String SP_RETURN = "sp.return";
 
     public static final String PROVIDER_NAME = "provider.name";
 
     public static final String SP_TYPE = "sp.type";
-    
+
     public static final String SP_SECTOR = "sp.sector";
-    
+
     public static final String SP_APLICATION = "sp.aplication";
 
     public static final String COUNTRY_NUMBER = "country.number";
@@ -35,9 +35,9 @@ public final class Constants {
     public static final String SP_METADATA_VALIDATESIGN = "sp.metadata.validatesignature";
     public static final String SP_METADATA_TRUSTEDDS = "sp.metadata.trusteddescriptors";
 
-    public static final String SP_EIDAS_ONLY="eidasNodeOnly";
+    public static final String SP_EIDAS_ONLY = "eidasNodeOnly";
 
-    public static final String SYSADMIN_RESOURCE_BUNDLE_BASE_NAME="sysadmin";
+    public static final String SYSADMIN_RESOURCE_BUNDLE_BASE_NAME = "sysadmin";
 
 }
 

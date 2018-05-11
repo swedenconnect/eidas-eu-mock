@@ -50,7 +50,7 @@ import static org.mockito.Mockito.when;
  * Functional testing class to {@link AUCONNECTORUtil}.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com,
- *         luis.felix@multicert.com
+ * luis.felix@multicert.com
  * @version $Revision: $, $Date:$
  */
 public class AUCONNECTORUtilTestCase {
@@ -75,16 +75,17 @@ public class AUCONNECTORUtilTestCase {
         Hazelcast.shutdownAll();
     }
 
-  /**
-   * Initialize the CONFIGS properties for each test to avoid
-   * inherited configurations
-   */
+    /**
+     * Initialize the CONFIGS properties for each test to avoid
+     * inherited configurations
+     */
     @Before
-    public void initialize(){
-      CONFIGS = new Properties();
-      CONFIGS.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(),
-              TestingConstants.ONE_CONS.toString());
+    public void initialize() {
+        CONFIGS = new Properties();
+        CONFIGS.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(),
+                TestingConstants.ONE_CONS.toString());
     }
+
     /**
      * Test method for {@link AUCONNECTORUtil#loadConfig(String)} . Must Succeed.
      */
@@ -216,6 +217,7 @@ public class AUCONNECTORUtilTestCase {
         // Second submission of same value, replay attack must be detected
         Assert.assertFalse("Second pass of replay attack", auconnectorutil.checkNotPresentInCache(ANTIREPLAY_SAML_ID_A, "EU"));
     }
+
     /**
      * Checks the default anti-replay Cache.
      */
@@ -246,8 +248,8 @@ public class AUCONNECTORUtilTestCase {
         hazelcastInstanceByName.getLifecycleService().shutdown();
     }
 
-    @Test(expected=InvalidParameterEIDASException.class)
-    public void testHazelCastAntiReplayMechanismFailByNullCache(){
+    @Test(expected = InvalidParameterEIDASException.class)
+    public void testHazelCastAntiReplayMechanismFailByNullCache() {
         ConcurrentMapServiceDistributedImpl hazelCache = new ConcurrentMapServiceDistributedImpl();
         hazelCache.getConfiguredMapCache();
     }

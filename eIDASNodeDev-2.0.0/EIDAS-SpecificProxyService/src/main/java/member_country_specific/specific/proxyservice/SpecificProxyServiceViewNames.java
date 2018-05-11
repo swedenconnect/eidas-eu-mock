@@ -37,9 +37,7 @@ public enum SpecificProxyServiceViewNames {
 
     CITIZEN_CONSENT_RESPONSE("/citizenConsentResponse.jsp"),
 
-    TOKEN_REDIRECT("/tokenRedirect.jsp"),
-
-    ;
+    TOKEN_REDIRECT("/tokenRedirect.jsp"),;
 
     /**
      * constant name.

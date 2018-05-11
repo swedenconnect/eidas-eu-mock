@@ -27,7 +27,8 @@ import java.util.UUID;
 
 public class LightResponseTestHelper {
 
-    private LightResponseTestHelper() {}
+    private LightResponseTestHelper() {
+    }
 
     public static ILightResponse createLightResponse(String inResponseTo, String statusCode, String subject, String subjectNameIdFormat) {
 

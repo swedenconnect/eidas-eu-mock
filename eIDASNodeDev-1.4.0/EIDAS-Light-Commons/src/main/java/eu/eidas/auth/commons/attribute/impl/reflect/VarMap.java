@@ -40,8 +40,8 @@ final class VarMap {
             // since we're looping over two arrays in parallel, just to be sure check they have the same size
             if (arguments.length != typeParameters.length) {
                 throw new IllegalStateException("The given type [" + actType + "] is inconsistent: it has " +
-                                                        arguments.length + " arguments instead of "
-                                                        + typeParameters.length);
+                        arguments.length + " arguments instead of "
+                        + typeParameters.length);
             }
 
             for (int i = 0; i < arguments.length; i++) {
@@ -81,8 +81,8 @@ final class VarMap {
         } else if (type instanceof ParameterizedType) {
             ParameterizedType pType = (ParameterizedType) type;
             return new ParameterizedTypeImpl((Class<?>) pType.getRawType(), map(pType.getActualTypeArguments()),
-                                             pType.getOwnerType() == null ? pType.getOwnerType()
-                                                                          : map(pType.getOwnerType()));
+                    pType.getOwnerType() == null ? pType.getOwnerType()
+                            : map(pType.getOwnerType()));
         } else if (type instanceof WildcardType) {
             WildcardType wType = (WildcardType) type;
             return new WildcardTypeImpl(map(wType.getUpperBounds()), map(wType.getLowerBounds()));

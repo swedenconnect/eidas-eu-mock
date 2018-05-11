@@ -72,7 +72,6 @@ public class MetadataUtil {
     public static String ORG_URL = "organization.url";
 
 
-
     @Nullable
     public static String getAssertionConsumerUrl(@Nullable SPSSODescriptor spSsoDescriptor) {
         if (spSsoDescriptor == null || spSsoDescriptor.getAssertionConsumerServices().isEmpty()) {
@@ -143,8 +142,8 @@ public class MetadataUtil {
 
     @Nullable
     public static String getSPTypeFromMetadata(@Nonnull MetadataFetcherI metadataFetcher,
-                                                             @Nonnull MetadataSignerI metadataSigner,
-                                                             @Nonnull ILightRequest authnRequest)
+                                               @Nonnull MetadataSignerI metadataSigner,
+                                               @Nonnull ILightRequest authnRequest)
             throws EIDASSAMLEngineException {
 
         String issuer = authnRequest.getIssuer();
@@ -224,33 +223,37 @@ public class MetadataUtil {
         return result;
     }
 
-    /** For IdP and SP only */
-    public static ContactData createTechnicalContact(Properties configs){
+    /**
+     * For IdP and SP only
+     */
+    public static ContactData createTechnicalContact(Properties configs) {
         return createContact(TECHNICAL_CONTACT_PROPS, configs);
     }
 
-    /** For IdP and SP only */
-    public static ContactData createSupportContact(Properties configs){
+    /**
+     * For IdP and SP only
+     */
+    public static ContactData createSupportContact(Properties configs) {
         return createContact(SUPPORT_CONTACT_PROPS, configs);
     }
 
-    public static ContactData createConnectorTechnicalContact(Properties configs){
+    public static ContactData createConnectorTechnicalContact(Properties configs) {
         return createContact(CONNECTOR_TECHNICAL_CONTACT_PROPS, configs);
     }
 
-    public static ContactData createConnectorSupportContact(Properties configs){
+    public static ContactData createConnectorSupportContact(Properties configs) {
         return createContact(CONNECTOR_SUPPORT_CONTACT_PROPS, configs);
     }
 
-    public static ContactData createServiceTechnicalContact(Properties configs){
+    public static ContactData createServiceTechnicalContact(Properties configs) {
         return createContact(SERVICE_TECHNICAL_CONTACT_PROPS, configs);
     }
 
-    public static ContactData createServiceSupportContact(Properties configs){
+    public static ContactData createServiceSupportContact(Properties configs) {
         return createContact(SERVICE_SUPPORT_CONTACT_PROPS, configs);
     }
 
-    private static ContactData createContact(String[] propsNames, Properties configs){
+    private static ContactData createContact(String[] propsNames, Properties configs) {
         ContactData.Builder contact = ContactData.builder();
         contact.company(propsNames != null && propsNames.length > 0 && configs != null ? configs.getProperty(propsNames[0]) : null);
         contact.email(propsNames != null && propsNames.length > 1 && configs != null ? configs.getProperty(propsNames[1]) : null);
@@ -260,7 +263,9 @@ public class MetadataUtil {
         return contact.build();
     }
 
-    /** For IdP and SP only */
+    /**
+     * For IdP and SP only
+     */
     public static OrganizationData createOrganization(Properties configs) {
         OrganizationData.Builder organization = OrganizationData.builder();
         organization.name(configs != null ? configs.getProperty(ORG_NAME) : null);

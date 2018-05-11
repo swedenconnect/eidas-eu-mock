@@ -28,7 +28,8 @@ import java.util.Properties;
  */
 public class NodeMetadataUtil {
 
-    private NodeMetadataUtil () {}
+    private NodeMetadataUtil() {
+    }
 
     public static final String[] CONNECTOR_TECHNICAL_CONTACT_PROPS = {
             "connector.contact.technical.company",
@@ -76,41 +77,45 @@ public class NodeMetadataUtil {
 
     /**
      * Creates the connector's technical contact data.
+     *
      * @param configs the configuration properties
      * @return the contact data
      */
-    public static ContactData createConnectorTechnicalContact(Properties configs){
+    public static ContactData createConnectorTechnicalContact(Properties configs) {
         return createContact(CONNECTOR_TECHNICAL_CONTACT_PROPS, configs);
     }
 
     /**
      * Creates the connector's support contact data.
+     *
      * @param configs the configuration properties
      * @return the contact data
      */
-    public static ContactData createConnectorSupportContact(Properties configs){
+    public static ContactData createConnectorSupportContact(Properties configs) {
         return createContact(CONNECTOR_SUPPORT_CONTACT_PROPS, configs);
     }
 
     /**
      * Creates the proxy-service's contact data.
+     *
      * @param configs the configuration properties
      * @return the contact data
      */
-    public static ContactData createServiceTechnicalContact(Properties configs){
+    public static ContactData createServiceTechnicalContact(Properties configs) {
         return createContact(SERVICE_TECHNICAL_CONTACT_PROPS, configs);
     }
 
     /**
      * Creates the proxy-service's support data.
+     *
      * @param configs the configuration properties
      * @return the contact data
      */
-    public static ContactData createServiceSupportContact(Properties configs){
+    public static ContactData createServiceSupportContact(Properties configs) {
         return createContact(SERVICE_SUPPORT_CONTACT_PROPS, configs);
     }
 
-    private static ContactData createContact(String[] propsNames, Properties configs){
+    private static ContactData createContact(String[] propsNames, Properties configs) {
         ContactData.Builder contact = ContactData.builder();
         contact.company(propsNames != null && propsNames.length > 0 && configs != null ? configs.getProperty(propsNames[0]) : null);
         contact.email(propsNames != null && propsNames.length > 1 && configs != null ? configs.getProperty(propsNames[1]) : null);
@@ -122,6 +127,7 @@ public class NodeMetadataUtil {
 
     /**
      * Creates the proxy-service's organization data.
+     *
      * @param configs the configuration properties
      * @return organization data
      */
@@ -131,6 +137,7 @@ public class NodeMetadataUtil {
 
     /**
      * Creates the connector's organization data.
+     *
      * @param configs the configuration properties
      * @return organization data
      */

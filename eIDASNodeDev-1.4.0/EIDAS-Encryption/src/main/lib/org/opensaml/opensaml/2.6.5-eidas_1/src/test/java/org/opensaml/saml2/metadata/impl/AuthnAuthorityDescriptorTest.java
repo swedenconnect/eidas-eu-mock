@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -40,32 +40,51 @@ import org.opensaml.saml2.metadata.Organization;
  */
 public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected supported protocol enumeration */
+    /**
+     * Expected supported protocol enumeration
+     */
     protected List<String> expectedSupportedProtocols;
 
-    /** Expected cacheDuration value in miliseconds */
+    /**
+     * Expected cacheDuration value in miliseconds
+     */
     protected long expectedCacheDuration;
 
-    /** Expected validUntil value */
+    /**
+     * Expected validUntil value
+     */
     protected DateTime expectedValidUntil;
 
-    /** Expected errorURL value */
+    /**
+     * Expected errorURL value
+     */
     protected String expectedErrorURL;
 
-    /** Expected number of <code> KeyDescriptor </code> sub elements */
+    /**
+     * Expected number of <code> KeyDescriptor </code> sub elements
+     */
     protected int expectedKeyDescriptors;
-    
-    /** Expected number of <code> ContactPerson </code> sub elements */
+
+    /**
+     * Expected number of <code> ContactPerson </code> sub elements
+     */
     protected int expectedContactPersons;
 
-    /** Expected number of <code> AuthnQueryService </code> sub elements */
+    /**
+     * Expected number of <code> AuthnQueryService </code> sub elements
+     */
     protected int expectedAuthnQueryServices;
 
-    /** Expected number of <code> AssertionIdRequestService </code> sub elements */
+    /**
+     * Expected number of <code> AssertionIdRequestService </code> sub elements
+     */
     protected int expectedAssertionIdRequestServices;
 
-    /** Expected number of <code> NameIdFormat </code> sub elements */
+    /**
+     * Expected number of <code> NameIdFormat </code> sub elements
+     */
     protected int expectedNameIdFormats;
+
     /**
      * Constructor
      */
@@ -75,7 +94,9 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         childElementsFile = "/data/org/opensaml/saml2/metadata/impl/AuthnAuthorityDescriptorChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -94,7 +115,9 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         expectedNameIdFormats = 1;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AuthnAuthorityDescriptor authnAuthorityObj = (AuthnAuthorityDescriptor) unmarshallElement(singleElementFile);
 
@@ -112,7 +135,9 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         assertNull("errorURL attribute has a value of " + errorURL + ", expected no value", errorURL);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AuthnAuthorityDescriptor authnAuthorityObj = (AuthnAuthorityDescriptor) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -132,11 +157,12 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         assertEquals("errorURL attribute has a value of " + errorURL + ", expected a value of " + expectedErrorURL,
                 expectedErrorURL, errorURL);
     }
-    
-    /** {@inheritDoc} */
 
-    public void testChildElementsUnmarshall()
-    {
+    /**
+     * {@inheritDoc}
+     */
+
+    public void testChildElementsUnmarshall() {
         AuthnAuthorityDescriptor authnAuthorityObj = (AuthnAuthorityDescriptor) unmarshallElement(childElementsFile);
 
         assertNotNull("<Extensions>", authnAuthorityObj.getExtensions());
@@ -150,7 +176,9 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         assertEquals("NameIdFormats count", expectedNameIdFormats, authnAuthorityObj.getNameIDFormats().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AuthnAuthorityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         AuthnAuthorityDescriptor descriptor = (AuthnAuthorityDescriptor) buildXMLObject(qname);
@@ -160,7 +188,9 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         assertEquals(expectedDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AuthnAuthorityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         AuthnAuthorityDescriptor descriptor = (AuthnAuthorityDescriptor) buildXMLObject(qname);
@@ -173,25 +203,27 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         assertEquals(expectedOptionalAttributesDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AuthnAuthorityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         AuthnAuthorityDescriptor descriptor = (AuthnAuthorityDescriptor) buildXMLObject(qname);
 
         descriptor.addSupportedProtocol(SAMLConstants.SAML20P_NS);
-        
+
         QName extensionsQName = new QName(SAMLConstants.SAML20MD_NS, Extensions.LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         descriptor.setExtensions((Extensions) buildXMLObject(extensionsQName));
-        
+
         QName orgQName = new QName(SAMLConstants.SAML20MD_NS, Organization.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         descriptor.setOrganization((Organization) buildXMLObject(orgQName));
-        
+
         QName contactPersonQName = new QName(SAMLConstants.SAML20MD_NS, ContactPerson.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         for (int i = 0; i < expectedContactPersons; i++) {
             descriptor.getContactPersons().add((ContactPerson) buildXMLObject(contactPersonQName));
         }
-        
+
         QName authnQueryServiceQName = new QName(SAMLConstants.SAML20MD_NS, AuthnQueryService.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         for (int i = 0; i < expectedAuthnQueryServices; i++) {
             descriptor.getAuthnQueryServices().add((AuthnQueryService) buildXMLObject(authnQueryServiceQName));
@@ -201,12 +233,12 @@ public class AuthnAuthorityDescriptorTest extends BaseSAMLObjectProviderTestCase
         for (int i = 0; i < expectedAssertionIdRequestServices; i++) {
             descriptor.getAssertionIDRequestServices().add((AssertionIDRequestService) buildXMLObject(assertionIDRequestServiceQName));
         }
-        
+
         QName nameIDFormatQName = new QName(SAMLConstants.SAML20MD_NS, NameIDFormat.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         for (int i = 0; i < expectedNameIdFormats; i++) {
             descriptor.getNameIDFormats().add((NameIDFormat) buildXMLObject(nameIDFormatQName));
         }
-        
+
         assertEquals(expectedChildElementsDOM, descriptor);
     }
 }

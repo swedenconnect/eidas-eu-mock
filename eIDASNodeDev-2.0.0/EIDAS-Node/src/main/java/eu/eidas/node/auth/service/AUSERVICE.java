@@ -66,7 +66,7 @@ import eu.eidas.node.utils.EidasNodeValidationUtil;
  * citizen's attributes.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.82 $, $Date: 2011-07-07 20:53:51 $
  * @see ISERVICEService
  */
@@ -118,7 +118,7 @@ public final class AUSERVICE implements ISERVICEService {
         // validate samlToken and populate AuthenticationData
         IAuthenticationRequest authnRequest =
                 samlService.processConnectorRequest(webRequest.getMethod().getValue(), samlToken, remoteIpAddress,
-                                                    relayState);
+                        relayState);
 
         LOG.trace("Validating destination");
         NormalParameterValidator.paramName(EidasErrorKey.SERVICE_REDIRECT_URL.toString())
@@ -159,7 +159,7 @@ public final class AUSERVICE implements ISERVICEService {
 
         // checks if all mandatory attributes have values.
         if (!samlService.checkMandatoryAttributes(originalRequest.getRequestedAttributes(),
-                                                  idpResponse.getAttributes())) {
+                idpResponse.getAttributes())) {
             LOG.info("BUSINESS EXCEPTION : Mandatory attribute is missing!");
             return sendFailure(proxyServiceRequest, EidasErrorKey.ATT_VERIFICATION_MANDATORY);
         }
@@ -191,11 +191,11 @@ public final class AUSERVICE implements ISERVICEService {
             }
         }
         if (!EidasNodeValidationUtil.isLoAValid(LevelOfAssuranceComparison.MINIMUM,
-                                                originalRequest.getLevelOfAssurance(),
-                                                idpResponse.getLevelOfAssurance())) {
+                originalRequest.getLevelOfAssurance(),
+                idpResponse.getLevelOfAssurance())) {
             LOG.error("ERROR : IdP response Level of Assurance is to low: requested="
-                             + originalRequest.getLevelOfAssurance(),
-                     " vs response=" + idpResponse.getLevelOfAssurance());
+                            + originalRequest.getLevelOfAssurance(),
+                    " vs response=" + idpResponse.getLevelOfAssurance());
             return sendFailure(proxyServiceRequest, EidasErrorKey.INVALID_RESPONSE_LOA_VALUE);
 /*            throw new EidasNodeException(
                     EidasErrors.get(EidasErrorKey.INVALID_RESPONSE_LOA_VALUE.errorCode()),
@@ -224,7 +224,7 @@ public final class AUSERVICE implements ISERVICEService {
         String currentIpAddress = webRequest.getRemoteIpAddress();
 
         return samlService.processIdpSpecificResponse(originalRequest, authenticationResponseBuilder.build(),
-                                                      currentIpAddress);
+                currentIpAddress);
     }
 
     @Nonnull
@@ -274,7 +274,7 @@ public final class AUSERVICE implements ISERVICEService {
                         AttributeValue<?> updated = null;
                         try {
                             updated = attributeValueMarshaller.unmarshal(identifierPrefix + value,
-                                                                         attributeValue.isNonLatinScriptAlternateVersion());
+                                    attributeValue.isNonLatinScriptAlternateVersion());
                         } catch (AttributeValueMarshallingException e) {
                             // TODO improve this:
                             throw new IllegalStateException(e);
@@ -309,14 +309,14 @@ public final class AUSERVICE implements ISERVICEService {
             errorMessage = EidasErrors.get(EidasErrorKey.INVALID_ATTRIBUTE_LIST.errorMessage());
         }
         byte[] samlTokenFail = samlService.generateErrorAuthenticationResponse(originalRequest,
-                                                                               EIDASStatusCode.RESPONDER_URI.toString(),
-                                                                               errorCode, null, errorMessage,
-                                                                               storedRequest.getRemoteIpAddress(),
-                                                                               true);
+                EIDASStatusCode.RESPONDER_URI.toString(),
+                errorCode, null, errorMessage,
+                storedRequest.getRemoteIpAddress(),
+                true);
         throw new ResponseCarryingServiceException(errorCode, errorMessage,
-                                                   EidasStringUtil.encodeToBase64(samlTokenFail),
-                                                   originalRequest.getAssertionConsumerServiceURL(),
-                                                   storedRequest.getRequest().getRelayState());
+                EidasStringUtil.encodeToBase64(samlTokenFail),
+                originalRequest.getAssertionConsumerServiceURL(),
+                storedRequest.getRequest().getRelayState());
     }
 
     /**
@@ -329,8 +329,8 @@ public final class AUSERVICE implements ISERVICEService {
                                         String ipUserAddress) {
 
         return generateSamlTokenFail(authData, statusCode, EidasErrors.get(error.errorCode()),
-                                     EIDASSubStatusCode.REQUEST_DENIED_URI.toString(),
-                                     EidasErrors.get(error.errorMessage()), ipUserAddress, false);
+                EIDASSubStatusCode.REQUEST_DENIED_URI.toString(),
+                EidasErrors.get(error.errorMessage()), ipUserAddress, false);
     }
 
     @Override
@@ -343,7 +343,7 @@ public final class AUSERVICE implements ISERVICEService {
                                         boolean isAuditable) {
         byte[] samlTokenFail =
                 samlService.generateErrorAuthenticationResponse(originalRequest, statusCode, errorCode, subCode,
-                                                                errorMessage, ipUserAddress, isAuditable);
+                        errorMessage, ipUserAddress, isAuditable);
 
         return EidasStringUtil.encodeToBase64(samlTokenFail);
     }

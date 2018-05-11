@@ -70,10 +70,10 @@ public class EidasNodeMetadataGenerator {
     private Properties nodeProps;
     private long validityDuration;
 
-    private String  singleSignOnServiceRedirectLocation;
-    private String  singleSignOnServicePostLocation;
+    private String singleSignOnServiceRedirectLocation;
+    private String singleSignOnServicePostLocation;
 
-    private static final String INVALID_METADATA="invalid metadata";
+    private static final String INVALID_METADATA = "invalid metadata";
 
     private ProtocolEngineFactory nodeProtocolEngineFactory;
 
@@ -133,17 +133,17 @@ public class EidasNodeMetadataGenerator {
         this.nodeProtocolEngineFactory = nodeProtocolEngineFactory;
     }
 
-    public String generateConnectorMetadata(){
+    public String generateConnectorMetadata() {
         ContactData technicalContact = MetadataUtil.createConnectorTechnicalContact(nodeProps);
         ContactData supportContact = MetadataUtil.createConnectorSupportContact(nodeProps);
         OrganizationData organization = MetadataUtil.createConnectorOrganization(nodeProps);
         return generateMetadata(samlConnectorSP, samlConnectorIDP, connectorMetadataUrl, technicalContact, supportContact, organization, null);
     }
 
-    public String generateServiceMetadata(){
-        String loA=null;
-        if(getNodeProps()!=null){
-            loA=getNodeProps().getProperty(EIDASValues.EIDAS_SERVICE_LOA.toString());
+    public String generateServiceMetadata() {
+        String loA = null;
+        if (getNodeProps() != null) {
+            loA = getNodeProps().getProperty(EIDASValues.EIDAS_SERVICE_LOA.toString());
         }
         ContactData technicalContact = MetadataUtil.createServiceTechnicalContact(nodeProps);
         ContactData supportContact = MetadataUtil.createServiceSupportContact(nodeProps);
@@ -151,11 +151,11 @@ public class EidasNodeMetadataGenerator {
         return generateMetadata(samlServiceSP, samlServiceIDP, serviceMetadataUrl, technicalContact, supportContact, organization, loA);
     }
 
-    private String generateMetadata(String spEngineName, String idpEngineName, String url, ContactData technicalContact, ContactData supportContact, OrganizationData organization, String loA){
-        String metadata=INVALID_METADATA;
-        ProtocolEngineI spEngine=null;
-        ProtocolEngineI idpEngine=null;
-        if(url!=null && !url.isEmpty()) {
+    private String generateMetadata(String spEngineName, String idpEngineName, String url, ContactData technicalContact, ContactData supportContact, OrganizationData organization, String loA) {
+        String metadata = INVALID_METADATA;
+        ProtocolEngineI spEngine = null;
+        ProtocolEngineI idpEngine = null;
+        if (url != null && !url.isEmpty()) {
             try {
                 EidasMetadata.Generator generator = EidasMetadata.generator();
                 MetadataConfigParams.Builder mcp = MetadataConfigParams.builder();
@@ -195,22 +195,18 @@ public class EidasNodeMetadataGenerator {
     }
 
     /**
-     *  Puts binding and location metadata attributes related to single sign on service in the {@code metadataConfigParams} only for the case of Identity Provider metadata.
+     * Puts binding and location metadata attributes related to single sign on service in the {@code metadataConfigParams} only for the case of Identity Provider metadata.
      *
-     * @param idpEngine The idpEngine to be checked for not null
-     *
-     * @param spEngine The idpEngine to be checked for null
-     *
+     * @param idpEngine            The idpEngine to be checked for not null
+     * @param spEngine             The idpEngine to be checked for null
      * @param metadataConfigParams The MetadataConfigParams were the binding and location will be put
-     *
-     * @param url The url where the metadata will be presented
-     *
+     * @param url                  The url where the metadata will be presented
      * @throws EIDASSAMLEngineException
      */
     private void addBindingLocation(ProtocolEngineI idpEngine, ProtocolEngineI spEngine, MetadataConfigParams.Builder metadataConfigParams, String url) throws EIDASSAMLEngineException {
         //This check is necessary to add and validate of single sign on service metadata only for the case of Identity Provider metadata.
         //It is not necessary to add or validate single sign one service metadata for other metadata, e.g. as for Service Provider metadata
-        if (idpEngine!=null && spEngine == null) {
+        if (idpEngine != null && spEngine == null) {
             metadataConfigParams.addProtocolBindingLocation(SAMLConstants.SAML2_REDIRECT_BINDING_URI,
                     validateBindingLocation(SAMLConstants.SAML2_REDIRECT_BINDING_URI, singleSignOnServiceRedirectLocation, url));
             metadataConfigParams.addProtocolBindingLocation(SAMLConstants.SAML2_POST_BINDING_URI,

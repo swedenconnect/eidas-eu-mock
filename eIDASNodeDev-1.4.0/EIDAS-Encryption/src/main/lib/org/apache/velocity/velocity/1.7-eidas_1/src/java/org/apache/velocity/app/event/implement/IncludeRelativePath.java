@@ -16,7 +16,7 @@ package org.apache.velocity.app.event.implement;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.app.event.IncludeEventHandler;
@@ -34,29 +34,27 @@ public class IncludeRelativePath implements IncludeEventHandler {
 
     /**
      * Return path relative to the current template's path.
-     * 
-     * @param includeResourcePath  the path as given in the include directive.
+     *
+     * @param includeResourcePath the path as given in the include directive.
      * @param currentResourcePath the path of the currently rendering template that includes the
-     *            include directive.
-     * @param directiveName  name of the directive used to include the resource. (With the
-     *            standard directives this is either "parse" or "include").
-
+     *                            include directive.
+     * @param directiveName       name of the directive used to include the resource. (With the
+     *                            standard directives this is either "parse" or "include").
      * @return new path relative to the current template's path
      */
     public String includeEvent(
-        String includeResourcePath,
-        String currentResourcePath,
-        String directiveName)
-    {
+            String includeResourcePath,
+            String currentResourcePath,
+            String directiveName) {
         // if the resource name starts with a slash, it's not a relative path
-        if (includeResourcePath.startsWith("/") || includeResourcePath.startsWith("\\") ) {
+        if (includeResourcePath.startsWith("/") || includeResourcePath.startsWith("\\")) {
             return includeResourcePath;
         }
 
         int lastslashpos = Math.max(
                 currentResourcePath.lastIndexOf("/"),
                 currentResourcePath.lastIndexOf("\\")
-                );
+        );
 
         // root of resource tree
         if (lastslashpos == -1) {
@@ -64,6 +62,6 @@ public class IncludeRelativePath implements IncludeEventHandler {
         }
 
         // prepend path to the include path
-        return currentResourcePath.substring(0,lastslashpos) + "/" + includeResourcePath;
+        return currentResourcePath.substring(0, lastslashpos) + "/" + includeResourcePath;
     }
 }

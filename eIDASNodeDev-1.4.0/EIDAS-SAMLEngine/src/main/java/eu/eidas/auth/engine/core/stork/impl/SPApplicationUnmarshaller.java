@@ -31,12 +31,12 @@ public class SPApplicationUnmarshaller extends AbstractSAMLObjectUnmarshaller {
     /**
      * Process element content.
      *
-     * @param samlObject the SAML object
+     * @param samlObject     the SAML object
      * @param elementContent the element content
      */
     protected final void processElementContent(final XMLObject samlObject,
-	    final String elementContent) {
-	final SPApplication spApplication = (SPApplication) samlObject;
-	spApplication.setSPApplication(elementContent);
+                                               final String elementContent) {
+        final SPApplication spApplication = (SPApplication) samlObject;
+        spApplication.setSPApplication(elementContent);
     }
 }

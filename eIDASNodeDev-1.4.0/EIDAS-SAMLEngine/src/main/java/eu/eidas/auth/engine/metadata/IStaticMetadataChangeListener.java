@@ -22,11 +22,14 @@ import org.opensaml.saml2.metadata.EntityDescriptor;
 public interface IStaticMetadataChangeListener {
     /**
      * notifies the adding of a new/updated entity descriptor
+     *
      * @param ed
      */
     void add(EntityDescriptor ed, MetadataSignerI metadataSigner) throws EIDASSAMLEngineException;
+
     /**
      * notifies the removal of an entity descriptor
+     *
      * @param entityID
      */
     void remove(String entityID);

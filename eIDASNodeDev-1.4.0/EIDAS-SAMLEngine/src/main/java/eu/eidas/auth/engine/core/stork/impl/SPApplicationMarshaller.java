@@ -38,9 +38,9 @@ public class SPApplicationMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final SPApplication spApplication = (SPApplication) samlObject;
-	XMLHelper.appendTextContent(domElement, spApplication
-		.getSPApplication());
+                                                final Element domElement) throws MarshallingException {
+        final SPApplication spApplication = (SPApplication) samlObject;
+        XMLHelper.appendTextContent(domElement, spApplication
+                .getSPApplication());
     }
 }

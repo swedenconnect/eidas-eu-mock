@@ -30,15 +30,16 @@ import eu.eidas.samlengineconfig.impl.tools.EidasConfigManagerUtil;
  * implementation for certificate manager configuration
  */
 public class CertificateManagerConfigurationImpl extends AbstractCertificateConfigurationManager {
-    private SamlEngineConfiguration samlEngineConfiguration =null;
-    private boolean active=false;
+    private SamlEngineConfiguration samlEngineConfiguration = null;
+    private boolean active = false;
 
     @Override
     public void addConfiguration(String name, String type, Map<String, String> props, boolean replaceExisting) {
-        throw new ConfigurationException("","not yet implemented");
+        throw new ConfigurationException("", "not yet implemented");
     }
+
     @Override
-    public void setLocation(String location){
+    public void setLocation(String location) {
         super.setLocation(location);
     }
 
@@ -46,30 +47,32 @@ public class CertificateManagerConfigurationImpl extends AbstractCertificateConf
     public EngineInstance getInstance(String name) {
         return null;
     }
+
     @Override
     public Map<String, EngineInstance> getConfiguration() {
-        if(samlEngineConfiguration ==null && isActive()){
+        if (samlEngineConfiguration == null && isActive()) {
             readConfiguration();
         }
-        return samlEngineConfiguration==null?new HashMap<String, EngineInstance>():((SamlEngineConfigurationImpl) samlEngineConfiguration).getInstanceMap();
+        return samlEngineConfiguration == null ? new HashMap<String, EngineInstance>() : ((SamlEngineConfigurationImpl) samlEngineConfiguration).getInstanceMap();
     }
 
     private void readConfiguration() {
         //configurationName=SamlEngine.xml
-        String masterFileName=configurationName;
+        String masterFileName = configurationName;
         samlEngineConfiguration = engineUnmarshaller.readEngineInstanceFromFile(masterFileName);
     }
 
-    public boolean isActive(){
-        if(!active) {
+    public boolean isActive() {
+        if (!active) {
             FileService fileService = EidasConfigManagerUtil.getInstance().getFileService();
-            if(getLocation()!=null && fileService!=null && (fileService.getRepositoryDir()==null || !fileService.existsFile(""))){
+            if (getLocation() != null && fileService != null && (fileService.getRepositoryDir() == null || !fileService.existsFile(""))) {
                 fileService.setRepositoryDir(getLocation());
             }
-            active = fileService!=null &&fileService.existsFile("");
+            active = fileService != null && fileService.existsFile("");
         }
         return active;
     }
+
     private EngineInstanceUnmarshallerImpl engineUnmarshaller;
     private String configurationName;
 
@@ -89,10 +92,11 @@ public class CertificateManagerConfigurationImpl extends AbstractCertificateConf
         this.configurationName = configurationName;
     }
 
-    public Properties loadEncryptionConfiguration(){
+    public Properties loadEncryptionConfiguration() {
         return EidasConfigManagerUtil.getInstance().loadProps("encryptionConf.xml");
     }
-    public void saveEncryptionConfiguration(Properties encryptionConf){
+
+    public void saveEncryptionConfiguration(Properties encryptionConf) {
         EidasConfigManagerUtil.getInstance().saveProps("encryptionConf.xml", encryptionConf);
     }
 }

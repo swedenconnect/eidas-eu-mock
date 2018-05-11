@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -25,30 +25,25 @@ import org.apache.velocity.exception.VelocityException;
 /**
  * This class tests VELOCITY-709.
  */
-public class Velocity709TestCase extends BaseTestCase
-{
-    public Velocity709TestCase(String name)
-    {
+public class Velocity709TestCase extends BaseTestCase {
+    public Velocity709TestCase(String name) {
         super(name);
         // DEBUG = true;
     }
 
-    public void testEscapedBackslashInSetDirective()
-    {
+    public void testEscapedBackslashInSetDirective() {
         String backslash = "\\";
         String template = "#set($var = \"" + backslash + "\" )#set($var2 = \"${var}\")$var2";
         System.out.println(template);
         assertEvalEquals("\\", template);
     }
-    
-    public void testEscapedDoubleQuote()
-    {
+
+    public void testEscapedDoubleQuote() {
         String template = "#set($foo = \"jeah \"\"baby\"\" jeah! \"\"\"\"\")$foo";
         assertEvalEquals("jeah \"baby\" jeah! \"\"", template);
     }
-    
-    public void testEscapedSingleQuote()
-    {
+
+    public void testEscapedSingleQuote() {
         String template = "#set($foo = 'jeah ''baby'' jeah!')$foo";
         assertEvalEquals("jeah 'baby' jeah!", template);
     }

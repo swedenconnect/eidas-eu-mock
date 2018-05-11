@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,9 @@ import org.opensaml.saml1.core.AttributeStatement;
  */
 public class AttributeStatementSchemaTest extends SubjectStatementSchemaTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AttributeStatementSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, AttributeStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
@@ -36,16 +38,18 @@ public class AttributeStatementSchemaTest extends SubjectStatementSchemaTestBase
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
 
         AttributeStatement attributeStatement = (AttributeStatement) target;
- 
+
         QName qname = new QName(SAMLConstants.SAML1_NS, Attribute.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        attributeStatement.getAttributes().add((Attribute)buildXMLObject(qname));
+        attributeStatement.getAttributes().add((Attribute) buildXMLObject(qname));
     }
-    
+
     public void testEmptyAttributeList() {
         AttributeStatement attributeStatement = (AttributeStatement) target;
 

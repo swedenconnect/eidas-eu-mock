@@ -16,16 +16,21 @@ package org.apache.velocity.test.provider;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
  * Provides overloaded methods for testing method execution within a foreach
+ *
  * @author <a href="mailto:wglass@apache.org">Will Glass-Husain</a>
  * @version $Id: ForeachMethodCallHelper.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ForeachMethodCallHelper
-{
-    public String getFoo(Integer v) { return "int "+v; }
-    public String getFoo(String v) { return "str "+v; }
+public class ForeachMethodCallHelper {
+    public String getFoo(Integer v) {
+        return "int " + v;
+    }
+
+    public String getFoo(String v) {
+        return "str " + v;
+    }
 }

@@ -152,7 +152,7 @@ public final class PersonalAttribute {
     /**
      * Copy constructor
      *
-     * @param copy the instance to copy
+     * @param copy          the instance to copy
      * @param copyAllValues {@code true} if all the values must also be copied.
      */
     private PersonalAttribute(@Nonnull PersonalAttribute copy,
@@ -194,16 +194,16 @@ public final class PersonalAttribute {
     }
 
     public PersonalAttribute(@Nonnull String name, @Nonnull String friendlyName, boolean isRequired) {
-        this(name,friendlyName);
+        this(name, friendlyName);
         setIsRequired(isRequired);
     }
 
     /**
      * PersonalAttribute Constructor for complex values.
      *
-     * @param attrName The attribute name.
+     * @param attrName       The attribute name.
      * @param attrIsRequired The attribute type value.
-     * @param simpleValue The attribute's value.
+     * @param simpleValue    The attribute's value.
      */
     public PersonalAttribute(@Nonnull String attrName,
                              @Nonnull String friendlyName,
@@ -220,8 +220,8 @@ public final class PersonalAttribute {
     /**
      * PersonalAttribute Constructor for complex values.
      *
-     * @param attrName The attribute name.
-     * @param attrIsRequired The attribute type value.
+     * @param attrName         The attribute name.
+     * @param attrIsRequired   The attribute type value.
      * @param attrComplexValue The attribute's complex value.
      */
     @Deprecated

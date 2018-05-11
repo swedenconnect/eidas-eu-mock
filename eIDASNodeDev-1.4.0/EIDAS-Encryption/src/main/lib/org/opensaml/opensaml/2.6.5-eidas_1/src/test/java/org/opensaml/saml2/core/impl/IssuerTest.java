@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,22 +28,30 @@ import org.opensaml.saml2.core.Issuer;
  */
 public class IssuerTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Issuer value */
+    /**
+     * Expected Issuer value
+     */
     protected String expectedIssuer;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public IssuerTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Issuer.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
         expectedIssuer = "issuer name";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Issuer issuer = (Issuer) unmarshallElement(singleElementFile);
 
@@ -51,12 +59,16 @@ public class IssuerTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Issuer was " + issuername + ", expected " + expectedIssuer, expectedIssuer, issuername);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Issuer.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Issuer issuer = (Issuer) buildXMLObject(qname);
@@ -65,7 +77,9 @@ public class IssuerTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, issuer);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }

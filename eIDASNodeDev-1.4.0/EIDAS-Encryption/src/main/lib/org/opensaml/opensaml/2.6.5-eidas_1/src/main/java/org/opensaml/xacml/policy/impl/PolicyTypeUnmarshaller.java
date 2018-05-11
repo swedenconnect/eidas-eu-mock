@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,15 +31,21 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.w3c.dom.Attr;
 
-/** Unmarshaller for {@link PolicyType} objects. */
+/**
+ * Unmarshaller for {@link PolicyType} objects.
+ */
 public class PolicyTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public PolicyTypeUnmarshaller() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
         PolicyType policy = (PolicyType) xmlObject;
 
@@ -54,7 +60,9 @@ public class PolicyTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
             throws UnmarshallingException {
         PolicyType policy = (PolicyType) parentXMLObject;
@@ -72,7 +80,7 @@ public class PolicyTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
         } else if (childXMLObject instanceof VariableDefinitionType) {
             policy.getVariableDefinitions().add((VariableDefinitionType) childXMLObject);
         } else if (childXMLObject instanceof RuleType) {
-            policy.getRules().add((RuleType)childXMLObject);
+            policy.getRules().add((RuleType) childXMLObject);
         } else if (childXMLObject instanceof ObligationsType) {
             policy.setObligations((ObligationsType) childXMLObject);
         } else {

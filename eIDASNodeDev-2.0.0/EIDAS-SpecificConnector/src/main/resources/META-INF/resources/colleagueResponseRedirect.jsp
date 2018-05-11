@@ -48,12 +48,15 @@
                     <noscript>
                         <h2 class="sub-title"><fmt:message key="spRedirect.text" bundle="${i18n_eng}"/></h2>
                         <form name="redirectForm" method="post" action="${e:forHtml(spUrl)}">
-                            <input type="hidden" id="SMSSPResponseNoJS" name="SMSSPResponse" value="${e:forHtml(smsspToken)}"/>
+                            <input type="hidden" id="SMSSPResponseNoJS" name="SMSSPResponse"
+                                   value="${e:forHtml(smsspToken)}"/>
                             <c:if test="${not empty relayState}">
-                                <input type="hidden" id="relayState" name="RelayState" value="${e:forHtml(relayState)}"/>
+                                <input type="hidden" id="relayState" name="RelayState"
+                                       value="${e:forHtml(relayState)}"/>
                             </c:if>
                             <p class="box-btn">
-                                <input type="submit" id="redirectValue_button" class="btn btn-next" value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="redirectValue_button" class="btn btn-next"
+                                       value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
                             </p>
                         </form>
                     </noscript>

@@ -28,8 +28,8 @@ import java.io.Writer;
 import java.io.IOException;
 
 /**
- *  This interface caraterize objects other than ASTNodes that can be rendered
- *  to a writer using a context.
+ * This interface caraterize objects other than ASTNodes that can be rendered
+ * to a writer using a context.
  *
  * @author <a href="mailto:claude.brisson@gmail.com">Claude Brisson</a>
  * @version $Id:$
@@ -38,7 +38,7 @@ import java.io.IOException;
 
 public interface Renderable {
 
-    public boolean render( InternalContextAdapter context, Writer writer)
-        throws IOException, MethodInvocationException, ParseErrorException, ResourceNotFoundException;
+    public boolean render(InternalContextAdapter context, Writer writer)
+            throws IOException, MethodInvocationException, ParseErrorException, ResourceNotFoundException;
 
 }

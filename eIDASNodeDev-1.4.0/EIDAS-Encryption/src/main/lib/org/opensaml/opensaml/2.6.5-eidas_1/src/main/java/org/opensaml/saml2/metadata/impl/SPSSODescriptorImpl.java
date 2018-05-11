@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -42,32 +42,42 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class SPSSODescriptorImpl extends SSODescriptorImpl implements SPSSODescriptor {
 
-    /** value for isAuthnRequestSigned attribute. */
+    /**
+     * value for isAuthnRequestSigned attribute.
+     */
     private XSBooleanValue authnRequestSigned;
 
-    /** value for the want assertion signed attribute. */
+    /**
+     * value for the want assertion signed attribute.
+     */
     private XSBooleanValue assertionSigned;
 
-    /** AssertionConsumerService children. */
+    /**
+     * AssertionConsumerService children.
+     */
     private final XMLObjectChildrenList<AssertionConsumerService> assertionConsumerServices;
 
-    /** AttributeConsumingService children. */
+    /**
+     * AttributeConsumingService children.
+     */
     private final XMLObjectChildrenList<AttributeConsumingService> attributeConsumingServices;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected SPSSODescriptorImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         assertionConsumerServices = new XMLObjectChildrenList<AssertionConsumerService>(this);
         attributeConsumingServices = new XMLObjectChildrenList<AttributeConsumingService>(this);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public Boolean isAuthnRequestsSigned() {
         if (authnRequestSigned == null) {
             return Boolean.FALSE;
@@ -75,26 +85,34 @@ public class SPSSODescriptorImpl extends SSODescriptorImpl implements SPSSODescr
         return authnRequestSigned.getValue();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue isAuthnRequestsSignedXSBoolean() {
         return authnRequestSigned;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void setAuthnRequestsSigned(Boolean newIsSigned) {
-        if(newIsSigned != null){
+        if (newIsSigned != null) {
             authnRequestSigned = prepareForAssignment(authnRequestSigned, new XSBooleanValue(newIsSigned, false));
-        }else{
+        } else {
             authnRequestSigned = prepareForAssignment(authnRequestSigned, null);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAuthnRequestsSigned(XSBooleanValue isSigned) {
         authnRequestSigned = prepareForAssignment(authnRequestSigned, isSigned);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public Boolean getWantAssertionsSigned() {
         if (assertionSigned == null) {
             return Boolean.FALSE;
@@ -102,65 +120,85 @@ public class SPSSODescriptorImpl extends SSODescriptorImpl implements SPSSODescr
         return assertionSigned.getValue();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue getWantAssertionsSignedXSBoolean() {
         return assertionSigned;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void setWantAssertionsSigned(Boolean wantAssestionSigned) {
-        if(wantAssestionSigned != null){
+        if (wantAssestionSigned != null) {
             assertionSigned = prepareForAssignment(assertionSigned, new XSBooleanValue(wantAssestionSigned, false));
-        }else{
+        } else {
             assertionSigned = prepareForAssignment(assertionSigned, null);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setWantAssertionsSigned(XSBooleanValue wantAssestionSigned) {
         this.assertionSigned = prepareForAssignment(this.assertionSigned, wantAssestionSigned);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AssertionConsumerService> getAssertionConsumerServices() {
         return assertionConsumerServices;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public AssertionConsumerService getDefaultAssertionConsumerService() {
         return SAML2MetadataHelper.getDefaultIndexedEndpoint(assertionConsumerServices);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AttributeConsumingService> getAttributeConsumingServices() {
         return attributeConsumingServices;
     }
-    
-    /** {@inheritDoc} */
-    public AttributeConsumingService getDefaultAttributeConsumingService(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public AttributeConsumingService getDefaultAttributeConsumingService() {
         AttributeConsumingServiceSelector selector = new AttributeConsumingServiceSelector();
         selector.setRoleDescriptor(this);
         return selector.selectService();
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints() {
         List<Endpoint> endpoints = new ArrayList<Endpoint>();
         endpoints.addAll(super.getEndpoints());
         endpoints.addAll(assertionConsumerServices);
         return Collections.unmodifiableList(endpoints);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints(QName type) {
-        if(type.equals(AssertionConsumerService.DEFAULT_ELEMENT_NAME)){
+        if (type.equals(AssertionConsumerService.DEFAULT_ELEMENT_NAME)) {
             return Collections.unmodifiableList(new ArrayList<Endpoint>(assertionConsumerServices));
-        }else{
+        } else {
             return super.getEndpoints(type);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

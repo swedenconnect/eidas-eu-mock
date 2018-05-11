@@ -27,28 +27,26 @@ import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 
 /**
  * The Class RequestedAttributesUnmarshaller.
- *
  */
 public class RequestedAttributesUnmarshaller extends
-		AbstractSAMLObjectUnmarshaller {
+        AbstractSAMLObjectUnmarshaller {
 
     /**
      * Process child element.
      *
      * @param parentObject the parent object
-     * @param childObject the child object
-     *
+     * @param childObject  the child object
      * @throws UnmarshallingException error in unmarshall
      */
     protected final void processChildElement(final XMLObject parentObject,
-	    final XMLObject childObject) throws UnmarshallingException {
-	final RequestedAttributes attrStatement = (RequestedAttributes) parentObject;
+                                             final XMLObject childObject) throws UnmarshallingException {
+        final RequestedAttributes attrStatement = (RequestedAttributes) parentObject;
 
-	if (childObject instanceof RequestedAttribute) {
-	    attrStatement.getAttributes().add((RequestedAttribute) childObject);
-	} else {
-	    super.processChildElement(parentObject, childObject);
-	}
+        if (childObject instanceof RequestedAttribute) {
+            attrStatement.getAttributes().add((RequestedAttribute) childObject);
+        } else {
+            super.processChildElement(parentObject, childObject);
+        }
     }
 
 }

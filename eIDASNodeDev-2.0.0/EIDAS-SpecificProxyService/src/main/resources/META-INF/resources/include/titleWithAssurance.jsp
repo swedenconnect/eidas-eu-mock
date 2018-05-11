@@ -34,8 +34,8 @@
             <span>
                 <c:out value="${e:forHtml(LoA)}"/>
                 <button type="button" class="btn btn-info"
-                    data-toggle="modal"
-                    data-target="#loaModal">?
+                        data-toggle="modal"
+                        data-target="#loaModal">?
             </button>
         </span>
     </span>

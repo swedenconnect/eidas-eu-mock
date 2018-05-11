@@ -25,7 +25,7 @@ public class EidasMessageFormatOnlyTest {
 
     private ProtocolEngineI getEngine(String conf) {
         ProtocolEngineI engine = null;
-            engine = ProtocolEngineFactory.getDefaultProtocolEngine(conf);
+        engine = ProtocolEngineFactory.getDefaultProtocolEngine(conf);
         return engine;
     }
 

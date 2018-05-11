@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.context.InternalContextAdapter;
@@ -24,7 +24,7 @@ import org.apache.velocity.runtime.parser.Parser;
 
 /**
  * Handles number addition of nodes.<br><br>
- *
+ * <p>
  * Please look at the Parser.jjt file which is
  * what controls the generation of this class.
  *
@@ -34,13 +34,11 @@ import org.apache.velocity.runtime.parser.Parser;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ASTAddNode.java 712887 2008-11-11 00:27:50Z nbubna $
  */
-public class ASTAddNode extends ASTMathNode
-{
+public class ASTAddNode extends ASTMathNode {
     /**
      * @param id
      */
-    public ASTAddNode(int id)
-    {
+    public ASTAddNode(int id) {
         super(id);
     }
 
@@ -48,25 +46,19 @@ public class ASTAddNode extends ASTMathNode
      * @param p
      * @param id
      */
-    public ASTAddNode(Parser p, int id)
-    {
+    public ASTAddNode(Parser p, int id) {
         super(p, id);
     }
 
     //@Override
-    protected Object handleSpecial(Object left, Object right, InternalContextAdapter context)
-    {
+    protected Object handleSpecial(Object left, Object right, InternalContextAdapter context) {
         /*
          * shall we try for strings?
          */
-        if (left instanceof String || right instanceof String)
-        {
-            if (left == null)
-            {
+        if (left instanceof String || right instanceof String) {
+            if (left == null) {
                 left = jjtGetChild(0).literal();
-            }
-            else if (right == null)
-            {
+            } else if (right == null) {
                 right = jjtGetChild(1).literal();
             }
             return left.toString().concat(right.toString());
@@ -74,8 +66,7 @@ public class ASTAddNode extends ASTMathNode
         return null;
     }
 
-    public Number perform(Number left, Number right, InternalContextAdapter context)
-    {
+    public Number perform(Number left, Number right, InternalContextAdapter context) {
         return MathUtils.add(left, right);
     }
 

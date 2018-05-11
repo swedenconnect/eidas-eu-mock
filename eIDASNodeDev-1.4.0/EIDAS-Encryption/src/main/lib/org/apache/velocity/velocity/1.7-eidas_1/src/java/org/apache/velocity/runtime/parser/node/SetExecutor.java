@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,7 +28,7 @@ import org.apache.velocity.runtime.log.Log;
  * Abstract class that is used to execute an arbitrary
  * method that is in introspected. This is the superclass
  * for the PutExecutor and SetPropertyExecutor.
- *
+ * <p>
  * There really should be a superclass for this and AbstractExecutor (which should
  * be refactored to GetExecutor) because they differ only in the execute() method.
  *
@@ -38,9 +38,10 @@ import org.apache.velocity.runtime.log.Log;
  * @version $Id: SetExecutor.java 685685 2008-08-13 21:43:27Z nbubna $
  * @since 1.5
  */
-public abstract class SetExecutor
-{
-    /** Class logger */
+public abstract class SetExecutor {
+    /**
+     * Class logger
+     */
     protected Log log = null;
 
     /**
@@ -50,6 +51,7 @@ public abstract class SetExecutor
 
     /**
      * Execute method against context.
+     *
      * @param o
      * @param value
      * @return The result of the invocation.
@@ -57,31 +59,29 @@ public abstract class SetExecutor
      * @throws InvocationTargetException
      */
     public abstract Object execute(Object o, Object value)
-         throws IllegalAccessException, InvocationTargetException;
+            throws IllegalAccessException, InvocationTargetException;
 
     /**
      * Tell whether the executor is alive by looking
      * at the value of the method.
+     *
      * @return True if the executor is alive.
      */
-    public boolean isAlive()
-    {
+    public boolean isAlive() {
         return (method != null);
     }
 
     /**
      * @return The method to invoke.
      */
-    public Method getMethod()
-    {
+    public Method getMethod() {
         return method;
     }
 
     /**
      * @param method
      */
-    protected void setMethod(final Method method)
-    {
+    protected void setMethod(final Method method) {
         this.method = method;
     }
 }

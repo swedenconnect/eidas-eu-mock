@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,19 +28,27 @@ import org.opensaml.saml2.core.Action;
  */
 public class ActionTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected value of action */
+    /**
+     * Expected value of action
+     */
     protected String expectedAction;
 
-    /** Expected value of Namespace */
+    /**
+     * Expected value of Namespace
+     */
     protected String expectedNamespace;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public ActionTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Action.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/ActionOptionalAttributes.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +56,9 @@ public class ActionTest extends BaseSAMLObjectProviderTestCase {
         expectedNamespace = "ns";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Action action = (Action) unmarshallElement(singleElementFile);
 
@@ -56,7 +66,9 @@ public class ActionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Action was " + actionname + ", expected " + expectedAction, expectedAction, actionname);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Action action = (Action) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -67,7 +79,9 @@ public class ActionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Namespace was " + namespace + ", expected " + expectedNamespace, expectedNamespace, namespace);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Action action = (Action) buildXMLObject(qname);
@@ -76,7 +90,9 @@ public class ActionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, action);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Action action = (Action) buildXMLObject(qname);

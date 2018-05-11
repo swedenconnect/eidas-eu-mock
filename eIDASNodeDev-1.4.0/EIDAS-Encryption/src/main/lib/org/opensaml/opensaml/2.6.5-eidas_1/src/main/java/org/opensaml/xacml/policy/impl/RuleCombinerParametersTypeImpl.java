@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,44 +31,57 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class RuleCombinerParametersTypeImpl extends AbstractXACMLObject implements
         org.opensaml.xacml.policy.RuleCombinerParametersType {
-    
-    /**Rule indentity reference.*/
+
+    /**
+     * Rule indentity reference.
+     */
     private String ruleIdRef;
-    /**List or the combiner parameters.*/
+    /**
+     * List or the combiner parameters.
+     */
     private XMLObjectChildrenList<CombinerParameterType> combinerParameters;
-    
+
     /**
      * Constructor.
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
-    protected RuleCombinerParametersTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix){
-        super(namespaceURI,elementLocalName,namespacePrefix);
+    protected RuleCombinerParametersTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
         combinerParameters = new XMLObjectChildrenList<CombinerParameterType>(this);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public String getRuleIdRef() {
         return ruleIdRef;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRuleIdRef(String ref) {
         this.ruleIdRef = prepareForAssignment(this.ruleIdRef, ref);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<CombinerParameterType> getCombinerParameters() {
         return combinerParameters;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
-        ArrayList<XMLObject> children = new ArrayList<XMLObject>();        
-        
+        ArrayList<XMLObject> children = new ArrayList<XMLObject>();
+
         children.addAll(combinerParameters);
-                       
+
         return Collections.unmodifiableList(children);
     }
 

@@ -111,7 +111,7 @@ abstract class PostalAddressAttributeValueMarshallerTest {
 
         String base64String = PostalAddressAttributeValueMarshallerTest.toBase64Address(marshaller.getPrefix());
         assertEquals(EidasStringUtil.decodeStringFromBase64(base64String),
-                     EidasStringUtil.decodeStringFromBase64(result));
+                EidasStringUtil.decodeStringFromBase64(result));
         assertEquals(base64String, result);
     }
 

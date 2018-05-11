@@ -85,12 +85,12 @@ public final class SAMLAuthnResponseDecrypter {
                 //KEY DECRYPTER
                 Decrypter keyDecrypter = new Decrypter(null, new StaticKeyInfoCredentialResolver(credential), null);
                 SecretKey dataDecKey = (SecretKey) keyDecrypter.decryptKey(encryptedSymmetricKey,
-                                                                           encAssertion.getEncryptedData()
-                                                                                   .getEncryptionMethod()
-                                                                                   .getAlgorithm());
+                        encAssertion.getEncryptedData()
+                                .getEncryptionMethod()
+                                .getAlgorithm());
                 if (LOGGER.isDebugEnabled()) {
                     LOGGER.debug("SAML Response decrypting with data encryption algorithm: '"
-                                         + encAssertion.getEncryptedData().getEncryptionMethod().getAlgorithm() + "'");
+                            + encAssertion.getEncryptedData().getEncryptionMethod().getAlgorithm() + "'");
                 }
 
                 //DATA DECRYPTER
@@ -147,7 +147,7 @@ public final class SAMLAuthnResponseDecrypter {
             Element newRootElement = newDocument.getDocumentElement();
             NodeList encryptedAssertionList =
                     newRootElement.getElementsByTagNameNS(EncryptedAssertion.DEFAULT_ELEMENT_NAME.getNamespaceURI(),
-                                                          EncryptedAssertion.DEFAULT_ELEMENT_NAME.getLocalPart());
+                            EncryptedAssertion.DEFAULT_ELEMENT_NAME.getLocalPart());
 
             // Replace the encrypted assertions by the decrypted assertions in the new DOM tree:
             for (int i = 0, n = encryptedAssertionList.getLength(); i < n; i++) {

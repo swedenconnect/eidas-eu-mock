@@ -16,7 +16,7 @@ package org.apache.velocity.test.provider;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.math.BigDecimal;
@@ -28,43 +28,35 @@ import java.math.BigInteger;
  *
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  */
-public class NumberMethods
-{
+public class NumberMethods {
 
-  public String numMethod(byte val)
-  {
-      return "byte (" + val + ")";
-  }
+    public String numMethod(byte val) {
+        return "byte (" + val + ")";
+    }
 
-  public String numMethod(short val)
-  {
-      return "short (" + val + ")";
-  }
+    public String numMethod(short val) {
+        return "short (" + val + ")";
+    }
 
-  public String numMethod(int val)
-  {
-      return "int (" + val + ")";
-  }
+    public String numMethod(int val) {
+        return "int (" + val + ")";
+    }
 
-  public String numMethod(double val)
-  {
-      return "double (" + val + ")";
-  }
+    public String numMethod(double val) {
+        return "double (" + val + ")";
+    }
 
-  public String numMethod(long val)
-  {
-      return "long (" + val + ")";
-  }
+    public String numMethod(long val) {
+        return "long (" + val + ")";
+    }
 
-  public String numMethod(BigInteger val)
-  {
-      return "BigInteger (" + val + ")";
-  }
+    public String numMethod(BigInteger val) {
+        return "BigInteger (" + val + ")";
+    }
 
-  public String numMethod(BigDecimal val)
-  {
-      return "BigDecimal (" + val + ")";
-  }
+    public String numMethod(BigDecimal val) {
+        return "BigDecimal (" + val + ")";
+    }
 
 
 }

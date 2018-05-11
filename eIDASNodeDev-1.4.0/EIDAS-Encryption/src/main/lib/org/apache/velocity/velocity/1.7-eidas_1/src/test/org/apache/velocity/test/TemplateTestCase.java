@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -39,7 +39,7 @@ import org.apache.velocity.test.provider.TestProvider;
 
 /**
  * Easily add test cases which evaluate templates and check their output.
- *
+ * <p>
  * NOTE:
  * This class DOES NOT extend RuntimeTestCase because the TemplateTestSuite
  * already initializes the Velocity runtime and adds the template
@@ -63,8 +63,7 @@ import org.apache.velocity.test.provider.TestProvider;
  * @author <a href="mailto:jon@latchkey.com">Jon S. Stevens</a>
  * @version $Id: TemplateTestCase.java 685369 2008-08-12 23:35:12Z nbubna $
  */
-public class TemplateTestCase extends BaseTestCase implements TemplateTestBase
-{
+public class TemplateTestCase extends BaseTestCase implements TemplateTestBase {
     /**
      * The base file name of the template and comparison file (i.e. array for
      * array.vm and array.cmp).
@@ -85,22 +84,19 @@ public class TemplateTestCase extends BaseTestCase implements TemplateTestBase
      * @param baseFileName The base name of the template and comparison file to
      *                     use (i.e. array for array.vm and array.cmp).
      */
-    public TemplateTestCase (String baseFileName)
-    {
+    public TemplateTestCase(String baseFileName) {
         super(getTestCaseName(baseFileName));
         this.baseFileName = baseFileName;
     }
 
-    public static junit.framework.Test suite()
-    {
+    public static junit.framework.Test suite() {
         return new TemplateTestSuite();
     }
 
     /**
      * Sets up the test.
      */
-    protected void setUp ()
-    {
+    protected void setUp() {
         provider = new TestProvider();
         al = provider.getCustomers();
         h = new Hashtable();
@@ -123,8 +119,8 @@ public class TemplateTestCase extends BaseTestCase implements TemplateTestBase
          */
 
         context2 = new VelocityContext();
-        context1 = new VelocityContext( context2 );
-        context = new VelocityContext( context1 );
+        context1 = new VelocityContext(context2);
+        context = new VelocityContext(context1);
 
         context.put("provider", provider);
         context1.put("name", "jason");
@@ -138,36 +134,36 @@ public class TemplateTestCase extends BaseTestCase implements TemplateTestBase
         context.put("relatedSearches", provider.getRelSearches());
         context1.put("searchResults", provider.getRelSearches());
         context2.put("stringarray", provider.getArray());
-        context.put("vector", vec );
+        context.put("vector", vec);
         context.put("mystring", new String());
-        context.put("runtime", new FieldMethodizer( "org.apache.velocity.runtime.RuntimeSingleton" ));
-        context.put("fmprov", new FieldMethodizer( provider ));
+        context.put("runtime", new FieldMethodizer("org.apache.velocity.runtime.RuntimeSingleton"));
+        context.put("fmprov", new FieldMethodizer(provider));
         context.put("Floog", "floogie woogie");
-        context.put("boolobj", new BoolObj() );
+        context.put("boolobj", new BoolObj());
 
         /*
          *  we want to make sure we test all types of iterative objects
          *  in #foreach()
          */
 
-        Object[] oarr = { "a","b","c","d" } ;
-        int intarr[] = { 10, 20, 30, 40, 50 };
+        Object[] oarr = {"a", "b", "c", "d"};
+        int intarr[] = {10, 20, 30, 40, 50};
 
-        context.put( "collection", vec );
+        context.put("collection", vec);
         context2.put("iterator", vec.iterator());
-        context1.put("map", h );
-        context.put("obarr", oarr );
+        context1.put("map", h);
+        context.put("obarr", oarr);
         context.put("enumerator", vec.elements());
-        context.put("intarr", intarr );
+        context.put("intarr", intarr);
 
         // Add some Numbers
-        context.put ("int1", new Integer (1000));
-        context.put ("long1", new Long (10000000000l));
-        context.put ("float1", new Float (1000.1234));
-        context.put ("double1", new Double (10000000000d));
+        context.put("int1", new Integer(1000));
+        context.put("long1", new Long(10000000000l));
+        context.put("float1", new Float(1000.1234));
+        context.put("double1", new Double(10000000000d));
 
         // Add a TemplateNumber
-        context.put ("templatenumber1", new TestNumber (999.125));
+        context.put("templatenumber1", new TestNumber(999.125));
 
         /**
          * Test #foreach() with a list containing nulls
@@ -180,39 +176,37 @@ public class TemplateTestCase extends BaseTestCase implements TemplateTestBase
         context.put("nullList", nullList);
 
         // test silent references with a null tostring
-        context.put("nullToString",new NullToStringObject());
+        context.put("nullToString", new NullToStringObject());
     }
 
     /**
      * Runs the test.
      */
-    public void runTest ()
-        throws Exception
-    {
+    public void runTest()
+            throws Exception {
         Template template = RuntimeSingleton.getTemplate
-            (getFileName(null, baseFileName, TMPL_FILE_EXT));
+                (getFileName(null, baseFileName, TMPL_FILE_EXT));
 
         assureResultsDirectoryExists(RESULT_DIR);
 
         /* get the file to write to */
         FileOutputStream fos =
-            new FileOutputStream (getFileName(
-                RESULT_DIR, baseFileName, RESULT_FILE_EXT));
+                new FileOutputStream(getFileName(
+                        RESULT_DIR, baseFileName, RESULT_FILE_EXT));
 
         Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
 
         /* process the template */
-        template.merge( context, writer);
+        template.merge(context, writer);
 
         /* close the file */
         writer.flush();
         writer.close();
 
-        if (!isMatch(RESULT_DIR,COMPARE_DIR,baseFileName,
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
-            fail("Processed template "+getFileName(
-                RESULT_DIR, baseFileName, RESULT_FILE_EXT)+" did not match expected output");
+        if (!isMatch(RESULT_DIR, COMPARE_DIR, baseFileName,
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
+            fail("Processed template " + getFileName(
+                    RESULT_DIR, baseFileName, RESULT_FILE_EXT) + " did not match expected output");
         }
     }
 }

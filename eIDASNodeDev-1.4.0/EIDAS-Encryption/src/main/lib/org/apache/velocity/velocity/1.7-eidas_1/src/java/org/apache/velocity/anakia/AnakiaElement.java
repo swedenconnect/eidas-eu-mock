@@ -16,12 +16,13 @@ package org.apache.velocity.anakia;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.jdom.Element;
 import org.jdom.Namespace;
 import org.jdom.output.XMLOutputter;
+
 import java.util.List;
 
 /**
@@ -33,8 +34,7 @@ import java.util.List;
  * @author <a href="mailto:szegedia@freemail.hu">Attila Szegedi</a>
  * @version $Id: AnakiaElement.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class AnakiaElement extends Element
-{
+public class AnakiaElement extends Element {
     /**
      * Version Id for serializable
      */
@@ -42,74 +42,69 @@ public class AnakiaElement extends Element
 
     private static final XMLOutputter DEFAULT_OUTPUTTER = new XMLOutputter();
 
-    static
-    {
+    static {
         DEFAULT_OUTPUTTER.getFormat().setLineSeparator(System.getProperty("line.separator"));
     }
 
     /**
      * <p>
      * This will create a new <code>AnakiaElement</code>
-     *   with the supplied (local) name, and define
-     *   the <code>{@link Namespace}</code> to be used.
+     * with the supplied (local) name, and define
+     * the <code>{@link Namespace}</code> to be used.
      * If the provided namespace is null, the element will have
      * no namespace.
      * </p>
      *
-     * @param name <code>String</code> name of element.
+     * @param name      <code>String</code> name of element.
      * @param namespace <code>Namespace</code> to put element in.
      */
-    public AnakiaElement(String name, Namespace namespace)
-    {
+    public AnakiaElement(String name, Namespace namespace) {
         super(name, namespace);
     }
 
     /**
      * <p>
-     *  This will create an <code>AnakiaElement</code> in no
-     *    <code>{@link Namespace}</code>.
+     * This will create an <code>AnakiaElement</code> in no
+     * <code>{@link Namespace}</code>.
      * </p>
      *
      * @param name <code>String</code> name of element.
      */
-    public AnakiaElement(String name)
-    {
+    public AnakiaElement(String name) {
         super(name);
     }
 
     /**
      * <p>
-     *  This will create a new <code>AnakiaElement</code> with
-     *    the supplied (local) name, and specifies the URI
-     *    of the <code>{@link Namespace}</code> the <code>Element</code>
-     *    should be in, resulting it being unprefixed (in the default
-     *    namespace).
+     * This will create a new <code>AnakiaElement</code> with
+     * the supplied (local) name, and specifies the URI
+     * of the <code>{@link Namespace}</code> the <code>Element</code>
+     * should be in, resulting it being unprefixed (in the default
+     * namespace).
      * </p>
      *
      * @param name <code>String</code> name of element.
-     * @param uri <code>String</code> URI for <code>Namespace</code> element
-     *        should be in.
+     * @param uri  <code>String</code> URI for <code>Namespace</code> element
+     *             should be in.
      */
-    public AnakiaElement(String name, String uri)
-    {
+    public AnakiaElement(String name, String uri) {
         super(name, uri);
     }
 
     /**
      * <p>
-     *  This will create a new <code>AnakiaElement</code> with
-     *    the supplied (local) name, and specifies the prefix and URI
-     *    of the <code>{@link Namespace}</code> the <code>Element</code>
-     *    should be in.
+     * This will create a new <code>AnakiaElement</code> with
+     * the supplied (local) name, and specifies the prefix and URI
+     * of the <code>{@link Namespace}</code> the <code>Element</code>
+     * should be in.
      * </p>
      *
-     * @param name <code>String</code> name of element.
+     * @param name   <code>String</code> name of element.
      * @param prefix The prefix of the element.
-     * @param uri <code>String</code> URI for <code>Namespace</code> element
-     *        should be in.
+     * @param uri    <code>String</code> URI for <code>Namespace</code> element
+     *               should be in.
      */
-    public AnakiaElement(String name, String prefix, String uri)
-    {
+    public AnakiaElement(String name, String prefix, String uri) {
         super(name, prefix, uri);
     }
 
@@ -123,25 +118,24 @@ public class AnakiaElement extends Element
      * usually kept in the parsed template, this ensures that each XPath
      * expression is parsed only once during the lifetime of the template that
      * first invoked it.
+     *
      * @param xpathExpression the XPath expression you wish to apply
      * @return a NodeList representing the nodes that are the result of
      * application of the XPath to the current element. It can be empty.
      */
-    public NodeList selectNodes(String xpathExpression)
-    {
+    public NodeList selectNodes(String xpathExpression) {
         return new NodeList(XPathCache.getXPath(xpathExpression).applyTo(this), false);
     }
 
     /**
      * Returns the XML serialized form of this element, as produced by the default
      * {@link XMLOutputter}.
-
+     *
      * @return The XML serialized form of this element, as produced by the default
      * {@link XMLOutputter}.
      */
 
-    public String toString()
-    {
+    public String toString() {
         return DEFAULT_OUTPUTTER.outputString(this);
     }
 
@@ -157,14 +151,13 @@ public class AnakiaElement extends Element
      * </p>
      *
      * @return a <code>List</code> containing the mixed content of the
-     *         element: may contain <code>String</code>,
-     *         <code>{@link Element}</code>, <code>{@link org.jdom.Comment}</code>,
-     *         <code>{@link org.jdom.ProcessingInstruction}</code>,
-     *         <code>{@link org.jdom.CDATA}</code>, and
-     *         <code>{@link org.jdom.EntityRef}</code> objects.
+     * element: may contain <code>String</code>,
+     * <code>{@link Element}</code>, <code>{@link org.jdom.Comment}</code>,
+     * <code>{@link org.jdom.ProcessingInstruction}</code>,
+     * <code>{@link org.jdom.CDATA}</code>, and
+     * <code>{@link org.jdom.EntityRef}</code> objects.
      */
-    public List getContent()
-    {
+    public List getContent() {
         return new NodeList(super.getContent(), false);
     }
 
@@ -179,7 +172,7 @@ public class AnakiaElement extends Element
      * </p>
      * <p>
      * This performs no recursion, so elements nested two levels
-     *   deep would have to be obtained with:
+     * deep would have to be obtained with:
      * <pre>
      * <code>
      *   Iterator itr = currentElement.getChildren().iterator();
@@ -194,8 +187,7 @@ public class AnakiaElement extends Element
      *
      * @return list of child <code>Element</code> objects for this element
      */
-    public List getChildren()
-    {
+    public List getChildren() {
         return new NodeList(super.getChildren(), false);
     }
 
@@ -217,8 +209,7 @@ public class AnakiaElement extends Element
      * @param name local name for the children to match
      * @return all matching child elements
      */
-    public List getChildren(String name)
-    {
+    public List getChildren(String name) {
         return new NodeList(super.getChildren(name));
     }
 
@@ -238,11 +229,10 @@ public class AnakiaElement extends Element
      * </p>
      *
      * @param name local name for the children to match
-     * @param ns <code>Namespace</code> to search within
+     * @param ns   <code>Namespace</code> to search within
      * @return all matching child elements
      */
-    public List getChildren(String name, Namespace ns)
-    {
+    public List getChildren(String name, Namespace ns) {
         return new NodeList(super.getChildren(name, ns));
     }
 
@@ -257,8 +247,7 @@ public class AnakiaElement extends Element
      *
      * @return attributes for the element
      */
-    public List getAttributes()
-    {
+    public List getAttributes() {
         return new NodeList(super.getAttributes());
     }
 }

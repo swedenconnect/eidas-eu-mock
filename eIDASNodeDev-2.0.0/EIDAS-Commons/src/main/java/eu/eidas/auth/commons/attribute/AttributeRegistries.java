@@ -81,7 +81,7 @@ public final class AttributeRegistries {
      * <p>
      * The given file must comply with the attribute registry format (see {@link AttributeSetPropertiesConverter}.
      *
-     * @param fileName the name of the configuration file.
+     * @param fileName    the name of the configuration file.
      * @param defaultPath optional path to registry file.
      */
     @Nonnull
@@ -95,7 +95,7 @@ public final class AttributeRegistries {
      * <p>
      * The given files must comply with the attribute registry format (see {@link AttributeSetPropertiesConverter}.
      *
-     * @param fileName the name of the first configuration file.
+     * @param fileName  the name of the first configuration file.
      * @param fileNames the names of the other configuration files.
      */
     @Nonnull

@@ -26,8 +26,8 @@ import eu.eidas.auth.commons.protocol.eidas.impl.EidasAuthenticationRequest;
  * selector form.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com,
- *         luis.felix@multicert.com, hugo.magalhaes@multicert.com,
- *         paulo.ribeiro@multicert.com
+ * luis.felix@multicert.com, hugo.magalhaes@multicert.com,
+ * paulo.ribeiro@multicert.com
  * @version $Revision: 1.12 $, $Date: 2010-11-18 23:17:50 $
  */
 public interface ICONNECTORCountrySelectorService {

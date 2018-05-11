@@ -28,7 +28,7 @@ import java.io.Serializable;
  *
  * @since 2.0
  */
-public class CorrelatedRequestsHolder implements Serializable{
+public class CorrelatedRequestsHolder implements Serializable {
 
     private static final long serialVersionUID = 8942548697342198159L;
 

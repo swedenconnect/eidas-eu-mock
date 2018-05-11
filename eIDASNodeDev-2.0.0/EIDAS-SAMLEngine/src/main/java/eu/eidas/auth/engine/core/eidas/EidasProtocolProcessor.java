@@ -407,7 +407,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
             throws EIDASSAMLEngineException {
         LOG.error(SAML_EXCHANGE, errorDetail);
         throw new EIDASSAMLEngineException(EidasErrors.get(errorKey.errorCode()),
-                                           EidasErrors.get(errorKey.errorMessage()), errorDetail);
+                EidasErrors.get(errorKey.errorMessage()), errorDetail);
     }
 
     private void addResponseAuthnContextClassRef(@Nonnull IAuthenticationResponse response,
@@ -441,7 +441,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
             } catch (AttributeValueMarshallingException e) {
                 LOG.error("Illegal attribute value: " + e, e);
                 throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
+                        EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
             }
         }
 
@@ -494,7 +494,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
 
     /**
      * Checks whether the attribute list fulfills the reuqiremnts of representative scenario
-     *
+     * <p>
      * According to Specs 1.1 representative attributes MUST no be requested
      *
      * @param immutableAttributeMap
@@ -536,12 +536,12 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         if (null != specAttribute) {
             if (!specAttribute.equals(requestedAttribute)) {
                 LOG.trace("Eidas Attribute: {} does not comply with the eIDAS specification ({}).", requestedAttribute,
-                          specAttribute);
+                        specAttribute);
                 throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                                   EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                                   "Eidas Attribute: " + requestedAttribute
-                                                           + " does not comply with the eIDAS specification("
-                                                           + specAttribute + ").");
+                        EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
+                        "Eidas Attribute: " + requestedAttribute
+                                + " does not comply with the eIDAS specification("
+                                + specAttribute + ").");
             }
             return specAttribute;
         }
@@ -578,7 +578,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
                 } catch (TransformerException e) {
                     LOG.error(SAML_EXCHANGE, "ERROR :  transformer exception: " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                       EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
+                            EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
                 }
             }
             return xsAny.getTextContent();
@@ -642,20 +642,20 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
                         }
 
                         setBuilder.add(attributeValueMarshaller.unmarshal(xsAny.getTextContent(),
-                                                                              isNonLatinScriptAlternateVersion));
+                                isNonLatinScriptAlternateVersion));
 
                     } else {
                         LOG.info("BUSINESS EXCEPTION : attribute value is unknown in generatePersonalAttributeList.");
                         throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                           EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                           "Attribute value is unknown for \""
-                                                                   + attributeDefinition.getNameUri().toASCIIString()
-                                                                   + "\" - value: \"" + xmlObject + "\"");
+                                EidasErrorKey.INTERNAL_ERROR.errorCode(),
+                                "Attribute value is unknown for \""
+                                        + attributeDefinition.getNameUri().toASCIIString()
+                                        + "\" - value: \"" + xmlObject + "\"");
                     }
                 } catch (AttributeValueMarshallingException e) {
                     LOG.error("BUSINESS EXCEPTION : Illegal Attribute Value: " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                       EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
+                            EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
                 }
             }
 
@@ -735,7 +735,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
             RequestedAuthnContext rac = authnRequest.getRequestedAuthnContext();
             if (null == rac.getComparison()) {
                 throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorCode()),
-                                                   EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorMessage()));
+                        EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorMessage()));
             }
             String comparison = rac.getComparison().toString();
             List<AuthnContextClassRef> authnContexts = rac.getAuthnContextClassRefs();
@@ -745,7 +745,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
                     return level.stringValue();
                 } else if (!StringUtils.isEmpty(contextRef.getAuthnContextClassRef())) {
                     throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorCode()),
-                                                       EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorMessage()));
+                            EidasErrors.get(EidasErrorKey.INVALID_LOA_VALUE.errorMessage()));
                 }
             }
         }
@@ -790,7 +790,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
      * Copies the attributes contained in an {@link  IAuthenticationRequest} that fullName are supported attribute
      * names
      *
-     * @param requestedAttributes the requested attributes
+     * @param requestedAttributes     the requested attributes
      * @param supportedAttributeNames the supported attribute names
      * @return a builder for an {@link ImmutableAttributeMap}
      */
@@ -827,9 +827,9 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
             } else {
                 if (LOG.isDebugEnabled()) {
                     LOG.debug("The Metadata of the Service does not contain the requested optional attribute \""
-                                      + fullName + "\" (request issuer: " + requestIssuer
-                                      + " - ProxyService metadata URL: " + serviceMetadataURL
-                                      + "): it will be ignored");
+                            + fullName + "\" (request issuer: " + requestIssuer
+                            + " - ProxyService metadata URL: " + serviceMetadataURL
+                            + "): it will be ignored");
                 }
                 modified = true;
             }
@@ -972,8 +972,8 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         if (null == attributeDefinition) {
             LOG.error("BUSINESS EXCEPTION : Attribute name: {} is not known.", name);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               "Attribute name: " + name + " is not known.");
+                    EidasErrorKey.INTERNAL_ERROR.errorCode(),
+                    "Attribute name: " + name + " is not known.");
         }
         return attributeDefinition;
     }
@@ -981,7 +981,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
 
     /**
      * Checks if the incoming EIDAS attribute request has Required flag set same as the Definition
-      */
+     */
     @Nonnull
     private void checkRequiredAttributeCompiles(@Nullable AttributeDefinition attributeDef, @Nonnull RequestedAttribute requestedAttribute) throws EIDASSAMLEngineException {
         if (attributeDef != null && eidasAttributeRegistry.contains(attributeDef)) {
@@ -1001,9 +1001,9 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
     public AttributeDefinition<?> getAttributeDefinitionNullable(@Nonnull String name) {
         if (StringUtils.isBlank(name)) {
             LOG.info(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : {}",
-                     ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
+                    ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
             throw new InternalErrorEIDASException(EidasErrors.get(EidasErrorKey.INTERNAL_ERROR.errorCode()),
-                                                  ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
+                    ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
         }
         AttributeDefinition<?> attributeDefinition = getMinimumDataSetAttributes().getByName(name);
         if (null != attributeDefinition) {
@@ -1202,8 +1202,8 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
 
         } catch (EIDASMetadataException e) {
             throw new InternalErrorEIDASException(EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()),
-                                                  EidasErrors.get(
-                                                          EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()), e);
+                    EidasErrors.get(
+                            EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()), e);
         }
         return true;
     }
@@ -1214,7 +1214,6 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
      *
      * @deprecated since 1.4
      * Use {@link ProtocolProcessorI#marshallErrorResponse(IAuthenticationRequest, IAuthenticationResponse, String, SamlEngineCoreProperties, DateTime)}
-     *
      */
     @Nonnull
     @Override
@@ -1229,7 +1228,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         //temporary solution for maintaining deprecated method
         final DateTime currentTime = new DateTime();
 
-        return marshallErrorResponse(request,response,ipAddress,coreProperties,currentTime);
+        return marshallErrorResponse(request, response, ipAddress, coreProperties, currentTime);
     }
 
     @Nonnull
@@ -1284,9 +1283,9 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
 
         Assertion assertion =
                 AssertionUtil.generateResponseAssertion(true, ipAddress, request, response.getSubject(), response.getSubjectNameIdFormat(), responseFail.getIssuer(),
-                                                        ImmutableAttributeMap.of(), notOnOrAfter,
-                                                        coreProperties.getFormatEntity(), coreProperties.getResponder(),
-                                                        formatDescriptor, coreProperties.isOneTimeUse(), currentTime);
+                        ImmutableAttributeMap.of(), notOnOrAfter,
+                        coreProperties.getFormatEntity(), coreProperties.getResponder(),
+                        formatDescriptor, coreProperties.isOneTimeUse(), currentTime);
         addResponseAuthnContextClassRef(response, assertion);
         responseFail.getAssertions().add(assertion);
 
@@ -1309,7 +1308,6 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
      *
      * @deprecated since 1.4
      * Use {@link ProtocolProcessorI#marshallRequest(IAuthenticationRequest, String, SamlEngineCoreProperties, DateTime)}
-     *
      */
     @Nonnull
     @Override
@@ -1387,12 +1385,10 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
     }
 
     /**
-     *
      * TODO to be removed
      *
      * @deprecated since 1.4
      * Use {@link ProtocolProcessorI#marshallResponse(IAuthenticationRequest, IAuthenticationResponse, String, SamlEngineCoreProperties, DateTime)}
-     *
      */
     @Override
     @Nonnull
@@ -1405,15 +1401,15 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         //temporary solution for maintaining deprecated method
         final DateTime currentTime = new DateTime();
 
-        return marshallResponse(request,response,ipAddress,coreProperties,currentTime);
+        return marshallResponse(request, response, ipAddress, coreProperties, currentTime);
     }
 
     /**
-     * @param request the request
-     * @param response the authentication response from the IdP
-     * @param ipAddress the IP address
+     * @param request        the request
+     * @param response       the authentication response from the IdP
+     * @param ipAddress      the IP address
      * @param coreProperties the saml engine core properties
-     * @param currentTime the current time
+     * @param currentTime    the current time
      * @return the authentication response
      * @throws EIDASSAMLEngineException
      */
@@ -1429,8 +1425,8 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         // At this point the assertion consumer service URL is mandatory (and must have been replaced by the value from the metadata if needed)
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Request AssertionConsumerServiceURL must not be blank.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Request AssertionConsumerServiceURL must not be blank.");
         }
 
         // Mandatory SAML
@@ -1480,10 +1476,10 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
     /**
      * Instantiates a new authentication response.
      *
-     * @param status the status
+     * @param status            the status
      * @param assertConsumerURL the assert consumer URL.
-     * @param inResponseTo the in response to
-     * @param currentTime the saml engine clock
+     * @param inResponseTo      the in response to
+     * @param currentTime       the saml engine clock
      * @return the response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -1547,7 +1543,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
 
         xmlObject.getNamespaceManager()
                 .registerNamespaceDeclaration(new Namespace(SAMLCore.EIDAS10_RESPONSESAML_NS.getValue(),
-                                                 SAMLCore.EIDAS10_SAML_PREFIX.getValue()));
+                        SAMLCore.EIDAS10_SAML_PREFIX.getValue()));
     }
 
     @Override
@@ -1631,8 +1627,8 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
                 attributeMapBuilder.put(attributeDefinition, (ImmutableSet) setBuilder.build());
             } else {
                 LOG.info(AbstractProtocolEngine.SAML_EXCHANGE,
-                         "BUSINESS EXCEPTION : Attribute name: {} was not found. It will be removed from the request object",
-                         requestedAttribute.getName());
+                        "BUSINESS EXCEPTION : Attribute name: {} was not found. It will be removed from the request object",
+                        requestedAttribute.getName());
             }
         }
 
@@ -1686,7 +1682,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         LOG.trace("validateEidasResponse");
         Assertion assertion =
                 ResponseUtil.extractVerifiedAssertion(response, verifyBearerIpAddress, userIpAddress, beforeSkewTimeInMillis,
-                                                      afterSkewTimeInMillis, now, audienceRestriction);
+                        afterSkewTimeInMillis, now, audienceRestriction);
 
         if (null != assertion) {
             LOG.trace("Set notOnOrAfter.");
@@ -1696,16 +1692,16 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
             builder.notBefore(assertion.getConditions().getNotBefore());
 
             builder.audienceRestriction((assertion.getConditions().getAudienceRestrictions().get(0)).getAudiences()
-                                                .get(0)
-                                                .getAudienceURI());
+                    .get(0)
+                    .getAudienceURI());
             if (!assertion.getAuthnStatements().isEmpty()
                     && assertion.getAuthnStatements().get(0).getAuthnContext() != null &&
                     assertion.getAuthnStatements().get(0).getAuthnContext().getAuthnContextClassRef() != null) {
                 builder.levelOfAssurance(assertion.getAuthnStatements()
-                                                 .get(0)
-                                                 .getAuthnContext()
-                                                 .getAuthnContextClassRef()
-                                                 .getAuthnContextClassRef());
+                        .get(0)
+                        .getAuthnContext()
+                        .getAuthnContextClassRef()
+                        .getAuthnContextClassRef());
             }
             LOG.trace("Set ipAddress.");
             String ipAddress = ResponseUtil.extractSubjectConfirmationIPAddress(assertion);
@@ -1798,7 +1794,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         if (CollectionUtils.isNotEmpty(supportedAttributes)) {
             ImmutableAttributeMap filteredAttributes =
                     filterSupportedAttributeNames(request.getRequestedAttributes(), supportedAttributes,
-                                                  request.getIssuer(), serviceIssuerMetadataUrl);
+                            request.getIssuer(), serviceIssuerMetadataUrl);
 
             updatedRequestBuilder.requestedAttributes(filteredAttributes);
         }
@@ -1818,8 +1814,8 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
                     + serviceIssuerMetadataUrl + ")";
             LOG.error(SAML_EXCHANGE, errorDetail);
             throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_ATTR_NULL.errorCode()),
-                                               EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_ATTR_NULL.errorMessage()),
-                                               errorDetail);
+                    EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_ATTR_NULL.errorMessage()),
+                    errorDetail);
         }
 
         return updatedRequest;
@@ -1828,7 +1824,7 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
     /**
      * Validate parameter from response fail.
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -1837,20 +1833,20 @@ public class EidasProtocolProcessor implements ProtocolProcessorI {
         LOG.trace("Validate parameters response fail.");
         if (StringUtils.isBlank(response.getStatusCode())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Error Status Code is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Error Status Code is null or empty.");
         }
 
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "assertionConsumerServiceURL is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "assertionConsumerServiceURL is null or empty.");
         }
 
         if (StringUtils.isBlank(request.getId())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "request ID is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "request ID is null or empty.");
         }
     }
 }

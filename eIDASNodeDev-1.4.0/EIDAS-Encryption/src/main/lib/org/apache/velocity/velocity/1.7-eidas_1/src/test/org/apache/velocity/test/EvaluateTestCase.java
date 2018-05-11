@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -27,6 +27,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -37,66 +38,64 @@ import org.apache.velocity.runtime.RuntimeConstants;
 
 /**
  * Test #evaluate directive.
- * 
+ *
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: EvaluateTestCase.java 778045 2009-05-23 22:17:46Z nbubna $
  */
-public class EvaluateTestCase extends BaseTestCase
-{
-    
+public class EvaluateTestCase extends BaseTestCase {
+
     /**
-    * VTL file extension.
-    */
-   private static final String TMPL_FILE_EXT = "vm";
+     * VTL file extension.
+     */
+    private static final String TMPL_FILE_EXT = "vm";
 
-   /**
-    * Comparison file extension.
-    */
-   private static final String CMP_FILE_EXT = "cmp";
+    /**
+     * Comparison file extension.
+     */
+    private static final String CMP_FILE_EXT = "cmp";
 
-   /**
-    * Comparison file extension.
-    */
-   private static final String RESULT_FILE_EXT = "res";
+    /**
+     * Comparison file extension.
+     */
+    private static final String RESULT_FILE_EXT = "res";
 
-   /**
-    * Path for templates. This property will override the
-    * value in the default velocity properties file.
-    */
-   private final static String FILE_RESOURCE_LOADER_PATH = TEST_COMPARE_DIR + "/evaluate";
+    /**
+     * Path for templates. This property will override the
+     * value in the default velocity properties file.
+     */
+    private final static String FILE_RESOURCE_LOADER_PATH = TEST_COMPARE_DIR + "/evaluate";
 
-   /**
-    * Results relative to the build directory.
-    */
-   private static final String RESULTS_DIR = TEST_RESULT_DIR + "/evaluate";
+    /**
+     * Results relative to the build directory.
+     */
+    private static final String RESULTS_DIR = TEST_RESULT_DIR + "/evaluate";
 
-   /**
-    * Results relative to the build directory.
-    */
-   private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/evaluate/compare";
+    /**
+     * Results relative to the build directory.
+     */
+    private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/evaluate/compare";
 
     /**
      * Default constructor.
+     *
      * @param name
      */
-    public EvaluateTestCase(String name)
-    {
+    public EvaluateTestCase(String name) {
         super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         super.setUp();
         assureResultsDirectoryExists(RESULTS_DIR);
     }
 
     /**
      * Test basic functionality.
+     *
      * @throws Exception
      */
     public void testEvaluate()
-    throws Exception
-    {
+            throws Exception {
         Map props = new HashMap();
         props.put(RuntimeConstants.EVALUATE_CONTEXT_CLASS, VelocityContext.class.getName());
         testFile("eval1", props);
@@ -104,22 +103,22 @@ public class EvaluateTestCase extends BaseTestCase
 
     /**
      * Test evaluate directive preserves macros (VELOCITY-591)
+     *
      * @throws Exception
      */
     public void testEvaluateMacroPreserve()
-    throws Exception
-    {
+            throws Exception {
         Map properties = new HashMap();
         properties.clear();
-        properties.put(RuntimeConstants.VM_CONTEXT_LOCALSCOPE,"false");
+        properties.put(RuntimeConstants.VM_CONTEXT_LOCALSCOPE, "false");
         testFile("eval2", properties);
 
         properties.clear();
-        properties.put(RuntimeConstants.VM_CONTEXT_LOCALSCOPE,"true");
+        properties.put(RuntimeConstants.VM_CONTEXT_LOCALSCOPE, "true");
         testFile("eval2", properties);
 
         properties.clear();
-        properties.put(RuntimeConstants.VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL,"false");
+        properties.put(RuntimeConstants.VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL, "false");
         testFile("eval2", properties);
 
 
@@ -127,20 +126,20 @@ public class EvaluateTestCase extends BaseTestCase
 
     /**
      * Test in a macro context.
+     *
      * @throws Exception
      */
     public void testEvaluateVMContext()
-    throws Exception
-    {
+            throws Exception {
         testFile("evalvmcontext", new HashMap());
     }
 
     /**
      * Test #stop and #break
+     *
      * @throws Exception
      */
-    public void testStopAndBreak()
-    {
+    public void testStopAndBreak() {
         engine.setProperty("evaluate.provide.scope.control", "true");
         assertEvalEquals("t ", "t #stop t2 #evaluate('t3')");
         assertEvalEquals("t ", "t #break t2 #evaluate('t3')");
@@ -151,150 +150,136 @@ public class EvaluateTestCase extends BaseTestCase
 
     /**
      * Test that the event handlers work in #evaluate (since they are
-     * attached to the context).  Only need to check one - they all 
+     * attached to the context).  Only need to check one - they all
      * work the same.
+     *
      * @throws Exception
      */
     public void testEventHandler()
-    throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.setProperty(RuntimeConstants.EVENTHANDLER_REFERENCEINSERTION, EscapeHtmlReference.class.getName());
         ve.init();
-        
+
         Context context = new VelocityContext();
-        context.put("lt","<");
-        context.put("gt",">");
+        context.put("lt", "<");
+        context.put("gt", ">");
         StringWriter writer = new StringWriter();
-        ve.evaluate(context, writer, "test","${lt}test${gt} #evaluate('${lt}test2${gt}')");
+        ve.evaluate(context, writer, "test", "${lt}test${gt} #evaluate('${lt}test2${gt}')");
         assertEquals("&lt;test&gt; &lt;test2&gt;", writer.toString());
-        
+
     }
-    
-    
+
+
     /**
      * Test errors are thrown
+     *
      * @throws Exception
      */
     public void testErrors()
-    throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
-        
+
         Context context = new VelocityContext();
-        
+
         // no arguments
         StringWriter writer = new StringWriter();
-        try 
-        {
+        try {
             ve.evaluate(context, writer, "test",
-                              "#evaluate()");
+                    "#evaluate()");
             fail("Expected exception");
+        } catch (ParseErrorException e) {
+            assertEquals("test", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(1, e.getColumnNumber());
         }
-        catch (ParseErrorException e)
-        {
-            assertEquals("test",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(1,e.getColumnNumber());
-        }
-        
+
         // too many arguments
         writer = new StringWriter();
-        try 
-        {
+        try {
             ve.evaluate(context, writer, "test",
-                              "#evaluate('aaa' 'bbb')");
+                    "#evaluate('aaa' 'bbb')");
             fail("Expected exception");
+        } catch (ParseErrorException e) {
+            assertEquals("test", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(17, e.getColumnNumber());
         }
-        catch (ParseErrorException e)
-        {
-            assertEquals("test",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(17,e.getColumnNumber());
-        }
-        
+
         // argument not a string or reference
         writer = new StringWriter();
-        try 
-        {
+        try {
             ve.evaluate(context, writer, "test",
-                              "#evaluate(10)");
+                    "#evaluate(10)");
             fail("Expected exception");
+        } catch (ParseErrorException e) {
+            assertEquals("test", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(11, e.getColumnNumber());
         }
-        catch (ParseErrorException e)
-        {
-            assertEquals("test",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(11,e.getColumnNumber());
-        }
-        
+
         // checking line/col for parse error
         writer = new StringWriter();
-        try 
-        {
+        try {
             String eval = "this is a multiline\n\n\n\n\n test #foreach() with an error";
-            context.put("eval",eval);
+            context.put("eval", eval);
             ve.evaluate(context, writer, "test",
-                              "first line\n second line: #evaluate($eval)");
+                    "first line\n second line: #evaluate($eval)");
             fail("Expected exception");
-        }
-        catch (ParseErrorException e)
-        {
+        } catch (ParseErrorException e) {
             // should be start of #evaluate
-            assertEquals("test",e.getTemplateName());
-            assertEquals(2,e.getLineNumber());
-            assertEquals(15,e.getColumnNumber());
-        }        
+            assertEquals("test", e.getTemplateName());
+            assertEquals(2, e.getLineNumber());
+            assertEquals(15, e.getColumnNumber());
+        }
     }
-    
+
     /**
      * Test a file parses with no errors and compare to existing file.
+     *
      * @param basefilename
      * @throws Exception
      */
     private void testFile(String basefilename, Map properties)
-    throws Exception
-    {
-        info("Test file: "+basefilename);
+            throws Exception {
+        info("Test file: " + basefilename);
         VelocityEngine ve = engine;
         ve.addProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
-     
-        for (Iterator i = properties.keySet().iterator(); i.hasNext();)
-        {
+
+        for (Iterator i = properties.keySet().iterator(); i.hasNext(); ) {
             String key = (String) i.next();
             String value = (String) properties.get(key);
             ve.addProperty(key, value);
-            info("Add property: "+key+" = "+value);
+            info("Add property: " + key + " = " + value);
         }
-        
+
         ve.init();
-        
+
         Template template;
         FileOutputStream fos;
         Writer fwriter;
-        
-        template = ve.getTemplate( getFileName(null, basefilename, TMPL_FILE_EXT) );
-        
-        fos = new FileOutputStream (
+
+        template = ve.getTemplate(getFileName(null, basefilename, TMPL_FILE_EXT));
+
+        fos = new FileOutputStream(
                 getFileName(RESULTS_DIR, basefilename, RESULT_FILE_EXT));
-        
-        fwriter = new BufferedWriter( new OutputStreamWriter(fos) );
-        
+
+        fwriter = new BufferedWriter(new OutputStreamWriter(fos));
+
         template.merge(context, fwriter);
         fwriter.flush();
         fwriter.close();
-        
-        if (!isMatch(RESULTS_DIR, COMPARE_DIR, basefilename, RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, basefilename, RESULT_FILE_EXT, CMP_FILE_EXT)) {
             String result = getFileContents(RESULTS_DIR, basefilename, RESULT_FILE_EXT);
             String compare = getFileContents(COMPARE_DIR, basefilename, CMP_FILE_EXT);
 
-            String msg = "Output was incorrect\n"+
-                "-----Result-----\n"+ result +
-                "----Expected----\n"+ compare +
-                "----------------";
-            
+            String msg = "Output was incorrect\n" +
+                    "-----Result-----\n" + result +
+                    "----Expected----\n" + compare +
+                    "----------------";
+
             fail(msg);
         }
     }

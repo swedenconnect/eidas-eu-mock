@@ -39,17 +39,19 @@ public class ApplicationContextProvider implements ApplicationContextAware {
         ApplicationContextProvider.setGlobalAppContext(ctx);
 
     }
-    private static void setGlobalAppContext(ApplicationContext ctx){
+
+    private static void setGlobalAppContext(ApplicationContext ctx) {
         applicationContext = ctx;
-        booleanMap=new HashMap<String, Boolean>();
+        booleanMap = new HashMap<String, Boolean>();
     }
 
-    private static Map<String, Boolean> booleanMap=new HashMap<String, Boolean>();
-    public static Boolean getNodeParameterBool(String parameterName){
-        if(!booleanMap.containsKey(parameterName)){
-            synchronized (applicationContext){
-                AUSERVICEUtil util= ApplicationContextProvider.getApplicationContext().getBean(AUSERVICEUtil.class);
-                if(util.getConfigs()!=null) {
+    private static Map<String, Boolean> booleanMap = new HashMap<String, Boolean>();
+
+    public static Boolean getNodeParameterBool(String parameterName) {
+        if (!booleanMap.containsKey(parameterName)) {
+            synchronized (applicationContext) {
+                AUSERVICEUtil util = ApplicationContextProvider.getApplicationContext().getBean(AUSERVICEUtil.class);
+                if (util.getConfigs() != null) {
                     booleanMap.put(parameterName, Boolean.parseBoolean(util.getConfigs().getProperty(parameterName)));
                 }
             }

@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,17 +24,14 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-755.
  */
-public class Velocity755TestCase extends BaseTestCase
-{
-    public Velocity755TestCase(String name)
-    {
+public class Velocity755TestCase extends BaseTestCase {
+    public Velocity755TestCase(String name) {
         super(name);
     }
 
-    public void testMapOrder()
-    {
-        String template = "#set( $map = {'a': 1, 'b': true, 'c': 3, 'd': false, 'e': 5} )"+
-                          "#foreach( $i in $map )$i#end";
+    public void testMapOrder() {
+        String template = "#set( $map = {'a': 1, 'b': true, 'c': 3, 'd': false, 'e': 5} )" +
+                "#foreach( $i in $map )$i#end";
         assertEvalEquals("1true3false5", template);
     }
 

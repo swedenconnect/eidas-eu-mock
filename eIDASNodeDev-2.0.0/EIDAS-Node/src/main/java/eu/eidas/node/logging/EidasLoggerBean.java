@@ -22,7 +22,7 @@ import org.apache.xml.security.utils.Base64;
  * Specific class that implements the {@link IEIDASLogger}.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com,
- *         luis.felix@multicert.com, hugo.magalhaes@multicert.com
+ * luis.felix@multicert.com, hugo.magalhaes@multicert.com
  */
 public final class EidasLoggerBean implements IEIDASLogger {
     /**
@@ -309,11 +309,11 @@ public final class EidasLoggerBean implements IEIDASLogger {
                 EIDASValues.SP_REQUEST.toString().equals(opType)) {
             stringBuilder.append("Origin        ").append(origin).append(",\n");
             stringBuilder.append("destination   ").append(destination)
-                         .append(",\n");
+                    .append(",\n");
             stringBuilder.append("spApplication ").append(spApplication)
-                         .append(",\n");
+                    .append(",\n");
             stringBuilder.append("providerName  ").append(providerName)
-                         .append(",\n");
+                    .append(",\n");
             stringBuilder.append("country       ").append(country).append(",\n");
             stringBuilder.append("QaaLevel      ").append(qaaLevel).append(",\n");
         } else {
@@ -321,14 +321,14 @@ public final class EidasLoggerBean implements IEIDASLogger {
 
             if (EIDASValues.EIDAS_CONNECTOR_RESPONSE.toString().equals(opType)) {
                 stringBuilder.append("inResponseToSPReq ")
-                             .append(inResponseToSPReq).append(",\n");
+                        .append(inResponseToSPReq).append(",\n");
             }
 
             stringBuilder.append("message       ").append(message).append(",\n");
         }
 
         stringBuilder.append("samlHash      ").append(Base64.encode(samlHash))
-                     .append(",\n");
+                .append(",\n");
 
         if (EIDASValues.EIDAS_CONNECTOR_REQUEST.toString().equals(opType)) {
             stringBuilder.append("sPMsgId       ").append(sPMsgId).append(",\n");

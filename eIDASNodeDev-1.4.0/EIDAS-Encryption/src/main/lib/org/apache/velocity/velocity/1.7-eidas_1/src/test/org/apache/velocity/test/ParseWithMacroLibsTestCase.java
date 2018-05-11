@@ -32,35 +32,31 @@ import java.io.*;
 /**
  * Test case for including macro libraries via the #parse method.
  */
-public class ParseWithMacroLibsTestCase extends BaseTestCase
-{
+public class ParseWithMacroLibsTestCase extends BaseTestCase {
     private static final String RESULT_DIR = TEST_RESULT_DIR + "/parsemacros";
 
     private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/parsemacros/compare";
 
-    public ParseWithMacroLibsTestCase(String name)
-    {
+    public ParseWithMacroLibsTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         super.setUp();
     }
 
     /**
      * Test suite
+     *
      * @return test suite
      */
-    public static junit.framework.Test suite()
-    {
+    public static junit.framework.Test suite() {
         return new TestSuite(ParseWithMacroLibsTestCase.class);
     }
-    
+
     public void testParseMacroLocalCacheOn()
-    throws Exception
-    {
+            throws Exception {
         /*
          *  local scope, cache on
          */
@@ -69,7 +65,7 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         // render twice to make sure there is no difference with cached templates
         testParseMacro(ve, "vm_library1.vm", "parseMacro1_1", false);
         testParseMacro(ve, "vm_library1.vm", "parseMacro1_1", false);
-        
+
         // run again with different macro library
         testParseMacro(ve, "vm_library2.vm", "parseMacro1_1b", false);
         testParseMacro(ve, "vm_library2.vm", "parseMacro1_1b", false);
@@ -79,8 +75,7 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
      * Runs the tests with global namespace.
      */
     public void testParseMacroLocalCacheOff()
-    throws Exception
-    {
+            throws Exception {
         /*
          *  local scope, cache off
          */
@@ -93,8 +88,7 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
     }
 
     public void testParseMacroGlobalCacheOn()
-    throws Exception
-    {
+            throws Exception {
         /*
          *  global scope, cache on
          */
@@ -108,35 +102,34 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         testParseMacro(ve, "vm_library2.vm", "parseMacro1_3b", false);
         testParseMacro(ve, "vm_library2.vm", "parseMacro1_3b", false);
     }
-    
+
     public void testParseMacroGlobalCacheOff()
-    throws Exception
-    {
+            throws Exception {
         /*
          *  global scope, cache off
          */
         VelocityEngine ve = createEngine(false, false);
 
         testParseMacro(ve, "vm_library1.vm", "parseMacro1_4", true);
-        
+
         // run again with different macro library
         testParseMacro(ve, "vm_library2.vm", "parseMacro1_4b", true);
 
     }
-    
+
     /**
      * Test #parse with macros.  Can be used to test different engine configurations
+     *
      * @param ve
      * @param outputBaseFileName
      * @param testCachingOff
      * @throws Exception
      */
     private void testParseMacro(VelocityEngine ve, String includeFile, String outputBaseFileName, boolean testCachingOff)
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULT_DIR);
 
-        FileOutputStream fos = new FileOutputStream (getFileName(
+        FileOutputStream fos = new FileOutputStream(getFileName(
                 RESULT_DIR, outputBaseFileName, RESULT_FILE_EXT));
 
         VelocityContext context = new VelocityContext();
@@ -154,24 +147,22 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         writer.close();
 
         if (!isMatch(RESULT_DIR, COMPARE_DIR, outputBaseFileName,
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             String result = getFileContents(RESULT_DIR, outputBaseFileName, RESULT_FILE_EXT);
             String compare = getFileContents(COMPARE_DIR, outputBaseFileName, CMP_FILE_EXT);
 
-            String msg = "Processed template did not match expected output\n"+
-                "-----Result-----\n"+ result +
-                "----Expected----\n"+ compare +
-                "----------------";
-            
+            String msg = "Processed template did not match expected output\n" +
+                    "-----Result-----\n" + result +
+                    "----Expected----\n" + compare +
+                    "----------------";
+
             fail(msg);
         }
 
         /*
          * Show that caching is turned off
          */
-        if (testCachingOff)
-        {
+        if (testCachingOff) {
             Template t1 = ve.getTemplate("parseMacro1.vm");
             Template t2 = ve.getTemplate("parseMacro1.vm");
 
@@ -181,13 +172,13 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
 
     /**
      * Return and initialize engine
+     *
      * @return
      */
     private VelocityEngine createEngine(boolean cache, boolean local)
-    throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
-        ve.setProperty( Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
+        ve.setProperty(Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
         ve.setProperty("velocimacro.permissions.allow.inline.to.replace.global",
                 new Boolean(local));
         ve.setProperty("file.resource.loader.cache", new Boolean(cache));
@@ -197,11 +188,11 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         ve.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH,
                 TEST_COMPARE_DIR + "/parsemacros");
         ve.init();
-        
+
         return ve;
     }
-    
-    
+
+
     /**
      * Test whether the literal text is given if a definition cannot be
      * found for a macro.
@@ -209,14 +200,13 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
      * @throws Exception
      */
     public void testParseMacrosWithNoDefinition()
-            throws Exception
-    {
+            throws Exception {
         /*
          *  ve1: local scope, cache on
          */
         VelocityEngine ve1 = new VelocityEngine();
-        
-        ve1.setProperty( Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
+
+        ve1.setProperty(Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
         ve1.setProperty("velocimacro.permissions.allow.inline.to.replace.global",
                 Boolean.FALSE);
         ve1.setProperty("file.resource.loader.cache", Boolean.TRUE);
@@ -226,10 +216,10 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         ve1.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH,
                 TEST_COMPARE_DIR + "/parsemacros");
         ve1.init();
-        
+
         assureResultsDirectoryExists(RESULT_DIR);
 
-        FileOutputStream fos = new FileOutputStream (getFileName(
+        FileOutputStream fos = new FileOutputStream(getFileName(
                 RESULT_DIR, "parseMacro2", RESULT_FILE_EXT));
 
         VelocityContext context = new VelocityContext();
@@ -246,8 +236,7 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         writer.close();
 
         if (!isMatch(RESULT_DIR, COMPARE_DIR, "parseMacro2",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Processed template did not match expected output");
         }
     }
@@ -259,14 +248,13 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
      * @throws Exception
      */
     public void testDuplicateDefinitions()
-            throws Exception
-    {
+            throws Exception {
         /*
          *  ve1: local scope, cache on
          */
         VelocityEngine ve1 = new VelocityEngine();
-        
-        ve1.setProperty( Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
+
+        ve1.setProperty(Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
         ve1.setProperty("velocimacro.permissions.allow.inline.to.replace.global",
                 Boolean.FALSE);
         ve1.setProperty("file.resource.loader.cache", Boolean.TRUE);
@@ -276,10 +264,10 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         ve1.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH,
                 TEST_COMPARE_DIR + "/parsemacros");
         ve1.init();
-        
+
         assureResultsDirectoryExists(RESULT_DIR);
 
-        FileOutputStream fos = new FileOutputStream (getFileName(
+        FileOutputStream fos = new FileOutputStream(getFileName(
                 RESULT_DIR, "parseMacro3", RESULT_FILE_EXT));
 
         VelocityContext context = new VelocityContext();
@@ -296,8 +284,7 @@ public class ParseWithMacroLibsTestCase extends BaseTestCase
         writer.close();
 
         if (!isMatch(RESULT_DIR, COMPARE_DIR, "parseMacro3",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Processed template did not match expected output");
         }
     }

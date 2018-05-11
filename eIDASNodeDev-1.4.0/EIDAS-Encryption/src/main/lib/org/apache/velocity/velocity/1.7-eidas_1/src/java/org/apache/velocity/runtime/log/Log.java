@@ -20,7 +20,7 @@ import org.apache.velocity.util.introspection.Info;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -32,36 +32,33 @@ import org.apache.velocity.util.introspection.Info;
  * @version $Id: Log.java 724804 2008-12-09 18:17:08Z nbubna $
  * @since 1.5
  */
-public class Log
-{
+public class Log {
 
     private LogChute chute;
 
     /**
      * Creates a new Log that wraps a HoldingLogChute.
      */
-    public Log()
-    {
+    public Log() {
         setLogChute(new HoldingLogChute());
     }
 
     /**
      * Creates a new Log that wraps the specified LogChute.
+     *
      * @param chute
      */
-    public Log(final LogChute chute)
-    {
+    public Log(final LogChute chute) {
         setLogChute(chute);
     }
 
     /**
      * Updates the LogChute wrapped by this Log instance.
+     *
      * @param chute The new value for the log chute.
      */
-    protected void setLogChute(final LogChute chute)
-    {
-        if (chute == null)
-        {
+    protected void setLogChute(final LogChute chute) {
+        if (chute == null) {
             throw new NullPointerException("The LogChute cannot be set to null!");
         }
         this.chute = chute;
@@ -69,205 +66,199 @@ public class Log
 
     /**
      * Returns the LogChute wrapped by this Log instance.
+     *
      * @return The LogChute wrapped by this Log instance.
      */
-    protected LogChute getLogChute()
-    {
+    protected LogChute getLogChute() {
         return this.chute;
     }
 
-    protected void log(int level, Object message)
-    {
+    protected void log(int level, Object message) {
         getLogChute().log(level, String.valueOf(message));
     }
 
-    protected void log(int level, Object message, Throwable t)
-    {
+    protected void log(int level, Object message, Throwable t) {
         getLogChute().log(level, String.valueOf(message), t);
     }
 
     /**
      * Returns true if trace level messages will be printed by the LogChute.
+     *
      * @return If trace level messages will be printed by the LogChute.
      */
-    public boolean isTraceEnabled()
-    {
+    public boolean isTraceEnabled() {
         return getLogChute().isLevelEnabled(LogChute.TRACE_ID);
     }
 
     /**
      * Log a trace message.
+     *
      * @param message
      */
-    public void trace(Object message)
-    {
+    public void trace(Object message) {
         log(LogChute.TRACE_ID, message);
     }
 
     /**
      * Log a trace message and accompanying Throwable.
+     *
      * @param message
      * @param t
      */
-    public void trace(Object message, Throwable t)
-    {
+    public void trace(Object message, Throwable t) {
         log(LogChute.TRACE_ID, message, t);
     }
 
     /**
      * Returns true if debug level messages will be printed by the LogChute.
+     *
      * @return True if debug level messages will be printed by the LogChute.
      */
-    public boolean isDebugEnabled()
-    {
+    public boolean isDebugEnabled() {
         return getLogChute().isLevelEnabled(LogChute.DEBUG_ID);
     }
 
     /**
      * Log a debug message.
+     *
      * @param message
      */
-    public void debug(Object message)
-    {
+    public void debug(Object message) {
         log(LogChute.DEBUG_ID, message);
     }
 
     /**
      * Log a debug message and accompanying Throwable.
+     *
      * @param message
      * @param t
      */
-    public void debug(Object message, Throwable t)
-    {
+    public void debug(Object message, Throwable t) {
         log(LogChute.DEBUG_ID, message, t);
     }
 
     /**
      * Returns true if info level messages will be printed by the LogChute.
+     *
      * @return True if info level messages will be printed by the LogChute.
      */
-    public boolean isInfoEnabled()
-    {
+    public boolean isInfoEnabled() {
         return getLogChute().isLevelEnabled(LogChute.INFO_ID);
     }
 
     /**
      * Log an info message.
+     *
      * @param message
      */
-    public void info(Object message)
-    {
+    public void info(Object message) {
         log(LogChute.INFO_ID, message);
     }
 
     /**
      * Log an info message and accompanying Throwable.
+     *
      * @param message
      * @param t
      */
-    public void info(Object message, Throwable t)
-    {
+    public void info(Object message, Throwable t) {
         log(LogChute.INFO_ID, message, t);
     }
 
     /**
      * Returns true if warn level messages will be printed by the LogChute.
+     *
      * @return True if warn level messages will be printed by the LogChute.
      */
-    public boolean isWarnEnabled()
-    {
+    public boolean isWarnEnabled() {
         return getLogChute().isLevelEnabled(LogChute.WARN_ID);
     }
 
     /**
      * Log a warning message.
+     *
      * @param message
      */
-    public void warn(Object message)
-    {
+    public void warn(Object message) {
         log(LogChute.WARN_ID, message);
     }
 
     /**
      * Log a warning message and accompanying Throwable.
+     *
      * @param message
      * @param t
      */
-    public void warn(Object message, Throwable t)
-    {
+    public void warn(Object message, Throwable t) {
         log(LogChute.WARN_ID, message, t);
     }
 
     /**
      * Returns true if error level messages will be printed by the LogChute.
+     *
      * @return True if error level messages will be printed by the LogChute.
      */
-    public boolean isErrorEnabled()
-    {
+    public boolean isErrorEnabled() {
         return getLogChute().isLevelEnabled(LogChute.ERROR_ID);
     }
 
     /**
      * Log an error message.
+     *
      * @param message
      */
-    public void error(Object message)
-    {
+    public void error(Object message) {
         log(LogChute.ERROR_ID, message);
     }
 
     /**
      * Log an error message and accompanying Throwable.
+     *
      * @param message
      * @param t
      */
-    public void error(Object message, Throwable t)
-    {
+    public void error(Object message, Throwable t) {
         log(LogChute.ERROR_ID, message, t);
-    }
-    
-    /**
-     * Creates a string that formats the template filename with line number
-     * and column of the given Directive. We use this routine to provide a cosistent format for displaying 
-     * file errors.
-     */
-    public static final String formatFileString(Directive directive)
-    {
-      return formatFileString(directive.getTemplateName(), directive.getLine(), directive.getColumn());      
     }
 
     /**
      * Creates a string that formats the template filename with line number
-     * and column of the given Node. We use this routine to provide a cosistent format for displaying 
+     * and column of the given Directive. We use this routine to provide a cosistent format for displaying
      * file errors.
      */
-    public static final String formatFileString(Node node)
-    {
-      return formatFileString(node.getTemplateName(), node.getLine(), node.getColumn());      
+    public static final String formatFileString(Directive directive) {
+        return formatFileString(directive.getTemplateName(), directive.getLine(), directive.getColumn());
     }
-    
+
+    /**
+     * Creates a string that formats the template filename with line number
+     * and column of the given Node. We use this routine to provide a cosistent format for displaying
+     * file errors.
+     */
+    public static final String formatFileString(Node node) {
+        return formatFileString(node.getTemplateName(), node.getLine(), node.getColumn());
+    }
+
     /**
      * Simply creates a string that formats the template filename with line number
-     * and column. We use this routine to provide a cosistent format for displaying 
+     * and column. We use this routine to provide a cosistent format for displaying
      * file errors.
      */
-    public static final String formatFileString(Info info)
-    {
+    public static final String formatFileString(Info info) {
         return formatFileString(info.getTemplateName(), info.getLine(), info.getColumn());
     }
-    
+
     /**
      * Simply creates a string that formats the template filename with line number
-     * and column. We use this routine to provide a cosistent format for displaying 
+     * and column. We use this routine to provide a cosistent format for displaying
      * file errors.
+     *
      * @param template File name of template, can be null
-     * @param linenum Line number within the file
-     * @param colnum Column number withing the file at linenum
+     * @param linenum  Line number within the file
+     * @param colnum   Column number withing the file at linenum
      */
-    public static final String formatFileString(String template, int linenum, int colnum)
-    {
-        if (template == null || template.equals(""))
-        {
+    public static final String formatFileString(String template, int linenum, int colnum) {
+        if (template == null || template.equals("")) {
             template = "<unknown template>";
         }
         return template + "[line " + linenum + ", column " + colnum + "]";

@@ -81,7 +81,7 @@ public final class ProtocolEngineFactoryTest {
 
         ProtocolEngineFactory protocolEngineFactory = new ProtocolEngineFactory(
                 new ProtocolEngineConfigurationFactory("SamlEngine_DOM-test_workingCopy.xml",
-                                                       "eidas_DOM-test_workingCopy.xml", null));
+                        "eidas_DOM-test_workingCopy.xml", null));
 
         ProtocolCipherI cipher = getCipher(protocolEngineFactory);
 
@@ -115,7 +115,7 @@ public final class ProtocolEngineFactoryTest {
 
         ProtocolEngineFactory protocolEngineFactory = new ProtocolEngineFactory(
                 new ProtocolEngineConfigurationFactory("SamlEngine_DOM-test_workingCopy.xml",
-                                                       "eidas_DOM-test_workingCopy.xml", null));
+                        "eidas_DOM-test_workingCopy.xml", null));
 
         ProtocolCipherI cipher = getCipher(protocolEngineFactory);
 
@@ -148,7 +148,7 @@ public final class ProtocolEngineFactoryTest {
 
         ProtocolEngineFactory protocolEngineFactory = new ProtocolEngineFactory(
                 new ProtocolEngineConfigurationFactory("SamlEngine_DOM-test_workingCopy.xml",
-                                                       "eidas_DOM-test_workingCopy.xml", null));
+                        "eidas_DOM-test_workingCopy.xml", null));
 
         ProtocolCipherI cipher = getCipher(protocolEngineFactory);
 

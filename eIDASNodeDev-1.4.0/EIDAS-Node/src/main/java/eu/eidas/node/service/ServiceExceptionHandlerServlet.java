@@ -122,13 +122,13 @@ public final class ServiceExceptionHandlerServlet extends AbstractServiceServlet
         } else {
             String errorMessage =
                     EidasNodeErrorUtil.resolveMessage(exception.getErrorMessage(), exception.getErrorCode(),
-                                                      request.getLocale());
+                            request.getLocale());
             if (errorMessage != null) {
                 exception.setErrorMessage(errorMessage);
             }
             if (StringUtils.isBlank(exception.getSamlTokenFail())) {
                 EidasNodeErrorUtil.prepareSamlResponseFail(request, exception,
-                                                           EidasNodeErrorUtil.ErrorSource.PROXYSERVICE);
+                        EidasNodeErrorUtil.ErrorSource.PROXYSERVICE);
                 LOG.info("BUSINESS EXCEPTION : ", errorMessage);
             } else {
                 LOG.info("BUSINESS EXCEPTION : ", exception.getMessage());

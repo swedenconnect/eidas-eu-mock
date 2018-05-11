@@ -29,21 +29,23 @@ import eu.eidas.auth.engine.core.stork.SPInstitution;
  * @author fjquevedo
  */
 public class SPInstitutionImpl extends AbstractSAMLObject implements
-	SPInstitution {
+        SPInstitution {
 
-    /** The service provider institution. */
+    /**
+     * The service provider institution.
+     */
     private String spInstitution;
 
     /**
      * Instantiates a new service provider institution.
      *
-     * @param namespaceURI the namespace uri
+     * @param namespaceURI     the namespace uri
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected SPInstitutionImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /**
@@ -52,7 +54,7 @@ public class SPInstitutionImpl extends AbstractSAMLObject implements
      * @return the service provider institution
      */
     public final String getSPInstitution() {
-	return spInstitution;
+        return spInstitution;
     }
 
     /**
@@ -61,8 +63,8 @@ public class SPInstitutionImpl extends AbstractSAMLObject implements
      * @param newSpInstitution the new service provider institution
      */
     public final void setSPInstitution(final String newSpInstitution) {
-	this.spInstitution = prepareForAssignment(this.spInstitution,
-		newSpInstitution);
+        this.spInstitution = prepareForAssignment(this.spInstitution,
+                newSpInstitution);
     }
 
     /**
@@ -71,7 +73,7 @@ public class SPInstitutionImpl extends AbstractSAMLObject implements
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
- }
+}

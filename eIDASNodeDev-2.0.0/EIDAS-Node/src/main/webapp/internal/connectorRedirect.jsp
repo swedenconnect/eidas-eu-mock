@@ -27,23 +27,28 @@
                     </h1>
                     <h2 class="sub-title"><fmt:message key="eidas.redirecting" bundle="${i18n_eng}"/></h2>
                     <form id="ColleagueResponse" name="redirectForm" action="${e:forHtml(redirectUrl)}" method="post">
-                        <c:if test="${!empty samlTokenFail}" >
-                            <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlTokenFail)}" id="ColleagueResponse_SAMLResponse"/>
+                        <c:if test="${!empty samlTokenFail}">
+                            <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlTokenFail)}"
+                                   id="ColleagueResponse_SAMLResponse"/>
                         </c:if>
-                        <c:if test="${empty samlTokenFail}" >
-                            <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlToken)}" id="ColleagueResponse_SAMLResponse"/>
+                        <c:if test="${empty samlTokenFail}">
+                            <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlToken)}"
+                                   id="ColleagueResponse_SAMLResponse"/>
                         </c:if>
                         <input type="hidden" name="RelayState" value="${e:forHtml(RelayState)}" id="relayState"/>
                     </form>
                     <noscript>
                         <h2><fmt:message key="APRedirect.text" bundle="${i18n_eng}"/></h2>
                         <br/>
-                        <form id="ColleagueResponse_NoJs" name="redirectForm" action="${e:forHtml(redirectUrl)}" method="post">
-                            <c:if test="${not empty samlTokenFail}" >
-                                <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlTokenFail)}" id="ColleagueResponse_SAMLResponse"/>
+                        <form id="ColleagueResponse_NoJs" name="redirectForm" action="${e:forHtml(redirectUrl)}"
+                              method="post">
+                            <c:if test="${not empty samlTokenFail}">
+                                <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlTokenFail)}"
+                                       id="ColleagueResponse_SAMLResponse"/>
                             </c:if>
-                            <c:if test="${empty samlTokenFail}" >
-                                <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlToken)}" id="ColleagueResponse_SAMLResponse"/>
+                            <c:if test="${empty samlTokenFail}">
+                                <input type="hidden" name="SAMLResponse" value="${e:forHtml(samlToken)}"
+                                       id="ColleagueResponse_SAMLResponse"/>
                             </c:if>
 
                             <fmt:message var="btnMsg" key="accept.button" bundle="${i18n_eng}"/>

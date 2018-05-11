@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -47,45 +47,67 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements EntityDescriptor {
 
-    /** Entity ID of this Entity. */
+    /**
+     * Entity ID of this Entity.
+     */
     private String entityID;
 
-    /** ID attribute. */
+    /**
+     * ID attribute.
+     */
     private String id;
 
-    /** validUntil attribute. */
+    /**
+     * validUntil attribute.
+     */
     private DateTime validUntil;
 
-    /** cacheDurection attribute. */
+    /**
+     * cacheDurection attribute.
+     */
     private Long cacheDuration;
 
-    /** Extensions child. */
+    /**
+     * Extensions child.
+     */
     private Extensions extensions;
 
-    /** Role descriptors for this entity. */
+    /**
+     * Role descriptors for this entity.
+     */
     private final IndexedXMLObjectChildrenList<RoleDescriptor> roleDescriptors;
 
-    /** Affiliatition descriptor for this entity. */
+    /**
+     * Affiliatition descriptor for this entity.
+     */
     private AffiliationDescriptor affiliationDescriptor;
 
-    /** Organization the administers this entity. */
+    /**
+     * Organization the administers this entity.
+     */
     private Organization organization;
 
-    /** Contact persons for this entity. */
+    /**
+     * Contact persons for this entity.
+     */
     private final XMLObjectChildrenList<ContactPerson> contactPersons;
 
-    /** Additional metadata locations for this entity. */
+    /**
+     * Additional metadata locations for this entity.
+     */
     private final XMLObjectChildrenList<AdditionalMetadataLocation> additionalMetadata;
 
-    /** "anyAttribute" attributes. */
+    /**
+     * "anyAttribute" attributes.
+     */
     private final AttributeMap unknownAttributes;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected EntityDescriptorImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -95,12 +117,16 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         unknownAttributes = new AttributeMap(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getEntityID() {
         return entityID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setEntityID(String newId) {
         if (newId != null && newId.length() > 1024) {
             throw new IllegalArgumentException("Entity ID can not exceed 1024 characters in length");
@@ -108,19 +134,25 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         entityID = prepareForAssignment(entityID, newId);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String newID) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, newID);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isValid() {
         if (null == validUntil) {
             return true;
@@ -130,47 +162,65 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return now.isBefore(validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getValidUntil() {
         return validUntil;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setValidUntil(DateTime newValidUntil) {
         validUntil = prepareForAssignment(validUntil, newValidUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Long getCacheDuration() {
         return cacheDuration;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCacheDuration(Long duration) {
         cacheDuration = prepareForAssignment(cacheDuration, duration);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Extensions getExtensions() {
         return extensions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExtensions(Extensions newExtensions) {
         extensions = prepareForAssignment(extensions, newExtensions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RoleDescriptor> getRoleDescriptors() {
         return roleDescriptors;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RoleDescriptor> getRoleDescriptors(QName typeOrName) {
         return (List<RoleDescriptor>) roleDescriptors.subList(typeOrName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RoleDescriptor> getRoleDescriptors(QName type, String supportedProtocol) {
         ArrayList<RoleDescriptor> supportingRoleDescriptors = new ArrayList<RoleDescriptor>();
         for (RoleDescriptor descriptor : roleDescriptors.subList(type)) {
@@ -182,7 +232,9 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return supportingRoleDescriptors;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public IDPSSODescriptor getIDPSSODescriptor(String supportedProtocol) {
         List<RoleDescriptor> descriptors = getRoleDescriptors(IDPSSODescriptor.DEFAULT_ELEMENT_NAME, supportedProtocol);
         if (descriptors.size() > 0) {
@@ -192,7 +244,9 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SPSSODescriptor getSPSSODescriptor(String supportedProtocol) {
         List<RoleDescriptor> descriptors = getRoleDescriptors(SPSSODescriptor.DEFAULT_ELEMENT_NAME, supportedProtocol);
         if (descriptors.size() > 0) {
@@ -202,7 +256,9 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AuthnAuthorityDescriptor getAuthnAuthorityDescriptor(String supportedProtocol) {
         List<RoleDescriptor> descriptors = getRoleDescriptors(AuthnAuthorityDescriptor.DEFAULT_ELEMENT_NAME,
                 supportedProtocol);
@@ -213,7 +269,9 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeAuthorityDescriptor getAttributeAuthorityDescriptor(String supportedProtocol) {
         List<RoleDescriptor> descriptors = getRoleDescriptors(AttributeAuthorityDescriptor.DEFAULT_ELEMENT_NAME,
                 supportedProtocol);
@@ -224,7 +282,9 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public PDPDescriptor getPDPDescriptor(String supportedProtocol) {
         List<RoleDescriptor> descriptors = getRoleDescriptors(PDPDescriptor.DEFAULT_ELEMENT_NAME, supportedProtocol);
         if (descriptors.size() > 0) {
@@ -234,32 +294,44 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AffiliationDescriptor getAffiliationDescriptor() {
         return affiliationDescriptor;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAffiliationDescriptor(AffiliationDescriptor descriptor) {
         affiliationDescriptor = prepareForAssignment(affiliationDescriptor, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Organization getOrganization() {
         return organization;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOrganization(Organization newOrganization) {
         organization = prepareForAssignment(organization, newOrganization);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<ContactPerson> getContactPersons() {
         return contactPersons;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AdditionalMetadataLocation> getAdditionalMetadataLocations() {
         return additionalMetadata;
     }
@@ -271,12 +343,16 @@ public class EntityDescriptorImpl extends AbstractSignableSAMLObject implements 
         return unknownAttributes;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

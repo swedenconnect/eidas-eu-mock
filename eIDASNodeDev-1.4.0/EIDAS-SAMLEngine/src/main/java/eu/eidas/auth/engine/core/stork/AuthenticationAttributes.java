@@ -23,23 +23,32 @@ import eu.eidas.auth.engine.core.SAMLCore;
 
 /**
  * The Interface AuthenticationAttributes.
+ *
  * @author fjquevedo
  */
 public interface AuthenticationAttributes extends SAMLObject {
 
-    /** The Constant DEFAULT_ELEMENT_LOCAL_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_LOCAL_NAME.
+     */
     String DEF_LOCAL_NAME = "AuthenticationAttributes";
 
-    /** Default element name. */
+    /**
+     * Default element name.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.STORK10P_NS.getValue(), DEF_LOCAL_NAME,
-	    SAMLCore.STORK10P_PREFIX.getValue());
+            SAMLCore.STORK10P_PREFIX.getValue());
 
-    /** Local name of the XSI type. */
+    /**
+     * Local name of the XSI type.
+     */
     String TYPE_LOCAL_NAME = "AuthenticationAttributesType";
 
-    /** QName of the XSI type. */
+    /**
+     * QName of the XSI type.
+     */
     QName TYPE_NAME = new QName(SAMLCore.STORK10P_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.STORK10P_PREFIX.getValue());
+            SAMLCore.STORK10P_PREFIX.getValue());
 
 
     /**

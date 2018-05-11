@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,7 +32,9 @@ import org.w3c.dom.Attr;
  */
 public class SubjectConfirmationUnmarshaller extends AbstractSAMLObjectUnmarshaller {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) parentObject;
 
@@ -49,7 +51,9 @@ public class SubjectConfirmationUnmarshaller extends AbstractSAMLObjectUnmarshal
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processAttribute(XMLObject samlObject, Attr attribute) throws UnmarshallingException {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) samlObject;
 

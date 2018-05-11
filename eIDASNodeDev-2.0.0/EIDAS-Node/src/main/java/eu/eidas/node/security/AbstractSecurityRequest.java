@@ -15,6 +15,7 @@ import java.util.*;
 
 /**
  * Utility class used to define the markers used for logging.
+ *
  * @author vanegdi
  * @since 1.2.2
  */
@@ -55,18 +56,18 @@ public class AbstractSecurityRequest {
      * Validate if for a remote address the threshold for requests within a time
      * span has been reached.
      *
-     * @param remoteAddr      The remote address of the incoming request
-     * @param maxTime         The time span for receiving an amount of requests
-     * @param threshold       The number of requests the same remoteAddr can issue.
-     *                        within a time span.
+     * @param remoteAddr  The remote address of the incoming request
+     * @param maxTime     The time span for receiving an amount of requests
+     * @param threshold   The number of requests the same remoteAddr can issue.
+     *                    within a time span.
      * @param pathInvoked The name of the class (in case of exception).
-     * @param listIP          The list of allowed IP.
+     * @param listIP      The list of allowed IP.
      * @see Map
      * @see java.util.ArrayList
      */
     protected final void checkRequest(final String remoteAddr, final int maxTime,
-                              final int threshold, final String pathInvoked,
-                              final Map<String, List<Long>> listIP) {
+                                      final int threshold, final String pathInvoked,
+                                      final Map<String, List<Long>> listIP) {
         final String errorMsg = EidasErrors.get(EidasErrorKey.REQUESTS.errorMessage(pathInvoked));
         final String errorCode = EidasErrors.get(EidasErrorKey.REQUESTS.errorCode(pathInvoked));
 
@@ -116,13 +117,13 @@ public class AbstractSecurityRequest {
     /**
      * Checks if the domain is trustworthy.
      *
-     * @param requestDomain   The Domain to validate.
+     * @param requestDomain    The Domain to validate.
      * @param servletClassName The Servlet Class's name that will be invoked.
-     * @param request         The {@link HttpServletRequest}.
+     * @param request          The {@link HttpServletRequest}.
      * @see HttpServletRequest
      */
     protected final void checkDomain(final String requestDomain,
-                             final String servletClassName, final HttpServletRequest request) {
+                                     final String servletClassName, final HttpServletRequest request) {
 
         final String errorCode = EidasErrors.get(EidasErrorKey.DOMAIN.errorCode(servletClassName));
         final String errorMsg = EidasErrors.get(EidasErrorKey.DOMAIN.errorMessage(servletClassName));
@@ -135,7 +136,7 @@ public class AbstractSecurityRequest {
 
         if (hasNoTrustedD
                 || (!ltrustedDomains.contains(requestDomain) && !areAllTrustedD)) {
-            LOG.warn(LoggingMarkerMDC.SECURITY_WARNING,"Domain {} is not trusted", requestDomain);
+            LOG.warn(LoggingMarkerMDC.SECURITY_WARNING, "Domain {} is not trusted", requestDomain);
             throw new SecurityEIDASException(errorCode, errorMsg);
         }
 

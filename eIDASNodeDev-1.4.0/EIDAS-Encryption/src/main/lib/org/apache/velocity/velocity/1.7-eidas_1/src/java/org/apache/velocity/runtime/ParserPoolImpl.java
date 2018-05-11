@@ -16,7 +16,7 @@ package org.apache.velocity.runtime;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.parser.Parser;
@@ -38,20 +38,18 @@ public class ParserPoolImpl implements ParserPool {
 
     /**
      * Create the underlying "pool".
+     *
      * @param rsvc
      */
-    public void initialize(RuntimeServices rsvc)
-    {
+    public void initialize(RuntimeServices rsvc) {
         max = rsvc.getInt(RuntimeConstants.PARSER_POOL_SIZE, RuntimeConstants.NUMBER_OF_PARSERS);
         pool = new SimplePool(max);
 
-        for (int i = 0; i < max; i++)
-        {
+        for (int i = 0; i < max; i++) {
             pool.put(rsvc.createNewParser());
         }
 
-        if (rsvc.getLog().isDebugEnabled())
-        {
+        if (rsvc.getLog().isDebugEnabled()) {
             rsvc.getLog().debug("Created '" + max + "' parsers.");
         }
     }
@@ -59,19 +57,19 @@ public class ParserPoolImpl implements ParserPool {
     /**
      * Call the wrapped pool.  If none are available, it will create a new
      * temporary one.
+     *
      * @return A parser Object.
      */
-    public Parser get()
-    {
+    public Parser get() {
         return (Parser) pool.get();
     }
 
     /**
      * Call the wrapped pool.
+     *
      * @param parser
      */
-    public void put(Parser parser)
-    {
+    public void put(Parser parser) {
         parser.ReInit((CharStream) null);
         pool.put(parser);
     }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -36,10 +36,12 @@ import org.slf4j.LoggerFactory;
  * Base class for SAML security policy rules which evaluate a signature with a signature trust engine.
  */
 public abstract class BaseSAMLXMLSignatureSecurityPolicyRule extends BaseTrustEngineRule<Signature> {
-    
-    /** Logger. */
+
+    /**
+     * Logger.
+     */
     private final Logger log = LoggerFactory.getLogger(BaseSAMLXMLSignatureSecurityPolicyRule.class);
-    
+
     /**
      * Constructor.
      *
@@ -49,27 +51,29 @@ public abstract class BaseSAMLXMLSignatureSecurityPolicyRule extends BaseTrustEn
         super(engine);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected CriteriaSet buildCriteriaSet(String entityID, MessageContext messageContext)
-        throws SecurityPolicyException {
+            throws SecurityPolicyException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Supplied message context was not an instance of SAMLMessageContext, can not build criteria set from SAML metadata parameters");
             throw new SecurityPolicyException("Supplied message context was not an instance of SAMLMessageContext");
         }
-        
+
         SAMLMessageContext samlContext = (SAMLMessageContext) messageContext;
-        
+
         CriteriaSet criteriaSet = new CriteriaSet();
-        if (! DatatypeHelper.isEmpty(entityID)) {
-            criteriaSet.add(new EntityIDCriteria(entityID) );
+        if (!DatatypeHelper.isEmpty(entityID)) {
+            criteriaSet.add(new EntityIDCriteria(entityID));
         }
-        
-        MetadataCriteria mdCriteria = 
-            new MetadataCriteria(samlContext.getPeerEntityRole(), samlContext.getInboundSAMLProtocol());
+
+        MetadataCriteria mdCriteria =
+                new MetadataCriteria(samlContext.getPeerEntityRole(), samlContext.getInboundSAMLProtocol());
         criteriaSet.add(mdCriteria);
-        
-        criteriaSet.add( new UsageCriteria(UsageType.SIGNING) );
-        
+
+        criteriaSet.add(new UsageCriteria(UsageType.SIGNING));
+
         return criteriaSet;
     }
 

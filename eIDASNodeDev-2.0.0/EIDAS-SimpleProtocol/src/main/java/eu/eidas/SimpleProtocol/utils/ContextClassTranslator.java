@@ -37,7 +37,7 @@ public class ContextClassTranslator {
     private final static Map<String, String> levelOfAssuranceAliasMap;
 
     static {
-        Map<String,String> contextClassMap = new HashMap<>();
+        Map<String, String> contextClassMap = new HashMap<>();
         contextClassMap.put("A", "http://eidas.europa.eu/LoA/low");
         contextClassMap.put("B", "http://eidas.europa.eu/LoA/low");
         contextClassMap.put("C", "http://eidas.europa.eu/LoA/substantial");
@@ -45,20 +45,21 @@ public class ContextClassTranslator {
         contextClassMap.put("E", "http://eidas.europa.eu/LoA/high");
         contextClassToLevelOfAssuranceMap = contextClassMap;
 
-        Map<String,String> levelOfAssuranceMap = new HashMap<>();
+        Map<String, String> levelOfAssuranceMap = new HashMap<>();
         levelOfAssuranceMap.put("http://eidas.europa.eu/LoA/low", "B");
         levelOfAssuranceMap.put("http://eidas.europa.eu/LoA/substantial", "D");
         levelOfAssuranceMap.put("http://eidas.europa.eu/LoA/high", "E");
         levelOfAssuranceTableToContextClassMap = levelOfAssuranceMap;
 
-        Map<String,String> levelOfAssuranceAliasMapReal = new HashMap<>();
+        Map<String, String> levelOfAssuranceAliasMapReal = new HashMap<>();
         levelOfAssuranceAliasMapReal.put("http://eidas.europa.eu/LoA/low", "LOW");
         levelOfAssuranceAliasMapReal.put("http://eidas.europa.eu/LoA/substantial", "SUBSTANTIAL");
         levelOfAssuranceAliasMapReal.put("http://eidas.europa.eu/LoA/high", "HIGH");
         levelOfAssuranceAliasMap = levelOfAssuranceAliasMapReal;
     }
 
-    private ContextClassTranslator(){}
+    private ContextClassTranslator() {
+    }
 
 
     @Nullable

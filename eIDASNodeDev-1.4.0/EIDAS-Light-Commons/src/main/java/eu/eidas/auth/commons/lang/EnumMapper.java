@@ -213,7 +213,7 @@ public class EnumMapper<K, E extends Enum<E>> {
             E previous = fromKeysMap.put(key, enumConstant);
             if (null != previous) {
                 throw new AssertionError("Duplicate key \"" + key + "\" for enum constant \"" + previous.name()
-                                                 + "\" and enum constant \"" + enumConstant.name() + "\"");
+                        + "\" and enum constant \"" + enumConstant.name() + "\"");
             }
         }
         fromKeys = Collections.unmodifiableMap(fromKeysMap);

@@ -38,7 +38,7 @@ public abstract class AbstractProtocolCipher implements ProtocolCipherI {
 
     public static final ImmutableSet<String> DEFAULT_ALLOWED_ALGORITHMS =
             ImmutableSet.of("http://www.w3.org/2009/xmlenc11#aes128-gcm", "http://www.w3.org/2009/xmlenc11#aes192-gcm",
-                            "http://www.w3.org/2009/xmlenc11#aes256-gcm");
+                    "http://www.w3.org/2009/xmlenc11#aes256-gcm");
 
     /**
      * The logger.
@@ -61,9 +61,9 @@ public abstract class AbstractProtocolCipher implements ProtocolCipherI {
     protected AbstractProtocolCipher(@Nonnull EncryptionConfiguration encryptionConfiguration)
             throws SamlEngineConfigurationException {
         this(encryptionConfiguration.isCheckedValidityPeriod(),
-             encryptionConfiguration.isDisallowedSelfSignedCertificate(),
-             encryptionConfiguration.isResponseEncryptionMandatory(),
-             encryptionConfiguration.getEncryptionAlgorithmWhiteList());
+                encryptionConfiguration.isDisallowedSelfSignedCertificate(),
+                encryptionConfiguration.isResponseEncryptionMandatory(),
+                encryptionConfiguration.getEncryptionAlgorithmWhiteList());
     }
 
     protected AbstractProtocolCipher(boolean checkedValidityPeriod,
@@ -94,7 +94,7 @@ public abstract class AbstractProtocolCipher implements ProtocolCipherI {
         } catch (Exception e) {
             LOG.error("AbstractProtocolCipher init: " + e, e);
             throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -138,7 +138,7 @@ public abstract class AbstractProtocolCipher implements ProtocolCipherI {
         if (StringUtils.isBlank(encryptionAlgorithm) || !encryptionAlgorithmWhiteList.contains(
                 encryptionAlgorithm.trim())) {
             LOG.error("Invalid encryption algorithm: \"" + encryptionAlgorithm
-                              + "\" (allowed algorithms in white list are: " + encryptionAlgorithmWhiteList + ")");
+                    + "\" (allowed algorithms in white list are: " + encryptionAlgorithmWhiteList + ")");
             throw new EIDASSAMLEngineException(EidasErrorKey.INVALID_ENCRYPTION_ALGORITHM.errorCode(), EidasErrorKey.INVALID_ENCRYPTION_ALGORITHM.errorMessage());
         }
     }

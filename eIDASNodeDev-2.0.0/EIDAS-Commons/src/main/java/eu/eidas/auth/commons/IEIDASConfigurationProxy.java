@@ -5,7 +5,6 @@ package eu.eidas.auth.commons;
  */
 public interface IEIDASConfigurationProxy {
     /**
-     *
      * @param parameterName the name of the eidas Node parameter
      * @return the parameter value (or null if the parameter is missing from the config)
      */

@@ -38,8 +38,8 @@ public class SPCountryMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final SPCountry spCountry = (SPCountry) samlObject;
-	XMLHelper.appendTextContent(domElement, spCountry.getSPCountry());
+                                                final Element domElement) throws MarshallingException {
+        final SPCountry spCountry = (SPCountry) samlObject;
+        XMLHelper.appendTextContent(domElement, spCountry.getSPCountry());
     }
 }

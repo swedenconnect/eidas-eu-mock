@@ -28,34 +28,52 @@ import org.opensaml.xml.schema.XSBooleanValue;
  * @author fjquevedo
  */
 public interface RequestedAttribute extends SAMLObject,
-	AttributeExtensibleXMLObject , org.opensaml.saml2.metadata.RequestedAttribute{
+        AttributeExtensibleXMLObject, org.opensaml.saml2.metadata.RequestedAttribute {
 
 
-    /** Element local name. */
+    /**
+     * Element local name.
+     */
     String DEF_LOCAL_NAME = "RequestedAttribute";
 
-    /** Local name of the XSI type. */
+    /**
+     * Local name of the XSI type.
+     */
     String TYPE_LOCAL_NAME = "RequestedAttributeAbstractType";
 
-    /** NAME_ATTRIB_NAME attribute name. */
+    /**
+     * NAME_ATTRIB_NAME attribute name.
+     */
     String NAME_ATTRIB_NAME = "Name";
 
-    /** NAME_FORMAT_ATTRIB_NAME attribute name. */
+    /**
+     * NAME_FORMAT_ATTRIB_NAME attribute name.
+     */
     String NAME_FORMAT_ATTR = "NameFormat";
 
-    /** IS_REQUIRED_ATTRIB_NAME attribute name. */
+    /**
+     * IS_REQUIRED_ATTRIB_NAME attribute name.
+     */
     String IS_REQUIRED_ATTR = "isRequired";
 
-    /** FRIENDLY_NAME_ATTRIB_NAME attribute name. */
+    /**
+     * FRIENDLY_NAME_ATTRIB_NAME attribute name.
+     */
     String FRIENDLY_NAME_ATT = "FriendlyName";
 
-    /** Unspecified attribute format ID. */
+    /**
+     * Unspecified attribute format ID.
+     */
     String UNSPECIFIED = "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified";
 
-    /** URI reference attribute format ID. */
+    /**
+     * URI reference attribute format ID.
+     */
     String URI_REFERENCE = "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 
-    /** Basic attribute format ID. */
+    /**
+     * Basic attribute format ID.
+     */
     String BASIC = "urn:oasis:names:tc:SAML:2.0:attrname-format:basic";
 
     /**
@@ -100,7 +118,7 @@ public interface RequestedAttribute extends SAMLObject,
      */
     void setFriendlyName(String friendlyName);
 
-/*    *//**
+    /*    *//**
      * Gets the checks if is required.
      *
      * @return the checks if is required

@@ -23,19 +23,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Start Modal -->
 <div class="modal fade" id="attributeModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <h3><label id="attributeModalNameDisp"/></h3>
-        <div class="wraps" id="attributeModalDescriptionDisp"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3><label id="attributeModalNameDisp"/></h3>
+                <div class="wraps" id="attributeModalDescriptionDisp"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- End Modal -->

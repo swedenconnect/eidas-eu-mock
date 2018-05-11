@@ -29,21 +29,21 @@ import eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshalle
 
 public final class AttributeDefinitionAdapter extends XmlAdapter<String, AttributeDefinition> {
 
-	final static AttributeValueMarshaller<?> MARSHALLER = new LiteralStringAttributeValueMarshaller();
+    final static AttributeValueMarshaller<?> MARSHALLER = new LiteralStringAttributeValueMarshaller();
 
-	@Override
-	public AttributeDefinition unmarshal(String s) throws Exception {
-		AttributeDefinition definition = AttributeDefinition.builder()
-				.attributeValueMarshaller((AttributeValueMarshaller<Object>) MARSHALLER)
-				.friendlyName("not set").nameUri(s).personType(PersonType.NATURAL_PERSON).required(false)
-				.transliterationMandatory(false).uniqueIdentifier(false)
-				.xmlType(new QName(s, "eidas-natural", "not set"))
-				.build();
-		return definition;
-	}
+    @Override
+    public AttributeDefinition unmarshal(String s) throws Exception {
+        AttributeDefinition definition = AttributeDefinition.builder()
+                .attributeValueMarshaller((AttributeValueMarshaller<Object>) MARSHALLER)
+                .friendlyName("not set").nameUri(s).personType(PersonType.NATURAL_PERSON).required(false)
+                .transliterationMandatory(false).uniqueIdentifier(false)
+                .xmlType(new QName(s, "eidas-natural", "not set"))
+                .build();
+        return definition;
+    }
 
-	@Override
-	public String marshal(AttributeDefinition d) throws Exception {
-		return d.getNameUri().toString();
-	}
+    @Override
+    public String marshal(AttributeDefinition d) throws Exception {
+        return d.getNameUri().toString();
+    }
 }

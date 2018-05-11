@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,20 +31,22 @@ import org.w3c.dom.Document;
  */
 public class ResponseTest extends BaseTestCase {
 
-    /** Path to file with full response message */
+    /**
+     * Path to file with full response message
+     */
     private String fullResponsePath;
-    
+
     /**
      * Constructor
      */
-    public ResponseTest(){
+    public ResponseTest() {
         fullResponsePath = "/data/org/opensaml/saml1/core/FullResponse.xml";
     }
-    
+
     /**
      * Tests unmarshalling a full response message.
      */
-    public void testResponseUnmarshall(){
+    public void testResponseUnmarshall() {
 
         try {
             InputStream in = ResponseTest.class.getResourceAsStream(fullResponsePath);
@@ -62,11 +64,11 @@ public class ResponseTest extends BaseTestCase {
             fail("Unable to unmarshall XML: " + ue);
         }
     }
-    
+
     /**
      * Tests marshalling a full response message.
      */
-    public void testResponseMarshall(){
+    public void testResponseMarshall() {
         //TODO
     }
 }

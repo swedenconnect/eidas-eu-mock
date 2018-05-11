@@ -24,8 +24,8 @@ import java.util.Map;
  * by ammending the eu.eidas.auth.engine.configuration.dom.KeyStoreSignatureConfigurator class.</p>
  *
  * <ul>
- *     <li>Add the field: <b>private static final EidasTrustedPEMCertificates trustedPemCerts = new EidasTrustedPEMCertificates();</b></li>
- *     <li>Add row in method getSignatureConfiguration: <b>trustedCertificates = trustedPemCerts.addTrustedCertificates(trustedCertificates);</b></li>
+ * <li>Add the field: <b>private static final EidasTrustedPEMCertificates trustedPemCerts = new EidasTrustedPEMCertificates();</b></li>
+ * <li>Add row in method getSignatureConfiguration: <b>trustedCertificates = trustedPemCerts.addTrustedCertificates(trustedCertificates);</b></li>
  * </ul>
  *
  * @author Stefan Santesson, 3xA Secruity AB
@@ -41,15 +41,15 @@ public class EidasTrustedPEMCertificates {
 
     /**
      * Constructor
-     *
+     * <p>
      * The constructor is setup using Environment variables
      *
      * <ul>
-     *     <li><b>EIDAS_TRUSTED_CERTS_FILE</b>: Path to the PEM certificates file holding one or more trusted PEM certificates</></li>
-     *     <li><b>EIDAS_TRUSTED_CERTS_CONSTRAINTS</b>: A comma separated list of either full KeyStore path, or the ending path of a keystore path.
-     *     If no constraint is defined, then the list of trusted certificates will always be amended with the PEM list. If the constraint is present,
-     *     Then the trusted list will only be amended when the keyStorePath properties matches one of the specified constraints.
-     *     </li>
+     * <li><b>EIDAS_TRUSTED_CERTS_FILE</b>: Path to the PEM certificates file holding one or more trusted PEM certificates</></li>
+     * <li><b>EIDAS_TRUSTED_CERTS_CONSTRAINTS</b>: A comma separated list of either full KeyStore path, or the ending path of a keystore path.
+     * If no constraint is defined, then the list of trusted certificates will always be amended with the PEM list. If the constraint is present,
+     * Then the trusted list will only be amended when the keyStorePath properties matches one of the specified constraints.
+     * </li>
      * </ul>*
      */
     public EidasTrustedPEMCertificates() {
@@ -66,8 +66,9 @@ public class EidasTrustedPEMCertificates {
 
     /**
      * Returns the ammended list of trusted certificates
+     *
      * @param trustedCerts The list of certificates that are already trusted
-     * @param properties The eIDAS node parameters relevant to this request
+     * @param properties   The eIDAS node parameters relevant to this request
      * @return The list of trusted certificates amended with PEM certificates matching the defined constraints
      */
     public ImmutableSet<X509Certificate> addTrustedCertificates(ImmutableSet<X509Certificate> trustedCerts, Map<String, String> properties) {

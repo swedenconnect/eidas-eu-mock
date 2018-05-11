@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -34,50 +34,63 @@ public abstract class SubjectQueryTestBase extends RequestTestBase {
 
     /**
      * Constructor
-     *
      */
     public SubjectQueryTestBase() {
         super();
     }
-    
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public abstract void testSingleElementUnmarshall();
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public abstract void testSingleElementMarshall();
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateChildElements(SAMLObject samlObject) {
         SubjectQuery sq = (SubjectQuery) samlObject;
-        
+
         super.populateChildElements(sq);
-        
+
         QName subjectQName = new QName(SAMLConstants.SAML20_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         sq.setSubject((Subject) buildXMLObject(subjectQName));
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateOptionalAttributes(SAMLObject samlObject) {
         super.populateOptionalAttributes(samlObject);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredAttributes(SAMLObject samlObject) {
         super.populateRequiredAttributes(samlObject);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void helperTestChildElementsUnmarshall(SAMLObject samlObject) {
         SubjectQuery sq = (SubjectQuery) samlObject;
         super.helperTestChildElementsUnmarshall(sq);
@@ -85,13 +98,17 @@ public abstract class SubjectQueryTestBase extends RequestTestBase {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void helperTestSingleElementOptionalAttributesUnmarshall(SAMLObject samlObject) {
         super.helperTestSingleElementOptionalAttributesUnmarshall(samlObject);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void helperTestSingleElementUnmarshall(SAMLObject samlObject) {
         super.helperTestSingleElementUnmarshall(samlObject);
     }

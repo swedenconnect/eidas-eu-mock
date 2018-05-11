@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class CitizenConsentTestCase {
     private static final String CITIZEN_CONSENT_TEST = "Mandatory attributes: mandatoryAttr1;mandatoryAttr2;mandatoryAttr3; Optional attributes: optionalAttr1;optionalAttr1;";
+
     @Test
     public void testCitizenConsent() {
         CitizenConsent citizenConsent = new CitizenConsent();

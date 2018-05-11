@@ -113,11 +113,11 @@ public class AUSERVICESAMLTestCertif {
         auservicesaml.setSamlEngineInstanceName(TestingConstants.SAML_INSTANCE_CONS.toString());
         try {
             auservicesaml.processConnectorRequest("POST", saml, TestingConstants.USER_IP_CONS.toString(),
-                                                       "relayState");
+                    "relayState");
             fail("processConnectorRequest should throw and Exception since the certificates are self signed");
         } catch (InternalErrorEIDASException exc) {
             assertTrue(exc.getCause() instanceof EIDASSAMLEngineException
-                               || exc.getCause() instanceof InternalErrorEIDASException);
+                    || exc.getCause() instanceof InternalErrorEIDASException);
             assertTrue(
                     exc.getCause().getMessage().contains("Self signed certificates are not allowed") || exc.getCause()
                             .getMessage()

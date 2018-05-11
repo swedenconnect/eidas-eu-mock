@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -35,10 +35,14 @@ import org.springframework.mock.web.MockHttpServletResponse;
  */
 public class HTTPPostEncoderTest extends BaseTestCase {
 
-    /** Velocity template engine. */
+    /**
+     * Velocity template engine.
+     */
     private VelocityEngine velocityEngine;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public void setUp() throws Exception {
         super.setUp();
@@ -68,7 +72,7 @@ public class HTTPPostEncoderTest extends BaseTestCase {
         samlEndpoint.setResponseLocation("http://example.org/response");
 
         HTTPPostEncoder encoder = new HTTPPostEncoder(velocityEngine,
-        "/templates/saml1-post-binding.vm");
+                "/templates/saml1-post-binding.vm");
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
@@ -76,7 +80,7 @@ public class HTTPPostEncoderTest extends BaseTestCase {
         messageContext.setPeerEntityEndpoint(samlEndpoint);
         messageContext.setOutboundSAMLMessage(samlMessage);
         messageContext.setRelayState("relay");
-        
+
         encoder.encode(messageContext);
 
         assertEquals("Unexpected content type", "text/html", response.getContentType());

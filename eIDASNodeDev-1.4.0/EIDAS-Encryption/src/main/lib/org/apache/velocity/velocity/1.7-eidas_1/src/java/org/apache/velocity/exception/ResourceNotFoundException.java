@@ -16,23 +16,22 @@ package org.apache.velocity.exception;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
- *  Application-level exception thrown when a resource of any type
- *  isn't found by the Velocity engine.
- *  <br>
- *  When this exception is thrown, a best effort will be made to have
- *  useful information in the exception's message.  For complete
- *  information, consult the runtime log.
+ * Application-level exception thrown when a resource of any type
+ * isn't found by the Velocity engine.
+ * <br>
+ * When this exception is thrown, a best effort will be made to have
+ * useful information in the exception's message.  For complete
+ * information, consult the runtime log.
  *
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @author <a href="mailto:dlr@finemaltcoding.com">Daniel Rall</a>
  * @version $Id: ResourceNotFoundException.java 685685 2008-08-13 21:43:27Z nbubna $
  */
-public class ResourceNotFoundException extends VelocityException
-{
+public class ResourceNotFoundException extends VelocityException {
     /**
      * Version Id for serializable
      */
@@ -41,8 +40,7 @@ public class ResourceNotFoundException extends VelocityException
     /**
      * @see VelocityException#VelocityException(String)
      */
-    public ResourceNotFoundException(final String exceptionMessage)
-    {
+    public ResourceNotFoundException(final String exceptionMessage) {
         super(exceptionMessage);
     }
 
@@ -50,8 +48,7 @@ public class ResourceNotFoundException extends VelocityException
      * @see VelocityException#VelocityException(String, Throwable)
      * @since 1.5
      */
-    public ResourceNotFoundException(final String exceptionMessage, final Throwable t)
-    {
+    public ResourceNotFoundException(final String exceptionMessage, final Throwable t) {
         super(exceptionMessage, t);
     }
 
@@ -59,8 +56,7 @@ public class ResourceNotFoundException extends VelocityException
      * @see VelocityException#VelocityException(Throwable)
      * @since 1.5
      */
-    public ResourceNotFoundException(final Throwable t)
-    {
+    public ResourceNotFoundException(final Throwable t) {
         super(t);
     }
 }

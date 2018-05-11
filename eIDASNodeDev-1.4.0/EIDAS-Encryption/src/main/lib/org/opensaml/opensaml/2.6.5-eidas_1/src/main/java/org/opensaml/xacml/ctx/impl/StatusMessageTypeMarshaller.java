@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,17 +25,19 @@ import org.opensaml.xml.util.XMLHelper;
 import org.w3c.dom.Element;
 
 /**
- *Masrhaller for {@link org.opensaml.xacml.ctx.StatusMessageType}. 
+ * Masrhaller for {@link org.opensaml.xacml.ctx.StatusMessageType}.
  */
 public class StatusMessageTypeMarshaller extends AbstractXACMLObjectMarshaller {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        StatusMessageType message = (StatusMessageType)xmlObject;
+        StatusMessageType message = (StatusMessageType) xmlObject;
 
-        if(message.getValue() != null){
+        if (message.getValue() != null) {
             XMLHelper.appendTextContent(domElement, message.getValue());
-        }        
+        }
     }
 
 }

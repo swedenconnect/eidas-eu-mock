@@ -16,10 +16,11 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.apache.velocity.exception.VelocityException;
 import org.apache.velocity.runtime.RuntimeLogger;
 import org.apache.velocity.runtime.log.Log;
@@ -37,12 +38,11 @@ import org.apache.velocity.util.introspection.Introspector;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @version $Id: GetExecutor.java 687177 2008-08-19 22:00:32Z nbubna $
  */
-public class GetExecutor extends AbstractExecutor
-{
+public class GetExecutor extends AbstractExecutor {
     private final Introspector introspector;
 
     // This is still threadsafe because this object is only read except in the C'tor.
-    private Object [] params = {};
+    private Object[] params = {};
 
     /**
      * @param log
@@ -52,8 +52,7 @@ public class GetExecutor extends AbstractExecutor
      * @since 1.5
      */
     public GetExecutor(final Log log, final Introspector introspector,
-            final Class clazz, final String property)
-    {
+                       final Class clazz, final String property) {
         this.log = log;
         this.introspector = introspector;
 
@@ -64,9 +63,8 @@ public class GetExecutor extends AbstractExecutor
         // In any other case, the following condition will set up an array
         // for looking up get(String) on the class.
 
-        if (property != null)
-        {
-            this.params = new Object[] { property };
+        if (property != null) {
+            this.params = new Object[]{property};
         }
         discover(clazz);
     }
@@ -79,29 +77,22 @@ public class GetExecutor extends AbstractExecutor
      * @deprecated RuntimeLogger is deprecated. Use the other constructor.
      */
     public GetExecutor(final RuntimeLogger rlog, final Introspector introspector,
-            final Class clazz, final String property)
-    {
+                       final Class clazz, final String property) {
         this(new RuntimeLoggerLog(rlog), introspector, clazz, property);
     }
 
     /**
      * @since 1.5
      */
-    protected void discover(final Class clazz)
-    {
-        try
-        {
+    protected void discover(final Class clazz) {
+        try {
             setMethod(introspector.getMethod(clazz, "get", params));
         }
         /**
          * pass through application level runtime exceptions
-         */
-        catch( RuntimeException e )
-        {
+         */ catch (RuntimeException e) {
             throw e;
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             String msg = "Exception while looking for get('" + params[0] + "') method";
             log.error(msg, e);
             throw new VelocityException(msg, e);
@@ -112,8 +103,7 @@ public class GetExecutor extends AbstractExecutor
      * @see org.apache.velocity.runtime.parser.node.AbstractExecutor#execute(java.lang.Object)
      */
     public Object execute(final Object o)
-        throws IllegalAccessException,  InvocationTargetException
-    {
+            throws IllegalAccessException, InvocationTargetException {
         return isAlive() ? getMethod().invoke(o, params) : null;
     }
 }

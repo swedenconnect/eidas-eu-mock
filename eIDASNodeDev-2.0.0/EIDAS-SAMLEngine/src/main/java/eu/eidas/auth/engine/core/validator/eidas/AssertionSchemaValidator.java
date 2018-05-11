@@ -25,5 +25,6 @@ import org.opensaml.saml.saml2.core.Assertion;
  * TODO This class was created as a temporary solution for the removal of AssertionSchemaValidator from opensaml 3.
  */
 public abstract class AssertionSchemaValidator {
-    public void validate(Assertion assertion) throws ValidationException {}
+    public void validate(Assertion assertion) throws ValidationException {
+    }
 }

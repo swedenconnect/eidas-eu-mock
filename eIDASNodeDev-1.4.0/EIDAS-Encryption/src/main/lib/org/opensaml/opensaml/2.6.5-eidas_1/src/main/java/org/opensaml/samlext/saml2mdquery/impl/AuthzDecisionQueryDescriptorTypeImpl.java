@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,17 +32,19 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
 /**
  * Concrete implementation of {@link AuthzDecisionQueryDescriptorType}.
  */
-public class AuthzDecisionQueryDescriptorTypeImpl extends QueryDescriptorTypeImpl implements AuthzDecisionQueryDescriptorType{
+public class AuthzDecisionQueryDescriptorTypeImpl extends QueryDescriptorTypeImpl implements AuthzDecisionQueryDescriptorType {
 
-    /** Supported action namespaces. */
+    /**
+     * Supported action namespaces.
+     */
     private XMLObjectChildrenList<ActionNamespace> actionNamespaces;
-    
+
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AuthzDecisionQueryDescriptorTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -50,28 +52,36 @@ public class AuthzDecisionQueryDescriptorTypeImpl extends QueryDescriptorTypeImp
         actionNamespaces = new XMLObjectChildrenList<ActionNamespace>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<ActionNamespace> getActionNamespaces() {
         return actionNamespaces;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints() {
         return new ArrayList<Endpoint>();
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints(QName type) {
         return null;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
-        
+
         children.addAll(super.getOrderedChildren());
         children.addAll(actionNamespaces);
-        
+
         return Collections.unmodifiableList(children);
     }
 }

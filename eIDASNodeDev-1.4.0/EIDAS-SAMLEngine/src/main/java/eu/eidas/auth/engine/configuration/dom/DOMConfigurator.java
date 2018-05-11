@@ -73,7 +73,7 @@ public final class DOMConfigurator {
 
         if (null == encryptionConfigurationEntry) {
             LOG.info("ERROR : Encryption module configuration not found. SAML Engine  '" + instanceName
-                             + "' in non-encryption mode!");
+                    + "' in non-encryption mode!");
         } else {
             try {
                 LOG.trace("Loading Encryption for \"" + instanceName + "\"");
@@ -87,13 +87,13 @@ public final class DOMConfigurator {
                 Constructor<ProtocolCipherI> constructor = encryptionClass.getConstructor(Map.class, String.class);
 
                 ProtocolCipherI cipher = createReloadableProxyIfNeeded(instanceName, encryptionConfigurationEntry,
-                                                                       ConfigurationKey.ENCRYPTION_CONFIGURATION,  defaultPath,
-                                                                       ProtocolCipherI.class, constructor,
-                                                                       contextClassLoader, overrideFile);
+                        ConfigurationKey.ENCRYPTION_CONFIGURATION, defaultPath,
+                        ProtocolCipherI.class, constructor,
+                        contextClassLoader, overrideFile);
                 return cipher;
             } catch (Exception e) {
                 LOG.error("Encryption Module could not be loaded! SAML Engine '" + instanceName
-                                  + "' in non-encryption mode! Because of " + e, e);
+                        + "' in non-encryption mode! Because of " + e, e);
             }
         }
         return null;
@@ -119,8 +119,8 @@ public final class DOMConfigurator {
         String clockClassName = clockConfigurationEntry.get(ParameterKey.CLASS);
         try {
             Class<SamlEngineClock> clockClass = (Class<SamlEngineClock>) Class.forName(clockClassName, true,
-                                                                                       Thread.currentThread()
-                                                                                               .getContextClassLoader());
+                    Thread.currentThread()
+                            .getContextClassLoader());
             SamlEngineClock clock = clockClass.newInstance();
 
             if (traceEnabled) {
@@ -129,9 +129,9 @@ public final class DOMConfigurator {
             return clock;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             LOG.error("Error creating clock for SAML engine \"" + instanceName + "\" in " + clockClassName + " due to "
-                              + e, e);
+                    + e, e);
             throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -149,7 +149,7 @@ public final class DOMConfigurator {
 
         if (encryptionConfigurationEntry == null) {
             LOG.info("ERROR : Encryption module configuration not found. SAML Engine  '" + instanceName
-                             + "' in non-encryption mode!");
+                    + "' in non-encryption mode!");
         } else {
             try {
                 LOG.trace("Loading Encryption for \"" + instanceName + "\"");
@@ -163,13 +163,13 @@ public final class DOMConfigurator {
                 Constructor<SamlEngineEncryptionI> constructor = encryptionClass.getConstructor(Map.class);
 
                 SamlEngineEncryptionI cipher = createReloadableProxyIfNeeded(instanceName, encryptionConfigurationEntry,
-                                                                             ConfigurationKey.ENCRYPTION_CONFIGURATION, defaultPath,
-                                                                             SamlEngineEncryptionI.class, constructor,
-                                                                             contextClassLoader, overrideFile);
+                        ConfigurationKey.ENCRYPTION_CONFIGURATION, defaultPath,
+                        SamlEngineEncryptionI.class, constructor,
+                        contextClassLoader, overrideFile);
                 return cipher;
             } catch (Exception e) {
                 LOG.error("Encryption Module could not be loaded! SAML Engine '" + instanceName
-                                  + "' in non-encryption mode! Because of " + e, e);
+                        + "' in non-encryption mode! Because of " + e, e);
             }
         }
         return null;
@@ -190,7 +190,7 @@ public final class DOMConfigurator {
         if (null == extensionProcessorConfigurationEntry) {
             ExtensionProcessorI extensionProcessor = EidasExtensionProcessor.INSTANCE;
             LOG.info("No custom ExtensionProcessor configured for \"" + instanceName + "\", using default: "
-                             + extensionProcessor);
+                    + extensionProcessor);
             return extensionProcessor;
         }
 
@@ -270,9 +270,9 @@ public final class DOMConfigurator {
             return extensionProcessor;
         } catch (ClassNotFoundException | ClassCastException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             LOG.error("Error creating extension processor for SAML engine \"" + instanceName + "\" in "
-                              + extensionProcessorClassName + " due to " + e, e);
+                    + extensionProcessorClassName + " due to " + e, e);
             throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -291,7 +291,7 @@ public final class DOMConfigurator {
         if (null == protocolProcessorConfigurationEntry) {
             ProtocolProcessorI protocolProcessor = EidasProtocolProcessor.INSTANCE;
             LOG.info("No custom ProtocolProcessor configured for \"" + instanceName + "\", using default: "
-                             + protocolProcessor);
+                    + protocolProcessor);
             return protocolProcessor;
         }
 
@@ -339,7 +339,7 @@ public final class DOMConfigurator {
                 if (Arrays.equals(parameterTypes, constructorParameterTypesWithMetadata)) {
                     protocolProcessor =
                             constructor.newInstance(coreAttributeRegistry, additionalAttributeRegistry, metadataFetcher,
-                                                    metadataSigner);
+                                    metadataSigner);
                     break;
                 }
             }
@@ -359,9 +359,9 @@ public final class DOMConfigurator {
             return protocolProcessor;
         } catch (ClassNotFoundException | ClassCastException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             LOG.error("Error creating protocol processor for SAML engine \"" + instanceName + "\" in "
-                              + protocolProcessorClassName + " due to " + e, e);
+                    + protocolProcessorClassName + " due to " + e, e);
             throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -375,7 +375,7 @@ public final class DOMConfigurator {
 
         if (null == samlEngineConfigurationEntry || samlEngineConfigurationEntry.getParameters().isEmpty()) {
             LOG.error("ConfigurationEntry: \"" + ConfigurationKey.SAML_ENGINE_CONFIGURATION.getKey()
-                              + "\" does not exist for SAML Engine '" + instanceName + "'.");
+                    + "\" does not exist for SAML Engine '" + instanceName + "'.");
             throw new SamlEngineConfigurationException(
                     EidasErrors.get(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode()),
                     EidasErrors.get(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage()),
@@ -387,9 +387,9 @@ public final class DOMConfigurator {
             Constructor<DefaultCoreProperties> constructor = DefaultCoreProperties.class.getConstructor(Map.class);
 
             return createReloadableProxyIfNeeded(instanceName, samlEngineConfigurationEntry,
-                                                 ConfigurationKey.SAML_ENGINE_CONFIGURATION, defaultPath,
-                                                 SamlEngineCoreProperties.class, constructor,
-                                                 Thread.currentThread().getContextClassLoader(), overrideFile);
+                    ConfigurationKey.SAML_ENGINE_CONFIGURATION, defaultPath,
+                    SamlEngineCoreProperties.class, constructor,
+                    Thread.currentThread().getContextClassLoader(), overrideFile);
         } catch (Exception e) {
             throw new SamlEngineConfigurationException(
                     EidasErrors.get(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode()),
@@ -430,9 +430,9 @@ public final class DOMConfigurator {
             }
 
             ProtocolSignerI signer = createReloadableProxyIfNeeded(instanceName, signatureConfigurationEntry,
-                                                                   ConfigurationKey.SIGNATURE_CONFIGURATION, defaultPath,
-                                                                   ProtocolSignerI.class, constructor,
-                                                                   contextClassLoader, overrideFile);
+                    ConfigurationKey.SIGNATURE_CONFIGURATION, defaultPath,
+                    ProtocolSignerI.class, constructor,
+                    contextClassLoader, overrideFile);
 
             //TODO Specific to the implementation for p12
             //signer loadCryptServiceProvider();
@@ -440,9 +440,9 @@ public final class DOMConfigurator {
             return signer;
         } catch (Exception e) {
             LOG.error("Error creating signature for SAML engine \"" + instanceName + "\" in " + signerClassName
-                              + " due to " + e, e);
+                    + " due to " + e, e);
             throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -459,7 +459,7 @@ public final class DOMConfigurator {
             throws IllegalAccessException, InvocationTargetException, InstantiationException {
         if (StringUtils.isBlank(overrideFile)) {
             return createReloadableProxyIfNeeded(instanceName, configurationEntry, configurationKey, defaultPath, type, constructor,
-                                                 contextClassLoader, ImmutableMap.<String, String>of());
+                    contextClassLoader, ImmutableMap.<String, String>of());
         } else {
             final SingletonAccessor<T> accessor =
                     SingletonAccessors.newPropertiesAccessor(overrideFile, defaultPath, new PropertiesConverter<T>() {
@@ -475,9 +475,9 @@ public final class DOMConfigurator {
                         public T unmarshal(@Nonnull Properties properties) {
                             try {
                                 return createReloadableProxyIfNeeded(instanceName, configurationEntry,
-                                                                     configurationKey, defaultPath, type, constructor,
-                                                                     contextClassLoader,
-                                                                     Maps.fromProperties(properties));
+                                        configurationKey, defaultPath, type, constructor,
+                                        contextClassLoader,
+                                        Maps.fromProperties(properties));
                             } catch (InvocationTargetException e) {
                                 //noinspection ThrowCaughtLocally
                                 LOG.error("", e);
@@ -506,8 +506,8 @@ public final class DOMConfigurator {
         if (StringUtils.isNotBlank(fileConfiguration)) {
             final SingletonAccessor<T> accessor =
                     ExternalConfigurationFileAccessor.newAccessor(instanceName, configurationKey.getKey(),
-                                                                  fileConfiguration.trim(), defaultPath, staticParameters,
-                                                                  overrideParameters, new MapConverter<T>() {
+                            fileConfiguration.trim(), defaultPath, staticParameters,
+                            overrideParameters, new MapConverter<T>() {
 
                                 @Override
                                 public T convert(Map<String, String> map) {
@@ -533,7 +533,7 @@ public final class DOMConfigurator {
             if (constructor.getParameterTypes().length == 1) {
                 return constructor.newInstance(ImmutableMap.copyOf(allParameters));
             } else {
-                return constructor.newInstance(ImmutableMap.copyOf(allParameters),defaultPath);
+                return constructor.newInstance(ImmutableMap.copyOf(allParameters), defaultPath);
             }
         }
     }
@@ -554,10 +554,10 @@ public final class DOMConfigurator {
     /**
      * Returns the corresponding configuration.
      *
-     * @param instanceName the instance name
+     * @param instanceName  the instance name
      * @param instanceEntry the instance entry object
-     * @param overrideFile the configuration properties file name containing overriding properties if any, otherwise
-     * {@code null}.
+     * @param overrideFile  the configuration properties file name containing overriding properties if any, otherwise
+     *                      {@code null}.
      * @throws SamlEngineConfigurationException the SAML engine configuration exception
      * @deprecated since 1.1, use {@link #getProtocolConfiguration(String, InstanceEntry, String)} instead.
      */
@@ -570,11 +570,9 @@ public final class DOMConfigurator {
             throws SamlEngineConfigurationException {
         if (null == instanceEntry) {
             throwConfigurationException("Instance : \"" + instanceName + "\" does not exist.");
-        } else
-        if (instanceEntry.getConfigurationEntries().isEmpty()) {
+        } else if (instanceEntry.getConfigurationEntries().isEmpty()) {
             throwConfigurationException("Instance: \"" + instanceName + "\" is empty.");
-        } else
-        if (!instanceEntry.getName().equals(instanceName)) {
+        } else if (!instanceEntry.getName().equals(instanceName)) {
             throwConfigurationException(
                     "Instance: \"" + instanceEntry.getName() + "\" does not match supplied name \"" + instanceName
                             + "\"");
@@ -633,10 +631,10 @@ public final class DOMConfigurator {
     /**
      * Returns the corresponding configuration.
      *
-     * @param instanceName the instance name
+     * @param instanceName  the instance name
      * @param instanceEntry the instance entry object
-     * @param overrideFile the configuration properties file name containing overriding properties if any, otherwise
-     * {@code null}.
+     * @param overrideFile  the configuration properties file name containing overriding properties if any, otherwise
+     *                      {@code null}.
      * @throws SamlEngineConfigurationException the SAML engine configuration exception
      * @since 1.1
      */
@@ -648,11 +646,9 @@ public final class DOMConfigurator {
             throws SamlEngineConfigurationException {
         if (null == instanceEntry) {
             throwConfigurationException("Instance : \"" + instanceName + "\" does not exist.");
-        } else
-        if (instanceEntry.getConfigurationEntries().isEmpty()) {
+        } else if (instanceEntry.getConfigurationEntries().isEmpty()) {
             throwConfigurationException("Instance: \"" + instanceName + "\" is empty.");
-        } else
-        if (!instanceEntry.getName().equals(instanceName)) {
+        } else if (!instanceEntry.getName().equals(instanceName)) {
             throwConfigurationException(
                     "Instance: \"" + instanceEntry.getName() + "\" does not match supplied name \"" + instanceName
                             + "\"");
@@ -710,20 +706,20 @@ public final class DOMConfigurator {
                                           @Nonnull Class<? extends T> concreteImplementation,
                                           @Nonnull final SingletonAccessor<T> accessor) {
         return (T) ReflectionUtil.newProxyInstance(contextClassLoader, interfaceType, concreteImplementation,
-                                                   new InvocationHandler() {
+                new InvocationHandler() {
 
-                                                       @Override
-                                                       public Object invoke(Object proxy, Method method, Object[] args)
-                                                               throws Throwable {
-                                                           try {
-                                                               return method.invoke(accessor.get(), args);
-                                                           } catch (InvocationTargetException e) { //NOSONAR
-                                                               throw e.getTargetException();
-                                                           } catch (IOException e) {
-                                                               throw new IllegalStateException(e);
-                                                           }
-                                                       }
-                                                   });
+                    @Override
+                    public Object invoke(Object proxy, Method method, Object[] args)
+                            throws Throwable {
+                        try {
+                            return method.invoke(accessor.get(), args);
+                        } catch (InvocationTargetException e) { //NOSONAR
+                            throw e.getTargetException();
+                        } catch (IOException e) {
+                            throw new IllegalStateException(e);
+                        }
+                    }
+                });
     }
 
     @Nonnull

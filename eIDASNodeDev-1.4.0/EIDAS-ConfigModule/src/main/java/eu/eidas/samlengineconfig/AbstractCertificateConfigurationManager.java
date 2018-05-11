@@ -26,7 +26,7 @@ public abstract class AbstractCertificateConfigurationManager implements Certifi
 
     @Override
     public void setLocation(String location) {
-        this.location=location;
+        this.location = location;
     }
 
     @Override
@@ -35,7 +35,7 @@ public abstract class AbstractCertificateConfigurationManager implements Certifi
     }
 
     @Override
-    public boolean isActive(){
+    public boolean isActive() {
         return false;
     }
 

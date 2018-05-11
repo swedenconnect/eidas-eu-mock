@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.metadata.impl;
 
@@ -32,36 +32,44 @@ import org.opensaml.saml2.metadata.OrganizationURL;
  * {@link org.opensaml.saml2.metadata.OrganizationURL}.
  */
 public class OrganizationURLTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected URL */
+
+    /**
+     * Expected URL
+     */
     protected LocalizedString expectURL;
-    
+
     /**
      * Constructor
      */
     public OrganizationURLTest() {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/OrganizationURL.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectURL = new LocalizedString("http://example.org", "Language");
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         OrganizationURL url = (OrganizationURL) unmarshallElement(singleElementFile);
-        
+
         assertEquals("URL was not expected value", expectURL, url.getURL());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, OrganizationURL.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         OrganizationURL url = (OrganizationURL) buildXMLObject(qname);
-        
+
         url.setURL(expectURL);
 
         assertEquals(expectedDOM, url);

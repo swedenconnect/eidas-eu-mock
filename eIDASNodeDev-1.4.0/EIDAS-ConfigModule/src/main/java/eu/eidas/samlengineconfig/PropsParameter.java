@@ -23,6 +23,7 @@ public class PropsParameter extends ConfigurationParameter {
     String name;
     String fileName;
     Properties props;
+
     @Override
     public String getName() {
         return name;
@@ -30,7 +31,7 @@ public class PropsParameter extends ConfigurationParameter {
 
     @Override
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     @Override
@@ -40,8 +41,8 @@ public class PropsParameter extends ConfigurationParameter {
 
     @Override
     public void setValue(Object value) {
-        if(value instanceof Properties){
-            props=(Properties)value;
+        if (value instanceof Properties) {
+            props = (Properties) value;
         }
     }
 
@@ -50,10 +51,11 @@ public class PropsParameter extends ConfigurationParameter {
         return getFileName();
     }
 
-    public String getFileName(){
+    public String getFileName() {
         return fileName;
     }
-    public void setFileName(String fileName){
-        this.fileName=fileName;
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

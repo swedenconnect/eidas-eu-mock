@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.Template;
@@ -34,53 +34,42 @@ import org.apache.velocity.runtime.directive.Evaluate;
  * @author Nathan Bubna
  * @version $Id$
  */
-public class StopCommand extends Error
-{
+public class StopCommand extends Error {
     private static final long serialVersionUID = 2577683435802825964L;
     private Object stopMe;
     private boolean nearest = false;
 
-    public StopCommand()
-    {
+    public StopCommand() {
         this.nearest = true;
     }
 
-    public StopCommand(String message)
-    {
+    public StopCommand(String message) {
         super(message);
     }
 
-    public StopCommand(Object stopMe)
-    {
+    public StopCommand(Object stopMe) {
         this.stopMe = stopMe;
     }
 
-    public String getMessage()
-    {
-        if (stopMe != null)
-        {
+    public String getMessage() {
+        if (stopMe != null) {
             // only create a useful message if requested (which is unlikely)
-            return "StopCommand: "+stopMe;
-        }
-        else
-        {
-            return "StopCommand: "+super.getMessage();
+            return "StopCommand: " + stopMe;
+        } else {
+            return "StopCommand: " + super.getMessage();
         }
     }
 
-    public boolean isFor(Object that)
-    {
+    public boolean isFor(Object that) {
         if (nearest) // if we're stopping at the first chance
         {
             // save that for message
             stopMe = that;
             return true;
-        }
-        else if (stopMe != null) // if we have a specified stopping point
+        } else if (stopMe != null) // if we have a specified stopping point
         {
             return (that == stopMe);
-        }
-        else // only stop for the top :)
+        } else // only stop for the top :)
         {
             return (that instanceof Template ||
                     that instanceof RuntimeInstance ||

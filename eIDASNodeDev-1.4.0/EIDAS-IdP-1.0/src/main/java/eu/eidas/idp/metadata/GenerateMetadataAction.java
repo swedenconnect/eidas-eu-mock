@@ -56,31 +56,30 @@ import eu.eidas.engine.exceptions.EIDASSAMLEngineException;
 
 /**
  * This Action returns an xml containing IDP metadata
- *
  */
 public class GenerateMetadataAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 
-	static final Logger logger = LoggerFactory.getLogger(GenerateMetadataAction.class.getName());
-	private static final long serialVersionUID = -4744260243380919161L;
+    static final Logger logger = LoggerFactory.getLogger(GenerateMetadataAction.class.getName());
+    private static final long serialVersionUID = -4744260243380919161L;
 
-        private transient InputStream dataStream;
+    private transient InputStream dataStream;
 
-        private static final String INVALID_METADATA = "invalid metadata";
-        private static final String ERROR_GENERATING_METADATA = "error generating metadata {}";
-        Properties configs;
+    private static final String INVALID_METADATA = "invalid metadata";
+    private static final String ERROR_GENERATING_METADATA = "error generating metadata {}";
+    Properties configs;
 
     public GenerateMetadataAction() throws IOException {
         configs = IDPUtil.loadConfigs(Constants.IDP_PROPERTIES);
     }
 
-    public String generateMetadata(){
-		String metadata=INVALID_METADATA;
-		try {
-			ProtocolEngineI engine = IDPUtil.getProtocolEngine();
-			EidasMetadata.Generator generator = EidasMetadata.generator();
-			MetadataConfigParams.Builder mcp = MetadataConfigParams.builder();
+    public String generateMetadata() {
+        String metadata = INVALID_METADATA;
+        try {
+            ProtocolEngineI engine = IDPUtil.getProtocolEngine();
+            EidasMetadata.Generator generator = EidasMetadata.generator();
+            MetadataConfigParams.Builder mcp = MetadataConfigParams.builder();
             mcp.idpEngine(engine);
-			mcp.entityID(configs.getProperty(Constants.IDP_METADATA_URL));
+            mcp.entityID(configs.getProperty(Constants.IDP_METADATA_URL));
             putSSOSBindingLocation(mcp, SAMLConstants.SAML2_REDIRECT_BINDING_URI, Constants.SSOS_REDIRECT_LOCATION_URL);
             putSSOSBindingLocation(mcp, SAMLConstants.SAML2_POST_BINDING_URI, Constants.SSOS_POST_LOCATION_URL);
             mcp.technicalContact(MetadataUtil.createTechnicalContact(configs));
@@ -91,48 +90,48 @@ public class GenerateMetadataAction extends ActionSupport implements ServletRequ
             mcp.encryptionAlgorithms(configs == null ? null : configs.getProperty(EncryptionKey.ENCRYPTION_ALGORITHM_WHITE_LIST.getKey()));
             generator.configParams(mcp.build());
             EidasMetadata eidasMetadata = generator.build();
-			metadata = eidasMetadata.getMetadata();
-		} catch(EIDASSAMLEngineException see){
-			logger.error(ERROR_GENERATING_METADATA, see);
-		}
-		dataStream = new ByteArrayInputStream(EidasStringUtil.getBytes(metadata));
-		return Action.SUCCESS;
-	}
-
-        private void putSSOSBindingLocation(MetadataConfigParams.Builder mcp, final String binding, final String locationKey){
-            if (isValidSSOSBindingLocation(configs.getProperty(locationKey))) {
-                mcp.addProtocolBindingLocation(binding, configs.getProperty(locationKey));
-            } else {
-                String msg = String.format("BUSINESS EXCEPTION : Missing property %3$s for binding %1$s at %2$s", binding, configs.getProperty(Constants.IDP_METADATA_URL), locationKey);
-                logger.error(msg);
-                throwSAMLEngineNoMetadataException();
-            }
+            metadata = eidasMetadata.getMetadata();
+        } catch (EIDASSAMLEngineException see) {
+            logger.error(ERROR_GENERATING_METADATA, see);
         }
+        dataStream = new ByteArrayInputStream(EidasStringUtil.getBytes(metadata));
+        return Action.SUCCESS;
+    }
 
-         private boolean isValidSSOSBindingLocation(final String location) {
-            return location != null;
+    private void putSSOSBindingLocation(MetadataConfigParams.Builder mcp, final String binding, final String locationKey) {
+        if (isValidSSOSBindingLocation(configs.getProperty(locationKey))) {
+            mcp.addProtocolBindingLocation(binding, configs.getProperty(locationKey));
+        } else {
+            String msg = String.format("BUSINESS EXCEPTION : Missing property %3$s for binding %1$s at %2$s", binding, configs.getProperty(Constants.IDP_METADATA_URL), locationKey);
+            logger.error(msg);
+            throwSAMLEngineNoMetadataException();
         }
+    }
 
-        private void throwSAMLEngineNoMetadataException() {
-            final String exErrorCode = configs.getProperty(EidasErrorKey.SAML_ENGINE_NO_METADATA.errorCode());
-            final String exErrorMessage = configs.getProperty(EidasErrorKey.SAML_ENGINE_NO_METADATA.errorMessage());
-            throw new EIDASServiceException(exErrorCode, exErrorMessage);
-        }
+    private boolean isValidSSOSBindingLocation(final String location) {
+        return location != null;
+    }
 
-        @Override
-	public void setServletRequest(HttpServletRequest request) {
-        }
+    private void throwSAMLEngineNoMetadataException() {
+        final String exErrorCode = configs.getProperty(EidasErrorKey.SAML_ENGINE_NO_METADATA.errorCode());
+        final String exErrorMessage = configs.getProperty(EidasErrorKey.SAML_ENGINE_NO_METADATA.errorMessage());
+        throw new EIDASServiceException(exErrorCode, exErrorMessage);
+    }
 
-        @Override
-	public void setServletResponse(HttpServletResponse response) {
-        }
+    @Override
+    public void setServletRequest(HttpServletRequest request) {
+    }
 
-    public InputStream getInputStream(){
-            return dataStream;
-        }
+    @Override
+    public void setServletResponse(HttpServletResponse response) {
+    }
 
-	public void setInputStream(InputStream inputStream){
-            dataStream=inputStream;
-        }
+    public InputStream getInputStream() {
+        return dataStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        dataStream = inputStream;
+    }
 
 }

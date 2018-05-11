@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.metadata.impl;
 
@@ -31,36 +31,44 @@ import org.opensaml.saml2.metadata.NameIDFormat;
  * {@link org.opensaml.saml2.metadata.NameIDFormat}.
  */
 public class NameIDFormatTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected format */
+
+    /**
+     * Expected format
+     */
     protected String expectFormat;
-    
+
     /**
      * Constructor
      */
     public NameIDFormatTest() {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/NameIDFormat.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectFormat = "urn:name:format";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         NameIDFormat format = (NameIDFormat) unmarshallElement(singleElementFile);
-        
+
         assertEquals("Format was not expected value", expectFormat, format.getFormat());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, NameIDFormat.DEFAULT_ELEMENT_LOCAL_NAME);
         NameIDFormat format = (NameIDFormat) buildXMLObject(qname);
-        
+
         format.setFormat(expectFormat);
 
         assertEquals(expectedDOM, format);

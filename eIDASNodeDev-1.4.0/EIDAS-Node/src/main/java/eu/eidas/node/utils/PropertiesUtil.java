@@ -49,46 +49,49 @@ public class PropertiesUtil extends PropertyPlaceholderConfigurer implements IEI
     private static final Logger LOG = LoggerFactory.getLogger(PropertiesUtil.class.getName());
     private static Map propertiesMap;
     private List<Resource> locations;
-    private static String eidasXmlLocation=null;
-    private static final String MASTER_CONF_FILE="eidas.xml";
-    private static final String MASTER_CONF_FILE_PARAM="eidas.engine.repo";
+    private static String eidasXmlLocation = null;
+    private static final String MASTER_CONF_FILE = "eidas.xml";
+    private static final String MASTER_CONF_FILE_PARAM = "eidas.engine.repo";
 
     @Override
     public void setLocations(Resource... locations) {
         super.setLocations(locations);
-        this.locations=new ArrayList<Resource>();
-        for(Resource location:locations){
+        this.locations = new ArrayList<Resource>();
+        for (Resource location : locations) {
             this.locations.add(location);
             try {
-                if (location.getURL() != null && location.getFilename()!=null && MASTER_CONF_FILE.equalsIgnoreCase(location.getFilename())) {
+                if (location.getURL() != null && location.getFilename() != null && MASTER_CONF_FILE.equalsIgnoreCase(location.getFilename())) {
                     PropertiesUtil.setEidasXmlLocation(location.getURL().toString());
                 }
-            }catch(IOException ioe){
-                LOG.error("cannot retrieve the url of "+MASTER_CONF_FILE+" {}",ioe);
+            } catch (IOException ioe) {
+                LOG.error("cannot retrieve the url of " + MASTER_CONF_FILE + " {}", ioe);
             }
         }
     }
-    private static void setEidasXmlLocation(String location){
+
+    private static void setEidasXmlLocation(String location) {
         eidasXmlLocation = location;
     }
-    public List<Resource> getPropertyLocations(){
+
+    public List<Resource> getPropertyLocations() {
         return locations;
     }
 
-    private static void initProps(Properties props){
+    private static void initProps(Properties props) {
         LOG.info(LoggingMarkerMDC.SYSTEM_EVENT, "Loading properties");
         propertiesMap = new HashMap<String, String>();
         for (Object key : props.keySet()) {
             String keyStr = key.toString();
             propertiesMap.put(keyStr, props.getProperty(keyStr));
         }
-        if(eidasXmlLocation!=null && !props.containsKey(MASTER_CONF_FILE_PARAM)){
-            String fileRepositoryDir=eidasXmlLocation.substring(0, eidasXmlLocation.length() - MASTER_CONF_FILE.length());
+        if (eidasXmlLocation != null && !props.containsKey(MASTER_CONF_FILE_PARAM)) {
+            String fileRepositoryDir = eidasXmlLocation.substring(0, eidasXmlLocation.length() - MASTER_CONF_FILE.length());
             propertiesMap.put(MASTER_CONF_FILE_PARAM, fileRepositoryDir);
             props.put(MASTER_CONF_FILE_PARAM, fileRepositoryDir);
         }
 
     }
+
     @Override
     protected void processProperties(ConfigurableListableBeanFactory beanFactory,
                                      Properties props) throws BeansException {
@@ -97,24 +100,25 @@ public class PropertiesUtil extends PropertyPlaceholderConfigurer implements IEI
 
     }
 
-  public static String getProperty(String name) {
-    return (String) propertiesMap.get(name);
-  }
-    public String getEidasParameterValue(String parameterName){
+    public static String getProperty(String name) {
+        return (String) propertiesMap.get(name);
+    }
+
+    public String getEidasParameterValue(String parameterName) {
         return PropertiesUtil.getProperty(parameterName);
     }
 
 
-    private static String getConfigParameter(String parameterName){
-        AUCONNECTORUtil util= ApplicationContextProvider.getApplicationContext()==null?null:ApplicationContextProvider.getApplicationContext().getBean(AUCONNECTORUtil.class);
-        String value=null;
-        if(util!=null && util.getConfigs()!=null) {
+    private static String getConfigParameter(String parameterName) {
+        AUCONNECTORUtil util = ApplicationContextProvider.getApplicationContext() == null ? null : ApplicationContextProvider.getApplicationContext().getBean(AUCONNECTORUtil.class);
+        String value = null;
+        if (util != null && util.getConfigs() != null) {
             value = util.getConfigs().getProperty(parameterName);
         }
         return value;
     }
 
-    public static void checkConnectorActive(){
+    public static void checkConnectorActive() {
         String active = getConfigParameter(EidasParameterKeys.EIDAS_CONNECTOR_ACTIVE.toString());
         if (active != null && !Boolean.valueOf(active)) {
             String msg = "Connector module is inactive by configuration setting";
@@ -122,7 +126,8 @@ public class PropertiesUtil extends PropertyPlaceholderConfigurer implements IEI
             throw new EidasNodeException(EidasErrors.get(EidasErrorKey.SP_COUNTRY_SELECTOR_INVALID.errorCode()), EidasErrors.get(EidasErrorKey.SP_COUNTRY_SELECTOR_INVALID.errorMessage()));
         }
     }
-    public static void checkProxyServiceActive(){
+
+    public static void checkProxyServiceActive() {
         String active = getConfigParameter(EidasParameterKeys.EIDAS_SERVICE_ACTIVE.toString());
         if (active != null && !Boolean.valueOf(active)) {
             String msg = "ProxyService module is inactive by configuration setting";
@@ -131,25 +136,26 @@ public class PropertiesUtil extends PropertyPlaceholderConfigurer implements IEI
         }
     }
 
-    public static boolean isMetadataEnabled(){
+    public static boolean isMetadataEnabled() {
         return isMetadataEnabled(EIDASValues.METADATA_ACTIVE.toString());
     }
-    private static boolean isMetadataEnabled(String paramName){
+
+    private static boolean isMetadataEnabled(String paramName) {
         String active = getConfigParameter(paramName);
-        if (active != null && Boolean.parseBoolean(active)==false) {
+        if (active != null && Boolean.parseBoolean(active) == false) {
             return false;
         }
         return true;
     }
 
-    public static String getEidasXmlLocation(){
-        if(propertiesMap.containsKey(MASTER_CONF_FILE_PARAM)){
+    public static String getEidasXmlLocation() {
+        if (propertiesMap.containsKey(MASTER_CONF_FILE_PARAM)) {
             return propertiesMap.get(MASTER_CONF_FILE_PARAM).toString();
         }
         return null;
     }
-    
-    public static boolean hasPropertyMap(){
+
+    public static boolean hasPropertyMap() {
         return propertiesMap != null;
     }
 

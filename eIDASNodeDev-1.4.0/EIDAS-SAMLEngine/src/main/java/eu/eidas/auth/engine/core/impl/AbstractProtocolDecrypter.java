@@ -61,10 +61,10 @@ public abstract class AbstractProtocolDecrypter extends AbstractProtocolCipher i
     protected AbstractProtocolDecrypter(@Nonnull EncryptionConfiguration encryptionConfiguration)
             throws SamlEngineConfigurationException {
         this(encryptionConfiguration.isCheckedValidityPeriod(),
-             encryptionConfiguration.isDisallowedSelfSignedCertificate(),
-             encryptionConfiguration.isResponseEncryptionMandatory(),
-             encryptionConfiguration.getDecryptionKeyAndCertificates(), encryptionConfiguration.getJcaProviderName(),
-             encryptionConfiguration.getEncryptionAlgorithmWhiteList());
+                encryptionConfiguration.isDisallowedSelfSignedCertificate(),
+                encryptionConfiguration.isResponseEncryptionMandatory(),
+                encryptionConfiguration.getDecryptionKeyAndCertificates(), encryptionConfiguration.getJcaProviderName(),
+                encryptionConfiguration.getEncryptionAlgorithmWhiteList());
     }
 
     protected AbstractProtocolDecrypter(boolean checkedValidityPeriod,
@@ -74,7 +74,7 @@ public abstract class AbstractProtocolDecrypter extends AbstractProtocolCipher i
                                         @Nonnull SAMLAuthnResponseDecrypter samlAuthnResponseDecrypter,
                                         @Nonnull ImmutableSet<String> encryptionAlgorithmWhiteList) {
         super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-              encryptionAlgorithmWhiteList);
+                encryptionAlgorithmWhiteList);
 
         Preconditions.checkNotEmpty(decryptionKeyAndCertificates, "decryptionKeyAndCertificates");
         Preconditions.checkNotNull(samlAuthnResponseDecrypter, "samlAuthnResponseEncrypter");
@@ -91,7 +91,7 @@ public abstract class AbstractProtocolDecrypter extends AbstractProtocolCipher i
                                         @Nullable String encryptionAlgorithmWhiteList)
             throws SamlEngineConfigurationException {
         super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-              encryptionAlgorithmWhiteList);
+                encryptionAlgorithmWhiteList);
 
         Preconditions.checkNotEmpty(decryptionKeyAndCertificates, "decryptionKeyAndCertificates");
         Preconditions.checkNotNull(encryptionAlgorithmWhiteList, "encryptionAlgorithmWhiteList");
@@ -107,7 +107,7 @@ public abstract class AbstractProtocolDecrypter extends AbstractProtocolCipher i
         } catch (Exception e) {
             LOG.error("AbstractProtocolDecrypter init: " + e, e);
             throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_CONFIGURATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -126,7 +126,7 @@ public abstract class AbstractProtocolDecrypter extends AbstractProtocolCipher i
             if (null == encryptedAssertions || encryptedAssertions.isEmpty()) {
                 LOG.error("Response is not encrypted: " + authResponse);
                 throw new SamlEngineConfigurationException(EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorCode(),
-                                                           EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
+                        EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
             }
             EncryptedAssertion encAssertion = encryptedAssertions.get(0);
 
@@ -176,7 +176,7 @@ public abstract class AbstractProtocolDecrypter extends AbstractProtocolCipher i
         if (null == privateKey) {
             LOG.error("Response encrypted with unknown certificate: " + keyInfoCert);
             throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorCode(),
-                                               EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorMessage());
+                    EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorMessage());
         }
 
         if (isCheckedValidityPeriod()) {

@@ -35,13 +35,14 @@ import eu.eidas.samlengineconfig.impl.tools.EidasConfigManagerUtil;
  * serialize/deserialize an EngineInstance
  */
 public class EngineInstanceMarshallerImpl {
-    private static final Class JAXB_CLASSES[]={JAXBConfigurationParameter.class, SamlEngineConfigurationImpl.class, EngineInstanceImpl.class, InstanceConfigurationImpl.class, Properties.class};
+    private static final Class JAXB_CLASSES[] = {JAXBConfigurationParameter.class, SamlEngineConfigurationImpl.class, EngineInstanceImpl.class, InstanceConfigurationImpl.class, Properties.class};
     private static final Logger LOG = LoggerFactory.getLogger(EngineInstanceMarshallerImpl.class.getName());
     private FileService fileService;
-    public String serializeEngineInstance(SamlEngineConfiguration config ){
+
+    public String serializeEngineInstance(SamlEngineConfiguration config) {
         StringWriter writer = new StringWriter();
-        if(config instanceof SamlEngineConfigurationImpl){
-            SamlEngineConfigurationImpl impl=(SamlEngineConfigurationImpl)config;
+        if (config instanceof SamlEngineConfigurationImpl) {
+            SamlEngineConfigurationImpl impl = (SamlEngineConfigurationImpl) config;
             try {
                 JAXBContext context = JAXBContext.newInstance(JAXB_CLASSES);
                 Marshaller marshaller = context.createMarshaller();
@@ -49,16 +50,16 @@ public class EngineInstanceMarshallerImpl {
                 marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
                 marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
                 marshaller.marshal(impl, writer);
-            }catch(Exception exc){
-                LOG.error("ERROR : error saving engine instance "+exc);
+            } catch (Exception exc) {
+                LOG.error("ERROR : error saving engine instance " + exc);
             }
 
         }
         return writer.toString();
     }
 
-    public void writeEngineInstanceToFile( String fileName,SamlEngineConfiguration config  ){
-        String contents= serializeEngineInstance(config);
+    public void writeEngineInstanceToFile(String fileName, SamlEngineConfiguration config) {
+        String contents = serializeEngineInstance(config);
         EidasConfigManagerUtil.getInstance().saveFile(fileName, contents);
     }
 

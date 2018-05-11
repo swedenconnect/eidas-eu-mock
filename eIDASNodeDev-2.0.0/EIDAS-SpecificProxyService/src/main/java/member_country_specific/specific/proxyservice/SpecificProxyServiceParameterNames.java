@@ -41,9 +41,7 @@ public enum SpecificProxyServiceParameterNames {
 
     LOA_VALUE("LoA"),
 
-    CANCEL("cancel"),
-
-    ;
+    CANCEL("cancel"),;
 
     /**
      * constant name.
@@ -54,7 +52,7 @@ public enum SpecificProxyServiceParameterNames {
     /**
      * Constructor
      *
-     * @param nameValue    the constant name
+     * @param nameValue the constant name
      */
     SpecificProxyServiceParameterNames(@Nonnull String nameValue) {
         name = nameValue;

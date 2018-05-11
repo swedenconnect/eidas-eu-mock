@@ -51,24 +51,25 @@ import java.util.Collection;
  * @since 2.0
  */
 @SuppressWarnings("squid:S1989") // due to the code uses correlation maps, not http sessions
-@WebServlet(urlPatterns={"/ConnectorResponse"},
-        name="ConnectorResponseServlet",
+@WebServlet(urlPatterns = {"/ConnectorResponse"},
+        name = "ConnectorResponseServlet",
         displayName = "ConnectorResponseServlet",
         description = "Connector Response Servlet")
 public final class ConnectorResponseServlet extends AbstractSpecificConnectorServlet {
 
-    private Collection<AttributeDefinition<?>> REGISTRY; 
+    private Collection<AttributeDefinition<?>> REGISTRY;
 
     @Override
     public void init() throws ServletException {
-    	REGISTRY=retrieveAttributes();
+        REGISTRY = retrieveAttributes();
     }
 
-	private Collection<AttributeDefinition<?>> retrieveAttributes() {
-		SpecificConnector specificConnector = (SpecificConnector) getApplicationContext()
+    private Collection<AttributeDefinition<?>> retrieveAttributes() {
+        SpecificConnector specificConnector = (SpecificConnector) getApplicationContext()
                 .getBean(SpecificConnectorBeanNames.SPECIFIC_CONNECTOR_SERVICE.toString());
-    	return ImmutableSortedSet.copyOf(specificConnector.getCoreAttributeRegistry().getAttributes());
-	}
+        return ImmutableSortedSet.copyOf(specificConnector.getCoreAttributeRegistry().getAttributes());
+    }
+
     /**
      * Unique identifier.
      */
@@ -104,7 +105,7 @@ public final class ConnectorResponseServlet extends AbstractSpecificConnectorSer
         SpecificConnector specificConnector = (SpecificConnector) getApplicationContext()
                 .getBean(SpecificConnectorBeanNames.SPECIFIC_CONNECTOR_SERVICE.toString());
 
-        final ILightResponse lightResponse = getResponseFromCommunicationCache(httpServletRequest,REGISTRY);
+        final ILightResponse lightResponse = getResponseFromCommunicationCache(httpServletRequest, REGISTRY);
 
         final String specificResponse;
         try {
@@ -117,14 +118,14 @@ public final class ConnectorResponseServlet extends AbstractSpecificConnectorSer
         return specificResponse;
     }
 
-    private ILightResponse getResponseFromCommunicationCache(@Nonnull HttpServletRequest httpServletRequest,final Collection<AttributeDefinition<?>> registry) throws IOException, ServletException {
+    private ILightResponse getResponseFromCommunicationCache(@Nonnull HttpServletRequest httpServletRequest, final Collection<AttributeDefinition<?>> registry) throws IOException, ServletException {
         final String tokenBase64 = httpServletRequest.getParameter(EidasParameterKeys.TOKEN.toString());
 
         final SpecificConnectorCommunicationServiceImpl specificConnectorCommunicationService =
                 (SpecificConnectorCommunicationServiceImpl) getApplicationContext().getBean(SpecificCommunicationDefinitionBeanNames.SPECIFIC_CONNECTOR_COMMUNICATION_SERVICE.toString());
 
         try {
-            return specificConnectorCommunicationService.getAndRemoveResponse(tokenBase64,registry);
+            return specificConnectorCommunicationService.getAndRemoveResponse(tokenBase64, registry);
         } catch (SpecificCommunicationException e) {
             getLogger().error("Error converting the simple protocol response to Json.");
             throw new ServletException(e);

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -38,33 +38,47 @@ import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
  */
 public class SubjectConfirmationDataImpl extends AbstractSAMLObject implements SubjectConfirmationData {
 
-    /** NotBefore of the Confirmation Data. */
+    /**
+     * NotBefore of the Confirmation Data.
+     */
     private DateTime notBefore;
 
-    /** NotOnOrAfter of the Confirmation Data. */
+    /**
+     * NotOnOrAfter of the Confirmation Data.
+     */
     private DateTime notOnOrAfter;
 
-    /** Recipient of the Confirmation Data. */
+    /**
+     * Recipient of the Confirmation Data.
+     */
     private String recipient;
 
-    /** InResponseTo of the Confirmation Data. */
+    /**
+     * InResponseTo of the Confirmation Data.
+     */
     private String inResponseTo;
 
-    /** Address of the Confirmation Data. */
+    /**
+     * Address of the Confirmation Data.
+     */
     private String address;
-    
-    /** "anyAttribute" attributes. */
+
+    /**
+     * "anyAttribute" attributes.
+     */
     private final AttributeMap unknownAttributes;
-    
-    /** "any" children. */
+
+    /**
+     * "any" children.
+     */
     private final IndexedXMLObjectChildrenList<XMLObject> unknownChildren;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected SubjectConfirmationDataImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -72,76 +86,100 @@ public class SubjectConfirmationDataImpl extends AbstractSAMLObject implements S
         unknownChildren = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getNotBefore() {
         return notBefore;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNotBefore(DateTime newNotBefore) {
         this.notBefore = prepareForAssignment(this.notBefore, newNotBefore);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getNotOnOrAfter() {
         return notOnOrAfter;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNotOnOrAfter(DateTime newNotOnOrAfter) {
         this.notOnOrAfter = prepareForAssignment(this.notOnOrAfter, newNotOnOrAfter);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getRecipient() {
         return recipient;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRecipient(String newRecipient) {
         this.recipient = prepareForAssignment(this.recipient, newRecipient);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getInResponseTo() {
         return inResponseTo;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInResponseTo(String newInResponseTo) {
         this.inResponseTo = prepareForAssignment(this.inResponseTo, newInResponseTo);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getAddress() {
         return address;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAddress(String newAddress) {
         this.address = prepareForAssignment(this.address, newAddress);
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public AttributeMap getUnknownAttributes() {
         return unknownAttributes;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public List<XMLObject> getUnknownXMLObjects() {
         return unknownChildren;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getUnknownXMLObjects(QName typeOrName) {
         return (List<XMLObject>) unknownChildren.subList(typeOrName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return Collections.unmodifiableList(unknownChildren);
     }

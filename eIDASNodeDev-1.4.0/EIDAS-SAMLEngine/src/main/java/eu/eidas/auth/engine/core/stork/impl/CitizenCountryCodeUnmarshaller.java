@@ -30,12 +30,12 @@ public class CitizenCountryCodeUnmarshaller extends AbstractSAMLObjectUnmarshall
     /**
      * Process element content.
      *
-     * @param samlObject the SAML object
+     * @param samlObject     the SAML object
      * @param elementContent the element content
      */
     protected final void processElementContent(final XMLObject samlObject,
-	    final String elementContent) {
-	final CitizenCountryCode citizenCountryCode = (CitizenCountryCode) samlObject;
-	citizenCountryCode.setCitizenCountryCode(elementContent);
+                                               final String elementContent) {
+        final CitizenCountryCode citizenCountryCode = (CitizenCountryCode) samlObject;
+        citizenCountryCode.setCitizenCountryCode(elementContent);
     }
 }

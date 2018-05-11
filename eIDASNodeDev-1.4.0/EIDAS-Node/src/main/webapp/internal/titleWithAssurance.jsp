@@ -35,7 +35,8 @@
                                         <fmt:message key="presentConsent.levelOfAssurance" bundle="${i18n_eng}"/>
                                         <span>
                                             <c:out value="${e:forHtml(LoA)}"/>
-                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loaModal">?</button>
+                                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                                    data-target="#loaModal">?</button>
                                         </span>
                                     </span>
     </c:if>

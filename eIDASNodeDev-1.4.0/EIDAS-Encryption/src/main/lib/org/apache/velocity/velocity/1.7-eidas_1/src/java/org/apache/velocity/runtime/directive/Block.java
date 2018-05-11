@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -39,11 +39,10 @@ import org.apache.velocity.runtime.parser.node.Node;
  * @author Andrew Tetlaw
  * @author Nathan Bubna
  * @author <a href="mailto:wyla@removethis.sci.fi">Jarkko Viinamaki</a>
- * @since 1.7
  * @version $Id: Block.java 686842 2008-08-18 18:29:31Z nbubna $
+ * @since 1.7
  */
-public abstract class Block extends Directive
-{
+public abstract class Block extends Directive {
     protected Node block;
     protected Log log;
     protected int maxDepth;
@@ -52,17 +51,15 @@ public abstract class Block extends Directive
     /**
      * Return type of this directive.
      */
-    public int getType()
-    {
+    public int getType() {
         return BLOCK;
     }
 
     /**
-     *  simple init - get the key
+     * simple init - get the key
      */
     public void init(RuntimeServices rs, InternalContextAdapter context, Node node)
-        throws TemplateInitException
-    {
+            throws TemplateInitException {
         super.init(rs, context, node);
 
         log = rs.getLog();
@@ -74,31 +71,22 @@ public abstract class Block extends Directive
         block = node.jjtGetChild(node.jjtGetNumChildren() - 1);
     }
 
-    public boolean render(InternalContextAdapter context, Writer writer)
-    {
+    public boolean render(InternalContextAdapter context, Writer writer) {
         preRender(context);
-        try
-        {
+        try {
             return block.render(context, writer);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             String msg = "Failed to render " + id(context) + " to writer "
-              + " at " + Log.formatFileString(this);
+                    + " at " + Log.formatFileString(this);
 
             log.error(msg, e);
             throw new RuntimeException(msg, e);
-        }
-        catch (StopCommand stop)
-        {
-            if (!stop.isFor(this))
-            {
+        } catch (StopCommand stop) {
+            if (!stop.isFor(this)) {
                 throw stop;
             }
             return true;
-        }
-        finally
-        {
+        } finally {
             postRender(context);
         }
     }
@@ -108,42 +96,36 @@ public abstract class Block extends Directive
      * definition, and the current template being rendered if that is
      * different.
      */
-    protected String id(InternalContextAdapter context)
-    {
+    protected String id(InternalContextAdapter context) {
         StrBuilder str = new StrBuilder(100)
-            .append("block $").append(key);
-        if (!context.getCurrentTemplateName().equals(getTemplateName()))
-        {
+                .append("block $").append(key);
+        if (!context.getCurrentTemplateName().equals(getTemplateName())) {
             str.append(" used in ").append(context.getCurrentTemplateName());
         }
         return str.toString();
     }
-    
+
     /**
      * actual class placed in the context, holds the context
      * being used for the render, as well as the parent (which already holds
      * everything else we need).
      */
-    public static class Reference implements Renderable
-    {
+    public static class Reference implements Renderable {
         private InternalContextAdapter context;
         private Block parent;
         private int depth;
-        
-        public Reference(InternalContextAdapter context, Block parent)
-        {
+
+        public Reference(InternalContextAdapter context, Block parent) {
             this.context = context;
             this.parent = parent;
         }
-        
+
         /**
          * Render the AST of this block into the writer using the context.
          */
-        public boolean render(InternalContextAdapter context, Writer writer)
-        {
+        public boolean render(InternalContextAdapter context, Writer writer) {
             depth++;
-            if (depth > parent.maxDepth)
-            {
+            if (depth > parent.maxDepth) {
                 /* this is only a debug message, as recursion can
                  * happen in quasi-innocent situations and is relatively
                  * harmless due to how we handle it here.
@@ -152,23 +134,19 @@ public abstract class Block extends Directive
                  * pulling it off properly.
                  */
                 parent.log.debug("Max recursion depth reached for " + parent.id(context)
-                    + " at " + Log.formatFileString(parent));
+                        + " at " + Log.formatFileString(parent));
                 depth--;
                 return false;
-            }
-            else
-            {
+            } else {
                 parent.render(context, writer);
                 depth--;
                 return true;
             }
         }
 
-        public String toString()
-        {
+        public String toString() {
             Writer writer = new StringWriter();
-            if (render(context, writer))
-            {
+            if (render(context, writer)) {
                 return writer.toString();
             }
             return null;

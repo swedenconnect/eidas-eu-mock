@@ -45,6 +45,7 @@ function nextEventSlide1() {
     $("#slider1").slideUp();
     $("#slider2").slideDown();
 }
+
 function backEventSlide2() {
     $("#slider1").slideDown();
     $("#slider2").slideUp();
@@ -63,29 +64,39 @@ $("#attributeModal").on('show.bs.modal', function (e) {
     $(e.currentTarget).find('div[id="attributeModalDescriptionDisp"]').text(attributeModalDesc);
 });
 
-function init () {
+function init() {
 
     initJSEnabledContainers();
 
-    document.getElementById("slider1").style.display = "block" ;
-    document.getElementById("slider2").style.display = "none" ;
+    document.getElementById("slider1").style.display = "block";
+    document.getElementById("slider2").style.display = "none";
 
-    document.getElementById("buttonNextSlide1").addEventListener("click", function () {nextEventSlide1()});
+    document.getElementById("buttonNextSlide1").addEventListener("click", function () {
+        nextEventSlide1()
+    });
 
-    document.getElementById("buttonNextSlide2").addEventListener("click", function () {submitSendFormAction()});
-    document.getElementById("buttonBackSlide2").addEventListener("click", function () {backEventSlide2()});
-    document.getElementById("buttonCancelSlide1").addEventListener("click", function () {submitCancelFormAction()});
-    document.getElementById("buttonCancelSlide2").addEventListener("click", function () {submitCancelFormAction()});
+    document.getElementById("buttonNextSlide2").addEventListener("click", function () {
+        submitSendFormAction()
+    });
+    document.getElementById("buttonBackSlide2").addEventListener("click", function () {
+        backEventSlide2()
+    });
+    document.getElementById("buttonCancelSlide1").addEventListener("click", function () {
+        submitCancelFormAction()
+    });
+    document.getElementById("buttonCancelSlide2").addEventListener("click", function () {
+        submitCancelFormAction()
+    });
 
-    if (($(".attr_stork_li_slider1").length)>0){
+    if (($(".attr_stork_li_slider1").length) > 0) {
         $("#noDataDiv_slider1").hide();
-    } else{
+    } else {
         $("#noDataDiv_slider1").show();
     }
 
-    if (($(".attr_stork_li_slider2").length)>0){
+    if (($(".attr_stork_li_slider2").length) > 0) {
         $("#noDataDiv_slider2").hide();
-    } else{
+    } else {
         $("#noDataDiv_slider2").show();
     }
 }

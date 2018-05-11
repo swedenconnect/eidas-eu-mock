@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -33,7 +33,6 @@ public class ArtifactSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Constructor
-     *
      */
     public ArtifactSchemaTest() {
         super();
@@ -41,27 +40,29 @@ public class ArtifactSchemaTest extends BaseSAMLObjectValidatorTestCase {
         validator = new ArtifactSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         Artifact artifact = (Artifact) target;
         artifact.setArtifact("artifact-string");
     }
-   
-   /**
-    * Tests null or empty artifact.
-    */
+
+    /**
+     * Tests null or empty artifact.
+     */
     public void testArtifactFailure() {
-       Artifact artifact = (Artifact) target;
-       
-       artifact.setArtifact(null);
-       assertValidationFail("Artifact was null");
-       
-       artifact.setArtifact("");
-       assertValidationFail("Artifact was empty string");
-    
-       artifact.setArtifact("        ");
-       assertValidationFail("Artifact was all whitespace");
-   }
+        Artifact artifact = (Artifact) target;
+
+        artifact.setArtifact(null);
+        assertValidationFail("Artifact was null");
+
+        artifact.setArtifact("");
+        assertValidationFail("Artifact was empty string");
+
+        artifact.setArtifact("        ");
+        assertValidationFail("Artifact was all whitespace");
+    }
 
 }

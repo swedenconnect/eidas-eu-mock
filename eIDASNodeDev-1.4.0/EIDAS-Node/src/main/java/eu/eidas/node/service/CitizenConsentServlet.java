@@ -76,7 +76,7 @@ public class CitizenConsentServlet extends AbstractServiceServlet {
     /**
      * Post method
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
@@ -106,7 +106,7 @@ public class CitizenConsentServlet extends AbstractServiceServlet {
             if (null == storedRequest) {
                 LOG.info("BUSINESS EXCEPTION : Session is null or has missing attributes!");
                 throw new InvalidSessionEIDASException(EidasErrors.get(EidasErrorKey.INVALID_SESSION.errorCode()),
-                                                       EidasErrors.get(EidasErrorKey.INVALID_SESSION.errorMessage()));
+                        EidasErrors.get(EidasErrorKey.INVALID_SESSION.errorMessage()));
             }
 
             request.setAttribute(NodeParameterNames.REQUEST_ID.toString(), samlRequestId);

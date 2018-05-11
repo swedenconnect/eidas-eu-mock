@@ -31,7 +31,9 @@
         <div class="col-right">
             <div class="col-right-inner">
                 <div class="clearfix">
-                    <div class="menu-top"> <a class="item text-minus" href="#"></a> <a class="item text-plus" href="#"></a> <a class="item contrast" href="#"></a> </div>
+                    <div class="menu-top"><a class="item text-minus" href="#"></a> <a class="item text-plus"
+                                                                                      href="#"></a> <a
+                            class="item contrast" href="#"></a></div>
                 </div>
                 <div class="col-right-content">
                     <jsp:include page="internal/content-security-header-deactivated.jsp"/>
@@ -43,15 +45,19 @@
                         <p class="text-center">${exception.errorMessage}</p>
                     </c:if>
                     <c:if test="${(!empty exception.samlTokenFail)}">
-                        <form action="${e:forHtml(errorRedirectUrl)}" name="redirectForm" id="redirectForm" method="post">
-                            <input type="hidden" name="SAMLResponse" id="SAMLResponse" value="${e:forHtml(exception.samlTokenFail)}" />
-                            <input type="hidden" name="errorMessage" id="errorMessage" value="${e:forHtml(exception.errorMessage)}" />
-							<c:if test="${!empty errorRedirectUrl}">
-								<input type="submit" id="redirectForm_sendButton" name="sendButton" value="send" />
-							</c:if>
+                        <form action="${e:forHtml(errorRedirectUrl)}" name="redirectForm" id="redirectForm"
+                              method="post">
+                            <input type="hidden" name="SAMLResponse" id="SAMLResponse"
+                                   value="${e:forHtml(exception.samlTokenFail)}"/>
+                            <input type="hidden" name="errorMessage" id="errorMessage"
+                                   value="${e:forHtml(exception.errorMessage)}"/>
+                            <c:if test="${!empty errorRedirectUrl}">
+                                <input type="submit" id="redirectForm_sendButton" name="sendButton" value="send"/>
+                            </c:if>
                         </form>
                     </c:if>
-                    <h2 class="sub-title text-highlight"><fmt:message key="eidas.cooperation" bundle="${i18n_eng}" /></h2>
+                    <h2 class="sub-title text-highlight"><fmt:message key="eidas.cooperation"
+                                                                      bundle="${i18n_eng}"/></h2>
                 </div>
                 <jsp:include page="internal/footer-img.jsp"/>
             </div>

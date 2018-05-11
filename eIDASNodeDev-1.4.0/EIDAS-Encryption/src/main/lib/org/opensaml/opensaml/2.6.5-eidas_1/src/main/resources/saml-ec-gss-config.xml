@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:samlec="urn:ietf:params:xml:ns:samlec" xmlns="http://www.opensaml.org/xmltooling-config" xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd">
- 
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:samlec="urn:ietf:params:xml:ns:samlec"
+            xmlns="http://www.opensaml.org/xmltooling-config"
+            xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd">
+
     <!-- SAML-EC GSS-API Object providers -->
     <ObjectProviders>
-        
+
         <!-- EncType -->
         <ObjectProvider qualifiedName="samlec:EncType">
             <BuilderClass className="org.opensaml.samlext.samlec.impl.EncTypeBuilder"/>
-			<MarshallingClass className="org.opensaml.xml.schema.impl.XSStringMarshaller"/>
-			<UnmarshallingClass className="org.opensaml.xml.schema.impl.XSStringUnmarshaller"/>
+            <MarshallingClass className="org.opensaml.xml.schema.impl.XSStringMarshaller"/>
+            <UnmarshallingClass className="org.opensaml.xml.schema.impl.XSStringUnmarshaller"/>
         </ObjectProvider>
 
         <!-- GeneratedKey -->
@@ -38,4 +40,4 @@
         </ObjectProvider>
 
     </ObjectProviders>
- </XMLTooling>
+</XMLTooling>

@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
  * This enum class contains all the value constants.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.17 $, $Date: 2011-07-07 20:48:45 $
  */
 public enum EIDASValues {

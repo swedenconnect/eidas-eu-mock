@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -45,52 +45,68 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 /**
- * 
+ *
  */
 public class HandlerChainAwareHTTPSOAP11Encoder extends BaseSAML2MessageEncoder implements HandlerChainAware {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HandlerChainAwareHTTPSOAP11Encoder.class);
-    
-    /** SOAP Envelope builder. */
+
+    /**
+     * SOAP Envelope builder.
+     */
     private SOAPObjectBuilder<Envelope> envBuilder;
-    
-    /** SOAP Body builder. */
+
+    /**
+     * SOAP Body builder.
+     */
     private SOAPObjectBuilder<Body> bodyBuilder;
 
-    /** Overrides binding confidentiality. */
+    /**
+     * Overrides binding confidentiality.
+     */
     private boolean notConfidential = false;
-    
-    /** Constructor. */
+
+    /**
+     * Constructor.
+     */
     public HandlerChainAwareHTTPSOAP11Encoder() {
         super();
         XMLObjectBuilderFactory builderFactory = Configuration.getBuilderFactory();
         envBuilder = (SOAPObjectBuilder<Envelope>) builderFactory.getBuilder(Envelope.DEFAULT_ELEMENT_NAME);
         bodyBuilder = (SOAPObjectBuilder<Body>) builderFactory.getBuilder(Body.DEFAULT_ELEMENT_NAME);
     }
-    
+
     /**
      * Returns confidentiality override flag.
+     *
      * @return true iff the encoder cannot provide confidentiality
      */
     public boolean isNotConfidential() {
         return notConfidential;
     }
-    
+
     /**
      * Sets confidentiality override flag.
-     * @param flag  override flag
+     *
+     * @param flag override flag
      */
     public void setNotConfidential(boolean flag) {
         notConfidential = flag;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_SOAP11_BINDING_URI;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageConfidentiality(MessageContext messageContext) throws MessageEncodingException {
         if (notConfidential) {
             return false;
@@ -98,18 +114,22 @@ public class HandlerChainAwareHTTPSOAP11Encoder extends BaseSAML2MessageEncoder 
         return messageContext.getOutboundMessageTransport().isConfidential();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageIntegrity(MessageContext messageContext) throws MessageEncodingException {
         return messageContext.getOutboundMessageTransport().isIntegrityProtected();
     }
-    
+
     // TODO: The rest of the methods here are copied from BaseHandlerChainAwareMessageDecoder and
     // the SOAP subclasses on that "branch", and should drop out once the SAML encoders are aligned
     // to that base class.
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doEncode(MessageContext messageContext) throws MessageEncodingException {
-        
+
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this encoder only support SAMLMessageContext");
             throw new MessageEncodingException(
@@ -123,28 +143,28 @@ public class HandlerChainAwareHTTPSOAP11Encoder extends BaseSAML2MessageEncoder 
         }
 
         prepareMessageContext(messageContext);
-        
+
         processOutboundHandlerChain(messageContext);
-        
+
         encodeToTransport(messageContext);
     }
-    
+
     /**
      * Perform final binding-specific processing of message context and prepare it for encoding
-     * to the transport.  
-     * 
+     * to the transport.
+     *
      * <p>
      * This should include constructing and populating all binding-specific structure and data that needs to be
      * reflected by the message context's properties.
      * </p>
-     * 
+     *
      * <p>
      * This method is called prior to {@link #processOutboundHandlerChain(MessageContext)}.
      * </p>
-     * 
+     *
      * @param messageContext the message context to process
      * @throws MessageEncodingException thrown if there is a problem preparing the message context
-     *              for encoding
+     *                                  for encoding
      */
     protected void prepareMessageContext(MessageContext messageContext) throws MessageEncodingException {
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
@@ -165,19 +185,19 @@ public class HandlerChainAwareHTTPSOAP11Encoder extends BaseSAML2MessageEncoder 
 
         messageContext.setOutboundMessage(envelope);
     }
-    
+
     /**
      * Encode the message context to the transport.
-     * 
+     *
      * @param messageContext the message context to process
-     *  @throws MessageEncodingException thrown if there is a problem encoding the message context
-     *              to the transport
+     * @throws MessageEncodingException thrown if there is a problem encoding the message context
+     *                                  to the transport
      */
     protected void encodeToTransport(MessageContext messageContext) throws MessageEncodingException {
         Element envelopeElem = marshallMessage(messageContext.getOutboundMessage());
-        
+
         preprocessTransport(messageContext);
-        
+
         try {
             OutTransport outTransport = messageContext.getOutboundMessageTransport();
             Writer out = new OutputStreamWriter(outTransport.getOutgoingStream(), "UTF-8");
@@ -196,16 +216,15 @@ public class HandlerChainAwareHTTPSOAP11Encoder extends BaseSAML2MessageEncoder 
      * <p>
      * This implementation performs the following actions on the context's {@link HTTPOutTransport}:
      * <ol>
-     *   <li>Adds the HTTP header: "Cache-control: no-cache, no-store"</li>
-     *   <li>Adds the HTTP header: "Pragma: no-cache"</li>
-     *   <li>Sets the character encoding to: "UTF-8"</li>
-     *   <li>Sets the content type to: "text/xml"</li>
-     *   <li>Sets the SOAPAction HTTP header</li>
+     * <li>Adds the HTTP header: "Cache-control: no-cache, no-store"</li>
+     * <li>Adds the HTTP header: "Pragma: no-cache"</li>
+     * <li>Sets the character encoding to: "UTF-8"</li>
+     * <li>Sets the content type to: "text/xml"</li>
+     * <li>Sets the SOAPAction HTTP header</li>
      * </ol>
      * </p>
-     * 
+     *
      * @param messageContext the current message context being processed
-     * 
      * @throws MessageEncodingException thrown if there is a problem preprocessing the transport
      */
     protected void preprocessTransport(MessageContext messageContext) throws MessageEncodingException {
@@ -215,10 +234,10 @@ public class HandlerChainAwareHTTPSOAP11Encoder extends BaseSAML2MessageEncoder 
         HTTPTransportUtils.setContentType(outTransport, "text/xml");
         outTransport.setHeader("SOAPAction", "http://www.oasis-open.org/committees/security");
     }
- 
+
     /**
      * Process the outbound {@link HandlerChain} for the message context, if any.
-     * 
+     *
      * @param messageContext the message context to process
      * @throws MessageEncodingException thrown if a handler indicates a problem handling the message
      */
@@ -238,13 +257,12 @@ public class HandlerChainAwareHTTPSOAP11Encoder extends BaseSAML2MessageEncoder 
             }
         }
     }
-    
+
     /**
      * Invoke a handler chain on the specified message context.
-     * 
-     * @param handlerChain the handle chain to invoke
+     *
+     * @param handlerChain   the handle chain to invoke
      * @param messageContext the message context to process
-     * 
      * @throws HandlerException if handler chain encountered a problem handling the message context
      */
     protected void invokeHandlerChain(HandlerChain handlerChain, MessageContext messageContext)

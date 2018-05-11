@@ -64,21 +64,20 @@ public final class AssertionUtil {
     /**
      * Generates the assertion for the response.
      *
-     * @deprecated since 1.4.
-     * Use {@link AssertionUtil#generateResponseAssertion(boolean, String, IAuthenticationRequest, Issuer, ImmutableAttributeMap, DateTime, String, String, SAMLExtensionFormat, boolean, DateTime)} instead.
-     *
      * @param isFailure
-     * @param ipAddress    the IP address.
-     * @param request      the request for which the response is prepared
+     * @param ipAddress       the IP address.
+     * @param request         the request for which the response is prepared
      * @param responseIssuer
      * @param attributeMap
-     * @param notOnOrAfter the not on or after
+     * @param notOnOrAfter    the not on or after
      * @param formatEntity
      * @param responder
      * @param extensionFormat
      * @param isOneTimeUse
      * @return the assertion
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
+     * @deprecated since 1.4.
+     * Use {@link AssertionUtil#generateResponseAssertion(boolean, String, IAuthenticationRequest, Issuer, ImmutableAttributeMap, DateTime, String, String, SAMLExtensionFormat, boolean, DateTime)} instead.
      */
     @Deprecated
     public static final Assertion generateResponseAssertion(boolean isFailure,
@@ -106,16 +105,16 @@ public final class AssertionUtil {
      * Generates the assertion for the response.
      *
      * @param isFailure
-     * @param ipAddress    the IP address.
-     * @param request      the request for which the response is prepared
+     * @param ipAddress       the IP address.
+     * @param request         the request for which the response is prepared
      * @param responseIssuer
      * @param attributeMap
-     * @param notOnOrAfter the not on or after
+     * @param notOnOrAfter    the not on or after
      * @param formatEntity
      * @param responder
      * @param extensionFormat
      * @param isOneTimeUse
-     * @param currentTime the current time
+     * @param currentTime     the current time
      * @return the assertion
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -155,7 +154,7 @@ public final class AssertionUtil {
 
         LOG.trace("Generate Authentication Statement.");
         /**TODO SubjectoLocality will be added by decision made on optional elements later,
-        Address of entity is available in SubjectConfirmationData if provided */
+         Address of entity is available in SubjectConfirmationData if provided */
         AuthnStatement eidasAuthnStat = generateAuthStatement(null, null, currentTime);
         assertion.getAuthnStatements().add(eidasAuthnStat);
 
@@ -180,8 +179,8 @@ public final class AssertionUtil {
         LOG.trace("Generate SubjectConfirmationData.");
         SubjectConfirmationData dataBearer =
                 BuilderFactoryUtil.generateSubjectConfirmationData(currentTime,
-                                                                   request.getAssertionConsumerServiceURL(),
-                                                                   request.getId());
+                        request.getAssertionConsumerServiceURL(),
+                        request.getId());
 
         // Mandatory if urn:oasis:names:tc:SAML:2.0:cm:bearer.
         // Optional in other case.
@@ -191,17 +190,17 @@ public final class AssertionUtil {
 
         SubjectConfirmationData subjectConfirmationData = subjectConf.getSubjectConfirmationData();
         /** STORK?
-        if (SubjectConfirmation.METHOD_BEARER.equals(subjectConf.getMethod())) {
-            // ipAddress Mandatory if method is Bearer.
+         if (SubjectConfirmation.METHOD_BEARER.equals(subjectConf.getMethod())) {
+         // ipAddress Mandatory if method is Bearer.
 
-            if (StringUtils.isBlank(ipAddress)) {
-                LOG.info(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : ipAddress is null or empty");
-                throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                        EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                        "ipAddress is null or empty");
-            }
+         if (StringUtils.isBlank(ipAddress)) {
+         LOG.info(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : ipAddress is null or empty");
+         throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
+         EidasErrorKey.INTERNAL_ERROR.errorCode(),
+         "ipAddress is null or empty");
+         }
 
-        } */
+         } */
         if (StringUtils.isNotBlank(ipAddress) && SubjectConfirmation.METHOD_BEARER.equals(subjectConf.getMethod())) {
             subjectConfirmationData.setAddress(ipAddress.trim());
         }
@@ -258,7 +257,7 @@ public final class AssertionUtil {
                 AttributeValueMarshaller<?> attributeValueMarshaller =
                         attributeDefinition.getAttributeValueMarshaller();
                 try {
-                    return attributeValueMarshaller.marshal((AttributeValue)values.iterator().next());
+                    return attributeValueMarshaller.marshal((AttributeValue) values.iterator().next());
                 } catch (AttributeValueMarshallingException e) {
                     LOG.error("BUSINESS EXCEPTION : Invalid Attribute Value " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
@@ -305,7 +304,7 @@ public final class AssertionUtil {
     /**
      * Generate authentication statement.
      *
-     * @param ipAddress the IP address
+     * @param ipAddress   the IP address
      * @param currentTime the saml engine clock
      * @return the authentication statement
      */

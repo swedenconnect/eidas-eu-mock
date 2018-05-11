@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.VelocityContext;
@@ -26,20 +26,18 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.RuntimeInstance;
 
 /**
- * Tests scope of velocimacros with localscope setting. 
- * 
+ * Tests scope of velocimacros with localscope setting.
+ *
  * @author <a href="mailto:stephenh@chase3000.com">Stephen Habermann</a>
  * @version $Id: VMContextLocalscopeTestCase.java 747235 2009-02-24 00:32:03Z nbubna $
  */
 public class VMContextLocalscopeTestCase extends BaseTestCase {
 
-    public VMContextLocalscopeTestCase(String name)
-    {
+    public VMContextLocalscopeTestCase(String name) {
         super(name);
     }
 
-    public void testViaEval()
-    {
+    public void testViaEval() {
         engine.setProperty(RuntimeConstants.VM_CONTEXT_LOCALSCOPE, Boolean.TRUE);
         assertEvalEquals("$a", "#macro(a)#set($a = 'b')#end#a$a");
         context.put("b", "b");
@@ -47,8 +45,7 @@ public class VMContextLocalscopeTestCase extends BaseTestCase {
         assertContextValue("b", "b");
     }
 
-    public void testLocalscopePutDoesntLeakButGetDoes() 
-    {
+    public void testLocalscopePutDoesntLeakButGetDoes() {
         RuntimeInstance instance = new RuntimeInstance();
         instance.setProperty(RuntimeConstants.VM_CONTEXT_LOCALSCOPE, Boolean.TRUE);
         instance.init();
@@ -57,7 +54,7 @@ public class VMContextLocalscopeTestCase extends BaseTestCase {
         base.put("outsideVar", "value1");
 
         ProxyVMContext vm =
-            new ProxyVMContext(new InternalContextAdapterImpl(base), instance, true);
+                new ProxyVMContext(new InternalContextAdapterImpl(base), instance, true);
         vm.put("newLocalVar", "value2");
 
         // New variable put doesn't leak

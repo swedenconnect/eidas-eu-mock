@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -35,25 +35,31 @@ import org.slf4j.LoggerFactory;
  */
 public class SAML2HTTPRedirectDeflateSignatureRule extends BaseSAMLSimpleSignatureSecurityPolicyRule {
 
-    /** Logger. */
+    /**
+     * Logger.
+     */
     private final Logger log = LoggerFactory.getLogger(SAML2HTTPRedirectDeflateSignatureRule.class);
 
     /**
      * Constructor.
-     * 
+     *
      * @param engine the trust engine to use
      */
     public SAML2HTTPRedirectDeflateSignatureRule(SignatureTrustEngine engine) {
         super(engine);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean ruleHandles(HttpServletRequest request, SAMLMessageContext samlMsgCtx)
             throws SecurityPolicyException {
         return "GET".equals(request.getMethod());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected byte[] getSignedContent(HttpServletRequest request) throws SecurityPolicyException {
         // We need the raw non-URL-decoded query string param values for HTTP-Redirect DEFLATE simple signature
         // validation.
@@ -80,7 +86,7 @@ public class SAML2HTTPRedirectDeflateSignatureRule extends BaseSAMLSimpleSignatu
 
     /**
      * Extract the raw request parameters and build a string representation of the content that was signed.
-     * 
+     *
      * @param queryString the raw HTTP query string from the request
      * @return a string representation of the signed content
      * @throws SecurityPolicyException thrown if there is an error during request processing
@@ -105,12 +111,12 @@ public class SAML2HTTPRedirectDeflateSignatureRule extends BaseSAMLSimpleSignatu
 
     /**
      * Find the raw query string parameter indicated and append it to the string builder.
-     * 
+     * <p>
      * The appended value will be in the form 'paramName=paramValue' (minus the quotes).
-     * 
-     * @param builder string builder to which to append the parameter
+     *
+     * @param builder     string builder to which to append the parameter
      * @param queryString the URL query string containing parameters
-     * @param paramName the name of the parameter to append
+     * @param paramName   the name of the parameter to append
      * @return true if parameter was found, false otherwise
      */
     private boolean appendParameter(StringBuilder builder, String queryString, String paramName) {

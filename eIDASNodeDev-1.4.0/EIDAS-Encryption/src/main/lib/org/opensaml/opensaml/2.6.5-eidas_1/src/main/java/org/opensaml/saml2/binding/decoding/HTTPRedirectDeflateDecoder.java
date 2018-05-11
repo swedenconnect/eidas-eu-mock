@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -36,39 +36,49 @@ import org.slf4j.LoggerFactory;
 
 /**
  * SAML 2.0 HTTP Redirect decoder using the DEFLATE encoding method.
- * 
+ * <p>
  * This decoder only supports DEFLATE compression.
  */
 public class HTTPRedirectDeflateDecoder extends BaseSAML2MessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPRedirectDeflateDecoder.class);
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public HTTPRedirectDeflateDecoder() {
         super();
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param pool parser pool used to deserialize messages
      */
     public HTTPRedirectDeflateDecoder(ParserPool pool) {
         super(pool);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_REDIRECT_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean isIntendedDestinationEndpointURIRequired(SAMLMessageContext samlMsgCtx) {
         return isMessageSigned(samlMsgCtx);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doDecode(MessageContext messageContext) throws MessageDecodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this decoder only support SAMLMessageContext");
@@ -106,8 +116,10 @@ public class HTTPRedirectDeflateDecoder extends BaseSAML2MessageDecoder {
 
         populateMessageContext(samlMsgCtx);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected boolean isMessageSigned(SAMLMessageContext messageContext) {
         HTTPInTransport inTransport = (HTTPInTransport) messageContext.getInboundMessageTransport();
         String sigParam = inTransport.getParameterValue("Signature");
@@ -116,22 +128,20 @@ public class HTTPRedirectDeflateDecoder extends BaseSAML2MessageDecoder {
 
     /**
      * Base64 decodes the SAML message and then decompresses the message.
-     * 
+     *
      * @param message Base64 encoded, DEFALTE compressed, SAML message
-     * 
      * @return the SAML message
-     * 
      * @throws MessageDecodingException thrown if the message can not be decoded
      */
     protected InputStream decodeMessage(String message) throws MessageDecodingException {
         log.debug("Base64 decoding and inflating SAML message");
 
         byte[] decodedBytes = Base64.decode(message);
-        if(decodedBytes == null){
+        if (decodedBytes == null) {
             log.error("Unable to Base64 decode incoming message");
             throw new MessageDecodingException("Unable to Base64 decode incoming message");
         }
-        
+
         try {
             ByteArrayInputStream bytesIn = new ByteArrayInputStream(decodedBytes);
             InflaterInputStream inflater = new InflaterInputStream(bytesIn, new Inflater(true));

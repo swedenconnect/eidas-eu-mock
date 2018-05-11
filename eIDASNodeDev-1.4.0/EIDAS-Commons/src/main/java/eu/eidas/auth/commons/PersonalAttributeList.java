@@ -191,7 +191,7 @@ public final class PersonalAttributeList implements IPersonalAttributeList {
                 ImmutableSet<? extends AttributeValue<?>> values = entry.getValue();
                 PersonalAttribute personalAttribute =
                         new PersonalAttribute(attributeDefinition.getNameUri().toASCIIString(),
-                                              attributeDefinition.getFriendlyName());
+                                attributeDefinition.getFriendlyName());
                 personalAttribute.setEidasLegalPersonAttr(
                         PersonType.LEGAL_PERSON == attributeDefinition.getPersonType());
                 personalAttribute.setEidasNaturalPersonAttr(
@@ -203,8 +203,8 @@ public final class PersonalAttributeList implements IPersonalAttributeList {
                         attributeDefinition.getAttributeValueMarshaller();*/
                 for (final AttributeValue value : values) {
                     //try {
-                        //builder.add(attributeValueMarshaller.marshal(value));
-                        builder.add(value.getValue().toString());
+                    //builder.add(attributeValueMarshaller.marshal(value));
+                    builder.add(value.getValue().toString());
                     /*} catch (AttributeValueMarshallingException e) {
                         throw new IllegalStateException(e);
                     }*/
@@ -275,7 +275,7 @@ public final class PersonalAttributeList implements IPersonalAttributeList {
      * attributeDefinition is found in the attributeRegistry
      * <p/>
      *
-     * @param copy the instance to copy
+     * @param copy                the instance to copy
      * @param attributeRegistries the attribute registry where the attributes from copy are searched for
      * @return a copy of the given argument
      */
@@ -380,7 +380,7 @@ public final class PersonalAttributeList implements IPersonalAttributeList {
                     currentInnerIterator.remove();
                 }
                 if (null != currentInnerIterator && !currentInnerIterator.hasNext() && null != outerIterator) {
-                        outerIterator.remove();
+                    outerIterator.remove();
                 }
             }
         };

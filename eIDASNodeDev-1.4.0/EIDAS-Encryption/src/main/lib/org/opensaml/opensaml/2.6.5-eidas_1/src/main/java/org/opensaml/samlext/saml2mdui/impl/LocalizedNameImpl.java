@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,26 +31,32 @@ import org.opensaml.xml.util.DatatypeHelper;
  */
 public class LocalizedNameImpl extends AbstractSAMLObject implements LocalizedName {
 
-    /** Display name. */
+    /**
+     * Display name.
+     */
     private LocalizedString name;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespaceURI
+     *
+     * @param namespaceURI     the namespaceURI
      * @param elementLocalName the elementLocalName
-     * @param namespacePrefix the namespacePrefix
+     * @param namespacePrefix  the namespacePrefix
      */
     protected LocalizedNameImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public LocalizedString getName() {
         return name;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setName(LocalizedString newName) {
         name = prepareForAssignment(name, newName);
         boolean hasXMLLang = false;
@@ -60,17 +66,23 @@ public class LocalizedNameImpl extends AbstractSAMLObject implements LocalizedNa
         manageQualifiedAttributeNamespace(LangBearing.XML_LANG_ATTR_NAME, hasXMLLang);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getXMLLang() {
         return name.getLanguage();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setXMLLang(String newLang) {
         name.setLanguage(newLang);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return null;
     }

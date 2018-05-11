@@ -16,20 +16,17 @@ package org.apache.velocity.test.misc;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
-public class GetPutObject
-{
+public class GetPutObject {
     private Object value;
 
-    public Object get()
-    {
+    public Object get() {
         return value;
     }
 
-    public void put(final Object value)
-    {
+    public void put(final Object value) {
         this.value = value;
     }
 }

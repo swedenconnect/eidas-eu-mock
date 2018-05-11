@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.context.InternalContextAdapter;
@@ -30,29 +30,24 @@ import org.apache.velocity.runtime.resource.Resource;
  * @author <a href="mailto:dlr@finemaltcoding.com">Daniel Rall</a>
  * @since 1.4
  */
-public abstract class InputBase extends Directive
-{
+public abstract class InputBase extends Directive {
     /**
      * Decides the encoding used during input processing of this
      * directive.
-     *
+     * <p>
      * Get the resource, and assume that we use the encoding of the
      * current template the 'current resource' can be
      * <code>null</code> if we are processing a stream....
      *
      * @param context The context to derive the default input encoding
-     * from.
+     *                from.
      * @return The encoding to use when processing this directive.
      */
-    protected String getInputEncoding(InternalContextAdapter context)
-    {
+    protected String getInputEncoding(InternalContextAdapter context) {
         Resource current = context.getCurrentResource();
-        if (current != null)
-        {
+        if (current != null) {
             return current.getEncoding();
-        }
-        else
-        {
+        } else {
             return (String) rsvc.getProperty(RuntimeConstants.INPUT_ENCODING);
         }
     }

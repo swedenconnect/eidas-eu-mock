@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.math.BigInteger;
@@ -31,8 +31,7 @@ import org.apache.velocity.runtime.parser.Parser;
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @since 1.5
  */
-public class ASTIntegerLiteral extends SimpleNode
-{
+public class ASTIntegerLiteral extends SimpleNode {
 
     // This may be of type Integer, Long or BigInteger
     private Number value = null;
@@ -40,8 +39,7 @@ public class ASTIntegerLiteral extends SimpleNode
     /**
      * @param id
      */
-    public ASTIntegerLiteral(int id)
-    {
+    public ASTIntegerLiteral(int id) {
         super(id);
     }
 
@@ -49,8 +47,7 @@ public class ASTIntegerLiteral extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTIntegerLiteral(Parser p, int id)
-    {
+    public ASTIntegerLiteral(Parser p, int id) {
         super(p, id);
     }
 
@@ -58,44 +55,36 @@ public class ASTIntegerLiteral extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#init(org.apache.velocity.context.InternalContextAdapter, java.lang.Object)
      */
-    public Object init( InternalContextAdapter context, Object data)
-        throws TemplateInitException
-    {
+    public Object init(InternalContextAdapter context, Object data)
+            throws TemplateInitException {
         /*
          *  init the tree correctly
          */
 
-        super.init( context, data );
+        super.init(context, data);
 
         /**
          * Determine the size of the item and make it an Integer, Long, or BigInteger as appropriate.
          */
-         String str = getFirstToken().image;
-         try
-         {
-             value = new Integer( str );
-         }
-         catch ( NumberFormatException E1 )
-         {
-            try
-            {
+        String str = getFirstToken().image;
+        try {
+            value = new Integer(str);
+        } catch (NumberFormatException E1) {
+            try {
 
-                value = new Long( str );
+                value = new Long(str);
 
-            }
-            catch ( NumberFormatException E2 )
-            {
+            } catch (NumberFormatException E2) {
 
                 // if there's still an Exception it will propogate out
-                value = new BigInteger( str );
+                value = new BigInteger(str);
             }
         }
 
@@ -105,8 +94,7 @@ public class ASTIntegerLiteral extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#value(org.apache.velocity.context.InternalContextAdapter)
      */
-    public Object value( InternalContextAdapter context)
-    {
+    public Object value(InternalContextAdapter context) {
         return value;
     }
 

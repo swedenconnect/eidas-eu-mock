@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -51,106 +51,107 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- *  Tests that decryption of an Assertion does not invalidate the signature of a containing object (Response).
+ * Tests that decryption of an Assertion does not invalidate the signature of a containing object (Response).
  */
 public class DecryptionPlusSigningTest extends BaseTestCase {
-    
+
     private KeyInfoCredentialResolver keyResolver;
-    
+
     private String encURI;
     private EncryptionParameters encParams;
-    
+
     private Encrypter encrypter;
-    
+
     private Credential signingCred;
-    
+
     /**
      * Constructor.
-     *
      */
     public DecryptionPlusSigningTest() {
         super();
-        
+
         encURI = EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES128;
-        
+
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         Credential encCred = SecurityHelper.generateKeyAndCredential(encURI);
         encCred.getSecretKey();
         keyResolver = new StaticKeyInfoCredentialResolver(encCred);
         encParams = new EncryptionParameters();
         encParams.setAlgorithm(encURI);
         encParams.setEncryptionCredential(encCred);
-        
+
         encrypter = new Encrypter(encParams);
-        
+
         KeyPair kp = SecurityHelper.generateKeyPair("RSA", 1024, null);
         signingCred = SecurityHelper.getSimpleCredential(kp.getPublic(), kp.getPrivate());
-        
+
     }
-    
+
     /**
      * Test decryption of an EncryptedAssertion and validation of the signature on the enclosing Response.
-     *  
-     * @throws XMLParserException  thrown if there is an error parsing the control XML file
-     * @throws EncryptionException  thrown if there is an error encrypting the control XML
-     * @throws NoSuchProviderException 
-     * @throws NoSuchAlgorithmException 
-     * @throws SecurityException 
-     * @throws MarshallingException 
-     * @throws SignatureException 
-     * @throws UnmarshallingException 
+     *
+     * @throws XMLParserException       thrown if there is an error parsing the control XML file
+     * @throws EncryptionException      thrown if there is an error encrypting the control XML
+     * @throws NoSuchProviderException
+     * @throws NoSuchAlgorithmException
+     * @throws SecurityException
+     * @throws MarshallingException
+     * @throws SignatureException
+     * @throws UnmarshallingException
      */
-    public void testEncryptedAssertionInResponse() throws XMLParserException, EncryptionException, 
-            NoSuchAlgorithmException, NoSuchProviderException, SecurityException, MarshallingException, 
+    public void testEncryptedAssertionInResponse() throws XMLParserException, EncryptionException,
+            NoSuchAlgorithmException, NoSuchProviderException, SecurityException, MarshallingException,
             SignatureException, UnmarshallingException {
-        
+
         //Build encrypted Assertion
         String filename = "/data/org/opensaml/saml2/encryption/Assertion.xml";
         Document targetDOM = getDOM(filename);
-        
+
         Assertion assertion = (Assertion) unmarshallElement(filename);
         EncryptedAssertion encryptedAssertion = encrypter.encrypt(assertion);
-        
+
         // Build Response container
         Response response = (Response) buildXMLObject(Response.DEFAULT_ELEMENT_NAME);
         response.setID("def456");
         response.setIssueInstant(new DateTime());
-        
+
         Issuer issuer = (Issuer) buildXMLObject(Issuer.DEFAULT_ELEMENT_NAME);
         issuer.setValue("urn:string:issuer");
         response.setIssuer(issuer);
-        
+
         response.getEncryptedAssertions().add(encryptedAssertion);
-        
+
         // Sign Response
         Signature responseSignature = (Signature) buildXMLObject(Signature.DEFAULT_ELEMENT_NAME);
         responseSignature.setSigningCredential(signingCred);
         response.setSignature(responseSignature);
         SecurityHelper.prepareSignatureParams(responseSignature, signingCred, null, null);
-        
+
         marshallerFactory.getMarshaller(response).marshall(response);
-        
+
         Signer.signObject(responseSignature);
-        
+
         // Marshall Response and re-parse, for good measure
         Element marshalledResponse = marshallerFactory.getMarshaller(response).marshall(response);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         XMLHelper.writeNode(marshalledResponse, baos);
-        
+
         //System.out.println(XMLHelper.prettyPrintXML(marshalledResponse));
-        
+
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
         Document parsedDoc = parser.parse(bais);
         Element parsedResponse = parsedDoc.getDocumentElement();
-        
-        Response newResponse = 
-            (Response) unmarshallerFactory.getUnmarshaller(parsedResponse).unmarshall(parsedResponse);
-        
+
+        Response newResponse =
+                (Response) unmarshallerFactory.getUnmarshaller(parsedResponse).unmarshall(parsedResponse);
+
         // Validate Response signature first time
         SignatureValidator firstSigValidator = new SignatureValidator(signingCred);
         try {
@@ -158,24 +159,24 @@ public class DecryptionPlusSigningTest extends BaseTestCase {
         } catch (ValidationException e1) {
             fail("First Response signature validation failed");
         }
-        
+
         // Decrypt Assertion
         EncryptedAssertion newEncryptedAssertion = newResponse.getEncryptedAssertions().get(0);
-        
+
         Decrypter decrypter = new Decrypter(keyResolver, null, null);
         decrypter.setRootInNewDocument(true);
-        
+
         Assertion decryptedAssertion = null;
         try {
             decryptedAssertion = decrypter.decrypt(newEncryptedAssertion);
         } catch (DecryptionException e) {
             fail("Error on decryption of EncryptedAssertion: " + e);
         }
-        
+
         assertNotNull("Decrypted Assertion was null", decryptedAssertion);
-        
+
         assertEquals(targetDOM, decryptedAssertion);
-        
+
         // Validate Response signature second time
         SignatureValidator secondSigValidator = new SignatureValidator(signingCred);
         try {
@@ -183,12 +184,12 @@ public class DecryptionPlusSigningTest extends BaseTestCase {
         } catch (ValidationException e1) {
             fail("Second Response signature validation failed");
         }
-        
+
     }
-    
+
     /**
      * Parse the XML file and return the DOM Document.
-     * 
+     *
      * @param filename file containing control XML
      * @return parsed Document
      * @throws XMLParserException if parser encounters an error
@@ -197,5 +198,5 @@ public class DecryptionPlusSigningTest extends BaseTestCase {
         Document targetDOM = parser.parse(DecryptionPlusSigningTest.class.getResourceAsStream(filename));
         return targetDOM;
     }
-    
+
 }

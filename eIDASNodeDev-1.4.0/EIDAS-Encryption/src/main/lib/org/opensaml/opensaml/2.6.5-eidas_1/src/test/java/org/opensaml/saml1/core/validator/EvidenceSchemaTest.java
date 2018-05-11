@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,31 +30,35 @@ import org.opensaml.saml1.core.Evidence;
  */
 public class EvidenceSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public EvidenceSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, Evidence.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         validator = new EvidenceSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
-        
+
         Evidence evidence = (Evidence) target;
         QName assertionQname = new QName(SAMLConstants.SAML1_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         QName assertionIDRefQname = new QName(SAMLConstants.SAML1_NS, AssertionIDReference.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        evidence.getAssertions().add((Assertion)buildXMLObject(assertionQname));
-        evidence.getAssertionIDReferences().add((AssertionIDReference)buildXMLObject(assertionIDRefQname));
-        evidence.getAssertions().add((Assertion)buildXMLObject(assertionQname));
-        evidence.getAssertionIDReferences().add((AssertionIDReference)buildXMLObject(assertionIDRefQname));
+        evidence.getAssertions().add((Assertion) buildXMLObject(assertionQname));
+        evidence.getAssertionIDReferences().add((AssertionIDReference) buildXMLObject(assertionIDRefQname));
+        evidence.getAssertions().add((Assertion) buildXMLObject(assertionQname));
+        evidence.getAssertionIDReferences().add((AssertionIDReference) buildXMLObject(assertionIDRefQname));
     }
-    
+
     public void testMissingChildren() {
         Evidence evidence = (Evidence) target;
-        
+
         evidence.getEvidence().clear();
         assertValidationFail("Evidence list was empty");
-        
+
     }
 }

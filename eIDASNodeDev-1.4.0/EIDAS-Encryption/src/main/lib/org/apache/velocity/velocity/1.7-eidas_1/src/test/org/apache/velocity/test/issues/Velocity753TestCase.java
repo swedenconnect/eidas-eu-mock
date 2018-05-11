@@ -16,46 +16,41 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.text.NumberFormat;
+
 import org.apache.velocity.test.BaseTestCase;
 
 /**
  * This class tests VELOCITY-753.
  */
-public class Velocity753TestCase extends BaseTestCase
-{
-    public Velocity753TestCase(String name)
-    {
+public class Velocity753TestCase extends BaseTestCase {
+    public Velocity753TestCase(String name) {
         super(name);
     }
 
-    public void testFloatArg() throws Exception
-    { 
+    public void testFloatArg() throws Exception {
         // verify precedence outside of Velocity 
-        Tool tool = new Tool(); 
-        Float f = new Float(5.23); 
-        assertEquals("object", tool.test(f)); 
+        Tool tool = new Tool();
+        Float f = new Float(5.23);
+        assertEquals("object", tool.test(f));
 
-        context.put("tool", tool); 
-        context.put("float", f); 
+        context.put("tool", tool);
+        context.put("float", f);
 
-        String template = "$tool.test($float)"; 
+        String template = "$tool.test($float)";
         // in reflection-land, Float and float are equivalent, so double is selected
-        assertEvalEquals("double", template); 
-    } 
+        assertEvalEquals("double", template);
+    }
 
-    public static class Tool
-    {
-        public String test(double d)
-        {
+    public static class Tool {
+        public String test(double d) {
             return "double";
         }
 
-        public String test(Object o)
-        {
+        public String test(Object o) {
             return "object";
         }
     }

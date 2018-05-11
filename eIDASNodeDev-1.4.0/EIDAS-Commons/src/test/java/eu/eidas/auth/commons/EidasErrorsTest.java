@@ -39,8 +39,8 @@ public class EidasErrorsTest {
      */
     @Test
     public void testGet() {
-        assertEquals("202002",EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
-        assertEquals("invalid.connector.samlrequest",EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()));
+        assertEquals("202002", EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
+        assertEquals("invalid.connector.samlrequest", EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()));
     }
 
     /**
@@ -49,7 +49,7 @@ public class EidasErrorsTest {
      */
     @Test
     public void testGetFail() {
-        assertNotEquals("201002",EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
-        assertNotEquals("invalid.speps.samlrequest",EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
+        assertNotEquals("201002", EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
+        assertNotEquals("invalid.speps.samlrequest", EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
     }
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -48,36 +48,52 @@ import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
  */
 public class AssertionImpl extends AbstractSignableSAMLObject implements Assertion {
 
-    /** SAML Version of the assertion. */
+    /**
+     * SAML Version of the assertion.
+     */
     private SAMLVersion version;
 
-    /** Issue Instant of the assertion. */
+    /**
+     * Issue Instant of the assertion.
+     */
     private DateTime issueInstant;
 
-    /** ID of the assertion. */
+    /**
+     * ID of the assertion.
+     */
     private String id;
 
-    /** Issuer of the assertion. */
+    /**
+     * Issuer of the assertion.
+     */
     private Issuer issuer;
 
-    /** Subject of the assertion. */
+    /**
+     * Subject of the assertion.
+     */
     private Subject subject;
 
-    /** Conditions of the assertion. */
+    /**
+     * Conditions of the assertion.
+     */
     private Conditions conditions;
 
-    /** Advice of the assertion. */
+    /**
+     * Advice of the assertion.
+     */
     private Advice advice;
 
-    /** Statements of the assertion. */
+    /**
+     * Statements of the assertion.
+     */
     private final IndexedXMLObjectChildrenList<Statement> statements;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AssertionImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -85,124 +101,166 @@ public class AssertionImpl extends AbstractSignableSAMLObject implements Asserti
         statements = new IndexedXMLObjectChildrenList<Statement>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SAMLVersion getVersion() {
         return version;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setVersion(SAMLVersion newVersion) {
         this.version = prepareForAssignment(this.version, newVersion);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getIssueInstant() {
         return issueInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssueInstant(DateTime newIssueInstance) {
         this.issueInstant = prepareForAssignment(this.issueInstant, newIssueInstance);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String newID) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, newID);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Issuer getIssuer() {
         return issuer;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssuer(Issuer newIssuer) {
         this.issuer = prepareForAssignment(this.issuer, newIssuer);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Subject getSubject() {
         return subject;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubject(Subject newSubject) {
         this.subject = prepareForAssignment(this.subject, newSubject);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Conditions getConditions() {
         return conditions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setConditions(Conditions newConditions) {
         this.conditions = prepareForAssignment(this.conditions, newConditions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Advice getAdvice() {
         return advice;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAdvice(Advice newAdvice) {
         this.advice = prepareForAssignment(this.advice, newAdvice);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Statement> getStatements() {
         return statements;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Statement> getStatements(QName typeOrName) {
         return (List<Statement>) statements.subList(typeOrName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AuthnStatement> getAuthnStatements() {
         QName statementQName = new QName(SAMLConstants.SAML20_NS, AuthnStatement.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX);
         return (List<AuthnStatement>) statements.subList(statementQName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AuthzDecisionStatement> getAuthzDecisionStatements() {
         QName statementQName = new QName(SAMLConstants.SAML20_NS, AuthzDecisionStatement.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX);
         return (List<AuthzDecisionStatement>) statements.subList(statementQName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AttributeStatement> getAttributeStatements() {
         QName statementQName = new QName(SAMLConstants.SAML20_NS, AttributeStatement.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX);
         return (List<AttributeStatement>) statements.subList(statementQName);
     }
-    
-    /** {@inheritDoc} */
-    public String getSignatureReferenceID(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
         children.add(issuer);
-        
-        if(getSignature() != null){
+
+        if (getSignature() != null) {
             children.add(getSignature());
         }
-        
+
         children.add(subject);
         children.add(conditions);
         children.add(advice);

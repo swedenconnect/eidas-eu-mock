@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.Method;
@@ -29,29 +29,25 @@ import junit.framework.TestSuite;
 import org.apache.velocity.runtime.RuntimeSingleton;
 
 /**
- *  Simple introspector test case for primitive problem found in 1.3
+ * Simple introspector test case for primitive problem found in 1.3
  *
  * @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
  * @version $Id: Introspector3TestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class Introspector3TestCase extends BaseTestCase
-{
+public class Introspector3TestCase extends BaseTestCase {
     /**
-      * Creates a new instance.
-      */
-    public Introspector3TestCase(String name)
-    {
+     * Creates a new instance.
+     */
+    public Introspector3TestCase(String name) {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(Introspector3TestCase.class);
     }
 
     public void testSimple()
-        throws Exception
-    {
+            throws Exception {
         Method method;
         String result;
 
@@ -61,26 +57,26 @@ public class Introspector3TestCase extends BaseTestCase
          * string integer
          */
 
-        Object[] listIntInt = { new ArrayList(), new Integer(1), new Integer(2) };
-        Object[] listLongList = { new ArrayList(), new Long(1), new ArrayList() };
-        Object[] intInt = {  new Integer(1), new Integer(2) };
-        Object[] longInt = {  new Long(1), new Integer(2) };
-        Object[] longLong = {  new Long(1), new Long(2) };
+        Object[] listIntInt = {new ArrayList(), new Integer(1), new Integer(2)};
+        Object[] listLongList = {new ArrayList(), new Long(1), new ArrayList()};
+        Object[] intInt = {new Integer(1), new Integer(2)};
+        Object[] longInt = {new Long(1), new Integer(2)};
+        Object[] longLong = {new Long(1), new Long(2)};
 
         method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "lii", listIntInt);
+                MethodProvider.class, "lii", listIntInt);
         result = (String) method.invoke(mp, listIntInt);
 
         assertTrue(result.equals("lii"));
 
         method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "ii", intInt);
+                MethodProvider.class, "ii", intInt);
         result = (String) method.invoke(mp, intInt);
 
         assertTrue(result.equals("ii"));
 
         method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "ll", longInt);
+                MethodProvider.class, "ll", longInt);
         result = (String) method.invoke(mp, longInt);
 
         assertTrue(result.equals("ll"));
@@ -90,13 +86,13 @@ public class Introspector3TestCase extends BaseTestCase
          */
 
         method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "ll", longLong);
+                MethodProvider.class, "ll", longLong);
         result = (String) method.invoke(mp, longLong);
 
         assertTrue(result.equals("ll"));
 
         method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "lll", listLongList);
+                MethodProvider.class, "lll", listLongList);
         result = (String) method.invoke(mp, listLongList);
 
         assertTrue(result.equals("lll"));
@@ -105,45 +101,38 @@ public class Introspector3TestCase extends BaseTestCase
          *  test invocation with nulls
          */
 
-        Object [] oa = {null, new Integer(0)};
+        Object[] oa = {null, new Integer(0)};
         method = RuntimeSingleton.getIntrospector().getMethod(
-            MethodProvider.class, "lll", oa );
+                MethodProvider.class, "lll", oa);
         result = (String) method.invoke(mp, oa);
 
         assertTrue(result.equals("Listl"));
 
     }
 
-    public static class MethodProvider
-    {
-        public String ii(int p, int d)
-        {
+    public static class MethodProvider {
+        public String ii(int p, int d) {
             return "ii";
         }
 
-        public String lii(List s, int p, int d)
-        {
+        public String lii(List s, int p, int d) {
             return "lii";
         }
 
-        public String lll(List s, long p, List d)
-        {
+        public String lll(List s, long p, List d) {
             return "lll";
         }
 
 
-        public String lll(List s, long p, int d)
-        {
+        public String lll(List s, long p, int d) {
             return "lli";
         }
 
-        public String lll(List s, long p)
-        {
+        public String lll(List s, long p) {
             return "Listl";
         }
 
-        public String ll(long p, long d)
-        {
+        public String ll(long p, long d) {
             return "ll";
         }
 

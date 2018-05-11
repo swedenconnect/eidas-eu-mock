@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -37,10 +37,14 @@ import org.slf4j.LoggerFactory;
  */
 public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(AuthnResponseEndpointSelector.class);
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public Endpoint selectEndpoint() {
         if (getEntityRoleMetadata() == null) {
@@ -62,13 +66,13 @@ public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
             }
 
             if (request.getAssertionConsumerServiceIndex() != null) {
-                log.debug("Selecting endpoint by ACS index '{}' for request '{}' from entity '{}'", new Object[] {
+                log.debug("Selecting endpoint by ACS index '{}' for request '{}' from entity '{}'", new Object[]{
                         request.getAssertionConsumerServiceIndex(), request.getID(), getEntityMetadata().getEntityID()});
                 endpoint = selectEndpointByACSIndex(request, (List<IndexedEndpoint>) endpoints);
             } else if (request.getAssertionConsumerServiceURL() != null) {
                 log.debug(
                         "Selecting endpoint by ACS URL '{}' and protocol binding '{}' for request '{}' from entity '{}'",
-                        new Object[] {request.getAssertionConsumerServiceURL(), request.getProtocolBinding(),
+                        new Object[]{request.getAssertionConsumerServiceURL(), request.getProtocolBinding(),
                                 request.getID(), getEntityMetadata().getEntityID()});
                 endpoint = selectEndpointByACSURL(request, (List<IndexedEndpoint>) endpoints);
             }
@@ -90,9 +94,8 @@ public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
     /**
      * Filters the list of possible endpoints by supported outbound bindings and, if the authentication request contains
      * a requested binding and not an ACS index, that too is used to filter the list.
-     * 
+     *
      * @param endpoints raw list of endpoints
-     * 
      * @return filtered endpoints
      */
     protected List<? extends Endpoint> filterEndpointsByProtocolBinding(List<? extends Endpoint> endpoints) {
@@ -129,10 +132,9 @@ public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
 
     /**
      * Selects the endpoint by way of the assertion consumer service index given in the AuthnRequest.
-     * 
-     * @param request the AuthnRequest
+     *
+     * @param request   the AuthnRequest
      * @param endpoints list of endpoints to select from
-     * 
      * @return the selected endpoint
      */
     protected Endpoint selectEndpointByACSIndex(AuthnRequest request, List<IndexedEndpoint> endpoints) {
@@ -149,7 +151,7 @@ public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
                 return endpoint;
             } else {
                 log.debug("Endpoint '{}' with index '{}' discard because it does have the required index '{}'",
-                        new Object[] {endpoint.getLocation(), endpoint.getIndex(), acsIndex});
+                        new Object[]{endpoint.getLocation(), endpoint.getIndex(), acsIndex});
             }
         }
 
@@ -161,10 +163,9 @@ public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
 
     /**
      * Selects the endpoint by way of the assertion consumer service URL given in the AuthnRequest.
-     * 
-     * @param request the AuthnRequest
+     *
+     * @param request   the AuthnRequest
      * @param endpoints list of endpoints to select from
-     * 
      * @return the selected endpoint
      */
     protected Endpoint selectEndpointByACSURL(AuthnRequest request, List<IndexedEndpoint> endpoints) {
@@ -188,11 +189,11 @@ public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
             }
 
             String responseLocation = DatatypeHelper.safeTrim(endpoint.getResponseLocation());
-            if (responseLocation != null){
-                    if(DatatypeHelper.safeEquals(responseLocation, request.getAssertionConsumerServiceURL())) {
-                        return endpoint;
-                    }
-            }else{    
+            if (responseLocation != null) {
+                if (DatatypeHelper.safeEquals(responseLocation, request.getAssertionConsumerServiceURL())) {
+                    return endpoint;
+                }
+            } else {
                 String location = DatatypeHelper.safeTrim(endpoint.getLocation());
                 if (location != null && DatatypeHelper.safeEquals(location, request.getAssertionConsumerServiceURL())) {
                     return endpoint;
@@ -205,7 +206,7 @@ public class AuthnResponseEndpointSelector extends BasicEndpointSelector {
 
         log.warn("Relying party '{}' requested the response to be returned to endpoint with ACS URL '{}' "
                 + " and binding '{}' however no endpoint, with that URL and using a supported binding, "
-                + " can be found in the relying party's metadata ", new Object[] {getEntityMetadata().getEntityID(),
+                + " can be found in the relying party's metadata ", new Object[]{getEntityMetadata().getEntityID(),
                 request.getAssertionConsumerServiceURL(), (acsBinding == null) ? "any" : acsBinding});
         return null;
     }

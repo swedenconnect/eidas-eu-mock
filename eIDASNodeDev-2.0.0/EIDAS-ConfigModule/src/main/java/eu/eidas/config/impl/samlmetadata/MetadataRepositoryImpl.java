@@ -90,13 +90,13 @@ public class MetadataRepositoryImpl implements MetadataRepository {
             List<String> ids = getIDs();
             if (ids.contains(newFileName) || ids.contains(fileService.getAbsoluteFileName(newFileName))) {
                 throw new ConfigurationException(EidasErrorKey.CONSOLE_METADATA_FILE_ALREADY_EXISTS.errorCode(),
-                                                 "the filename is already used in the metadata repository");
+                        "the filename is already used in the metadata repository");
             }
             for (String id : ids) {
                 MetadataItem metadata = getMetadataItem(id);
                 if (metadata.getIssuerUrl().equalsIgnoreCase(newMetadata.getIssuerUrl())) {
                     throw new ConfigurationException(EidasErrorKey.CONSOLE_METADATA_ISSUER_ALREADY_EXISTS.errorCode(),
-                                                     "the Issuer is already used in the metadata repository");
+                            "the Issuer is already used in the metadata repository");
                 }
             }
             byte b[] = fileService.loadBinaryFile(content.getAbsolutePath());
@@ -128,16 +128,16 @@ public class MetadataRepositoryImpl implements MetadataRepository {
 
         } catch (UnsupportedEncodingException e) {
             throw new ConfigurationException(EidasErrorKey.CONSOLE_METADATA_FILE_PARSING.errorCode(),
-                                             "error parsing metadata", e);
+                    "error parsing metadata", e);
         } catch (SAXException e) {
             throw new ConfigurationException(EidasErrorKey.CONSOLE_METADATA_FILE_PARSING.errorCode(),
-                                             "error parsing metadata", e);
+                    "error parsing metadata", e);
         } catch (IOException e) {
             throw new ConfigurationException(EidasErrorKey.CONSOLE_METADATA_FILE_PARSING.errorCode(),
-                                             "error parsing metadata", e);
+                    "error parsing metadata", e);
         } catch (ParserConfigurationException e) {
             throw new ConfigurationException(EidasErrorKey.CONSOLE_METADATA_FILE_PARSING.errorCode(),
-                                             "error parsing metadata", e);
+                    "error parsing metadata", e);
         }
         return item;
     }

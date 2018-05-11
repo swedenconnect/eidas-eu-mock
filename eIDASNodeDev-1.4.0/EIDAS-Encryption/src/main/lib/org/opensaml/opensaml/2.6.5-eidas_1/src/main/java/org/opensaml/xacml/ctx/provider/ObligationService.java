@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,16 +33,24 @@ import org.opensaml.xacml.policy.EffectType;
 import org.opensaml.xacml.policy.ObligationType;
 import org.opensaml.xacml.policy.ObligationsType;
 
-/** A service for evaluating the obligations within a context. */
+/**
+ * A service for evaluating the obligations within a context.
+ */
 public class ObligationService {
 
-    /** Read/write lock around the registered obligation handlers. */
+    /**
+     * Read/write lock around the registered obligation handlers.
+     */
     private ReentrantReadWriteLock rwLock;
 
-    /** Registered obligation handlers. */
+    /**
+     * Registered obligation handlers.
+     */
     private Set<BaseObligationHandler> obligationHandlers;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public ObligationService() {
         rwLock = new ReentrantReadWriteLock(true);
         obligationHandlers = new TreeSet<BaseObligationHandler>(new ObligationHandlerComparator());
@@ -50,7 +58,7 @@ public class ObligationService {
 
     /**
      * Gets the registered obligation handlers.
-     * 
+     *
      * @return registered obligation handlers
      */
     public Set<BaseObligationHandler> getObligationHandlers() {
@@ -59,9 +67,9 @@ public class ObligationService {
 
     /**
      * Adds an obligation handler to the list of registered handlers
-     * 
+     * <p>
      * This method waits until a write lock is obtained for the set of registered obligation handlers.
-     * 
+     *
      * @param handler the handler to add to the list of registered handlers.
      */
     public void addObligationhandler(BaseObligationHandler handler) {
@@ -80,9 +88,9 @@ public class ObligationService {
 
     /**
      * Adds a collection of obligation handler to the list of registered handlers
-     * 
+     * <p>
      * This method waits until a write lock is obtained for the set of registered obligation handlers.
-     * 
+     *
      * @param handlers the collection of handlers to add to the list of registered handlers.
      */
     public void addObligationhandler(Collection<BaseObligationHandler> handlers) {
@@ -101,9 +109,9 @@ public class ObligationService {
 
     /**
      * Removes an obligation handler from the list of registered handlers
-     * 
+     * <p>
      * This method waits until a write lock is obtained for the set of registered obligation handlers.
-     * 
+     *
      * @param handler the handler to remove from the list of registered handlers.
      */
     public void removeObligationHandler(BaseObligationHandler handler) {
@@ -122,11 +130,10 @@ public class ObligationService {
 
     /**
      * Processes the obligations within the effective XACML policy.
-     * 
+     * <p>
      * This method waits until a read lock is obtained for the set of registered obligation handlers.
-     * 
+     *
      * @param context current processing context
-     * 
      * @throws ObligationProcessingException thrown if there is a problem evaluating an obligation
      */
     public void processObligations(ObligationProcessingContext context) throws ObligationProcessingException {
@@ -152,9 +159,8 @@ public class ObligationService {
      * Preprocesses the obligations returned within the result. This preprocessing determines the active effect, based
      * on {@link org.opensaml.xacml.ctx.ResultType#getDecision()}, and creates an index that maps obligation IDs to the
      * {@link ObligationType} returned by the PDP.
-     * 
+     *
      * @param context current processing context
-     * 
      * @return preprocessed obligations
      */
     protected Map<String, ObligationType> preprocessObligations(ObligationProcessingContext context) {
@@ -181,10 +187,14 @@ public class ObligationService {
         return effectiveObligations;
     }
 
-    /** Comparator used to order obligation handlers by precedence. */
+    /**
+     * Comparator used to order obligation handlers by precedence.
+     */
     private class ObligationHandlerComparator implements Comparator<BaseObligationHandler> {
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public int compare(BaseObligationHandler o1, BaseObligationHandler o2) {
             if (o1.getHandlerPrecedence() == o2.getHandlerPrecedence()) {
                 // If they have the same precedence sort lexigraphically

@@ -25,8 +25,7 @@ import eu.eidas.auth.engine.core.stork.AuthenticationAttributes;
  * @author fjquevedo
  */
 public class AuthenticationAttributesBuilder extends
-	AbstractSAMLObjectBuilder<AuthenticationAttributes> {
-
+        AbstractSAMLObjectBuilder<AuthenticationAttributes> {
 
 
     /**
@@ -35,22 +34,21 @@ public class AuthenticationAttributesBuilder extends
      * @return the authentication attributes
      */
     public final AuthenticationAttributes buildObject() {
-	return buildObject(AuthenticationAttributes.DEF_ELEMENT_NAME);
+        return buildObject(AuthenticationAttributes.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace URI
-     * @param localName the local name
+     * @param namespaceURI    the namespace URI
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
-     *
      * @return the authentication attributes
      */
     public final AuthenticationAttributes buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new AuthenticationAttributesImpl(namespaceURI, localName,
-		namespacePrefix);
+                                                      final String localName, final String namespacePrefix) {
+        return new AuthenticationAttributesImpl(namespaceURI, localName,
+                namespacePrefix);
     }
 
 }

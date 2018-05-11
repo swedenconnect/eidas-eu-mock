@@ -53,7 +53,7 @@ public final class ResourceLocator {
                     LOG.trace("Could not find file \"" + name + "\" in Context ClassLoader: " + contextClassLoader);
                 } else {
                     LOG.trace("Found file \"" + name + "\" at URL: \"" + url.toExternalForm()
-                                      + "\" in Context ClassLoader: " + contextClassLoader);
+                            + "\" in Context ClassLoader: " + contextClassLoader);
                 }
             }
         }
@@ -67,7 +67,7 @@ public final class ResourceLocator {
                         LOG.trace("Could not find file \"" + name + "\" in Class ClassLoader: " + classClassLoader);
                     } else {
                         LOG.trace("Found file \"" + name + "\" at URL: \"" + url.toExternalForm()
-                                          + "\" in Class ClassLoader: " + classClassLoader);
+                                + "\" in Class ClassLoader: " + classClassLoader);
                     }
                 }
             }
@@ -82,7 +82,7 @@ public final class ResourceLocator {
                         LOG.trace("Could not find file \"" + name + "\" in System ClassLoader: " + systemClassLoader);
                     } else {
                         LOG.trace("Found file \"" + name + "\" at URL: \"" + url.toExternalForm()
-                                          + "\" in System ClassLoader: " + systemClassLoader);
+                                + "\" in System ClassLoader: " + systemClassLoader);
                     }
                 }
             }
@@ -99,7 +99,7 @@ public final class ResourceLocator {
                         if (file.exists()) {
                             if (LOG.isDebugEnabled()) {
                                 LOG.trace("Found file \"" + path + "\" on the filesystem path: \""
-                                                  + file.getCanonicalPath() + "\"");
+                                        + file.getCanonicalPath() + "\"");
                             }
                             return file.toURI().toURL();
                         } else {

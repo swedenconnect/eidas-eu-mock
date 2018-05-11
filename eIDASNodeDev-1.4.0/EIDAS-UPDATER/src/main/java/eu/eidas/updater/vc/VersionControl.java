@@ -18,39 +18,38 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Wrapper to Eidas Version Control.
- *
  */
 public final class VersionControl {
 
-  /**
-   * Flag to check if update version is enabled.
-   */
-  private boolean updateVersion = false;
+    /**
+     * Flag to check if update version is enabled.
+     */
+    private boolean updateVersion = false;
 
-  /**
-   * The Logger Object.
-   */
-  private static final Logger LOG = LoggerFactory.getLogger(VersionControl.class);
+    /**
+     * The Logger Object.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(VersionControl.class);
 
-  /**
-   * Updates the version file.
-   */
-  public void updateVersion() {
-    LOG.debug("Update is on: " + updateVersion);
-  }
+    /**
+     * Updates the version file.
+     */
+    public void updateVersion() {
+        LOG.debug("Update is on: " + updateVersion);
+    }
 
-  /**
-   * @param nUpdateVersion the updateVersion to set
-   */
-  public void setUpdateVersion(final boolean nUpdateVersion) {
-    this.updateVersion = nUpdateVersion;
-  }
+    /**
+     * @param nUpdateVersion the updateVersion to set
+     */
+    public void setUpdateVersion(final boolean nUpdateVersion) {
+        this.updateVersion = nUpdateVersion;
+    }
 
-  /**
-   * @return the updateVersion
-   */
-  public boolean isUpdateVersion() {
-    return updateVersion;
-  }
+    /**
+     * @return the updateVersion
+     */
+    public boolean isUpdateVersion() {
+        return updateVersion;
+    }
 
 }

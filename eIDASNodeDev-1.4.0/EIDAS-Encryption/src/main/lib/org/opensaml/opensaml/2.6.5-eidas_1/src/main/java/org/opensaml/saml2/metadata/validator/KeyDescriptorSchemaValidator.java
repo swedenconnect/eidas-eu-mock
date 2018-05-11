@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.validator;
@@ -31,12 +31,16 @@ import org.opensaml.xml.validation.Validator;
  */
 public class KeyDescriptorSchemaValidator implements Validator<KeyDescriptor> {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public KeyDescriptorSchemaValidator() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(KeyDescriptor keyDescriptor) throws ValidationException {
         validateKeyInfo(keyDescriptor);
         validateUse(keyDescriptor);
@@ -44,19 +48,19 @@ public class KeyDescriptorSchemaValidator implements Validator<KeyDescriptor> {
 
     /**
      * Checks that KeyInfo is present.
-     * 
+     *
      * @param keyDescriptor the key descriptor to validate
      * @throws ValidationException thrown if KeyInfo is not present
      */
     protected void validateKeyInfo(KeyDescriptor keyDescriptor) throws ValidationException {
-        if (keyDescriptor.getKeyInfo()==null) {
+        if (keyDescriptor.getKeyInfo() == null) {
             throw new ValidationException("KeyInfo required");
         }
     }
-    
+
     /**
      * Checks that use attribute has only one of allowed values.
-     * 
+     *
      * @param keyDescriptor the key descriptor to validate
      * @throws ValidationException throw in use attribute does not have a legal value
      */
@@ -65,9 +69,9 @@ public class KeyDescriptorSchemaValidator implements Validator<KeyDescriptor> {
         if (use == null) {
             return;
         }
-        if (       ! use.equals(UsageType.SIGNING) 
-                && ! use.equals(UsageType.ENCRYPTION) 
-                && ! use.equals(UsageType.UNSPECIFIED) ) {
+        if (!use.equals(UsageType.SIGNING)
+                && !use.equals(UsageType.ENCRYPTION)
+                && !use.equals(UsageType.UNSPECIFIED)) {
             throw new ValidationException("Invalid value for use attribute: " + use.toString());
         }
     }

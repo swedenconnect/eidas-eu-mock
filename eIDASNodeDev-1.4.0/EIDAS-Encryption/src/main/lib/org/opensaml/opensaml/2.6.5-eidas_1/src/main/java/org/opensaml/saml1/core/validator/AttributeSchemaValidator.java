@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,7 +25,9 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AttributeSchemaValidator extends AttributeDesignatorSchemaValidator<Attribute> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(Attribute attribute) throws ValidationException {
         super.validate(attribute);
 
@@ -34,9 +36,8 @@ public class AttributeSchemaValidator extends AttributeDesignatorSchemaValidator
 
     /**
      * Validates that the attribute has at least one attribute value.
-     * 
+     *
      * @param attribute attribute to validate
-     * 
      * @throws ValidationException thrown if the attribute does not have any values
      */
     protected void validateAttributeValue(Attribute attribute) throws ValidationException {

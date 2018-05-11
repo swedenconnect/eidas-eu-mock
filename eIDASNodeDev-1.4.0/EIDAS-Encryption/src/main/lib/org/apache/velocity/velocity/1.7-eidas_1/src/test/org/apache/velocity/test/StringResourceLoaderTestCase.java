@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -40,8 +40,7 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @version $Id: StringResourceLoaderTestCase.java 832247 2009-11-03 01:29:30Z wglass $
  */
-public class StringResourceLoaderTestCase extends BaseTestCase
-{
+public class StringResourceLoaderTestCase extends BaseTestCase {
     /**
      * Results relative to the build directory.
      */
@@ -53,27 +52,24 @@ public class StringResourceLoaderTestCase extends BaseTestCase
     private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/stringloader/compare";
 
     VelocityEngine engine;
-    
+
     /**
      * Default constructor.
      */
-    public StringResourceLoaderTestCase(String name)
-    {
+    public StringResourceLoaderTestCase(String name) {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(StringResourceLoaderTestCase.class);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULTS_DIR);
 
         engine = new VelocityEngine();
-        
+
         engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "string");
         engine.addProperty("string.resource.loader.class", StringResourceLoader.class.getName());
         engine.addProperty("string.resource.loader.modificationCheckInterval", "1");
@@ -84,16 +80,15 @@ public class StringResourceLoaderTestCase extends BaseTestCase
         engine.init();
     }
 
-    public void  testSimpleTemplate()
-            throws Exception
-    {
+    public void testSimpleTemplate()
+            throws Exception {
         StringResourceLoader.getRepository().putStringResource("simpletemplate.vm", "This is a test for ${foo}");
 
         Template template = engine.getTemplate(getFileName(null, "simpletemplate", TMPL_FILE_EXT));
 
         FileOutputStream fos =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "simpletemplate", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "simpletemplate", RESULT_FILE_EXT));
 
         Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
 
@@ -105,23 +100,21 @@ public class StringResourceLoaderTestCase extends BaseTestCase
         writer.close();
 
         if (!isMatch(RESULTS_DIR, COMPARE_DIR, "simpletemplate",
-                        RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect.");
         }
     }
 
-    public void  testMultipleTemplates()
-            throws Exception
-    {
+    public void testMultipleTemplates()
+            throws Exception {
         StringResourceLoader.getRepository().putStringResource("multi1.vm", "I am the $first template.");
         StringResourceLoader.getRepository().putStringResource("multi2.vm", "I am the $second template.");
 
         Template template1 = engine.getTemplate(getFileName(null, "multi1", TMPL_FILE_EXT));
 
         FileOutputStream fos =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "multi1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "multi1", RESULT_FILE_EXT));
 
         Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
 
@@ -135,40 +128,36 @@ public class StringResourceLoaderTestCase extends BaseTestCase
 
         Template template2 = engine.getTemplate(getFileName(null, "multi2", TMPL_FILE_EXT));
 
-        fos = new FileOutputStream (
+        fos = new FileOutputStream(
                 getFileName(RESULTS_DIR, "multi2", RESULT_FILE_EXT));
 
         writer = new BufferedWriter(new OutputStreamWriter(fos));
-        
+
         template2.merge(context, writer);
         writer.flush();
         writer.close();
 
 
-
         if (!isMatch(RESULTS_DIR, COMPARE_DIR, "multi1",
-                        RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Template 1 incorrect.");
         }
 
         if (!isMatch(RESULTS_DIR, COMPARE_DIR, "multi2",
-                        RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Template 2 incorrect.");
         }
     }
 
-    public void  testContentChange()
-            throws Exception
-    {
+    public void testContentChange()
+            throws Exception {
         StringResourceLoader.getRepository().putStringResource("change.vm", "I am the $first template.");
 
         Template template = engine.getTemplate(getFileName(null, "change", TMPL_FILE_EXT));
 
         FileOutputStream fos =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "change1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "change1", RESULT_FILE_EXT));
 
         Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
 
@@ -184,26 +173,23 @@ public class StringResourceLoaderTestCase extends BaseTestCase
         Thread.sleep(2000L);
         template = engine.getTemplate(getFileName(null, "change", TMPL_FILE_EXT));
 
-        fos = new FileOutputStream (
+        fos = new FileOutputStream(
                 getFileName(RESULTS_DIR, "change2", RESULT_FILE_EXT));
 
         writer = new BufferedWriter(new OutputStreamWriter(fos));
-        
+
         template.merge(context, writer);
         writer.flush();
         writer.close();
 
 
-
         if (!isMatch(RESULTS_DIR, COMPARE_DIR, "change1",
-                        RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Template 1 incorrect.");
         }
 
         if (!isMatch(RESULTS_DIR, COMPARE_DIR, "change2",
-                        RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Template 2 incorrect.");
         }
     }

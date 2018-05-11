@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -34,31 +34,39 @@ import org.opensaml.xml.XMLObject;
  */
 public class ArtifactResolveImpl extends RequestAbstractTypeImpl implements ArtifactResolve {
 
-    /** Artifact child element. */
+    /**
+     * Artifact child element.
+     */
     private Artifact artifact;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI namespace uri
+     *
+     * @param namespaceURI     namespace uri
      * @param elementLocalName element name
-     * @param namespacePrefix namespace prefix
+     * @param namespacePrefix  namespace prefix
      */
     protected ArtifactResolveImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Artifact getArtifact() {
         return this.artifact;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setArtifact(Artifact newArtifact) {
         this.artifact = prepareForAssignment(this.artifact, newArtifact);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

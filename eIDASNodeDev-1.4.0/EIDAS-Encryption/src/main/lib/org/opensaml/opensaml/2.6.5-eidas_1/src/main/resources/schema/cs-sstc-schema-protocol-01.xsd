@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by Phillip Hallam-Baker (Phillip Hallam-Baker) -->
-<schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oasis:names:tc:SAML:1.0:protocol" elementFormDefault="unqualified">
-        
-    <import namespace="urn:oasis:names:tc:SAML:1.0:assertion" schemaLocation="classpath:/schema/cs-sstc-schema-assertion-01.xsd"/>
+<schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion"
+        xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="urn:oasis:names:tc:SAML:1.0:protocol" elementFormDefault="unqualified">
+
+    <import namespace="urn:oasis:names:tc:SAML:1.0:assertion"
+            schemaLocation="classpath:/schema/cs-sstc-schema-assertion-01.xsd"/>
     <import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="classpath:/schema/xmldsig-core-schema.xsd"/>
-        
+
     <annotation>
         <documentation>
             Document identifier: cs-sstc-schema-protocol-01 Location:

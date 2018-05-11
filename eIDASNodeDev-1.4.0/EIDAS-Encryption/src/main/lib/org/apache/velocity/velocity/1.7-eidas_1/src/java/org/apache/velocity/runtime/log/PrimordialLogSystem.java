@@ -16,28 +16,26 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
- *  Pre-init logger.  I believe that this was suggested by
- *  Carsten Ziegeler <cziegeler@sundn.de> and
- *  Jeroen C. van Gelderen.  If this isn't correct, let me
- *  know as this was a good idea...
+ * Pre-init logger.  I believe that this was suggested by
+ * Carsten Ziegeler <cziegeler@sundn.de> and
+ * Jeroen C. van Gelderen.  If this isn't correct, let me
+ * know as this was a good idea...
  *
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: PrimordialLogSystem.java 463298 2006-10-12 16:10:32Z henning $
  * @deprecated Use HoldingLogChute instead!
  */
-public class PrimordialLogSystem extends HoldingLogChute implements LogSystem
-{
+public class PrimordialLogSystem extends HoldingLogChute implements LogSystem {
     /**
      * @param level
      * @param message
      * @deprecated Use log(level, message).
      */
-    public void logVelocityMessage(int level, String message)
-    {
+    public void logVelocityMessage(int level, String message) {
         log(level, message);
     }
 
@@ -45,8 +43,7 @@ public class PrimordialLogSystem extends HoldingLogChute implements LogSystem
      * @param newLogger
      * @deprecated use transferTo(LogChute newChute)
      */
-    public void dumpLogMessages( LogSystem newLogger )
-    {
+    public void dumpLogMessages(LogSystem newLogger) {
         transferTo(new LogChuteSystem(newLogger));
     }
 }

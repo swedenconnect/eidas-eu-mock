@@ -39,112 +39,112 @@ import eu.eidas.engine.exceptions.EIDASSAMLEngineException;
 
 public final class UumdsExtensionProcessor extends StorkExtensionProcessor implements ExtensionProcessorI {
 
-	/**
-	 * The Constant LOG.
-	 */
-	private static final Logger LOG = LoggerFactory.getLogger(UumdsExtensionProcessor.class.getName());
+    /**
+     * The Constant LOG.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(UumdsExtensionProcessor.class.getName());
 
-	public UumdsExtensionProcessor(AttributeRegistry storkAttributeRegistry,
-			AttributeRegistry additionalAttributeRegistry) {
-		super(storkAttributeRegistry, additionalAttributeRegistry);
-	}
+    public UumdsExtensionProcessor(AttributeRegistry storkAttributeRegistry,
+                                   AttributeRegistry additionalAttributeRegistry) {
+        super(storkAttributeRegistry, additionalAttributeRegistry);
+    }
 
-	public UumdsExtensionProcessor(String storkAttributesFileName, String additionalAttributesFileName, String defaultPath) {
-		super(storkAttributesFileName, additionalAttributesFileName, defaultPath);
-	}
+    public UumdsExtensionProcessor(String storkAttributesFileName, String additionalAttributesFileName, String defaultPath) {
+        super(storkAttributesFileName, additionalAttributesFileName, defaultPath);
+    }
 
-	@Override
-	protected void fillRequestedAttributes(IAuthenticationRequest request, RequestedAttributes reqAttributes)
-			throws EIDASSAMLEngineException {
+    @Override
+    protected void fillRequestedAttributes(IAuthenticationRequest request, RequestedAttributes reqAttributes)
+            throws EIDASSAMLEngineException {
 
-		LOG.trace("SAML Engine configuration properties load.");
-		for (final Map.Entry<AttributeDefinition<?>, ImmutableSet<? extends eu.eidas.auth.commons.attribute.AttributeValue<?>>> entry : request
-          .getRequestedAttributes()
-          .getAttributeMap()
-          .entrySet()) {
-      AttributeDefinition<?> attributeDefinition = entry.getKey();
+        LOG.trace("SAML Engine configuration properties load.");
+        for (final Map.Entry<AttributeDefinition<?>, ImmutableSet<? extends eu.eidas.auth.commons.attribute.AttributeValue<?>>> entry : request
+                .getRequestedAttributes()
+                .getAttributeMap()
+                .entrySet()) {
+            AttributeDefinition<?> attributeDefinition = entry.getKey();
 
             AttributeDefinition<?> requestedAttribute = getRequestedAttribute(attributeDefinition);
 
-			// Verify if the attribute name exists.
-			if (null == requestedAttribute) {
-				LOG.trace("Attribute name: {} was not found.", attributeDefinition.getNameUri());
+            // Verify if the attribute name exists.
+            if (null == requestedAttribute) {
+                LOG.trace("Attribute name: {} was not found.", attributeDefinition.getNameUri());
 
-				requestedAttribute = attributeDefinition;
-			} else {
-				LOG.trace("Generate requested attribute: " + requestedAttribute);
-			}
+                requestedAttribute = attributeDefinition;
+            } else {
+                LOG.trace("Generate requested attribute: " + requestedAttribute);
+            }
 
-			AttributeValueMarshaller<?> attributeValueMarshaller = attributeDefinition.getAttributeValueMarshaller();
-   ImmutableSet.Builder<String> builder = ImmutableSet.builder();
-   for (final eu.eidas.auth.commons.attribute.AttributeValue<?> attributeValue : entry.getValue()) {
-       try {
-           String marshalledValue = attributeValueMarshaller.marshal((eu.eidas.auth.commons.attribute.AttributeValue)attributeValue);
-           builder.add(marshalledValue);
-       } catch (AttributeValueMarshallingException e) {
-           LOG.error("Illegal attribute value: " + e, e);
-           throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-				   EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-				   e);
-       }
-   }
+            AttributeValueMarshaller<?> attributeValueMarshaller = attributeDefinition.getAttributeValueMarshaller();
+            ImmutableSet.Builder<String> builder = ImmutableSet.builder();
+            for (final eu.eidas.auth.commons.attribute.AttributeValue<?> attributeValue : entry.getValue()) {
+                try {
+                    String marshalledValue = attributeValueMarshaller.marshal((eu.eidas.auth.commons.attribute.AttributeValue) attributeValue);
+                    builder.add(marshalledValue);
+                } catch (AttributeValueMarshallingException e) {
+                    LOG.error("Illegal attribute value: " + e, e);
+                    throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                            EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                            e);
+                }
+            }
 
             RequestedAttribute requestedAttr = generateReqAuthnAttributeSimple(requestedAttribute, builder.build());
 
-			// Add requested attribute.
-			reqAttributes.getAttributes().add(requestedAttr);
-		}
-		//addUumdsVersion
-	}
-	// private void addUumdsVersion(EidasAuthenticationRequest request, AuthnRequest
-	// authnRequestAux)
-	// throws EIDASSAMLEngineException {
-	// if (request == null || StringUtils.isEmpty(request.getEidasLoA())) {
-	// return;
-	// }
-	// if (LevelOfAssurance.getLevel(request.getEidasLoA()) == null) {
-	// throw new
-	// EIDASSAMLEngineException(EidasErrorKey.COLLEAGUE_REQ_INVALID_LOA.errorCode(),
-	// EidasErrorKey.COLLEAGUE_REQ_INVALID_LOA.errorMessage());
-	// }
-	// RequestedAuthnContext authnContext =
-	// (RequestedAuthnContext)
-	// SAMLEngineUtils.createSamlObject(RequestedAuthnContext.DEFAULT_ELEMENT_NAME);
-	// if (authnContext == null) {
-	// throw new EIDASSAMLEngineException("Unable to create SAML Object
-	// DEFAULT_ELEMENT_NAME");
-	// }
-	// authnContext.setComparison(AuthnContextComparisonTypeEnumeration.MINIMUM);
-	// AuthnContextClassRef authnContextClassRef =
-	// (AuthnContextClassRef)
-	// SAMLEngineUtils.createSamlObject(AuthnContextClassRef.DEFAULT_ELEMENT_NAME);
-	// authnContextClassRef.setAuthnContextClassRef(request.getEidasLoA());
-	// authnContext.getAuthnContextClassRefs().add(authnContextClassRef);
-	// authnRequestAux.setRequestedAuthnContext(authnContext);
-	//
-	// }
+            // Add requested attribute.
+            reqAttributes.getAttributes().add(requestedAttr);
+        }
+        //addUumdsVersion
+    }
+    // private void addUumdsVersion(EidasAuthenticationRequest request, AuthnRequest
+    // authnRequestAux)
+    // throws EIDASSAMLEngineException {
+    // if (request == null || StringUtils.isEmpty(request.getEidasLoA())) {
+    // return;
+    // }
+    // if (LevelOfAssurance.getLevel(request.getEidasLoA()) == null) {
+    // throw new
+    // EIDASSAMLEngineException(EidasErrorKey.COLLEAGUE_REQ_INVALID_LOA.errorCode(),
+    // EidasErrorKey.COLLEAGUE_REQ_INVALID_LOA.errorMessage());
+    // }
+    // RequestedAuthnContext authnContext =
+    // (RequestedAuthnContext)
+    // SAMLEngineUtils.createSamlObject(RequestedAuthnContext.DEFAULT_ELEMENT_NAME);
+    // if (authnContext == null) {
+    // throw new EIDASSAMLEngineException("Unable to create SAML Object
+    // DEFAULT_ELEMENT_NAME");
+    // }
+    // authnContext.setComparison(AuthnContextComparisonTypeEnumeration.MINIMUM);
+    // AuthnContextClassRef authnContextClassRef =
+    // (AuthnContextClassRef)
+    // SAMLEngineUtils.createSamlObject(AuthnContextClassRef.DEFAULT_ELEMENT_NAME);
+    // authnContextClassRef.setAuthnContextClassRef(request.getEidasLoA());
+    // authnContext.getAuthnContextClassRefs().add(authnContextClassRef);
+    // authnRequestAux.setRequestedAuthnContext(authnContext);
+    //
+    // }
 
-	@Nullable
-	@Override
-	public X509Certificate getEncryptionCertificate(@Nullable String requestIssuer) throws EIDASSAMLEngineException {
-		return null;
-	}
+    @Nullable
+    @Override
+    public X509Certificate getEncryptionCertificate(@Nullable String requestIssuer) throws EIDASSAMLEngineException {
+        return null;
+    }
 
-	@Nullable
-	@Override
-	public X509Certificate getRequestSignatureCertificate(@Nonnull String issuer) throws EIDASSAMLEngineException {
-		return null;
-	}
+    @Nullable
+    @Override
+    public X509Certificate getRequestSignatureCertificate(@Nonnull String issuer) throws EIDASSAMLEngineException {
+        return null;
+    }
 
-	@Nullable
- @Override
- public X509Certificate getResponseSignatureCertificate(@Nonnull String issuer) throws EIDASSAMLEngineException {
-     return null;
- }
+    @Nullable
+    @Override
+    public X509Certificate getResponseSignatureCertificate(@Nonnull String issuer) throws EIDASSAMLEngineException {
+        return null;
+    }
 
-	@Override
-	public boolean isAcceptableHttpRequest(IAuthenticationRequest authnRequest, String httpMethod)
-			throws EIDASSAMLEngineException {
-		return true;
-	}
+    @Override
+    public boolean isAcceptableHttpRequest(IAuthenticationRequest authnRequest, String httpMethod)
+            throws EIDASSAMLEngineException {
+        return true;
+    }
 }

@@ -81,7 +81,7 @@ public class EidasMetadata {
     private final Credential spEncryptionCredential;
     private final Credential spSigningCredential;
     private final Set<String> protocolBinding;
-    private final HashMap<String,String> protocolBindingLocation;
+    private final HashMap<String, String> protocolBindingLocation;
     //supported protocol: SAML 2
     private final String spSamlProtocol;
     private final String idpSamlProtocol;
@@ -115,13 +115,13 @@ public class EidasMetadata {
          * 24 hours in seconds
          */
         public static transient final int ONE_DAY_DURATION = 86400;
-        public static transient final String DEFAULT_LANG="en";
+        public static transient final String DEFAULT_LANG = "en";
 
         private transient boolean idpRole = false;
         private transient boolean spRole = false;
         private transient boolean wantAssertionsSigned = true;
         private transient boolean authnRequestsSigned = true;
-        private transient String assertionConsumerUrl="";
+        private transient String assertionConsumerUrl = "";
         private transient String entityId;
         private transient Signature spSignature;
         private transient Signature idpSignature;
@@ -129,11 +129,11 @@ public class EidasMetadata {
         private transient Credential idpSigningCredential;
         private transient Credential spEncryptionCredential;
         private transient Credential spSigningCredential;
-        private transient Set<String> protocolBinding=new HashSet<String>();
-        private transient HashMap<String,String> protocolBindingLocation=new HashMap<String,String>();
+        private transient Set<String> protocolBinding = new HashSet<String>();
+        private transient HashMap<String, String> protocolBindingLocation = new HashMap<String, String>();
         //supported protocol: SAML 2
-        private transient String spSamlProtocol= SAMLConstants.SAML20P_NS;
-        private transient String idpSamlProtocol=SAMLConstants.SAML20P_NS;
+        private transient String spSamlProtocol = SAMLConstants.SAML20P_NS;
+        private transient String idpSamlProtocol = SAMLConstants.SAML20P_NS;
         private transient String emailAddress;
         private transient String assuranceLevel;
         private transient String spType;
@@ -179,7 +179,7 @@ public class EidasMetadata {
             this.validityDuration = copy.validityDuration;
             this.organization = new OrganizationData(copy.organization);
             this.supportContact = new ContactData(copy.supportContact);
-            this.technicalContact  = new ContactData(copy.technicalContact);
+            this.technicalContact = new ContactData(copy.technicalContact);
             supportedAttributes = copy.supportedAttributes;
         }
 
@@ -212,7 +212,7 @@ public class EidasMetadata {
             this.validityDuration = emp.getValidUntil();
             this.organization = new OrganizationData(emp.getOrganization());
             this.supportContact = new ContactData(emp.getSupportContact());
-            this.technicalContact  = new ContactData(emp.getTechnicalContact());
+            this.technicalContact = new ContactData(emp.getTechnicalContact());
             supportedAttributes = emrp.getSupportedAttributes();
         }
 
@@ -646,8 +646,8 @@ public class EidasMetadata {
             return this;
         }
 
-        public Generator protocolBindingLocation(final HashMap<String,String> protocolBindingLocation) {
-            this.protocolBindingLocation = new HashMap<String,String>(protocolBindingLocation);
+        public Generator protocolBindingLocation(final HashMap<String, String> protocolBindingLocation) {
+            this.protocolBindingLocation = new HashMap<String, String>(protocolBindingLocation);
             return this;
         }
 
@@ -697,9 +697,9 @@ public class EidasMetadata {
         }
 
         public Generator validityDuration(final DateTime validityDuration) {
-            if(validityDuration != null) {
+            if (validityDuration != null) {
                 this.validityDuration = validityDuration;
-            }else{
+            } else {
                 DateTime expiryDate = DateTime.now();
                 this.validityDuration = expiryDate.withFieldAdded(DurationFieldType.seconds(), (int) (Generator.ONE_DAY_DURATION));
             }
@@ -742,7 +742,7 @@ public class EidasMetadata {
         this.spEncryptionCredential = generator.spEncryptionCredential;
         this.spSigningCredential = generator.spSigningCredential;
         this.protocolBinding = new HashSet<String>(generator.protocolBinding);
-        this.protocolBindingLocation = new HashMap<String,String>(generator.protocolBindingLocation);
+        this.protocolBindingLocation = new HashMap<String, String>(generator.protocolBindingLocation);
         this.spSamlProtocol = generator.spSamlProtocol;
         this.idpSamlProtocol = generator.idpSamlProtocol;
         this.emailAddress = generator.emailAddress;
@@ -754,7 +754,7 @@ public class EidasMetadata {
         this.validityDuration = generator.validityDuration;
         this.organization = new OrganizationData(generator.organization);
         this.supportContact = new ContactData(generator.supportContact);
-        this.technicalContact  = new ContactData(generator.technicalContact);
+        this.technicalContact = new ContactData(generator.technicalContact);
         this.supportedAttributes = generator.supportedAttributes;
     }
 

@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.VelocityContext;
@@ -25,49 +25,39 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-689.
  */
-public class Velocity689TestCase extends BaseTestCase
-{
-    public Velocity689TestCase(String name)
-    {
+public class Velocity689TestCase extends BaseTestCase {
+    public Velocity689TestCase(String name) {
         super(name);
         //DEBUG = true;
     }
 
-    public void setUpContext(VelocityContext ctx)
-    {
+    public void setUpContext(VelocityContext ctx) {
         ctx.put("foo", new Foo());
     }
 
-    public void testIt()
-    {
+    public void testIt() {
         String template = "$foo.baz, $foo.bar";
         assertEvalEquals("baz, bar", template);
     }
 
-    public static interface HasMethod
-    {
+    public static interface HasMethod {
         String getBar();
     }
 
-    public static interface HasOtherMethod extends HasMethod
-    {
+    public static interface HasOtherMethod extends HasMethod {
         String getBaz();
     }
 
-    public static interface NoMethod extends HasOtherMethod
-    {
+    public static interface NoMethod extends HasOtherMethod {
         // nada!
     }
 
-    private static class Foo implements NoMethod
-    {
-        public String getBar()
-        {
+    private static class Foo implements NoMethod {
+        public String getBar() {
             return "bar";
         }
 
-        public String getBaz()
-        {
+        public String getBaz() {
             return "baz";
         }
     }

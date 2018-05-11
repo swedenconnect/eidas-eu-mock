@@ -116,11 +116,11 @@ public class ColleagueRequestServlet extends AbstractServiceServlet {
                     .validate();
         }
         // Validating the personal attribute list
-       // IPersonalAttributeList persAttrList = PersonalAttributeList.copyOf(authData.getRequestedAttributes());
+        // IPersonalAttributeList persAttrList = PersonalAttributeList.copyOf(authData.getRequestedAttributes());
         //List<PersonalAttribute> attrList = new ArrayList<PersonalAttribute>();
 
         boolean hasEidasAttributes = !Sets.intersection(EidasSpec.REGISTRY.getAttributes(),
-                                                        authData.getRequestedAttributes().getDefinitions()).isEmpty();
+                authData.getRequestedAttributes().getDefinitions()).isEmpty();
         //ImmutablePersonalAttributeSet
 /*        for (PersonalAttribute pa : persAttrList) {
             attrList.add(pa);
@@ -133,7 +133,7 @@ public class ColleagueRequestServlet extends AbstractServiceServlet {
                 .eidasError(EidasErrorKey.COLLEAGUE_REQ_INVALID_DEST_URL)
                 .validate();
         LOG.debug("sessionId is on cookies () or fromURL ", request.isRequestedSessionIdFromCookie(),
-                  request.isRequestedSessionIdFromURL());
+                request.isRequestedSessionIdFromURL());
 
         request.setAttribute(NodeParameterNames.SAML_TOKEN_FAIL.toString(), controllerService.getProxyService()
                 .generateSamlTokenFail(authData, EIDASStatusCode.REQUESTER_URI.toString(), EidasErrorKey.CITIZEN_RESPONSE_MANDATORY, remoteIpAddress));
@@ -141,18 +141,18 @@ public class ColleagueRequestServlet extends AbstractServiceServlet {
         request.setAttribute(EidasParameterKeys.SP_ID.toString(), authData.getProviderName());
         if (authData instanceof IStorkAuthenticationRequest) {
             request.setAttribute(NodeParameterNames.QAA_LEVEL.toString(),
-                                 ((IStorkAuthenticationRequest) authData).getQaa());
+                    ((IStorkAuthenticationRequest) authData).getQaa());
         }
 
         request.setAttribute(NodeParameterNames.LOA_VALUE.toString(),
-                             EidasAttributesUtil.getUserFriendlyLoa(authData.getLevelOfAssurance()));
+                EidasAttributesUtil.getUserFriendlyLoa(authData.getLevelOfAssurance()));
         request.setAttribute(NodeParameterNames.CITIZEN_CONSENT_URL.toString(),
-                             encodeURL(controllerService.getCitizenConsentUrl(),
-                                       response)); // Correct URl redirect cookie implementation
+                encodeURL(controllerService.getCitizenConsentUrl(),
+                        response)); // Correct URl redirect cookie implementation
 
         request.setAttribute(NodeParameterNames.ATTR_LIST.toString(), authData.getRequestedAttributes().entrySet().asList());
         request.setAttribute(NodeParameterNames.REDIRECT_URL.toString(),
-                             encodeURL(redirectUrl, response));// Correct URl redirect cookie implementation
+                encodeURL(redirectUrl, response));// Correct URl redirect cookie implementation
         request.setAttribute(NodeParameterNames.EIDAS_ATTRIBUTES_PARAM.toString(), Boolean.valueOf(hasEidasAttributes));
 
         request.setAttribute(NodeParameterNames.REQUEST_ID.toString(), authData.getId());

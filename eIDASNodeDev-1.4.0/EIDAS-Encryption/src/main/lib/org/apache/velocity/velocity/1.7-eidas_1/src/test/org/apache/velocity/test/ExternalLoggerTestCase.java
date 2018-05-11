@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import junit.framework.Test;
@@ -33,8 +33,7 @@ import org.apache.velocity.runtime.log.LogChute;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ExternalLoggerTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ExternalLoggerTestCase extends TestCase implements LogChute
-{
+public class ExternalLoggerTestCase extends TestCase implements LogChute {
 
     private String logString = null;
     private VelocityEngine ve = null;
@@ -42,38 +41,33 @@ public class ExternalLoggerTestCase extends TestCase implements LogChute
     /**
      * Default constructor.
      */
-    public ExternalLoggerTestCase(String name)
-    {
+    public ExternalLoggerTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         /*
          *  use an alternative logger.  Set it up here and pass it in.
          */
 
         ve = new VelocityEngine();
-        ve.setProperty(VelocityEngine.RUNTIME_LOG_LOGSYSTEM, this );
+        ve.setProperty(VelocityEngine.RUNTIME_LOG_LOGSYSTEM, this);
         ve.init();
     }
 
-    public void init( RuntimeServices rs )
-    {
+    public void init(RuntimeServices rs) {
         // do nothing with it
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(ExternalLoggerTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testExternalLogger ()
-    {
+    public void testExternalLogger() {
         /*
          *  simply log something and see if we get it.
          */
@@ -84,37 +78,34 @@ public class ExternalLoggerTestCase extends TestCase implements LogChute
 
         ve.getLog().warn(testString);
 
-        if (logString == null || !logString.equals(WARN_PREFIX +  testString ) )
-        {
+        if (logString == null || !logString.equals(WARN_PREFIX + testString)) {
             fail("Didn't recieve log message.");
         }
     }
 
-    public void log(int level, String message)
-    {
+    public void log(int level, String message) {
         String out = "";
 
         /*
          * Start with the appropriate prefix
          */
-        switch( level )
-        {
-            case DEBUG_ID :
+        switch (level) {
+            case DEBUG_ID:
                 out = DEBUG_PREFIX;
                 break;
-            case INFO_ID :
+            case INFO_ID:
                 out = INFO_PREFIX;
                 break;
-            case TRACE_ID :
+            case TRACE_ID:
                 out = TRACE_PREFIX;
                 break;
-            case WARN_ID :
+            case WARN_ID:
                 out = WARN_PREFIX;
                 break;
-            case ERROR_ID :
+            case ERROR_ID:
                 out = ERROR_PREFIX;
                 break;
-            default :
+            default:
                 out = INFO_PREFIX;
                 break;
         }
@@ -122,14 +113,12 @@ public class ExternalLoggerTestCase extends TestCase implements LogChute
         logString = out + message;
     }
 
-    public void log(int level, String message, Throwable t)
-    {
+    public void log(int level, String message, Throwable t) {
         // ignore the Throwable, we're not testing this method here
         log(level, message);
     }
 
-    public boolean isLevelEnabled(int level)
-    {
+    public boolean isLevelEnabled(int level) {
         return true;
     }
 }

@@ -280,7 +280,7 @@ public enum AttributeSetPropertiesConverter implements PropertiesConverter<Immut
             builder.put(Suffix.XML_TYPE_LOCAL_PART.computeEntry(id), String.valueOf(xmlType.getLocalPart()));
             builder.put(Suffix.XML_TYPE_NAMESPACE_PREFIX.computeEntry(id), String.valueOf(xmlType.getPrefix()));
             builder.put(Suffix.ATTRIBUTE_VALUE_MARSHALLER.computeEntry(id),
-                        attributeDefinition.getAttributeValueMarshaller().getClass().getName());
+                    attributeDefinition.getAttributeValueMarshaller().getClass().getName());
         }
         return builder.build();
     }

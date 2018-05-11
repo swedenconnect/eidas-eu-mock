@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core;
@@ -32,17 +32,25 @@ import org.opensaml.xml.ElementExtensibleXMLObject;
  */
 public interface StatusDetail extends SAMLObject, ElementExtensibleXMLObject {
 
-    /** Local Name of StatusDetail. */
+    /**
+     * Local Name of StatusDetail.
+     */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "StatusDetail";
 
-    /** Default element name. */
+    /**
+     * Default element name.
+     */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML20P_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             SAMLConstants.SAML20P_PREFIX);
 
-    /** Local name of the XSI type. */
+    /**
+     * Local name of the XSI type.
+     */
     public static final String TYPE_LOCAL_NAME = "StatusDetailType";
 
-    /** QName of the XSI type. */
+    /**
+     * QName of the XSI type.
+     */
     public static final QName TYPE_NAME = new QName(SAMLConstants.SAML20P_NS, TYPE_LOCAL_NAME,
             SAMLConstants.SAML20P_PREFIX);
 }

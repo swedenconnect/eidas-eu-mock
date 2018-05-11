@@ -60,10 +60,7 @@ public enum SpecificCommunicationDefinitionBeanNames {
     /**
      * name of the  HazelcastInstanceInitializer bean
      */
-    EIDAS_HAZELCAST_INSTANCE_INITIALIZER("eidasHazelcastInstanceInitializer"),
-
-
-    ;
+    EIDAS_HAZELCAST_INSTANCE_INITIALIZER("eidasHazelcastInstanceInitializer"),;
 
     /**
      * constant name.
@@ -73,9 +70,10 @@ public enum SpecificCommunicationDefinitionBeanNames {
 
     /**
      * Constructor
+     *
      * @param name name of the bean
      */
-    SpecificCommunicationDefinitionBeanNames(@Nonnull final String name){
+    SpecificCommunicationDefinitionBeanNames(@Nonnull final String name) {
         this.name = name;
     }
 

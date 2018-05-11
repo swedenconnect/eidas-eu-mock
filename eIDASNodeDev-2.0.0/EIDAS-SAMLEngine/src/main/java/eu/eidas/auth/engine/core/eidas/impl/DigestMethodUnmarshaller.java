@@ -31,7 +31,7 @@ public class DigestMethodUnmarshaller extends AbstractSAMLObjectUnmarshaller {
 
 
     protected void processAttribute(XMLObject samlObject, Attr attribute) throws UnmarshallingException {
-        if("Algorithm".equalsIgnoreCase(attribute.getName())) {
+        if ("Algorithm".equalsIgnoreCase(attribute.getName())) {
             final DigestMethod method = (DigestMethod) samlObject;
             method.setAlgorithm(attribute.getValue());
         }

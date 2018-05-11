@@ -16,7 +16,7 @@ package org.apache.velocity.texen;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.File;
@@ -49,8 +49,7 @@ import org.apache.velocity.util.ClassUtils;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @version $Id: Generator.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class Generator
-{
+public class Generator {
     /**
      * Where the texen output will placed.
      */
@@ -66,7 +65,7 @@ public class Generator
      * tools placed in the context.
      */
     private static final String DEFAULT_TEXEN_PROPERTIES =
-        "org/apache/velocity/texen/defaults/texen.properties";
+            "org/apache/velocity/texen/defaults/texen.properties";
 
     /**
      * Default properties used by texen.
@@ -113,8 +112,7 @@ public class Generator
     /**
      * Default constructor.
      */
-    private Generator()
-    {
+    private Generator() {
         setDefaultProps();
     }
 
@@ -123,17 +121,16 @@ public class Generator
      *
      * @return Generator generator used in the control context.
      */
-    public static Generator getInstance()
-    {
+    public static Generator getInstance() {
         return instance;
     }
 
     /**
      * Set the velocity engine.
+     *
      * @param ve
      */
-    public void setVelocityEngine(VelocityEngine ve)
-    {
+    public void setVelocityEngine(VelocityEngine ve) {
         this.ve = ve;
     }
 
@@ -145,26 +142,18 @@ public class Generator
      *
      * @param propFile properties used to help populate the control context.
      */
-    public Generator (String propFile)
-    {
-        try
-        {
+    public Generator(String propFile) {
+        try {
             BufferedInputStream bi = null;
-            try
-            {
-                bi = new BufferedInputStream (new FileInputStream (propFile));
-                props.load (bi);
-            }
-            finally
-            {
-                if (bi != null)
-                {
+            try {
+                bi = new BufferedInputStream(new FileInputStream(propFile));
+                props.load(bi);
+            } finally {
+                if (bi != null) {
                     bi.close();
                 }
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             System.err.println("Could not load " + propFile
                     + ", falling back to defaults. ("
                     + e.getMessage() + ")");
@@ -181,37 +170,28 @@ public class Generator
      *
      * @param props properties object to help populate the control context.
      */
-    public Generator (Properties props)
-    {
-        this.props = (Properties)props.clone();
+    public Generator(Properties props) {
+        this.props = (Properties) props.clone();
     }
 
     /**
      * Set default properties.
      */
-    protected void setDefaultProps()
-    {
+    protected void setDefaultProps() {
         ClassLoader classLoader = VelocityEngine.class.getClassLoader();
-        try
-        {
+        try {
             InputStream inputStream = null;
-            try
-            {
+            try {
                 inputStream = classLoader.getResourceAsStream(
-                    DEFAULT_TEXEN_PROPERTIES);
+                        DEFAULT_TEXEN_PROPERTIES);
 
-                props.load( inputStream );
-            }
-            finally
-            {
-                if (inputStream != null)
-                {
+                props.load(inputStream);
+            } finally {
+                if (inputStream != null) {
                     inputStream.close();
                 }
             }
-        }
-        catch (IOException ioe)
-        {
+        } catch (IOException ioe) {
             System.err.println("Cannot get default properties: " + ioe.getMessage());
         }
     }
@@ -222,8 +202,7 @@ public class Generator
      *
      * @param templatePath template path for velocity templates.
      */
-    public void setTemplatePath(String templatePath)
-    {
+    public void setTemplatePath(String templatePath) {
         props.put(TEMPLATE_PATH, templatePath);
     }
 
@@ -232,18 +211,17 @@ public class Generator
      *
      * @return String template path for velocity templates.
      */
-    public String getTemplatePath()
-    {
+    public String getTemplatePath() {
         return props.getProperty(TEMPLATE_PATH);
     }
 
     /**
      * Set the output path for the generated
      * output.
+     *
      * @param outputPath
      */
-    public void setOutputPath(String outputPath)
-    {
+    public void setOutputPath(String outputPath) {
         props.put(OUTPUT_PATH, outputPath);
     }
 
@@ -253,34 +231,33 @@ public class Generator
      *
      * @return String output path for texen output.
      */
-    public String getOutputPath()
-    {
+    public String getOutputPath() {
         return props.getProperty(OUTPUT_PATH);
     }
 
     /**
      * Set the output encoding.
+     *
      * @param outputEncoding
      */
-    public void setOutputEncoding(String outputEncoding)
-    {
+    public void setOutputEncoding(String outputEncoding) {
         this.outputEncoding = outputEncoding;
     }
 
     /**
      * Set the input (template) encoding.
+     *
      * @param inputEncoding
      */
-    public void setInputEncoding(String inputEncoding)
-    {
+    public void setInputEncoding(String inputEncoding) {
         this.inputEncoding = inputEncoding;
     }
 
     /**
      * Returns a writer, based on encoding and path.
      *
-     * @param path      path to the output file
-     * @param encoding  output encoding
+     * @param path     path to the output file
+     * @param encoding output encoding
      * @return A Writer for this generator.
      * @throws Exception
      */
@@ -288,9 +265,7 @@ public class Generator
         Writer writer;
         if (encoding == null || encoding.length() == 0 || encoding.equals("8859-1") || encoding.equals("8859_1")) {
             writer = new FileWriter(path);
-        }
-        else
-        {
+        } else {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), encoding));
         }
         return writer;
@@ -299,8 +274,8 @@ public class Generator
     /**
      * Returns a template, based on encoding and path.
      *
-     * @param templateName  name of the template
-     * @param encoding      template encoding
+     * @param templateName name of the template
+     * @param encoding     template encoding
      * @return A Template.
      * @throws Exception
      */
@@ -308,8 +283,7 @@ public class Generator
         Template template;
         if (encoding == null || encoding.length() == 0 || encoding.equals("8859-1") || encoding.equals("8859_1")) {
             template = ve.getTemplate(templateName);
-        }
-        else {
+        } else {
             template = ve.getTemplate(templateName, encoding);
         }
         return template;
@@ -321,13 +295,12 @@ public class Generator
      * returned as a string object.  Otherwise an empty string is returned.
      *
      * @param inputTemplate input template
-     * @param outputFile output file
+     * @param outputFile    output file
      * @return The parsed file.
      * @throws Exception
      */
-    public String parse (String inputTemplate, String outputFile)
-        throws Exception
-    {
+    public String parse(String inputTemplate, String outputFile)
+            throws Exception {
         return parse(inputTemplate, outputFile, null, null);
     }
 
@@ -338,84 +311,76 @@ public class Generator
      * You can add objects to the context with the objs Hashtable.
      *
      * @param inputTemplate input template
-     * @param outputFile output file
-     * @param objectID id for object to be placed in the control context
-     * @param object object to be placed in the context
+     * @param outputFile    output file
+     * @param objectID      id for object to be placed in the control context
+     * @param object        object to be placed in the context
      * @return String generated output from velocity
      * @throws Exception
      */
-    public String parse (String inputTemplate,
-                         String outputFile,
-                         String objectID,
-                         Object object)
-        throws Exception
-    {
+    public String parse(String inputTemplate,
+                        String outputFile,
+                        String objectID,
+                        Object object)
+            throws Exception {
         return parse(inputTemplate, null, outputFile, null, objectID, object);
     }
+
     /**
      * Parse an input and write the output to an output file.  If the
      * output file parameter is null or an empty string the result is
      * returned as a string object.  Otherwise an empty string is returned.
      * You can add objects to the context with the objs Hashtable.
      *
-     * @param inputTemplate input template
-     * @param inputEncoding template encoding
-     * @param outputFile output file
+     * @param inputTemplate  input template
+     * @param inputEncoding  template encoding
+     * @param outputFile     output file
      * @param outputEncoding outputEncoding encoding of output file
-     * @param objectID id for object to be placed in the control context
-     * @param object object to be placed in the context
+     * @param objectID       id for object to be placed in the control context
+     * @param object         object to be placed in the context
      * @return String generated output from velocity
      * @throws Exception
      */
-    public String parse (String inputTemplate,
-                         String inputEncoding,
-                         String outputFile,
-                         String outputEncoding,
-                         String objectID,
-                         Object object)
-        throws Exception
-    {
-        if (objectID != null && object != null)
-        {
+    public String parse(String inputTemplate,
+                        String inputEncoding,
+                        String outputFile,
+                        String outputEncoding,
+                        String objectID,
+                        Object object)
+            throws Exception {
+        if (objectID != null && object != null) {
             controlContext.put(objectID, object);
         }
 
         Template template = getTemplate(inputTemplate, inputEncoding != null ? inputEncoding : this.inputEncoding);
 
-        if (outputFile == null || outputFile.equals(""))
-        {
+        if (outputFile == null || outputFile.equals("")) {
             StringWriter sw = new StringWriter();
-            template.merge (controlContext,sw);
+            template.merge(controlContext, sw);
             return sw.toString();
-        }
-        else
-        {
+        } else {
             Writer writer = null;
 
-            if (writers.get(outputFile) == null)
-            {
+            if (writers.get(outputFile) == null) {
                 /*
                  * We have never seen this file before so create
                  * a new file writer for it.
                  */
                 writer = getWriter(
-                            getOutputPath() + File.separator + outputFile,
-                            outputEncoding != null ? outputEncoding : this.outputEncoding
-                         );
+                        getOutputPath() + File.separator + outputFile,
+                        outputEncoding != null ? outputEncoding : this.outputEncoding
+                );
 
                 /*
                  * Place the file writer in our collection
                  * of file writers.
                  */
                 writers.put(outputFile, writer);
-            }
-            else
-            {
+            } else {
                 writer = (Writer) writers.get(outputFile);
             }
 
-            VelocityContext vc = new VelocityContext( controlContext );
-            template.merge (vc,writer);
+            VelocityContext vc = new VelocityContext(controlContext);
+            template.merge(vc, writer);
 
             // commented because it is closed in shutdown();
             //fw.close();
@@ -429,20 +394,19 @@ public class Generator
      * context. This is the starting point in texen.
      *
      * @param controlTemplate control template
-     * @param controlContext control context
+     * @param controlContext  control context
      * @return String generated output
      * @throws Exception
      */
-    public String parse (String controlTemplate, Context controlContext)
-        throws Exception
-    {
+    public String parse(String controlTemplate, Context controlContext)
+            throws Exception {
         this.controlContext = controlContext;
         fillContextDefaults(this.controlContext);
         fillContextProperties(this.controlContext);
 
         Template template = getTemplate(controlTemplate, inputEncoding);
         StringWriter sw = new StringWriter();
-        template.merge (controlContext,sw);
+        template.merge(controlContext, sw);
 
         return sw.toString();
     }
@@ -456,9 +420,8 @@ public class Generator
      * @param objs objects to place in the control context
      * @return Context context filled with objects
      */
-    protected Context getContext (Hashtable objs)
-    {
-        fillContextHash (controlContext,objs);
+    protected Context getContext(Hashtable objs) {
+        fillContextHash(controlContext, objs);
         return controlContext;
     }
 
@@ -466,15 +429,13 @@ public class Generator
      * Add all the contents of a Hashtable to the context.
      *
      * @param context context to fill with objects
-     * @param objs source of objects
+     * @param objs    source of objects
      */
-    protected void fillContextHash (Context context, Hashtable objs)
-    {
+    protected void fillContextHash(Context context, Hashtable objs) {
         Enumeration enumeration = objs.keys();
-        while (enumeration.hasMoreElements())
-        {
+        while (enumeration.hasMoreElements()) {
             String key = enumeration.nextElement().toString();
-            context.put (key, objs.get(key));
+            context.put(key, objs.get(key));
         }
     }
 
@@ -483,10 +444,9 @@ public class Generator
      *
      * @param context control context to fill with default values.
      */
-    protected void fillContextDefaults (Context context)
-    {
-        context.put ("generator", instance);
-        context.put ("outputDirectory", getOutputPath());
+    protected void fillContextDefaults(Context context) {
+        context.put("generator", instance);
+        context.put("outputDirectory", getOutputPath());
     }
 
     /**
@@ -496,27 +456,21 @@ public class Generator
      *                that are specified in the default.properties
      *                file
      */
-    protected void fillContextProperties (Context context)
-    {
+    protected void fillContextProperties(Context context) {
         Enumeration enumeration = props.propertyNames();
 
-        while (enumeration.hasMoreElements())
-        {
+        while (enumeration.hasMoreElements()) {
             String nm = (String) enumeration.nextElement();
-            if (nm.startsWith ("context.objects."))
-            {
+            if (nm.startsWith("context.objects.")) {
 
-                String contextObj = props.getProperty (nm);
-                int colon = nm.lastIndexOf ('.');
-                String contextName = nm.substring (colon+1);
+                String contextObj = props.getProperty(nm);
+                int colon = nm.lastIndexOf('.');
+                String contextName = nm.substring(colon + 1);
 
-                try
-                {
+                try {
                     Object o = ClassUtils.getNewInstance(contextObj);
-                    context.put (contextName,o);
-                }
-                catch (Exception e)
-                {
+                    context.put(contextName, o);
+                } catch (Exception e) {
                     e.printStackTrace();
                     //TO DO: Log Something Here
                 }
@@ -529,29 +483,21 @@ public class Generator
      * this is simply flushing and closing the file
      * writers that we have been holding on to.
      */
-    public void shutdown()
-    {
+    public void shutdown() {
         Iterator iterator = writers.values().iterator();
 
-        while(iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             Writer writer = (Writer) iterator.next();
 
-            try
-            {
+            try {
                 writer.flush();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 /* do nothing */
             }
 
-            try
-            {
+            try {
                 writer.close();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 /* do nothing */
             }
         }

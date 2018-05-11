@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -35,61 +35,87 @@ import org.opensaml.xacml.policy.TargetType;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 
-/** Concrete implementation of {@link PolicySetType}. */
+/**
+ * Concrete implementation of {@link PolicySetType}.
+ */
 public class PolicySetTypeImpl extends AbstractXACMLObject implements PolicySetType {
 
-    /** Policy set description. */
+    /**
+     * Policy set description.
+     */
     private DescriptionType description;
 
-    /** Policy set defaults. */
+    /**
+     * Policy set defaults.
+     */
     private DefaultsType policySetDefaults;
 
-    /** Policy set target. */
+    /**
+     * Policy set target.
+     */
     private TargetType target;
 
-    /** Elements within the choice group. */
+    /**
+     * Elements within the choice group.
+     */
     private IndexedXMLObjectChildrenList<? extends XACMLObject> choiceGroup;
 
-    /** Policy obligations. */
+    /**
+     * Policy obligations.
+     */
     private ObligationsType obligations;
 
-    /** ID of this policy set. */
+    /**
+     * ID of this policy set.
+     */
     private String policySetId;
 
-    /** Version of this policy set. */
+    /**
+     * Version of this policy set.
+     */
     private String version;
 
-    /** Policy combinging algorithm ID. */
+    /**
+     * Policy combinging algorithm ID.
+     */
     private String combiningAlgo;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected PolicySetTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         choiceGroup = new IndexedXMLObjectChildrenList<XACMLObject>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<CombinerParametersType> getCombinerParameters() {
         return (List<CombinerParametersType>) choiceGroup.subList(CombinerParametersType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DescriptionType getDescription() {
         return description;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ObligationsType getObligations() {
         return obligations;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
         if (description != null) {
@@ -113,99 +139,137 @@ public class PolicySetTypeImpl extends AbstractXACMLObject implements PolicySetT
         return children;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicyType> getPolicies() {
         return (List<PolicyType>) choiceGroup.subList(PolicyType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicyCombinerParametersType> getPolicyCombinerParameters() {
         return (List<PolicyCombinerParametersType>) choiceGroup
                 .subList(PolicyCombinerParametersType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getPolicyCombiningAlgoId() {
         return combiningAlgo;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<IdReferenceType> getPolicyIdReferences() {
         return (List<IdReferenceType>) choiceGroup.subList(IdReferenceType.POLICY_ID_REFERENCE_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicySetCombinerParametersType> getPolicySetCombinerParameters() {
         return (List<PolicySetCombinerParametersType>) choiceGroup
                 .subList(PolicySetCombinerParametersType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DefaultsType getPolicySetDefaults() {
         return policySetDefaults;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getPolicySetId() {
         return policySetId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<IdReferenceType> getPolicySetIdReferences() {
         return (List<IdReferenceType>) choiceGroup.subList(IdReferenceType.POLICY_SET_ID_REFERENCE_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicySetType> getPolicySets() {
         return (List<PolicySetType>) choiceGroup.subList(PolicySetType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public TargetType getTarget() {
         return target;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getVersion() {
         return version;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setDescription(DescriptionType newDescription) {
         this.description = prepareForAssignment(this.description, newDescription);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setObligations(ObligationsType newObligations) {
         this.obligations = prepareForAssignment(this.obligations, newObligations);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPolicyCombiningAlgoId(String id) {
         combiningAlgo = prepareForAssignment(combiningAlgo, id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPolicySetDefaults(DefaultsType defaults) {
         policySetDefaults = prepareForAssignment(policySetDefaults, defaults);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPolicySetId(String id) {
         policySetId = prepareForAssignment(policySetId, id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setTarget(TargetType newTarget) {
         this.target = prepareForAssignment(this.target, newTarget);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setVersion(String newVersion) {
         this.version = prepareForAssignment(this.version, newVersion);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public IndexedXMLObjectChildrenList<XACMLObject> getPolicyChoiceGroup() {
         return (IndexedXMLObjectChildrenList<XACMLObject>) choiceGroup;
     }

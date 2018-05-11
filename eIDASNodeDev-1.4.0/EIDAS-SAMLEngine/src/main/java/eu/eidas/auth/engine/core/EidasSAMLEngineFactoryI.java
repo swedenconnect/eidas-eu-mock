@@ -7,13 +7,14 @@ import eu.eidas.auth.engine.ProtocolEngineI;
 
 /**
  * provides SAMLEngine instances
+ *
  * @deprecated use {@link ProtocolEngine#getDefaultSamlEngine(String)} instead.
  */
 @Deprecated
 public interface EidasSAMLEngineFactoryI {
 
     /**
-     * @param name the name of the engine
+     * @param name  the name of the engine
      * @param props additional properties used for initializing the engine
      * @return
      */

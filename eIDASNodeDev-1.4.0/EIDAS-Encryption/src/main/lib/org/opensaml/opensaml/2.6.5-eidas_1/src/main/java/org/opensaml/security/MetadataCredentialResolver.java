@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -52,7 +52,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A credential resolver capable of resolving credentials from SAML 2 metadata;
- * 
+ * <p>
  * The instance of {@link CriteriaSet} passed to {@link #resolve(CriteriaSet)} and {@link #resolveSingle(CriteriaSet)}
  * must minimally contain 2 criteria: {@link EntityIDCriteria} and {@link MetadataCriteria}. The values for
  * {@link EntityIDCriteria#getEntityID()} and {@link MetadataCriteria#getRole()} are mandatory. If the protocol value
@@ -60,33 +60,42 @@ import org.slf4j.LoggerFactory;
  * roles, regardless of protocol support. Specification of a {@link UsageCriteria} is optional. If usage criteria is
  * absent from the criteria set, the effective value {@link UsageType#UNSPECIFIED} will be used for credential
  * resolution.
- * 
+ * <p>
  * This credential resolver will cache the resolved the credentials in a memory-sensitive cache. If the metadata
  * provider is an {@link ObservableMetadataProvider} this resolver will also clear its cache when the underlying
  * metadata changes.
  */
 public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredentialResolver {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(MetadataCredentialResolver.class);
 
-    /** Metadata provider from which to fetch the credentials. */
+    /**
+     * Metadata provider from which to fetch the credentials.
+     */
     private MetadataProvider metadata;
 
-    /** Cache of resolved credentials. [MetadataCacheKey, Credentials] */
+    /**
+     * Cache of resolved credentials. [MetadataCacheKey, Credentials]
+     */
     private Map<MetadataCacheKey, SoftReference<Collection<Credential>>> cache;
 
-    /** Credential resolver used to resolve credentials from role descriptor KeyInfo elements. */
+    /**
+     * Credential resolver used to resolve credentials from role descriptor KeyInfo elements.
+     */
     private KeyInfoCredentialResolver keyInfoCredentialResolver;
-    
-    /** Lock used to synchronize access to the credential cache. */
+
+    /**
+     * Lock used to synchronize access to the credential cache.
+     */
     private ReadWriteLock rwlock;
 
     /**
      * Constructor.
-     * 
+     *
      * @param metadataProvider provider of the metadata
-     * 
      * @throws IllegalArgumentException thrown if the supplied provider is null
      */
     public MetadataCredentialResolver(MetadataProvider metadataProvider) {
@@ -100,7 +109,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
         keyInfoCredentialResolver = Configuration.getGlobalSecurityConfiguration()
                 .getDefaultKeyInfoCredentialResolver();
-        
+
         rwlock = new ReentrantReadWriteLock();
 
         if (metadata instanceof ObservableMetadataProvider) {
@@ -109,10 +118,10 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
         }
 
     }
-    
+
     /**
      * Get the metadata provider instance used by this resolver.
-     * 
+     *
      * @return the resolver's metadata provider instance
      */
     public MetadataProvider getMetadataProvider() {
@@ -121,7 +130,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Get the KeyInfo credential resolver used by this metadata resolver to handle KeyInfo elements.
-     * 
+     *
      * @return KeyInfo credential resolver
      */
     public KeyInfoCredentialResolver getKeyInfoCredentialResolver() {
@@ -130,23 +139,25 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Set the KeyInfo credential resolver used by this metadata resolver to handle KeyInfo elements.
-     * 
+     *
      * @param keyInfoResolver the new KeyInfoCredentialResolver to use
      */
     public void setKeyInfoCredentialResolver(KeyInfoCredentialResolver keyInfoResolver) {
         keyInfoCredentialResolver = keyInfoResolver;
     }
-    
+
     /**
      * Get the lock instance used to synchronize access to the credential cache.
-     * 
+     *
      * @return a read-write lock instance
      */
     protected ReadWriteLock getReadWriteLock() {
         return rwlock;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected Iterable<Credential> resolveFromSource(CriteriaSet criteriaSet) throws SecurityException {
 
         checkCriteriaRequirements(criteriaSet);
@@ -162,7 +173,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
         } else {
             usage = UsageType.UNSPECIFIED;
         }
-        
+
         // See Jira issue SIDP-229.
         log.debug("Forcing on-demand metadata provider refresh if necessary");
         try {
@@ -184,7 +195,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Check that all necessary credential criteria are available.
-     * 
+     *
      * @param criteriaSet the credential set to evaluate
      */
     protected void checkCriteriaRequirements(CriteriaSet criteriaSet) {
@@ -206,9 +217,8 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Retrieves pre-resolved credentials from the cache.
-     * 
+     *
      * @param cacheKey the key to the metadata cache
-     * 
      * @return the collection of cached credentials or null
      */
     protected Collection<Credential> retrieveFromCache(MetadataCacheKey cacheKey) {
@@ -235,16 +245,14 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Retrieves credentials from the provided metadata.
-     * 
+     *
      * @param entityID entityID of the credential owner
-     * @param role role in which the entity is operating
+     * @param role     role in which the entity is operating
      * @param protocol protocol over which the entity is operating (may be null)
-     * @param usage intended usage of resolved credentials
-     * 
+     * @param usage    intended usage of resolved credentials
      * @return the resolved credentials or null
-     * 
      * @throws SecurityException thrown if the key, certificate, or CRL information is represented in an unsupported
-     *             format
+     *                           format
      */
     protected Collection<Credential> retrieveFromMetadata(String entityID, QName role, String protocol, UsageType usage)
             throws SecurityException {
@@ -253,15 +261,15 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
         Collection<Credential> credentials = new HashSet<Credential>(3);
 
         List<RoleDescriptor> roleDescriptors = getRoleDescriptors(entityID, role, protocol);
-        if(roleDescriptors == null || roleDescriptors.isEmpty()){
+        if (roleDescriptors == null || roleDescriptors.isEmpty()) {
             return credentials;
         }
-            
+
         for (RoleDescriptor roleDescriptor : roleDescriptors) {
             List<KeyDescriptor> keyDescriptors = roleDescriptor.getKeyDescriptors();
-            if(keyDescriptors == null || keyDescriptors.isEmpty()){
+            if (keyDescriptors == null || keyDescriptors.isEmpty()) {
                 return credentials;
-            }            
+            }
             for (KeyDescriptor keyDescriptor : keyDescriptors) {
                 UsageType mdUsage = keyDescriptor.getUse();
                 if (mdUsage == null) {
@@ -273,7 +281,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
                         critSet.add(new KeyInfoCriteria(keyDescriptor.getKeyInfo()));
 
                         Iterable<Credential> creds = getKeyInfoCredentialResolver().resolve(critSet);
-                        if(credentials == null){
+                        if (credentials == null) {
                             continue;
                         }
                         for (Credential cred : creds) {
@@ -296,7 +304,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Match usage enum type values from metadata KeyDescriptor and from credential criteria.
-     * 
+     *
      * @param metadataUsage the value from the 'use' attribute of a metadata KeyDescriptor element
      * @param criteriaUsage the value from credential criteria
      * @return true if the two usage specifiers match for purposes of resolving credentials, false otherwise
@@ -310,9 +318,9 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Get the list of metadata role descriptors which match the given entityID, role and protocol.
-     * 
+     *
      * @param entityID entity ID of the credential owner
-     * @param role role in which the entity is operating
+     * @param role     role in which the entity is operating
      * @param protocol protocol over which the entity is operating (may be null)
      * @return a list of role descriptors matching the given parameters, or null
      * @throws SecurityException thrown if there is an error retrieving role descriptors from the metadata provider
@@ -321,8 +329,8 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
             throws SecurityException {
         try {
             if (log.isDebugEnabled()) {
-                log.debug("Retrieving metadata for entity '{}' in role '{}' for protocol '{}'", 
-                        new Object[] {entityID, role, protocol});
+                log.debug("Retrieving metadata for entity '{}' in role '{}' for protocol '{}'",
+                        new Object[]{entityID, role, protocol});
             }
 
             if (DatatypeHelper.isEmpty(protocol)) {
@@ -344,8 +352,8 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
 
     /**
      * Adds resolved credentials to the cache.
-     * 
-     * @param cacheKey the key for caching the credentials
+     *
+     * @param cacheKey    the key for caching the credentials
      * @param credentials collection of credentials to cache
      */
     protected void cacheCredentials(MetadataCacheKey cacheKey, Collection<Credential> credentials) {
@@ -357,7 +365,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
             log.debug("Added new credential collection to cache with key: {}", cacheKey);
         } finally {
             writeLock.unlock();
-            log.trace("Write lock over cache released"); 
+            log.trace("Write lock over cache released");
         }
     }
 
@@ -366,25 +374,33 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
      */
     protected class MetadataCacheKey {
 
-        /** Entity ID of credential owner. */
+        /**
+         * Entity ID of credential owner.
+         */
         private String id;
 
-        /** Role in which the entity is operating. */
+        /**
+         * Role in which the entity is operating.
+         */
         private QName role;
 
-        /** Protocol over which the entity is operating (may be null). */
+        /**
+         * Protocol over which the entity is operating (may be null).
+         */
         private String protocol;
 
-        /** Intended usage of the resolved credentials. */
+        /**
+         * Intended usage of the resolved credentials.
+         */
         private UsageType usage;
 
         /**
          * Constructor.
-         * 
-         * @param entityID entity ID of the credential owner
-         * @param entityRole role in which the entity is operating
+         *
+         * @param entityID       entity ID of the credential owner
+         * @param entityRole     role in which the entity is operating
          * @param entityProtocol protocol over which the entity is operating (may be null)
-         * @param entityUsage usage of the resolved credentials
+         * @param entityUsage    usage of the resolved credentials
          */
         protected MetadataCacheKey(String entityID, QName entityRole, String entityProtocol, UsageType entityUsage) {
             if (entityID == null) {
@@ -402,7 +418,9 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
             usage = entityUsage;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public boolean equals(Object obj) {
             if (obj == this) {
                 return true;
@@ -426,7 +444,9 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
             return true;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public int hashCode() {
             int result = 17;
             result = 37 * result + id.hashCode();
@@ -438,7 +458,9 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
             return result;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public String toString() {
             return String.format("[%s,%s,%s,%s]", id, role, protocol, usage);
         }
@@ -450,7 +472,9 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
      */
     protected class MetadataProviderObserver implements ObservableMetadataProvider.Observer {
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void onEvent(MetadataProvider provider) {
             Lock writeLock = getReadWriteLock().writeLock();
             writeLock.lock();
@@ -460,7 +484,7 @@ public class MetadataCredentialResolver extends AbstractCriteriaFilteringCredent
                 log.debug("Credential cache cleared");
             } finally {
                 writeLock.unlock();
-                log.trace("Write lock over cache released"); 
+                log.trace("Write lock over cache released");
             }
         }
     }

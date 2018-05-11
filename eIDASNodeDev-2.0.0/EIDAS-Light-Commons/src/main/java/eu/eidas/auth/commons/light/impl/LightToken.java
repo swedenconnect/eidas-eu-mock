@@ -35,7 +35,7 @@ import java.io.Serializable;
 /**
  * This class is implementing the key of data exchange between EidasNode Core and MS-Specific parts.
  * It is encapsulating a collection of information provided by the originator party.
- *
+ * <p>
  * This is not the class for the HTTP session, check {@link eu.eidas.auth.commons.tx.BinaryLightToken}.
  *
  * @since 2.0.0

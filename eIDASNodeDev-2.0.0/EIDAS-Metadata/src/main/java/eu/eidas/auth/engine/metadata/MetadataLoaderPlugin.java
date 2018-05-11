@@ -23,11 +23,10 @@ import java.util.List;
  * EIDAS metadata loader interface. The Loader is providing metadata fetching capabilities additional/different than the
  * HTTP/HTTPS client fetcher. Mainly used for testing, but it can help connecting to a centralized metadata provider
  * infrastructure, so no direct HTTP/HTTPS connections needed to get remote metadata.
- *
  */
 public interface MetadataLoaderPlugin {
 
-    void addListenerContentChanged( IStaticMetadataChangeListener listener);
+    void addListenerContentChanged(IStaticMetadataChangeListener listener);
 
     List<EntityDescriptorContainer> getEntityDescriptors() throws EIDASMetadataException;
 

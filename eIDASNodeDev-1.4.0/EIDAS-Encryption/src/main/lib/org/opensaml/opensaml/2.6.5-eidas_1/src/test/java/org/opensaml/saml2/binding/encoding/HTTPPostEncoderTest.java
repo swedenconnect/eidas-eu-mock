@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -38,10 +38,14 @@ import org.springframework.mock.web.MockHttpServletResponse;
  */
 public class HTTPPostEncoderTest extends BaseTestCase {
 
-    /** Velocity template engine. */
+    /**
+     * Velocity template engine.
+     */
     private VelocityEngine velocityEngine;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public void setUp() throws Exception {
         super.setUp();
@@ -57,7 +61,7 @@ public class HTTPPostEncoderTest extends BaseTestCase {
 
     /**
      * Tests encoding a SAML message to an servlet response.
-     * 
+     *
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -88,7 +92,7 @@ public class HTTPPostEncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
@@ -96,7 +100,7 @@ public class HTTPPostEncoderTest extends BaseTestCase {
         messageContext.setRelayState("relay");
 
         HTTPPostEncoder encoder = new HTTPPostEncoder(velocityEngine,
-        "/templates/saml2-post-binding.vm");
+                "/templates/saml2-post-binding.vm");
         encoder.encode(messageContext);
 
         assertEquals("Unexpected content type", "text/html", response.getContentType());
@@ -122,7 +126,7 @@ public class HTTPPostEncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
@@ -130,7 +134,7 @@ public class HTTPPostEncoderTest extends BaseTestCase {
         messageContext.setRelayState("relay");
 
         HTTPPostEncoder encoder = new HTTPPostEncoder(velocityEngine,
-        "/templates/saml2-post-binding.vm");
+                "/templates/saml2-post-binding.vm");
         encoder.encode(messageContext);
 
         assertEquals("Unexpected content type", "text/html", response.getContentType());

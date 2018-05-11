@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,84 +34,116 @@ import org.opensaml.xml.XMLObject;
  */
 public class SubjectConfirmationImpl extends AbstractSAMLObject implements SubjectConfirmation {
 
-    /** BaseID child element. */
+    /**
+     * BaseID child element.
+     */
     private BaseID baseID;
 
-    /** NameID child element. */
+    /**
+     * NameID child element.
+     */
     private NameID nameID;
 
-    /** EncryptedID child element. */
+    /**
+     * EncryptedID child element.
+     */
     private EncryptedID encryptedID;
-    
-    /** SubjectConfirmationData of the Confirmation. */
+
+    /**
+     * SubjectConfirmationData of the Confirmation.
+     */
     private SubjectConfirmationData subjectConfirmationData;
 
-    /** Method of the Confirmation. */
+    /**
+     * Method of the Confirmation.
+     */
     private String method;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected SubjectConfirmationImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public BaseID getBaseID() {
         return baseID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setBaseID(BaseID newBaseID) {
         baseID = prepareForAssignment(baseID, newBaseID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public NameID getNameID() {
         return nameID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNameID(NameID newNameID) {
         nameID = prepareForAssignment(nameID, newNameID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EncryptedID getEncryptedID() {
         return this.encryptedID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setEncryptedID(EncryptedID newEncryptedID) {
         this.encryptedID = prepareForAssignment(this.encryptedID, newEncryptedID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SubjectConfirmationData getSubjectConfirmationData() {
         return subjectConfirmationData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubjectConfirmationData(SubjectConfirmationData newSubjectConfirmationData) {
         this.subjectConfirmationData = prepareForAssignment(this.subjectConfirmationData, newSubjectConfirmationData);
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getMethod() {
         return method;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setMethod(String newMethod) {
         this.method = prepareForAssignment(this.method, newMethod);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
@@ -122,7 +154,7 @@ public class SubjectConfirmationImpl extends AbstractSAMLObject implements Subje
         if (nameID != null) {
             children.add(nameID);
         }
-        
+
         if (encryptedID != null) {
             children.add(encryptedID);
         }

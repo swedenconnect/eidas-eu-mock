@@ -74,7 +74,7 @@ public final class SpecificProxyServiceResponse extends AbstractNodeServlet {
      */
     private static final long serialVersionUID = 4539991356226362922L;
 
-    private Collection<AttributeDefinition<?>> REGISTRY; 
+    private Collection<AttributeDefinition<?>> REGISTRY;
 
     @Override
     protected Logger getLogger() {
@@ -88,20 +88,20 @@ public final class SpecificProxyServiceResponse extends AbstractNodeServlet {
 
     @Override
     public void init() throws ServletException {
-        REGISTRY=retrieveAttributes();
+        REGISTRY = retrieveAttributes();
     }
 
-	private Collection<AttributeDefinition<?>> retrieveAttributes() {
-		ServiceControllerService controllerService = (ServiceControllerService) getApplicationContext().getBean(
+    private Collection<AttributeDefinition<?>> retrieveAttributes() {
+        ServiceControllerService controllerService = (ServiceControllerService) getApplicationContext().getBean(
                 NodeBeanNames.EIDAS_SERVICE_CONTROLLER.toString());
 
-    	return ImmutableSortedSet.copyOf(controllerService.getProxyService()
-        		.getSamlService()
-        		.getSamlEngine()
-        		.getProtocolProcessor()
-        		.getAllSupportedAttributes());
-	}
-    
+        return ImmutableSortedSet.copyOf(controllerService.getProxyService()
+                .getSamlService()
+                .getSamlEngine()
+                .getProtocolProcessor()
+                .getAllSupportedAttributes());
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -118,7 +118,7 @@ public final class SpecificProxyServiceResponse extends AbstractNodeServlet {
      * Receives/processes the {@link ILightResponse} from the MS Specific Proxy Service
      * then sets the internal variables used by the redirection JSP.
      *
-     * @param request the servlet request
+     * @param request  the servlet request
      * @param response the servlet response
      * @throws IOException
      * @throws ServletException
@@ -175,7 +175,7 @@ public final class SpecificProxyServiceResponse extends AbstractNodeServlet {
             // send the error back:
             if (LOG.isErrorEnabled()) {
                 LOG.error("Could not correlate any eIDAS request to the received specific IdP response: "
-                                  + lightResponse);
+                        + lightResponse);
             }
             throw new ServletException(
                     "Could not correlate specific response ID: " + lightResponse.getId() + " to any eIDAS request");
@@ -197,14 +197,14 @@ public final class SpecificProxyServiceResponse extends AbstractNodeServlet {
             // send the error back:
             if (LOG.isErrorEnabled()) {
                 LOG.error("Received failed authentication from Specific Idp: errorMessage=\"" + errorMessage
-                                  + "\", statusCode=\"" + statusCode + "\", subCode=\"" + errorSubCode + "\"");
+                        + "\", statusCode=\"" + statusCode + "\", subCode=\"" + errorSubCode + "\"");
             }
             retVal = NodeViewNames.EIDAS_CONNECTOR_REDIRECT.toString();
 
             getLogger().trace("Generate SAMLTokenFail because of authentication failure received from specific IdP");
             String samlTokenFail = controllerService.getProxyService()
                     .generateSamlTokenFail(originalRequest, statusCode, null, errorSubCode, errorMessage,
-                                           webRequest.getRemoteIpAddress(), false);
+                            webRequest.getRemoteIpAddress(), false);
 
             request.setAttribute(NodeParameterNames.SAML_TOKEN_FAIL.toString(), samlTokenFail);
         } else {
@@ -233,11 +233,11 @@ public final class SpecificProxyServiceResponse extends AbstractNodeServlet {
                 }
             }
             request.setAttribute(NodeParameterNames.EIDAS_ATTRIBUTES_PARAM.toString(),
-                                 Boolean.valueOf(hasEidasAttributes));
+                    Boolean.valueOf(hasEidasAttributes));
 
             if (StringUtils.isNotBlank(authnResponse.getLevelOfAssurance())) {
                 request.setAttribute(NodeParameterNames.LOA_VALUE.toString(),
-                                     EidasAttributesUtil.getUserFriendlyLoa(authnResponse.getLevelOfAssurance()));
+                        EidasAttributesUtil.getUserFriendlyLoa(authnResponse.getLevelOfAssurance()));
             }
         }
 
@@ -254,7 +254,7 @@ public final class SpecificProxyServiceResponse extends AbstractNodeServlet {
         getLogger().debug("redirectUrl: " + redirectUrl);
 
         request.setAttribute(NodeParameterNames.REDIRECT_URL.toString(),
-                             response.encodeRedirectURL(redirectUrl)); // Correct URl redirect cookie implementation
+                response.encodeRedirectURL(redirectUrl)); // Correct URl redirect cookie implementation
 
         request.setAttribute(EidasParameterKeys.SP_ID.toString(), originalRequest.getProviderName());
 

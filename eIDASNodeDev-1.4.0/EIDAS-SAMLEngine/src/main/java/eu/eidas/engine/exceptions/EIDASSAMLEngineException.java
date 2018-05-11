@@ -41,7 +41,7 @@ public class EIDASSAMLEngineException extends Exception {
      * Instantiates a new EIDASSAML engine exception.
      *
      * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
-     * value is permitted, and indicates that the cause is nonexistent or unknown.)
+     *              value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
     public EIDASSAMLEngineException(Throwable cause) {
         super(cause);
@@ -60,8 +60,8 @@ public class EIDASSAMLEngineException extends Exception {
      * Instantiates a new EIDASSAML engine exception.
      *
      * @param message the detail message (which is saved for later retrieval by the {@link #getMessage()} method).
-     * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
-     * value is permitted, and indicates that the cause is nonexistent or unknown.)
+     * @param cause   the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
+     *                value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
     public EIDASSAMLEngineException(String message, Throwable cause) {
         super(message, cause);
@@ -84,8 +84,8 @@ public class EIDASSAMLEngineException extends Exception {
      *
      * @param newErrorCode the error code
      * @param errorMessage the error message
-     * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
-     * value is permitted, and indicates that the cause is nonexistent or unknown.)
+     * @param cause        the cause (which is saved for later retrieval by the {@link #getCause()} method).  (A <tt>null</tt>
+     *                     value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
     public EIDASSAMLEngineException(String newErrorCode, String errorMessage, Throwable cause) {
         super(errorMessage, cause);
@@ -96,8 +96,8 @@ public class EIDASSAMLEngineException extends Exception {
     /**
      * Instantiates a new EIDASSAML engine exception.
      *
-     * @param newErrorCode the error code
-     * @param errorMessage the error message
+     * @param newErrorCode   the error code
+     * @param errorMessage   the error message
      * @param newErrorDetail the error detail
      */
     public EIDASSAMLEngineException(String newErrorCode, String errorMessage, String newErrorDetail) {

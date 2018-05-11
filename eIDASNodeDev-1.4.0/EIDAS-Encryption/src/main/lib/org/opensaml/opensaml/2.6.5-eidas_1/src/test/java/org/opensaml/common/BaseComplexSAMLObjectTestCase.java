@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,13 +25,19 @@ import org.w3c.dom.Document;
  */
 public abstract class BaseComplexSAMLObjectTestCase extends BaseTestCase {
 
-    /** Location of file containing a single element with NO optional attributes. */
+    /**
+     * Location of file containing a single element with NO optional attributes.
+     */
     protected String elementFile;
 
-    /** The expected result of a marshalled single element with no optional attributes. */
+    /**
+     * The expected result of a marshalled single element with no optional attributes.
+     */
     protected Document expectedDOM;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +47,9 @@ public abstract class BaseComplexSAMLObjectTestCase extends BaseTestCase {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void tearDown() throws Exception {
         super.tearDown();
     }

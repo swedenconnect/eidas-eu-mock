@@ -109,7 +109,7 @@ public class AUSERVICETestCase {
                 new StoredAuthenticationRequestCorrelationMap(new ConcurrentMapServiceDefaultImpl());
 
         auservice.processAuthenticationRequest(mockParameters, "relayState", correlationMap,
-                                               TestingConstants.USER_IP_CONS.toString());
+                TestingConstants.USER_IP_CONS.toString());
     }
 
     /**
@@ -123,10 +123,10 @@ public class AUSERVICETestCase {
         //when(mockSamlService.getSAMLToken(anyString())).thenReturn(new byte[0]);
 
         when(mockSamlService.processConnectorRequest(eq("POST"), (byte[]) any(),
-                                                     eq(TestingConstants.USER_IP_CONS.toString()),
-                                                     eq("relayState"))).thenThrow(
+                eq(TestingConstants.USER_IP_CONS.toString()),
+                eq("relayState"))).thenThrow(
                 new InvalidParameterEIDASException(TestingConstants.ERROR_CODE_CONS.toString(),
-                                                   TestingConstants.ERROR_MESSAGE_CONS.toString()));
+                        TestingConstants.ERROR_MESSAGE_CONS.toString()));
 
         CorrelationMap<StoredAuthenticationRequest> correlationMap =
                 new StoredAuthenticationRequestCorrelationMap(new ConcurrentMapServiceDefaultImpl());
@@ -135,7 +135,7 @@ public class AUSERVICETestCase {
         AUSERVICE auservice = new AUSERVICE();
         auservice.setSamlService(mockSamlService);
         auservice.processAuthenticationRequest(mockParameters, "relayState", correlationMap,
-                                               TestingConstants.USER_IP_CONS.toString());
+                TestingConstants.USER_IP_CONS.toString());
     }
 
     /**
@@ -149,12 +149,12 @@ public class AUSERVICETestCase {
         /*when(mockSamlService.getSAMLToken(anyString())).thenReturn(new byte[0]);*/
 
         when(mockSamlService.processConnectorRequest(eq("POST"), (byte[]) any(),
-                                                     eq(TestingConstants.USER_IP_CONS.toString()),
+                eq(TestingConstants.USER_IP_CONS.toString()),
 
-                                                     eq("relayState"))).thenThrow(
+                eq("relayState"))).thenThrow(
                 new EIDASServiceException(TestingConstants.ERROR_CODE_CONS.toString(),
-                                          TestingConstants.ERROR_MESSAGE_CONS.toString(),
-                                          TestingConstants.SAML_TOKEN_CONS.toString()));
+                        TestingConstants.ERROR_MESSAGE_CONS.toString(),
+                        TestingConstants.SAML_TOKEN_CONS.toString()));
 
         CorrelationMap<StoredAuthenticationRequest> correlationMap =
                 new StoredAuthenticationRequestCorrelationMap(new ConcurrentMapServiceDefaultImpl());
@@ -163,7 +163,7 @@ public class AUSERVICETestCase {
         AUSERVICE auservice = new AUSERVICE();
         auservice.setSamlService(mockSamlService);
         auservice.processAuthenticationRequest(mockParameters, "relayState", correlationMap,
-                                               TestingConstants.USER_IP_CONS.toString());
+                TestingConstants.USER_IP_CONS.toString());
     }
 
     /**
@@ -184,8 +184,8 @@ public class AUSERVICETestCase {
         IAuthenticationRequest authData = eidasAuthenticationRequestBuilder.build();
 
         when(mockSamlService.processConnectorRequest(eq("POST"), (byte[]) any(),
-                                                     eq(TestingConstants.USER_IP_CONS.toString()),
-                                                     eq("relayState"))).thenReturn(authData);
+                eq(TestingConstants.USER_IP_CONS.toString()),
+                eq("relayState"))).thenReturn(authData);
 
         CorrelationMap<StoredAuthenticationRequest> correlationMap =
                 new StoredAuthenticationRequestCorrelationMap(new ConcurrentMapServiceDefaultImpl());
@@ -200,7 +200,7 @@ public class AUSERVICETestCase {
         ISERVICECitizenService mockCitizenService = mock(ISERVICECitizenService.class);
         auservice.setCitizenService(mockCitizenService);
         assertSame(authData, auservice.processAuthenticationRequest(mockParameters, "relayState", correlationMap,
-                                                                    TestingConstants.USER_IP_CONS.toString()));
+                TestingConstants.USER_IP_CONS.toString()));
     }
 
     @Rule
@@ -220,12 +220,12 @@ public class AUSERVICETestCase {
 
         ISERVICESAMLService mockSamlService = mock(ISERVICESAMLService.class);
         when(mockSamlService.generateErrorAuthenticationResponse((IAuthenticationRequest) any(), anyString(),
-                                                                 anyString(), anyString(), anyString(), anyString(),
-                                                                 anyBoolean())).thenReturn(new byte[0]);
+                anyString(), anyString(), anyString(), anyString(),
+                anyBoolean())).thenReturn(new byte[0]);
         auservice.setSamlService(mockSamlService);
         assertEquals("", auservice.generateSamlTokenFail(authData, TestingConstants.ERROR_CODE_CONS.toString(),
-                                                         EidasErrorKey.AUTHENTICATION_FAILED_ERROR,
-                                                         TestingConstants.USER_IP_CONS.toString()));
+                EidasErrorKey.AUTHENTICATION_FAILED_ERROR,
+                TestingConstants.USER_IP_CONS.toString()));
     }
 
     /**
@@ -243,17 +243,17 @@ public class AUSERVICETestCase {
         final String regex = "[A-Z]{2}/[zA-Z]{2}/.*";
 
         ImmutableAttributeMap result = getImmutableAttributeMapUpdatedResponseAttributes(countryCode, originCountryCode,
-                                                                                         EidasSpec.Definitions.PERSON_IDENTIFIER);
+                EidasSpec.Definitions.PERSON_IDENTIFIER);
         assertTrue(result.getFirstAttributeValue(EidasSpec.Definitions.PERSON_IDENTIFIER).getValue().matches(regex));
         assertEquals("ES/PT/12345678",
-                     result.getFirstAttributeValue(EidasSpec.Definitions.PERSON_IDENTIFIER).getValue());
+                result.getFirstAttributeValue(EidasSpec.Definitions.PERSON_IDENTIFIER).getValue());
 
         result = getImmutableAttributeMapUpdatedResponseAttributes(countryCode, originCountryCode,
-                                                                   EidasSpec.Definitions.LEGAL_PERSON_IDENTIFIER);
+                EidasSpec.Definitions.LEGAL_PERSON_IDENTIFIER);
         assertTrue(
                 result.getFirstAttributeValue(EidasSpec.Definitions.LEGAL_PERSON_IDENTIFIER).getValue().matches(regex));
         assertEquals("ES/PT/12345678",
-                     result.getFirstAttributeValue(EidasSpec.Definitions.LEGAL_PERSON_IDENTIFIER).getValue());
+                result.getFirstAttributeValue(EidasSpec.Definitions.LEGAL_PERSON_IDENTIFIER).getValue());
     }
 
     /**
@@ -278,7 +278,7 @@ public class AUSERVICETestCase {
 
         final AttributeDefinition<String> legalPersonIdentifier = EidasSpec.Definitions.LEGAL_PERSON_IDENTIFIER;
         result = getImmutableAttributeMapUpdatedResponseAttributes(countryCode, originCountryCode,
-                                                                   legalPersonIdentifier);
+                legalPersonIdentifier);
         assertFalse(result.getFirstAttributeValue(legalPersonIdentifier).getValue().matches(regex));
         assertEquals("PT/null/12345678", result.getFirstAttributeValue(legalPersonIdentifier).getValue());
     }
@@ -287,7 +287,7 @@ public class AUSERVICETestCase {
      * Auxiliar method to be used by test methods to invokes the method {@link AUSERVICE#updateResponseAttributes(IAuthenticationRequest,
      * ImmutableAttributeMap)}.
      *
-     * @param countryCode the country code of the AUSERVICESAML
+     * @param countryCode       the country code of the AUSERVICESAML
      * @param originCountryCode the origin country code of the request
      * @param identifier
      * @return ImmutableAttributeMap with the value

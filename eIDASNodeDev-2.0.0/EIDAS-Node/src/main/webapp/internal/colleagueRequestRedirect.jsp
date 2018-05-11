@@ -32,11 +32,15 @@
                         <input type="hidden" id="relayState" name="RelayState" value="${e:forHtml(RelayState)}"/>
                     </form>
                     <noscript>
-                        <form id="redirectFormNoJs" name="redirectFormNoJs" method="post" action="${e:forHtml(serviceUrl)}">
-                            <input type="hidden" id="noScriptSAMLRequest" name="SAMLRequest" value="${e:forHtml(SAMLRequest)}"/>
-                            <input type="hidden" id="noScriptrelayState" name="RelayState" value="${e:forHtml(RelayState)}"/>
+                        <form id="redirectFormNoJs" name="redirectFormNoJs" method="post"
+                              action="${e:forHtml(serviceUrl)}">
+                            <input type="hidden" id="noScriptSAMLRequest" name="SAMLRequest"
+                                   value="${e:forHtml(SAMLRequest)}"/>
+                            <input type="hidden" id="noScriptrelayState" name="RelayState"
+                                   value="${e:forHtml(RelayState)}"/>
                             <p class="box-btn">
-                                <input type="submit" id="noScriptButton" class="btn btn-next" value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="noScriptButton" class="btn btn-next"
+                                       value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
                             </p>
                         </form>
                     </noscript>

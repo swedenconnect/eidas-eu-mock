@@ -89,7 +89,7 @@ public class AUCONNECTORSAMLTestCase {
      */
     private static final Logger LOG = LoggerFactory.getLogger(AUCONNECTORSAMLTestCase.class.getName());
 
-    private static final ImmutableAttributeMap REQUEST_IMMUTABLE_ATTR_MAP = ImmutableAttributeMap.builder().put(EidasSpec.Definitions.PERSON_IDENTIFIER,"E112").build();
+    private static final ImmutableAttributeMap REQUEST_IMMUTABLE_ATTR_MAP = ImmutableAttributeMap.builder().put(EidasSpec.Definitions.PERSON_IDENTIFIER, "E112").build();
 
     /**
      * Properties values for testing proposes.
@@ -99,7 +99,7 @@ public class AUCONNECTORSAMLTestCase {
     /**
      * SAML token array for testing proposes.
      */
-    private static byte[] SAML_TOKEN_ARRAY = new byte[] {
+    private static byte[] SAML_TOKEN_ARRAY = new byte[]{
             60, 115, 97, 109, 108, 62, 46, 46, 46, 60, 47, 115, 97, 109, 108, 62};
 
     /**
@@ -140,10 +140,10 @@ public class AUCONNECTORSAMLTestCase {
         when(mockHttpServletRequest.getSession()).thenReturn(mockHttpSession);
 
         auconnectorsaml.generateErrorAuthenticationResponse(mockHttpServletRequest,
-                                                            TestingConstants.DESTINATION_CONS.name(),
-                                                            TestingConstants.ERROR_CODE_CONS.toString(),
-                                                            TestingConstants.SUB_ERROR_CODE_CONS.toString(),
-                                                            TestingConstants.ERROR_MESSAGE_CONS.toString());
+                TestingConstants.DESTINATION_CONS.name(),
+                TestingConstants.ERROR_CODE_CONS.toString(),
+                TestingConstants.SUB_ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_MESSAGE_CONS.toString());
 
     }
 
@@ -169,10 +169,10 @@ public class AUCONNECTORSAMLTestCase {
         when(mockHttpServletRequest.getSession()).thenReturn(mockHttpSession);
 
         auconnectorsaml.generateErrorAuthenticationResponse(mockHttpServletRequest,
-                                                            TestingConstants.DESTINATION_CONS.name(),
-                                                            TestingConstants.ERROR_CODE_CONS.toString(),
-                                                            TestingConstants.SUB_ERROR_CODE_CONS.toString(),
-                                                            TestingConstants.ERROR_MESSAGE_CONS.toString());
+                TestingConstants.DESTINATION_CONS.name(),
+                TestingConstants.ERROR_CODE_CONS.toString(),
+                TestingConstants.SUB_ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_MESSAGE_CONS.toString());
     }
 
     /**
@@ -197,10 +197,10 @@ public class AUCONNECTORSAMLTestCase {
         when(mockHttpServletRequest.getSession()).thenReturn(mockHttpSession);
 
         byte[] token = auconnectorsaml.generateErrorAuthenticationResponse(mockHttpServletRequest,
-                                                                           TestingConstants.DESTINATION_CONS.name(),
-                                                                           TestingConstants.ERROR_CODE_CONS.toString(),
-                                                                           TestingConstants.SUB_ERROR_CODE_CONS.toString(),
-                                                                           TestingConstants.ERROR_MESSAGE_CONS.toString());
+                TestingConstants.DESTINATION_CONS.name(),
+                TestingConstants.ERROR_CODE_CONS.toString(),
+                TestingConstants.SUB_ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_MESSAGE_CONS.toString());
 
         assertNotNull(token);
     }
@@ -222,14 +222,14 @@ public class AUCONNECTORSAMLTestCase {
 
     private static WebRequest newEmptyWebRequest() {
         return new IncomingRequest(IncomingRequest.Method.POST, ImmutableMap.<String, ImmutableList<String>>of(),
-                                   "127.0.0.1", null);
+                "127.0.0.1", null);
     }
 
     private static WebRequest newSingleParamWebRequest(String paramName, String paramValue) {
         return new IncomingRequest(IncomingRequest.Method.POST,
-                                   ImmutableMap.<String, ImmutableList<String>>of(paramName,
-                                                                                  ImmutableList.<String>of(paramValue)),
-                                   "127.0.0.1", null);
+                ImmutableMap.<String, ImmutableList<String>>of(paramName,
+                        ImmutableList.<String>of(paramValue)),
+                "127.0.0.1", null);
     }
 
     /**
@@ -242,8 +242,8 @@ public class AUCONNECTORSAMLTestCase {
         setEidasUtil();
 
         WebRequest webRequest = newSingleParamWebRequest(EidasParameterKeys.SAML_RESPONSE.toString(),
-                                                         EidasStringUtil.encodeToBase64(
-                                                                 TestingConstants.SAML_TOKEN_CONS.toString()));
+                EidasStringUtil.encodeToBase64(
+                        TestingConstants.SAML_TOKEN_CONS.toString()));
 
         assertArrayEquals(SAML_TOKEN_ARRAY, auconnectorsaml.extractResponseSAMLToken(webRequest));
     }
@@ -287,7 +287,7 @@ public class AUCONNECTORSAMLTestCase {
         AUCONNECTORUtil auconnectorutil = new AUCONNECTORUtil();
         Properties configs = new Properties();
         configs.setProperty(TestingConstants.PROVIDERNAME_CONS + EIDASValues.VALIDATION_SUFFIX.toString(),
-                            "local-demo-cert");
+                "local-demo-cert");
         configs.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(), TestingConstants.ONE_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.index(1), TestingConstants.LOCAL_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.name(1), TestingConstants.LOCAL_CONS.toString());
@@ -325,7 +325,7 @@ public class AUCONNECTORSAMLTestCase {
         AUCONNECTORUtil auconnectorutil = new AUCONNECTORUtil();
         Properties configs = new Properties();
         configs.setProperty(TestingConstants.PROVIDERNAME_CONS + EIDASValues.VALIDATION_SUFFIX.toString(),
-                            "local-demo-cert");
+                "local-demo-cert");
         configs.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(), TestingConstants.ONE_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.index(1), TestingConstants.LOCAL_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.name(1), TestingConstants.LOCAL_CONS.toString());
@@ -402,7 +402,7 @@ public class AUCONNECTORSAMLTestCase {
         AUCONNECTORUtil auconnectorutil = new AUCONNECTORUtil();
         Properties configs = new Properties();
         configs.setProperty(TestingConstants.PROVIDERNAME_CONS + EIDASValues.VALIDATION_SUFFIX.toString(),
-                            "local-demo-cert");
+                "local-demo-cert");
         configs.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(), TestingConstants.ONE_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.index(1), TestingConstants.LOCAL_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.name(1), TestingConstants.LOCAL_CONS.toString());
@@ -459,7 +459,7 @@ public class AUCONNECTORSAMLTestCase {
 
         Properties configs = new Properties();
         configs.setProperty(TestingConstants.PROVIDERNAME_CONS + EIDASValues.VALIDATION_SUFFIX.toString(),
-                            "local-demo-cert");
+                "local-demo-cert");
         configs.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(), TestingConstants.ONE_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.index(1), TestingConstants.LOCAL_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.name(1), TestingConstants.LOCAL_CONS.toString());
@@ -467,7 +467,7 @@ public class AUCONNECTORSAMLTestCase {
         configs.setProperty(TestingConstants.SPID_CONS.getQaaLevel(), TestingConstants.QAALEVEL_CONS.toString());
         configs.setProperty(EIDASValues.DEFAULT.toString(), TestingConstants.ALL_CONS.toString());
         configs.setProperty(EIDASValues.NODE_SUPPORT_EIDAS_MESSAGE_FORMAT_ONLY.toString(),
-                            TestingConstants.FALSE_CONS.toString());
+                TestingConstants.FALSE_CONS.toString());
         auconnectorutil.setConfigs(configs);
 
         auconnectorutil.setMaxQAA(TestingConstants.MAX_QAA_CONS.intValue());
@@ -539,7 +539,7 @@ public class AUCONNECTORSAMLTestCase {
 
         IRequestMessage iRequestMessage = auconnectorsaml.generateServiceAuthnRequest(null, iAuthenticationRequest);
         assertSame(iRequestMessage.getRequest().getAssertionConsumerServiceURL(),
-                   iAuthenticationRequest.getAssertionConsumerServiceURL());
+                iAuthenticationRequest.getAssertionConsumerServiceURL());
         assertSame(iRequestMessage.getRequest().getIssuer(), iAuthenticationRequest.getIssuer());
         assertNotSame(iRequestMessage.getRequest().getId(), iAuthenticationRequest.getId());
         //Qaa not used with eidas Format
@@ -559,7 +559,7 @@ public class AUCONNECTORSAMLTestCase {
         AUCONNECTORUtil auconnectorutil = new AUCONNECTORUtil();
         Properties configs = new Properties();
         configs.setProperty(TestingConstants.PROVIDERNAME_CONS + EIDASValues.VALIDATION_SUFFIX.toString(),
-                            "local-demo-cert");
+                "local-demo-cert");
         configs.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(), TestingConstants.ONE_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.index(1), TestingConstants.LOCAL_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.name(1), TestingConstants.LOCAL_CONS.toString());
@@ -605,7 +605,7 @@ public class AUCONNECTORSAMLTestCase {
                 .build());
 
         auconnectorsaml.processProxyServiceResponse(newEmptyWebRequest(), connectorRequestCorrelationMap,
-                                                    specificSpRequestCorrelationMap);
+                specificSpRequestCorrelationMap);
     }
 
     /**
@@ -621,7 +621,7 @@ public class AUCONNECTORSAMLTestCase {
         AUCONNECTORUtil auconnectorutil = new AUCONNECTORUtil();
         Properties configs = new Properties();
         configs.setProperty(TestingConstants.PROVIDERNAME_CONS + EIDASValues.VALIDATION_SUFFIX.toString(),
-                            "local-demo-cert");
+                "local-demo-cert");
         configs.setProperty(EidasParameterKeys.EIDAS_NUMBER.toString(), TestingConstants.ONE_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.index(1), TestingConstants.LOCAL_CONS.toString());
         configs.setProperty(EIDASValues.EIDAS_SERVICE_PREFIX.name(1), TestingConstants.LOCAL_CONS.toString());

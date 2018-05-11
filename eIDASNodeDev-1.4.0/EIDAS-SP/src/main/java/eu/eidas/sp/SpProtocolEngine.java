@@ -51,9 +51,9 @@ public final class SpProtocolEngine extends ProtocolEngine implements SpProtocol
         } catch (EIDASSAMLEngineException e) {
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : checkAndResignEIDASTokenSAML : Sign and Marshall.", e);
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : checkAndResignEIDASTokenSAML : Sign and Marshall.",
-                     e.getMessage());
+                    e.getMessage());
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -73,7 +73,7 @@ public final class SpProtocolEngine extends ProtocolEngine implements SpProtocol
         releaseExtensionsDom(authnRequest);
         if (null == authnRequest) {
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorCode(), "invalid AuthnRequest");
+                    EidasErrorKey.INTERNAL_ERROR.errorCode(), "invalid AuthnRequest");
         }
 
         try {
@@ -82,7 +82,7 @@ public final class SpProtocolEngine extends ProtocolEngine implements SpProtocol
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASTokenSAML : Sign and Marshall.", e);
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASTokenSAML : Sign and Marshall.", e.getMessage());
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -123,10 +123,10 @@ public final class SpProtocolEngine extends ProtocolEngine implements SpProtocol
      * Resign authentication request ( for validation purpose).
      *
      * @param originalRequest
-     * @param changeProtocol If true will update the protocol of the resigned request with the one within {@code
-     * request}
+     * @param changeProtocol    If true will update the protocol of the resigned request with the one within {@code
+     *                          request}
      * @param changeDestination If true will update the destination of the resigned request with the one within {@code
-     * request}
+     *                          request}
      * @return the resigned request
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      * @// TODO: 13/05/2016 move this to a specific extend of the SAMLengine dedicated to validator
@@ -155,10 +155,10 @@ public final class SpProtocolEngine extends ProtocolEngine implements SpProtocol
             return resignedAuthnRequest;
         } catch (EIDASSAMLEngineException e) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASAuthnRequest : Sign and Marshall.{}",
-                     e.getMessage());
+                    e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASAuthnRequest : Sign and Marshall.{}", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 }

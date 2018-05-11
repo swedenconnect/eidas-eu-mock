@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,13 +28,19 @@ import org.opensaml.saml2.core.Attribute;
  */
 public class AttributeTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Name attribute value */
+    /**
+     * Expected Name attribute value
+     */
     protected String expectedName;
 
-    /** Expected NameFormat attribute value */
+    /**
+     * Expected NameFormat attribute value
+     */
     protected String expectedNameFormat;
 
-    /** Expected FriendlyName attribute value */
+    /**
+     * Expected FriendlyName attribute value
+     */
     protected String expectedFriendlyName;
 
     /**
@@ -45,7 +51,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/AttributeOptionalAttributes.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +62,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         expectedFriendlyName = "Attribute Name";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Attribute attribute = (Attribute) unmarshallElement(singleElementFile);
 
@@ -63,7 +73,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Attribute attribute = (Attribute) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -79,7 +91,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
                 friendlyName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Attribute.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Attribute attribute = (Attribute) buildXMLObject(qname);
@@ -89,7 +103,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, attribute);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Attribute.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Attribute attribute = (Attribute) buildXMLObject(qname);

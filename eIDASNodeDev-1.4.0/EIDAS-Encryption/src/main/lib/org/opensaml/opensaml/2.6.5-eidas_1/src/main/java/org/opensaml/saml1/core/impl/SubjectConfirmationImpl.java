@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,55 +33,73 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class SubjectConfirmationImpl extends AbstractSAMLObject implements SubjectConfirmation {
 
-    /** Contains the list of ConfirmationMethods */
+    /**
+     * Contains the list of ConfirmationMethods
+     */
     private final XMLObjectChildrenList<ConfirmationMethod> confirmationMethods;
 
-    /** Contains the SubjectConfirmationData element */
+    /**
+     * Contains the SubjectConfirmationData element
+     */
     private XMLObject subjectConfirmationData;
 
-    /** Contains the KeyInfo element */
+    /**
+     * Contains the KeyInfo element
+     */
     private KeyInfo keyInfo;
 
     /**
      * Constructor
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected SubjectConfirmationImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         confirmationMethods = new XMLObjectChildrenList<ConfirmationMethod>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<ConfirmationMethod> getConfirmationMethods() {
         return confirmationMethods;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubjectConfirmationData(XMLObject subjectConfirmationData)
             throws IllegalArgumentException {
 
         this.subjectConfirmationData = prepareForAssignment(this.subjectConfirmationData, subjectConfirmationData);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XMLObject getSubjectConfirmationData() {
         return subjectConfirmationData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public KeyInfo getKeyInfo() {
         return keyInfo;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setKeyInfo(KeyInfo keyInfo) {
         this.keyInfo = prepareForAssignment(this.keyInfo, keyInfo);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
 
         List<XMLObject> list = new ArrayList<XMLObject>(confirmationMethods.size() + 1);
@@ -92,7 +110,7 @@ public class SubjectConfirmationImpl extends AbstractSAMLObject implements Subje
             list.add(subjectConfirmationData);
         }
 
-        if(keyInfo != null){
+        if (keyInfo != null) {
             list.add(keyInfo);
         }
 

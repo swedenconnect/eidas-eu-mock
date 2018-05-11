@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,15 +30,21 @@ import org.opensaml.xml.util.XMLHelper;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 
-/** Marshaller for {@link AttributeValueType} objects. */
+/**
+ * Marshaller for {@link AttributeValueType} objects.
+ */
 public class AttributeValueTypeMarshaller extends AbstractXACMLObjectMarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public AttributeValueTypeMarshaller() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
         AttributeValueType attributeValue = (AttributeValueType) xmlObject;
 
@@ -54,11 +60,13 @@ public class AttributeValueTypeMarshaller extends AbstractXACMLObjectMarshaller 
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
         AttributeValueType attributeValue = (AttributeValueType) xmlObject;
-        
-        if(attributeValue.getValue() != null){
+
+        if (attributeValue.getValue() != null) {
             XMLHelper.appendTextContent(domElement, attributeValue.getValue());
         }
     }

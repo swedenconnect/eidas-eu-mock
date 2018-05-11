@@ -47,14 +47,14 @@ import java.io.IOException;
 /**
  * Receives/processes the servlet request containing the MS specific response coming from the IDP,
  * transforms it into an {@link ILightResponse}, and sends it to the receiver at the eIDAS Node.
- *
+ * <p>
  * If a user consent is needed forwards to a consent page instead.
  *
  * @since 2.0
  */
 @SuppressWarnings("squid:S1989") // due to the code uses correlation maps, not http sessions
-@WebServlet(urlPatterns={"/IdpResponse"},
-        name="IdpResponseServlet",
+@WebServlet(urlPatterns = {"/IdpResponse"},
+        name = "IdpResponseServlet",
         displayName = "IdpResponseServlet",
         description = "Specific IdP Response Servlet")
 public final class IdpResponseServlet extends AbstractSpecificProxyServiceServlet {
@@ -122,11 +122,11 @@ public final class IdpResponseServlet extends AbstractSpecificProxyServiceServle
         return getSpecificProxyService().isAskConsentResponse() && !lightResponse.getStatus().isFailure();
     }
 
-    private void setBinaryLightTokenHttpRequestAttribute(@Nonnull HttpServletRequest httpServletRequest, ILightResponse lightResponse) throws ServletException{
+    private void setBinaryLightTokenHttpRequestAttribute(@Nonnull HttpServletRequest httpServletRequest, ILightResponse lightResponse) throws ServletException {
         final String binaryTokenResponseBase64;
         try {
             binaryTokenResponseBase64 = getSpecificProxyService().createStoreBinaryLightTokenResponseBase64(lightResponse);
-        } catch (SpecificCommunicationException  e) {
+        } catch (SpecificCommunicationException e) {
             getLogger().error("Error encoding light token into a binary light token");
             throw new ServletException("Error encoding light token into a binary light token", e);
         }
@@ -176,7 +176,7 @@ public final class IdpResponseServlet extends AbstractSpecificProxyServiceServle
     }
 
     public SpecificProxyService getSpecificProxyService() {
-        return  (SpecificProxyService) getApplicationContext()
+        return (SpecificProxyService) getApplicationContext()
                 .getBean(SpecificProxyServiceBeanNames.SPECIFIC_PROXY_SERVICE.toString());
     }
 

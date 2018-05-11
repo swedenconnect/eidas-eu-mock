@@ -31,96 +31,94 @@ import javax.xml.namespace.QName;
 
 /**
  * The Class RequestedAttributeUnmarshaller.
- *
  */
 public class RequestedAttributeUnmarshaller extends
-		AbstractSAMLObjectUnmarshaller {
+        AbstractSAMLObjectUnmarshaller {
 
     /**
      * Process child element.
      *
      * @param parentSAMLObject parent SAMLObject
-     * @param childSAMLObject child SAMLObject
-     *
+     * @param childSAMLObject  child SAMLObject
      * @throws UnmarshallingException error at unmarshall XML object
      */
     protected final void processChildElement(final XMLObject parentSAMLObject,
-	    final XMLObject childSAMLObject) throws UnmarshallingException {
+                                             final XMLObject childSAMLObject) throws UnmarshallingException {
 
-	final RequestedAttribute requestedAttr = (RequestedAttribute) parentSAMLObject;
+        final RequestedAttribute requestedAttr = (RequestedAttribute) parentSAMLObject;
 
-	final QName childQName = childSAMLObject.getElementQName();
-	if ("AttributeValue".equals(childQName.getLocalPart())
-		&& childQName.getNamespaceURI().equals(SAMLCore.EIDAS10_NS.getValue())) {
-	    requestedAttr.getAttributeValues().add(childSAMLObject);
-	} else {
-	    super.processChildElement(parentSAMLObject, childSAMLObject);
-	}
+        final QName childQName = childSAMLObject.getElementQName();
+        if ("AttributeValue".equals(childQName.getLocalPart())
+                && childQName.getNamespaceURI().equals(SAMLCore.EIDAS10_NS.getValue())) {
+            requestedAttr.getAttributeValues().add(childSAMLObject);
+        } else {
+            super.processChildElement(parentSAMLObject, childSAMLObject);
+        }
     }
 
-	/**
-	 * Process attribute.
-	 *
-	 * @param samlObject the SAML object
-	 * @param attribute  the attribute
-	 * @throws UnmarshallingException the unmarshalling exception
-	 */
-	protected final void processAttribute(final XMLObject samlObject,
-										  final Attr attribute) throws UnmarshallingException {
+    /**
+     * Process attribute.
+     *
+     * @param samlObject the SAML object
+     * @param attribute  the attribute
+     * @throws UnmarshallingException the unmarshalling exception
+     */
+    protected final void processAttribute(final XMLObject samlObject,
+                                          final Attr attribute) throws UnmarshallingException {
 
-		final RequestedAttribute requestedAttr = (RequestedAttribute) samlObject;
+        final RequestedAttribute requestedAttr = (RequestedAttribute) samlObject;
 
-		if (attribute.getLocalName()
-				.equals(RequestedAttribute.NAME_ATTRIB_NAME)) {
-			requestedAttr.setName(attribute.getValue());
-		} else if (attribute.getLocalName().equals(
-				RequestedAttribute.NAME_FORMAT_ATTR)) {
-			requestedAttr.setNameFormat(attribute.getValue());
-		} else if (attribute.getLocalName().equals(
-				RequestedAttribute.FRIENDLY_NAME_ATT)) {
-			requestedAttr.setFriendlyName(attribute.getValue());
-		} else if (attribute.getLocalName().equals(
-				RequestedAttribute.IS_REQUIRED_ATTR)) {
-			requestedAttr.setIsRequired(attribute
-					.getValue());
+        if (attribute.getLocalName()
+                .equals(RequestedAttribute.NAME_ATTRIB_NAME)) {
+            requestedAttr.setName(attribute.getValue());
+        } else if (attribute.getLocalName().equals(
+                RequestedAttribute.NAME_FORMAT_ATTR)) {
+            requestedAttr.setNameFormat(attribute.getValue());
+        } else if (attribute.getLocalName().equals(
+                RequestedAttribute.FRIENDLY_NAME_ATT)) {
+            requestedAttr.setFriendlyName(attribute.getValue());
+        } else if (attribute.getLocalName().equals(
+                RequestedAttribute.IS_REQUIRED_ATTR)) {
+            requestedAttr.setIsRequired(attribute
+                    .getValue());
 
-		} else {
-			final QName attribQName = getNodeQName(attribute);
-			if (attribute.isId()) {
-				requestedAttr.getUnknownAttributes().registerID(attribQName);
-			}
-			requestedAttr.getUnknownAttributes().put(attribQName,
-					attribute.getValue());
-		}
-	}
+        } else {
+            final QName attribQName = getNodeQName(attribute);
+            if (attribute.isId()) {
+                requestedAttr.getUnknownAttributes().registerID(attribQName);
+            }
+            requestedAttr.getUnknownAttributes().put(attribQName,
+                    attribute.getValue());
+        }
+    }
 
-	/**
-	 * Gets the QName for the given DOM node.
-	 *
-	 * @param domNode the DOM node
-	 * @return the QName for the element or null if the element was null
-	 */
-	private QName getNodeQName(Node domNode) {
-		if (domNode != null) {
-			return constructQName(domNode.getNamespaceURI(), domNode.getLocalName(), domNode.getPrefix());
-		}
-		return null;
-	}
+    /**
+     * Gets the QName for the given DOM node.
+     *
+     * @param domNode the DOM node
+     * @return the QName for the element or null if the element was null
+     */
+    private QName getNodeQName(Node domNode) {
+        if (domNode != null) {
+            return constructQName(domNode.getNamespaceURI(), domNode.getLocalName(), domNode.getPrefix());
+        }
+        return null;
+    }
 
-	/**
-	 * Constructs a QName.
-	 *
-	 * @param namespaceURI the namespace of the QName
-	 * @param localName    the local name of the QName
-	 * @param prefix       the prefix of the QName, may be null
-	 * @return the QName
-	 */
-	private QName constructQName(String namespaceURI, String localName, String prefix) {
-		if (StringUtils.isEmpty(prefix)) {
-			return new QName(namespaceURI, localName);
-		} else if (StringUtils.isEmpty(namespaceURI)) {
-			return new QName(localName);
-		}
-		return new QName(namespaceURI, localName, prefix);
-	}
+    /**
+     * Constructs a QName.
+     *
+     * @param namespaceURI the namespace of the QName
+     * @param localName    the local name of the QName
+     * @param prefix       the prefix of the QName, may be null
+     * @return the QName
+     */
+    private QName constructQName(String namespaceURI, String localName, String prefix) {
+        if (StringUtils.isEmpty(prefix)) {
+            return new QName(namespaceURI, localName);
+        } else if (StringUtils.isEmpty(namespaceURI)) {
+            return new QName(localName);
+        }
+        return new QName(namespaceURI, localName, prefix);
+    }
 }

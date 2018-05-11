@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.HashMap;
@@ -34,30 +34,25 @@ import org.apache.velocity.util.introspection.VelPropertySet;
 
 
 public class UberspectorTestCase
-        extends BaseTestCase
-{
+        extends BaseTestCase {
     private RuntimeInstance ri;
 
-    public UberspectorTestCase(String name)
-    {
+    public UberspectorTestCase(String name) {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(UberspectorTestCase.class);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         ri = new RuntimeInstance();
         ri.init();
     }
 
     public void testNullObjects()
-            throws Exception
-    {
+            throws Exception {
         // How about some null objects... Gee, I'm mean. ;-)
         Uberspect u = ri.getUberspect();
 
@@ -69,8 +64,7 @@ public class UberspectorTestCase
     }
 
     public void testEmptyPropertyGetter()
-            throws Exception
-    {
+            throws Exception {
         Uberspect u = ri.getUberspect();
         Map map = new HashMap();
 
@@ -78,12 +72,11 @@ public class UberspectorTestCase
 
         // Don't screw up on empty properties. That should map to get("")
         assertNotNull(getter);
-        assertEquals("Found wrong method", "get", getter. getMethodName());
+        assertEquals("Found wrong method", "get", getter.getMethodName());
     }
 
     public void testEmptyPropertySetter()
-            throws Exception
-    {
+            throws Exception {
         Uberspect u = ri.getUberspect();
         Map map = new HashMap();
 
@@ -95,8 +88,7 @@ public class UberspectorTestCase
     }
 
     public void testNullPropertyGetter()
-        throws Exception
-    {
+            throws Exception {
         Uberspect u = ri.getUberspect();
         GetPutObject gpo = new GetPutObject();
         Map map = new HashMap();
@@ -114,8 +106,7 @@ public class UberspectorTestCase
     }
 
     public void testNullPropertySetter()
-        throws Exception
-    {
+            throws Exception {
         Uberspect u = ri.getUberspect();
         GetPutObject gpo = new GetPutObject();
         Map map = new HashMap();
@@ -131,8 +122,7 @@ public class UberspectorTestCase
     }
 
     public void testNullParameterType()
-            throws Exception
-    {
+            throws Exception {
         VelPropertySet setter;
 
         Uberspect u = ri.getUberspect();
@@ -153,8 +143,7 @@ public class UberspectorTestCase
     }
 
     public void testMultipleParameterTypes()
-            throws Exception
-    {
+            throws Exception {
         VelPropertySet setter;
 
         Uberspect u = ri.getUberspect();
@@ -173,8 +162,7 @@ public class UberspectorTestCase
 
 
     public void testRegularGetters()
-            throws Exception
-    {
+            throws Exception {
         VelPropertyGet getter;
 
         Uberspect u = ri.getUberspect();
@@ -202,8 +190,7 @@ public class UberspectorTestCase
     }
 
     public void testBooleanGetters()
-            throws Exception
-    {
+            throws Exception {
         VelPropertyGet getter;
 
         Uberspect u = ri.getUberspect();
@@ -232,8 +219,7 @@ public class UberspectorTestCase
 
 
     public void testRegularSetters()
-            throws Exception
-    {
+            throws Exception {
         VelPropertySet setter;
 
         Uberspect u = ri.getUberspect();

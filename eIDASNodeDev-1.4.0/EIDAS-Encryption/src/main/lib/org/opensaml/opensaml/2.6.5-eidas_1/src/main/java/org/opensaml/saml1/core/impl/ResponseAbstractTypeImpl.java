@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,103 +32,137 @@ import org.opensaml.xml.XMLObject;
  */
 public abstract class ResponseAbstractTypeImpl extends AbstractSignableSAMLObject implements ResponseAbstractType {
 
-    /** Contains the ID */
+    /**
+     * Contains the ID
+     */
     private String id;
 
     private SAMLVersion version;
 
-    /** Contents of the InResponseTo attribute */
+    /**
+     * Contents of the InResponseTo attribute
+     */
     private String inResponseTo = null;
 
-    /** Contents of the Date attribute */
+    /**
+     * Contents of the Date attribute
+     */
     private DateTime issueInstant = null;
 
-    /** Contents of the recipient attribute */
+    /**
+     * Contents of the recipient attribute
+     */
     private String recipient = null;
 
     /**
      * Constructor
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected ResponseAbstractTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         version = SAMLVersion.VERSION_11;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String id) {
         String oldID = this.id;
         this.id = prepareForAssignment(this.id, id);
         registerOwnID(oldID, this.id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getInResponseTo() {
         return inResponseTo;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInResponseTo(String inResponseTo) {
         this.inResponseTo = prepareForAssignment(this.inResponseTo, inResponseTo);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public int getMinorVersion() {
         return version.getMinorVersion();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public int getMajorVersion() {
         return version.getMajorVersion();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setVersion(SAMLVersion newVersion) {
         version = prepareForAssignment(version, newVersion);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getIssueInstant() {
 
         return issueInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssueInstant(DateTime date) {
         this.issueInstant = prepareForAssignment(this.issueInstant, date);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getRecipient() {
         return recipient;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRecipient(String recipient) {
         this.recipient = prepareForAssignment(this.recipient, recipient);
     }
-    
-    /** {@inheritDoc} */
-    public String getSignatureReferenceID(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getSignatureReferenceID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         List<XMLObject> children = new ArrayList<XMLObject>();
-        
-        if(getSignature() != null){
+
+        if (getSignature() != null) {
             children.add(getSignature());
         }
-        
+
         return Collections.unmodifiableList(children);
     }
 }

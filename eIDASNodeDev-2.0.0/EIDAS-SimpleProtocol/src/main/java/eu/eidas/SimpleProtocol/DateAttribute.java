@@ -27,12 +27,12 @@ public class DateAttribute extends Attribute implements Serializable {
         this.dateValue = value;
     }
 
-	@XmlElement(defaultValue="date",name="type", required=true)
-	public String getType() {
-		return type;
-	}
+    @XmlElement(defaultValue = "date", name = "type", required = true)
+    public String getType() {
+        return type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 }

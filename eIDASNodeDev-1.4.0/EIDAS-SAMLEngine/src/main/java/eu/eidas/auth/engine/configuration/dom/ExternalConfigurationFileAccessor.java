@@ -44,7 +44,7 @@ final class ExternalConfigurationFileAccessor {
                         try {
                             ImmutableMap<String, String> validParameters =
                                     DOMConfigurationParser.validateParameters(instanceName, configurationName,
-                                                                              Maps.fromProperties(properties));
+                                            Maps.fromProperties(properties));
 
                             Map<String, String> allParameters = new LinkedHashMap<String, String>();
                             allParameters.putAll(staticParameters);

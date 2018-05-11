@@ -16,7 +16,7 @@ package org.apache.velocity.test.sql;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.PrintWriter;
@@ -37,41 +37,41 @@ public class HsqlDataSource implements DataSource {
     private int loginTimeout = 0;
 
     public HsqlDataSource(final String url) throws Exception {
-	this.url = url;
-	Class.forName(jdbcDriver.class.getName());
+        this.url = url;
+        Class.forName(jdbcDriver.class.getName());
     }
 
     public Connection getConnection() throws SQLException {
-	return DriverManager.getConnection(url, "sa", "");
+        return DriverManager.getConnection(url, "sa", "");
     }
 
     public Connection getConnection(final String username, final String password)
-	    throws SQLException {
-	return DriverManager.getConnection(url, username, password);
+            throws SQLException {
+        return DriverManager.getConnection(url, username, password);
     }
 
     public PrintWriter getLogWriter() throws SQLException {
-	return logWriter;
+        return logWriter;
     }
 
     public int getLoginTimeout() throws SQLException {
-	return loginTimeout;
+        return loginTimeout;
     }
 
     public void setLogWriter(final PrintWriter logWriter) throws SQLException {
-	this.logWriter = logWriter;
+        this.logWriter = logWriter;
     }
 
     public void setLoginTimeout(final int loginTimeout) throws SQLException {
-	this.loginTimeout = loginTimeout;
+        this.loginTimeout = loginTimeout;
     }
 
     public boolean isWrapperFor(final Class iface) throws SQLException {
-	return false;
+        return false;
     }
 
     public Object unwrap(final Class iface) throws SQLException {
-	throw new SQLException("Not implemented");
+        throw new SQLException("Not implemented");
     }
 
 }

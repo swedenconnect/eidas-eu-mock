@@ -48,7 +48,8 @@
                                 </c:forEach>
                             </select>
                             <p class="box-btn">
-                                <input type="submit" id="submit_idp_choice" class="btn btn-next" value="<fmt:message key='common.next' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="submit_idp_choice" class="btn btn-next"
+                                       value="<fmt:message key='common.next' bundle="${i18n_eng}"/>"/>
                             </p>
                             <script type="text/javascript" src="js/idpRedirect.js"></script>
                         </div>
@@ -59,9 +60,11 @@
                     <noscript>
                         <h2><fmt:message key="idpRedirect.text" bundle="${i18n_eng}"/></h2>
                         <form name="redirectFormNoJS" method="${e:forHtml(binding)}" action="${e:forHtml(idpUrl)}">
-                            <input type="hidden" id="SMSSPRequest_noJS" name="SMSSPRequest" value="${e:forHtml(smsspToken)}"/>
+                            <input type="hidden" id="SMSSPRequest_noJS" name="SMSSPRequest"
+                                   value="${e:forHtml(smsspToken)}"/>
                             <p class="box-btn">
-                                <input type="submit" id="ConsentValue_button_noJS" class="btn btn-next" value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="ConsentValue_button_noJS" class="btn btn-next"
+                                       value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
                             </p>
                         </form>
                     </noscript>

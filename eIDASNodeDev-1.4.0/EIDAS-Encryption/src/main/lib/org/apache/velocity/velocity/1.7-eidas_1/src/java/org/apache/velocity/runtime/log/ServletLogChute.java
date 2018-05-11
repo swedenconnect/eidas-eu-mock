@@ -22,6 +22,7 @@ package org.apache.velocity.runtime.log;
 import java.io.StringWriter;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
+
 import org.apache.velocity.runtime.RuntimeServices;
 
 /**
@@ -37,10 +38,9 @@ import org.apache.velocity.runtime.RuntimeServices;
  * @version $Revision: 730039 $ $Date: 2008-12-29 19:53:19 -0800 (Mon, 29 Dec 2008) $
  * @since 1.6
  */
-public class ServletLogChute implements LogChute
-{
-    public static final String RUNTIME_LOG_LEVEL_KEY = 
-        "runtime.log.logsystem.servlet.level";
+public class ServletLogChute implements LogChute {
+    public static final String RUNTIME_LOG_LEVEL_KEY =
+            "runtime.log.logsystem.servlet.level";
 
     private int enabled = TRACE_ID;
 
@@ -52,56 +52,43 @@ public class ServletLogChute implements LogChute
      * Construct a simple logger for a servlet environment.
      * <br>
      * NOTE: this class expects that the ServletContext has already
-     *       been placed in the runtime's application attributes
-     *       under its full class name (i.e. "javax.servlet.ServletContext").
+     * been placed in the runtime's application attributes
+     * under its full class name (i.e. "javax.servlet.ServletContext").
      */
-    public ServletLogChute()
-    {
+    public ServletLogChute() {
     }
 
     /**
      * init()
      *
      * @throws IllegalStateException if the ServletContext is not available
-     *         in the application attributes under the appropriate key.
+     *                               in the application attributes under the appropriate key.
      */
-    public void init(RuntimeServices rs) throws Exception
-    {
+    public void init(RuntimeServices rs) throws Exception {
         Object obj = rs.getApplicationAttribute(ServletContext.class.getName());
-        if (obj == null)
-        {
+        if (obj == null) {
             throw new UnsupportedOperationException("Could not retrieve ServletContext from application attributes");
         }
-        servletContext = (ServletContext)obj;
+        servletContext = (ServletContext) obj;
 
         // look for a level config property
-        String level = (String)rs.getProperty(RUNTIME_LOG_LEVEL_KEY);
-        if (level != null)
-        {
+        String level = (String) rs.getProperty(RUNTIME_LOG_LEVEL_KEY);
+        if (level != null) {
             // and set it accordingly
             setEnabledLevel(toLevel(level));
         }
     }
 
     protected int toLevel(String level) {
-        if (level.equalsIgnoreCase("debug"))
-        {
+        if (level.equalsIgnoreCase("debug")) {
             return DEBUG_ID;
-        }
-        else if (level.equalsIgnoreCase("info"))
-        {
+        } else if (level.equalsIgnoreCase("info")) {
             return INFO_ID;
-        }
-        else if (level.equalsIgnoreCase("warn"))
-        {
+        } else if (level.equalsIgnoreCase("warn")) {
             return WARN_ID;
-        }
-        else if (level.equalsIgnoreCase("error"))
-        {
+        } else if (level.equalsIgnoreCase("error")) {
             return ERROR_ID;
-        }
-        else
-        {
+        } else {
             return TRACE_ID;
         }
     }
@@ -109,16 +96,14 @@ public class ServletLogChute implements LogChute
     /**
      * Set the minimum level at which messages will be printed.
      */
-    public void setEnabledLevel(int level)
-    {
+    public void setEnabledLevel(int level) {
         this.enabled = level;
     }
 
     /**
      * Returns the current minimum level at which messages will be printed.
      */
-    public int getEnabledLevel()
-    {
+    public int getEnabledLevel() {
         return this.enabled;
     }
 
@@ -127,23 +112,19 @@ public class ServletLogChute implements LogChute
      * is equal to or higher than the level this
      * LogChute is enabled for.
      */
-    public boolean isLevelEnabled(int level)
-    {
+    public boolean isLevelEnabled(int level) {
         return (level >= this.enabled);
     }
 
     /**
      * Send a log message from Velocity.
      */
-    public void log(int level, String message)
-    {
-        if (!isLevelEnabled(level))
-        {
+    public void log(int level, String message) {
+        if (!isLevelEnabled(level)) {
             return;
         }
 
-        switch (level)
-        {
+        switch (level) {
             case WARN_ID:
                 servletContext.log(PREFIX + WARN_PREFIX + message);
                 break;
@@ -165,16 +146,13 @@ public class ServletLogChute implements LogChute
         }
     }
 
-    public void log(int level, String message, Throwable t)
-    {
-        if (!isLevelEnabled(level))
-        {
+    public void log(int level, String message, Throwable t) {
+        if (!isLevelEnabled(level)) {
             return;
         }
 
-        message += " - "+t.toString();
-        if (level >= ERROR_ID)
-        {
+        message += " - " + t.toString();
+        if (level >= ERROR_ID) {
             StringWriter sw = new StringWriter();
             t.printStackTrace(new PrintWriter(sw));
             message += "\n" + sw.toString();

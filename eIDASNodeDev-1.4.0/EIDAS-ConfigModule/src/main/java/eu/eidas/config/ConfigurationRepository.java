@@ -19,8 +19,12 @@ package eu.eidas.config;
  */
 public interface ConfigurationRepository {
     String getName();
+
     String getAddress();
+
     byte[] getRawContent(String url);
+
     void setRawContent(String url, byte[] data);
+
     void backup() throws ConfigurationException;
 }

@@ -28,12 +28,16 @@ import eu.eidas.auth.engine.core.stork.VIDPAuthenticationAttributes;
 public final class VIDPAuthenticationAttributesBuilder extends AbstractSAMLObjectBuilder<VIDPAuthenticationAttributes> {
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public VIDPAuthenticationAttributes buildObject() {
         return buildObject(SAMLCore.STORK10P_NS.getValue(), VIDPAuthenticationAttributes.DEF_LOCAL_NAME, SAMLCore.STORK10P_PREFIX.getValue());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public VIDPAuthenticationAttributes buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
         return new VIDPAuthenticationAttributesImpl(namespaceURI, localName, namespacePrefix);
     }

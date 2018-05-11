@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,45 +27,57 @@ import org.w3c.dom.Element;
 /**
  * A <code>MetadataProvider</code> implementation that retrieves metadata from a DOM <code>Element</code> as
  * supplied by the user.
- * 
+ * <p>
  * It is the responsibility of the caller to re-initialize, via {@link #initialize()}, if any properties of this
  * provider are changed.
  */
 public class DOMMetadataProvider extends AbstractObservableMetadataProvider implements MetadataProvider {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(DOMMetadataProvider.class);
 
-    /** Root metadata element exposed by this provider. */
+    /**
+     * Root metadata element exposed by this provider.
+     */
     private Element metadataElement;
 
-    /** Unmarshalled metadata. */
+    /**
+     * Unmarshalled metadata.
+     */
     private XMLObject metadata;
 
     /**
      * Constructor.
-     * 
+     *
      * @param mdElement the metadata element
      */
     public DOMMetadataProvider(Element mdElement) {
         super();
         metadataElement = mdElement;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public synchronized void destroy() {
         metadata = null;
         metadataElement = null;
-        
+
         super.destroy();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected XMLObject doGetMetadata() throws MetadataProviderException {
         return metadata;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void doInitialization() throws MetadataProviderException {
         try {
             Unmarshaller unmarshaller = unmarshallerFactory.getUnmarshaller(metadataElement);

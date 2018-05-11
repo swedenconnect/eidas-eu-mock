@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -38,83 +38,115 @@ import org.opensaml.xml.XMLObject;
  */
 public class ManageNameIDRequestImpl extends RequestAbstractTypeImpl implements ManageNameIDRequest {
 
-    /** NameID child element. */
+    /**
+     * NameID child element.
+     */
     private NameID nameID;
 
-    /** EncryptedID child element. */
+    /**
+     * EncryptedID child element.
+     */
     private EncryptedID encryptedID;
 
-    /** NewID child element. */
+    /**
+     * NewID child element.
+     */
     private NewID newID;
 
-    /** NameID child element. */
+    /**
+     * NameID child element.
+     */
     private NewEncryptedID newEncryptedID;
 
-    /** Terminate child element. */
+    /**
+     * Terminate child element.
+     */
     private Terminate terminate;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected ManageNameIDRequestImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public NameID getNameID() {
         return this.nameID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNameID(NameID newNameID) {
         this.nameID = prepareForAssignment(this.nameID, newNameID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EncryptedID getEncryptedID() {
         return this.encryptedID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setEncryptedID(EncryptedID newEncID) {
         this.encryptedID = prepareForAssignment(this.encryptedID, newEncID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public NewID getNewID() {
         return this.newID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNewID(NewID newNewID) {
         this.newID = prepareForAssignment(this.newID, newNewID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public NewEncryptedID getNewEncryptedID() {
         return this.newEncryptedID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNewEncryptedID(NewEncryptedID newNewEncryptedID) {
         this.newEncryptedID = prepareForAssignment(this.newEncryptedID, newNewEncryptedID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Terminate getTerminate() {
         return this.terminate;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setTerminate(Terminate newTerminate) {
         this.terminate = prepareForAssignment(this.terminate, newTerminate);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

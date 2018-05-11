@@ -22,6 +22,6 @@
 
 <div class="col-md-6">
     <div class="illustration">
-      <h1>Use your national <span>e</span>ID to access online services</h1>
+        <h1>Use your national <span>e</span>ID to access online services</h1>
     </div>
 </div>

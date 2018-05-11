@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://europass.cedefop.europa.eu/Europass"
-    targetNamespace="http://europass.cedefop.europa.eu/Europass">
+            xmlns="http://europass.cedefop.europa.eu/Europass"
+            targetNamespace="http://europass.cedefop.europa.eu/Europass">
 
     <!--
 	   /*
@@ -32,7 +32,8 @@
     <xsd:simpleType name="countryCode">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">ISO 3166-1-alpha-2 filtered by Europass
-                (http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm)</xsd:documentation>
+                (http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm)
+            </xsd:documentation>
         </xsd:annotation>
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="BE">
@@ -43,7 +44,7 @@
                     <xsd:documentation xml:lang="da">Belgien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Belgien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Belgia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Βέλγιο </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Βέλγιο</xsd:documentation>
                     <xsd:documentation xml:lang="en">Belgium</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Belgique</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Belgija</xsd:documentation>
@@ -74,7 +75,7 @@
                     <xsd:documentation xml:lang="da">Bulgarien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Bulgarien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Bulgaaria</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Βουλγαρία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Βουλγαρία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Bulgaria</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Bulgarie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bugarska</xsd:documentation>
@@ -114,7 +115,7 @@
                     <xsd:documentation xml:lang="lv">Čehijas Republika</xsd:documentation>
                     <xsd:documentation xml:lang="lt">Čekijos Respublika</xsd:documentation>
                     <xsd:documentation xml:lang="hu">Cseh Köztársaság</xsd:documentation>
-                    <xsd:documentation xml:lang="mk">Република Чешка </xsd:documentation>
+                    <xsd:documentation xml:lang="mk">Република Чешка</xsd:documentation>
                     <xsd:documentation xml:lang="mt">Repubblika Ċeka</xsd:documentation>
                     <xsd:documentation xml:lang="nl">Tsjechische Republiek</xsd:documentation>
                     <xsd:documentation xml:lang="no">Den tsjekkiske republikk</xsd:documentation>
@@ -136,7 +137,7 @@
                     <xsd:documentation xml:lang="da">Danmark</xsd:documentation>
                     <xsd:documentation xml:lang="de">Dänemark</xsd:documentation>
                     <xsd:documentation xml:lang="et">Taani</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Δανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Δανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Denmark</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Danemark</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Danska</xsd:documentation>
@@ -167,7 +168,7 @@
                     <xsd:documentation xml:lang="da">Tyskland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Deutschland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Saksamaa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γερμανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γερμανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Germany</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Allemagne</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Njemačka</xsd:documentation>
@@ -198,7 +199,7 @@
                     <xsd:documentation xml:lang="da">Estland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Estland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Eesti</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Εσθονία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Εσθονία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Estonia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Estonie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Estonija</xsd:documentation>
@@ -229,7 +230,7 @@
                     <xsd:documentation xml:lang="da">Irland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Irland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Iirimaa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ιρλανδία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ιρλανδία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Éire/Ireland</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Irlande</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Irska</xsd:documentation>
@@ -291,7 +292,7 @@
                     <xsd:documentation xml:lang="da">Spanien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Spanien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Hispaania</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ισπανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ισπανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Spain</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Espagne</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Španjolska</xsd:documentation>
@@ -322,7 +323,7 @@
                     <xsd:documentation xml:lang="da">Frankrig</xsd:documentation>
                     <xsd:documentation xml:lang="de">Frankreich</xsd:documentation>
                     <xsd:documentation xml:lang="et">Prantsusmaa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γαλλία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γαλλία</xsd:documentation>
                     <xsd:documentation xml:lang="en">France</xsd:documentation>
                     <xsd:documentation xml:lang="fr">France</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Francuska</xsd:documentation>
@@ -353,7 +354,7 @@
                     <xsd:documentation xml:lang="da">Kroatien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kroatien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Horvaatia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κροατία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κροατία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Croatia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Croatie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Hrvatska</xsd:documentation>
@@ -384,7 +385,7 @@
                     <xsd:documentation xml:lang="da">Island</xsd:documentation>
                     <xsd:documentation xml:lang="de">Island</xsd:documentation>
                     <xsd:documentation xml:lang="et">Island</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ισλανδία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ισλανδία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Iceland</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Islande</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Island</xsd:documentation>
@@ -415,7 +416,7 @@
                     <xsd:documentation xml:lang="da">Italien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Italien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Itaalia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ιταλία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ιταλία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Italy</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Italie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Italija</xsd:documentation>
@@ -446,7 +447,7 @@
                     <xsd:documentation xml:lang="da">Cypern</xsd:documentation>
                     <xsd:documentation xml:lang="de">Zypern</xsd:documentation>
                     <xsd:documentation xml:lang="et">Küpros</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κύπρος </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κύπρος</xsd:documentation>
                     <xsd:documentation xml:lang="en">Cyprus</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Chypre</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Cipar</xsd:documentation>
@@ -477,7 +478,7 @@
                     <xsd:documentation xml:lang="da">Litauen</xsd:documentation>
                     <xsd:documentation xml:lang="de">Litauen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Leedu</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λιθουανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λιθουανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Lithuania</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Lituanie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Litva</xsd:documentation>
@@ -508,7 +509,7 @@
                     <xsd:documentation xml:lang="da">Letland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Lettland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Läti</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λεττονία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λεττονία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Latvia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Lettonie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Latvija</xsd:documentation>
@@ -539,7 +540,7 @@
                     <xsd:documentation xml:lang="da">Luxembourg</xsd:documentation>
                     <xsd:documentation xml:lang="de">Luxemburg</xsd:documentation>
                     <xsd:documentation xml:lang="et">Luksemburg</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λουξεμβούργο </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λουξεμβούργο</xsd:documentation>
                     <xsd:documentation xml:lang="en">Luxembourg</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Luxembourg</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Luksemburg</xsd:documentation>
@@ -570,7 +571,7 @@
                     <xsd:documentation xml:lang="da">Ungarn</xsd:documentation>
                     <xsd:documentation xml:lang="de">Ungarn</xsd:documentation>
                     <xsd:documentation xml:lang="et">Ungari</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ουγγαρία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ουγγαρία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Hungary</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Hongrie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Mađarska</xsd:documentation>
@@ -601,7 +602,7 @@
                     <xsd:documentation xml:lang="da">Malta</xsd:documentation>
                     <xsd:documentation xml:lang="de">Malta</xsd:documentation>
                     <xsd:documentation xml:lang="et">Malta</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μάλτα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μάλτα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Malta</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Malte</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Malta</xsd:documentation>
@@ -663,7 +664,7 @@
                     <xsd:documentation xml:lang="da">Norge</xsd:documentation>
                     <xsd:documentation xml:lang="de">Norwegen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Norra</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Νορβηγία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Νορβηγία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Norway</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Norvège</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Norveška</xsd:documentation>
@@ -694,7 +695,7 @@
                     <xsd:documentation xml:lang="da">Østrig</xsd:documentation>
                     <xsd:documentation xml:lang="de">Österreich</xsd:documentation>
                     <xsd:documentation xml:lang="et">Austria</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αυστρία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αυστρία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Austria</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Autriche</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Austrija</xsd:documentation>
@@ -725,7 +726,7 @@
                     <xsd:documentation xml:lang="da">Polen</xsd:documentation>
                     <xsd:documentation xml:lang="de">Polen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Poola</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Πολωνία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Πολωνία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Poland</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Pologne</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Poljska</xsd:documentation>
@@ -756,7 +757,7 @@
                     <xsd:documentation xml:lang="da">Portugal</xsd:documentation>
                     <xsd:documentation xml:lang="de">Portugal</xsd:documentation>
                     <xsd:documentation xml:lang="et">Portugal</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Πορτογαλία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Πορτογαλία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Portugal</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Portugal</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Portugal</xsd:documentation>
@@ -787,7 +788,7 @@
                     <xsd:documentation xml:lang="da">Rumænien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Rumänien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Rumeenia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ρουμανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ρουμανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Romania</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Roumanie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Rumunjska</xsd:documentation>
@@ -818,7 +819,7 @@
                     <xsd:documentation xml:lang="da">Slovenien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Slowenien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Sloveenia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σλοβενία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σλοβενία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Slovenia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Slovénie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Slovenija</xsd:documentation>
@@ -849,7 +850,7 @@
                     <xsd:documentation xml:lang="da">Slovakiet</xsd:documentation>
                     <xsd:documentation xml:lang="de">Slowakei</xsd:documentation>
                     <xsd:documentation xml:lang="et">Slovakkia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σλοβακία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σλοβακία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Slovakia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Slovaquie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Slovačka</xsd:documentation>
@@ -880,7 +881,7 @@
                     <xsd:documentation xml:lang="da">Finland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Finnland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Soome</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Φινλανδία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Φινλανδία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Finland</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Finlande</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Finska</xsd:documentation>
@@ -911,7 +912,7 @@
                     <xsd:documentation xml:lang="da">Sverige</xsd:documentation>
                     <xsd:documentation xml:lang="de">Schweden</xsd:documentation>
                     <xsd:documentation xml:lang="et">Rootsi</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σουηδία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σουηδία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Sweden</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Suède</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Švedska</xsd:documentation>
@@ -973,7 +974,7 @@
                     <xsd:documentation xml:lang="da">Tyrkiet</xsd:documentation>
                     <xsd:documentation xml:lang="de">Türkei</xsd:documentation>
                     <xsd:documentation xml:lang="et">Türgi</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τουρκία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τουρκία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Turkey</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Turquie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Turska</xsd:documentation>
@@ -1004,7 +1005,7 @@
                     <xsd:documentation xml:lang="da">Schweiz</xsd:documentation>
                     <xsd:documentation xml:lang="de">Schweiz</xsd:documentation>
                     <xsd:documentation xml:lang="et">Šveits</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ελβετία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ελβετία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Switzerland</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Suisse</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Švicarska</xsd:documentation>
@@ -1035,9 +1036,9 @@
                     <xsd:documentation xml:lang="da">Andorra</xsd:documentation>
                     <xsd:documentation xml:lang="de">Andorra</xsd:documentation>
                     <xsd:documentation xml:lang="et">Andorra</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ανδόρα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ανδόρα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Andorra</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Andorre </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Andorre</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Andora</xsd:documentation>
                     <xsd:documentation xml:lang="is">Andorra</xsd:documentation>
                     <xsd:documentation xml:lang="it">Andorra</xsd:documentation>
@@ -1066,7 +1067,7 @@
                     <xsd:documentation xml:lang="da">De Forenede Arabiske Emirater</xsd:documentation>
                     <xsd:documentation xml:lang="de">Vereinigte Arabische Emirate</xsd:documentation>
                     <xsd:documentation xml:lang="et">Araabia Ühendemiraadid</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ηνωμένα Αραβικά Εμιράτα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ηνωμένα Αραβικά Εμιράτα</xsd:documentation>
                     <xsd:documentation xml:lang="en">United Arab Emirates</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Émirats arabes unis</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Ujedinjeni Arapski Emirati</xsd:documentation>
@@ -1097,7 +1098,7 @@
                     <xsd:documentation xml:lang="da">Afghanistan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Afghanistan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Afganistan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αφγανιστάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αφγανιστάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Afghanistan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Afghanistan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Afganistan</xsd:documentation>
@@ -1128,9 +1129,9 @@
                     <xsd:documentation xml:lang="da">Antigua og Barbuda</xsd:documentation>
                     <xsd:documentation xml:lang="de">Antigua und Barbuda</xsd:documentation>
                     <xsd:documentation xml:lang="et">Antigua ja Barbuda</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αντίγκουα και Μπαρμπούντα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αντίγκουα και Μπαρμπούντα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Antigua and Barbuda</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Antigua Et Barbuda </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Antigua Et Barbuda</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Antigva i Barbuda</xsd:documentation>
                     <xsd:documentation xml:lang="is">Antígva og Barbúda</xsd:documentation>
                     <xsd:documentation xml:lang="it">Antigua e Barbuda</xsd:documentation>
@@ -1159,7 +1160,7 @@
                     <xsd:documentation xml:lang="da">Albanien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Albanien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Albaania</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αλβανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αλβανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Albania</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Albanie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Albanija</xsd:documentation>
@@ -1190,7 +1191,7 @@
                     <xsd:documentation xml:lang="da">Armenien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Armenien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Armeenia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αρμενία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αρμενία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Armenia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Arménie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Armenija</xsd:documentation>
@@ -1221,7 +1222,7 @@
                     <xsd:documentation xml:lang="da">Angola</xsd:documentation>
                     <xsd:documentation xml:lang="de">Angola</xsd:documentation>
                     <xsd:documentation xml:lang="et">Angola</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αγκόλα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αγκόλα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Angola</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Angola</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Angola</xsd:documentation>
@@ -1252,7 +1253,7 @@
                     <xsd:documentation xml:lang="da">Argentina</xsd:documentation>
                     <xsd:documentation xml:lang="de">Argentinien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Argentina</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αργεντινή </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αργεντινή</xsd:documentation>
                     <xsd:documentation xml:lang="en">Argentina</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Argentine</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Argentina</xsd:documentation>
@@ -1283,7 +1284,7 @@
                     <xsd:documentation xml:lang="da">Australien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Australien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Austraalia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αυστραλία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αυστραλία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Australia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Australie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Australija</xsd:documentation>
@@ -1314,7 +1315,7 @@
                     <xsd:documentation xml:lang="da">Aserbajdsjan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Aserbaidschan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Aserbaidžaan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αζερμπαϊτζάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αζερμπαϊτζάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Azerbaijan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Azerbaidjan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Azerbejdžan</xsd:documentation>
@@ -1345,7 +1346,7 @@
                     <xsd:documentation xml:lang="da">Bosnien-Hercegovina</xsd:documentation>
                     <xsd:documentation xml:lang="de">Bosnien und Herzegowina</xsd:documentation>
                     <xsd:documentation xml:lang="et">Bosnia ja Hertsegoviina</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Βοσνία-Ερζεγοβίνη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Βοσνία-Ερζεγοβίνη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Bosnia and Herzegovina</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Bosnie-Herzégovine</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bosna i Hercegovina</xsd:documentation>
@@ -1378,7 +1379,7 @@
                     <xsd:documentation xml:lang="et">Barbados</xsd:documentation>
                     <xsd:documentation xml:lang="el">Μπαρμπάντος</xsd:documentation>
                     <xsd:documentation xml:lang="en">Barbados</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Barbade </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Barbade</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Barbados</xsd:documentation>
                     <xsd:documentation xml:lang="is">Barbados</xsd:documentation>
                     <xsd:documentation xml:lang="it">Barbados</xsd:documentation>
@@ -1407,7 +1408,7 @@
                     <xsd:documentation xml:lang="da">Bangladesh</xsd:documentation>
                     <xsd:documentation xml:lang="de">Bangladesch</xsd:documentation>
                     <xsd:documentation xml:lang="et">Bangladesh</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπανγκλαντές </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπανγκλαντές</xsd:documentation>
                     <xsd:documentation xml:lang="en">Bangladesh</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Bangladesh</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bangladeš</xsd:documentation>
@@ -1469,7 +1470,7 @@
                     <xsd:documentation xml:lang="da">Bahrain</xsd:documentation>
                     <xsd:documentation xml:lang="de">Bahrain</xsd:documentation>
                     <xsd:documentation xml:lang="et">Bahrain</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπαχρέιν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπαχρέιν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Bahrain</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Bahrein</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bahrein</xsd:documentation>
@@ -1500,7 +1501,7 @@
                     <xsd:documentation xml:lang="da">Burundi</xsd:documentation>
                     <xsd:documentation xml:lang="de">Burundi</xsd:documentation>
                     <xsd:documentation xml:lang="et">Burundi</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπουρούντι </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπουρούντι</xsd:documentation>
                     <xsd:documentation xml:lang="en">Burundi</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Burundi</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Burundi</xsd:documentation>
@@ -1531,7 +1532,7 @@
                     <xsd:documentation xml:lang="da">Benin</xsd:documentation>
                     <xsd:documentation xml:lang="de">Benin</xsd:documentation>
                     <xsd:documentation xml:lang="et">Benin</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπενίν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπενίν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Benin</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Bénin</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Benin</xsd:documentation>
@@ -1562,9 +1563,9 @@
                     <xsd:documentation xml:lang="da">Brunei</xsd:documentation>
                     <xsd:documentation xml:lang="de">Brunei</xsd:documentation>
                     <xsd:documentation xml:lang="et">Brunei</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπρουνέι </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπρουνέι</xsd:documentation>
                     <xsd:documentation xml:lang="en">Brunei</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Brunei </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Brunei</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Brunej</xsd:documentation>
                     <xsd:documentation xml:lang="is">Brúnei</xsd:documentation>
                     <xsd:documentation xml:lang="it">Brunei</xsd:documentation>
@@ -1593,7 +1594,7 @@
                     <xsd:documentation xml:lang="da">Bolivia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Bolivien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Boliivia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Βολιβία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Βολιβία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Bolivia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Bolivie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bolivija</xsd:documentation>
@@ -1624,7 +1625,7 @@
                     <xsd:documentation xml:lang="da">Brasilien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Brasilien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Brasiilia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Βραζιλία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Βραζιλία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Brazil</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Brésil</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Brazil</xsd:documentation>
@@ -1655,9 +1656,9 @@
                     <xsd:documentation xml:lang="da">Bahamas</xsd:documentation>
                     <xsd:documentation xml:lang="de">Bahamas</xsd:documentation>
                     <xsd:documentation xml:lang="et">Bahama</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπαχάμες </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπαχάμες</xsd:documentation>
                     <xsd:documentation xml:lang="en">Bahamas</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Bahamas </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Bahamas</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bahami</xsd:documentation>
                     <xsd:documentation xml:lang="is">Bahamaeyjar</xsd:documentation>
                     <xsd:documentation xml:lang="it">Bahamas</xsd:documentation>
@@ -1686,7 +1687,7 @@
                     <xsd:documentation xml:lang="da">Bhutan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Bhutan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Bhutan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπουτάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπουτάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Bhutan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Bhoutan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Butan</xsd:documentation>
@@ -1717,7 +1718,7 @@
                     <xsd:documentation xml:lang="da">Botswana</xsd:documentation>
                     <xsd:documentation xml:lang="de">Botswana</xsd:documentation>
                     <xsd:documentation xml:lang="et">Botswana</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μποτσουάνα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μποτσουάνα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Botswana</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Botswana</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bocvana</xsd:documentation>
@@ -1748,7 +1749,7 @@
                     <xsd:documentation xml:lang="da">Hviderusland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Weißrussland (Belarus)</xsd:documentation>
                     <xsd:documentation xml:lang="et">Valgevene</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λευκορωσία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λευκορωσία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Belarus</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Biélorussie (Belarus)</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Bjelorusija</xsd:documentation>
@@ -1779,9 +1780,9 @@
                     <xsd:documentation xml:lang="da">Belize</xsd:documentation>
                     <xsd:documentation xml:lang="de">Belize</xsd:documentation>
                     <xsd:documentation xml:lang="et">Belize</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μπελίζε </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μπελίζε</xsd:documentation>
                     <xsd:documentation xml:lang="en">Belize</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Bélize </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Bélize</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Belize</xsd:documentation>
                     <xsd:documentation xml:lang="is">Belís</xsd:documentation>
                     <xsd:documentation xml:lang="it">Belize</xsd:documentation>
@@ -1810,7 +1811,7 @@
                     <xsd:documentation xml:lang="da">Canada</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kanada</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kanada</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Καναδάς </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Καναδάς</xsd:documentation>
                     <xsd:documentation xml:lang="en">Canada</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Canada</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kanada</xsd:documentation>
@@ -1841,7 +1842,7 @@
                     <xsd:documentation xml:lang="da">Den Demokratiske Republik Congo</xsd:documentation>
                     <xsd:documentation xml:lang="de">Demokratische Republik Kongo</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kongo Demokraatlik Vabariik</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λαϊκή Δημοκρατία του Κονγκό </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λαϊκή Δημοκρατία του Κονγκό</xsd:documentation>
                     <xsd:documentation xml:lang="en">Democratic Republic of the Congo</xsd:documentation>
                     <xsd:documentation xml:lang="fr">République démocratique du Congo</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Demokratska Republika Kongo</xsd:documentation>
@@ -1872,7 +1873,7 @@
                     <xsd:documentation xml:lang="da">Den Centralafrikanske Republik</xsd:documentation>
                     <xsd:documentation xml:lang="de">Zentralafrikanische Republik</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kesk-Aafrika Vabariik</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κεντροαφρικανική Δημοκρατία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κεντροαφρικανική Δημοκρατία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Central African Republic</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Centrafricaine, République</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Srednjoafrička Republika</xsd:documentation>
@@ -1934,7 +1935,7 @@
                     <xsd:documentation xml:lang="da">Elfenbenskysten</xsd:documentation>
                     <xsd:documentation xml:lang="de">Elfenbeinküste</xsd:documentation>
                     <xsd:documentation xml:lang="et">Côte d´Ivoire</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ακτή Ελεφαντοστού </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ακτή Ελεφαντοστού</xsd:documentation>
                     <xsd:documentation xml:lang="en">Côte d’Ivoire</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Côte d'Ivoire</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Obala Bjelokosti</xsd:documentation>
@@ -1965,7 +1966,7 @@
                     <xsd:documentation xml:lang="da">Chile</xsd:documentation>
                     <xsd:documentation xml:lang="de">Chile</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tšiili</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Χιλή </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Χιλή</xsd:documentation>
                     <xsd:documentation xml:lang="en">Chile</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Chili</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Čile</xsd:documentation>
@@ -1996,7 +1997,7 @@
                     <xsd:documentation xml:lang="da">Cameroun</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kamerun</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kamerun</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Καμερούν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Καμερούν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Cameroon</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Cameroun</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kamerun</xsd:documentation>
@@ -2027,7 +2028,7 @@
                     <xsd:documentation xml:lang="da">Kina</xsd:documentation>
                     <xsd:documentation xml:lang="de">China</xsd:documentation>
                     <xsd:documentation xml:lang="et">Hiina</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κίνα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κίνα</xsd:documentation>
                     <xsd:documentation xml:lang="en">China</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Chine</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kina</xsd:documentation>
@@ -2058,7 +2059,7 @@
                     <xsd:documentation xml:lang="da">Colombia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kolumbien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Colombia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κολομβία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κολομβία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Colombia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Colombie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kolumbija</xsd:documentation>
@@ -2089,7 +2090,7 @@
                     <xsd:documentation xml:lang="da">Costa Rica</xsd:documentation>
                     <xsd:documentation xml:lang="de">Costa Rica</xsd:documentation>
                     <xsd:documentation xml:lang="et">Costa Rica</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κόστα Ρίκα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κόστα Ρίκα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Costa Rica</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Costa Rica</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kostarika</xsd:documentation>
@@ -2120,7 +2121,7 @@
                     <xsd:documentation xml:lang="da">Serbien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Serbien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Serbia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σερβία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σερβία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Serbia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Serbie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Srbija</xsd:documentation>
@@ -2151,7 +2152,7 @@
                     <xsd:documentation xml:lang="da">Cuba</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kuba</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kuuba</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κούβα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κούβα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Cuba</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Cuba</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kuba</xsd:documentation>
@@ -2182,7 +2183,7 @@
                     <xsd:documentation xml:lang="da">Kap Verde</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kap Verde</xsd:documentation>
                     <xsd:documentation xml:lang="et">Cabo Verde</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Πράσινο Ακρωτήριο </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Πράσινο Ακρωτήριο</xsd:documentation>
                     <xsd:documentation xml:lang="en">Cape Verde</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Cap-Vert</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Zelenortski otoci</xsd:documentation>
@@ -2213,7 +2214,7 @@
                     <xsd:documentation xml:lang="da">Djibouti</xsd:documentation>
                     <xsd:documentation xml:lang="de">Dschibuti</xsd:documentation>
                     <xsd:documentation xml:lang="et">Djibouti</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τζιμπουτί </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τζιμπουτί</xsd:documentation>
                     <xsd:documentation xml:lang="en">Djibouti</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Djibouti</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Džibuti</xsd:documentation>
@@ -2244,9 +2245,9 @@
                     <xsd:documentation xml:lang="da">Dominica</xsd:documentation>
                     <xsd:documentation xml:lang="de">Dominica</xsd:documentation>
                     <xsd:documentation xml:lang="et">Dominica</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ντομίνικα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ντομίνικα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Dominica</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Dominique </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Dominique</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Dominika</xsd:documentation>
                     <xsd:documentation xml:lang="is">Dominica</xsd:documentation>
                     <xsd:documentation xml:lang="it">Dominica</xsd:documentation>
@@ -2275,7 +2276,7 @@
                     <xsd:documentation xml:lang="da">Den Dominikanske Republik</xsd:documentation>
                     <xsd:documentation xml:lang="de">Dominikanische Republik</xsd:documentation>
                     <xsd:documentation xml:lang="et">Dominikaani Vabariik</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Δομινικανή Δημοκρατία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Δομινικανή Δημοκρατία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Dominican Republic</xsd:documentation>
                     <xsd:documentation xml:lang="fr">République dominicaine</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Dominikanska Republika</xsd:documentation>
@@ -2306,7 +2307,7 @@
                     <xsd:documentation xml:lang="da">Algeriet</xsd:documentation>
                     <xsd:documentation xml:lang="de">Algerien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Alžeeria</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αλγερία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αλγερία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Algeria</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Algérie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Alžir</xsd:documentation>
@@ -2337,7 +2338,7 @@
                     <xsd:documentation xml:lang="da">Ecuador</xsd:documentation>
                     <xsd:documentation xml:lang="de">Ecuador</xsd:documentation>
                     <xsd:documentation xml:lang="et">Ecuador</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ισημερινός </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ισημερινός</xsd:documentation>
                     <xsd:documentation xml:lang="en">Ecuador</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Équateur</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Ekvador</xsd:documentation>
@@ -2368,7 +2369,7 @@
                     <xsd:documentation xml:lang="da">Egypten</xsd:documentation>
                     <xsd:documentation xml:lang="de">Ägypten</xsd:documentation>
                     <xsd:documentation xml:lang="et">Egiptus</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αίγυπτος </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αίγυπτος</xsd:documentation>
                     <xsd:documentation xml:lang="en">Egypt</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Égypte</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Egipat</xsd:documentation>
@@ -2399,7 +2400,7 @@
                     <xsd:documentation xml:lang="da">Eritrea</xsd:documentation>
                     <xsd:documentation xml:lang="de">Eritrea</xsd:documentation>
                     <xsd:documentation xml:lang="et">Eritrea</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ερυθραία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ερυθραία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Eritrea</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Érythrée</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Eritreja</xsd:documentation>
@@ -2430,7 +2431,7 @@
                     <xsd:documentation xml:lang="da">Etiopien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Äthiopien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Etioopia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αιθιοπία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αιθιοπία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Ethiopia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Éthiopie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Etiopija</xsd:documentation>
@@ -2461,7 +2462,7 @@
                     <xsd:documentation xml:lang="da">Fiji</xsd:documentation>
                     <xsd:documentation xml:lang="de">Fidschi</xsd:documentation>
                     <xsd:documentation xml:lang="et">Fidži</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Φίτζι </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Φίτζι</xsd:documentation>
                     <xsd:documentation xml:lang="en">Fiji</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Fidji</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Fidži</xsd:documentation>
@@ -2492,7 +2493,7 @@
                     <xsd:documentation xml:lang="da">Mikronesien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Mikronesien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Mikroneesia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μικρονησία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μικρονησία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Micronesia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Micronésie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Mikronezija</xsd:documentation>
@@ -2523,7 +2524,7 @@
                     <xsd:documentation xml:lang="da">Gabon</xsd:documentation>
                     <xsd:documentation xml:lang="de">Gabun</xsd:documentation>
                     <xsd:documentation xml:lang="et">Gabon</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γκαμπόν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γκαμπόν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Gabon</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Gabon</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gabon</xsd:documentation>
@@ -2554,9 +2555,9 @@
                     <xsd:documentation xml:lang="da">Grenada</xsd:documentation>
                     <xsd:documentation xml:lang="de">Grenada</xsd:documentation>
                     <xsd:documentation xml:lang="et">Grenada</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γρενάδα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γρενάδα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Grenada</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Grenade </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Grenade</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Grenada</xsd:documentation>
                     <xsd:documentation xml:lang="is">Grenada</xsd:documentation>
                     <xsd:documentation xml:lang="it">Grenada</xsd:documentation>
@@ -2585,7 +2586,7 @@
                     <xsd:documentation xml:lang="da">Georgien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Georgien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Georgia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γεωργία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γεωργία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Georgia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Georgie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gruzija</xsd:documentation>
@@ -2616,7 +2617,7 @@
                     <xsd:documentation xml:lang="da">Ghana</xsd:documentation>
                     <xsd:documentation xml:lang="de">Ghana</xsd:documentation>
                     <xsd:documentation xml:lang="et">Ghana</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γκάνα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γκάνα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Ghana</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Ghana</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gana</xsd:documentation>
@@ -2649,7 +2650,7 @@
                     <xsd:documentation xml:lang="et">Gröönimaa</xsd:documentation>
                     <xsd:documentation xml:lang="el">Γροιλανδία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Greenland</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Groenland </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Groenland</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Grenland</xsd:documentation>
                     <xsd:documentation xml:lang="is">Grænland</xsd:documentation>
                     <xsd:documentation xml:lang="it">Groenlandia</xsd:documentation>
@@ -2678,7 +2679,7 @@
                     <xsd:documentation xml:lang="da">Gambia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Gambia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Gambia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γκάμπια </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γκάμπια</xsd:documentation>
                     <xsd:documentation xml:lang="en">Gambia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Gambie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gambija</xsd:documentation>
@@ -2709,7 +2710,7 @@
                     <xsd:documentation xml:lang="da">Guinea</xsd:documentation>
                     <xsd:documentation xml:lang="de">Guinea</xsd:documentation>
                     <xsd:documentation xml:lang="et">Guinea</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γουινέα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γουινέα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Guinea</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Guinée</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gvineja</xsd:documentation>
@@ -2740,7 +2741,7 @@
                     <xsd:documentation xml:lang="da">Ækvatorialguinea</xsd:documentation>
                     <xsd:documentation xml:lang="de">Äquatorialguinea</xsd:documentation>
                     <xsd:documentation xml:lang="et">Ekvatoriaal-Guinea</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ισημερινή Γουινέα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ισημερινή Γουινέα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Equatorial Guinea</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Guinée équatoriale</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Ekvatorska Gvineja</xsd:documentation>
@@ -2771,7 +2772,7 @@
                     <xsd:documentation xml:lang="da">Guatemala</xsd:documentation>
                     <xsd:documentation xml:lang="de">Guatemala</xsd:documentation>
                     <xsd:documentation xml:lang="et">Guatemala</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γουατεμάλα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γουατεμάλα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Guatemala</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Guatémala</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gvatemala</xsd:documentation>
@@ -2802,7 +2803,7 @@
                     <xsd:documentation xml:lang="da">Guinea-Bissau</xsd:documentation>
                     <xsd:documentation xml:lang="de">Guinea-Bissau</xsd:documentation>
                     <xsd:documentation xml:lang="et">Guinea-Bissau</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γουινέα-Μπισσάου </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γουινέα-Μπισσάου</xsd:documentation>
                     <xsd:documentation xml:lang="en">Guinea-Bissau</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Guinée-Bissau</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gvineja Bisau</xsd:documentation>
@@ -2833,7 +2834,7 @@
                     <xsd:documentation xml:lang="da">Guyana</xsd:documentation>
                     <xsd:documentation xml:lang="de">Guyana</xsd:documentation>
                     <xsd:documentation xml:lang="et">Guyana</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Γουιάνα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Γουιάνα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Guyana</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Guyana</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Gvajana</xsd:documentation>
@@ -2864,7 +2865,7 @@
                     <xsd:documentation xml:lang="da">Honduras</xsd:documentation>
                     <xsd:documentation xml:lang="de">Honduras</xsd:documentation>
                     <xsd:documentation xml:lang="et">Honduras</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ονδούρα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ονδούρα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Honduras</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Honduras</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Honduras</xsd:documentation>
@@ -2895,7 +2896,7 @@
                     <xsd:documentation xml:lang="da">Haiti</xsd:documentation>
                     <xsd:documentation xml:lang="de">Haiti</xsd:documentation>
                     <xsd:documentation xml:lang="et">Haiti</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αϊτή </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αϊτή</xsd:documentation>
                     <xsd:documentation xml:lang="en">Haiti</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Haiti</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Haiti</xsd:documentation>
@@ -2926,7 +2927,7 @@
                     <xsd:documentation xml:lang="da">Indonesien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Indonesien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Indoneesia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ινδονησία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ινδονησία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Indonesia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Indonésie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Indonezija</xsd:documentation>
@@ -2957,7 +2958,7 @@
                     <xsd:documentation xml:lang="da">Israel</xsd:documentation>
                     <xsd:documentation xml:lang="de">Israel</xsd:documentation>
                     <xsd:documentation xml:lang="et">Iisrael</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ισραήλ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ισραήλ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Israel</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Israël</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Izrael</xsd:documentation>
@@ -2988,7 +2989,7 @@
                     <xsd:documentation xml:lang="da">Indien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Indien</xsd:documentation>
                     <xsd:documentation xml:lang="et">India</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ινδία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ινδία</xsd:documentation>
                     <xsd:documentation xml:lang="en">India</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Inde</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Indija</xsd:documentation>
@@ -3019,7 +3020,7 @@
                     <xsd:documentation xml:lang="da">Irak</xsd:documentation>
                     <xsd:documentation xml:lang="de">Irak</xsd:documentation>
                     <xsd:documentation xml:lang="et">Iraak</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ιράκ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ιράκ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Iraq</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Iraq</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Irak</xsd:documentation>
@@ -3050,7 +3051,7 @@
                     <xsd:documentation xml:lang="da">Iran</xsd:documentation>
                     <xsd:documentation xml:lang="de">Iran</xsd:documentation>
                     <xsd:documentation xml:lang="et">Iraan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ιράν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ιράν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Iran</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Iran</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Iran</xsd:documentation>
@@ -3081,7 +3082,7 @@
                     <xsd:documentation xml:lang="da">Jamaica</xsd:documentation>
                     <xsd:documentation xml:lang="de">Jamaika</xsd:documentation>
                     <xsd:documentation xml:lang="et">Jamaica</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τζαμάικα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τζαμάικα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Jamaica</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Jamaique</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Jamajka</xsd:documentation>
@@ -3112,7 +3113,7 @@
                     <xsd:documentation xml:lang="da">Jordan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Jordanien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Jordaania</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ιορδανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ιορδανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Jordan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Jordanie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Jordan</xsd:documentation>
@@ -3143,7 +3144,7 @@
                     <xsd:documentation xml:lang="da">Japan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Japan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Jaapan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ιαπωνία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ιαπωνία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Japan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Japon</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Japan</xsd:documentation>
@@ -3174,7 +3175,7 @@
                     <xsd:documentation xml:lang="da">Kenya</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kenia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kenya</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κένυα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κένυα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Kenya</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Kenya</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kenija</xsd:documentation>
@@ -3205,7 +3206,7 @@
                     <xsd:documentation xml:lang="da">Kirgisistan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kirgisistan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kõrgõzstan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κιργιστάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κιργιστάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Kyrgyzstan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Kirghizistan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kirgistan</xsd:documentation>
@@ -3236,7 +3237,7 @@
                     <xsd:documentation xml:lang="da">Cambodja</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kambodscha</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kambodža</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Καμπότζη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Καμπότζη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Cambodia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Cambodge</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kambodža</xsd:documentation>
@@ -3298,7 +3299,7 @@
                     <xsd:documentation xml:lang="da">Comorerne</xsd:documentation>
                     <xsd:documentation xml:lang="de">Komoren</xsd:documentation>
                     <xsd:documentation xml:lang="et">Komoorid</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κομόρες </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κομόρες</xsd:documentation>
                     <xsd:documentation xml:lang="en">Comoros</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Comores</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Komori</xsd:documentation>
@@ -3329,9 +3330,10 @@
                     <xsd:documentation xml:lang="da">Saint Christopher og Nevis</xsd:documentation>
                     <xsd:documentation xml:lang="de">St. Kitts und Nevis</xsd:documentation>
                     <xsd:documentation xml:lang="et">Saint Kitts ja Nevis</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Άγιος Χριστόφορος και Νέβις </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Άγιος Χριστόφορος και Νέβις</xsd:documentation>
                     <xsd:documentation xml:lang="en">Saint Kitts and Nevis</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Saint-Christophe-et-Nieves (Saint-Kitts-et-Nevis)</xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Saint-Christophe-et-Nieves (Saint-Kitts-et-Nevis)
+                    </xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sveti Kristofor i Nevis</xsd:documentation>
                     <xsd:documentation xml:lang="is">Sankti Kristófer og Nevis</xsd:documentation>
                     <xsd:documentation xml:lang="it">Saint Kitts e Nevis</xsd:documentation>
@@ -3354,31 +3356,52 @@
             </xsd:enumeration>
             <xsd:enumeration value="KP">
                 <xsd:annotation>
-                    <xsd:documentation xml:lang="bg">Северна Корея (Корейската народнодемократична република)</xsd:documentation>
-                    <xsd:documentation xml:lang="es">Corea del Norte (República Popular Democrática de Corea)</xsd:documentation>
-                    <xsd:documentation xml:lang="cs">Severní Korea (Korejská lidově demokratická republika)</xsd:documentation>
-                    <xsd:documentation xml:lang="da">Nordkorea (Den Demokratiske Folkerepublik Korea)</xsd:documentation>
+                    <xsd:documentation xml:lang="bg">Северна Корея (Корейската народнодемократична република)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="es">Corea del Norte (República Popular Democrática de Corea)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="cs">Severní Korea (Korejská lidově demokratická republika)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="da">Nordkorea (Den Demokratiske Folkerepublik Korea)
+                    </xsd:documentation>
                     <xsd:documentation xml:lang="de">Nord-Korea (Demokratische Volksrepublik Korea)</xsd:documentation>
                     <xsd:documentation xml:lang="et">Põhja-Korea (Korea Rahvademokraatlik Vabariik)</xsd:documentation>
                     <xsd:documentation xml:lang="el">Βόρεια Κορέα (Λαοκρατική Δημοκρατία της Κορέας)</xsd:documentation>
-                    <xsd:documentation xml:lang="en">North Korea (Democratic People's Republic of Korea)</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Corée du Nord (République populaire démocratique de Corée)</xsd:documentation>
-                    <xsd:documentation xml:lang="hr">Sjeverna Koreja (Demokratska Narodna Republika Koreja)</xsd:documentation>
+                    <xsd:documentation xml:lang="en">North Korea (Democratic People's Republic of Korea)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Corée du Nord (République populaire démocratique de Corée)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="hr">Sjeverna Koreja (Demokratska Narodna Republika Koreja)
+                    </xsd:documentation>
                     <xsd:documentation xml:lang="is">Norður-Kórea (Alþýðulýðveldið Kórea)</xsd:documentation>
-                    <xsd:documentation xml:lang="it">Corea del Nord (Repubblica Democratica Popolare di Corea)</xsd:documentation>
-                    <xsd:documentation xml:lang="lv">Ziemeļkoreja (Korejas Tautas Demokrātiskā Republika)</xsd:documentation>
-                    <xsd:documentation xml:lang="lt">Šiaurės Korėja (Korėjos Liaudies Demokratinė Respublika)</xsd:documentation>
-                    <xsd:documentation xml:lang="hu">Észak-Korea (Koreai Népi Demokratikus Köztársaság)</xsd:documentation>
-                    <xsd:documentation xml:lang="mk">Северна Кореа (Демократска Народна Република Кореа)</xsd:documentation>
-                    <xsd:documentation xml:lang="mt">Korea ta' Fuq (Repubblika popolari Demokratika tal-Korea)</xsd:documentation>
-                    <xsd:documentation xml:lang="nl">Noord-Korea (Democratische Volksrepubliek Korea)</xsd:documentation>
-                    <xsd:documentation xml:lang="no">Nord-Korea (Den demokratiske folkerepublikken Korea)</xsd:documentation>
-                    <xsd:documentation xml:lang="pl">Korea Północna (Koreańska Republika Ludowo-Demokratyczna)</xsd:documentation>
-                    <xsd:documentation xml:lang="pt">Coreia do Norte (República Democrática Popular da Coreia)</xsd:documentation>
-                    <xsd:documentation xml:lang="ro">Coreea de Nord (Republica Populară Democrată Coreeană)</xsd:documentation>
-                    <xsd:documentation xml:lang="sk">Severná Kórea (Kórejská ľudovodemokratická republika)</xsd:documentation>
-                    <xsd:documentation xml:lang="sl">Severna Koreja (Demokratíčna ljúdska repúblika Korêja)</xsd:documentation>
-                    <xsd:documentation xml:lang="fi">Pohjois-Korean (Korean demokraattinen kansantasavalta)</xsd:documentation>
+                    <xsd:documentation xml:lang="it">Corea del Nord (Repubblica Democratica Popolare di Corea)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="lv">Ziemeļkoreja (Korejas Tautas Demokrātiskā Republika)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="lt">Šiaurės Korėja (Korėjos Liaudies Demokratinė Respublika)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="hu">Észak-Korea (Koreai Népi Demokratikus Köztársaság)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="mk">Северна Кореа (Демократска Народна Република Кореа)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="mt">Korea ta' Fuq (Repubblika popolari Demokratika tal-Korea)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="nl">Noord-Korea (Democratische Volksrepubliek Korea)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="no">Nord-Korea (Den demokratiske folkerepublikken Korea)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="pl">Korea Północna (Koreańska Republika Ludowo-Demokratyczna)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="pt">Coreia do Norte (República Democrática Popular da Coreia)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="ro">Coreea de Nord (Republica Populară Democrată Coreeană)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="sk">Severná Kórea (Kórejská ľudovodemokratická republika)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="sl">Severna Koreja (Demokratíčna ljúdska repúblika Korêja)
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="fi">Pohjois-Korean (Korean demokraattinen kansantasavalta)
+                    </xsd:documentation>
                     <xsd:documentation xml:lang="sv">Nordkorea (Demokratiska folkrepubliken Korea)</xsd:documentation>
                     <xsd:documentation xml:lang="tr">Kuzey Kore (Kore Demokratik Halk Cumhuriyeti)</xsd:documentation>
                 </xsd:annotation>
@@ -3422,7 +3445,7 @@
                     <xsd:documentation xml:lang="da">Kuwait</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kuwait</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kuveit</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κουβέιτ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κουβέιτ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Kuwait</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Koweit</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kuvajt</xsd:documentation>
@@ -3453,7 +3476,7 @@
                     <xsd:documentation xml:lang="da">Kasakhstan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Kasachstan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Kasahstan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Καζακστάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Καζακστάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Kazakhstan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Kazakhstan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Kazahstan</xsd:documentation>
@@ -3484,7 +3507,7 @@
                     <xsd:documentation xml:lang="da">Laos</xsd:documentation>
                     <xsd:documentation xml:lang="de">Laos</xsd:documentation>
                     <xsd:documentation xml:lang="et">Laos</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λάος </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λάος</xsd:documentation>
                     <xsd:documentation xml:lang="en">Laos</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Laos</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Laos</xsd:documentation>
@@ -3515,7 +3538,7 @@
                     <xsd:documentation xml:lang="da">Libanon</xsd:documentation>
                     <xsd:documentation xml:lang="de">Libanon</xsd:documentation>
                     <xsd:documentation xml:lang="et">Liibanon</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λίβανος </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λίβανος</xsd:documentation>
                     <xsd:documentation xml:lang="en">Lebanon</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Liban</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Libanon</xsd:documentation>
@@ -3546,9 +3569,9 @@
                     <xsd:documentation xml:lang="da">Saint Lucia</xsd:documentation>
                     <xsd:documentation xml:lang="de">St. Lucia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Saint Lucia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Αγία Λουκία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Αγία Λουκία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Saint Lucia</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Sainte-Lucie </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Sainte-Lucie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sveta Lucija</xsd:documentation>
                     <xsd:documentation xml:lang="is">Sankti Lúsía</xsd:documentation>
                     <xsd:documentation xml:lang="it">Saint Lucia</xsd:documentation>
@@ -3577,7 +3600,7 @@
                     <xsd:documentation xml:lang="da">Liechtenstein</xsd:documentation>
                     <xsd:documentation xml:lang="de">Liechtenstein</xsd:documentation>
                     <xsd:documentation xml:lang="et">Liechtenstein</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λιχτενστάιν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λιχτενστάιν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Liechtenstein</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Liechtenstein</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Lihtenštajn</xsd:documentation>
@@ -3608,7 +3631,7 @@
                     <xsd:documentation xml:lang="da">Sri Lanka</xsd:documentation>
                     <xsd:documentation xml:lang="de">Sri Lanka</xsd:documentation>
                     <xsd:documentation xml:lang="et">Sri Lanka</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σρι Λάνκα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σρι Λάνκα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Sri Lanka</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Sri Lanka</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Šri Lanka</xsd:documentation>
@@ -3639,7 +3662,7 @@
                     <xsd:documentation xml:lang="da">Liberia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Liberia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Libeeria</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λιβερία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λιβερία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Liberia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Libéria</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Liberija</xsd:documentation>
@@ -3670,7 +3693,7 @@
                     <xsd:documentation xml:lang="da">Lesotho</xsd:documentation>
                     <xsd:documentation xml:lang="de">Lesotho</xsd:documentation>
                     <xsd:documentation xml:lang="et">Lesotho</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λεσότο </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λεσότο</xsd:documentation>
                     <xsd:documentation xml:lang="en">Lesotho</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Lesotho</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Lesoto</xsd:documentation>
@@ -3701,7 +3724,7 @@
                     <xsd:documentation xml:lang="da">Libyen</xsd:documentation>
                     <xsd:documentation xml:lang="de">Libyen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Liibüa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Λιβύη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Λιβύη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Libya</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Libye</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Libija</xsd:documentation>
@@ -3732,7 +3755,7 @@
                     <xsd:documentation xml:lang="da">Marokko</xsd:documentation>
                     <xsd:documentation xml:lang="de">Marokko</xsd:documentation>
                     <xsd:documentation xml:lang="et">Maroko</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μαρόκο </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μαρόκο</xsd:documentation>
                     <xsd:documentation xml:lang="en">Morocco</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Maroc</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Maroko</xsd:documentation>
@@ -3763,7 +3786,7 @@
                     <xsd:documentation xml:lang="da">Monaco</xsd:documentation>
                     <xsd:documentation xml:lang="de">Monaco</xsd:documentation>
                     <xsd:documentation xml:lang="et">Monaco</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μονακό </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μονακό</xsd:documentation>
                     <xsd:documentation xml:lang="en">Monaco</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Monaco</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Monako</xsd:documentation>
@@ -3794,7 +3817,7 @@
                     <xsd:documentation xml:lang="da">Moldova</xsd:documentation>
                     <xsd:documentation xml:lang="de">Moldawien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Moldova</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μολδαβία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μολδαβία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Moldova</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Moldavie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Moldova</xsd:documentation>
@@ -3825,7 +3848,7 @@
                     <xsd:documentation xml:lang="da">Madagaskar</xsd:documentation>
                     <xsd:documentation xml:lang="de">Madagaskar</xsd:documentation>
                     <xsd:documentation xml:lang="et">Madagaskar</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μαδαγασκάρη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μαδαγασκάρη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Madagascar</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Madagascar</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Madagaskar</xsd:documentation>
@@ -3866,7 +3889,7 @@
                     <xsd:documentation xml:lang="lt">Maršalo salos</xsd:documentation>
                     <xsd:documentation xml:lang="hu">Marshall-szigetek</xsd:documentation>
                     <xsd:documentation xml:lang="mk">Маршалски Острови</xsd:documentation>
-                    <xsd:documentation xml:lang="mt">Gżejjer Marshall </xsd:documentation>
+                    <xsd:documentation xml:lang="mt">Gżejjer Marshall</xsd:documentation>
                     <xsd:documentation xml:lang="nl">Marshalleilanden</xsd:documentation>
                     <xsd:documentation xml:lang="no">Marshalløyene</xsd:documentation>
                     <xsd:documentation xml:lang="pl">Wyspy Marshalla</xsd:documentation>
@@ -3899,8 +3922,9 @@
                     <xsd:documentation xml:lang="mk">Поранешна Југословенска Република Македонија</xsd:documentation>
                     <xsd:documentation xml:lang="mt">L-Ex Repubblika Jugoslava tal-Maċedonja</xsd:documentation>
                     <xsd:documentation xml:lang="nl">Voormalige Joegoslavische Republiek Macedonië</xsd:documentation>
-                    <xsd:documentation xml:lang="no">Den tidligere jugoslaviske republikken Makedonia</xsd:documentation>
-                    <xsd:documentation xml:lang="pl">Była Jugosłowiańska Republika Macedonii </xsd:documentation>
+                    <xsd:documentation xml:lang="no">Den tidligere jugoslaviske republikken Makedonia
+                    </xsd:documentation>
+                    <xsd:documentation xml:lang="pl">Była Jugosłowiańska Republika Macedonii</xsd:documentation>
                     <xsd:documentation xml:lang="pt">Antiga República Jugoslava da Macedónia</xsd:documentation>
                     <xsd:documentation xml:lang="ro">Fosta Republică Iugoslavă a Macedoniei</xsd:documentation>
                     <xsd:documentation xml:lang="sk">Bývalá juhoslovanská republika Macedónsko</xsd:documentation>
@@ -3918,7 +3942,7 @@
                     <xsd:documentation xml:lang="da">Mali</xsd:documentation>
                     <xsd:documentation xml:lang="de">Mali</xsd:documentation>
                     <xsd:documentation xml:lang="et">Mali</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μάλι </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μάλι</xsd:documentation>
                     <xsd:documentation xml:lang="en">Mali</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Mali</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Mali</xsd:documentation>
@@ -3980,7 +4004,7 @@
                     <xsd:documentation xml:lang="da">Mongoliet</xsd:documentation>
                     <xsd:documentation xml:lang="de">Mongolei</xsd:documentation>
                     <xsd:documentation xml:lang="et">Mongoolia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μογγολία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μογγολία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Mongolia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Mongolie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Mongolija</xsd:documentation>
@@ -4011,7 +4035,7 @@
                     <xsd:documentation xml:lang="da">Mauretanien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Mauretanien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Mauritaania</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μαυριτανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μαυριτανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Mauritania</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Mauritanie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Mauritanija</xsd:documentation>
@@ -4042,7 +4066,7 @@
                     <xsd:documentation xml:lang="da">Mauritius</xsd:documentation>
                     <xsd:documentation xml:lang="de">Mauritius</xsd:documentation>
                     <xsd:documentation xml:lang="et">Mauritius</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μαυρίκιος </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μαυρίκιος</xsd:documentation>
                     <xsd:documentation xml:lang="en">Mauritius</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Maurice</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Mauricijus</xsd:documentation>
@@ -4073,9 +4097,9 @@
                     <xsd:documentation xml:lang="da">Maldiverne</xsd:documentation>
                     <xsd:documentation xml:lang="de">Malediven</xsd:documentation>
                     <xsd:documentation xml:lang="et">Maldiivid</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μαλδίβες </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μαλδίβες</xsd:documentation>
                     <xsd:documentation xml:lang="en">Maldives</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Maldives </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Maldives</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Maldivi</xsd:documentation>
                     <xsd:documentation xml:lang="is">Maldíveyjar</xsd:documentation>
                     <xsd:documentation xml:lang="it">Maldive</xsd:documentation>
@@ -4104,7 +4128,7 @@
                     <xsd:documentation xml:lang="da">Malawi</xsd:documentation>
                     <xsd:documentation xml:lang="de">Malawi</xsd:documentation>
                     <xsd:documentation xml:lang="et">Malawi</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μαλάουι </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μαλάουι</xsd:documentation>
                     <xsd:documentation xml:lang="en">Malawi</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Malawi</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Malavi</xsd:documentation>
@@ -4135,7 +4159,7 @@
                     <xsd:documentation xml:lang="da">Mexico</xsd:documentation>
                     <xsd:documentation xml:lang="de">Mexiko</xsd:documentation>
                     <xsd:documentation xml:lang="et">Mehhiko</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μεξικό </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μεξικό</xsd:documentation>
                     <xsd:documentation xml:lang="en">Mexico</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Mexique</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Meksiko</xsd:documentation>
@@ -4166,7 +4190,7 @@
                     <xsd:documentation xml:lang="da">Malaysia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Malaysia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Malaisia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μαλαισία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μαλαισία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Malaysia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Malaisie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Malezija</xsd:documentation>
@@ -4197,7 +4221,7 @@
                     <xsd:documentation xml:lang="da">Mozambique</xsd:documentation>
                     <xsd:documentation xml:lang="de">Mosambik</xsd:documentation>
                     <xsd:documentation xml:lang="et">Mosambiik</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Μοζαμβίκη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Μοζαμβίκη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Mozambique</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Mozambique</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Mozambik</xsd:documentation>
@@ -4228,7 +4252,7 @@
                     <xsd:documentation xml:lang="da">Namibia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Namibia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Namiibia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ναμίμπια </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ναμίμπια</xsd:documentation>
                     <xsd:documentation xml:lang="en">Namibia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Namibie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Namibija</xsd:documentation>
@@ -4259,7 +4283,7 @@
                     <xsd:documentation xml:lang="da">Niger</xsd:documentation>
                     <xsd:documentation xml:lang="de">Niger</xsd:documentation>
                     <xsd:documentation xml:lang="et">Niger</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Νίγηρας </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Νίγηρας</xsd:documentation>
                     <xsd:documentation xml:lang="en">Niger</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Niger</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Niger</xsd:documentation>
@@ -4290,7 +4314,7 @@
                     <xsd:documentation xml:lang="da">Nigeria</xsd:documentation>
                     <xsd:documentation xml:lang="de">Nigeria</xsd:documentation>
                     <xsd:documentation xml:lang="et">Nigeeria</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Νιγηρία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Νιγηρία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Nigeria</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Nigéria</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Nigerija</xsd:documentation>
@@ -4321,7 +4345,7 @@
                     <xsd:documentation xml:lang="da">Nicaragua</xsd:documentation>
                     <xsd:documentation xml:lang="de">Nicaragua</xsd:documentation>
                     <xsd:documentation xml:lang="et">Nicaragua</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Νικαράγουα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Νικαράγουα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Nicaragua</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Nicaragua</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Nikaragva</xsd:documentation>
@@ -4352,7 +4376,7 @@
                     <xsd:documentation xml:lang="da">Nepal</xsd:documentation>
                     <xsd:documentation xml:lang="de">Nepal</xsd:documentation>
                     <xsd:documentation xml:lang="et">Nepal</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Νεπάλ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Νεπάλ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Nepal</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Népal</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Nepal</xsd:documentation>
@@ -4416,7 +4440,7 @@
                     <xsd:documentation xml:lang="et">Niue</xsd:documentation>
                     <xsd:documentation xml:lang="el">Νιούε</xsd:documentation>
                     <xsd:documentation xml:lang="en">Niue</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Niue </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Niue</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Niue</xsd:documentation>
                     <xsd:documentation xml:lang="is">Niue</xsd:documentation>
                     <xsd:documentation xml:lang="it">Niue</xsd:documentation>
@@ -4445,7 +4469,7 @@
                     <xsd:documentation xml:lang="da">New Zealand</xsd:documentation>
                     <xsd:documentation xml:lang="de">Neuseeland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Uus-Meremaa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Νέα Ζηλανδία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Νέα Ζηλανδία</xsd:documentation>
                     <xsd:documentation xml:lang="en">New Zealand</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Nouvelle-Zélande</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Novi Zeland</xsd:documentation>
@@ -4476,7 +4500,7 @@
                     <xsd:documentation xml:lang="da">Oman</xsd:documentation>
                     <xsd:documentation xml:lang="de">Oman</xsd:documentation>
                     <xsd:documentation xml:lang="et">Omaan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ομάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ομάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Oman</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Oman</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Oman</xsd:documentation>
@@ -4507,7 +4531,7 @@
                     <xsd:documentation xml:lang="da">Panama</xsd:documentation>
                     <xsd:documentation xml:lang="de">Panama</xsd:documentation>
                     <xsd:documentation xml:lang="et">Panama</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Παναμάς </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Παναμάς</xsd:documentation>
                     <xsd:documentation xml:lang="en">Panama</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Panama</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Panama</xsd:documentation>
@@ -4538,7 +4562,7 @@
                     <xsd:documentation xml:lang="da">Peru</xsd:documentation>
                     <xsd:documentation xml:lang="de">Peru</xsd:documentation>
                     <xsd:documentation xml:lang="et">Peruu</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Περού </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Περού</xsd:documentation>
                     <xsd:documentation xml:lang="en">Peru</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Pérou</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Peru</xsd:documentation>
@@ -4569,7 +4593,7 @@
                     <xsd:documentation xml:lang="da">Papua Ny Guinea</xsd:documentation>
                     <xsd:documentation xml:lang="de">Papua-Neuguinea</xsd:documentation>
                     <xsd:documentation xml:lang="et">Paapua Uus-Guinea</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Παπούα Νέα Γουινέα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Παπούα Νέα Γουινέα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Papua New Guinea</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Papouasie-Nouvelle-Guinée</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Papua Nova Gvineja</xsd:documentation>
@@ -4600,7 +4624,7 @@
                     <xsd:documentation xml:lang="da">Filippinerne</xsd:documentation>
                     <xsd:documentation xml:lang="de">Philippinen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Filipiinid</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Φιλιππίνες </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Φιλιππίνες</xsd:documentation>
                     <xsd:documentation xml:lang="en">Philippines</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Philippines</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Filipini</xsd:documentation>
@@ -4631,7 +4655,7 @@
                     <xsd:documentation xml:lang="da">Pakistan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Pakistan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Pakistan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Πακιστάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Πακιστάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Pakistan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Pakistan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Pakistan</xsd:documentation>
@@ -4693,9 +4717,9 @@
                     <xsd:documentation xml:lang="da">Palau</xsd:documentation>
                     <xsd:documentation xml:lang="de">Palau</xsd:documentation>
                     <xsd:documentation xml:lang="et">Belau</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Παλάου </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Παλάου</xsd:documentation>
                     <xsd:documentation xml:lang="en">Palau</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Palaos </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Palaos</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Palau</xsd:documentation>
                     <xsd:documentation xml:lang="is">Palá</xsd:documentation>
                     <xsd:documentation xml:lang="it">Palau</xsd:documentation>
@@ -4724,7 +4748,7 @@
                     <xsd:documentation xml:lang="da">Paraguay</xsd:documentation>
                     <xsd:documentation xml:lang="de">Paraguay</xsd:documentation>
                     <xsd:documentation xml:lang="et">Paraguay</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Παραγουάη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Παραγουάη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Paraguay</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Paraguay</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Paragvaj</xsd:documentation>
@@ -4755,7 +4779,7 @@
                     <xsd:documentation xml:lang="da">Qatar</xsd:documentation>
                     <xsd:documentation xml:lang="de">Katar</xsd:documentation>
                     <xsd:documentation xml:lang="et">Katar</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Κατάρ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Κατάρ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Qatar</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Qatar</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Katar</xsd:documentation>
@@ -4786,7 +4810,7 @@
                     <xsd:documentation xml:lang="da">Rusland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Russland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Venemaa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ρωσία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ρωσία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Russia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Russie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Rusija</xsd:documentation>
@@ -4817,7 +4841,7 @@
                     <xsd:documentation xml:lang="da">Rwanda</xsd:documentation>
                     <xsd:documentation xml:lang="de">Ruanda</xsd:documentation>
                     <xsd:documentation xml:lang="et">Rwanda</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ρουάντα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ρουάντα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Rwanda</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Rwanda</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Ruanda</xsd:documentation>
@@ -4848,7 +4872,7 @@
                     <xsd:documentation xml:lang="da">Saudi-Arabien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Saudi-Arabien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Saudi Araabia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σαουδική Αραβία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σαουδική Αραβία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Saudi Arabia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Arabie Saoudite</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Saudijska Arabija</xsd:documentation>
@@ -4910,9 +4934,9 @@
                     <xsd:documentation xml:lang="da">Seychellerne</xsd:documentation>
                     <xsd:documentation xml:lang="de">Seychellen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Seišellid</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σεϋχέλλες </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σεϋχέλλες</xsd:documentation>
                     <xsd:documentation xml:lang="en">Seychelles</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Seychelles </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Seychelles</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sejšeli</xsd:documentation>
                     <xsd:documentation xml:lang="is">Seychelles-eyjar</xsd:documentation>
                     <xsd:documentation xml:lang="it">Seicelle</xsd:documentation>
@@ -4941,7 +4965,7 @@
                     <xsd:documentation xml:lang="da">Sudan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Sudan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Sudaan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σουδάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σουδάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Sudan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Soudan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sudan</xsd:documentation>
@@ -4972,7 +4996,7 @@
                     <xsd:documentation xml:lang="da">Singapore</xsd:documentation>
                     <xsd:documentation xml:lang="de">Singapur</xsd:documentation>
                     <xsd:documentation xml:lang="et">Singapur</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σιγκαπούρη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σιγκαπούρη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Singapore</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Singapour</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Singapur</xsd:documentation>
@@ -5003,7 +5027,7 @@
                     <xsd:documentation xml:lang="da">Sierra Leone</xsd:documentation>
                     <xsd:documentation xml:lang="de">Sierra Leone</xsd:documentation>
                     <xsd:documentation xml:lang="et">Sierra Leone</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σιέρρα Λεόνε </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σιέρρα Λεόνε</xsd:documentation>
                     <xsd:documentation xml:lang="en">Sierra Leone</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Sierra Leone</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sijera Leone</xsd:documentation>
@@ -5035,8 +5059,8 @@
                     <xsd:documentation xml:lang="de">San Marino</xsd:documentation>
                     <xsd:documentation xml:lang="et">San Marino</xsd:documentation>
                     <xsd:documentation xml:lang="el">Άγιος Μαρίνος</xsd:documentation>
-                    <xsd:documentation xml:lang="en">San Marino </xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Saint-Marin </xsd:documentation>
+                    <xsd:documentation xml:lang="en">San Marino</xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Saint-Marin</xsd:documentation>
                     <xsd:documentation xml:lang="hr">San Marino</xsd:documentation>
                     <xsd:documentation xml:lang="is">San Marínó</xsd:documentation>
                     <xsd:documentation xml:lang="it">San Marino</xsd:documentation>
@@ -5065,7 +5089,7 @@
                     <xsd:documentation xml:lang="da">Senegal</xsd:documentation>
                     <xsd:documentation xml:lang="de">Senegal</xsd:documentation>
                     <xsd:documentation xml:lang="et">Senegal</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σενεγάλη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σενεγάλη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Senegal</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Sénégal</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Senegal</xsd:documentation>
@@ -5096,7 +5120,7 @@
                     <xsd:documentation xml:lang="da">Somalia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Somalia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Somaalia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σομαλία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σομαλία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Somalia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Somalie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Somalija</xsd:documentation>
@@ -5127,9 +5151,9 @@
                     <xsd:documentation xml:lang="da">Surinam</xsd:documentation>
                     <xsd:documentation xml:lang="de">Suriname</xsd:documentation>
                     <xsd:documentation xml:lang="et">Suriname</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σουρινάμ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σουρινάμ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Suriname</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Suriname </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Suriname</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Surinam</xsd:documentation>
                     <xsd:documentation xml:lang="is">Súrínam</xsd:documentation>
                     <xsd:documentation xml:lang="it">Suriname</xsd:documentation>
@@ -5158,9 +5182,9 @@
                     <xsd:documentation xml:lang="da">Sao Tome og Principe</xsd:documentation>
                     <xsd:documentation xml:lang="de">São Tomé und Príncipe</xsd:documentation>
                     <xsd:documentation xml:lang="et">São Tomé ja Príncipe</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σάο Τομέ και Πρίνσιπε </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σάο Τομέ και Πρίνσιπε</xsd:documentation>
                     <xsd:documentation xml:lang="en">Sao Tome and Principe</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Sao Tomé-et-Principe </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Sao Tomé-et-Principe</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sveti Toma i Prinsipe</xsd:documentation>
                     <xsd:documentation xml:lang="is">Saó Tóme og Prinsípe</xsd:documentation>
                     <xsd:documentation xml:lang="it">São Tomé e Príncipe</xsd:documentation>
@@ -5176,7 +5200,7 @@
                     <xsd:documentation xml:lang="ro">São Tomé şi Príncipe</xsd:documentation>
                     <xsd:documentation xml:lang="sk">Svätý Tomáš a Princov ostrov</xsd:documentation>
                     <xsd:documentation xml:lang="sl">Sao Tome in Principe</xsd:documentation>
-                    <xsd:documentation xml:lang="fi">São Tomé ja Príncipe </xsd:documentation>
+                    <xsd:documentation xml:lang="fi">São Tomé ja Príncipe</xsd:documentation>
                     <xsd:documentation xml:lang="sv">São Tomé och Príncipe</xsd:documentation>
                     <xsd:documentation xml:lang="tr">São Tomé ve Príncipe</xsd:documentation>
                 </xsd:annotation>
@@ -5189,7 +5213,7 @@
                     <xsd:documentation xml:lang="da">El Salvador</xsd:documentation>
                     <xsd:documentation xml:lang="de">El Salvador</xsd:documentation>
                     <xsd:documentation xml:lang="et">El Salvador</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ελ Σαλβαδόρ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ελ Σαλβαδόρ</xsd:documentation>
                     <xsd:documentation xml:lang="en">El Salvador</xsd:documentation>
                     <xsd:documentation xml:lang="fr">El Salvador</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Salvador</xsd:documentation>
@@ -5220,7 +5244,7 @@
                     <xsd:documentation xml:lang="da">Syrien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Syrien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Süüria</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Συρία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Συρία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Syria</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Syrie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sirija</xsd:documentation>
@@ -5251,7 +5275,7 @@
                     <xsd:documentation xml:lang="da">Swaziland</xsd:documentation>
                     <xsd:documentation xml:lang="de">Swasiland</xsd:documentation>
                     <xsd:documentation xml:lang="et">Svaasimaa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σουαζιλάνδη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σουαζιλάνδη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Swaziland</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Swaziland</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Svazi</xsd:documentation>
@@ -5282,7 +5306,7 @@
                     <xsd:documentation xml:lang="da">Tchad</xsd:documentation>
                     <xsd:documentation xml:lang="de">Tschad</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tšaad</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τσαντ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τσαντ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Chad</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Tchad</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Čad</xsd:documentation>
@@ -5313,7 +5337,7 @@
                     <xsd:documentation xml:lang="da">Togo</xsd:documentation>
                     <xsd:documentation xml:lang="de">Togo</xsd:documentation>
                     <xsd:documentation xml:lang="et">Togo</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τόγκο </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τόγκο</xsd:documentation>
                     <xsd:documentation xml:lang="en">Togo</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Togo</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Togo</xsd:documentation>
@@ -5344,7 +5368,7 @@
                     <xsd:documentation xml:lang="da">Thailand</xsd:documentation>
                     <xsd:documentation xml:lang="de">Thailand</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tai</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ταϊλάνδη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ταϊλάνδη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Thailand</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Thailande</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Tajland</xsd:documentation>
@@ -5375,7 +5399,7 @@
                     <xsd:documentation xml:lang="da">Tadsjikistan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Tadschikistan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tadžikistan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τατζικιστάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τατζικιστάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Tajikistan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Tadjikistan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Tadžikistan</xsd:documentation>
@@ -5401,7 +5425,7 @@
             <xsd:enumeration value="TL">
                 <xsd:annotation>
                     <xsd:documentation xml:lang="bg">Източен Тимор</xsd:documentation>
-                    <xsd:documentation xml:lang="es">Timor Oriental </xsd:documentation>
+                    <xsd:documentation xml:lang="es">Timor Oriental</xsd:documentation>
                     <xsd:documentation xml:lang="cs">Východní Timor</xsd:documentation>
                     <xsd:documentation xml:lang="da">Østtimor (Timor-Leste)</xsd:documentation>
                     <xsd:documentation xml:lang="de">Timor-Leste</xsd:documentation>
@@ -5437,7 +5461,7 @@
                     <xsd:documentation xml:lang="da">Turkmenistan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Turkmenistan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Türkmenistan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τουρκμενιστάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τουρκμενιστάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Turkmenistan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Turkmenistan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Turkmenistan</xsd:documentation>
@@ -5468,7 +5492,7 @@
                     <xsd:documentation xml:lang="da">Tunesien</xsd:documentation>
                     <xsd:documentation xml:lang="de">Tunesien</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tuneesia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τυνησία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τυνησία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Tunisia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Tunisie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Tunis</xsd:documentation>
@@ -5499,9 +5523,9 @@
                     <xsd:documentation xml:lang="da">Tonga</xsd:documentation>
                     <xsd:documentation xml:lang="de">Tonga</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tonga</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τόνγκα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τόνγκα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Tonga</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Tonga </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Tonga</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Tonga</xsd:documentation>
                     <xsd:documentation xml:lang="is">Tonga</xsd:documentation>
                     <xsd:documentation xml:lang="it">Tonga</xsd:documentation>
@@ -5530,7 +5554,7 @@
                     <xsd:documentation xml:lang="da">Trinidad og Tobago</xsd:documentation>
                     <xsd:documentation xml:lang="de">Trinidad und Tobago</xsd:documentation>
                     <xsd:documentation xml:lang="et">Trinidad ja Tobago</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τρινιντάντ και Τομπάγκο </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τρινιντάντ και Τομπάγκο</xsd:documentation>
                     <xsd:documentation xml:lang="en">Trindidad and Tobago</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Trinité-et-Tobago</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Trinidad i Tobago</xsd:documentation>
@@ -5561,9 +5585,9 @@
                     <xsd:documentation xml:lang="da">Tuvalu</xsd:documentation>
                     <xsd:documentation xml:lang="de">Tuvalu</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tuvalu</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τουβαλού </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τουβαλού</xsd:documentation>
                     <xsd:documentation xml:lang="en">Tuvalu</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Tuvalu </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Tuvalu</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Tuvalu</xsd:documentation>
                     <xsd:documentation xml:lang="is">Túvalúeyjar</xsd:documentation>
                     <xsd:documentation xml:lang="it">Tuvalu</xsd:documentation>
@@ -5592,7 +5616,7 @@
                     <xsd:documentation xml:lang="da">Tanzania</xsd:documentation>
                     <xsd:documentation xml:lang="de">Tansania</xsd:documentation>
                     <xsd:documentation xml:lang="et">Tansaania</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Τανζανία </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Τανζανία</xsd:documentation>
                     <xsd:documentation xml:lang="en">Tanzania</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Tanzanie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Tanzanija</xsd:documentation>
@@ -5654,7 +5678,7 @@
                     <xsd:documentation xml:lang="da">Uganda</xsd:documentation>
                     <xsd:documentation xml:lang="de">Uganda</xsd:documentation>
                     <xsd:documentation xml:lang="et">Uganda</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ουγκάντα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ουγκάντα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Uganda</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Ouganda</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Uganda</xsd:documentation>
@@ -5685,7 +5709,7 @@
                     <xsd:documentation xml:lang="da">Amerikas Forenede Stater</xsd:documentation>
                     <xsd:documentation xml:lang="de">Vereinigte Staaten</xsd:documentation>
                     <xsd:documentation xml:lang="et">Ameerika Ühendriigid</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ηνωμένες Πολιτείες </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ηνωμένες Πολιτείες</xsd:documentation>
                     <xsd:documentation xml:lang="en">United States</xsd:documentation>
                     <xsd:documentation xml:lang="fr">États-Unis</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sjedinjene Američke Države</xsd:documentation>
@@ -5716,7 +5740,7 @@
                     <xsd:documentation xml:lang="da">Uruguay</xsd:documentation>
                     <xsd:documentation xml:lang="de">Uruguay</xsd:documentation>
                     <xsd:documentation xml:lang="et">Uruguay</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ουρουγουάη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ουρουγουάη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Uruguay</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Uruguay</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Urugvaj</xsd:documentation>
@@ -5747,7 +5771,7 @@
                     <xsd:documentation xml:lang="da">Usbekistan</xsd:documentation>
                     <xsd:documentation xml:lang="de">Usbekistan</xsd:documentation>
                     <xsd:documentation xml:lang="et">Usbekistan</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ουζμπεκιστάν </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ουζμπεκιστάν</xsd:documentation>
                     <xsd:documentation xml:lang="en">Uzbekistan</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Ouzbekistan</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Uzbekistan</xsd:documentation>
@@ -5809,8 +5833,8 @@
                     <xsd:documentation xml:lang="da">Saint Vincent og Grenadinerne</xsd:documentation>
                     <xsd:documentation xml:lang="de">St.Vincent und die Grenadinen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Saint Vincent ja Grenadiinid</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Άγιος Βικέντιος και Γρεναδίνες </xsd:documentation>
-                    <xsd:documentation xml:lang="en">Saint Vincent and the Grenadines </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Άγιος Βικέντιος και Γρεναδίνες</xsd:documentation>
+                    <xsd:documentation xml:lang="en">Saint Vincent and the Grenadines</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Saint-Vincent-et-les-Grenadines</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Sveti Vincent i Grenadini</xsd:documentation>
                     <xsd:documentation xml:lang="is">Sankti Vinsent og Grenadíneyjar</xsd:documentation>
@@ -5841,7 +5865,7 @@
                     <xsd:documentation xml:lang="da">Venezuela</xsd:documentation>
                     <xsd:documentation xml:lang="de">Venezuela</xsd:documentation>
                     <xsd:documentation xml:lang="et">Venezuela</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Βενεζουέλα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Βενεζουέλα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Venezuela</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Venezuela</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Venezuela</xsd:documentation>
@@ -5872,7 +5896,7 @@
                     <xsd:documentation xml:lang="da">Vietnam</xsd:documentation>
                     <xsd:documentation xml:lang="de">Vietnam</xsd:documentation>
                     <xsd:documentation xml:lang="et">Vietnam</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Βιετνάμ </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Βιετνάμ</xsd:documentation>
                     <xsd:documentation xml:lang="en">Vietnam</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Viet Nam</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Vijetnam</xsd:documentation>
@@ -5905,7 +5929,7 @@
                     <xsd:documentation xml:lang="et">Vanuatu</xsd:documentation>
                     <xsd:documentation xml:lang="el">Βανουάτου</xsd:documentation>
                     <xsd:documentation xml:lang="en">Vanuatu</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Vanuatu </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Vanuatu</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Vanuatu</xsd:documentation>
                     <xsd:documentation xml:lang="is">Vanúatú</xsd:documentation>
                     <xsd:documentation xml:lang="it">Vanuatu</xsd:documentation>
@@ -5934,9 +5958,9 @@
                     <xsd:documentation xml:lang="da">Samoa</xsd:documentation>
                     <xsd:documentation xml:lang="de">Samoa</xsd:documentation>
                     <xsd:documentation xml:lang="et">Samoa</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Σαμόα </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Σαμόα</xsd:documentation>
                     <xsd:documentation xml:lang="en">Samoa</xsd:documentation>
-                    <xsd:documentation xml:lang="fr">Samoa </xsd:documentation>
+                    <xsd:documentation xml:lang="fr">Samoa</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Samoa</xsd:documentation>
                     <xsd:documentation xml:lang="is">Samóa</xsd:documentation>
                     <xsd:documentation xml:lang="it">Samoa</xsd:documentation>
@@ -5965,7 +5989,7 @@
                     <xsd:documentation xml:lang="da">Yemen</xsd:documentation>
                     <xsd:documentation xml:lang="de">Jemen</xsd:documentation>
                     <xsd:documentation xml:lang="et">Jeemen</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Υεμένη </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Υεμένη</xsd:documentation>
                     <xsd:documentation xml:lang="en">Yemen</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Yémen</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Jemen</xsd:documentation>
@@ -5996,7 +6020,7 @@
                     <xsd:documentation xml:lang="da">Sydafrika</xsd:documentation>
                     <xsd:documentation xml:lang="de">Südafrika</xsd:documentation>
                     <xsd:documentation xml:lang="et">Lõuna-Aafrika</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Νότια Αφρική </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Νότια Αφρική</xsd:documentation>
                     <xsd:documentation xml:lang="en">South Africa</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Afrique du Sud</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Južna Afrika</xsd:documentation>
@@ -6027,7 +6051,7 @@
                     <xsd:documentation xml:lang="da">Zambia</xsd:documentation>
                     <xsd:documentation xml:lang="de">Sambia</xsd:documentation>
                     <xsd:documentation xml:lang="et">Sambia</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ζάμπια </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ζάμπια</xsd:documentation>
                     <xsd:documentation xml:lang="en">Zambia</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Zambie</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Zambija</xsd:documentation>
@@ -6058,7 +6082,7 @@
                     <xsd:documentation xml:lang="da">Zimbabwe</xsd:documentation>
                     <xsd:documentation xml:lang="de">Simbabwe</xsd:documentation>
                     <xsd:documentation xml:lang="et">Zimbabwe</xsd:documentation>
-                    <xsd:documentation xml:lang="el">Ζιμπάμπουε </xsd:documentation>
+                    <xsd:documentation xml:lang="el">Ζιμπάμπουε</xsd:documentation>
                     <xsd:documentation xml:lang="en">Zimbabwe</xsd:documentation>
                     <xsd:documentation xml:lang="fr">Zimbabwe</xsd:documentation>
                     <xsd:documentation xml:lang="hr">Zimbabve</xsd:documentation>
@@ -6174,7 +6198,7 @@
                     <xsd:documentation xml:lang="tr">Kosovo</xsd:documentation>
                 </xsd:annotation>
             </xsd:enumeration>
-            
+
         </xsd:restriction>
     </xsd:simpleType>
 </xsd:schema>

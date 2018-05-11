@@ -20,9 +20,9 @@ public final class EidasSamlBindingTest {
         }
 
         assertThat(EidasSamlBinding.POST,
-                   is(EidasSamlBinding.fromBindingUri(EidasSamlBinding.POST.getBindingUri().getBindingUri())));
+                is(EidasSamlBinding.fromBindingUri(EidasSamlBinding.POST.getBindingUri().getBindingUri())));
         assertThat(EidasSamlBinding.REDIRECT,
-                   is(EidasSamlBinding.fromBindingUri(EidasSamlBinding.REDIRECT.getBindingUri().getBindingUri())));
+                is(EidasSamlBinding.fromBindingUri(EidasSamlBinding.REDIRECT.getBindingUri().getBindingUri())));
         assertThat(EidasSamlBinding.EMPTY, is(EidasSamlBinding.fromBindingUri(null)));
     }
 
@@ -66,7 +66,7 @@ public final class EidasSamlBindingTest {
     public void testToBindingUri() throws Exception {
         for (final EidasSamlBinding value : EidasSamlBinding.values()) {
             assertThat(EidasSamlBinding.toBindingUri(value.getName()),
-                       is((value.getBindingUri() == null ? null : value.getBindingUri().getBindingUri())));
+                    is((value.getBindingUri() == null ? null : value.getBindingUri().getBindingUri())));
         }
 
         assertThat(EidasSamlBinding.toBindingUri("POST"), is(SamlBindingUri.SAML2_POST.getBindingUri()));
@@ -79,7 +79,7 @@ public final class EidasSamlBindingTest {
         for (final EidasSamlBinding value : EidasSamlBinding.values()) {
             assertThat(EidasSamlBinding.toName(
                     (value.getBindingUri() == null ? null : value.getBindingUri().getBindingUri())),
-                       is(value.getName()));
+                    is(value.getName()));
         }
 
         assertThat(EidasSamlBinding.toName(SamlBindingUri.SAML2_POST.getBindingUri()), is("POST"));

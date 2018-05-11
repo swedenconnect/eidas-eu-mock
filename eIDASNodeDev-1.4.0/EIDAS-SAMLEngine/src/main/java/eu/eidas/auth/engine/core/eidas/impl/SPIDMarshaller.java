@@ -25,7 +25,6 @@ import eu.eidas.auth.engine.core.eidas.SPID;
 
 /**
  * The Class SPIDMarshaller.
- *
  */
 public class SPIDMarshaller extends AbstractSAMLObjectMarshaller {
 
@@ -37,8 +36,8 @@ public class SPIDMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final SPID spid = (SPID) samlObject;
-	XMLHelper.appendTextContent(domElement, spid.getSPID());
+                                                final Element domElement) throws MarshallingException {
+        final SPID spid = (SPID) samlObject;
+        XMLHelper.appendTextContent(domElement, spid.getSPID());
     }
 }

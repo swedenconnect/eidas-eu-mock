@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.FileInputStream;
@@ -36,19 +36,16 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:jon@latchkey.com">Jon S. Stevens</a>
  * @version $Id: TemplateTestSuite.java 704299 2008-10-14 03:13:16Z nbubna $
  */
-public class TemplateTestSuite extends TestSuite implements TemplateTestBase
-{
+public class TemplateTestSuite extends TestSuite implements TemplateTestBase {
     private Properties testProperties;
 
     /**
      * Creates an instace of the Apache Velocity test suite.
      */
-    public TemplateTestSuite()
-    {
-        try
-        {
+    public TemplateTestSuite() {
+        try {
             Velocity.setProperty(
-                Velocity.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
+                    Velocity.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
 
             Velocity.setProperty(
                     Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
@@ -57,9 +54,7 @@ public class TemplateTestSuite extends TestSuite implements TemplateTestBase
 
             testProperties = new Properties();
             testProperties.load(new FileInputStream(TEST_CASE_PROPERTIES));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println("Cannot setup TemplateTestSuite!");
             e.printStackTrace();
             System.exit(1);
@@ -72,20 +67,15 @@ public class TemplateTestSuite extends TestSuite implements TemplateTestBase
      * Adds the template test cases to run to this test suite.  Template test
      * cases are listed in the <code>TEST_CASE_PROPERTIES</code> file.
      */
-    private void addTemplateTestCases()
-    {
+    private void addTemplateTestCases() {
         String template;
-        for (int i = 1 ;; i++)
-        {
+        for (int i = 1; ; i++) {
             template = testProperties.getProperty(getTemplateTestKey(i));
 
-            if (template != null)
-            {
+            if (template != null) {
                 System.out.println("Adding TemplateTestCase : " + template);
                 addTest(new TemplateTestCase(template));
-            }
-            else
-            {
+            } else {
                 // Assume we're done adding template test cases.
                 break;
             }
@@ -97,10 +87,9 @@ public class TemplateTestSuite extends TestSuite implements TemplateTestBase
      * test number.
      *
      * @param nbr The template test number to return a property key for.
-     * @return    The property key.
+     * @return The property key.
      */
-    private static final String getTemplateTestKey(int nbr)
-    {
+    private static final String getTemplateTestKey(int nbr) {
         return ("test.template." + nbr);
     }
 }

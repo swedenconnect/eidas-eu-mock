@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,7 +31,9 @@ import org.opensaml.saml1.core.AttributeStatement;
  */
 public class AssertionSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AssertionSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
@@ -42,21 +44,24 @@ public class AssertionSchemaTest extends BaseSAMLObjectValidatorTestCase {
      * Common setup method (populateRequiredData & the first test
      */
     private void setupRequiredData() {
-        
+
         Assertion assertion = (Assertion) target;
         assertion.setIssuer("Issuer");
         assertion.setID("ident");
         assertion.setIssueInstant(new DateTime());
         QName name = new QName(SAMLConstants.SAML1_NS, AttributeStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        assertion.getStatements().add((AttributeStatement)buildXMLObject(name));
-        
+        assertion.getStatements().add((AttributeStatement) buildXMLObject(name));
+
     }
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         setupRequiredData();
     }
-    
+
     public void testWrongVersion() {
         target = buildXMLObject(targetQName);
         setupRequiredData();
@@ -65,8 +70,8 @@ public class AssertionSchemaTest extends BaseSAMLObjectValidatorTestCase {
         assertion.setVersion(SAMLVersion.VERSION_20);
         assertValidationFail("SAML2.0 is not OK");
     }
-    
-    public void testMissingID(){
+
+    public void testMissingID() {
         Assertion assertion = (Assertion) target;
         assertion.setID("");
         assertValidationFail("ID was empty, should raise a Validation Exception");
@@ -77,7 +82,7 @@ public class AssertionSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     }
 
-    public void testMissingIssuer(){
+    public void testMissingIssuer() {
         Assertion assertion = (Assertion) target;
         assertion.setIssuer("");
         assertValidationFail("Issuer was empty, should raise a Validation Exception");
@@ -87,13 +92,13 @@ public class AssertionSchemaTest extends BaseSAMLObjectValidatorTestCase {
         assertValidationFail("Issuer was whitespace, should raise a Validation Exception");
     }
 
-    public void testMissingIssueInstant(){
+    public void testMissingIssueInstant() {
         Assertion assertion = (Assertion) target;
         assertion.setIssueInstant(null);
         assertValidationFail("IssueInstant was empty, should raise a Validation Exception");
     }
 
-    public void testMissingStatement(){
+    public void testMissingStatement() {
         Assertion assertion = (Assertion) target;
         assertion.getStatements().clear();
         assertValidationFail("No statements, should raise a Validation Exception");

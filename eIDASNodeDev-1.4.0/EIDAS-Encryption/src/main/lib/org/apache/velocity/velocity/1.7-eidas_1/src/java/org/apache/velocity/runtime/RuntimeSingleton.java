@@ -16,7 +16,7 @@ package org.apache.velocity.runtime;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.Reader;
@@ -42,15 +42,15 @@ import org.apache.velocity.util.introspection.Uberspect;
  * It adheres to the mediator pattern and is the only
  * structure that developers need to be familiar with
  * in order to get Velocity to perform.
- *
+ * <p>
  * The Runtime will also cooperate with external
  * systems like Turbine. Runtime properties can
  * set and then the Runtime is initialized.
- *
+ * <p>
  * Turbine for example knows where the templates
  * are to be loaded from, and where the velocity
  * log file should be placed.
- *
+ * <p>
  * So in the case of Velocity cooperating with Turbine
  * the code might look something like the following:
  *
@@ -82,13 +82,10 @@ import org.apache.velocity.util.introspection.Uberspect;
  * @author <a href="mailto:jlb@houseofdistraction.com">Jeff Bowden</a>
  * @author <a href="mailto:geirm@optonline.net">Geir Magusson Jr.</a>
  * @author <a href="mailto:dlr@finemaltcoding.com">Daniel Rall</a>
- *
- * @see org.apache.velocity.runtime.RuntimeInstance
- *
  * @version $Id: RuntimeSingleton.java 898050 2010-01-11 20:15:31Z nbubna $
+ * @see org.apache.velocity.runtime.RuntimeInstance
  */
-public class RuntimeSingleton implements RuntimeConstants
-{
+public class RuntimeSingleton implements RuntimeConstants {
     private static RuntimeInstance ri = new RuntimeInstance();
 
     /**
@@ -97,29 +94,29 @@ public class RuntimeSingleton implements RuntimeConstants
      * as follows:
      *
      * <ul>
-     *   <li>Logging System</li>
-     *   <li>ResourceManager</li>
-     *   <li>Event Handlers</li>
-     *   <li>Parser Pool</li>
-     *   <li>Global Cache</li>
-     *   <li>Static Content Include System</li>
-     *   <li>Velocimacro System</li>
+     * <li>Logging System</li>
+     * <li>ResourceManager</li>
+     * <li>Event Handlers</li>
+     * <li>Parser Pool</li>
+     * <li>Global Cache</li>
+     * <li>Static Content Include System</li>
+     * <li>Velocimacro System</li>
      * </ul>
+     *
      * @see RuntimeInstance#init()
      */
-    public synchronized static void init()
-    {
+    public synchronized static void init() {
         ri.init();
     }
 
     /**
      * Returns true if the RuntimeInstance has been successfully initialized.
+     *
      * @return True if the RuntimeInstance has been successfully initialized.
      * @see RuntimeInstance#isInitialized()
      * @since 1.5
      */
-    public static boolean isInitialized()
-    {
+    public static boolean isInitialized() {
         return ri.isInitialized();
     }
 
@@ -128,8 +125,7 @@ public class RuntimeSingleton implements RuntimeConstants
      *
      * @return The RuntimeServices Instance used by this wrapper.
      */
-    public static RuntimeServices getRuntimeServices()
-    {
+    public static RuntimeServices getRuntimeServices() {
         return ri;
     }
 
@@ -138,13 +134,12 @@ public class RuntimeSingleton implements RuntimeConstants
      * Allows an external system to set a property in
      * the Velocity Runtime.
      *
-     * @param key property key
-     * @param  value property value
+     * @param key   property key
+     * @param value property value
      * @see RuntimeInstance#setProperty(String, Object)
      */
-    public static void setProperty(String key, Object value)
-    {
-        ri.setProperty( key, value );
+    public static void setProperty(String key, Object value) {
+        ri.setProperty(key, value);
     }
 
     /**
@@ -158,34 +153,32 @@ public class RuntimeSingleton implements RuntimeConstants
      * @param configuration
      * @see RuntimeInstance#setConfiguration(ExtendedProperties)
      */
-    public static void setConfiguration( ExtendedProperties configuration)
-    {
-        ri.setConfiguration( configuration );
+    public static void setConfiguration(ExtendedProperties configuration) {
+        ri.setConfiguration(configuration);
     }
 
     /**
      * Add a property to the configuration. If it already
      * exists then the value stated here will be added
      * to the configuration entry. For example, if
-     *
+     * <p>
      * resource.loader = file
-     *
+     * <p>
      * is already present in the configuration and you
-     *
+     * <p>
      * addProperty("resource.loader", "classpath")
-     *
+     * <p>
      * Then you will end up with a Vector like the
      * following:
-     *
+     * <p>
      * ["file", "classpath"]
      *
      * @param key
      * @param value
      * @see RuntimeInstance#addProperty(String, Object)
      */
-    public static void addProperty(String key, Object value)
-    {
-        ri.addProperty( key, value );
+    public static void addProperty(String key, Object value) {
+        ri.addProperty(key, value);
     }
 
     /**
@@ -195,23 +188,21 @@ public class RuntimeSingleton implements RuntimeConstants
      * @param key of property to clear
      * @see RuntimeInstance#clearProperty(String)
      */
-    public static void clearProperty(String key)
-    {
-        ri.clearProperty( key );
+    public static void clearProperty(String key) {
+        ri.clearProperty(key);
     }
 
     /**
-     *  Allows an external caller to get a property.  The calling
-     *  routine is required to know the type, as this routine
-     *  will return an Object, as that is what properties can be.
+     * Allows an external caller to get a property.  The calling
+     * routine is required to know the type, as this routine
+     * will return an Object, as that is what properties can be.
      *
-     *  @param key property to return
-     *  @return Value of the property or null if it does not exist.
+     * @param key property to return
+     * @return Value of the property or null if it does not exist.
      * @see RuntimeInstance#getProperty(String)
      */
-    public static Object getProperty( String key )
-    {
-        return ri.getProperty( key );
+    public static Object getProperty(String key) {
+        return ri.getProperty(key);
     }
 
     /**
@@ -221,8 +212,7 @@ public class RuntimeSingleton implements RuntimeConstants
      * @param p
      * @see RuntimeInstance#init(Properties)
      */
-    public static void init(Properties p)
-    {
+    public static void init(Properties p) {
         ri.init(p);
     }
 
@@ -233,49 +223,46 @@ public class RuntimeSingleton implements RuntimeConstants
      * @param configurationFile
      * @see RuntimeInstance#init(String)
      */
-    public static void init(String configurationFile)
-    {
-        ri.init( configurationFile );
+    public static void init(String configurationFile) {
+        ri.init(configurationFile);
     }
 
     /**
      * Parse the input and return the root of
      * AST node structure.
      * <br><br>
-     *  In the event that it runs out of parsers in the
-     *  pool, it will create and let them be GC'd
-     *  dynamically, logging that it has to do that.  This
-     *  is considered an exceptional condition.  It is
-     *  expected that the user will set the
-     *  PARSER_POOL_SIZE property appropriately for their
-     *  application.  We will revisit this.
+     * In the event that it runs out of parsers in the
+     * pool, it will create and let them be GC'd
+     * dynamically, logging that it has to do that.  This
+     * is considered an exceptional condition.  It is
+     * expected that the user will set the
+     * PARSER_POOL_SIZE property appropriately for their
+     * application.  We will revisit this.
      *
-     * @param reader Reader retrieved by a resource loader
+     * @param reader       Reader retrieved by a resource loader
      * @param templateName name of the template being parsed
      * @return A root node representing the template as an AST tree.
      * @throws ParseException When the template could not be parsed.
      * @see RuntimeInstance#parse(Reader, String)
      */
-    public static SimpleNode parse( Reader reader, String templateName )
-        throws ParseException
-    {
-        return ri.parse( reader, templateName );
+    public static SimpleNode parse(Reader reader, String templateName)
+            throws ParseException {
+        return ri.parse(reader, templateName);
     }
 
     /**
-     *  Parse the input and return the root of the AST node structure.
+     * Parse the input and return the root of the AST node structure.
      *
-     * @param reader Reader retrieved by a resource loader
-     * @param templateName name of the template being parsed
+     * @param reader        Reader retrieved by a resource loader
+     * @param templateName  name of the template being parsed
      * @param dumpNamespace flag to dump the Velocimacro namespace for this template
      * @return A root node representing the template as an AST tree.
      * @throws ParseException When the template could not be parsed.
      * @see RuntimeInstance#parse(Reader, String, boolean)
      */
-    public static SimpleNode parse( Reader reader, String templateName, boolean dumpNamespace )
-        throws ParseException
-    {
-        return ri.parse( reader, templateName, dumpNamespace );
+    public static SimpleNode parse(Reader reader, String templateName, boolean dumpNamespace)
+            throws ParseException {
+        return ri.parse(reader, templateName, dumpNamespace);
     }
 
 
@@ -286,35 +273,33 @@ public class RuntimeSingleton implements RuntimeConstants
      * property.  The default is "ISO-8859-1"
      *
      * @param name The file name of the desired template.
-     * @return     The template.
+     * @return The template.
      * @throws ResourceNotFoundException if template not found
-     *          from any available source.
-     * @throws ParseErrorException if template cannot be parsed due
-     *          to syntax (or other) error.
+     *                                   from any available source.
+     * @throws ParseErrorException       if template cannot be parsed due
+     *                                   to syntax (or other) error.
      * @see RuntimeInstance#getTemplate(String)
      */
     public static Template getTemplate(String name)
-        throws ResourceNotFoundException, ParseErrorException
-    {
-        return ri.getTemplate( name );
+            throws ResourceNotFoundException, ParseErrorException {
+        return ri.getTemplate(name);
     }
 
     /**
      * Returns a <code>Template</code> from the resource manager
      *
-     * @param name The  name of the desired template.
+     * @param name     The  name of the desired template.
      * @param encoding Character encoding of the template
-     * @return     The template.
+     * @return The template.
      * @throws ResourceNotFoundException if template not found
-     *          from any available source.
-     * @throws ParseErrorException if template cannot be parsed due
-     *          to syntax (or other) error.
+     *                                   from any available source.
+     * @throws ParseErrorException       if template cannot be parsed due
+     *                                   to syntax (or other) error.
      * @see RuntimeInstance#getTemplate(String, String)
      */
-    public static Template getTemplate(String name, String  encoding)
-        throws ResourceNotFoundException, ParseErrorException
-    {
-        return ri.getTemplate( name, encoding );
+    public static Template getTemplate(String name, String encoding)
+            throws ResourceNotFoundException, ParseErrorException {
+        return ri.getTemplate(name, encoding);
     }
 
     /**
@@ -325,48 +310,45 @@ public class RuntimeSingleton implements RuntimeConstants
      * @param name Name of content resource to get
      * @return parsed ContentResource object ready for use
      * @throws ResourceNotFoundException if template not found
-     *          from any available source.
-     * @throws ParseErrorException When the template could not be parsed.
+     *                                   from any available source.
+     * @throws ParseErrorException       When the template could not be parsed.
      * @see RuntimeInstance#getContent(String)
      */
     public static ContentResource getContent(String name)
-        throws ResourceNotFoundException, ParseErrorException
-    {
-        return ri.getContent( name );
+            throws ResourceNotFoundException, ParseErrorException {
+        return ri.getContent(name);
     }
 
     /**
      * Returns a static content resource from the
      * resource manager.
      *
-     * @param name Name of content resource to get
+     * @param name     Name of content resource to get
      * @param encoding Character encoding to use
      * @return parsed ContentResource object ready for use
      * @throws ResourceNotFoundException if template not found
-     *          from any available source.
-     * @throws ParseErrorException When the template could not be parsed.
+     *                                   from any available source.
+     * @throws ParseErrorException       When the template could not be parsed.
      * @see RuntimeInstance#getContent(String, String)
      */
-    public static ContentResource getContent( String name, String encoding )
-        throws ResourceNotFoundException, ParseErrorException
-    {
-        return ri.getContent( name, encoding );
+    public static ContentResource getContent(String name, String encoding)
+            throws ResourceNotFoundException, ParseErrorException {
+        return ri.getContent(name, encoding);
     }
 
 
     /**
-     *  Determines is a template exists, and returns name of the loader that
-     *  provides it.  This is a slightly less hokey way to support
-     *  the Velocity.templateExists() utility method, which was broken
-     *  when per-template encoding was introduced.  We can revisit this.
+     * Determines is a template exists, and returns name of the loader that
+     * provides it.  This is a slightly less hokey way to support
+     * the Velocity.templateExists() utility method, which was broken
+     * when per-template encoding was introduced.  We can revisit this.
      *
-     *  @param resourceName Name of template or content resource
-     *  @return class name of loader than can provide it
+     * @param resourceName Name of template or content resource
+     * @return class name of loader than can provide it
      * @see RuntimeInstance#getLoaderNameForResource(String)
      */
-    public static String getLoaderNameForResource( String resourceName )
-    {
-        return ri.getLoaderNameForResource( resourceName );
+    public static String getLoaderNameForResource(String resourceName) {
+        return ri.getLoaderNameForResource(resourceName);
     }
 
 
@@ -377,48 +359,43 @@ public class RuntimeSingleton implements RuntimeConstants
      * @see RuntimeInstance#getLog()
      * @since 1.5
      */
-    public static Log getLog()
-    {
+    public static Log getLog() {
         return ri.getLog();
     }
 
     /**
-     * @deprecated Use getLog() and call warn() on it.
-     * @see Log#warn(Object)
      * @param message The message to log.
+     * @see Log#warn(Object)
+     * @deprecated Use getLog() and call warn() on it.
      */
-    public static void warn(Object message)
-    {
+    public static void warn(Object message) {
         getLog().warn(message);
     }
 
     /**
-     * @deprecated Use getLog() and call info() on it.
-     * @see Log#info(Object)
      * @param message The message to log.
+     * @see Log#info(Object)
+     * @deprecated Use getLog() and call info() on it.
      */
-    public static void info(Object message)
-    {
+    public static void info(Object message) {
         getLog().info(message);
     }
 
     /**
-     * @deprecated Use getLog() and call error() on it.
-     * @see Log#error(Object)
      * @param message The message to log.
+     * @see Log#error(Object)
+     * @deprecated Use getLog() and call error() on it.
      */
-    public static void error(Object message)
-    {
+    public static void error(Object message) {
         getLog().error(message);
     }
 
     /**
-     * @deprecated Use getLog() and call debug() on it.
-     * @see Log#debug(Object)
      * @param message The message to log.
+     * @see Log#debug(Object)
+     * @deprecated Use getLog() and call debug() on it.
      */
-    public static void debug(Object message)
-    {
+    public static void debug(Object message) {
         getLog().debug(message);
     }
 
@@ -426,96 +403,89 @@ public class RuntimeSingleton implements RuntimeConstants
      * String property accessor method with default to hide the
      * configuration implementation.
      *
-     * @param key property key
-     * @param defaultValue  default value to return if key not
-     *               found in resource manager.
+     * @param key          property key
+     * @param defaultValue default value to return if key not
+     *                     found in resource manager.
      * @return value of key or default
      * @see RuntimeInstance#getString(String, String)
      */
-    public static String getString( String key, String defaultValue)
-    {
-        return ri.getString( key, defaultValue );
+    public static String getString(String key, String defaultValue) {
+        return ri.getString(key, defaultValue);
     }
 
     /**
      * Returns the appropriate VelocimacroProxy object if strVMname
      * is a valid current Velocimacro.
      *
-     * @param vmName Name of velocimacro requested
+     * @param vmName       Name of velocimacro requested
      * @param templateName Name of the template that contains the velocimacro.
      * @return The requested VelocimacroProxy.
      * @see RuntimeInstance#getVelocimacro(String, String)
      */
-    public static Directive getVelocimacro( String vmName, String templateName  )
-    {
-        return ri.getVelocimacro( vmName, templateName );
+    public static Directive getVelocimacro(String vmName, String templateName) {
+        return ri.getVelocimacro(vmName, templateName);
     }
 
     /**
      * Adds a new Velocimacro. Usually called by Macro only while parsing.
      *
-     * @param name  Name of a new velocimacro.
-     * @param macro  root AST node of the parsed macro
-     * @param argArray  Array of strings, containing the
-     *                         #macro() arguments.  the 0th argument is the name.
+     * @param name           Name of a new velocimacro.
+     * @param macro          root AST node of the parsed macro
+     * @param argArray       Array of strings, containing the
+     *                       #macro() arguments.  the 0th argument is the name.
      * @param sourceTemplate The template from which the macro is requested.
      * @return boolean  True if added, false if rejected for some
-     *                  reason (either parameters or permission settings)
+     * reason (either parameters or permission settings)
      * @see RuntimeInstance#addVelocimacro(String, Node, String[], String)
      * @since 1.6
      */
     public static boolean addVelocimacro(String name, Node macro,
-                                         String argArray[], String sourceTemplate)
-    {
+                                         String argArray[], String sourceTemplate) {
         return ri.addVelocimacro(name, macro, argArray, sourceTemplate);
     }
 
-   /**
-    * Adds a new Velocimacro. Usually called by Macro only while parsing.
-    *
-    * @param name Name of velocimacro
-    * @param macro String form of macro body
-    * @param argArray Array of strings, containing the
-    *                         #macro() arguments.  the 0th is the name.
-    * @param sourceTemplate Name of the template that contains the velocimacro.
-    * @return True if added, false if rejected for some
-    *                  reason (either parameters or permission settings)
-    *                  
-    * @deprecated Use addVelocimacro(String, Node, String[], String) instead                  
-    *                  
-    * @see RuntimeInstance#addVelocimacro(String, String, String[], String)
-    */
-    public static boolean addVelocimacro( String name,
-                                          String macro,
-                                          String argArray[],
-                                          String sourceTemplate )
-    {
-        return ri.addVelocimacro( name, macro, argArray, sourceTemplate );
+    /**
+     * Adds a new Velocimacro. Usually called by Macro only while parsing.
+     *
+     * @param name           Name of velocimacro
+     * @param macro          String form of macro body
+     * @param argArray       Array of strings, containing the
+     *                       #macro() arguments.  the 0th is the name.
+     * @param sourceTemplate Name of the template that contains the velocimacro.
+     * @return True if added, false if rejected for some
+     * reason (either parameters or permission settings)
+     * @see RuntimeInstance#addVelocimacro(String, String, String[], String)
+     * @deprecated Use addVelocimacro(String, Node, String[], String) instead
+     */
+    public static boolean addVelocimacro(String name,
+                                         String macro,
+                                         String argArray[],
+                                         String sourceTemplate) {
+        return ri.addVelocimacro(name, macro, argArray, sourceTemplate);
     }
 
     /**
-     *  Checks to see if a VM exists
+     * Checks to see if a VM exists
      *
-     * @param vmName Name of the Velocimacro.
+     * @param vmName       Name of the Velocimacro.
      * @param templateName Template on which to look for the Macro.
      * @return True if VM by that name exists, false if not
      * @see RuntimeInstance#isVelocimacro(String, String)
      */
-    public static boolean isVelocimacro( String vmName, String templateName )
-    {
-        return ri.isVelocimacro( vmName, templateName );
+    public static boolean isVelocimacro(String vmName, String templateName) {
+        return ri.isVelocimacro(vmName, templateName);
     }
 
     /**
      * tells the vmFactory to dump the specified namespace.  This is to support
      * clearing the VM list when in inline-VM-local-scope mode
+     *
      * @param namespace Namespace to dump.
      * @return True if namespace was dumped successfully.
      * @see RuntimeInstance#dumpVMNamespace(String)
      */
-    public static boolean dumpVMNamespace( String namespace )
-    {
-        return ri.dumpVMNamespace( namespace );
+    public static boolean dumpVMNamespace(String namespace) {
+        return ri.dumpVMNamespace(namespace);
     }
 
     /* --------------------------------------------------------------------
@@ -532,13 +502,13 @@ public class RuntimeSingleton implements RuntimeConstants
 
     /**
      * String property accessor method to hide the configuration implementation
-     * @param key  property key
-     * @return   value of key or null
+     *
+     * @param key property key
+     * @return value of key or null
      * @see RuntimeInstance#getString(String)
      */
-    public static String getString(String key)
-    {
-        return ri.getString( key );
+    public static String getString(String key) {
+        return ri.getString(key);
     }
 
     /**
@@ -548,22 +518,20 @@ public class RuntimeSingleton implements RuntimeConstants
      * @return value
      * @see RuntimeInstance#getInt(String)
      */
-    public static int getInt( String key )
-    {
-        return ri.getInt( key );
+    public static int getInt(String key) {
+        return ri.getInt(key);
     }
 
     /**
      * Int property accessor method to hide the configuration implementation.
      *
-     * @param key  property key
+     * @param key          property key
      * @param defaultValue The default value.
      * @return value
      * @see RuntimeInstance#getInt(String, int)
      */
-    public static int getInt( String key, int defaultValue )
-    {
-        return ri.getInt( key, defaultValue );
+    public static int getInt(String key, int defaultValue) {
+        return ri.getInt(key, defaultValue);
     }
 
     /**
@@ -574,55 +542,51 @@ public class RuntimeSingleton implements RuntimeConstants
      * @return value of key or default value
      * @see RuntimeInstance#getBoolean(String, boolean)
      */
-    public static boolean getBoolean( String key, boolean def )
-    {
-        return ri.getBoolean( key, def );
+    public static boolean getBoolean(String key, boolean def) {
+        return ri.getBoolean(key, def);
     }
 
     /**
      * Return the velocity runtime configuration object.
      *
      * @return ExtendedProperties configuration object which houses
-     *                       the velocity runtime properties.
+     * the velocity runtime properties.
      * @see RuntimeInstance#getConfiguration()
      */
-    public static ExtendedProperties getConfiguration()
-    {
+    public static ExtendedProperties getConfiguration() {
         return ri.getConfiguration();
     }
 
     /**
-     *  Return the Introspector for this RuntimeInstance
+     * Return the Introspector for this RuntimeInstance
      *
-     *  @return Introspector object for this runtime instance
+     * @return Introspector object for this runtime instance
      * @see RuntimeInstance#getIntrospector()
      */
-    public static Introspector getIntrospector()
-    {
+    public static Introspector getIntrospector() {
         return ri.getIntrospector();
     }
 
     /**
      * Returns the event handlers for the application.
+     *
      * @return The event handlers for the application.
      * @see RuntimeInstance#getApplicationEventCartridge()
      * @since 1.5
      */
-     public EventCartridge getEventCartridge()
-     {
-         return ri.getApplicationEventCartridge();
-     }
+    public EventCartridge getEventCartridge() {
+        return ri.getApplicationEventCartridge();
+    }
 
     /**
-     *  Gets the application attribute for the given key
+     * Gets the application attribute for the given key
      *
-     * @see org.apache.velocity.runtime.RuntimeServices#getApplicationAttribute(Object)
      * @param key
      * @return The application attribute for the given key.
+     * @see org.apache.velocity.runtime.RuntimeServices#getApplicationAttribute(Object)
      * @see RuntimeInstance#getApplicationAttribute(Object)
      */
-    public static Object getApplicationAttribute(Object key)
-    {
+    public static Object getApplicationAttribute(Object key) {
         return ri.getApplicationAttribute(key);
     }
 
@@ -633,27 +597,24 @@ public class RuntimeSingleton implements RuntimeConstants
      * @see org.apache.velocity.runtime.RuntimeServices#getUberspect()
      * @see RuntimeInstance#getUberspect()
      */
-    public static Uberspect getUberspect()
-    {
+    public static Uberspect getUberspect() {
         return ri.getUberspect();
     }
 
     /**
-     * @deprecated Use getRuntimeServices() instead.
      * @return The RuntimeInstance used by this Singleton.
+     * @deprecated Use getRuntimeServices() instead.
      */
-    public static RuntimeInstance getRuntimeInstance()
-    {
+    public static RuntimeInstance getRuntimeInstance() {
         return ri;
     }
-    
+
     /**
      * Remove a directive.
-     * 
+     *
      * @param name name of the directive.
      */
-    public static void removeDirective(String name)
-    {
+    public static void removeDirective(String name) {
         ri.removeDirective(name);
     }
 
@@ -662,8 +623,7 @@ public class RuntimeSingleton implements RuntimeConstants
      *
      * @param directiveClass classname of directive to load
      */
-    public static void loadDirective(String directiveClass)
-    {
+    public static void loadDirective(String directiveClass) {
         ri.loadDirective(directiveClass);
     }
 }

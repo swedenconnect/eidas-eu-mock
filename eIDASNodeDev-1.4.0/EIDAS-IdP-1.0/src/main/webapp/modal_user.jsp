@@ -40,7 +40,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <h3>Test Users</h3>
@@ -57,8 +58,8 @@
                                 <td><c:out value="${entry.key}"/></td>
                                 <td><c:out value="${entry.value}"/></td>
                                 <%
-                                    String username = (String)pageContext.getAttribute("username");
-                                    String description  = configs.getProperty(username + ".description");
+                                    String username = (String) pageContext.getAttribute("username");
+                                    String description = configs.getProperty(username + ".description");
                                 %>
                                 <td><c:out value="<%=description%>"/></td>
                             </tr>

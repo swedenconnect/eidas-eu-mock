@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -31,17 +31,23 @@ import org.opensaml.xml.schema.XSString;
 import org.opensaml.xml.schema.impl.XSStringBuilder;
 
 /**
- * 
+ *
  */
 public class AttributeTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
-    /** Value from test file */
+    /**
+     * Value from test file
+     */
     private final String expectedAttributeName;
 
-    /** Value from test file */
+    /**
+     * Value from test file
+     */
     private final String expectedAttributeNamespace;
 
     /**
@@ -57,7 +63,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         qname = new QName(SAMLConstants.SAML1_NS, Attribute.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Attribute attribute = (Attribute) unmarshallElement(singleElementFile);
 
@@ -66,7 +74,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("<AttributeValue> subelement found", 0, attribute.getAttributeValues().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Attribute attribute = (Attribute) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -74,7 +84,9 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("AttributeNamespace", expectedAttributeNamespace, attribute.getAttributeNamespace());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Attribute attribute = (Attribute) unmarshallElement(childElementsFile);
 
@@ -82,12 +94,16 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Number of <AttributeValue> subelement not found", 4, attribute.getAttributeValues().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         Attribute attribute = (Attribute) buildXMLObject(qname);
 
@@ -96,16 +112,18 @@ public class AttributeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, attribute);
     }
 
-    /** {@inheritDoc} */
-    public void testChildElementsMarshall(){
+    /**
+     * {@inheritDoc}
+     */
+    public void testChildElementsMarshall() {
         Attribute attribute = (Attribute) buildXMLObject(qname);
 
         XSStringBuilder attributeValueBuilder = (XSStringBuilder) builderFactory.getBuilder(XSString.TYPE_NAME);
-        
-        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME)); 
-        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME)); 
-        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME)); 
-        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME)); 
+
+        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME));
+        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME));
+        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME));
+        attribute.getAttributeValues().add(attributeValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME, XSString.TYPE_NAME));
 
         assertEquals(expectedChildElementsDOM, attribute);
     }

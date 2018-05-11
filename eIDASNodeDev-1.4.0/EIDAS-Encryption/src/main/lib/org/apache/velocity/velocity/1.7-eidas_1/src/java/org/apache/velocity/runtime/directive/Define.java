@@ -16,10 +16,11 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.Writer;
+
 import org.apache.velocity.context.InternalContextAdapter;
 import org.apache.velocity.exception.TemplateInitException;
 import org.apache.velocity.exception.VelocityException;
@@ -37,31 +38,27 @@ import org.apache.velocity.runtime.parser.node.Node;
  * @author Nathan Bubna
  * @version $Id: Define.java 686842 2008-08-18 18:29:31Z nbubna $
  */
-public class Define extends Block
-{
+public class Define extends Block {
     /**
      * Return name of this directive.
      */
-    public String getName()
-    {
+    public String getName() {
         return "define";
     }
 
     /**
-     *  simple init - get the key
+     * simple init - get the key
      */
     public void init(RuntimeServices rs, InternalContextAdapter context, Node node)
-        throws TemplateInitException
-    {
+            throws TemplateInitException {
         super.init(rs, context, node);
 
         // the first child is the block name (key), the second child is the block AST body
-        if ( node.jjtGetNumChildren() != 2 )
-        {
+        if (node.jjtGetNumChildren() != 2) {
             throw new VelocityException("parameter missing: block name at "
-                 + Log.formatFileString(this));
+                    + Log.formatFileString(this));
         }
-        
+
         /*
          * first token is the name of the block. We don't even check the format,
          * just assume it looks like this: $block_name. Should we check if it has
@@ -80,8 +77,7 @@ public class Define extends Block
      * directive.render() simply makes an instance of the Block inner class
      * and places it into the context as indicated.
      */
-    public boolean render(InternalContextAdapter context, Writer writer, Node node)
-    {
+    public boolean render(InternalContextAdapter context, Writer writer, Node node) {
         /* put a Block.Reference instance into the context,
          * using the user-defined key, for later inline rendering.
          */

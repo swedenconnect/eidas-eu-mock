@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.resource;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.Template;
@@ -29,19 +29,16 @@ import org.apache.velocity.Template;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ResourceFactory.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ResourceFactory
-{
+public class ResourceFactory {
     /**
      * @param resourceName
      * @param resourceType
      * @return The resource described by name and type.
      */
-    public static Resource getResource(String resourceName, int resourceType)
-    {
+    public static Resource getResource(String resourceName, int resourceType) {
         Resource resource = null;
 
-        switch (resourceType)
-        {
+        switch (resourceType) {
             case ResourceManager.RESOURCE_TEMPLATE:
                 resource = new Template();
                 break;

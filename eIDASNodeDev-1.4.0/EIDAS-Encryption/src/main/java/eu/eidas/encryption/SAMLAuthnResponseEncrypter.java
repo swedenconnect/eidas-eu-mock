@@ -240,7 +240,7 @@ public final class SAMLAuthnResponseEncrypter {
                 assertion.getNamespaceManager().registerNamespaceDeclaration(storkNS);
                 assertion.getDOM()
                         .setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:stork",
-                                        "urn:eu:stork:names:tc:STORK:1.0:assertion");
+                                "urn:eu:stork:names:tc:STORK:1.0:assertion");
                 break;
             }
         }
@@ -297,7 +297,7 @@ public final class SAMLAuthnResponseEncrypter {
             Element newRootElement = newDocument.getDocumentElement();
             NodeList assertionList =
                     newRootElement.getElementsByTagNameNS(Assertion.DEFAULT_ELEMENT_NAME.getNamespaceURI(),
-                                                          Assertion.DEFAULT_ELEMENT_NAME.getLocalPart());
+                            Assertion.DEFAULT_ELEMENT_NAME.getLocalPart());
 
             // Replace the encrypted assertions by the decrypted assertions in the new DOM tree:
             for (int i = 0, n = assertionList.getLength(); i < n; i++) {

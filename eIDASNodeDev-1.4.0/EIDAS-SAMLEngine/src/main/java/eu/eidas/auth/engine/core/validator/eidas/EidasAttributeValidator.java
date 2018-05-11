@@ -34,7 +34,7 @@ import eu.eidas.auth.engine.core.validator.stork.STORKAttributes;
 
 /**
  * Validates the attributes and values.
- *
+ * <p>
  * the validation eIdentifier (PERSON_IDENTIFIER & LEGAL_PERSON_IDENTIFIER ) are reported to the connector validation
  */
 public final class EidasAttributeValidator extends AttributeSchemaValidator {

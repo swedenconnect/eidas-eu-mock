@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -23,32 +23,44 @@ import org.opensaml.common.BaseSAMLObjectProviderTestCase;
 import org.opensaml.common.xml.SAMLConstants;
 import org.opensaml.saml2.core.OneTimeUse;
 
-/** Test case for creating, marshalling, and unmarshalling {@link OneTimeUse}. */
+/**
+ * Test case for creating, marshalling, and unmarshalling {@link OneTimeUse}.
+ */
 public class OneTimeUseTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public OneTimeUseTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/OneTimeUse.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         OneTimeUse oneTimeUse = (OneTimeUse) unmarshallElement(singleElementFile);
 
         assertNotNull(oneTimeUse);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, OneTimeUse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         OneTimeUse oneTimeUse = (OneTimeUse) buildXMLObject(qname);
@@ -56,7 +68,9 @@ public class OneTimeUseTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, oneTimeUse);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }

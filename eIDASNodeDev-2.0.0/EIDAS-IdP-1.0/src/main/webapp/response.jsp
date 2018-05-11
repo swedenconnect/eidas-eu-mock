@@ -56,7 +56,7 @@
 
         var doNotmodifyTheResponse = document.getElementById('doNotmodifyTheResponse').value;
         var errorMessage = document.getElementById('errorMessage').value;
-        if ((errorMessage == null)||(errorMessage == undefined)||(errorMessage == "null")||(errorMessage == "")) {
+        if ((errorMessage == null) || (errorMessage == undefined) || (errorMessage == "null") || (errorMessage == "")) {
             var callback = document.getElementById('callback').value;
             if (doNotmodifyTheResponse == "on") {
                 base64_encode(callback);
@@ -96,44 +96,48 @@
 <body>
 <!--START HEADER-->
 <header class="header">
-	<div class="container">
-		<h1>eIDAS Authentication Service (IdP)</h1>
-	</div>
+    <div class="container">
+        <h1>eIDAS Authentication Service (IdP)</h1>
+    </div>
 </header>
 <!--END HEADER-->
 <div class="container">
-	<div class="row">
-		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane fade in active" id="tab-02">
-				<div class="col-md-12">
-					<h2>Response
-					</h2>
-				</div>
-				<jsp:include page="leftColumn.jsp"/>
-				<div class="col-md-6">
-					<form id="genericForm" name="genericForm">
-						<input type="hidden" id="SMSSPResponse" name="SMSSPResponse"/>
-						<input type="hidden" id="errorMessage" name="errorMessage" value="<%=errorMessage%>"/>
-						<input type="hidden" id="errorMessageTitle" name="errorMessageTitle" value="<%=errorMessageTitle%>"/>
-					</form>
+    <div class="row">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="tab-02">
+                <div class="col-md-12">
+                    <h2>Response
+                    </h2>
+                </div>
+                <jsp:include page="leftColumn.jsp"/>
+                <div class="col-md-6">
+                    <form id="genericForm" name="genericForm">
+                        <input type="hidden" id="SMSSPResponse" name="SMSSPResponse"/>
+                        <input type="hidden" id="errorMessage" name="errorMessage" value="<%=errorMessage%>"/>
+                        <input type="hidden" id="errorMessageTitle" name="errorMessageTitle"
+                               value="<%=errorMessageTitle%>"/>
+                    </form>
 
-					<form id="redirectForm" name="redirectForm">
-						<div class="form-group">
-							<input type="hidden" id="username" name="username" value="<%=username%>"/>
-							<label for="jSonResponseDecoded">SmsspToken Response</label>
-							<textarea name="jSonResponseDecoded" id="jSonResponseDecoded" class="form-control" rows="10"><%=jSonResponseDecoded%></textarea>
-							<input type="hidden" id="callback" name="callback" value="<%=callback%>"/>
-							<input type="hidden" id="doNotmodifyTheResponse" name="doNotmodifyTheResponse" value="<%=doNotmodifyTheResponse%>"/>
-							<input type="hidden" id="jSonResponseEncoded" name="jSonResponseEncoded" value="<%=jSonResponseEncoded%>"/>
-						</div>
-						<item type="button" id="idpSubmitbutton" class="btn btn-default btn-lg btn-block"
-							  onclick="return base64_encode('<%=callback%>');">Submit
-						</item>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <form id="redirectForm" name="redirectForm">
+                        <div class="form-group">
+                            <input type="hidden" id="username" name="username" value="<%=username%>"/>
+                            <label for="jSonResponseDecoded">SmsspToken Response</label>
+                            <textarea name="jSonResponseDecoded" id="jSonResponseDecoded" class="form-control"
+                                      rows="10"><%=jSonResponseDecoded%></textarea>
+                            <input type="hidden" id="callback" name="callback" value="<%=callback%>"/>
+                            <input type="hidden" id="doNotmodifyTheResponse" name="doNotmodifyTheResponse"
+                                   value="<%=doNotmodifyTheResponse%>"/>
+                            <input type="hidden" id="jSonResponseEncoded" name="jSonResponseEncoded"
+                                   value="<%=jSonResponseEncoded%>"/>
+                        </div>
+                        <item type="button" id="idpSubmitbutton" class="btn btn-default btn-lg btn-block"
+                              onclick="return base64_encode('<%=callback%>');">Submit
+                        </item>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <noscript>

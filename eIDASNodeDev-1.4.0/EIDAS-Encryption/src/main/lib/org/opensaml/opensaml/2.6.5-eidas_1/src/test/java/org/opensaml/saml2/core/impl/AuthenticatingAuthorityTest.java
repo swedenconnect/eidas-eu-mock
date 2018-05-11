@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,22 +29,30 @@ import org.opensaml.saml2.core.AuthenticatingAuthority;
  */
 public class AuthenticatingAuthorityTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected URI value */
+    /**
+     * Expected URI value
+     */
     protected String expectedURI;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthenticatingAuthorityTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AuthenticatingAuthority.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
         expectedURI = "authenticating URI";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AuthenticatingAuthority authenticatingAuthority = (AuthenticatingAuthority) unmarshallElement(singleElementFile);
 
@@ -52,12 +60,16 @@ public class AuthenticatingAuthorityTest extends BaseSAMLObjectProviderTestCase 
         assertEquals("URI was " + assertionURI + ", expected " + expectedURI, expectedURI, assertionURI);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthenticatingAuthority.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX);
@@ -68,7 +80,9 @@ public class AuthenticatingAuthorityTest extends BaseSAMLObjectProviderTestCase 
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }

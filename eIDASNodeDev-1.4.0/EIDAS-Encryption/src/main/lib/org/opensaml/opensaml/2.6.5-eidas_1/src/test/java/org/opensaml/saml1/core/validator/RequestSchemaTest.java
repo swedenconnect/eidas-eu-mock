@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,24 +29,28 @@ import org.opensaml.saml1.core.Request;
 /**
  * Test case for {@link org.opensaml.saml1.core.validator.RequestSchemaValidator}.
  */
-public class RequestSchemaTest extends RequestAbstractTypeSchemaTestBase  {
+public class RequestSchemaTest extends RequestAbstractTypeSchemaTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public RequestSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML10P_NS, Request.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
         validator = new RequestSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
-        
+
         Request request = (Request) target;
         QName qname = new QName(SAMLConstants.SAML10P_NS, AttributeQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
-        request.setQuery((Query)buildXMLObject(qname));
+        request.setQuery((Query) buildXMLObject(qname));
     }
-    
+
     public void testNothingPresent() {
         Request request = (Request) target;
         request.setQuery(null);
@@ -57,8 +61,8 @@ public class RequestSchemaTest extends RequestAbstractTypeSchemaTestBase  {
         Request request = (Request) target;
         QName qname = new QName(SAMLConstants.SAML1_NS, AssertionIDReference.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
 
-        request.getAssertionIDReferences().add((AssertionIDReference)buildXMLObject(qname));        
-        
+        request.getAssertionIDReferences().add((AssertionIDReference) buildXMLObject(qname));
+
         assertValidationFail("Both Query & AssertionIDRefeference element present, should raise a Validation Exception");
     }
 
@@ -66,18 +70,18 @@ public class RequestSchemaTest extends RequestAbstractTypeSchemaTestBase  {
         Request request = (Request) target;
         QName qname = new QName(SAMLConstants.SAML10P_NS, AssertionArtifact.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
 
-        request.getAssertionArtifacts().add((AssertionArtifact)buildXMLObject(qname));        
+        request.getAssertionArtifacts().add((AssertionArtifact) buildXMLObject(qname));
         assertValidationFail("Both Query & AssertionArtifact element present, should raise a Validation Exception");
     }
 
     public void testAssertionIDRefAndAssertionArtifact() {
         Request request = (Request) target;
         QName qname = new QName(SAMLConstants.SAML10P_NS, AssertionArtifact.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
-        request.getAssertionArtifacts().add((AssertionArtifact)buildXMLObject(qname));        
+        request.getAssertionArtifacts().add((AssertionArtifact) buildXMLObject(qname));
         qname = new QName(SAMLConstants.SAML1_NS, AssertionIDReference.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        request.getAssertionIDReferences().add((AssertionIDReference)buildXMLObject(qname));        
+        request.getAssertionIDReferences().add((AssertionIDReference) buildXMLObject(qname));
         request.setQuery(null);
-        
+
         assertValidationFail("Both & AssertionIDRefeference AssertionArtifact element present, should raise a Validation Exception");
     }
 

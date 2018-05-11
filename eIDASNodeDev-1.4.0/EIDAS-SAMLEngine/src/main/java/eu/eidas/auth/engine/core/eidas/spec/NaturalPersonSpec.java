@@ -113,10 +113,10 @@ public final class NaturalPersonSpec {
 
     public static final AttributeRegistry REGISTRY =
             AttributeRegistries.of(Definitions.PERSON_IDENTIFIER,
-                                   Definitions.CURRENT_FAMILY_NAME,
-                                   Definitions.CURRENT_GIVEN_NAME, Definitions.DATE_OF_BIRTH,
-                                   Definitions.BIRTH_NAME, Definitions.PLACE_OF_BIRTH,
-                                   Definitions.CURRENT_ADDRESS, Definitions.GENDER);
+                    Definitions.CURRENT_FAMILY_NAME,
+                    Definitions.CURRENT_GIVEN_NAME, Definitions.DATE_OF_BIRTH,
+                    Definitions.BIRTH_NAME, Definitions.PLACE_OF_BIRTH,
+                    Definitions.CURRENT_ADDRESS, Definitions.GENDER);
 
     private NaturalPersonSpec() {
     }

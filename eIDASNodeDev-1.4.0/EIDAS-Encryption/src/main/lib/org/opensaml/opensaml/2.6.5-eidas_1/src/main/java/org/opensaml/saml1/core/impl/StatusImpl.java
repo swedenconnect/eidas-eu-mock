@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,57 +33,77 @@ import org.opensaml.xml.XMLObject;
  */
 public class StatusImpl extends AbstractSAMLObject implements Status {
 
-    /** Representation of the StatusMessage element. */
+    /**
+     * Representation of the StatusMessage element.
+     */
     private StatusMessage statusMessage;
 
-    /** Representation of the StatusCode element. */
+    /**
+     * Representation of the StatusCode element.
+     */
     private StatusCode statusCode;
 
-    /** Representation of the StatusDetail element. */
+    /**
+     * Representation of the StatusDetail element.
+     */
     private StatusDetail statusDetail;
 
     /**
      * Constructor
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected StatusImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusMessage getStatusMessage() {
         return statusMessage;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusMessage(StatusMessage statusMessage) throws IllegalArgumentException {
         this.statusMessage = prepareForAssignment(this.statusMessage, statusMessage);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusCode getStatusCode() {
         return statusCode;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusCode(StatusCode statusCode) throws IllegalArgumentException {
         this.statusCode = prepareForAssignment(this.statusCode, statusCode);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusDetail getStatusDetail() {
         return statusDetail;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusDetail(StatusDetail statusDetail) throws IllegalArgumentException {
         this.statusDetail = prepareForAssignment(this.statusDetail, statusDetail);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>(3);
 

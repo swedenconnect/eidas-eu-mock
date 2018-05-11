@@ -25,7 +25,7 @@ import eu.eidas.auth.engine.core.stork.SPInstitution;
  * @author fjquevedo
  */
 public class SPInstitutionBuilder extends
-	AbstractSAMLObjectBuilder<SPInstitution> {
+        AbstractSAMLObjectBuilder<SPInstitution> {
 
     /**
      * Builds the object.
@@ -33,19 +33,19 @@ public class SPInstitutionBuilder extends
      * @return the service provider institution
      */
     public final SPInstitution buildObject() {
-	return buildObject(SPInstitution.DEF_ELEMENT_NAME);
+        return buildObject(SPInstitution.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object SPInstitution.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the service provider institution
      */
     public final SPInstitution buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new SPInstitutionImpl(namespaceURI, localName, namespacePrefix);
+                                           final String localName, final String namespacePrefix) {
+        return new SPInstitutionImpl(namespaceURI, localName, namespacePrefix);
     }
 }

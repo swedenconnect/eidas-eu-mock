@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,7 +30,9 @@ import org.slf4j.LoggerFactory;
  */
 public class IssueInstantRule implements SecurityPolicyRule {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(IssueInstantRule.class);
 
     /**
@@ -39,43 +41,49 @@ public class IssueInstantRule implements SecurityPolicyRule {
      */
     private int clockSkew;
 
-    /** Number of seconds after a message issue instant after which the message is considered expired. */
+    /**
+     * Number of seconds after a message issue instant after which the message is considered expired.
+     */
     private int expires;
-    
-    /** Whether this rule is required to be met. */
+
+    /**
+     * Whether this rule is required to be met.
+     */
     private boolean requiredRule;
 
     /**
      * Constructor.
-     * 
+     *
      * @param newClockSkew the new clock skew value (seconds)
-     * @param newExpires the new expiration value (seconds)
+     * @param newExpires   the new expiration value (seconds)
      */
     public IssueInstantRule(int newClockSkew, int newExpires) {
         clockSkew = newClockSkew;
         expires = newExpires;
         requiredRule = true;
     }
-    
+
     /**
      * Gets whether this rule is required to be met.
-     * 
+     *
      * @return whether this rule is required to be met
      */
     public boolean isRequiredRule() {
         return requiredRule;
     }
-    
+
     /**
      * Sets whether this rule is required to be met.
-     * 
+     *
      * @param required whether this rule is required to be met
      */
     public void setRequiredRule(boolean required) {
         requiredRule = required;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void evaluate(MessageContext messageContext) throws SecurityPolicyException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.debug("Invalid message context type, this policy rule only supports SAMLMessageContext");
@@ -84,10 +92,10 @@ public class IssueInstantRule implements SecurityPolicyRule {
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
 
         if (samlMsgCtx.getInboundSAMLMessageIssueInstant() == null) {
-            if(requiredRule){
+            if (requiredRule) {
                 log.warn("Inbound SAML message issue instant not present in message context");
                 throw new SecurityPolicyException("Inbound SAML message issue instant not present in message context");
-            }else{
+            } else {
                 return;
             }
         }

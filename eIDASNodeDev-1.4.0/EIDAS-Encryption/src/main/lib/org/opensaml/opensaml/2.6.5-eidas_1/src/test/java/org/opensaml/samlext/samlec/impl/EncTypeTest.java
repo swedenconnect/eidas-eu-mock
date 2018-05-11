@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,23 +25,31 @@ import org.opensaml.samlext.samlec.EncType;
  */
 public class EncTypeTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected source ID value */
+    /**
+     * Expected source ID value
+     */
     private String expectedValue;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public EncTypeTest() {
         super();
         singleElementFile = "/data/org/opensaml/samlext/samlec/impl/EncType.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
         expectedValue = "des-cbc-crc";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         EncTypeBuilder builder = (EncTypeBuilder) builderFactory.getBuilder(EncType.DEFAULT_ELEMENT_NAME);
 
@@ -51,7 +59,9 @@ public class EncTypeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, et);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         EncType et = (EncType) unmarshallElement(singleElementFile);
 

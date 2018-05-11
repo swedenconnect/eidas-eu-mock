@@ -25,6 +25,7 @@ import java.util.Map;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+
 import org.apache.commons.collections.ExtendedProperties;
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.exception.ResourceNotFoundException;
@@ -38,10 +39,10 @@ import org.apache.velocity.util.ClassUtils;
 /**
  * Resource loader that works with Strings. Users should manually add
  * resources to the repository that is used by the resource loader instance.
- *
+ * <p>
  * Below is an example configuration for this loader.
  * Note that 'repository.class' is not necessary;
- * if not provided, the factory will fall back on using 
+ * if not provided, the factory will fall back on using
  * {@link StringResourceRepositoryImpl} as the default.
  * <pre>
  * resource.loader = string
@@ -57,7 +58,7 @@ import org.apache.velocity.util.ClassUtils;
  *   String myTemplate = "Hi, ${username}... this is some template!";
  *   repo.putStringResource(myTemplateName, myTemplate);
  * </code></pre>
- *
+ * <p>
  * After this, the templates can be retrieved as usual.
  * <br>
  * <p>If there will be multiple StringResourceLoaders used in an application,
@@ -80,8 +81,8 @@ import org.apache.velocity.util.ClassUtils;
  *   StringResourceRepository repo = velocityEngine.getApplicationAttribute("foo");
  * </code></pre>
  * If you did not specify a name for the repository, then it will be stored under the
- * class name of the repository implementation class (for which the default is 
- * 'org.apache.velocity.runtime.resource.util.StringResourceRepositoryImpl'). 
+ * class name of the repository implementation class (for which the default is
+ * 'org.apache.velocity.runtime.resource.util.StringResourceRepositoryImpl').
  * Incidentally, this is also true for the default statically stored repository.
  * </p>
  * <p>Whether your repository is stored statically or in Velocity's application
@@ -109,94 +110,105 @@ import org.apache.velocity.util.ClassUtils;
  * @version $Id: StringResourceLoader.java 825302 2009-10-14 21:51:39Z nbubna $
  * @since 1.5
  */
-public class StringResourceLoader extends ResourceLoader
-{
+public class StringResourceLoader extends ResourceLoader {
     /**
      * Key to determine whether the repository should be set as the static one or not.
+     *
      * @since 1.6
      */
     public static final String REPOSITORY_STATIC = "repository.static";
 
     /**
      * By default, repositories are stored statically (shared across the VM).
+     *
      * @since 1.6
      */
     public static final boolean REPOSITORY_STATIC_DEFAULT = true;
 
-    /** Key to look up the repository implementation class. */
+    /**
+     * Key to look up the repository implementation class.
+     */
     public static final String REPOSITORY_CLASS = "repository.class";
 
-    /** The default implementation class. */
+    /**
+     * The default implementation class.
+     */
     public static final String REPOSITORY_CLASS_DEFAULT =
-        StringResourceRepositoryImpl.class.getName();
+            StringResourceRepositoryImpl.class.getName();
 
     /**
      * Key to look up the name for the repository to be used.
+     *
      * @since 1.6
      */
     public static final String REPOSITORY_NAME = "repository.name";
 
-    /** The default name for string resource repositories
+    /**
+     * The default name for string resource repositories
      * ('org.apache.velocity.runtime.resource.util.StringResourceRepository').
+     *
      * @since 1.6
      */
     public static final String REPOSITORY_NAME_DEFAULT =
-        StringResourceRepository.class.getName();
+            StringResourceRepository.class.getName();
 
-    /** Key to look up the repository char encoding. */
+    /**
+     * Key to look up the repository char encoding.
+     */
     public static final String REPOSITORY_ENCODING = "repository.encoding";
 
-    /** The default repository encoding. */
+    /**
+     * The default repository encoding.
+     */
     public static final String REPOSITORY_ENCODING_DEFAULT = "UTF-8";
 
 
     protected static final Map STATIC_REPOSITORIES =
-        Collections.synchronizedMap(new HashMap());
+            Collections.synchronizedMap(new HashMap());
 
     /**
      * Returns a reference to the default static repository.
      */
-    public static StringResourceRepository getRepository()
-    {
+    public static StringResourceRepository getRepository() {
         return getRepository(REPOSITORY_NAME_DEFAULT);
     }
 
     /**
      * Returns a reference to the repository stored statically under the
      * specified name.
+     *
      * @since 1.6
      */
-    public static StringResourceRepository getRepository(String name)
-    {
-        return (StringResourceRepository)STATIC_REPOSITORIES.get(name);
+    public static StringResourceRepository getRepository(String name) {
+        return (StringResourceRepository) STATIC_REPOSITORIES.get(name);
     }
 
     /**
      * Sets the specified {@link StringResourceRepository} in static storage
      * under the specified name.
+     *
      * @since 1.6
      */
-    public static void setRepository(String name, StringResourceRepository repo)
-    {
+    public static void setRepository(String name, StringResourceRepository repo) {
         STATIC_REPOSITORIES.put(name, repo);
     }
 
     /**
      * Removes the {@link StringResourceRepository} stored under the specified
      * name.
+     *
      * @since 1.6
      */
-    public static StringResourceRepository removeRepository(String name)
-    {
-        return (StringResourceRepository)STATIC_REPOSITORIES.remove(name);
+    public static StringResourceRepository removeRepository(String name) {
+        return (StringResourceRepository) STATIC_REPOSITORIES.remove(name);
     }
 
     /**
      * Removes all statically stored {@link StringResourceRepository}s.
+     *
      * @since 1.6
      */
-    public static void clearRepositories()
-    {
+    public static void clearRepositories() {
         STATIC_REPOSITORIES.clear();
     }
 
@@ -208,8 +220,7 @@ public class StringResourceLoader extends ResourceLoader
     /**
      * @see org.apache.velocity.runtime.resource.loader.ResourceLoader#init(org.apache.commons.collections.ExtendedProperties)
      */
-    public void init(final ExtendedProperties configuration)
-    {
+    public void init(final ExtendedProperties configuration) {
         log.trace("StringResourceLoader : initialization starting.");
 
         // get the repository configuration info
@@ -219,57 +230,43 @@ public class StringResourceLoader extends ResourceLoader
         String encoding = configuration.getString(REPOSITORY_ENCODING);
 
         // look for an existing repository of that name and isStatic setting
-        if (isStatic)
-        {
+        if (isStatic) {
             this.repository = getRepository(repoName);
-            if (repository != null && log.isDebugEnabled())
-            {
-                log.debug("Loaded repository '"+repoName+"' from static repo store");
+            if (repository != null && log.isDebugEnabled()) {
+                log.debug("Loaded repository '" + repoName + "' from static repo store");
             }
-        }
-        else
-        {
-            this.repository = (StringResourceRepository)rsvc.getApplicationAttribute(repoName);
-            if (repository != null && log.isDebugEnabled())
-            {
-                log.debug("Loaded repository '"+repoName+"' from application attributes");
+        } else {
+            this.repository = (StringResourceRepository) rsvc.getApplicationAttribute(repoName);
+            if (repository != null && log.isDebugEnabled()) {
+                log.debug("Loaded repository '" + repoName + "' from application attributes");
             }
         }
 
-        if (this.repository == null)
-        {
+        if (this.repository == null) {
             // since there's no repository under the repo name, create a new one
             this.repository = createRepository(repoClass, encoding);
 
             // and store it according to the isStatic setting
-            if (isStatic)
-            {
+            if (isStatic) {
                 setRepository(repoName, this.repository);
-            }
-            else
-            {
+            } else {
                 rsvc.setApplicationAttribute(repoName, this.repository);
             }
-        }
-        else
-        {
+        } else {
             // ok, we already have a repo
             // warn them if they are trying to change the class of the repository
-            if (!this.repository.getClass().getName().equals(repoClass))
-            {
-                log.debug("Cannot change class of string repository '"+repoName+
-                          "' from "+this.repository.getClass().getName()+" to "+repoClass+
-                          ". The change will be ignored.");
+            if (!this.repository.getClass().getName().equals(repoClass)) {
+                log.debug("Cannot change class of string repository '" + repoName +
+                        "' from " + this.repository.getClass().getName() + " to " + repoClass +
+                        ". The change will be ignored.");
             }
 
             // allow them to change the default encoding of the repo
             if (encoding != null &&
-                !this.repository.getEncoding().equals(encoding))
-            {
-                if (log.isDebugEnabled())
-                {
-                    log.debug("Changing the default encoding of string repository '"+repoName+
-                              "' from "+this.repository.getEncoding()+" to "+encoding);
+                    !this.repository.getEncoding().equals(encoding)) {
+                if (log.isDebugEnabled()) {
+                    log.debug("Changing the default encoding of string repository '" + repoName +
+                            "' from " + this.repository.getEncoding() + " to " + encoding);
                 }
                 this.repository.setEncoding(encoding);
             }
@@ -282,42 +279,29 @@ public class StringResourceLoader extends ResourceLoader
      * @since 1.6
      */
     public StringResourceRepository createRepository(final String className,
-                                                     final String encoding)
-    {
-        if (log.isDebugEnabled())
-        {
-            log.debug("Creating string repository using class "+className+"...");
+                                                     final String encoding) {
+        if (log.isDebugEnabled()) {
+            log.debug("Creating string repository using class " + className + "...");
         }
 
         StringResourceRepository repo;
-        try
-        {
+        try {
             repo = (StringResourceRepository) ClassUtils.getNewInstance(className);
-        }
-        catch (ClassNotFoundException cnfe)
-        {
+        } catch (ClassNotFoundException cnfe) {
             throw new VelocityException("Could not find '" + className + "'", cnfe);
-        }
-        catch (IllegalAccessException iae)
-        {
+        } catch (IllegalAccessException iae) {
             throw new VelocityException("Could not access '" + className + "'", iae);
-        }
-        catch (InstantiationException ie)
-        {
+        } catch (InstantiationException ie) {
             throw new VelocityException("Could not instantiate '" + className + "'", ie);
         }
 
-        if (encoding != null)
-        {
+        if (encoding != null) {
             repo.setEncoding(encoding);
-        }
-        else
-        {
+        } else {
             repo.setEncoding(REPOSITORY_ENCODING_DEFAULT);
         }
 
-        if (log.isDebugEnabled())
-        {
+        if (log.isDebugEnabled()) {
             log.debug("Default repository encoding is " + repo.getEncoding());
         }
         return repo;
@@ -325,12 +309,11 @@ public class StringResourceLoader extends ResourceLoader
 
     /**
      * Overrides superclass for better performance.
+     *
      * @since 1.6
      */
-    public boolean resourceExists(final String name)
-    {
-        if (name == null)
-        {
+    public boolean resourceExists(final String name) {
+        if (name == null) {
             return false;
         }
         return (this.repository.getStringResource(name) != null);
@@ -343,32 +326,26 @@ public class StringResourceLoader extends ResourceLoader
      * @param name name of template to get.
      * @return InputStream containing the template.
      * @throws ResourceNotFoundException Ff template not found
-     *         in the RepositoryFactory.
+     *                                   in the RepositoryFactory.
      */
     public InputStream getResourceStream(final String name)
-            throws ResourceNotFoundException
-    {
-        if (StringUtils.isEmpty(name))
-        {
+            throws ResourceNotFoundException {
+        if (StringUtils.isEmpty(name)) {
             throw new ResourceNotFoundException("No template name provided");
         }
 
         StringResource resource = this.repository.getStringResource(name);
-        
-        if(resource == null)
-        {
+
+        if (resource == null) {
             throw new ResourceNotFoundException("Could not locate resource '" + name + "'");
         }
-        
-        byte [] byteArray = null;
-    	
-        try
-        {
+
+        byte[] byteArray = null;
+
+        try {
             byteArray = resource.getBody().getBytes(resource.getEncoding());
             return new ByteArrayInputStream(byteArray);
-        }
-        catch(UnsupportedEncodingException ue)
-        {
+        } catch (UnsupportedEncodingException ue) {
             throw new VelocityException("Could not convert String using encoding " + resource.getEncoding(), ue);
         }
     }
@@ -376,16 +353,14 @@ public class StringResourceLoader extends ResourceLoader
     /**
      * @see org.apache.velocity.runtime.resource.loader.ResourceLoader#isSourceModified(org.apache.velocity.runtime.resource.Resource)
      */
-    public boolean isSourceModified(final Resource resource)
-    {
+    public boolean isSourceModified(final Resource resource) {
         StringResource original = null;
         boolean result = true;
 
         original = this.repository.getStringResource(resource.getName());
 
-        if (original != null)
-        {
-            result =  original.getLastModified() != resource.getLastModified();
+        if (original != null) {
+            result = original.getLastModified() != resource.getLastModified();
         }
 
         return result;
@@ -394,8 +369,7 @@ public class StringResourceLoader extends ResourceLoader
     /**
      * @see org.apache.velocity.runtime.resource.loader.ResourceLoader#getLastModified(org.apache.velocity.runtime.resource.Resource)
      */
-    public long getLastModified(final Resource resource)
-    {
+    public long getLastModified(final Resource resource) {
         StringResource original = null;
 
         original = this.repository.getStringResource(resource.getName());

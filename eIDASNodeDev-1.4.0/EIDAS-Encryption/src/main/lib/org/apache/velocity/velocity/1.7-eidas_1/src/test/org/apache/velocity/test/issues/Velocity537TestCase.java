@@ -29,12 +29,11 @@ import org.apache.velocity.test.misc.TestLogChute;
 /**
  * Test Case for <a href="https://issues.apache.org/jira/browse/VELOCITY-537">Velocity Issue 537</a>.
  */
-public class Velocity537TestCase extends BaseTestCase
-{
+public class Velocity537TestCase extends BaseTestCase {
     /**
      * Comparison file extension.
      */
-    private static final String CMP_FILE_EXT    = "cmp";
+    private static final String CMP_FILE_EXT = "cmp";
 
     /**
      * Comparison file extension.
@@ -44,31 +43,29 @@ public class Velocity537TestCase extends BaseTestCase
     /**
      * Results relative to the build directory.
      */
-    private static final String RESULTS_DIR     = TEST_RESULT_DIR + "/issues/velocity-537";
+    private static final String RESULTS_DIR = TEST_RESULT_DIR + "/issues/velocity-537";
 
     /**
      * Template Directory
      */
-    private static final String TEMPLATE_DIR    = TEST_COMPARE_DIR + "/issues/velocity-537/templates";
+    private static final String TEMPLATE_DIR = TEST_COMPARE_DIR + "/issues/velocity-537/templates";
 
     /**
      * Results relative to the build directory.
      */
-    private static final String COMPARE_DIR     = TEST_COMPARE_DIR + "/issues/velocity-537/compare";
+    private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/issues/velocity-537/compare";
 
-    public Velocity537TestCase(final String name) throws Exception
-    {
+    public Velocity537TestCase(final String name) throws Exception {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(Velocity537TestCase.class);
     }
 
     private VelocityEngine velocityEngine;
-    public void setUp() throws Exception
-    {
+
+    public void setUp() throws Exception {
 
         assureResultsDirectoryExists(RESULTS_DIR);
 
@@ -80,18 +77,15 @@ public class Velocity537TestCase extends BaseTestCase
         velocityEngine.init();
     }
 
-    public void testVelocity537() throws Exception
-    {
+    public void testVelocity537() throws Exception {
         executeTest("velocity537.vm");
     }
 
-    public void testVelocity537Again() throws Exception
-    {
+    public void testVelocity537Again() throws Exception {
         executeTest("velocity537b.vm");
     }
 
-    protected Template executeTest(final String templateName) throws Exception
-    {
+    protected Template executeTest(final String templateName) throws Exception {
         Template template = velocityEngine.getTemplate(templateName);
 
         FileOutputStream fos = new FileOutputStream(getFileName(RESULTS_DIR, templateName, RESULT_FILE_EXT));
@@ -104,16 +98,15 @@ public class Velocity537TestCase extends BaseTestCase
         writer.flush();
         writer.close();
 
-        if (!isMatch(RESULTS_DIR, COMPARE_DIR, templateName, RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, templateName, RESULT_FILE_EXT, CMP_FILE_EXT)) {
             // just to be useful, output the output in the fail message
             StringWriter out = new StringWriter();
             template.merge(context, out);
 
             String compare = getFileContents(COMPARE_DIR, templateName, CMP_FILE_EXT);
 
-            fail("Output incorrect for Template: " + templateName + ": \""+out+"\""+
-                 "; it did not match: \""+compare+"\"");
+            fail("Output incorrect for Template: " + templateName + ": \"" + out + "\"" +
+                    "; it did not match: \"" + compare + "\"");
         }
 
         return template;

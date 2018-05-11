@@ -29,21 +29,23 @@ import eu.eidas.auth.engine.core.stork.SPApplication;
  * @author fjquevedo
  */
 public class SPApplicationImpl extends AbstractSAMLObject implements
-	SPApplication {
+        SPApplication {
 
-    /** The service provider application. */
+    /**
+     * The service provider application.
+     */
     private String spApplication;
 
     /**
      * Instantiates a new service provider application.
      *
-     * @param namespaceURI the namespace uri
+     * @param namespaceURI     the namespace uri
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected SPApplicationImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /**
@@ -52,7 +54,7 @@ public class SPApplicationImpl extends AbstractSAMLObject implements
      * @return the service provider application
      */
     public final String getSPApplication() {
-	return spApplication;
+        return spApplication;
     }
 
     /**
@@ -61,8 +63,8 @@ public class SPApplicationImpl extends AbstractSAMLObject implements
      * @param newSpApplication the new service provider application
      */
     public final void setSPApplication(final String newSpApplication) {
-	this.spApplication = prepareForAssignment(this.spApplication,
-		newSpApplication);
+        this.spApplication = prepareForAssignment(this.spApplication,
+                newSpApplication);
     }
 
     /**
@@ -71,7 +73,7 @@ public class SPApplicationImpl extends AbstractSAMLObject implements
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

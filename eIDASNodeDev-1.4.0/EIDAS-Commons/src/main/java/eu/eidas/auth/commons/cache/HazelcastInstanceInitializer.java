@@ -45,7 +45,7 @@ public class HazelcastInstanceInitializer {
     public static HazelcastInstance getInstance(String name) {
         HazelcastInstance instance = Hazelcast.getHazelcastInstanceByName(name);
         if (instance == null) {
-            throw new InvalidParameterEIDASException("Distributed Cache Configuration mismatch for HazelCast instance : "+name);
+            throw new InvalidParameterEIDASException("Distributed Cache Configuration mismatch for HazelCast instance : " + name);
         }
         return instance;
     }
@@ -56,7 +56,7 @@ public class HazelcastInstanceInitializer {
             LOG.trace("loading hazelcast config from " + hazelcastConfigfileName);
             cfg = new FileSystemXmlConfig(hazelcastConfigfileName);
         } else {
-            LOG.trace("loading hazelcast instance '"+hazelcastInstanceName+"' config "+hazelcastConfigfileName);
+            LOG.trace("loading hazelcast instance '" + hazelcastInstanceName + "' config " + hazelcastConfigfileName);
             cfg = new Config();
         }
         cfg.setInstanceName(hazelcastInstanceName);

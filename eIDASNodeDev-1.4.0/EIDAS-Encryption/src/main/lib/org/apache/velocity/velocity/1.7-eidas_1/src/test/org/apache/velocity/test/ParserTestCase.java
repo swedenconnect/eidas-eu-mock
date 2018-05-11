@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -32,30 +32,26 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.ParseErrorException;
 
 /**
- *  More specific parser tests where just templating
- *  isn't enough.
+ * More specific parser tests where just templating
+ * isn't enough.
  *
  * @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
  * @version $Id: ParserTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ParserTestCase extends TestCase
-{
-    public ParserTestCase(String testName)
-    {
+public class ParserTestCase extends TestCase {
+    public ParserTestCase(String testName) {
         super(testName);
     }
 
-    public static Test suite()
-    {
-       return new TestSuite(ParserTestCase.class);
+    public static Test suite() {
+        return new TestSuite(ParserTestCase.class);
     }
 
     /**
-     *  Test to make sure that using '=' in #if() throws a PEE
+     * Test to make sure that using '=' in #if() throws a PEE
      */
     public void testEquals()
-        throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
 
         ve.init();
@@ -74,23 +70,19 @@ public class ParserTestCase extends TestCase
 
         template = "#if($a = $b) foo #end";
 
-        try
-        {
+        try {
             ve.evaluate(new VelocityContext(), new StringWriter(), "foo", template);
             fail("Could evaluate template with errors!");
-        }
-        catch(ParseErrorException pe)
-        {
+        } catch (ParseErrorException pe) {
             // Do nothing
         }
     }
 
     /**
-     *  Test to see if we force the first arg to #macro() to be a word
+     * Test to see if we force the first arg to #macro() to be a word
      */
     public void testMacro()
-        throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
 
         ve.init();
@@ -103,30 +95,26 @@ public class ParserTestCase extends TestCase
 
         ve.evaluate(new VelocityContext(), new StringWriter(), "foo", template);
 
-         /*
-          *  this should throw an exception
-          */
+        /*
+         *  this should throw an exception
+         */
 
         template = "#macro($x) foo #end";
 
-        try
-        {
+        try {
             ve.evaluate(new VelocityContext(), new StringWriter(), "foo", template);
             fail("Could evaluate macro with errors!");
-        }
-        catch(ParseErrorException pe)
-        {
+        } catch (ParseErrorException pe) {
             // Do nothing
         }
     }
 
     /**
-     *  Test to see if don't tolerage passing word tokens in anything but the
-     *  0th arg to #macro() and the 1th arg to foreach()
+     * Test to see if don't tolerage passing word tokens in anything but the
+     * 0th arg to #macro() and the 1th arg to foreach()
      */
     public void testArgs()
-        throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
 
         ve.init();
@@ -139,9 +127,9 @@ public class ParserTestCase extends TestCase
 
         ve.evaluate(new VelocityContext(), new StringWriter(), "foo", template);
 
-         /*
-          *  this should work - spaces intentional
-          */
+        /*
+         *  this should work - spaces intentional
+         */
 
         template = "#foreach(  $i     in  $woogie   ) end #end";
 
@@ -151,25 +139,21 @@ public class ParserTestCase extends TestCase
          *  this should bomb
          */
 
-       template = "#macro(   foo $a) $a #end #foo(woogie)";
+        template = "#macro(   foo $a) $a #end #foo(woogie)";
 
-        try
-        {
+        try {
             ve.evaluate(new VelocityContext(), new StringWriter(), "foo", template);
             fail("Evaluation of macro with errors succeeded!");
-        }
-        catch(ParseErrorException pe)
-        {
+        } catch (ParseErrorException pe) {
             // Do nothing
         }
     }
 
     /**
-     *  Test to see if we toString is called multiple times on references.
+     * Test to see if we toString is called multiple times on references.
      */
     public void testASTReferenceToStringOnlyCalledOnce()
-        throws Exception
-    {
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
 
         ve.init();
@@ -187,6 +171,7 @@ public class ParserTestCase extends TestCase
 
     public static class ToStringCounter {
         public int timesCalled = 0;
+
         public String toString() {
             this.timesCalled++;
             return "foo";

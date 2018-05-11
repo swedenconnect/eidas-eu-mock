@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,17 +22,20 @@ import org.opensaml.util.SimpleURLCanonicalizer;
 /**
  * A basic implementation of {@link URIComparator} that compares
  * URL's by canonicalizing them as per {@link SimpleURLCanonicalizer},
- * and then compares the resulting string representations for equality 
+ * and then compares the resulting string representations for equality
  * using String equals(). If {link {@link #isCaseInsensitive()} is true,
  * then the equality test is instead performed using String equalsIgnoreCase().
  */
 public class BasicURLComparator implements URIComparator {
-    
-    /** The case-insensitivity flag. */
+
+    /**
+     * The case-insensitivity flag.
+     */
     private boolean caseInsensitive;
 
     /**
      * Get the case-insensitivity flag value.
+     *
      * @return Returns the caseInsensitive.
      */
     public boolean isCaseInsensitive() {
@@ -41,13 +44,16 @@ public class BasicURLComparator implements URIComparator {
 
     /**
      * Set the case-insensitivity flag value.
+     *
      * @param flag The caseInsensitive to set.
      */
     public void setCaseInsensitive(boolean flag) {
         caseInsensitive = flag;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean compare(String uri1, String uri2) {
         if (uri1 == null) {
             return uri2 == null;

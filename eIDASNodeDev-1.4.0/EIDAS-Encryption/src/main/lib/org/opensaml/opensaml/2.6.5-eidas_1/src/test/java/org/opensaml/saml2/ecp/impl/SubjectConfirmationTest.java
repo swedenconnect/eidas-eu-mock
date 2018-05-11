@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,14 +29,18 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
     private String expectedMethod;
     private String expectedSOAP11Actor;
     private Boolean expectedSOAP11MustUnderstand;
-    
-    /** Constructor */
+
+    /**
+     * Constructor
+     */
     public SubjectConfirmationTest() {
         singleElementFile = "/data/org/opensaml/saml2/ecp/impl/SubjectConfirmation.xml";
         childElementsFile = "/data/org/opensaml/saml2/ecp/impl/SubjectConfirmationChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedMethod = "conf method";
@@ -44,7 +48,9 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         expectedSOAP11MustUnderstand = true;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) unmarshallElement(singleElementFile);
 
@@ -54,7 +60,9 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("SOAP actor had unxpected value", expectedSOAP11Actor, subjectConfirmation.getSOAP11Actor());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) buildXMLObject(SubjectConfirmation.DEFAULT_ELEMENT_NAME);
 
@@ -64,14 +72,18 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, subjectConfirmation);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) unmarshallElement(childElementsFile);
 
         assertNotNull("SubjectConfirmationData element not present", subjectConfirmation.getSubjectConfirmationData());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) buildXMLObject(SubjectConfirmation.DEFAULT_ELEMENT_NAME);
 
@@ -82,5 +94,5 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
 
         assertEquals(expectedChildElementsDOM, subjectConfirmation);
     }
-    
+
 }

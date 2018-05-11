@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.VelocityContext;
@@ -24,16 +24,13 @@ import org.apache.velocity.VelocityContext;
 /**
  * Used to check that vararg method calls on references work properly
  */
-public class PropertyMethodPrecedenceTestCase extends BaseTestCase
-{
-    public PropertyMethodPrecedenceTestCase(final String name)
-    {
+public class PropertyMethodPrecedenceTestCase extends BaseTestCase {
+    public PropertyMethodPrecedenceTestCase(final String name) {
         super(name);
         // DEBUG = true;
     }
 
-    protected void setUpContext(VelocityContext context)
-    {
+    protected void setUpContext(VelocityContext context) {
         context.put("geta", new getGetgetisTool());
         context.put("getA", new GetgetisTool());
         context.put("geta2", new get2getisTool());
@@ -41,16 +38,14 @@ public class PropertyMethodPrecedenceTestCase extends BaseTestCase
         context.put("isA", new isTool());
     }
 
-    public void testLowercasePropertyMethods()
-    {
+    public void testLowercasePropertyMethods() {
         assertEvalEquals("getfoo", "$geta.foo");
         assertEvalEquals("getFoo", "$getA.foo");
         assertEvalEquals("get(foo)", "$get_a.foo");
         assertEvalEquals("true", "$isA.foo");
     }
 
-    public void testUppercasePropertyMethods()
-    {
+    public void testUppercasePropertyMethods() {
         assertEvalEquals("getFoo", "$geta.Foo");
         assertEvalEquals("getfoo", "$geta2.Foo");
         assertEvalEquals("getFoo", "$getA.Foo");
@@ -59,42 +54,32 @@ public class PropertyMethodPrecedenceTestCase extends BaseTestCase
     }
 
 
-    public static class isTool
-    {
-        public boolean isFoo()
-        {
+    public static class isTool {
+        public boolean isFoo() {
             return true;
         }
     }
 
-    public static class getisTool extends isTool
-    {
-        public String get(String s)
-        {
-            return "get("+s+")";
+    public static class getisTool extends isTool {
+        public String get(String s) {
+            return "get(" + s + ")";
         }
     }
 
-    public static class GetgetisTool extends getisTool
-    {
-        public String getFoo()
-        {
+    public static class GetgetisTool extends getisTool {
+        public String getFoo() {
             return "getFoo";
         }
     }
 
-    public static class getGetgetisTool extends GetgetisTool
-    {
-        public String getfoo()
-        {
+    public static class getGetgetisTool extends GetgetisTool {
+        public String getfoo() {
             return "getfoo";
         }
     }
 
-    public static class get2getisTool extends getisTool
-    {
-        public String getfoo()
-        {
+    public static class get2getisTool extends getisTool {
+        public String getfoo() {
             return "getfoo";
         }
     }

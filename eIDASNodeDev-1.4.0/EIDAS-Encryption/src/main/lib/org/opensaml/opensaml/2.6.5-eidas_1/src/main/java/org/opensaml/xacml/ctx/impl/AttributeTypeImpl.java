@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,64 +27,88 @@ import org.opensaml.xacml.impl.AbstractXACMLObject;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 
-/** Concrete implementation of {@link AttributeType}. */
+/**
+ * Concrete implementation of {@link AttributeType}.
+ */
 public class AttributeTypeImpl extends AbstractXACMLObject implements AttributeType {
 
-    /** Issuer of the attribute. */
+    /**
+     * Issuer of the attribute.
+     */
     private String issuer;
 
-    /** AttributeID of the attribute. */
+    /**
+     * AttributeID of the attribute.
+     */
     private String attributeID;
 
-    /** Datatype of the attribute. */
+    /**
+     * Datatype of the attribute.
+     */
     private String datatype;
 
-    /** List of values for this attribute. */
+    /**
+     * List of values for this attribute.
+     */
     private final XMLObjectChildrenList<AttributeValueType> attributeValues;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AttributeTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         attributeValues = new XMLObjectChildrenList<AttributeValueType>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getAttributeID() {
         return attributeID;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getDataType() {
         return datatype;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getIssuer() {
         return issuer;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAttributeID(String attributeId) {
         this.attributeID = prepareForAssignment(this.attributeID, attributeId);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setDataType(String datatype) {
         this.datatype = prepareForAssignment(this.datatype, datatype);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIssuer(String issuer) {
         this.issuer = prepareForAssignment(this.issuer, issuer);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
@@ -93,7 +117,9 @@ public class AttributeTypeImpl extends AbstractXACMLObject implements AttributeT
         return Collections.unmodifiableList(children);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AttributeValueType> getAttributeValues() {
         return attributeValues;
     }

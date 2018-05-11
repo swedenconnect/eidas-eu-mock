@@ -26,12 +26,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <h3>Level of assurance</h3>
-                <p>Article 8 of Regulation (EU) No 910/2014 provides that an electronic identification scheme notified pursuant to Article 9(1) needs to specify assurance levels <b>low, substantial and high </b>for electronic identification means issued under that scheme.</p>
-                <p>Determining the minimum technical specifications, standards and procedures is essential in order to ensure common understanding of the details of the assurance levels and to ensure interoperability when mapping the national assurance levels of notified electronic identification schemes to the assurance levels under Article 8 as provided by Article 12(4)(b) of Regulation (EU) No 910/2014.</p>
+                <p>Article 8 of Regulation (EU) No 910/2014 provides that an electronic identification scheme notified
+                    pursuant to Article 9(1) needs to specify assurance levels <b>low, substantial and high </b>for
+                    electronic identification means issued under that scheme.</p>
+                <p>Determining the minimum technical specifications, standards and procedures is essential in order to
+                    ensure common understanding of the details of the assurance levels and to ensure interoperability
+                    when mapping the national assurance levels of notified electronic identification schemes to the
+                    assurance levels under Article 8 as provided by Article 12(4)(b) of Regulation (EU) No 910/2014.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

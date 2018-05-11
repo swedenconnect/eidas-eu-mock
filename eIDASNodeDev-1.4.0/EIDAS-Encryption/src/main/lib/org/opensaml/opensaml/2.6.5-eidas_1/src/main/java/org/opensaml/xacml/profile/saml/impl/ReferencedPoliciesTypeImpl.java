@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,43 +33,53 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class ReferencedPoliciesTypeImpl extends AbstractSAMLObject implements ReferencedPoliciesType {
 
-    /**List of policies.*/
+    /**
+     * List of policies.
+     */
     private XMLObjectChildrenList<PolicyType> policies;
-    
-    /**List of policieSets.*/
+
+    /**
+     * List of policieSets.
+     */
     private XMLObjectChildrenList<PolicySetType> policieSets;
-    
+
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected ReferencedPoliciesTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         policies = new XMLObjectChildrenList<PolicyType>(this);
-        policieSets = new XMLObjectChildrenList<PolicySetType>(this); 
+        policieSets = new XMLObjectChildrenList<PolicySetType>(this);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicySetType> getPolicySets() {
         return policieSets;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicyType> getPolicies() {
-       return policies;
+        return policies;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
-        
-        if(!policies.isEmpty()) {
+
+        if (!policies.isEmpty()) {
             children.addAll(policies);
         }
-        if(!policieSets.isEmpty()) {
+        if (!policieSets.isEmpty()) {
             children.addAll(policieSets);
         }
         return Collections.unmodifiableList(children);

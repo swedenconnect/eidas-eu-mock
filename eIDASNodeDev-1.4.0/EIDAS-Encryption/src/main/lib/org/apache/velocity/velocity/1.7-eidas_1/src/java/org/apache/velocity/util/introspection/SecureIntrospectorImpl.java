@@ -20,6 +20,7 @@ package org.apache.velocity.util.introspection;
  */
 
 import java.lang.reflect.Method;
+
 import org.apache.velocity.runtime.log.Log;
 
 /**
@@ -35,13 +36,11 @@ import org.apache.velocity.runtime.log.Log;
  * @version $Id: SecureIntrospectorImpl.java 705375 2008-10-16 22:06:30Z nbubna $
  * @since 1.5
  */
-public class SecureIntrospectorImpl extends Introspector implements SecureIntrospectorControl
-{
+public class SecureIntrospectorImpl extends Introspector implements SecureIntrospectorControl {
     private String[] badClasses;
     private String[] badPackages;
 
-    public SecureIntrospectorImpl(String[] badClasses, String[] badPackages, Log log)
-    {
+    public SecureIntrospectorImpl(String[] badClasses, String[] badPackages, Log log) {
         super(log);
         this.badClasses = badClasses;
         this.badPackages = badPackages;
@@ -52,24 +51,20 @@ public class SecureIntrospectorImpl extends Introspector implements SecureIntros
      * Will check for appropriate execute permissions and return null if the method
      * is not allowed to be executed.
      *
-     * @param clazz Class on which method will be called
+     * @param clazz      Class on which method will be called
      * @param methodName Name of method to be called
-     * @param params array of parameters to method
+     * @param params     array of parameters to method
      * @return Method object retrieved by Introspector
      * @throws IllegalArgumentException The parameter passed in were incorrect.
      */
     public Method getMethod(Class clazz, String methodName, Object[] params)
-        throws IllegalArgumentException
-    {
-        if (!checkObjectExecutePermission(clazz, methodName))
-        {
+            throws IllegalArgumentException {
+        if (!checkObjectExecutePermission(clazz, methodName)) {
             log.warn("Cannot retrieve method " + methodName +
-                     " from object of class " + clazz.getName() +
-                     " due to security restrictions.");
+                    " from object of class " + clazz.getName() +
+                    " due to security restrictions.");
             return null;
-        }
-        else
-        {
+        } else {
             return super.getMethod(clazz, methodName, params);
         }
     }
@@ -81,43 +76,35 @@ public class SecureIntrospectorImpl extends Introspector implements SecureIntros
      * For the complete list, see the properties <code>introspector.restrict.classes</code>
      * and <code>introspector.restrict.packages</code>.
      *
-     * @param clazz Class on which method will be called
+     * @param clazz      Class on which method will be called
      * @param methodName Name of method to be called
      * @see org.apache.velocity.util.introspection.SecureIntrospectorControl#checkObjectExecutePermission(java.lang.Class, java.lang.String)
      */
-    public boolean checkObjectExecutePermission(Class clazz, String methodName)
-    {
-		/**
-		 * check for wait and notify
-		 */
+    public boolean checkObjectExecutePermission(Class clazz, String methodName) {
+        /**
+         * check for wait and notify
+         */
         if (methodName != null &&
-            (methodName.equals("wait") || methodName.equals("notify")) )
-		{
-			return false;
-		}
+                (methodName.equals("wait") || methodName.equals("notify"))) {
+            return false;
+        }
 
-		/**
-		 * Always allow the most common classes - Number, Boolean and String
-		 */
-		else if (Number.class.isAssignableFrom(clazz))
-		{
-			return true;
-		}
-		else if (Boolean.class.isAssignableFrom(clazz))
-		{
-			return true;
-		}
-		else if (String.class.isAssignableFrom(clazz))
-		{
-			return true;
-		}
+        /**
+         * Always allow the most common classes - Number, Boolean and String
+         */
+        else if (Number.class.isAssignableFrom(clazz)) {
+            return true;
+        } else if (Boolean.class.isAssignableFrom(clazz)) {
+            return true;
+        } else if (String.class.isAssignableFrom(clazz)) {
+            return true;
+        }
 
         /**
          * Always allow Class.getName()
          */
         else if (Class.class.isAssignableFrom(clazz) &&
-                 (methodName != null) && methodName.equals("getName"))
-        {
+                (methodName != null) && methodName.equals("getName")) {
             return true;
         }
 
@@ -126,26 +113,21 @@ public class SecureIntrospectorImpl extends Introspector implements SecureIntros
          * whether it matches disallowed classes or packages
          */
         String className = clazz.getName();
-        if (className.startsWith("[L") && className.endsWith(";"))
-        {
+        if (className.startsWith("[L") && className.endsWith(";")) {
             className = className.substring(2, className.length() - 1);
         }
 
         int dotPos = className.lastIndexOf('.');
         String packageName = (dotPos == -1) ? "" : className.substring(0, dotPos);
 
-        for (int i = 0, size = badPackages.length; i < size; i++)
-        {
-            if (packageName.equals(badPackages[i]))
-            {
+        for (int i = 0, size = badPackages.length; i < size; i++) {
+            if (packageName.equals(badPackages[i])) {
                 return false;
             }
         }
 
-        for (int i = 0, size = badClasses.length; i < size; i++)
-        {
-            if (className.equals(badClasses[i]))
-            {
+        for (int i = 0, size = badClasses.length; i < size; i++) {
+            if (className.equals(badClasses[i])) {
                 return false;
             }
         }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -34,7 +34,9 @@ import org.opensaml.saml1.core.StatusMessage;
  */
 public class StatusTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects. */
+    /**
+     * name used to generate objects.
+     */
     private final QName qname;
 
     /**
@@ -49,7 +51,9 @@ public class StatusTest extends BaseSAMLObjectProviderTestCase {
         qname = new QName(SAMLConstants.SAML10P_NS, Status.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementUnmarshall() {
 
@@ -70,7 +74,9 @@ public class StatusTest extends BaseSAMLObjectProviderTestCase {
         assertNotNull("StatusMessage", status.getStatusMessage());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementMarshall() {
         Status status = (Status) buildXMLObject(qname);
@@ -82,7 +88,9 @@ public class StatusTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, status);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsMarshall() {
         Status status = (Status) buildXMLObject(qname);

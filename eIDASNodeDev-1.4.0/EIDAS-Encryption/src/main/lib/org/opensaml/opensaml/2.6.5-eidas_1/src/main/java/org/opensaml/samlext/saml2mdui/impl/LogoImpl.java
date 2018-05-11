@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,70 +27,95 @@ import org.opensaml.xml.util.DatatypeHelper;
 
 /**
  * Concrete implementation of {@link org.opensaml.samlext.saml2mdui.Logo}.
+ *
  * @author rod widdowson
  */
 public class LogoImpl extends AbstractSAMLObject implements Logo {
-    
-    /** Logo URL. */
+
+    /**
+     * Logo URL.
+     */
     private String url;
-    
-    /** Language. */
+
+    /**
+     * Language.
+     */
     private String lang;
 
-    /** X-Dimension of the logo. */
+    /**
+     * X-Dimension of the logo.
+     */
     private Integer width;
 
-    /** Y-Dimension of the logo. */
+    /**
+     * Y-Dimension of the logo.
+     */
     private Integer height;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI namespaceURI
+     *
+     * @param namespaceURI     namespaceURI
      * @param elementLocalName elementLocalName
-     * @param namespacePrefix namespacePrefix
+     * @param namespacePrefix  namespacePrefix
      */
     protected LogoImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Integer getHeight() {
         return height;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setHeight(Integer newHeight) {
-         height = prepareForAssignment(height, newHeight);
+        height = prepareForAssignment(height, newHeight);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Integer getWidth() {
         return width;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setWidth(Integer newWidth) {
         width = prepareForAssignment(width, newWidth);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getURL() {
         return url;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setURL(String newURL) {
-       url = prepareForAssignment(url, newURL);
+        url = prepareForAssignment(url, newURL);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getXMLLang() {
         return lang;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setXMLLang(String newLang) {
         boolean hasValue = newLang != null && !DatatypeHelper.isEmpty(newLang);
         lang = prepareForAssignment(lang, newLang);
@@ -98,7 +123,9 @@ public class LogoImpl extends AbstractSAMLObject implements Logo {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return null;
     }

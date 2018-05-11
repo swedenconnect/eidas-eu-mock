@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,29 +25,27 @@ import org.opensaml.saml1.core.Response;
 
 /**
  * Builder of typed SAML 1 artifacts.
- * 
+ * <p>
  * Builders must be thread safe and reusable.
- * 
+ *
  * @param <ArtifactType> type of artifact built by this builder
  */
 public interface SAML1ArtifactBuilder<ArtifactType extends AbstractSAML1Artifact> {
 
     /**
      * Builds an artifact, for the given assertion, destined for the outbound message recipient.
-     * 
+     *
      * @param requestContext request context
-     * @param assertion assertion to build artifact for
-     * 
+     * @param assertion      assertion to build artifact for
      * @return constructed artifcate
      */
     public ArtifactType buildArtifact(SAMLMessageContext<RequestAbstractType, Response, NameIdentifier> requestContext,
-            Assertion assertion);
+                                      Assertion assertion);
 
     /**
      * Builds a populated artifact given the artifact's byte-array representation.
-     * 
+     *
      * @param artifact the byte representation of the artifact
-     * 
      * @return populated artifact
      */
     public ArtifactType buildArtifact(byte[] artifact);

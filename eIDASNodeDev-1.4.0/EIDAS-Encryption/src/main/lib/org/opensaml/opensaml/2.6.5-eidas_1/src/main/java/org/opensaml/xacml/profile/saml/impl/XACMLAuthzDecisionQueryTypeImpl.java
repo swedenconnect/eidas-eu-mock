@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,36 +31,52 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.schema.XSBooleanValue;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 
-/** A concrete implementation of {@link XACMLAuthzDecisionQueryType}. */
+/**
+ * A concrete implementation of {@link XACMLAuthzDecisionQueryType}.
+ */
 public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl implements XACMLAuthzDecisionQueryType {
 
-    /** Policy children. */
+    /**
+     * Policy children.
+     */
     private List<PolicyType> policies;
 
-    /** PolicySet children. */
+    /**
+     * PolicySet children.
+     */
     private List<PolicySetType> policySets;
 
-    /** ReeferencedPolicies child. */
+    /**
+     * ReeferencedPolicies child.
+     */
     private ReferencedPoliciesType referencedPolicies;
 
-    /** The xacml-context:Request. */
+    /**
+     * The xacml-context:Request.
+     */
     private RequestType request;
 
-    /** InputContextOnly attribute value. Default = false. */
+    /**
+     * InputContextOnly attribute value. Default = false.
+     */
     private XSBooleanValue inputContextOnly;
 
-    /** ReturnContext attribute value.Default = false. */
+    /**
+     * ReturnContext attribute value.Default = false.
+     */
     private XSBooleanValue returnContext;
 
-    /** CombinePolicies attribute value. Default = true. */
+    /**
+     * CombinePolicies attribute value. Default = true.
+     */
     private XSBooleanValue combinePolicies;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected XACMLAuthzDecisionQueryTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -69,17 +85,23 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
         policySets = new XMLObjectChildrenList<PolicySetType>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue getCombinePoliciesXSBooleanValue() {
         return combinePolicies;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue getInputContextOnlyXSBooleanValue() {
         return inputContextOnly;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
@@ -105,17 +127,23 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
         return Collections.unmodifiableList(children);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public RequestType getRequest() {
         return request;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue getReturnContextXSBooleanValue() {
         return returnContext;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Boolean isCombinePolicies() {
         if (combinePolicies != null) {
             return combinePolicies.getValue();
@@ -124,7 +152,9 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
         return Boolean.TRUE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Boolean isInputContextOnly() {
         if (inputContextOnly != null) {
             return inputContextOnly.getValue();
@@ -133,7 +163,9 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Boolean isReturnContext() {
         if (returnContext != null) {
             return returnContext.getValue();
@@ -142,12 +174,16 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCombinePolicies(XSBooleanValue combinePolicies) {
         this.combinePolicies = prepareForAssignment(this.combinePolicies, combinePolicies);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCombinePolicies(Boolean combinePolicies) {
         if (combinePolicies != null) {
             this.combinePolicies = prepareForAssignment(this.combinePolicies,
@@ -158,12 +194,16 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInputContextOnly(XSBooleanValue inputContextOnly) {
         this.inputContextOnly = prepareForAssignment(this.inputContextOnly, inputContextOnly);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInputContextOnly(Boolean inputContextOnly) {
         if (inputContextOnly != null) {
             this.inputContextOnly = prepareForAssignment(this.inputContextOnly, new XSBooleanValue(inputContextOnly,
@@ -173,17 +213,23 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRequest(RequestType request) {
         this.request = prepareForAssignment(this.request, request);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setReturnContext(XSBooleanValue returnContext) {
         this.returnContext = prepareForAssignment(this.returnContext, returnContext);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setReturnContext(Boolean returnContext) {
         if (returnContext != null) {
             this.returnContext = prepareForAssignment(this.returnContext, new XSBooleanValue(returnContext, false));
@@ -192,22 +238,30 @@ public class XACMLAuthzDecisionQueryTypeImpl extends RequestAbstractTypeImpl imp
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicyType> getPolicies() {
         return policies;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PolicySetType> getPolicySets() {
         return policySets;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ReferencedPoliciesType getReferencedPolicies() {
         return referencedPolicies;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setReferencedPolicies(ReferencedPoliciesType policies) {
         referencedPolicies = prepareForAssignment(referencedPolicies, policies);
     }

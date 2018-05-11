@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -38,9 +38,8 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:wglass@apache.org">Will Glass-Husain</a>
  * @version $Id: AbsoluteFileResourceLoaderTestCase.java 898032 2010-01-11 19:51:03Z nbubna $
  */
-public class AbsoluteFileResourceLoaderTestCase extends BaseTestCase
-{
-     /**
+public class AbsoluteFileResourceLoaderTestCase extends BaseTestCase {
+    /**
      * VTL file extension.
      */
     private static final String TMPL_FILE_EXT = "vm";
@@ -72,47 +71,40 @@ public class AbsoluteFileResourceLoaderTestCase extends BaseTestCase
     private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/absolute/compare";
 
     VelocityEngine engine;
-    
+
     /**
      * Default constructor.
      */
-    AbsoluteFileResourceLoaderTestCase()
-    {
+    AbsoluteFileResourceLoaderTestCase() {
         super("AbsoluteFileResourceLoaderTest");
 
-        try
-        {
+        try {
             assureResultsDirectoryExists(RESULTS_DIR);
 
             engine = new VelocityEngine();
-            
+
             // signify we want to use an absolute path
             engine.addProperty(
-                RuntimeConstants.FILE_RESOURCE_LOADER_PATH, "");
+                    RuntimeConstants.FILE_RESOURCE_LOADER_PATH, "");
 
             engine.setProperty(
                     RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
 
             engine.init();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             fail("Cannot setup AbsoluteFileResourceLoaderTest!");
         }
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new AbsoluteFileResourceLoaderTestCase();
     }
 
     /**
      * Runs the test.
      */
-    public void runTest ()
-    {
-        try
-        {
+    public void runTest() {
+        try {
 
             String curdir = System.getProperty("user.dir");
             String f = getFileName(curdir, TEMPLATE_PATH, TMPL_FILE_EXT);
@@ -122,8 +114,8 @@ public class AbsoluteFileResourceLoaderTestCase extends BaseTestCase
             Template template1 = engine.getTemplate(f);
 
             FileOutputStream fos1 =
-                new FileOutputStream (
-                    getFileName(RESULTS_DIR, "absolute", RESULT_FILE_EXT));
+                    new FileOutputStream(
+                            getFileName(RESULTS_DIR, "absolute", RESULT_FILE_EXT));
 
             Writer writer1 = new BufferedWriter(new OutputStreamWriter(fos1));
 
@@ -137,13 +129,10 @@ public class AbsoluteFileResourceLoaderTestCase extends BaseTestCase
             writer1.close();
 
             if (!isMatch(RESULTS_DIR, COMPARE_DIR, "absolute",
-                    RESULT_FILE_EXT, CMP_FILE_EXT))
-            {
+                    RESULT_FILE_EXT, CMP_FILE_EXT)) {
                 fail("Output incorrect.");
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             fail(e.getMessage());
         }
     }

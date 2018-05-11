@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,45 +32,58 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class VariableReferenceTypeImpl extends AbstractXACMLObject implements VariableReferenceType {
 
-    /**List or expressions.*/
+    /**
+     * List or expressions.
+     */
     private XMLObjectChildrenList<ExpressionType> expressions;
-    
-    /**Variable id.*/
+
+    /**
+     * Variable id.
+     */
     private String valiableId;
-    
+
     /**
      * Constructor.
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
-    protected VariableReferenceTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix){
-        super(namespaceURI,elementLocalName,namespacePrefix);
+    protected VariableReferenceTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
         expressions = new XMLObjectChildrenList<ExpressionType>(this);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<ExpressionType> getExpressions() {
         return expressions;
-    }   
+    }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getVariableId() {
         return valiableId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setVariableId(String id) {
-       this.valiableId = prepareForAssignment(this.valiableId,id);
+        this.valiableId = prepareForAssignment(this.valiableId, id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
-        if(!expressions.isEmpty()){
+        if (!expressions.isEmpty()) {
             children.addAll(expressions);
-        }            
+        }
         return Collections.unmodifiableList(children);
     }
 

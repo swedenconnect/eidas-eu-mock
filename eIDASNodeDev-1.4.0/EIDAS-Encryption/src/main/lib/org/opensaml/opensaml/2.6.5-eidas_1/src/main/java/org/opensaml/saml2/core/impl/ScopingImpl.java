@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -37,54 +37,72 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class ScopingImpl extends AbstractSAMLObject implements Scoping {
 
-    /** IDPList child element. */
+    /**
+     * IDPList child element.
+     */
     private IDPList idpList;
 
-    /** List of RequesterID child elements. */
+    /**
+     * List of RequesterID child elements.
+     */
     private final XMLObjectChildrenList<RequesterID> requesterIDs;
 
-    /** ProxyCount attribute. */
+    /**
+     * ProxyCount attribute.
+     */
     private Integer proxyCount;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected ScopingImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         requesterIDs = new XMLObjectChildrenList<RequesterID>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Integer getProxyCount() {
         return this.proxyCount;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setProxyCount(Integer newProxyCount) {
         this.proxyCount = prepareForAssignment(this.proxyCount, newProxyCount);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public IDPList getIDPList() {
         return idpList;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIDPList(IDPList newIDPList) {
         this.idpList = prepareForAssignment(this.idpList, newIDPList);
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<RequesterID> getRequesterIDs() {
         return requesterIDs;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

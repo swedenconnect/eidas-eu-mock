@@ -17,17 +17,24 @@ package eu.eidas.engine.exceptions;
 
 /**
  * The Class SAMLEngineException.
- * @deprecated
+ *
  * @author fjquevedo
+ * @deprecated
  */
 public class SAMLEngineException extends Exception {
 
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 2611361164977849837L;
-    /** The error code. */
+    /**
+     * The error code.
+     */
     private String errorCode;
 
-    /** The error detail. */
+    /**
+     * The error detail.
+     */
     private String errorDetail;
 
 
@@ -37,7 +44,7 @@ public class SAMLEngineException extends Exception {
      * @param wrappedException the wrapped exception
      */
     public SAMLEngineException(final Exception wrappedException) {
-	super(wrappedException);
+        super(wrappedException);
     }
 
     /**
@@ -46,29 +53,32 @@ public class SAMLEngineException extends Exception {
      * @param message the message
      */
     public SAMLEngineException(final String message) {
-	super(message);
+        super(message);
     }
 
     /**
      * Instantiates a new SAMLEngine exception.
      *
-     * @param message the message
+     * @param message          the message
      * @param wrappedException the wrapped exception
      */
     public SAMLEngineException(final String message,
-	    final Exception wrappedException) {
-	super(message, wrappedException);
+                               final Exception wrappedException) {
+        super(message, wrappedException);
     }
+
     public SAMLEngineException(final String newErrorCode,
-                                    final String errorMessage) {
+                               final String errorMessage) {
         super(errorMessage);
         this.errorCode = newErrorCode;
     }
+
     public SAMLEngineException(final String newErrorCode,
-                                    final String errorMessage, final Exception wrappedException) {
+                               final String errorMessage, final Exception wrappedException) {
         super(errorMessage, wrappedException);
         this.errorCode = newErrorCode;
     }
+
     /**
      * Gets the error code.
      *

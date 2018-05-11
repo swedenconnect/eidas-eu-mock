@@ -9,7 +9,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 public class TestEngineInstanceUnmarshaller {
-    String TEST_REAL="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+    String TEST_REAL = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<instances>\n" +
             "\n" +
             "\t<!-- ******************** Service ******************** -->\n" +
@@ -44,7 +44,7 @@ public class TestEngineInstanceUnmarshaller {
             "\t</instance>" +
             "</instances>";
 
-    private static final String TEST_IBM_JVM="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+    private static final String TEST_IBM_JVM = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<instances>\n" +
             "\n" +
             "\t<!-- ******************** Service ******************** -->\n" +
@@ -162,7 +162,7 @@ public class TestEngineInstanceUnmarshaller {
             "\t</instance>\n" +
             "\n" +
             "</instances>";
-    private static final String TEST_SIMPLE="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+    private static final String TEST_SIMPLE = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
             "<instances name=\"oo\">\n" +
             "    <instance name=\"engineinstance1\" >\n" +
             "        <configuration name=\"name11\">\n" +
@@ -177,8 +177,8 @@ public class TestEngineInstanceUnmarshaller {
             "</instances>";
 
     @Test
-    public void testDeserialize(){
-        EngineInstanceUnmarshallerImpl eiui=new EngineInstanceUnmarshallerImpl();
+    public void testDeserialize() {
+        EngineInstanceUnmarshallerImpl eiui = new EngineInstanceUnmarshallerImpl();
         SamlEngineConfiguration ec = eiui.readEngineInstanceFromString(TEST_SIMPLE);
         assertNotNull(ec);
         assertEquals(ec.getInstances().size(), 2);
@@ -187,9 +187,10 @@ public class TestEngineInstanceUnmarshaller {
         assertNotNull(ec.getInstances().get(0).getConfigurations().get(0).getParameters());
         assertFalse(ec.getInstances().get(0).getConfigurations().get(0).getParameters().isEmpty());
     }
+
     @Test
-    public void testDeserializeIBM_JVMtest(){
-        EngineInstanceUnmarshallerImpl eiui=new EngineInstanceUnmarshallerImpl();
+    public void testDeserializeIBM_JVMtest() {
+        EngineInstanceUnmarshallerImpl eiui = new EngineInstanceUnmarshallerImpl();
         SamlEngineConfiguration ec = eiui.readEngineInstanceFromString(TEST_IBM_JVM);
         assertNotNull(ec);
         assertEquals(ec.getInstances().size(), 4);

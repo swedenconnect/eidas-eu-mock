@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,26 +33,32 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public abstract class QueryDescriptorTypeImpl extends RoleDescriptorImpl implements QueryDescriptorType {
 
-    /** WantAssertionSigned attribute value. */
+    /**
+     * WantAssertionSigned attribute value.
+     */
     private XSBooleanValue wantAssertionsSigned;
-    
-    /** Supported NameID formats. */
+
+    /**
+     * Supported NameID formats.
+     */
     private XMLObjectChildrenList<NameIDFormat> nameIDFormats;
-    
+
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected QueryDescriptorTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
-        
+
         nameIDFormats = new XMLObjectChildrenList<NameIDFormat>(this);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public Boolean getWantAssertionsSigned() {
         if (wantAssertionsSigned != null) {
             return wantAssertionsSigned.getValue();
@@ -60,38 +66,48 @@ public abstract class QueryDescriptorTypeImpl extends RoleDescriptorImpl impleme
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setWantAssertionsSigned(Boolean newWantAssertionsSigned) {
         if (newWantAssertionsSigned != null) {
-            wantAssertionsSigned = prepareForAssignment(wantAssertionsSigned, 
+            wantAssertionsSigned = prepareForAssignment(wantAssertionsSigned,
                     new XSBooleanValue(newWantAssertionsSigned, false));
         } else {
             wantAssertionsSigned = prepareForAssignment(wantAssertionsSigned, null);
         }
     }
 
-    /** {@inheritDoc} */
-    public XSBooleanValue getWantAssertionsSignedXSBoolean(){
+    /**
+     * {@inheritDoc}
+     */
+    public XSBooleanValue getWantAssertionsSignedXSBoolean() {
         return wantAssertionsSigned;
     }
-    
-    /** {@inheritDoc} */
-    public void setWantAssertionsSigned(XSBooleanValue wantAssertionSigned){
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setWantAssertionsSigned(XSBooleanValue wantAssertionSigned) {
         this.wantAssertionsSigned = prepareForAssignment(this.wantAssertionsSigned, wantAssertionSigned);
     }
-    
-    /** {@inheritDoc} */
-    public List<NameIDFormat> getNameIDFormat(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public List<NameIDFormat> getNameIDFormat() {
         return nameIDFormats;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
-        
+
         children.addAll(super.getOrderedChildren());
         children.addAll(nameIDFormats);
-        
+
         return Collections.unmodifiableList(children);
     }
 }

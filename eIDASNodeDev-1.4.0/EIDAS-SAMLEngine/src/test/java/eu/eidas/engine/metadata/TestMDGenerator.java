@@ -255,7 +255,7 @@ public class TestMDGenerator {
                 X500Name issuerDNConf = new X500Name(issuer);
 
                 if (serialNum.equalsIgnoreCase(serialNumber) && X500PrincipalUtil.principalNotNullEquals(issuerDN,
-                                                                                                         issuerDNConf)) {
+                        issuerDNConf)) {
                     alias = aliasCert;
                     find = true;
                 }
@@ -269,7 +269,7 @@ public class TestMDGenerator {
             credential = CertificateUtil.createCredential(certificate, privateKey);
         } catch (NoSuchAlgorithmException e) {
             fail("A 'xmldsig#rsa-sha1' cryptographic algorithm is requested but is not available in the environment: "
-                         + e);
+                    + e);
         } catch (KeyStoreException e) {
             fail("Generic KeyStore exception:" + e);
         } catch (UnrecoverableKeyException e) {

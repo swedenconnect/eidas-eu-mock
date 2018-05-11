@@ -142,8 +142,8 @@
                     <groupId>xml-apis</groupId>
                     <artifactId>xml-apis</artifactId>
                 </dependency>
-             </dependencies>   
-             <build>
+            </dependencies>
+            <build>
                 <resources>
                     <resource>
                         <directory>${project.basedir}/src/main/config/websphere/resources</directory>
@@ -272,7 +272,9 @@
                                     </outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${project.basedir}/src/main/config/specificConnector/jarPackaging</directory>
+                                            <directory>
+                                                ${project.basedir}/src/main/config/specificConnector/jarPackaging
+                                            </directory>
                                             <filtering>false</filtering>
                                         </resource>
                                     </resources>
@@ -308,7 +310,9 @@
                                     </outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${project.basedir}/src/main/config/specificConnector/warPackaging</directory>
+                                            <directory>
+                                                ${project.basedir}/src/main/config/specificConnector/warPackaging
+                                            </directory>
                                             <filtering>false</filtering>
                                         </resource>
                                     </resources>

@@ -41,8 +41,7 @@ import org.apache.velocity.test.misc.TestLogChute;
  * class.
  */
 
-public class VMLibraryTestCase extends BaseTestCase
-{
+public class VMLibraryTestCase extends BaseTestCase {
     /**
      * This engine is used with local namespaces
      */
@@ -57,18 +56,16 @@ public class VMLibraryTestCase extends BaseTestCase
 
     private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/macrolibs/compare";
 
-    public VMLibraryTestCase(String name)
-    {
+    public VMLibraryTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         /*
          *  setup local scope for templates
          */
-        ve1.setProperty( Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
+        ve1.setProperty(Velocity.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
         ve1.setProperty("velocimacro.permissions.allow.inline.to.replace.global",
                 Boolean.FALSE);
         /**
@@ -87,7 +84,7 @@ public class VMLibraryTestCase extends BaseTestCase
         /**
          * Set to global namespaces
          */
-        ve2.setProperty( Velocity.VM_PERM_INLINE_LOCAL, Boolean.FALSE);
+        ve2.setProperty(Velocity.VM_PERM_INLINE_LOCAL, Boolean.FALSE);
         ve2.setProperty("velocimacro.permissions.allow.inline.to.replace.global",
                 Boolean.TRUE);
         /**
@@ -104,8 +101,7 @@ public class VMLibraryTestCase extends BaseTestCase
         ve2.init();
     }
 
-    public static junit.framework.Test suite()
-    {
+    public static junit.framework.Test suite() {
         return new TestSuite(VMLibraryTestCase.class);
     }
 
@@ -113,23 +109,21 @@ public class VMLibraryTestCase extends BaseTestCase
      * Runs the tests with local namespace.
      */
     public void testVelociMacroLibWithLocalNamespace()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULT_DIR);
         /**
          * Clear the file before proceeding
          */
         File file = new File(getFileName(
                 RESULT_DIR, "vm_library_local", RESULT_FILE_EXT));
-        if (file.exists())
-        {
+        if (file.exists()) {
             file.delete();
         }
 
         /**
          * Create a file output stream for appending
          */
-        FileOutputStream fos = new FileOutputStream (getFileName(
+        FileOutputStream fos = new FileOutputStream(getFileName(
                 RESULT_DIR, "vm_library_local", RESULT_FILE_EXT), true);
 
         List templateList = new ArrayList();
@@ -171,8 +165,7 @@ public class VMLibraryTestCase extends BaseTestCase
         writer.close();
 
         if (!isMatch(RESULT_DIR, COMPARE_DIR, "vm_library_local",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Processed template did not match expected output");
         }
     }
@@ -181,23 +174,21 @@ public class VMLibraryTestCase extends BaseTestCase
      * Runs the tests with global namespace.
      */
     public void testVelociMacroLibWithGlobalNamespace()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULT_DIR);
         /**
          * Clear the file before proceeding
          */
         File file = new File(getFileName(
                 RESULT_DIR, "vm_library_global", RESULT_FILE_EXT));
-        if (file.exists())
-        {
+        if (file.exists()) {
             file.delete();
         }
 
         /**
          * Create a file output stream for appending
          */
-        FileOutputStream fos = new FileOutputStream (getFileName(
+        FileOutputStream fos = new FileOutputStream(getFileName(
                 RESULT_DIR, "vm_library_global", RESULT_FILE_EXT), true);
 
         List templateList = new ArrayList();
@@ -233,8 +224,7 @@ public class VMLibraryTestCase extends BaseTestCase
         writer.close();
 
         if (!isMatch(RESULT_DIR, COMPARE_DIR, "vm_library_global",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Processed template did not match expected output");
         }
     }
@@ -243,23 +233,21 @@ public class VMLibraryTestCase extends BaseTestCase
      * Runs the tests with global namespace.
      */
     public void testVelociMacroLibWithDuplicateDefinitions()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULT_DIR);
         /**
          * Clear the file before proceeding
          */
         File file = new File(getFileName(
                 RESULT_DIR, "vm_library_duplicate", RESULT_FILE_EXT));
-        if (file.exists())
-        {
+        if (file.exists()) {
             file.delete();
         }
 
         /**
          * Create a file output stream for appending
          */
-        FileOutputStream fos = new FileOutputStream (getFileName(
+        FileOutputStream fos = new FileOutputStream(getFileName(
                 RESULT_DIR, "vm_library_duplicate", RESULT_FILE_EXT), true);
 
         List templateList = new ArrayList();
@@ -279,8 +267,7 @@ public class VMLibraryTestCase extends BaseTestCase
         writer.close();
 
         if (!isMatch(RESULT_DIR, COMPARE_DIR, "vm_library_duplicate",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Processed template did not match expected output");
         }
     }
@@ -292,11 +279,10 @@ public class VMLibraryTestCase extends BaseTestCase
      * @throws Exception
      */
     public void testMacrosWithNoDefinition()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULT_DIR);
 
-        FileOutputStream fos = new FileOutputStream (getFileName(
+        FileOutputStream fos = new FileOutputStream(getFileName(
                 RESULT_DIR, "vm_library", RESULT_FILE_EXT));
 
         VelocityContext context = new VelocityContext();
@@ -315,8 +301,7 @@ public class VMLibraryTestCase extends BaseTestCase
          * outputs the macro calls
          */
         if (!isMatch(RESULT_DIR, COMPARE_DIR, "vm_library",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Processed template did not match expected output");
         }
     }

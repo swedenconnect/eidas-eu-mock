@@ -29,23 +29,24 @@ import eu.eidas.auth.engine.core.stork.EIDCrossBorderShare;
  * @author fjquevedo
  */
 public class EIDCrossBorderShareImpl extends AbstractSAMLObject implements
-	EIDCrossBorderShare {
+        EIDCrossBorderShare {
 
-	/** The citizen country code. */
+    /**
+     * The citizen country code.
+     */
     private String eIDCrossBorderShare;
 
     /**
      * Instantiates a new eID cross border share implementation.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected EIDCrossBorderShareImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                      final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
-
 
 
     /**
@@ -54,7 +55,7 @@ public class EIDCrossBorderShareImpl extends AbstractSAMLObject implements
      * @return the eID cross border share
      */
     public final String getEIDCrossBorderShare() {
-    	return eIDCrossBorderShare;
+        return eIDCrossBorderShare;
     }
 
 
@@ -64,7 +65,7 @@ public class EIDCrossBorderShareImpl extends AbstractSAMLObject implements
      * @param newEIDCrossBorderShare the new eID cross border share
      */
     public final void setEIDCrossBorderShare(String newEIDCrossBorderShare) {
-    	this.eIDCrossBorderShare = prepareForAssignment(this.eIDCrossBorderShare, newEIDCrossBorderShare);
+        this.eIDCrossBorderShare = prepareForAssignment(this.eIDCrossBorderShare, newEIDCrossBorderShare);
     }
 
     /**
@@ -74,7 +75,7 @@ public class EIDCrossBorderShareImpl extends AbstractSAMLObject implements
      * {@inheritDoc}
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

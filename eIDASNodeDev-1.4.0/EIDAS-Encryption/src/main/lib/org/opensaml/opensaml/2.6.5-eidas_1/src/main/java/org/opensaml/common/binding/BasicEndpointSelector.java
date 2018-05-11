@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,26 +33,30 @@ import org.slf4j.LoggerFactory;
  * with the isDefault attribute set to true is returned, if no isDefault attribute is set to true the first endpoint to
  * omit this attribute is returned, and if all the endpoints have the isDefault attribute set to false then the first
  * endpoint in the list is returned.
- * 
+ * <p>
  * Prior to selecting the endpoint the following fields <strong>must</strong> have had values set: entity role,
  * endpoint type, issuer supported bindings.
- * 
+ * <p>
  * While this algorithm with work for selecting the endpoint for responses to AuthnRequests the SAML
  * specification does stipulate additional endpoint selection criteria and as such the use of an endpoint selector
  * specifically meant to handler this situation should be used, for example: AuthnResponseEndpointSelector.
  */
 public class BasicEndpointSelector extends AbstractEndpointSelector {
-    
-    /** Class logger. */
+
+    /**
+     * Class logger.
+     */
     private Logger log = LoggerFactory.getLogger(BasicEndpointSelector.class);
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public Endpoint selectEndpoint() {
-        if(getEntityRoleMetadata() == null){
+        if (getEntityRoleMetadata() == null) {
             return null;
         }
-        
+
         List<? extends Endpoint> endpoints = getEntityRoleMetadata().getEndpoints(getEndpointType());
         if (endpoints == null || endpoints.size() == 0) {
             return null;
@@ -68,16 +72,15 @@ public class BasicEndpointSelector extends AbstractEndpointSelector {
         } else {
             selectedEndpoint = selectNonIndexedEndpoint((List<Endpoint>) endpoints);
         }
-        
+
         log.debug("Selected endpoint {} for request", selectedEndpoint.getLocation());
         return selectedEndpoint;
     }
-    
+
     /**
      * Filters the list of possible endpoints by supported outbound bindings.
-     * 
+     *
      * @param endpoints raw list of endpoints
-     * 
      * @return filtered endpoints
      */
     protected List<? extends Endpoint> filterEndpointsByProtocolBinding(List<? extends Endpoint> endpoints) {
@@ -97,9 +100,8 @@ public class BasicEndpointSelector extends AbstractEndpointSelector {
 
     /**
      * Selects an appropriate endpoint from a list of indexed endpoints.
-     * 
+     *
      * @param endpoints list of indexed endpoints
-     * 
      * @return appropriate endpoint from a list of indexed endpoints or null
      */
     protected Endpoint selectIndexedEndpoint(List<IndexedEndpoint> endpoints) {
@@ -138,9 +140,8 @@ public class BasicEndpointSelector extends AbstractEndpointSelector {
 
     /**
      * Selects an appropriate endpoint from a list of non-indexed endpoints.
-     * 
+     *
      * @param endpoints list of non-indexed endpoints
-     * 
      * @return appropriate endpoint from a list of non-indexed endpoints or null
      */
     protected Endpoint selectNonIndexedEndpoint(List<Endpoint> endpoints) {

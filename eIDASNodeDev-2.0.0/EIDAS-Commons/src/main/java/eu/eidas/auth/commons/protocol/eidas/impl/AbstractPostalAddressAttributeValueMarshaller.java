@@ -51,7 +51,9 @@ public abstract class AbstractPostalAddressAttributeValueMarshaller implements A
 
         ADDRESS_ID("AddressID") {
             @Override
-            public String getTagValue(@Nonnull PostalAddress postalAddress) { return postalAddress.getAddressId(); }
+            public String getTagValue(@Nonnull PostalAddress postalAddress) {
+                return postalAddress.getAddressId();
+            }
 
             @Override
             public void setTagValue(@Nonnull PostalAddress.Builder builder, @Nonnull String xmlAddress) {
@@ -210,7 +212,7 @@ public abstract class AbstractPostalAddressAttributeValueMarshaller implements A
         Tag(@Nonnull String tagName) {
             this.tagName = tagName;
             tagPattern = Pattern.compile("<(.+:)?" + tagName + ">(.+)</\\1?" + tagName + ">",
-                                         Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+                    Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
         }
 
         public void addTag(@Nonnull StringBuilder result,

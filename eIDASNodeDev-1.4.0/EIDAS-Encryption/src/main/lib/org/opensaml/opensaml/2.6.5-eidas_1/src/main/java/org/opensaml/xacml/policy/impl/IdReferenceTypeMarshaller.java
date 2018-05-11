@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,27 +29,31 @@ import org.w3c.dom.Element;
  */
 public class IdReferenceTypeMarshaller extends XSStringMarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public IdReferenceTypeMarshaller() {
-       super();
+        super();
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        IdReferenceType idReferenceType = (IdReferenceType)xmlObject;
-        
-        if(!DatatypeHelper.isEmpty(idReferenceType.getEarliestVersion())){
+        IdReferenceType idReferenceType = (IdReferenceType) xmlObject;
+
+        if (!DatatypeHelper.isEmpty(idReferenceType.getEarliestVersion())) {
             domElement.setAttribute(IdReferenceType.EARLIEST_VERSION_ATTRIB_NAME,
                     idReferenceType.getEarliestVersion());
         }
-        if(!DatatypeHelper.isEmpty(idReferenceType.getLatestVersion())){
+        if (!DatatypeHelper.isEmpty(idReferenceType.getLatestVersion())) {
             domElement.setAttribute(IdReferenceType.LATEST_VERSION_ATTRIB_NAME,
                     idReferenceType.getLatestVersion());
         }
-        if(!DatatypeHelper.isEmpty(idReferenceType.getVersion())){
+        if (!DatatypeHelper.isEmpty(idReferenceType.getVersion())) {
             domElement.setAttribute(IdReferenceType.VERSION_ATTRIB_NAME,
                     idReferenceType.getVersion());
         }
     }
-    
+
 }

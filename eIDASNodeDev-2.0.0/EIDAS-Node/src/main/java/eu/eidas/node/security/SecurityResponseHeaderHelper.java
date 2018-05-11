@@ -24,20 +24,20 @@ import java.util.List;
 
 /**
  * This filter set CSP policies using all HTTP headers defined into W3C specification.<br/>
- *
+ * <p>
  * Purposes :
- *
+ * <p>
  * XSS countermeasures :
- *   1. Content Security Policy (CSP)
- *      Sample generated : X-Content-Security-Policy:default-src 'none'; object-src 'self'; style-src 'self'; img-src 'self'; xhr-src 'self'; connect-src 'self';script-src 'self'; report-uri http://node:8080/NODE/cspReportHandler
- *    - X-Content-Security-Policy for backward compatibility
- *    - X-WebKit-CSP for backward compatibility
- *    - Content-Security-Policy
- *    - Report handler logging all the CSP violations
- *   2. X-XSS-Protection header
- *   3. X-Content-Type-Options: nosniff
+ * 1. Content Security Policy (CSP)
+ * Sample generated : X-Content-Security-Policy:default-src 'none'; object-src 'self'; style-src 'self'; img-src 'self'; xhr-src 'self'; connect-src 'self';script-src 'self'; report-uri http://node:8080/NODE/cspReportHandler
+ * - X-Content-Security-Policy for backward compatibility
+ * - X-WebKit-CSP for backward compatibility
+ * - Content-Security-Policy
+ * - Report handler logging all the CSP violations
+ * 2. X-XSS-Protection header
+ * 3. X-Content-Type-Options: nosniff
  * Click-jacking countermeasures :
- *  X-Frame-Options header
+ * X-Frame-Options header
  *
  * @author vanegdi
  * @since 1.2.0
@@ -49,30 +49,30 @@ public class SecurityResponseHeaderHelper {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(SecurityResponseHeaderHelper.class.getName());
 
-    protected static final String CONTENT_SECURITY_POLICY_HEADER      = "Content-Security-Policy";
-    protected static final String X_CONTENT_SECURITY_POLICY_HEADER    = "X-Content-Security-Policy";
-    protected static final String X_WEB_KIT_CSP_HEADER                = "X-WebKit-CSP";
-    protected static final String X_XSS_PROTECTION_HEADER             = "X-XSS-Protection";
-    protected static final String X_CONTENT_TYPE_OPTIONS_HEADER       = "X-Content-Type-Options";
-    protected static final String X_FRAME_OPTIONS_HEADER              = "X-Frame-Options";
-    protected static final String STRICT_TRANSPORT_SECURITY_HEADER    = "Strict-Transport-Security";
+    protected static final String CONTENT_SECURITY_POLICY_HEADER = "Content-Security-Policy";
+    protected static final String X_CONTENT_SECURITY_POLICY_HEADER = "X-Content-Security-Policy";
+    protected static final String X_WEB_KIT_CSP_HEADER = "X-WebKit-CSP";
+    protected static final String X_XSS_PROTECTION_HEADER = "X-XSS-Protection";
+    protected static final String X_CONTENT_TYPE_OPTIONS_HEADER = "X-Content-Type-Options";
+    protected static final String X_FRAME_OPTIONS_HEADER = "X-Frame-Options";
+    protected static final String STRICT_TRANSPORT_SECURITY_HEADER = "Strict-Transport-Security";
 
-    protected static final String SELF_ORIGIN_LOCATION_REF            = "'self'";
-    protected static final String X_FRAME_OPTIONS_SAME_ORIGIN         = "SAMEORIGIN";
-    protected static final String X_CONTENT_TYPE_OPTIONS_NO_SNIFF     = "nosniff";
-    protected static final String X_XSS_PROTECTION_MODE_BLOCK         = "1; mode=block";
-    protected static final String STRICT_TRANSPORT_SECURITY           = "max-age=600000; includeSubdomains"; // 10 minutes
+    protected static final String SELF_ORIGIN_LOCATION_REF = "'self'";
+    protected static final String X_FRAME_OPTIONS_SAME_ORIGIN = "SAMEORIGIN";
+    protected static final String X_CONTENT_TYPE_OPTIONS_NO_SNIFF = "nosniff";
+    protected static final String X_XSS_PROTECTION_MODE_BLOCK = "1; mode=block";
+    protected static final String STRICT_TRANSPORT_SECURITY = "max-age=600000; includeSubdomains"; // 10 minutes
 
-    protected static final String HTTP_1_1_CACHE_CONTROL              = "Cache-Control";
-    protected static final String HTTP_1_1_CACHE_CONTROL_NOCACHE      = "no-cache, no-store, max-age=0, must-revalidate, private";
-    protected static final String HTTP_1_0_PRAGMA                     = "Pragma";
-    protected static final String HTTP_1_0_PRAGMA_NOCACHE             = "no-cache";
-    protected static final String PROXIES_EXPIRES                     = "Expires";
-    protected static final String PROXIES_EXPIRES_0                   = "0";
+    protected static final String HTTP_1_1_CACHE_CONTROL = "Cache-Control";
+    protected static final String HTTP_1_1_CACHE_CONTROL_NOCACHE = "no-cache, no-store, max-age=0, must-revalidate, private";
+    protected static final String HTTP_1_0_PRAGMA = "Pragma";
+    protected static final String HTTP_1_0_PRAGMA_NOCACHE = "no-cache";
+    protected static final String PROXIES_EXPIRES = "Expires";
+    protected static final String PROXIES_EXPIRES_0 = "0";
 
     private static final int HEX_CONVERT_SHIFT = 4;
-    public static final int INT_OXFO    = 0xF0;
-    public static final int INT_OXF     = 0x0F;
+    public static final int INT_OXFO = 0xF0;
+    public static final int INT_OXF = 0x0F;
 
     //Contains the security configuration
     protected ConfigurationSecurityBean configurationSecurityBean;
@@ -80,11 +80,11 @@ public class SecurityResponseHeaderHelper {
     /**
      * Configuration member to specify if web app use web fonts
      */
-    protected static final boolean APP_USE_WEBFONTS           = true;
+    protected static final boolean APP_USE_WEBFONTS = true;
     /**
      * Configuration member to specify if web app use videos or audios
      */
-    protected static final boolean APP_USE_AUDIOS_OR_VIDEOS   = false;
+    protected static final boolean APP_USE_AUDIOS_OR_VIDEOS = false;
 
     /**
      * List CSP HTTP Headers
@@ -103,13 +103,13 @@ public class SecurityResponseHeaderHelper {
 
     static final char[] HEX_DIGITS_LOWER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    protected static String encodeHexString (byte[] data, char[] toDigits){
+    protected static String encodeHexString(byte[] data, char[] toDigits) {
         int l = data.length;
         char[] out = new char[l << 1];
         // two characters form the hex value.
-        for (int i = 0, j = 0; i < l; i++, j+=2) {
+        for (int i = 0, j = 0; i < l; i++, j += 2) {
             out[j] = toDigits[(0xF0 & data[i]) >>> HEX_CONVERT_SHIFT];
-            out[j+1] = toDigits[0x0F & data[i]];
+            out[j + 1] = toDigits[0x0F & data[i]];
         }
         return new String(out);
     }
@@ -129,7 +129,7 @@ public class SecurityResponseHeaderHelper {
         ApplicationContext context = ApplicationContextProvider.getApplicationContext();
         configurationSecurityBean = (ConfigurationSecurityBean) context.getBean(NodeBeanNames.SECURITY_CONFIG.toString());
 
-      // Define list of CSP HTTP Headers : used for reverse compatibility
+        // Define list of CSP HTTP Headers : used for reverse compatibility
         this.cspHeaders.add(CONTENT_SECURITY_POLICY_HEADER);
         this.cspHeaders.add(X_CONTENT_SECURITY_POLICY_HEADER);
         this.cspHeaders.add(X_WEB_KIT_CSP_HEADER);
@@ -177,7 +177,8 @@ public class SecurityResponseHeaderHelper {
 
     /**
      * Method used to process the content security policy header
-     * @param httpRequest request
+     *
+     * @param httpRequest  request
      * @param httpResponse response
      * @throws javax.servlet.ServletException
      */
@@ -185,7 +186,7 @@ public class SecurityResponseHeaderHelper {
         if (!StringUtils.isEmpty(httpRequest.getRemoteHost())) {
             MDC.put(LoggingMarkerMDC.MDC_REMOTE_HOST, httpRequest.getRemoteHost());
         }
-    /* Add CSP policies to HTTP response */
+        /* Add CSP policies to HTTP response */
         StringBuilder policiesBuffer = new StringBuilder(this.policies);
         policiesBuffer.append(";").append("script-src " + SELF_ORIGIN_LOCATION_REF);
         //policiesBuffer.append(";").append("script-src 'self' 'unsafe-inline'" );

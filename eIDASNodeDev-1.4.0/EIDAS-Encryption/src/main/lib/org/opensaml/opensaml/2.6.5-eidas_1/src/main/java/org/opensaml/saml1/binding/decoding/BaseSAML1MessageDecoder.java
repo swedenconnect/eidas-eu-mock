@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -52,36 +52,43 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(BaseSAML1MessageDecoder.class);
 
-    /** Map used to map artifacts to SAML. */
+    /**
+     * Map used to map artifacts to SAML.
+     */
     private SAMLArtifactMap artifactMap;
 
-    /** Whether to use the resource of an attribute query as the relying party entity ID. */
+    /**
+     * Whether to use the resource of an attribute query as the relying party entity ID.
+     */
     private boolean useQueryResourceAsEntityId;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public BaseSAML1MessageDecoder() {
         super();
         useQueryResourceAsEntityId = true;
     }
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param pool parser pool used to deserialize messages
      */
     public BaseSAML1MessageDecoder(ParserPool pool) {
         super(pool);
         useQueryResourceAsEntityId = true;
     }
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param map used to map artifacts to SAML
-     * 
      * @deprecated
      */
     public BaseSAML1MessageDecoder(SAMLArtifactMap map) {
@@ -92,10 +99,9 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Constructor.
-     * 
-     * @param map used to map artifacts to SAML
+     *
+     * @param map  used to map artifacts to SAML
      * @param pool parser pool used to deserialize messages
-     * 
      * @deprecated
      */
     public BaseSAML1MessageDecoder(SAMLArtifactMap map, ParserPool pool) {
@@ -103,11 +109,13 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
         artifactMap = map;
         useQueryResourceAsEntityId = true;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void decode(MessageContext messageContext) throws MessageDecodingException, SecurityException {
         super.decode(messageContext);
-        
+
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
         if (samlMsgCtx.getInboundSAMLMessage() instanceof ResponseAbstractType) {
             checkEndpointURI(samlMsgCtx);
@@ -116,7 +124,7 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Gets the artifact map used to retrieve SAML information from an artifact.
-     * 
+     *
      * @return artifact map used to retrieve SAML information from an artifact
      */
     public SAMLArtifactMap getArtifactMap() {
@@ -125,9 +133,9 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Gets whether to use the Resource attribute of some SAML 1 queries as the entity ID of the inbound message issuer.
-     * 
+     *
      * @return whether to use the Resource attribute of some SAML 1 queries as the entity ID of the inbound message
-     *         issuer
+     * issuer
      */
     public boolean getUseQueryResourceAsEntityId() {
         return useQueryResourceAsEntityId;
@@ -135,9 +143,9 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Sets whether to use the Resource attribute of some SAML 1 queries as the entity ID of the inbound message issuer.
-     * 
+     *
      * @param useResource whether to use the Resource attribute of some SAML 1 queries as the entity ID of the inbound
-     *            message issuer
+     *                    message issuer
      */
     public void setUseQueryResourceAsEntityId(boolean useResource) {
         useQueryResourceAsEntityId = useResource;
@@ -147,9 +155,8 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
      * Populates the message context with the message ID, issue instant, and issuer as well as the peer's entity
      * descriptor if a metadata provider is present in the message context and the peer's role descriptor if its entity
      * descriptor was retrieved and the message context has a populated peer role name.
-     * 
+     *
      * @param messageContext message context to populate
-     * 
      * @throws MessageDecodingException thrown if there is a problem populating the message context
      */
     protected void populateMessageContext(SAMLMessageContext messageContext) throws MessageDecodingException {
@@ -160,9 +167,8 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
     /**
      * Extracts the message ID, issue instant, and issuer from the incoming SAML message and populates the message
      * context with it.
-     * 
+     *
      * @param messageContext current message context
-     * 
      * @throws MessageDecodingException thrown if there is a problem populating the message context
      */
     protected void populateMessageIdIssueInstantIssuer(SAMLMessageContext messageContext)
@@ -185,8 +191,8 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Extract information from a SAML RequestAbstractType message.
-     * 
-     * @param messageContext current message context
+     *
+     * @param messageContext  current message context
      * @param abstractRequest the SAML message to process
      */
     protected void extractRequestInfo(SAMLMessageContext messageContext, RequestAbstractType abstractRequest) {
@@ -212,9 +218,9 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
     /**
      * Extract the issuer, and populate message context, from the Resource attribute of the Attribute query if
      * {@link #useQueryResourceAsEntityId} is true.
-     * 
+     *
      * @param messageContext current message context
-     * @param query query to extract resource name from
+     * @param query          query to extract resource name from
      */
     protected void extractAttributeQueryInfo(SAMLMessageContext messageContext, AttributeQuery query) {
         if (useQueryResourceAsEntityId) {
@@ -231,12 +237,12 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
     /**
      * Extract the issuer, and populate message context, from the Resource attribute of the AuthorizationDecisionQuery
      * query if {@link #useQueryResourceAsEntityId} is true.
-     * 
+     *
      * @param messageContext current message context
-     * @param query query to extract resource name from
+     * @param query          query to extract resource name from
      */
     protected void extractAuthorizationDecisionQueryInfo(SAMLMessageContext messageContext,
-            AuthorizationDecisionQuery query) {
+                                                         AuthorizationDecisionQuery query) {
         if (useQueryResourceAsEntityId) {
             log.debug("Attempting to extract issuer from SAML 1 AuthorizationDecisionQuery Resource attribute");
             String resource = DatatypeHelper.safeTrimOrNullString(query.getResource());
@@ -251,9 +257,9 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
     /**
      * Extract the issuer, and populate message context, as the relying party corresponding to the first
      * AssertionArtifact in the message.
-     * 
+     *
      * @param messageContext current message context
-     * @param artifacts AssertionArtifacts in the request
+     * @param artifacts      AssertionArtifacts in the request
      */
     protected void extractAssertionArtifactInfo(SAMLMessageContext messageContext, List<AssertionArtifact> artifacts) {
         if (artifacts.size() == 0) {
@@ -270,10 +276,9 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
 
     /**
      * Extract information from a SAML StatusResponse message.
-     * 
+     *
      * @param messageContext current message context
-     * @param response the SAML message to process
-     * 
+     * @param response       the SAML message to process
      * @throws MessageDecodingException thrown if the assertions within the response contain differening issuer IDs
      */
     protected void extractResponseInfo(SAMLMessageContext messageContext, Response response)
@@ -307,9 +312,8 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
     /**
      * Populates the peer's entity metadata if a metadata provide is present in the message context. Populates the
      * peer's role descriptor if the entity metadata was available and the role name is present in the message context.
-     * 
+     *
      * @param messageContext current message context
-     * 
      * @throws MessageDecodingException thrown if there is a problem populating the message context
      */
     protected void populateRelyingPartyMetadata(SAMLMessageContext messageContext) throws MessageDecodingException {
@@ -335,14 +339,13 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
                     + messageContext.getInboundMessageIssuer(), e);
         }
     }
-    
+
     /**
-     * {@inheritDoc} 
-     * 
-     * <p>This SAML 1-specific implementation extracts the value of the ResponseAbstractType 
+     * {@inheritDoc}
+     *
+     * <p>This SAML 1-specific implementation extracts the value of the ResponseAbstractType
      * protocol message Recipient attribute.</p>
-     * 
-     * */
+     */
     protected String getIntendedDestinationEndpointURI(SAMLMessageContext samlMsgCtx) throws MessageDecodingException {
         SAMLObject samlMessage = samlMsgCtx.getInboundSAMLMessage();
         String messageDestination = null;
@@ -358,5 +361,5 @@ public abstract class BaseSAML1MessageDecoder extends BaseSAMLMessageDecoder {
         }
         return messageDestination;
     }
-    
+
 }

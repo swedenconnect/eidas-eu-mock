@@ -109,7 +109,7 @@ public class ServiceProviderRequestServlet extends AbstractSpecificConnectorServ
     }
 
     private ILightRequest prepareNodeRequest(@Nonnull final HttpServletRequest httpServletRequest, SpecificConnector specificConnector) throws ServletException {
-               final String specificRequest = httpServletRequest.getParameter(EidasParameterKeys.SMSSP_REQUEST.toString());
+        final String specificRequest = httpServletRequest.getParameter(EidasParameterKeys.SMSSP_REQUEST.toString());
 
         final ILightRequest lightRequest;
         try {

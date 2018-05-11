@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -30,15 +30,13 @@ import org.apache.velocity.runtime.parser.Token;
 /**
  *
  */
-public class ASTText extends SimpleNode
-{
+public class ASTText extends SimpleNode {
     private char[] ctext;
 
     /**
      * @param id
      */
-    public ASTText(int id)
-    {
+    public ASTText(int id) {
         super(id);
     }
 
@@ -46,28 +44,25 @@ public class ASTText extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTText(Parser p, int id)
-    {
+    public ASTText(Parser p, int id) {
         super(p, id);
     }
 
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#init(org.apache.velocity.context.InternalContextAdapter, java.lang.Object)
      */
-    public Object init( InternalContextAdapter context, Object data)
-    throws TemplateInitException
-    {
+    public Object init(InternalContextAdapter context, Object data)
+            throws TemplateInitException {
         Token t = getFirstToken();
 
-        String text = NodeUtils.tokenLiteral( t );
+        String text = NodeUtils.tokenLiteral(t);
 
         ctext = text.toCharArray();
 
@@ -77,9 +72,8 @@ public class ASTText extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer)
      */
-    public boolean render( InternalContextAdapter context, Writer writer)
-        throws IOException
-    {
+    public boolean render(InternalContextAdapter context, Writer writer)
+            throws IOException {
         writer.write(ctext);
         return true;
     }

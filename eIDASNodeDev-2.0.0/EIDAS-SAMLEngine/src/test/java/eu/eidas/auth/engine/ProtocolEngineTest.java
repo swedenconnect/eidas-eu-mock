@@ -61,7 +61,7 @@ public final class ProtocolEngineTest {
                 .providerName("Prov")
                 .assertionConsumerServiceURL("https://source.europa.eu/metadata")
                 .requestedAttributes(ImmutableAttributeMap.of(EidasSpec.Definitions.PERSON_IDENTIFIER,
-                                                              new StringAttributeValue[] {}))
+                        new StringAttributeValue[]{}))
                 .build();
 
         IRequestMessage requestMessage =

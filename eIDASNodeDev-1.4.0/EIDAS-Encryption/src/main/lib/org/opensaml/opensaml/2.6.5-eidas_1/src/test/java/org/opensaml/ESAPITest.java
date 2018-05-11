@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,27 +27,29 @@ import junit.framework.TestCase;
  * Test that OWASPI ESAPI is initialized properly by the default bootstrap process.
  */
 public class ESAPITest extends TestCase {
-    
+
     private String systemPropertyKey = "org.owasp.esapi.SecurityConfiguration";
     private String opensamlConfigImpl = ESAPISecurityConfig.class.getName();
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         DefaultBootstrap.bootstrap();
     }
-    
+
     /**
-     *  Tests that basic initialization has happened.
+     * Tests that basic initialization has happened.
      */
     public void testInit() {
         assertEquals(opensamlConfigImpl, System.getProperty(systemPropertyKey));
-        
+
         SecurityConfiguration sc = ESAPI.securityConfiguration();
         assertNotNull("ESAPI SecurityConfiguration was null", sc);
-        
+
         assertTrue(sc instanceof ESAPISecurityConfig);
-        
+
         Encoder encoder = ESAPI.encoder();
         assertNotNull("ESAPI Encoder was null", encoder);
     }

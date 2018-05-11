@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.resource.loader;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -39,8 +39,7 @@ import org.apache.velocity.exception.VelocityException;
  * @author <a href="mailto:daveb@miceda-data.com">Dave Bryson</a>
  * @version $Id: JarHolder.java 687177 2008-08-19 22:00:32Z nbubna $
  */
-public class JarHolder
-{
+public class JarHolder {
     private String urlpath = null;
     private JarFile theJar = null;
     private JarURLConnection conn = null;
@@ -51,15 +50,13 @@ public class JarHolder
      * @param rs
      * @param urlpath
      */
-    public JarHolder( RuntimeServices rs, String urlpath )
-    {
+    public JarHolder(RuntimeServices rs, String urlpath) {
         this.log = rs.getLog();
 
-        this.urlpath=urlpath;
+        this.urlpath = urlpath;
         init();
 
-        if (log.isDebugEnabled())
-        {
+        if (log.isDebugEnabled()) {
             log.debug("JarHolder: initialized JAR: " + urlpath);
         }
     }
@@ -67,26 +64,21 @@ public class JarHolder
     /**
      *
      */
-    public void init()
-    {
-        try
-        {
-            if (log.isDebugEnabled())
-            {
+    public void init() {
+        try {
+            if (log.isDebugEnabled()) {
                 log.debug("JarHolder: attempting to connect to " + urlpath);
             }
-            URL url = new URL( urlpath );
+            URL url = new URL(urlpath);
             conn = (JarURLConnection) url.openConnection();
             conn.setAllowUserInteraction(false);
             conn.setDoInput(true);
             conn.setDoOutput(false);
             conn.connect();
             theJar = conn.getJarFile();
-        }
-        catch (IOException ioe)
-        {
+        } catch (IOException ioe) {
             String msg = "JarHolder: error establishing connection to JAR at \""
-                         + urlpath + "\"";
+                    + urlpath + "\"";
             log.error(msg, ioe);
             throw new VelocityException(msg, ioe);
         }
@@ -95,14 +87,10 @@ public class JarHolder
     /**
      *
      */
-    public void close()
-    {
-        try
-        {
+    public void close() {
+        try {
             theJar.close();
-        }
-        catch ( Exception e )
-        {
+        } catch (Exception e) {
             String msg = "JarHolder: error closing the JAR file";
             log.error(msg, e);
             throw new VelocityException(msg, e);
@@ -118,21 +106,17 @@ public class JarHolder
      * @return The requested resource.
      * @throws ResourceNotFoundException
      */
-    public InputStream getResource( String theentry )
-     throws ResourceNotFoundException {
+    public InputStream getResource(String theentry)
+            throws ResourceNotFoundException {
         InputStream data = null;
 
-        try
-        {
-            JarEntry entry = theJar.getJarEntry( theentry );
+        try {
+            JarEntry entry = theJar.getJarEntry(theentry);
 
-            if ( entry != null )
-            {
-                data =  theJar.getInputStream( entry );
+            if (entry != null) {
+                data = theJar.getInputStream(entry);
             }
-        }
-        catch(Exception fnfe)
-        {
+        } catch (Exception fnfe) {
             log.error("JarHolder: getResource() error", fnfe);
             throw new ResourceNotFoundException(fnfe);
         }
@@ -143,19 +127,16 @@ public class JarHolder
     /**
      * @return The entries of the jar as a hashtable.
      */
-    public Hashtable getEntries()
-    {
+    public Hashtable getEntries() {
         Hashtable allEntries = new Hashtable(559);
 
-        Enumeration all  = theJar.entries();
-        while ( all.hasMoreElements() )
-        {
-            JarEntry je = (JarEntry)all.nextElement();
+        Enumeration all = theJar.entries();
+        while (all.hasMoreElements()) {
+            JarEntry je = (JarEntry) all.nextElement();
 
             // We don't map plain directory entries
-            if ( !je.isDirectory() )
-            {
-                allEntries.put( je.getName(), this.urlpath );
+            if (!je.isDirectory()) {
+                allEntries.put(je.getName(), this.urlpath);
             }
         }
         return allEntries;
@@ -164,8 +145,7 @@ public class JarHolder
     /**
      * @return The URL path of this jar holder.
      */
-    public String getUrlPath()
-    {
+    public String getUrlPath() {
         return urlpath;
     }
 }

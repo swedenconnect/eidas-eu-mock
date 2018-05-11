@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -27,21 +27,19 @@ import org.apache.velocity.runtime.parser.Parser;
 
 /**
  * This class is responsible for handling EscapedDirectives
- *  in VTL.
- *
+ * in VTL.
+ * <p>
  * Please look at the Parser.jjt file which is
  * what controls the generation of this class.
  *
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ASTEscapedDirective.java 731266 2009-01-04 15:11:20Z byron $
  */
-public class ASTEscapedDirective extends SimpleNode
-{
+public class ASTEscapedDirective extends SimpleNode {
     /**
      * @param id
      */
-    public ASTEscapedDirective(int id)
-    {
+    public ASTEscapedDirective(int id) {
         super(id);
     }
 
@@ -49,8 +47,7 @@ public class ASTEscapedDirective extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTEscapedDirective(Parser p, int id)
-    {
+    public ASTEscapedDirective(Parser p, int id) {
         super(p, id);
     }
 
@@ -58,8 +55,7 @@ public class ASTEscapedDirective extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 
@@ -67,8 +63,7 @@ public class ASTEscapedDirective extends SimpleNode
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer)
      */
     public boolean render(InternalContextAdapter context, Writer writer)
-        throws IOException
-    {
+            throws IOException {
         writer.write(getFirstToken().image);
         return true;
     }

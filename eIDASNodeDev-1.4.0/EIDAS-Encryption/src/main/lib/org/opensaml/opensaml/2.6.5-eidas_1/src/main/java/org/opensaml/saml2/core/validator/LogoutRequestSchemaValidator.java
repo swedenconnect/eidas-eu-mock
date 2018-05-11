@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -30,13 +30,14 @@ public class LogoutRequestSchemaValidator extends RequestAbstractTypeSchemaValid
 
     /**
      * Constructor.
-     *
      */
     public LogoutRequestSchemaValidator() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(LogoutRequest request) throws ValidationException {
         super.validate(request);
         validateIdentifiers(request);
@@ -44,13 +45,13 @@ public class LogoutRequestSchemaValidator extends RequestAbstractTypeSchemaValid
 
     /**
      * Validate the Identifier child types (BaseID, NameID, EncryptedID).
-     * 
+     *
      * @param request the request being processed
      * @throws ValidationException thrown if the identifiers present are not valid
      */
     protected void validateIdentifiers(LogoutRequest request) throws ValidationException {
         int idCount = 0;
-        
+
         if (request.getBaseID() != null) {
             idCount++;
         }
@@ -60,10 +61,10 @@ public class LogoutRequestSchemaValidator extends RequestAbstractTypeSchemaValid
         if (request.getEncryptedID() != null) {
             idCount++;
         }
-        
+
         if (idCount != 1) {
             throw new ValidationException("LogoutRequest must contain exactly one of: BaseID, NameID, EncryptedID");
         }
     }
-    
+
 }

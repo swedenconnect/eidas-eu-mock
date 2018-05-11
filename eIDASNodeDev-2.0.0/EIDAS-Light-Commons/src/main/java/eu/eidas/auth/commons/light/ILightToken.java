@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * This ILightToken is the interface representing the key of data exchange between EidasNode Core and MS-Specific parts.
  * It is encapsulating a collection of information provided by the originator party.
- *
+ * <p>
  * This is not the class for the HTTP session, check {@link eu.eidas.auth.commons.tx.BinaryLightToken}.
  *
  * @since 2.0.0
@@ -39,6 +39,7 @@ public interface ILightToken {
 
     /**
      * Returns with the LightToken ID.
+     *
      * @return LightTokenID
      */
     @Nonnull
@@ -46,6 +47,7 @@ public interface ILightToken {
 
     /**
      * Returns with the Issuer (originator).
+     *
      * @return LightTokenIssuer
      */
     @Nonnull
@@ -53,6 +55,7 @@ public interface ILightToken {
 
     /**
      * Returns with the timestamp when the Token was created.
+     *
      * @return LightTokenCreatedOn
      */
     @Nonnull
@@ -61,6 +64,7 @@ public interface ILightToken {
     /**
      * Returns with the formatted, string representation of timestamp when the Token was created.
      * The format follows what {@link eu.eidas.auth.commons.light.impl.AbstractLightToken.LIGHTTOKEN_DATE_FORMAT} dictates.
+     *
      * @return LightTokenFormattedCreatedOn
      */
     @Nonnull
@@ -69,6 +73,7 @@ public interface ILightToken {
     /**
      * Returns with simple string token representation to be used as internal reference, as key of correlation.
      * Format is ISSUER/ID/CREATEDON.
+     *
      * @return key format for internal corrlation
      */
     @Nonnull

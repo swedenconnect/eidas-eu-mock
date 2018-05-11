@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * Interface for {@link PersonalAttributeList}.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.16 $, $Date: 2010-11-17 05:15:28 $
  * @see PersonalAttribute
  */

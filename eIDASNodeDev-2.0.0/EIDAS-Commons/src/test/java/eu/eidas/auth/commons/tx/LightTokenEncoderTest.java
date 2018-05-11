@@ -144,7 +144,7 @@ public class LightTokenEncoderTest {
     public void testDecodeFailsOnLongToken() throws NoSuchAlgorithmException {
         thrown.expect(SecurityEIDASException.class);
         thrown.expectMessage("Error parsing LightToken, size exceeds " + LightTokenEncoder.MAX_TOKEN_SIZE);
-        byte[] longToken = new byte[LightTokenEncoder.MAX_TOKEN_SIZE+1];
+        byte[] longToken = new byte[LightTokenEncoder.MAX_TOKEN_SIZE + 1];
         Arrays.fill(longToken, (byte) 'A');
         BinaryLightToken binaryToken = LightTokenEncoder.decodeBase64(longToken, SECRET, ALGORITHM);
     }

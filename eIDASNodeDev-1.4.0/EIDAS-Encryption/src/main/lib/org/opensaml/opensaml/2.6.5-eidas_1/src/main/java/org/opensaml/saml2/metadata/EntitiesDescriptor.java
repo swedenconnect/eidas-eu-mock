@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,86 +29,99 @@ import org.opensaml.saml2.common.TimeBoundSAMLObject;
 
 /**
  * SAML 2.0 Metadata EntitiesDescriptor.
- * 
+ *
  * @author Chad La Joie
  */
 public interface EntitiesDescriptor extends SignableSAMLObject, TimeBoundSAMLObject, CacheableSAMLObject {
 
-    /** Element name, no namespace */
+    /**
+     * Element name, no namespace
+     */
     public final static String DEFAULT_ELEMENT_LOCAL_NAME = "EntitiesDescriptor";
-    
-    /** Default element name */
+
+    /**
+     * Default element name
+     */
     public final static QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML20MD_NS, DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
-    
-    /** Local name of the XSI type */
-    public final static String TYPE_LOCAL_NAME = "EntitiesDescriptorType"; 
-        
-    /** QName of the XSI type */
+
+    /**
+     * Local name of the XSI type
+     */
+    public final static String TYPE_LOCAL_NAME = "EntitiesDescriptorType";
+
+    /**
+     * QName of the XSI type
+     */
     public final static QName TYPE_NAME = new QName(SAMLConstants.SAML20MD_NS, TYPE_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
 
-    /** Element QName, no prefix */
+    /**
+     * Element QName, no prefix
+     */
     public final static QName ELEMENT_QNAME = new QName(SAMLConstants.SAML20MD_NS, DEFAULT_ELEMENT_LOCAL_NAME);
 
-    /** "ID" attribute name */
+    /**
+     * "ID" attribute name
+     */
     public final static String ID_ATTRIB_NAME = "ID";
 
-    /** "Name" attribute name */
+    /**
+     * "Name" attribute name
+     */
     public final static String NAME_ATTRIB_NAME = "Name";
 
     /**
      * Gets the name of this entity group.
-     * 
+     *
      * @return the name of this entity group
      */
     public String getName();
 
     /**
      * Sets the name of this entity group.
-     * 
+     *
      * @param name the name of this entity group
      */
     public void setName(String name);
 
     /**
      * Gets the ID of this entity group.
-     * 
+     *
      * @return the id of this entity group
      */
     public String getID();
 
     /**
      * Sets the ID of this entity group.
-     * 
+     *
      * @param newID the ID of this entity group
      */
     public void setID(String newID);
 
     /**
      * Gets the Extensions child of this object.
-     * 
+     *
      * @return the Extensions child of this object
      */
     public Extensions getExtensions();
 
     /**
      * Sets the Extensions child of this object.
-     * 
+     *
      * @param extensions the Extensions child of this object
-     * 
      * @throws IllegalArgumentException thrown if the given extensions Object is already a child of another SAMLObject
      */
     public void setExtensions(Extensions extensions) throws IllegalArgumentException;
 
     /**
      * Gets a list of child {@link EntitiesDescriptor}s.
-     * 
+     *
      * @return list of descriptors
      */
     public List<EntitiesDescriptor> getEntitiesDescriptors();
 
     /**
      * Gets a list of child {@link EntityDescriptor}s.
-     * 
+     *
      * @return list of child descriptors
      */
     public List<EntityDescriptor> getEntityDescriptors();

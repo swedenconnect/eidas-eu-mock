@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,15 +33,21 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.w3c.dom.Attr;
 
-/** Unmarshaller for {@link PolicySetType} objects. */
+/**
+ * Unmarshaller for {@link PolicySetType} objects.
+ */
 public class PolicySetTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public PolicySetTypeUnmarshaller() {
         super(XACMLConstants.XACML20_NS, PolicySetType.DEFAULT_ELEMENT_LOCAL_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
         PolicySetType policySet = (PolicySetType) xmlObject;
 
@@ -56,7 +62,9 @@ public class PolicySetTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
             throws UnmarshallingException {
         PolicySetType policySet = (PolicySetType) parentXMLObject;
@@ -65,8 +73,8 @@ public class PolicySetTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
             policySet.setDescription((DescriptionType) childXMLObject);
         } else if (childXMLObject instanceof DefaultsType) {
             policySet.setPolicySetDefaults((DefaultsType) childXMLObject);
-        } else if (childXMLObject instanceof TargetType){
-                policySet.setTarget((TargetType) childXMLObject);
+        } else if (childXMLObject instanceof TargetType) {
+            policySet.setTarget((TargetType) childXMLObject);
         } else if (childXMLObject instanceof PolicySetType) {
             policySet.getPolicySets().add((PolicySetType) childXMLObject);
         } else if (childXMLObject instanceof PolicyType) {

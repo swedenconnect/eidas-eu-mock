@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -20,20 +20,28 @@ package org.opensaml.xacml.ctx.impl;
 import org.opensaml.xacml.ctx.ResourceContentType;
 import org.opensaml.xacml.impl.AbstractXACMLObjectBuilder;
 
-/** Builder for {@link ResourceContentType} objects. */
+/**
+ * Builder for {@link ResourceContentType} objects.
+ */
 public class ResourceContentTypeImplBuilder extends AbstractXACMLObjectBuilder<ResourceContentType> {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public ResourceContentTypeImplBuilder() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ResourceContentType buildObject(String namespaceURI, String localName, String namespacePrefix) {
         return new ResourceContentTypeImpl(namespaceURI, localName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ResourceContentType buildObject() {
         return buildObject(ResourceContentType.DEFAULT_ELEMENT_NAME);
     }

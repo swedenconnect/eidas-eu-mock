@@ -16,70 +16,63 @@ package org.apache.velocity.util.introspection;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.log.Log;
 import org.apache.velocity.runtime.parser.node.Node;
 
 /**
- *  Little class to carry in info such as template name, line and column
- *  for information error reporting from the uberspector implementations
+ * Little class to carry in info such as template name, line and column
+ * for information error reporting from the uberspector implementations
  *
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: Info.java 733416 2009-01-11 05:26:52Z byron $
  */
-public class Info
-{
+public class Info {
     private int line;
     private int column;
     private String templateName;
 
     /**
      * @param source Usually a template name.
-     * @param line The line number from <code>source</code>.
+     * @param line   The line number from <code>source</code>.
      * @param column The column number from <code>source</code>.
      */
-    public Info(String source, int line, int column)
-    {
+    public Info(String source, int line, int column) {
         this.templateName = source;
         this.line = line;
         this.column = column;
     }
 
-    public Info(Node node)
-    {
-      this(node.getTemplateName(), node.getLine(), node.getColumn());
+    public Info(Node node) {
+        this(node.getTemplateName(), node.getLine(), node.getColumn());
     }
-    
+
     /**
      * Force callers to set the location information.
      */
-    private Info()
-    {
+    private Info() {
     }
-    
+
     /**
      * @return The template name.
      */
-    public String getTemplateName()
-    {
+    public String getTemplateName() {
         return templateName;
     }
 
     /**
      * @return The line number.
      */
-    public int getLine()
-    {
+    public int getLine() {
         return line;
     }
 
     /**
      * @return The column number.
      */
-    public int getColumn()
-    {
+    public int getColumn() {
         return column;
     }
 
@@ -90,8 +83,7 @@ public class Info
      * @return String representing this object.
      * @since 1.5
      */
-    public String toString()
-    {
+    public String toString() {
         return Log.formatFileString(getTemplateName(), getLine(), getColumn());
     }
 }

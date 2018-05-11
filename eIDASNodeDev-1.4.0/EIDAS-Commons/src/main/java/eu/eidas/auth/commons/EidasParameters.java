@@ -36,10 +36,9 @@ import java.util.Properties;
 /**
  * Class to load the properties only once from a file and copy the key/values
  * into an {@link ImmutableMap}.
- *
+ * <p>
  * The purpose it disallow the loading of new or additional properties
  * at runtime and therefore only allowing retrieval of values initially loaded.
- *
  */
 public final class EidasParameters {
 
@@ -76,7 +75,7 @@ public final class EidasParameters {
             LOG.error("An error occurred when trying to load properties file: " + PROPERTIES_FILENAME, e);
         }
 
-        return ImmutableMap.<String,String>copyOf((Map) properties);
+        return ImmutableMap.<String, String>copyOf((Map) properties);
     }
 
     /**

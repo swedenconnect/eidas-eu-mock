@@ -175,7 +175,7 @@ public final class SAMLAuthnResponseDecrypter {
 
             return decryptedResponse;
 
-        } catch ( ParserConfigurationException | UnmarshallException | org.opensaml.xmlsec.encryption.support.DecryptionException e) {
+        } catch (ParserConfigurationException | UnmarshallException | org.opensaml.xmlsec.encryption.support.DecryptionException e) {
             throw new DecryptionException(e);
         }
     }

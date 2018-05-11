@@ -29,24 +29,24 @@ import javax.servlet.http.HttpSession;
  */
 public class SessionHolder {
 
-        private static final ThreadLocal<HttpSession> sessionHolderMap = new ThreadLocal<HttpSession>();
+    private static final ThreadLocal<HttpSession> sessionHolderMap = new ThreadLocal<HttpSession>();
 
-        private SessionHolder() {
-        }
+    private SessionHolder() {
+    }
 
-        public static void setId(HttpSession identifier) {
-            if (null == identifier) {
-                //throw some exception
-            }
-            sessionHolderMap.set(identifier);
+    public static void setId(HttpSession identifier) {
+        if (null == identifier) {
+            //throw some exception
         }
+        sessionHolderMap.set(identifier);
+    }
 
-        public static HttpSession getId() {
-            return sessionHolderMap.get();
-        }
+    public static HttpSession getId() {
+        return sessionHolderMap.get();
+    }
 
-        public static void clear() {
-            sessionHolderMap.remove();
-        }
+    public static void clear() {
+        sessionHolderMap.remove();
+    }
 
 }

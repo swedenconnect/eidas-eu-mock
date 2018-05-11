@@ -293,7 +293,7 @@ public final class CertificateUtil {
             return result.trim();
         } catch (CertificateException e) {
             LOG.error(MarkerFactory.getMarker("SAML_EXCHANGE"),
-                      "BUSINESS EXCEPTION : Proccess getCountry from certificate: " + e.getMessage(), e);
+                    "BUSINESS EXCEPTION : Proccess getCountry from certificate: " + e.getMessage(), e);
             //TODO refactor this with configuration validation
             throw new RuntimeException(e);
         }

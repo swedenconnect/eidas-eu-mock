@@ -16,10 +16,11 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import org.apache.velocity.VelocityContext;
@@ -30,62 +31,53 @@ import org.apache.velocity.test.provider.TestProvider;
 import org.apache.velocity.util.ExceptionUtils;
 
 
-
 /**
  * Test thrown exceptions include a proper cause (under JDK 1.4+).
  *
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: WrappedExceptionTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class WrappedExceptionTestCase extends BaseTestCase implements TemplateTestBase
-{
+public class WrappedExceptionTestCase extends BaseTestCase implements TemplateTestBase {
     VelocityEngine ve;
 
     /**
      * Default constructor.
      */
-    public WrappedExceptionTestCase(String name)
-    {
+    public WrappedExceptionTestCase(String name) {
         super(name);
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(WrappedExceptionTestCase.class);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         ve = new VelocityEngine();
         ve.init();
     }
 
 
-    public void testMethodException() throws Exception
-    {
+    public void testMethodException() throws Exception {
 
         // accumulate a list of invalid references
         Context context = new VelocityContext();
         StringWriter writer = new StringWriter();
-        context.put("test",new TestProvider());
+        context.put("test", new TestProvider());
 
-        try
-        {
-            ve.evaluate(context,writer,"test","$test.getThrow()");
-            fail ("expected an exception");
-        }
-        catch (MethodInvocationException E)
-        {
-            assertEquals(Exception.class,E.getCause().getClass());
-            assertEquals("From getThrow()",E.getCause().getMessage());
+        try {
+            ve.evaluate(context, writer, "test", "$test.getThrow()");
+            fail("expected an exception");
+        } catch (MethodInvocationException E) {
+            assertEquals(Exception.class, E.getCause().getClass());
+            assertEquals("From getThrow()", E.getCause().getMessage());
         }
 
     }
-    public void testExceptionUtils()
-    {
+
+    public void testExceptionUtils() {
         Error e = new Error("Inside");
         RuntimeException re = ExceptionUtils.createRuntimeException("Outside", e);
-        assertEquals("cause was set", e,re.getCause());
+        assertEquals("cause was set", e, re.getCause());
     }
 
 }

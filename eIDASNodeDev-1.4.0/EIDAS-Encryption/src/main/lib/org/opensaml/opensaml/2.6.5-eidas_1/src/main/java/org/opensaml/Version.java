@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -17,31 +17,45 @@
 
 package org.opensaml;
 
-/** Class for printing the version of this library. */
+/**
+ * Class for printing the version of this library.
+ */
 public final class Version {
 
-    /** Name of the library. */
+    /**
+     * Name of the library.
+     */
     private static final String NAME;
 
-    /** Library version. */
+    /**
+     * Library version.
+     */
     private static final String VERSION;
 
-    /** Library major version number. */
+    /**
+     * Library major version number.
+     */
     private static final int MAJOR_VERSION;
 
-    /** Library minor version number. */
+    /**
+     * Library minor version number.
+     */
     private static final int MINOR_VERSION;
 
-    /** Library micro version number. */
+    /**
+     * Library micro version number.
+     */
     private static final int MICRO_VERSION;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     private Version() {
     }
 
     /**
      * Main entry point to program.
-     * 
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {
@@ -50,7 +64,7 @@ public final class Version {
 
     /**
      * Gets the name of the library.
-     * 
+     *
      * @return name of the library
      */
     public static String getName() {
@@ -59,7 +73,7 @@ public final class Version {
 
     /**
      * Gets the version of the library.
-     * 
+     *
      * @return version of the library
      */
     public static String getVersion() {
@@ -68,7 +82,7 @@ public final class Version {
 
     /**
      * Gets the major version number of the library.
-     * 
+     *
      * @return major version number of the library
      */
     public static int getMajorVersion() {
@@ -77,7 +91,7 @@ public final class Version {
 
     /**
      * Gets the minor version number of the library.
-     * 
+     *
      * @return minor version number of the library
      */
     public static int getMinorVersion() {
@@ -86,7 +100,7 @@ public final class Version {
 
     /**
      * Gets the micro version number of the library.
-     * 
+     *
      * @return micro version number of the library
      */
     public static int getMicroVersion() {

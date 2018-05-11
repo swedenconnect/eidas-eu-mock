@@ -34,7 +34,9 @@
         <div class="col-right">
             <div class="col-right-inner">
                 <div class="clearfix">
-                    <div class="menu-top"> <a class="item text-minus" href="#"></a> <a class="item text-plus" href="#"></a> <a class="item contrast" href="#"></a> </div>
+                    <div class="menu-top"><a class="item text-minus" href="#"></a> <a class="item text-plus"
+                                                                                      href="#"></a> <a
+                            class="item contrast" href="#"></a></div>
                 </div>
                 <div class="col-right-content">
                     <jsp:include page="internal/content-security-header-deactivated.jsp"/>
@@ -46,12 +48,17 @@
                             <h2><fmt:message key="missing.parameter.text" bundle="${i18n_eng}"/></h2>
                         </c:when>
                         <c:otherwise>
-                            <form id="redirectForm" name="redirectForm" method="post" action="${e:forHtml(errorRedirectUrl)}">
-                                <input type="hidden" id="errorCode" name="errorCode" value="${e:forHtml(exception.errorCode)}"/>
-                                <input type="hidden" id="errorMessage" name="errorMessage" value="${e:forHtml(exception.errorMessage)}"/>
-                                <input type="hidden" id="SAMLResponse" name="SAMLResponse" value="${e:forHtml(exception.samlTokenFail)}"/>
+                            <form id="redirectForm" name="redirectForm" method="post"
+                                  action="${e:forHtml(errorRedirectUrl)}">
+                                <input type="hidden" id="errorCode" name="errorCode"
+                                       value="${e:forHtml(exception.errorCode)}"/>
+                                <input type="hidden" id="errorMessage" name="errorMessage"
+                                       value="${e:forHtml(exception.errorMessage)}"/>
+                                <input type="hidden" id="SAMLResponse" name="SAMLResponse"
+                                       value="${e:forHtml(exception.samlTokenFail)}"/>
                                 <c:if test="RelayState!=null">
-                                    <input type="hidden" id="relayState" name="RelayState" value="${e:forHtml(RelayState)}"/>
+                                    <input type="hidden" id="relayState" name="RelayState"
+                                           value="${e:forHtml(RelayState)}"/>
                                 </c:if>
                             </form>
                         </c:otherwise>
@@ -59,19 +66,26 @@
                     <noscript>
                         <h2><fmt:message key="ConnectorRedirect.text" bundle="${i18n_eng}"/></h2>
                         <br/>
-                        <form id="redirectFormNoScript" name="redirectFormNoScript" method="post" action="${e:forHtml(errorRedirectUrl)}">
-                            <input type="hidden" id="errorCode" name="errorCode" value="${e:forHtml(exception.errorCode)}"/>
-                            <input type="hidden" id="errorMessage" name="errorMessage" value="${e:forHtml(exception.errorMessage)}"/>
-                            <input type="hidden" id="SAMLResponse" name="SAMLResponse" value="${e:forHtml(exception.samlTokenFail)}"/>
+                        <form id="redirectFormNoScript" name="redirectFormNoScript" method="post"
+                              action="${e:forHtml(errorRedirectUrl)}">
+                            <input type="hidden" id="errorCode" name="errorCode"
+                                   value="${e:forHtml(exception.errorCode)}"/>
+                            <input type="hidden" id="errorMessage" name="errorMessage"
+                                   value="${e:forHtml(exception.errorMessage)}"/>
+                            <input type="hidden" id="SAMLResponse" name="SAMLResponse"
+                                   value="${e:forHtml(exception.samlTokenFail)}"/>
                             <c:if test="RelayState!=null">
-                                <input type="hidden" id="relayState" name="RelayState" value="${e:forHtml(RelayState)}"/>
+                                <input type="hidden" id="relayState" name="RelayState"
+                                       value="${e:forHtml(RelayState)}"/>
                             </c:if>
                             <p class="box-btn">
-								<input type="submit" id="redirectValue_button" class="btn btn-next" value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
-							</p>
+                                <input type="submit" id="redirectValue_button" class="btn btn-next"
+                                       value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
+                            </p>
                         </form>
                     </noscript>
-                    <h2 class="sub-title text-highlight"><fmt:message key="eidas.cooperation" bundle="${i18n_eng}"/></h2>
+                    <h2 class="sub-title text-highlight"><fmt:message key="eidas.cooperation"
+                                                                      bundle="${i18n_eng}"/></h2>
                 </div>
             </div>
         </div>

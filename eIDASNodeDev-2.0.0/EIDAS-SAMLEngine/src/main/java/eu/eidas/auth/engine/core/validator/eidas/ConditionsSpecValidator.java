@@ -25,5 +25,6 @@ import org.opensaml.saml.saml2.core.Conditions;
  * TODO This class was created as a temporary solution for the removal of ConditionsSpecValidator from opensaml 3.
  */
 public abstract class ConditionsSpecValidator {
-    public void validate(Conditions conditions) throws ValidationException {}
+    public void validate(Conditions conditions) throws ValidationException {
+    }
 }

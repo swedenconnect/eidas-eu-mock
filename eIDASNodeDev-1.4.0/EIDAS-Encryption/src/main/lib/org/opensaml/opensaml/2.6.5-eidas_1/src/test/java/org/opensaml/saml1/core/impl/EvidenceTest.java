@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -34,7 +34,9 @@ import org.opensaml.saml1.core.Evidence;
  */
 public class EvidenceTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
     /**
@@ -45,11 +47,13 @@ public class EvidenceTest extends BaseSAMLObjectProviderTestCase {
         super();
         singleElementFile = "/data/org/opensaml/saml1/impl/singleEvidence.xml";
         childElementsFile = "/data/org/opensaml/saml1/impl/EvidenceWithChildren.xml";
-        
+
         qname = new QName(SAMLConstants.SAML1_NS, Evidence.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementUnmarshall() {
         Evidence evidence = (Evidence) unmarshallElement(singleElementFile);
@@ -57,7 +61,9 @@ public class EvidenceTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("AssertionIDReference or Assertion element was present", 0, evidence.getEvidence().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsUnmarshall() {
         Evidence evidence = (Evidence) unmarshallElement(childElementsFile);
@@ -67,20 +73,24 @@ public class EvidenceTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Assertion element count", 2, evidence.getAssertions().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsMarshall() {
         Evidence evidence = (Evidence) buildXMLObject(qname);
 
         QName refQname = new QName(SAMLConstants.SAML1_NS, AssertionIDReference.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         QName assertionQname = new QName(SAMLConstants.SAML1_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        
+
         evidence.getAssertionIDReferences().add((AssertionIDReference) buildXMLObject(refQname));
         evidence.getAssertions().add((Assertion) buildXMLObject(assertionQname));
         evidence.getAssertions().add((Assertion) buildXMLObject(assertionQname));

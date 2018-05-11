@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.validator;
@@ -29,12 +29,16 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AuthnAuthorityDescriptorSchemaValidator extends RoleDescriptorSchemaValidator<AuthnAuthorityDescriptor> {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthnAuthorityDescriptorSchemaValidator() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AuthnAuthorityDescriptor authnAuthorityDescriptor) throws ValidationException {
         super.validate(authnAuthorityDescriptor);
         validateAuthnQueryServices(authnAuthorityDescriptor);
@@ -42,7 +46,7 @@ public class AuthnAuthorityDescriptorSchemaValidator extends RoleDescriptorSchem
 
     /**
      * Checks that at least one AuthnService is present.
-     * 
+     *
      * @param authnAuthorityDescriptor
      * @throws ValidationException
      */

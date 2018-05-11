@@ -43,11 +43,11 @@ public class FileConfigurationRepository implements ConfigurationRepository {
         return fileService.getRepositoryDir();
     }
 
-    public Properties loadPropertiesFromXML(String fileName){
+    public Properties loadPropertiesFromXML(String fileName) {
         return fileService.loadPropsFromXml(fileName);
     }
 
-    public Properties loadPropsFromTextFile(String fileName){
+    public Properties loadPropsFromTextFile(String fileName) {
         return fileService.loadPropsFromTextFile(fileName);
     }
 
@@ -58,16 +58,20 @@ public class FileConfigurationRepository implements ConfigurationRepository {
     public void setFileService(FileService fileService) {
         this.fileService = fileService;
     }
-    public void savePropertiesToXML(String fileName, Properties props){
+
+    public void savePropertiesToXML(String fileName, Properties props) {
         fileService.saveToXMLFile(fileName, props);
     }
-    public void savePropertiesToTextFile(String fileName, Properties props){
+
+    public void savePropertiesToTextFile(String fileName, Properties props) {
         fileService.saveToPropsFile(fileName, props);
     }
-    public byte[] getRawContent(String url){
+
+    public byte[] getRawContent(String url) {
         return fileService.loadBinaryFile(url);
     }
-    public void setRawContent(String url, byte[] data){
+
+    public void setRawContent(String url, byte[] data) {
         fileService.saveBinaryFile(url, data);
     }
 

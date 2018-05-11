@@ -48,10 +48,11 @@ import eu.eidas.auth.commons.EidasStringUtil;
 @Deprecated
 public class FileService {
     private static final Logger LOG = LoggerFactory.getLogger(FileService.class.getName());
-    private static final int MAX_FILE_SIZE=50000;
+    private static final int MAX_FILE_SIZE = 50000;
     String repositoryDir;
     String alternateLocation;
-    boolean validRepositoryLocation=false;
+    boolean validRepositoryLocation = false;
+
     public String getRepositoryDir() {
         return repositoryDir;
     }
@@ -60,7 +61,7 @@ public class FileService {
         this.repositoryDir = repositoryDir;
     }
 
-    private void checkDirectory(){
+    private void checkDirectory() {
         if (validRepositoryLocation) {
             return;
         }
@@ -83,105 +84,104 @@ public class FileService {
         }
     }
 
-    private void checkForAlternateLocation(){
-        if((repositoryDir==null || repositoryDir.isEmpty()) &&getAlternateLocation()!=null && !getAlternateLocation().isEmpty()){
+    private void checkForAlternateLocation() {
+        if ((repositoryDir == null || repositoryDir.isEmpty()) && getAlternateLocation() != null && !getAlternateLocation().isEmpty()) {
             LOG.info("ERROR : invalid value for repository directory, trying alternate location");
-            repositoryDir=getAlternateLocation();
+            repositoryDir = getAlternateLocation();
         }
     }
 
     /**
-     *
      * @param repository - assumes a valid directory
      */
-    private void normalizeDirectory(File repository){
-        validRepositoryLocation=true;
-        repositoryDir=repository.getAbsolutePath();
-        if(!repositoryDir.endsWith(File.separator) && !repositoryDir.endsWith("/")) {
+    private void normalizeDirectory(File repository) {
+        validRepositoryLocation = true;
+        repositoryDir = repository.getAbsolutePath();
+        if (!repositoryDir.endsWith(File.separator) && !repositoryDir.endsWith("/")) {
             repositoryDir += "/";
         }
 
     }
-    public boolean existsFile(String fileName){
+
+    public boolean existsFile(String fileName) {
         checkDirectory();
-        if(!validRepositoryLocation) {
+        if (!validRepositoryLocation) {
             return false;
         }
-        File f=new File(getAbsoluteFileName(fileName));
-        boolean b=f.exists();
+        File f = new File(getAbsoluteFileName(fileName));
+        boolean b = f.exists();
         return b;
     }
 
-    public String getAbsoluteFileName(String fileName){
+    public String getAbsoluteFileName(String fileName) {
         checkDirectory();
-        if(validRepositoryLocation && fileName!=null) {
-            String repositoryPrefix = repositoryDir.substring(0, repositoryDir.length()-1);
-            File f=new File(fileName);
-            if(!fileName.isEmpty() && f.exists() && f.getParent()!=null){
+        if (validRepositoryLocation && fileName != null) {
+            String repositoryPrefix = repositoryDir.substring(0, repositoryDir.length() - 1);
+            File f = new File(fileName);
+            if (!fileName.isEmpty() && f.exists() && f.getParent() != null) {
                 return fileName;
             }
             return fileName.startsWith(repositoryPrefix) ? fileName : normalizePath(repositoryDir + fileName);
-        }else{
+        } else {
             LOG.info("ERROR : trying to access an invalid repository");
             return "";
         }
     }
 
-    private String normalizePath(final String path){
-        if(path!=null){
-            String normalPath=path.replace('/', File.separatorChar);
-            normalPath=normalPath.replace('\\', File.separatorChar);
+    private String normalizePath(final String path) {
+        if (path != null) {
+            String normalPath = path.replace('/', File.separatorChar);
+            normalPath = normalPath.replace('\\', File.separatorChar);
             return normalPath;
         }
         return null;
     }
+
     /**
-     *
      * @param fileName
      * @return a Properties object loaded from the file
      */
-    public Properties loadPropsFromXml(String fileName){
-        Properties props=new Properties();
-        InputStream is=null;
-        try{
-            is=new FileInputStream(new File(getAbsoluteFileName(fileName)));
+    public Properties loadPropsFromXml(String fileName) {
+        Properties props = new Properties();
+        InputStream is = null;
+        try {
+            is = new FileInputStream(new File(getAbsoluteFileName(fileName)));
             props.loadFromXML(is);
-        }catch(FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             LOG.info("ERROR : FileNotFoundException: ", fnfe.getMessage());
             LOG.debug("ERROR : FileNotFoundException: ", fnfe);
-        }catch(InvalidPropertiesFormatException ipfe){
+        } catch (InvalidPropertiesFormatException ipfe) {
             LOG.info("ERROR : InvalidPropertiesFormatException: ", ipfe.getMessage());
             LOG.debug("ERROR : InvalidPropertiesFormatException: ", ipfe);
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.info("ERROR : IOException: ", ioe.getMessage());
             LOG.debug("ERROR : IOException: ", ioe);
-        }finally{
+        } finally {
             safeClose(is);
         }
         return props;
     }
 
     /**
-     *
      * @param fileName
      * @return a Properties object loaded from the file
      */
-    public Properties loadPropsFromTextFile(String fileName){
-        Properties props=new Properties();
-        InputStream is=null;
-        try{
-            is=new FileInputStream(new File(getAbsoluteFileName(fileName)));
+    public Properties loadPropsFromTextFile(String fileName) {
+        Properties props = new Properties();
+        InputStream is = null;
+        try {
+            is = new FileInputStream(new File(getAbsoluteFileName(fileName)));
             props.load(is);
-        }catch(FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             LOG.error("ERROR : FileNotFoundException: ", fnfe.getMessage());
             LOG.debug("ERROR : FileNotFoundException: ", fnfe);
-        }catch(InvalidPropertiesFormatException ipfe){
+        } catch (InvalidPropertiesFormatException ipfe) {
             LOG.error("ERROR : InvalidPropertiesFormatException: ", ipfe.getMessage());
             LOG.debug("ERROR : InvalidPropertiesFormatException: ", ipfe);
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.error("ERROR : IOException: ", ioe.getMessage());
             LOG.debug("ERROR : IOException: ", ioe);
-        }finally{
+        } finally {
             safeClose(is);
         }
         return props;
@@ -189,110 +189,111 @@ public class FileService {
 
     /**
      * stores a Properties object to a file
+     *
      * @param fileName
      * @param props
      * @return
      */
-    public void saveToXMLFile(String fileName, Properties props){
-        OutputStream os=null;
-        try{
-            os=new FileOutputStream(new File(getAbsoluteFileName(fileName)));
+    public void saveToXMLFile(String fileName, Properties props) {
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream(new File(getAbsoluteFileName(fileName)));
             props.storeToXML(os, fileName);
-        }catch(FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             LOG.error("ERROR : FileNotFoundException: ", fnfe.getMessage());
             LOG.debug("ERROR : FileNotFoundException: ", fnfe);
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.error("ERROR : IOException: ", ioe.getMessage());
             LOG.debug("ERROR : IOException: ", ioe);
-        }finally{
+        } finally {
             safeClose(os);
         }
     }
 
-    public void saveToPropsFile(String fileName, Properties props){
-        OutputStream os=null;
-        try{
-            os=new FileOutputStream(new File(getAbsoluteFileName(fileName)));
+    public void saveToPropsFile(String fileName, Properties props) {
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream(new File(getAbsoluteFileName(fileName)));
             props.store(os, fileName);
-        }catch(FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             LOG.error("ERROR : FileNotFoundException: ", fnfe.getMessage());
             LOG.debug("ERROR : FileNotFoundException: ", fnfe);
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.error("ERROR : IOException: ", ioe.getMessage());
             LOG.debug("ERROR : IOException: ", ioe);
-        }finally{
+        } finally {
             safeClose(os);
         }
     }
 
 
-    public String fileToString(String fileName){
-        String fileContents=null;
-        byte data[]=loadBinaryFile(fileName);
-        if(data!=null && data.length>0) {
+    public String fileToString(String fileName) {
+        String fileContents = null;
+        byte data[] = loadBinaryFile(fileName);
+        if (data != null && data.length > 0) {
             fileContents = EidasStringUtil.toString(data);
         }
 
         return fileContents;
     }
 
-    public byte[] loadBinaryFile(String fileName){
+    public byte[] loadBinaryFile(String fileName) {
         byte[] data = null;
-        try{
+        try {
             Path path = Paths.get(getAbsoluteFileName(fileName));
             data = Files.readAllBytes(path);
-        }catch(FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             LOG.error("ERROR : FileNotFoundException: ", fnfe.getMessage());
             LOG.debug("ERROR : FileNotFoundException: ", fnfe);
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.error("ERROR : IOException: ", ioe.getMessage());
             LOG.debug("ERROR : IOException: ", ioe);
         }
         return data;
     }
 
-    public void saveBinaryFile(String fileName, byte[] data){
-        if(data==null || data.length>MAX_FILE_SIZE || data.length==0){
+    public void saveBinaryFile(String fileName, byte[] data) {
+        if (data == null || data.length > MAX_FILE_SIZE || data.length == 0) {
             //should also return an error code?
             return;
         }
-        FileOutputStream fos=null;
-        try{
-            fos=new FileOutputStream(getAbsoluteFileName(fileName));
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(getAbsoluteFileName(fileName));
             fos.write(data);
-        }catch(FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             LOG.error("ERROR : FileNotFoundException: ", fnfe.getMessage());
             LOG.debug("ERROR : FileNotFoundException: ", fnfe);
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.error("ERROR : IOException: ", ioe.getMessage());
             LOG.debug("ERROR : IOException: ", ioe);
-        }finally{
+        } finally {
             safeClose(fos);
         }
     }
 
-    public void stringToFile(String fileName, String data){
-        FileOutputStream os=null;
-        try{
-            os=new FileOutputStream(new File(getAbsoluteFileName(fileName)));
+    public void stringToFile(String fileName, String data) {
+        FileOutputStream os = null;
+        try {
+            os = new FileOutputStream(new File(getAbsoluteFileName(fileName)));
             os.write(data.getBytes(Charset.forName("UTF-8")));
-        }catch(FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             LOG.error("ERROR : FileNotFoundException: ", fnfe.getMessage());
             LOG.debug("ERROR : FileNotFoundException: ", fnfe);
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.error("ERROR : IOException: ", ioe.getMessage());
             LOG.debug("ERROR : IOException: ", ioe);
-        }finally{
+        } finally {
             safeClose(os);
         }
 
     }
 
-    private void safeClose(Closeable c){
-        if(c!=null){
-            try{
+    private void safeClose(Closeable c) {
+        if (c != null) {
+            try {
                 c.close();
-            }catch(IOException ioe){
+            } catch (IOException ioe) {
                 LOG.error("ERROR : IOException while closing inputstream: ", ioe.getMessage());
                 LOG.debug("ERROR : IOException while closing inputstream: ", ioe);
             }
@@ -300,23 +301,23 @@ public class FileService {
     }
 
     public String getAlternateLocation() {
-        if(alternateLocation!=null && !alternateLocation.isEmpty()){
+        if (alternateLocation != null && !alternateLocation.isEmpty()) {
             //clean up
             alternateLocation = cleanPath(alternateLocation);
         }
         return alternateLocation;
     }
-    private static final String FILE_PROTOCOL="file:";
+
+    private static final String FILE_PROTOCOL = "file:";
 
     /**
-     *
      * @param path assumed to be not null
      * @return the path equivalent, cleaning the file protocol, if it exists
      */
-    private String cleanPath(String path){
-        String cleanPath=path;
-        if(path.startsWith(FILE_PROTOCOL)){
-            cleanPath=cleanPath.substring(FILE_PROTOCOL.length());
+    private String cleanPath(String path) {
+        String cleanPath = path;
+        if (path.startsWith(FILE_PROTOCOL)) {
+            cleanPath = cleanPath.substring(FILE_PROTOCOL.length());
         }
         return cleanPath;
     }
@@ -326,29 +327,28 @@ public class FileService {
     }
 
     /**
-     *
      * @return the list of all the files contained in the current location
      */
-    public List<String> getFileList(boolean filterBackups){
-        List<String> files=new ArrayList<String>();
+    public List<String> getFileList(boolean filterBackups) {
+        List<String> files = new ArrayList<String>();
         checkDirectory();
-        if(!validRepositoryLocation){
+        if (!validRepositoryLocation) {
             return files;
         }
-        files=iterateFiles(new File(repositoryDir), filterBackups);
+        files = iterateFiles(new File(repositoryDir), filterBackups);
         return files;
     }
 
-    private List<String> iterateFiles(File directory, boolean filterBackups){
+    private List<String> iterateFiles(File directory, boolean filterBackups) {
         File[] directoryListing = directory.listFiles();
-        List<String> files=new ArrayList<String>();
+        List<String> files = new ArrayList<String>();
         if (directoryListing != null) {
             for (File child : directoryListing) {
-                if(child.isDirectory()) {
+                if (child.isDirectory()) {
                     files.addAll(iterateFiles(child, filterBackups));
-                }else if(child.exists()){
-                    String completeFileName=child.getAbsolutePath();
-                    if(!filterBackups || !(completeFileName.length()>4 && ".zip".equalsIgnoreCase(completeFileName.substring(completeFileName.length()-4).toLowerCase(Locale.ENGLISH)))) {
+                } else if (child.exists()) {
+                    String completeFileName = child.getAbsolutePath();
+                    if (!filterBackups || !(completeFileName.length() > 4 && ".zip".equalsIgnoreCase(completeFileName.substring(completeFileName.length() - 4).toLowerCase(Locale.ENGLISH)))) {
                         files.add(child.getAbsolutePath());
                     }
                 }
@@ -361,18 +361,18 @@ public class FileService {
      * perform a backup of the current configuration
      * the result is stored in the same directory, in a file named backupTIMESTAMP.zip
      */
-    public void backup(){
-        String archiveFileName= getAbsoluteFileName(getArchiveFileName());
-        List<String> sourceFile=getFileList(true);
+    public void backup() {
+        String archiveFileName = getAbsoluteFileName(getArchiveFileName());
+        List<String> sourceFile = getFileList(true);
         Zip.zip(sourceFile, archiveFileName, repositoryDir);
     }
 
-    private String getArchiveFileName(){
-        Calendar calendar=Calendar.getInstance();
+    private String getArchiveFileName() {
+        Calendar calendar = Calendar.getInstance();
         StringBuilder sb = new StringBuilder();
         Formatter formatter = new Formatter(sb, Locale.US);
-        String ret = formatter.format("backup%1$4d%2$02d%3$02d%4$02d%5$02d%6$02d%7$03d.zip", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),calendar.get(Calendar.SECOND), calendar.get(Calendar.MILLISECOND)).toString();
+        String ret = formatter.format("backup%1$4d%2$02d%3$02d%4$02d%5$02d%6$02d%7$03d.zip", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND), calendar.get(Calendar.MILLISECOND)).toString();
         formatter.close();
         return ret;
     }

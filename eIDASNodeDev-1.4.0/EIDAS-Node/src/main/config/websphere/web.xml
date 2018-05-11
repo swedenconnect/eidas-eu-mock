@@ -41,13 +41,13 @@
         <auth-constraint/>
     </security-constraint>
     <filter>
-       <filter-name>jersey</filter-name>
-       <filter-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</filter-class>
-       <init-param>
-           <param-name>com.sun.jersey.config.property.packages</param-name>
-           <param-value>eu.euidas.node.ws</param-value>
-       </init-param>
-       </filter>
+        <filter-name>jersey</filter-name>
+        <filter-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</filter-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>eu.euidas.node.ws</param-value>
+        </init-param>
+    </filter>
     <filter>
         <filter-name>securityFilter</filter-name>
         <filter-class>eu.eidas.node.security.SecurityRequestFilter</filter-class>
@@ -102,18 +102,18 @@
         <param-value>en_UK</param-value>
     </context-param>
 
-	<context-param>
-		<param-name>resteasy.scan</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<param-name>resteasy.scan.providers</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<param-name>resteasy.scan.resources</param-name>
-		<param-value>false</param-value>
-	</context-param>
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.providers</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.resources</param-name>
+        <param-value>false</param-value>
+    </context-param>
     <context-param>
         <param-name>buildDate</param-name>
         <param-value>${timestamp}</param-value>
@@ -129,7 +129,7 @@
 
     <!-- Spring request listener : used by struts -->
     <listener>
-            <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
     <!-- ****************** -->
@@ -237,7 +237,7 @@
         <url-pattern>/ColleagueRequest</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>CitizenConsentServlet</servlet-name>
+        <servlet-name>CitizenConsentServlet</servlet-name>
         <url-pattern>/CitizenConsent</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -294,7 +294,7 @@
     </error-page>
     <error-page>
         <error-code>500</error-code>
-		<!-- custom page for WAS, redirecting to internal handler if possible -->
+        <!-- custom page for WAS, redirecting to internal handler if possible -->
         <location>/internalErrorWAS.jsp</location>
     </error-page>
     <error-page>
@@ -4399,7 +4399,7 @@
         <extension>zmm</extension>
         <mime-type>application/vnd.handheld-entertainment+xml</mime-type>
     </mime-mapping>
-	<!-- for Clustering
-	<distributable/>
-	-->
+    <!-- for Clustering
+    <distributable/>
+    -->
 </web-app>

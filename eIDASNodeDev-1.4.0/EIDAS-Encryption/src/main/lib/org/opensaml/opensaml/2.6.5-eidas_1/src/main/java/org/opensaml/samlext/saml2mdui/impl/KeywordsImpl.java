@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,45 +30,60 @@ import org.opensaml.xml.util.DatatypeHelper;
  */
 public class KeywordsImpl extends AbstractSAMLObject implements Keywords {
 
-    /** The language. */
+    /**
+     * The language.
+     */
     private String lang;
-    /** The data. */
+    /**
+     * The data.
+     */
     private List<String> data;
+
     /**
      * Constructor.
      *
-     * @param namespaceURI the URI
+     * @param namespaceURI     the URI
      * @param elementLocalName the local name
-     * @param namespacePrefix the prefix
+     * @param namespacePrefix  the prefix
      */
     protected KeywordsImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-   
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getXMLLang() {
         return lang;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setXMLLang(String newLang) {
         boolean hasValue = newLang != null && !DatatypeHelper.isEmpty(newLang);
         lang = prepareForAssignment(lang, newLang);
         manageQualifiedAttributeNamespace(LangBearing.XML_LANG_ATTR_NAME, hasValue);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<String> getKeywords() {
         return data;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setKeywords(List<String> val) {
         data = prepareForAssignment(data, val);
     }
@@ -78,10 +93,10 @@ public class KeywordsImpl extends AbstractSAMLObject implements Keywords {
      */
     public int hashCode() {
         int hash = lang.hashCode();
-        for (String s: data) {
+        for (String s : data) {
             hash = hash * 31 + s.hashCode();
         }
-        return hash; 
+        return hash;
     }
 
 }

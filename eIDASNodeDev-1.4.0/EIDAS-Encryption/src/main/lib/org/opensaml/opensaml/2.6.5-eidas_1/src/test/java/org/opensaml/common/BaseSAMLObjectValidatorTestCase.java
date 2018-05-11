@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.common;
 
@@ -31,99 +31,109 @@ import org.opensaml.xml.validation.Validator;
  * that validate SAML objects.
  */
 public abstract class BaseSAMLObjectValidatorTestCase extends BaseTestCase {
-    
-    /** The primary XMLObject which will be the target of a given test run. */
+
+    /**
+     * The primary XMLObject which will be the target of a given test run.
+     */
     protected XMLObject target;
 
-    /** QName of the object to be tested. */
+    /**
+     * QName of the object to be tested.
+     */
     protected QName targetQName;
 
-    /** Validator for the type corresponding to the test target. */
+    /**
+     * Validator for the type corresponding to the test target.
+     */
     protected Validator validator;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
-        if (targetQName == null){
+
+        if (targetQName == null) {
             throw new Exception("targetQName was null");
         }
-        
-        if (validator == null){
+
+        if (validator == null) {
             throw new Exception("validator was null");
         }
-        
+
         target = buildXMLObject(targetQName);
         populateRequiredData();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-    
+
     /**
-     *  Subclasses should override to populate required elements and attributes.
+     * Subclasses should override to populate required elements and attributes.
      */
     protected void populateRequiredData() {
-        
+
     }
-    
+
     /**
-     * Asserts that the validation of default test XMLObject target 
+     * Asserts that the validation of default test XMLObject target
      * was successful, as expected.
-     * 
+     *
      * @param message failure message if the validation does not pass
      */
     protected void assertValidationPass(String message) {
         assertValidationPass(message, target);
     }
-    
+
     /**
-     * Asserts that the validation of the specified XMLObject target 
+     * Asserts that the validation of the specified XMLObject target
      * was successful, as expected.
-     * 
-     * @param message failure message if the validation does not pass
+     *
+     * @param message        failure message if the validation does not pass
      * @param validateTarget the XMLObject to validate
      */
     protected void assertValidationPass(String message, XMLObject validateTarget) {
-       try {
-           validator.validate(validateTarget);
-       } catch (ValidationException e) {
-           fail(message + " : Expected success, but validation failure raised ValidationException: " + e.getMessage());
-       }
+        try {
+            validator.validate(validateTarget);
+        } catch (ValidationException e) {
+            fail(message + " : Expected success, but validation failure raised ValidationException: " + e.getMessage());
+        }
     }
-    
+
     /**
-     * Asserts that the validation of the default test XMLObject target 
+     * Asserts that the validation of the default test XMLObject target
      * failed, as expected.
-     * 
+     *
      * @param message failure message if the validation does not fail
      */
     protected void assertValidationFail(String message) {
         assertValidationFail(message, target);
     }
-    
+
     /**
-     * Asserts that the validation of the specified XMLObject target 
+     * Asserts that the validation of the specified XMLObject target
      * failed, as expected.
-     * 
-     * @param message failure message if the validation does not fail
+     *
+     * @param message        failure message if the validation does not fail
      * @param validateTarget XMLObject to validate
      */
     protected void assertValidationFail(String message, XMLObject validateTarget) {
-       try {
-           validator.validate(validateTarget);
-           fail(message + " : Validation success, expected failure to raise ValidationException");
-       } catch (ValidationException e) {
-       }
+        try {
+            validator.validate(validateTarget);
+            fail(message + " : Validation success, expected failure to raise ValidationException");
+        } catch (ValidationException e) {
+        }
     }
-    
+
     /**
-     *  Tests the expected proper validation case.
+     * Tests the expected proper validation case.
      */
     public void testProperValidation() {
         assertValidationPass("SAML object was valid");
-    } 
+    }
 
 }

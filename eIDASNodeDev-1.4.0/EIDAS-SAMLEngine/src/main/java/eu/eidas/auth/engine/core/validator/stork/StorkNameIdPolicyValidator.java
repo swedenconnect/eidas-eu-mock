@@ -22,7 +22,7 @@ public class StorkNameIdPolicyValidator implements Validator<NameIDPolicy> {
 
 
         if (nameIDPolicy.getAllowCreate() != null && !nameIDPolicy.getAllowCreate()) {
-                throw new ValidationException("AllowCreate is invalid.");
+            throw new ValidationException("AllowCreate is invalid.");
         }
 
     }

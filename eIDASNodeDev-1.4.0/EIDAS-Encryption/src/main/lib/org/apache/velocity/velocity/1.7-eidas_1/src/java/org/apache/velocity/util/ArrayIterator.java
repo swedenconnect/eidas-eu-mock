@@ -16,7 +16,7 @@ package org.apache.velocity.util;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.Iterator;
@@ -25,25 +25,24 @@ import java.lang.reflect.Array;
 
 
 /**
- *  <p>
- *  An Iterator wrapper for an Object[]. This will
- *  allow us to deal with all array like structures
- *  in a consistent manner.
- *  </p>
- *  <p>
- *  WARNING : this class's operations are NOT synchronized.
- *  It is meant to be used in a single thread, newly created
- *  for each use in the #foreach() directive.
- *  If this is used or shared, synchronize in the
- *  next() method.
- *  </p>
+ * <p>
+ * An Iterator wrapper for an Object[]. This will
+ * allow us to deal with all array like structures
+ * in a consistent manner.
+ * </p>
+ * <p>
+ * WARNING : this class's operations are NOT synchronized.
+ * It is meant to be used in a single thread, newly created
+ * for each use in the #foreach() directive.
+ * If this is used or shared, synchronize in the
+ * next() method.
+ * </p>
  *
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
  * @version $Id: ArrayIterator.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ArrayIterator implements Iterator
-{
+public class ArrayIterator implements Iterator {
     /**
      * The objects to iterate.
      */
@@ -60,23 +59,21 @@ public class ArrayIterator implements Iterator
      *
      * @param array The array for which an iterator is desired.
      */
-    public ArrayIterator(Object array)
-    {
+    public ArrayIterator(Object array) {
         /*
          * if this isn't an array, then throw.  Note that this is
          * for internal use - so this should never happen - if it does
          *  we screwed up.
          */
 
-        if ( !array.getClass().isArray() )
-        {
+        if (!array.getClass().isArray()) {
             throw new IllegalArgumentException(
-                "Programmer error : internal ArrayIterator invoked w/o array");
+                    "Programmer error : internal ArrayIterator invoked w/o array");
         }
 
         this.array = array;
         pos = 0;
-        size = Array.getLength( this.array );
+        size = Array.getLength(this.array);
     }
 
     /**
@@ -84,17 +81,16 @@ public class ArrayIterator implements Iterator
      *
      * @return The next object in the array.
      */
-    public Object next()
-    {
-        if (pos < size )
-            return Array.get( array, pos++);
+    public Object next() {
+        if (pos < size)
+            return Array.get(array, pos++);
 
         /*
          *  we screwed up...
          */
 
         throw new NoSuchElementException("No more elements: " + pos +
-                                         " / " + size);
+                " / " + size);
     }
 
     /**
@@ -102,16 +98,14 @@ public class ArrayIterator implements Iterator
      *
      * @return Whether there is another element.
      */
-    public boolean hasNext()
-    {
-        return (pos < size );
+    public boolean hasNext() {
+        return (pos < size);
     }
 
     /**
      * No op--merely added to satify the <code>Iterator</code> interface.
      */
-    public void remove()
-    {
+    public void remove() {
         throw new UnsupportedOperationException();
     }
 }

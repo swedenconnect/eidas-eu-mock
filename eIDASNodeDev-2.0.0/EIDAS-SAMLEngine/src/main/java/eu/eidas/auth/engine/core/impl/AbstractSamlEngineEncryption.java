@@ -50,7 +50,7 @@ public abstract class AbstractSamlEngineEncryption implements ProtocolDecrypterI
                               @Nonnull SAMLAuthnResponseDecrypter samlAuthnResponseDecrypter,
                               @Nonnull ImmutableSet<String> encryptionAlgorithmWhiteList) {
             super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-                  decryptionKeyAndCertificates, samlAuthnResponseDecrypter, encryptionAlgorithmWhiteList);
+                    decryptionKeyAndCertificates, samlAuthnResponseDecrypter, encryptionAlgorithmWhiteList);
         }
 
         BaseProtocolDecrypter(boolean checkedValidityPeriod,
@@ -60,7 +60,7 @@ public abstract class AbstractSamlEngineEncryption implements ProtocolDecrypterI
                               @Nullable String jcaProviderName,
                               @Nullable String encryptionAlgorithmWhiteList) throws ProtocolEngineConfigurationException {
             super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-                  decryptionKeyAndCertificates, jcaProviderName, encryptionAlgorithmWhiteList);
+                    decryptionKeyAndCertificates, jcaProviderName, encryptionAlgorithmWhiteList);
         }
     }
 
@@ -73,7 +73,7 @@ public abstract class AbstractSamlEngineEncryption implements ProtocolDecrypterI
                               @Nonnull SAMLAuthnResponseEncrypter samlAuthnResponseEncrypter,
                               @Nonnull ImmutableSet<String> encryptionAlgorithmWhiteList) {
             super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-                  encryptionCertificates, samlAuthnResponseEncrypter, encryptionAlgorithmWhiteList);
+                    encryptionCertificates, samlAuthnResponseEncrypter, encryptionAlgorithmWhiteList);
         }
 
         BaseProtocolEncrypter(boolean checkedValidityPeriod,
@@ -85,8 +85,8 @@ public abstract class AbstractSamlEngineEncryption implements ProtocolDecrypterI
                               @Nullable String jcaProviderName,
                               @Nullable String encryptionAlgorithmWhiteList) throws ProtocolEngineConfigurationException {
             super(checkedValidityPeriod, disallowedSelfSignedCertificate, responseEncryptionMandatory,
-                  encryptionCertificates, dataEncryptionAlgorithm, keyEncryptionAlgorithm, jcaProviderName,
-                  encryptionAlgorithmWhiteList);
+                    encryptionCertificates, dataEncryptionAlgorithm, keyEncryptionAlgorithm, jcaProviderName,
+                    encryptionAlgorithmWhiteList);
         }
 
         @Nullable
@@ -109,12 +109,12 @@ public abstract class AbstractSamlEngineEncryption implements ProtocolDecrypterI
     protected AbstractSamlEngineEncryption(@Nonnull EncryptionConfiguration encryptionConfiguration)
             throws ProtocolEngineConfigurationException {
         this(encryptionConfiguration.isCheckedValidityPeriod(),
-             encryptionConfiguration.isDisallowedSelfSignedCertificate(),
-             encryptionConfiguration.isResponseEncryptionMandatory(),
-             encryptionConfiguration.getDecryptionKeyAndCertificates(),
-             encryptionConfiguration.getEncryptionCertificates(), encryptionConfiguration.getDataEncryptionAlgorithm(),
-             encryptionConfiguration.getKeyEncryptionAlgorithm(), encryptionConfiguration.getJcaProviderName(),
-             encryptionConfiguration.getEncryptionAlgorithmWhiteList());
+                encryptionConfiguration.isDisallowedSelfSignedCertificate(),
+                encryptionConfiguration.isResponseEncryptionMandatory(),
+                encryptionConfiguration.getDecryptionKeyAndCertificates(),
+                encryptionConfiguration.getEncryptionCertificates(), encryptionConfiguration.getDataEncryptionAlgorithm(),
+                encryptionConfiguration.getKeyEncryptionAlgorithm(), encryptionConfiguration.getJcaProviderName(),
+                encryptionConfiguration.getEncryptionAlgorithmWhiteList());
     }
 
     protected AbstractSamlEngineEncryption(boolean checkedValidityPeriod,
@@ -126,12 +126,12 @@ public abstract class AbstractSamlEngineEncryption implements ProtocolDecrypterI
                                            @Nonnull SAMLAuthnResponseDecrypter samlAuthnResponseDecrypter,
                                            @Nonnull ImmutableSet<String> encryptionAlgorithmWhiteList) {
         decrypter = new BaseProtocolDecrypter(checkedValidityPeriod, disallowedSelfSignedCertificate,
-                                              responseEncryptionMandatory, decryptionKeyAndCertificates,
-                                              samlAuthnResponseDecrypter, encryptionAlgorithmWhiteList);
+                responseEncryptionMandatory, decryptionKeyAndCertificates,
+                samlAuthnResponseDecrypter, encryptionAlgorithmWhiteList);
 
         encrypter = new BaseProtocolEncrypter(checkedValidityPeriod, disallowedSelfSignedCertificate,
-                                              responseEncryptionMandatory, encryptionCertificates,
-                                              samlAuthnResponseEncrypter, encryptionAlgorithmWhiteList);
+                responseEncryptionMandatory, encryptionCertificates,
+                samlAuthnResponseEncrypter, encryptionAlgorithmWhiteList);
     }
 
     protected AbstractSamlEngineEncryption(boolean checkedValidityPeriod,
@@ -145,13 +145,13 @@ public abstract class AbstractSamlEngineEncryption implements ProtocolDecrypterI
                                            @Nullable String encryptionAlgorithmWhiteList)
             throws ProtocolEngineConfigurationException {
         decrypter = new BaseProtocolDecrypter(checkedValidityPeriod, disallowedSelfSignedCertificate,
-                                              responseEncryptionMandatory, decryptionKeyAndCertificates,
-                                              jcaProviderName, encryptionAlgorithmWhiteList);
+                responseEncryptionMandatory, decryptionKeyAndCertificates,
+                jcaProviderName, encryptionAlgorithmWhiteList);
 
         encrypter = new BaseProtocolEncrypter(checkedValidityPeriod, disallowedSelfSignedCertificate,
-                                              responseEncryptionMandatory, encryptionCertificates,
-                                              dataEncryptionAlgorithm, keyEncryptionAlgorithm, jcaProviderName,
-                                              encryptionAlgorithmWhiteList);
+                responseEncryptionMandatory, encryptionCertificates,
+                dataEncryptionAlgorithm, keyEncryptionAlgorithm, jcaProviderName,
+                encryptionAlgorithmWhiteList);
     }
 
     @Override

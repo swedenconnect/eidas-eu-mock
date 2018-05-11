@@ -38,8 +38,8 @@ public class QAAAttributeMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final QAAAttribute qaaAttribute = (QAAAttribute) samlObject;
-	XMLHelper.appendTextContent(domElement, qaaAttribute.getQaaLevel());
+                                                final Element domElement) throws MarshallingException {
+        final QAAAttribute qaaAttribute = (QAAAttribute) samlObject;
+        XMLHelper.appendTextContent(domElement, qaaAttribute.getQaaLevel());
     }
 }

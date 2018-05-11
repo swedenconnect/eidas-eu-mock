@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,7 +29,9 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AuthenticatingAuthoritySchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthenticatingAuthoritySchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20_NS, AuthenticatingAuthority.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX);
@@ -44,7 +46,7 @@ public class AuthenticatingAuthoritySchemaTest extends BaseSAMLObjectValidatorTe
 
     /**
      * Tests absent URI failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testURIFailure() throws ValidationException {
@@ -55,7 +57,7 @@ public class AuthenticatingAuthoritySchemaTest extends BaseSAMLObjectValidatorTe
 
         authenticatingAuthority.setURI("");
         assertValidationFail("URI was empty string, should raise a Validation Exception");
-        
+
         authenticatingAuthority.setURI("    ");
         assertValidationFail("URI was white space, should raise a Validation Exception");
     }

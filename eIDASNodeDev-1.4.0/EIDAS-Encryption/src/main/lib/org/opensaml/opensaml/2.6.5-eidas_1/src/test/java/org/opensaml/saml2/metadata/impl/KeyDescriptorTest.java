@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,10 +32,14 @@ import org.opensaml.xml.signature.KeyInfo;
  */
 public class KeyDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Name attribute value. */
+    /**
+     * Expected Name attribute value.
+     */
     protected UsageType expectedUse;
-    
-    /** Expected number of EncrptionMethod children. */
+
+    /**
+     * Expected number of EncrptionMethod children.
+     */
     protected int expectedNumEncMethods;
 
     /**
@@ -43,12 +47,14 @@ public class KeyDescriptorTest extends BaseSAMLObjectProviderTestCase {
      */
     public KeyDescriptorTest() {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/KeyDescriptor.xml";
-        singleElementOptionalAttributesFile = 
+        singleElementOptionalAttributesFile =
                 "/data/org/opensaml/saml2/metadata/impl/KeyDescriptorOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/metadata/impl/KeyDescriptorChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -56,24 +62,30 @@ public class KeyDescriptorTest extends BaseSAMLObjectProviderTestCase {
         expectedNumEncMethods = 2;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         KeyDescriptor keyDescriptor = (KeyDescriptor) unmarshallElement(singleElementFile);
-        
+
         assertNotNull("KeyDescriptor", keyDescriptor);
         assertEquals("Unexpected use attribute value", UsageType.UNSPECIFIED, keyDescriptor.getUse());
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         KeyDescriptor keyDescriptor = (KeyDescriptor) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertNotNull("KeyDescriptor", keyDescriptor);
         assertEquals("Use attribute", expectedUse, keyDescriptor.getUse());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         KeyDescriptor keyDescriptor = (KeyDescriptor) unmarshallElement(childElementsFile);
 
@@ -81,20 +93,24 @@ public class KeyDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertNotNull("KeyInfo Child element", keyDescriptor.getKeyInfo());
         assertEquals("# of EncryptionMethod child elements", expectedNumEncMethods,
                 keyDescriptor.getEncryptionMethods().size());
-   }
+    }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
-        QName qname = new QName(SAMLConstants.SAML20MD_NS, KeyDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, 
+        QName qname = new QName(SAMLConstants.SAML20MD_NS, KeyDescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
         KeyDescriptor keyDescriptor = (KeyDescriptor) buildXMLObject(qname);
 
         assertEquals(expectedDOM, keyDescriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
-        QName qname = new QName(SAMLConstants.SAML20MD_NS, KeyDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, 
+        QName qname = new QName(SAMLConstants.SAML20MD_NS, KeyDescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
         KeyDescriptor keyDescriptor = (KeyDescriptor) buildXMLObject(qname);
 
@@ -103,17 +119,19 @@ public class KeyDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, keyDescriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
-        QName qname = new QName(SAMLConstants.SAML20MD_NS, KeyDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, 
+        QName qname = new QName(SAMLConstants.SAML20MD_NS, KeyDescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
         KeyDescriptor keyDescriptor = (KeyDescriptor) buildXMLObject(qname);
-        
+
         keyDescriptor.setKeyInfo((KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME));
         keyDescriptor.getEncryptionMethods()
-            .add((EncryptionMethod) buildXMLObject(EncryptionMethod.DEFAULT_ELEMENT_NAME));
+                .add((EncryptionMethod) buildXMLObject(EncryptionMethod.DEFAULT_ELEMENT_NAME));
         keyDescriptor.getEncryptionMethods()
-            .add((EncryptionMethod) buildXMLObject(EncryptionMethod.DEFAULT_ELEMENT_NAME));
+                .add((EncryptionMethod) buildXMLObject(EncryptionMethod.DEFAULT_ELEMENT_NAME));
 
         assertEquals(expectedChildElementsDOM, keyDescriptor);
     }

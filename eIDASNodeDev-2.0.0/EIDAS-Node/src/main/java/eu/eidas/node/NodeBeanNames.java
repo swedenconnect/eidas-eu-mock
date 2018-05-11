@@ -64,9 +64,10 @@ public enum NodeBeanNames {
 
     /**
      * Constructor
+     *
      * @param name name of the bean
      */
-    NodeBeanNames(@Nonnull final String name){
+    NodeBeanNames(@Nonnull final String name) {
         this.name = name;
     }
 

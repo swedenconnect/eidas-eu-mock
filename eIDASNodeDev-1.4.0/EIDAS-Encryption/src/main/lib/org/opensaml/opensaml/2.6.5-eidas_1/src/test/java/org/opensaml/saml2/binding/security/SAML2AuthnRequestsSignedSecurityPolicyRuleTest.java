@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,104 +32,112 @@ import org.w3c.dom.Document;
 /**
  * Test SAML 2 AuthnRequetsSigned rule.
  */
-public class SAML2AuthnRequestsSignedSecurityPolicyRuleTest 
-    extends BaseSAMLSecurityPolicyRuleTestCase<AuthnRequest, Response, NameID> {
- 
-    /** Issuer for signing required case. */
+public class SAML2AuthnRequestsSignedSecurityPolicyRuleTest
+        extends BaseSAMLSecurityPolicyRuleTestCase<AuthnRequest, Response, NameID> {
+
+    /**
+     * Issuer for signing required case.
+     */
     private final String issuerSigningRequired = "urn:test:issuer:required";
-    
-    /** Issuer for signing not required case. */
+
+    /**
+     * Issuer for signing not required case.
+     */
     private final String issuerSigningNotRequired = "urn:test:issuer:notrequired";
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         String mdfile = "/data/org/opensaml/saml2/binding/Metadata-AuthnRequestsSigned.xml";
         Document mdDoc = parser.parse(SAML2AuthnRequestsSignedSecurityPolicyRuleTest.class.getResourceAsStream(mdfile));
         DOMMetadataProvider metadataProvider = new DOMMetadataProvider(mdDoc.getDocumentElement());
         metadataProvider.initialize();
-        
+
         messageContext.setMetadataProvider(metadataProvider);
-        
+
         rule = new SAML2AuthnRequestsSignedRule();
     }
-    
+
     /**
      * Test message not signed, signing not required.
      */
     public void testNotSignedAndNotRequired() {
-        AuthnRequest authnRequest = 
-            (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
+        AuthnRequest authnRequest =
+                (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
         messageContext.setInboundSAMLMessage(authnRequest);
         messageContext.setInboundMessageIssuer(issuerSigningNotRequired);
-        
+
         assertRuleSuccess("Protocol message was not signed and was not required to be signed");
     }
-    
-    
+
+
     /**
      * Test message not signed, signing required.
      */
     public void testNotSignedAndRequired() {
-        AuthnRequest authnRequest = 
-            (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
+        AuthnRequest authnRequest =
+                (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
         messageContext.setInboundSAMLMessage(authnRequest);
         messageContext.setInboundMessageIssuer(issuerSigningRequired);
-        
+
         assertRuleFailure("Protocol message signature was not signed but was required to be signed");
     }
-    
+
     /**
      * Test message XML signed, signing not required.
      */
     public void testSignedAndNotRequired() {
-        AuthnRequest authnRequest = 
-            (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest-Signed.xml");
+        AuthnRequest authnRequest =
+                (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest-Signed.xml");
         messageContext.setInboundSAMLMessage(authnRequest);
         messageContext.setInboundMessageIssuer(issuerSigningNotRequired);
-        
+
         assertRuleSuccess("Protocol message was signed and was not required to be signed");
     }
- 
+
     /**
      * Test message XML signed, signing required.
      */
     public void testSignedAndRequired() {
-        AuthnRequest authnRequest = 
-            (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest-Signed.xml");
+        AuthnRequest authnRequest =
+                (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest-Signed.xml");
         messageContext.setInboundSAMLMessage(authnRequest);
         messageContext.setInboundMessageIssuer(issuerSigningRequired);
-        
+
         assertRuleSuccess("Protocol message signature was signed but was required to be signed");
     }
-    
+
     /**
      * Test message simple signed, signing not required.
      */
     public void testSimpleSignedAndRequired() {
-        AuthnRequest authnRequest = 
-            (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
+        AuthnRequest authnRequest =
+                (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
         messageContext.setInboundSAMLMessage(authnRequest);
         messageContext.setInboundMessageIssuer(issuerSigningRequired);
-        
+
         HttpServletRequestAdapter inTransport = (HttpServletRequestAdapter) messageContext.getInboundMessageTransport();
-        MockHttpServletRequest request  = (MockHttpServletRequest) inTransport.getWrappedRequest();
+        MockHttpServletRequest request = (MockHttpServletRequest) inTransport.getWrappedRequest();
         request.setParameter("Signature", "some-signature-value");
-        
+
         assertRuleSuccess("Protocol message was simple signed and was required to be signed");
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected InTransport buildInTransport() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         HTTPInTransport inTransport = new HttpServletRequestAdapter(request);
-        
+
         request.setMethod("POST");
-        
-        return inTransport; 
+
+        return inTransport;
     }
-    
+
 }
 
 

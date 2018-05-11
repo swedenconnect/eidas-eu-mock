@@ -34,11 +34,15 @@
                         <token:token/>
                     </form>
                     <noscript>
-                        <form id="redirectFormNoJs" name="redirectFormNoJs" method="post" action="${e:forHtml(serviceUrl)}">
-                            <input type="hidden" id="consentValue_SAMLRequest" name="SAMLRequest" value="${e:forHtml(SAMLRequest)}"/>
-                            <input type="hidden" id="consentValue_relayState" name="RelayState" value="${e:forHtml(RelayState)}"/>
+                        <form id="redirectFormNoJs" name="redirectFormNoJs" method="post"
+                              action="${e:forHtml(serviceUrl)}">
+                            <input type="hidden" id="consentValue_SAMLRequest" name="SAMLRequest"
+                                   value="${e:forHtml(SAMLRequest)}"/>
+                            <input type="hidden" id="consentValue_relayState" name="RelayState"
+                                   value="${e:forHtml(RelayState)}"/>
                             <p class="box-btn">
-                                <input type="submit" id="ConsentValue_button" class="btn btn-next" value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="ConsentValue_button" class="btn btn-next"
+                                       value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
                             </p>
                         </form>
                     </noscript>

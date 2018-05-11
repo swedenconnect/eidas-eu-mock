@@ -29,7 +29,7 @@ public class SigningMethodUnmarshaller extends AbstractSAMLObjectUnmarshaller {
 
 
     protected void processAttribute(XMLObject samlObject, Attr attribute) throws UnmarshallingException {
-        if("Algorithm".equalsIgnoreCase(attribute.getName())) {
+        if ("Algorithm".equalsIgnoreCase(attribute.getName())) {
             final SigningMethod method = (SigningMethod) samlObject;
             method.setAlgorithm(attribute.getValue());
         }

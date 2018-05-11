@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -24,25 +24,39 @@ import org.w3c.dom.Document;
  */
 public abstract class BaseSAMLObjectProviderTestCase extends BaseTestCase {
 
-    /** Location of file containing a single element with NO optional attributes. */
+    /**
+     * Location of file containing a single element with NO optional attributes.
+     */
     protected String singleElementFile;
 
-    /** Location of file containing a single element with all optional attributes. */
+    /**
+     * Location of file containing a single element with all optional attributes.
+     */
     protected String singleElementOptionalAttributesFile;
 
-    /** Location of file containing a single element with child elements. */
+    /**
+     * Location of file containing a single element with child elements.
+     */
     protected String childElementsFile;
 
-    /** The expected result of a marshalled single element with no optional attributes. */
+    /**
+     * The expected result of a marshalled single element with no optional attributes.
+     */
     protected Document expectedDOM;
 
-    /** The expected result of a marshalled single element with all optional attributes. */
+    /**
+     * The expected result of a marshalled single element with all optional attributes.
+     */
     protected Document expectedOptionalAttributesDOM;
 
-    /** The expected result of a marshalled single element with child elements. */
+    /**
+     * The expected result of a marshalled single element with child elements.
+     */
     protected Document expectedChildElementsDOM;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +76,9 @@ public abstract class BaseSAMLObjectProviderTestCase extends BaseTestCase {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void tearDown() throws Exception {
         super.tearDown();
     }

@@ -16,4 +16,5 @@
     LOGGER.info("Build version: {}", buildVersion.toString());
 %>
 
-<div hidden="true">Build version: <%= buildVersion.toString()%></div>
+<div hidden="true">Build version: <%= buildVersion.toString()%>
+</div>

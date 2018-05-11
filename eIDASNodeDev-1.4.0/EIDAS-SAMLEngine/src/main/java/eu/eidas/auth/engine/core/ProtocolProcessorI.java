@@ -61,7 +61,7 @@ public interface ProtocolProcessorI {
      *
      * @param immutableAttributeMap the attribute map.
      */
-    boolean checkRepresentativeAttributes(@Nullable ImmutableAttributeMap  immutableAttributeMap);
+    boolean checkRepresentativeAttributes(@Nullable ImmutableAttributeMap immutableAttributeMap);
 
     /**
      * Ensures that the generated request is complete and is not missing information required by this protocol.
@@ -125,7 +125,7 @@ public interface ProtocolProcessorI {
     /**
      * Computes SAML binding from http binding
      *
-     * @param request the current request
+     * @param request       the current request
      * @param defaultValues the core properties
      * @return the SAML protocol binding if any, otherwise {@code null}.
      */
@@ -170,7 +170,7 @@ public interface ProtocolProcessorI {
      * <p>
      * This method can return {@code null} when it is not supported.
      *
-     * @param issuer the target service issuer (metadata URL)
+     * @param issuer     the target service issuer (metadata URL)
      * @param bindingUri the kind of SAML binding
      * @return the service URL
      * @throws EIDASSAMLEngineException
@@ -183,7 +183,7 @@ public interface ProtocolProcessorI {
      * Verifies if the incoming request (received by the Proxy Service) is valid and conform.
      *
      * @param authnRequest the incoming request
-     * @param httpMethod the current HTTP method (verb) or {@code null} if the HTTP binding is not relevant
+     * @param httpMethod   the current HTTP method (verb) or {@code null} if the HTTP binding is not relevant
      * @return {@code true} if the given request is valid and can be processed, returns {@code false} otherwise.
      * @throws EIDASSAMLEngineException
      */
@@ -193,14 +193,13 @@ public interface ProtocolProcessorI {
 
     /**
      * TODO to be removed
-     *
+     * <p>
      * Converts the given kind of {@link IAuthenticationResponse} into the appropriate SAML error response.
      * <p>
      * The returned SAML response is not encrypted and is not signed, encryption and signature are handled by the {@link
      * eu.eidas.auth.engine.ProtocolEngineI} itself.
      *
      * @since 1.1
-     *
      * @deprecated since 1.4
      * Use {@link ProtocolProcessorI#marshallErrorResponse(IAuthenticationRequest, IAuthenticationResponse, String, SamlEngineCoreProperties, DateTime)}
      */
@@ -220,7 +219,6 @@ public interface ProtocolProcessorI {
      * eu.eidas.auth.engine.ProtocolEngineI} itself.
      *
      * @since 1.4
-     *
      */
     @Nonnull
     Response marshallErrorResponse(@Nonnull IAuthenticationRequest request,
@@ -253,14 +251,13 @@ public interface ProtocolProcessorI {
 
     /**
      * TODO to be removed
-     *
+     * <p>
      * Converts the given kind of {@link IAuthenticationRequest} into the appropriate SAML request.
      * <p>
      * The returned SAML request is not encrypted and is not signed, encryption and signature are handled by the {@link
      * eu.eidas.auth.engine.ProtocolEngineI} itself.
      *
      * @since 1.1
-     *
      * @deprecated since 1.4
      * Use {@link ProtocolProcessorI#marshallRequest(IAuthenticationRequest, String, SamlEngineCoreProperties, DateTime)}
      */
@@ -286,14 +283,13 @@ public interface ProtocolProcessorI {
 
     /**
      * TODO to be removed
-     *
+     * <p>
      * Converts the given kind of {@link IAuthenticationResponse} into the appropriate SAML response.
      * <p>
      * The returned SAML response is not encrypted and is not signed, encryption and signature are handled by the {@link
      * eu.eidas.auth.engine.ProtocolEngineI} itself.
      *
      * @since 1.1
-     *
      * @deprecated since 1.4
      * Use {@link ProtocolProcessorI#marshallResponse(IAuthenticationRequest, IAuthenticationResponse, String, SamlEngineCoreProperties, DateTime)}
      */
@@ -303,7 +299,7 @@ public interface ProtocolProcessorI {
                               @Nonnull IAuthenticationResponse response,
                               @Nonnull String ipAddress,
                               @Nonnull SamlEngineCoreProperties samlCoreProperties) throws EIDASSAMLEngineException;
-    
+
     /**
      * Converts the given kind of {@link IAuthenticationResponse} into the appropriate SAML response.
      * <p>
@@ -318,7 +314,6 @@ public interface ProtocolProcessorI {
                               @Nonnull String ipAddress,
                               @Nonnull SamlEngineCoreProperties samlCoreProperties,
                               @Nonnull final DateTime currentTime) throws EIDASSAMLEngineException;
-
 
 
     /**
@@ -356,7 +351,7 @@ public interface ProtocolProcessorI {
     /**
      * Updates the given request with the attributes the user consents to send.
      *
-     * @param request the current request
+     * @param request             the current request
      * @param consentedAttributes the attributes the user consents to send.
      * @return the updated request which takes into account the user's consent
      */

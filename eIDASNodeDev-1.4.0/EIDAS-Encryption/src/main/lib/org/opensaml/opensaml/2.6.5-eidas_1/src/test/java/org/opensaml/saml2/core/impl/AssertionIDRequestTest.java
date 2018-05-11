@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -30,83 +30,96 @@ import org.opensaml.saml2.core.AssertionIDRequest;
  *
  */
 public class AssertionIDRequestTest extends RequestTestBase {
-    
+
     private int expectedNumAssertionIDRefs;
 
     /**
      * Constructor
-     *
      */
     public AssertionIDRequestTest() {
         super();
-        
+
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AssertionIDRequest.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/AssertionIDRequestOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AssertionIDRequestChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedNumAssertionIDRefs = 3;
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, AssertionIDRequest.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         AssertionIDRequest req = (AssertionIDRequest) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(req);
-        
+
         assertEquals(expectedDOM, req);
     }
-    
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, AssertionIDRequest.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         AssertionIDRequest req = (AssertionIDRequest) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(req);
         super.populateOptionalAttributes(req);
-        
+
         assertEquals(expectedOptionalAttributesDOM, req);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         AssertionIDRequestBuilder builder = (AssertionIDRequestBuilder) builderFactory.getBuilder(AssertionIDRequest.DEFAULT_ELEMENT_NAME);
         AssertionIDRequest req = builder.buildObject();
-        
+
         super.populateChildElements(req);
-        
+
         QName assertionIDRefQName = new QName(SAMLConstants.SAML20_NS, AssertionIDRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
-        for (int i = 0; i< expectedNumAssertionIDRefs; i++)
+        for (int i = 0; i < expectedNumAssertionIDRefs; i++)
             req.getAssertionIDRefs().add((AssertionIDRef) buildXMLObject(assertionIDRefQName));
-        
+
         assertEquals(expectedChildElementsDOM, req);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AssertionIDRequest req = (AssertionIDRequest) unmarshallElement(singleElementFile);
-        
+
         super.helperTestSingleElementUnmarshall(req);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AssertionIDRequest req = (AssertionIDRequest) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         super.helperTestSingleElementOptionalAttributesUnmarshall(req);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AssertionIDRequest req = (AssertionIDRequest) unmarshallElement(childElementsFile);
-        
+
         super.helperTestChildElementsUnmarshall(req);
         assertEquals("AssertionIDRef count", expectedNumAssertionIDRefs, req.getAssertionIDRefs().size());
     }

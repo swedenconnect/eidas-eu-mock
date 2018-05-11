@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -37,8 +37,7 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: VelocimacroTestCase.java 832247 2009-11-03 01:29:30Z wglass $
  */
-public class VelocimacroTestCase extends TestCase
-{
+public class VelocimacroTestCase extends TestCase {
     private String template1 = "#macro(foo $a)$a#end #macro(bar $b)#foo($b)#end #foreach($i in [1..3])#if($i == 3)#foo($i)#else#bar($i)#end#end";
     private String result1 = "  123";
     private String template2 = "#macro(bar $a)#set($a = $a + 1)$a#bar($a)#end#bar(0)";
@@ -46,36 +45,32 @@ public class VelocimacroTestCase extends TestCase
     private String template4 = "#macro(bad $a)#set($a = $a + 1)$a#inside($a)#end#macro(inside $b)#loop($b)#end#macro(loop $c)#bad($c)#end#bad(0)";
 
     VelocityEngine engine = new VelocityEngine();
-    
-    public VelocimacroTestCase(String name)
-    {
+
+    public VelocimacroTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         /*
          *  setup local scope for templates
          */
-        engine.setProperty( RuntimeConstants.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
-        engine.setProperty( RuntimeConstants.VM_MAX_DEPTH, new Integer(5));
+        engine.setProperty(RuntimeConstants.VM_PERM_INLINE_LOCAL, Boolean.TRUE);
+        engine.setProperty(RuntimeConstants.VM_MAX_DEPTH, new Integer(5));
         engine.setProperty(
                 RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
         engine.init();
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(VelocimacroTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testVelociMacro ()
-            throws Exception
-    {
+    public void testVelociMacro()
+            throws Exception {
         VelocityContext context = new VelocityContext();
 
         StringWriter writer = new StringWriter();
@@ -83,8 +78,7 @@ public class VelocimacroTestCase extends TestCase
 
         String out = writer.toString();
 
-        if( !result1.equals( out ) )
-        {
+        if (!result1.equals(out)) {
             fail("output incorrect.");
         }
     }
@@ -93,45 +87,35 @@ public class VelocimacroTestCase extends TestCase
      * Test case for evaluating max calling depths of macros
      */
     public void testVelociMacroCallMax()
-            throws Exception
-    {
+            throws Exception {
         VelocityContext context = new VelocityContext();
         StringWriter writer = new StringWriter();
 
-        try
-        {
+        try {
             engine.evaluate(context, writer, "vm_chain2", template2);
             fail("Did not exceed max macro call depth as expected");
-        }
-        catch (MacroOverflowException e)
-        {
-            assertEquals("Max calling depth of 5 was exceeded in macro 'bar'"+
+        } catch (MacroOverflowException e) {
+            assertEquals("Max calling depth of 5 was exceeded in macro 'bar'" +
                             " with Call Stack:bar->bar->bar->bar->bar at vm_chain2[line 1, column 15]",
-                         e.getMessage());
+                    e.getMessage());
         }
 
-        try
-        {
+        try {
             engine.evaluate(context, writer, "vm_chain3", template3);
             fail("Did not exceed max macro call depth as expected");
-        }
-        catch (MacroOverflowException e)
-        {
-            assertEquals("Max calling depth of 5 was exceeded in macro 'inner'"+
+        } catch (MacroOverflowException e) {
+            assertEquals("Max calling depth of 5 was exceeded in macro 'inner'" +
                             " with Call Stack:baz->inner->baz->inner->baz at vm_chain3[line 1, column 64]",
-                         e.getMessage());
+                    e.getMessage());
         }
 
-        try
-        {
+        try {
             engine.evaluate(context, writer, "vm_chain4", template4);
             fail("Did not exceed max macro call depth as expected");
-        }
-        catch (MacroOverflowException e)
-        {
-            assertEquals("Max calling depth of 5 was exceeded in macro 'loop'"+
+        } catch (MacroOverflowException e) {
+            assertEquals("Max calling depth of 5 was exceeded in macro 'loop'" +
                             " with Call Stack:bad->inside->loop->bad->inside at vm_chain4[line 1, column 94]",
-                         e.getMessage());
+                    e.getMessage());
         }
     }
 }

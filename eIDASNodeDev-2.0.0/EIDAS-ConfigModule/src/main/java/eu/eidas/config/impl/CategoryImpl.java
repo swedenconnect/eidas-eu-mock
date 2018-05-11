@@ -22,15 +22,16 @@ import eu.eidas.config.node.EIDASNodeParameterCategory;
  *
  */
 public class CategoryImpl extends EIDASNodeParameterCategory {
-    @XmlAttribute(required = true, namespace="")
+    @XmlAttribute(required = true, namespace = "")
     public String getLabel() {
         return super.getLabel();
     }
+
     public void setLabel(String label) {
         super.setLabel(label);
     }
 
-    @XmlAttribute(required = true, namespace="")
+    @XmlAttribute(required = true, namespace = "")
     public String getName() {
         return super.getName();
     }

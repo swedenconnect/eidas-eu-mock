@@ -131,7 +131,7 @@ public class ColleagueRequestServlet extends AbstractNodeServlet {
         String redirectUrl = authData.getAssertionConsumerServiceURL();
         LOG.debug("RedirectUrl: " + redirectUrl);
         LOG.debug("sessionId is on cookies () or fromURL ", httpServletRequest.isRequestedSessionIdFromCookie(),
-                  httpServletRequest.isRequestedSessionIdFromURL());
+                httpServletRequest.isRequestedSessionIdFromURL());
 
         httpServletRequest.setAttribute(EidasParameterKeys.SP_ID.toString(), authData.getProviderName());
 
@@ -170,10 +170,10 @@ public class ColleagueRequestServlet extends AbstractNodeServlet {
 
     private String getRedirectUrl() {
         final boolean isSpecificProxyServiceJar = (Boolean) getApplicationContext().getBean(NodeBeanNames.SPECIFIC_PROXYSERVICE_DEPLOYED_JAR.toString());
-        if (isSpecificProxyServiceJar){
+        if (isSpecificProxyServiceJar) {
             return NodeSpecificViewNames.IDP_REQUEST.toString();
         } else {
-            return  PropertiesUtil.getProperty(EidasParameterKeys.SPECIFIC_PROXYSERVICE_REQUEST_RECEIVER.toString());
+            return PropertiesUtil.getProperty(EidasParameterKeys.SPECIFIC_PROXYSERVICE_REQUEST_RECEIVER.toString());
         }
     }
 

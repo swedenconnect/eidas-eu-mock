@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,35 +22,47 @@ package org.opensaml.saml2.core;
  */
 public final class AuthnContextComparisonTypeEnumeration {
 
-    /** "exact" comparison type. */
-    public static final AuthnContextComparisonTypeEnumeration EXACT = 
-        new AuthnContextComparisonTypeEnumeration("exact");
+    /**
+     * "exact" comparison type.
+     */
+    public static final AuthnContextComparisonTypeEnumeration EXACT =
+            new AuthnContextComparisonTypeEnumeration("exact");
 
-    /** "minimum" comparison type. */
-    public static final AuthnContextComparisonTypeEnumeration MINIMUM = 
-        new AuthnContextComparisonTypeEnumeration("minimum");
+    /**
+     * "minimum" comparison type.
+     */
+    public static final AuthnContextComparisonTypeEnumeration MINIMUM =
+            new AuthnContextComparisonTypeEnumeration("minimum");
 
-    /** "maximum" comparison type. */
-    public static final AuthnContextComparisonTypeEnumeration MAXIMUM = 
-        new AuthnContextComparisonTypeEnumeration("maximum");
+    /**
+     * "maximum" comparison type.
+     */
+    public static final AuthnContextComparisonTypeEnumeration MAXIMUM =
+            new AuthnContextComparisonTypeEnumeration("maximum");
 
-    /** "better" comparison type. */
-    public static final AuthnContextComparisonTypeEnumeration BETTER = 
-        new AuthnContextComparisonTypeEnumeration("better");
+    /**
+     * "better" comparison type.
+     */
+    public static final AuthnContextComparisonTypeEnumeration BETTER =
+            new AuthnContextComparisonTypeEnumeration("better");
 
-    /** The comparison type string. */
+    /**
+     * The comparison type string.
+     */
     private String comparisonType;
 
     /**
      * Constructor.
-     * 
+     *
      * @param newComparisonType the comparison type string
      */
     protected AuthnContextComparisonTypeEnumeration(String newComparisonType) {
-        this.comparisonType= newComparisonType;
+        this.comparisonType = newComparisonType;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String toString() {
         return comparisonType;
     }

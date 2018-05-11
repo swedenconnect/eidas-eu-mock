@@ -31,12 +31,12 @@ public class SPCountryUnmarshaller extends AbstractSAMLObjectUnmarshaller {
     /**
      * Process element content.
      *
-     * @param samlObject the SAML object
+     * @param samlObject     the SAML object
      * @param elementContent the element content
      */
     protected final void processElementContent(final XMLObject samlObject,
-	    final String elementContent) {
-	final SPCountry spCountry = (SPCountry) samlObject;
-	spCountry.setSPCountry(elementContent);
+                                               final String elementContent) {
+        final SPCountry spCountry = (SPCountry) samlObject;
+        spCountry.setSPCountry(elementContent);
     }
 }

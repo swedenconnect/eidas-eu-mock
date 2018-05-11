@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.validator;
@@ -30,19 +30,22 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AuthorizationDecisionStatementSchemaValidator extends SubjectStatementSchemaValidator<AuthorizationDecisionStatement> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AuthorizationDecisionStatement authorizationDecisionStatement) throws ValidationException {
         super.validate(authorizationDecisionStatement);
-        
+
         validateResource(authorizationDecisionStatement);
-        
+
         validateDecision(authorizationDecisionStatement);
-        
+
         validateActions(authorizationDecisionStatement);
     }
-    
+
     /**
      * Check that the resource attribute is present and valid
+     *
      * @param statement the AuthorizationDecisionStatement under question
      * @throws ValidationException
      */
@@ -50,10 +53,11 @@ public class AuthorizationDecisionStatementSchemaValidator extends SubjectStatem
         if (DatatypeHelper.isEmpty(statement.getResource())) {
             throw new ValidationException("Resource attribute not present or invalid");
         }
-     }
-    
+    }
+
     /**
      * Check that the Decision element is present
+     *
      * @param statement the AuthorizationDecisionStatement under question
      * @throws ValidationException
      */
@@ -65,6 +69,7 @@ public class AuthorizationDecisionStatementSchemaValidator extends SubjectStatem
 
     /**
      * Check that there is at least one Action element
+     *
      * @param statement the AuthorizationDecisionStatement under question
      * @throws ValidationException
      */

@@ -229,8 +229,8 @@ public final class SingletonAccessors {
         Preconditions.checkNotNull(fileName, "fileName");
         Preconditions.checkNotNull(propertiesConverter, "propertiesConverter");
         return newFileAccessor(fileName, defaultPath, new PropertiesBasedFileMarshaller<T>(propertiesConverter),
-                               new PropertiesBasedStreamMarshaller<T>(PropertiesFormat.getFormat(fileName),
-                                                                      propertiesConverter));
+                new PropertiesBasedStreamMarshaller<T>(PropertiesFormat.getFormat(fileName),
+                        propertiesConverter));
     }
 
     private SingletonAccessors() {

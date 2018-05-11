@@ -32,6 +32,7 @@ import java.io.IOException;
 
 /**
  * Single test cases for HASH256 output log.
+ *
  * @author vanegdi
  */
 public class SHA256OutputStreamTest {
@@ -45,7 +46,7 @@ public class SHA256OutputStreamTest {
         hashAndCounterGenerator.write(EidasStringUtil.getBytes("TestA\n"));
         hashAndCounterGenerator.flush();
         String result = EidasStringUtil.toString(byteArrayOutputStream.toByteArray());
-        Assert.assertEquals("TestA #1# [kQYTvzcedONYovA2OkEpDihUOl1PyapPioklXt04RgE=]\n",result);
+        Assert.assertEquals("TestA #1# [kQYTvzcedONYovA2OkEpDihUOl1PyapPioklXt04RgE=]\n", result);
     }
 
     /**
@@ -58,7 +59,7 @@ public class SHA256OutputStreamTest {
         hashAndCounterGenerator.write(EidasStringUtil.getBytes("TestA\n"));
         hashAndCounterGenerator.flush();
         String result = EidasStringUtil.toString(byteArrayOutputStream.toByteArray());
-        Assert.assertEquals("TestA [qsKaWzzzT1lv5mgcj7ySG9tN9/4S9w0/qf7meMhJ7i4=]\n",result);
+        Assert.assertEquals("TestA [qsKaWzzzT1lv5mgcj7ySG9tN9/4S9w0/qf7meMhJ7i4=]\n", result);
     }
 
     /**
@@ -71,7 +72,7 @@ public class SHA256OutputStreamTest {
         hashAndCounterGenerator.write(EidasStringUtil.getBytes("2015-03-26; 09:55:38.848 [main] INFO  eu.stork.peps.auth.speps.AUSPEPS  - - -== SESSION : AUSPEPS.getAuthenticationRequest Called, size is 0\n"));
         hashAndCounterGenerator.flush();
         String result = EidasStringUtil.toString(byteArrayOutputStream.toByteArray());
-        Assert.assertEquals("2015-03-26; 09:55:38.848 [main] INFO  eu.stork.peps.auth.speps.AUSPEPS  - - -== SESSION : AUSPEPS.getAuthenticationRequest Called, size is 0 #1# [zddAiurv157ma1imuTAQ/l8OgA/X+hSNsS+ESqOz6Zw=]\n",result);
+        Assert.assertEquals("2015-03-26; 09:55:38.848 [main] INFO  eu.stork.peps.auth.speps.AUSPEPS  - - -== SESSION : AUSPEPS.getAuthenticationRequest Called, size is 0 #1# [zddAiurv157ma1imuTAQ/l8OgA/X+hSNsS+ESqOz6Zw=]\n", result);
     }
 
     /**

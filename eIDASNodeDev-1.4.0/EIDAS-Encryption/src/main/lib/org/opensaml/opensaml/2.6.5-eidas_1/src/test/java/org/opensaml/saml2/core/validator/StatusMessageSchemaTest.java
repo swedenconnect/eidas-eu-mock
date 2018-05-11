@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -33,7 +33,6 @@ public class StatusMessageSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Constructor
-     *
      */
     public StatusMessageSchemaTest() {
         super();
@@ -41,26 +40,28 @@ public class StatusMessageSchemaTest extends BaseSAMLObjectValidatorTestCase {
         validator = new StatusMessageSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         StatusMessage sm = (StatusMessage) target;
-        
+
         sm.setMessage("This is a status message");
     }
-    
+
     /**
-     *  Tests invalid element content.
+     * Tests invalid element content.
      */
-    public void testMessageFailure () {
+    public void testMessageFailure() {
         StatusMessage sm = (StatusMessage) target;
-        
+
         sm.setMessage(null);
         assertValidationFail("Message content was null");
-        
+
         sm.setMessage("");
         assertValidationFail("Message content was empty");
-        
+
         sm.setMessage("              ");
         assertValidationFail("Message content was all whitespace");
     }

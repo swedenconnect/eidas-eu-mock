@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.Method;
@@ -30,36 +30,31 @@ import org.apache.velocity.test.misc.TestLogChute;
 
 /**
  * Test case for the Velocity Introspector which
- *  tests the ability to find a 'best match'
- *
+ * tests the ability to find a 'best match'
  *
  * @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
  * @version $Id: Introspector2TestCase.java 704299 2008-10-14 03:13:16Z nbubna $
  */
-public class Introspector2TestCase extends BaseTestCase
-{
+public class Introspector2TestCase extends BaseTestCase {
 
     /**
-      * Creates a new instance.
-      */
-    public Introspector2TestCase(String name)
-    {
+     * Creates a new instance.
+     */
+    public Introspector2TestCase(String name) {
         super(name);
     }
 
     /**
-      * Get the containing <code>TestSuite</code>.
-      *
-      * @return The <code>TestSuite</code> to run.
-      */
-    public static Test suite ()
-    {
+     * Get the containing <code>TestSuite</code>.
+     *
+     * @return The <code>TestSuite</code> to run.
+     */
+    public static Test suite() {
         return new TestSuite(Introspector2TestCase.class);
     }
 
     public void testIntrospector()
-            throws Exception
-    {
+            throws Exception {
         Velocity.setProperty(
                 Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
 
@@ -69,18 +64,17 @@ public class Introspector2TestCase extends BaseTestCase
         String result;
         Tester t = new Tester();
 
-        Object[] params = { new Foo(), new Foo() };
+        Object[] params = {new Foo(), new Foo()};
 
         method = RuntimeSingleton.getIntrospector()
-            .getMethod( Tester.class, "find", params );
+                .getMethod(Tester.class, "find", params);
 
-        if ( method == null)
+        if (method == null)
             fail("Returned method was null");
 
-        result = (String) method.invoke( t, params);
+        result = (String) method.invoke(t, params);
 
-        if ( !result.equals( "Bar-Bar" ) )
-        {
+        if (!result.equals("Bar-Bar")) {
             fail("Should have gotten 'Bar-Bar' : received '" + result + "'");
         }
 
@@ -89,78 +83,63 @@ public class Introspector2TestCase extends BaseTestCase
          */
 
         method = RuntimeSingleton.getIntrospector()
-            .getMethod( Tester2.class, "find", params );
+                .getMethod(Tester2.class, "find", params);
 
-        if ( method != null)
+        if (method != null)
             fail("Introspector shouldn't have found a method as it's ambiguous.");
     }
 
-    public interface Woogie
-    {
+    public interface Woogie {
     }
 
-    public static class Bar implements Woogie
-    {
+    public static class Bar implements Woogie {
         int i;
     }
 
-    public static class Foo extends Bar
-    {
+    public static class Foo extends Bar {
         int j;
     }
 
-    public static class Tester
-    {
-        public static String find(Woogie w, Object o )
-        {
+    public static class Tester {
+        public static String find(Woogie w, Object o) {
             return "Woogie-Object";
         }
 
-        public static String find(Object w, Bar o )
-        {
+        public static String find(Object w, Bar o) {
             return "Object-Bar";
         }
 
-        public static String find(Bar w, Bar o )
-        {
+        public static String find(Bar w, Bar o) {
             return "Bar-Bar";
         }
 
-        public static String find( Object o )
-        {
+        public static String find(Object o) {
             return "Object";
         }
 
-        public static String find( Woogie o )
-        {
+        public static String find(Woogie o) {
             return "Woogie";
         }
     }
 
-    public static class Tester2
-    {
-        public static String find(Woogie w, Object o )
-        {
+    public static class Tester2 {
+        public static String find(Woogie w, Object o) {
             return "Woogie-Object";
         }
 
-        public static String find(Object w, Bar o )
-        {
+        public static String find(Object w, Bar o) {
             return "Object-Bar";
         }
 
-        public static String find(Bar w, Object o )
-        {
+        public static String find(Bar w, Object o) {
             return "Bar-Object";
         }
 
-        public static String find( Object o )
-        {
+        public static String find(Object o) {
             return "Object";
         }
 
-        public static String find( Woogie o )
-        {
+        public static String find(Woogie o) {
             return "Woogie";
         }
     }

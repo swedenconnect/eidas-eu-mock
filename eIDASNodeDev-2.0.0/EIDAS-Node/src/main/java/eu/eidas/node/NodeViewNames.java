@@ -10,9 +10,8 @@ public enum NodeViewNames {
     INTERCEPTOR_ERROR("/interceptorError.jsp"),
     ERROR("/error.jsp"),
     PRESENT_ERROR("/presentError.jsp"),
-    SERVLET_PATH_SERVICE_PROVIDER ( "/ServiceProvider"),
-    SUBMIT_ERROR("/presentSamlResponseError.jsp"),
-    ;
+    SERVLET_PATH_SERVICE_PROVIDER("/ServiceProvider"),
+    SUBMIT_ERROR("/presentSamlResponseError.jsp"),;
 
     /**
      * constant name.
@@ -21,9 +20,10 @@ public enum NodeViewNames {
 
     /**
      * Constructor
+     *
      * @param name name of the bean
      */
-    NodeViewNames(final String name){
+    NodeViewNames(final String name) {
         this.name = name;
     }
 

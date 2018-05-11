@@ -18,5 +18,5 @@
 
 // put form auto-complete to off
 for (var i = 0; i < document.forms.length; i++) {
-    document.forms[i].setAttribute("AutoComplete","off");
+    document.forms[i].setAttribute("AutoComplete", "off");
 }

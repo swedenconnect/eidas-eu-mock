@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -31,8 +31,10 @@ import org.opensaml.saml2.core.RequesterID;
  * {@link org.opensaml.saml2.core.impl.RequesterIDImpl}.
  */
 public class RequesterIDTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected element content*/
+
+    /**
+     * Expected element content
+     */
     private String expectedRequesterID;
 
     /**
@@ -40,30 +42,36 @@ public class RequesterIDTest extends BaseSAMLObjectProviderTestCase {
      */
     public RequesterIDTest() {
         super();
-        
-       singleElementFile = "/data/org/opensaml/saml2/core/impl/RequesterID.xml";
+
+        singleElementFile = "/data/org/opensaml/saml2/core/impl/RequesterID.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedRequesterID = "urn:string:requester";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         RequesterID reqID = (RequesterID) unmarshallElement(singleElementFile);
-        
-       assertEquals("Unmarshalled requester ID was not the expected value", expectedRequesterID, reqID.getRequesterID()); 
+
+        assertEquals("Unmarshalled requester ID was not the expected value", expectedRequesterID, reqID.getRequesterID());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, RequesterID.DEFAULT_ELEMENT_LOCAL_NAME);
         RequesterID reqID = (RequesterID) buildXMLObject(qname);
 
         reqID.setRequesterID(expectedRequesterID);
-        
+
         assertEquals(expectedDOM, reqID);
     }
 }

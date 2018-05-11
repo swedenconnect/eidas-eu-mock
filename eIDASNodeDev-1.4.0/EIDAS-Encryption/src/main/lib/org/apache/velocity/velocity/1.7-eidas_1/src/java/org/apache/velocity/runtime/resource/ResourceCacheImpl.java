@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.resource;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.Collections;
@@ -42,8 +42,7 @@ import org.apache.velocity.util.MapFactory;
  * @author <a href="mailto:dlr@finemaltcoding.com">Daniel Rall</a>
  * @version $Id: ResourceCacheImpl.java 898032 2010-01-11 19:51:03Z nbubna $
  */
-public class ResourceCacheImpl implements ResourceCache
-{
+public class ResourceCacheImpl implements ResourceCache {
     /**
      * Cache storage, assumed to be thread-safe.
      */
@@ -58,53 +57,47 @@ public class ResourceCacheImpl implements ResourceCache
     /**
      * @see org.apache.velocity.runtime.resource.ResourceCache#initialize(org.apache.velocity.runtime.RuntimeServices)
      */
-    public void initialize( RuntimeServices rs )
-    {
+    public void initialize(RuntimeServices rs) {
         rsvc = rs;
 
         int maxSize =
-            rsvc.getInt(RuntimeConstants.RESOURCE_MANAGER_DEFAULTCACHE_SIZE, 89);
-        if (maxSize > 0)
-        {
+                rsvc.getInt(RuntimeConstants.RESOURCE_MANAGER_DEFAULTCACHE_SIZE, 89);
+        if (maxSize > 0) {
             // Create a whole new Map here to avoid hanging on to a
             // handle to the unsynch'd LRUMap for our lifetime.
             Map lruCache = Collections.synchronizedMap(new LRUMap(maxSize));
             lruCache.putAll(cache);
             cache = lruCache;
         }
-        rsvc.getLog().debug("ResourceCache: initialized ("+this.getClass()+") with "+
-               cache.getClass()+" cache map.");
+        rsvc.getLog().debug("ResourceCache: initialized (" + this.getClass() + ") with " +
+                cache.getClass() + " cache map.");
     }
 
     /**
      * @see org.apache.velocity.runtime.resource.ResourceCache#get(java.lang.Object)
      */
-    public Resource get( Object key )
-    {
-        return (Resource) cache.get( key );
+    public Resource get(Object key) {
+        return (Resource) cache.get(key);
     }
 
     /**
      * @see org.apache.velocity.runtime.resource.ResourceCache#put(java.lang.Object, org.apache.velocity.runtime.resource.Resource)
      */
-    public Resource put( Object key, Resource value )
-    {
-        return (Resource) cache.put( key, value );
+    public Resource put(Object key, Resource value) {
+        return (Resource) cache.put(key, value);
     }
 
     /**
      * @see org.apache.velocity.runtime.resource.ResourceCache#remove(java.lang.Object)
      */
-    public Resource remove( Object key )
-    {
-        return (Resource) cache.remove( key );
+    public Resource remove(Object key) {
+        return (Resource) cache.remove(key);
     }
 
     /**
      * @see org.apache.velocity.runtime.resource.ResourceCache#enumerateKeys()
      */
-    public Iterator enumerateKeys()
-    {
+    public Iterator enumerateKeys() {
         return cache.keySet().iterator();
     }
 }

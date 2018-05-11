@@ -21,6 +21,6 @@ package member_country_specific.idp;
 public class Constants {
 
     public static final String IDP_REPO_BEAN_NAME = "idpConfigRepository";
-    public static String IDP_PROPERTIES="idp.properties";
-    public static String IDP_ISSUER="idp.demo";
+    public static String IDP_PROPERTIES = "idp.properties";
+    public static String IDP_ISSUER = "idp.demo";
 }

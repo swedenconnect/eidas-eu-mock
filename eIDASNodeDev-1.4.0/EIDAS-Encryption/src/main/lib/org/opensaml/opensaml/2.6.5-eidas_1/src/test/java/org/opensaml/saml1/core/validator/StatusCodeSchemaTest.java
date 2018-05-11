@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,37 +29,42 @@ import org.opensaml.saml1.core.validator.StatusCodeSchemaValidator;
  */
 public class StatusCodeSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public StatusCodeSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML10P_NS, StatusCode.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
         validator = new StatusCodeSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
 
         StatusCode statusCode = (StatusCode) target;
         statusCode.setValue(StatusCode.SUCCESS);
     }
-    
-    public void testMissingValue(){
+
+    public void testMissingValue() {
         StatusCode statusCode = (StatusCode) target;
         statusCode.setValue(null);
-        assertValidationFail("No Value attribute, should raise a Validation Exception");        
+        assertValidationFail("No Value attribute, should raise a Validation Exception");
     }
 
-    public void testBadQName1(){
+    public void testBadQName1() {
         StatusCode statusCode = (StatusCode) target;
         QName qname = new QName(SAMLConstants.SAML1_NS, "Success", SAMLConstants.SAML1_PREFIX);
         statusCode.setValue(qname);
-        assertValidationFail("Value in SAML1 assertion namespace, should raise a Validation Exception");        
+        assertValidationFail("Value in SAML1 assertion namespace, should raise a Validation Exception");
     }
-    public void testBadQName2(){
+
+    public void testBadQName2() {
         StatusCode statusCode = (StatusCode) target;
         QName qname = new QName(SAMLConstants.SAML10P_NS, "ssSuccess", SAMLConstants.SAML1P_PREFIX);
         statusCode.setValue(qname);
-        assertValidationFail("unrecognized LocalName in SAML1 protocol namespace, should raise a Validation Exception");        
+        assertValidationFail("unrecognized LocalName in SAML1 protocol namespace, should raise a Validation Exception");
     }
 }

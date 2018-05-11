@@ -31,18 +31,19 @@ import eu.eidas.samlengineconfig.SamlEngineConfiguration;
 public class SamlEngineConfigurationImpl extends SamlEngineConfiguration {
 
     @Override
-    @XmlElement(name = "instance", type=EngineInstanceImpl.class)
-    public List<EngineInstance> getInstances(){
+    @XmlElement(name = "instance", type = EngineInstanceImpl.class)
+    public List<EngineInstance> getInstances() {
         return super.getInstances();
     }
+
     @Override
-    public void setInstances(List<EngineInstance> engineInstances){
+    public void setInstances(List<EngineInstance> engineInstances) {
         super.setInstances(engineInstances);
     }
 
-    public Map<String, EngineInstance> getInstanceMap(){
-        Map<String, EngineInstance> result=new HashMap<String, EngineInstance>();
-        for(EngineInstance instance:getInstances()){
+    public Map<String, EngineInstance> getInstanceMap() {
+        Map<String, EngineInstance> result = new HashMap<String, EngineInstance>();
+        for (EngineInstance instance : getInstances()) {
             result.put(instance.getName(), instance);
         }
         return result;

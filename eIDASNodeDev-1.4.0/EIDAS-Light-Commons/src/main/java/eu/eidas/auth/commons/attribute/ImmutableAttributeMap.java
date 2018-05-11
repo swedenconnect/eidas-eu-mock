@@ -175,7 +175,7 @@ public final class ImmutableAttributeMap implements Serializable {
          *
          * @return the {@link ImmutableAttributeMap} instance.
          * @throws IllegalArgumentException when the state of the builder is not consistent, for example when a
-         * mandatory transliteration is missing.
+         *                                  mandatory transliteration is missing.
          */
         @Nonnull
         public ImmutableAttributeMap build() {
@@ -264,9 +264,9 @@ public final class ImmutableAttributeMap implements Serializable {
          * Script for attribute definitions which have the {@link AttributeDefinition#isTransliterationMandatory()} flag
          * set to {@code true}.
          *
-         * @param attribute the definition
+         * @param attribute    the definition
          * @param primaryValue a value marshalled as a {@code String} which is to be unmarshalled first using the {@link
-         * AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
+         *                     AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
          * @return this Builder
          * @see #putPrimaryValues(AttributeDefinition, String...)
          * @since 1.1.1
@@ -317,9 +317,9 @@ public final class ImmutableAttributeMap implements Serializable {
          * attribute definitions which have the {@link AttributeDefinition#isTransliterationMandatory()} flag set to
          * {@code true}.
          *
-         * @param attribute the definition
+         * @param attribute     the definition
          * @param primaryValues values marshalled as {@code String}s which are to be unmarshalled first using the {@link
-         * AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
+         *                      AttributeDefinition#getAttributeValueMarshaller() attribute-value marshaller}.
          * @return this Builder
          */
         @Nonnull
@@ -338,9 +338,9 @@ public final class ImmutableAttributeMap implements Serializable {
          * attribute definitions which have the {@link AttributeDefinition#isTransliterationMandatory()} flag set to
          * {@code true}.
          *
-         * @param attribute the definition
+         * @param attribute     the definition
          * @param primaryValues values marshalled as {@code String}s which are to be unmarshalled first using the {@link
-         * AttributeDefinition#getAttributeValueMarshaller()}  attribute-value marshaller}.
+         *                      AttributeDefinition#getAttributeValueMarshaller()}  attribute-value marshaller}.
          * @return this Builder
          * @since 1.1.1
          */

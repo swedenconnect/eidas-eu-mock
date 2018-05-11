@@ -72,7 +72,7 @@ public final class BuilderFactoryUtil {
     /**
      * Creates the SAML object.
      *
-     * @param qname the quality name
+     * @param qname  the quality name
      * @param qname1 the qname1
      * @return the xML object
      */
@@ -83,10 +83,10 @@ public final class BuilderFactoryUtil {
     /**
      * Generate assertion.
      *
-     * @param version the version
-     * @param identifier the identifier
+     * @param version      the version
+     * @param identifier   the identifier
      * @param issueInstant the issue instant
-     * @param issuer the issuer
+     * @param issuer       the issuer
      * @return the assertion
      */
     public static Assertion generateAssertion(SAMLVersion version,
@@ -107,8 +107,8 @@ public final class BuilderFactoryUtil {
     /**
      * Method that generates an Authentication Request basing on the provided information.
      *
-     * @param identifier the identifier
-     * @param version the version
+     * @param identifier   the identifier
+     * @param version      the version
      * @param issueInstant the issue instant
      * @return the authentication request
      */
@@ -191,8 +191,8 @@ public final class BuilderFactoryUtil {
     /**
      * Generate name id.
      *
-     * @param nameQualifier the name qualifier
-     * @param format the format
+     * @param nameQualifier   the name qualifier
+     * @param format          the format
      * @param spNameQualifier the sP name qualifier
      * @return the name id
      */
@@ -217,9 +217,9 @@ public final class BuilderFactoryUtil {
     /**
      * Generate response.
      *
-     * @param identifier the identifier
+     * @param identifier   the identifier
      * @param issueInstant the issue instant
-     * @param status the status
+     * @param status       the status
      * @return the response
      */
     public static Response generateResponse(String identifier, DateTime issueInstant, Status status)
@@ -280,7 +280,7 @@ public final class BuilderFactoryUtil {
      * Generate subject confirmation.
      *
      * @param method the method
-     * @param data the data
+     * @param data   the data
      * @return the subject confirmation
      */
     public static SubjectConfirmation generateSubjectConfirmation(String method, SubjectConfirmationData data) {
@@ -299,7 +299,7 @@ public final class BuilderFactoryUtil {
      * Generate subject confirmation data.
      *
      * @param notOnOrAfter the not on or after
-     * @param recipient the recipient
+     * @param recipient    the recipient
      * @param inResponseTo the in response to
      * @return the subject confirmation data
      */

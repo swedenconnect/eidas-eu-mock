@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,86 +34,112 @@ import org.opensaml.xml.XMLObject;
  */
 public class TargetTypeImpl extends AbstractXACMLObject implements TargetType {
 
-    /** The actions in the policy. */
+    /**
+     * The actions in the policy.
+     */
     private ActionsType actions;
 
-    /** The environments in the policy. */
+    /**
+     * The environments in the policy.
+     */
     private EnvironmentsType environments;
 
-    /** The subjects in the policy. */
+    /**
+     * The subjects in the policy.
+     */
     private SubjectsType subjects;
 
-    /** The resourcese in the policy. */
+    /**
+     * The resourcese in the policy.
+     */
     private ResourcesType resources;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected TargetTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
-        super(namespaceURI, elementLocalName, namespacePrefix);       
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
-        if(subjects != null){
-            children.add(subjects);  
+        if (subjects != null) {
+            children.add(subjects);
         }
-        if(resources != null){
-            children.add(resources);  
+        if (resources != null) {
+            children.add(resources);
         }
-        if(actions != null){
-            children.add(actions);  
-        }        
-        if(environments != null){
-            children.add(environments);  
+        if (actions != null) {
+            children.add(actions);
+        }
+        if (environments != null) {
+            children.add(environments);
         }
         return Collections.unmodifiableList(children);
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public SubjectsType getSubjects() {
         return subjects;
     }
-        
-    /** {@inheritDoc}*/
+
+    /**
+     * {@inheritDoc}
+     */
     public ResourcesType getResources() {
         return resources;
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public ActionsType getActions() {
         return actions;
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public EnvironmentsType getEnvironments() {
         return environments;
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setActions(ActionsType newActions) {
-        this.actions = prepareForAssignment(this.actions,newActions);
+        this.actions = prepareForAssignment(this.actions, newActions);
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setEnvironments(EnvironmentsType newEnvironments) {
-        this.environments = prepareForAssignment(this.environments,newEnvironments);
+        this.environments = prepareForAssignment(this.environments, newEnvironments);
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setResources(ResourcesType newResources) {
-        this.resources = prepareForAssignment(this.resources,newResources);
+        this.resources = prepareForAssignment(this.resources, newResources);
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setSubjects(SubjectsType newSubjects) {
-        this.subjects = prepareForAssignment(this.subjects,newSubjects);
+        this.subjects = prepareForAssignment(this.subjects, newSubjects);
     }
 }

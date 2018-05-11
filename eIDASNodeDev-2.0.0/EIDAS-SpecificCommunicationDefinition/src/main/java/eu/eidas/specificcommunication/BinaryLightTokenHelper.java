@@ -38,14 +38,15 @@ import java.util.UUID;
  */
 public class BinaryLightTokenHelper {
 
-    private BinaryLightTokenHelper(){}
+    private BinaryLightTokenHelper() {
+    }
 
     /**
      * Get the {@link BinaryLightToken} id from a {@link BinaryLightToken} Base64 encoded string.
      *
      * @param binaryLightTokenBase64 the {@link BinaryLightToken} Base64 encoded
-     * @param secret secret for creating the digest
-     * @param algorithm digest algorithm
+     * @param secret                 secret for creating the digest
+     * @param algorithm              digest algorithm
      * @return the {@link BinaryLightToken} id
      * @throws SpecificCommunicationException if the {@code algorithm} is an invalid one
      */
@@ -66,7 +67,7 @@ public class BinaryLightTokenHelper {
      * Gets the {@link BinaryLightToken} Base64 encoded.
      *
      * @param httpServletRequest the http servlet request that contains the {@link BinaryLightToken} Base64 encoded.
-     * @param parameterKey the parameter key of the {@link BinaryLightToken} Base64 encoded
+     * @param parameterKey       the parameter key of the {@link BinaryLightToken} Base64 encoded
      * @return
      */
     public static String getBinaryToken(final @Nonnull HttpServletRequest httpServletRequest, String parameterKey) {
@@ -92,8 +93,8 @@ public class BinaryLightTokenHelper {
      * Creates an instance of {@link BinaryLightToken}.
      *
      * @param issuerName the issuer name
-     * @param secret secret for creating the digest
-     * @param algorithm digest algorithm
+     * @param secret     secret for creating the digest
+     * @param algorithm  digest algorithm
      * @return {@link BinaryLightToken}
      * @throws SpecificCommunicationException
      */

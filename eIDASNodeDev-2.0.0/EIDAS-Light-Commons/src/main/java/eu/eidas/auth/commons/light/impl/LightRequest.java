@@ -26,15 +26,16 @@ import eu.eidas.auth.commons.light.ILightRequest;
 @Immutable
 @ThreadSafe
 @XmlRootElement
-@XmlType(factoryMethod="newInstance")
+@XmlType(factoryMethod = "newInstance")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(AbstractLightRequest.class)
 public final class LightRequest extends AbstractLightRequest implements Serializable {
 
-	@SuppressWarnings("unused")
-	private static LightRequest newInstance(){
-		return new LightRequest(builder());
-	}
+    @SuppressWarnings("unused")
+    private static LightRequest newInstance() {
+        return new LightRequest(builder());
+    }
+
     /**
      * Builder pattern for the {@link LightRequest} class.
      * <p/>

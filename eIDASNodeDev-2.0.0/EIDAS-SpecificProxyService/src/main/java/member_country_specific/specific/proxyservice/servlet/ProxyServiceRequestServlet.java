@@ -47,14 +47,14 @@ import java.util.HashSet;
  * Receives/processes the servlet request that contains the token
  * used to retrieve the {@link ILightRequest} coming from the eIDAS-Node,
  * transforms it into an MS specific request and sends it to the receiver at the IdP.
- *
+ * <p>
  * If a user consent is needed forwards to a consent page instead.
  *
  * @since 2.0
  */
 @SuppressWarnings("squid:S1989") // due to the code uses correlation maps, not http sessions
-@WebServlet(urlPatterns={"/ProxyServiceRequest"},
-        name="ProxyServiceRequestServlet",
+@WebServlet(urlPatterns = {"/ProxyServiceRequest"},
+        name = "ProxyServiceRequestServlet",
         displayName = "ProxyServiceRequestServlet",
         description = "Proxy Service Request Servlet")
 public final class ProxyServiceRequestServlet extends AbstractSpecificProxyServiceServlet {
@@ -66,19 +66,19 @@ public final class ProxyServiceRequestServlet extends AbstractSpecificProxyServi
      */
     private static final Logger LOG = LoggerFactory.getLogger(ProxyServiceRequestServlet.class.getName());
 
-    private Collection<AttributeDefinition<?>> REGISTRY; 
+    private Collection<AttributeDefinition<?>> REGISTRY;
 
     @Override
     public void init() {
-    	REGISTRY=retrieveAttributes();
+        REGISTRY = retrieveAttributes();
     }
 
-	private Collection<AttributeDefinition<?>> retrieveAttributes() {
-		Collection<AttributeDefinition<?>> registry = new HashSet<>();
-		registry.addAll(getSpecificProxyService().getEidasAttributeRegistry().getAttributes());
-		registry.addAll(getSpecificProxyService().getAdditionalAttributeRegistry().getAttributes());
-		return ImmutableSortedSet.copyOf(registry);
-	}
+    private Collection<AttributeDefinition<?>> retrieveAttributes() {
+        Collection<AttributeDefinition<?>> registry = new HashSet<>();
+        registry.addAll(getSpecificProxyService().getEidasAttributeRegistry().getAttributes());
+        registry.addAll(getSpecificProxyService().getAdditionalAttributeRegistry().getAttributes());
+        return ImmutableSortedSet.copyOf(registry);
+    }
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
@@ -125,14 +125,14 @@ public final class ProxyServiceRequestServlet extends AbstractSpecificProxyServi
         httpServletRequest.setAttribute(SpecificProxyServiceParameterNames.CITIZEN_CONSENT_URL.toString(), SpecificProxyServiceViewNames.AFTER_CITIZEN_CONSENT_REQUEST.toString());
     }
 
-    private ILightRequest getIncomingiLightRequest(@Nonnull HttpServletRequest httpServletRequest,final Collection<AttributeDefinition<?>> registry) throws ServletException {
+    private ILightRequest getIncomingiLightRequest(@Nonnull HttpServletRequest httpServletRequest, final Collection<AttributeDefinition<?>> registry) throws ServletException {
         final SpecificProxyserviceCommunicationServiceImpl specificProxyserviceCommunicationService
                 = (SpecificProxyserviceCommunicationServiceImpl) getApplicationContext()
                 .getBean(SpecificCommunicationDefinitionBeanNames.SPECIFIC_PROXYSERVICE_COMMUNICATION_SERVICE.toString());
 
         final String tokenBase64 = httpServletRequest.getParameter(EidasParameterKeys.TOKEN.toString());
         try {
-            return specificProxyserviceCommunicationService.getAndRemoveRequest(tokenBase64,registry);
+            return specificProxyserviceCommunicationService.getAndRemoveRequest(tokenBase64, registry);
         } catch (SpecificCommunicationException e) {
             getLogger().error("Error unmarshalling MS Specific Request");
             throw new ServletException(e);
@@ -156,7 +156,7 @@ public final class ProxyServiceRequestServlet extends AbstractSpecificProxyServi
     }
 
     public SpecificProxyService getSpecificProxyService() {
-        return  (SpecificProxyService) getApplicationContext()
+        return (SpecificProxyService) getApplicationContext()
                 .getBean(SpecificProxyServiceBeanNames.SPECIFIC_PROXY_SERVICE.toString());
     }
 

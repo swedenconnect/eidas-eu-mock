@@ -74,7 +74,7 @@ public final class OpenSamlHelper {
      * <p>
      * The byte[] returned will include an xml declaration if omitXMLDeclaration is set to true.
      *
-     * @param xmlObject the SAML token.
+     * @param xmlObject          the SAML token.
      * @param omitXMLDeclaration the omit xml declaration flag
      * @return the byte[] of the SAML token.
      * @throws MarshallException when the OpenSAML object cannot be marshalled
@@ -90,7 +90,7 @@ public final class OpenSamlHelper {
      * <p>
      * The byte[] returned will include an xml declaration if omitXMLDeclaration is set to true.
      *
-     * @param xmlObject the SAML token.
+     * @param xmlObject          the SAML token.
      * @param omitXMLDeclaration the omit xml declaration flag
      * @return the byte[] of the SAML token with or without an XML declaration depending on the value of {code
      * omitXMLDeclaration}.

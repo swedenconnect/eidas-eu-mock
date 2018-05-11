@@ -49,12 +49,14 @@ public abstract class AbstractNodeServlet extends HttpServlet {
 
     /**
      * Abstract logging impl.
+     *
      * @return the concrete logger of implementing servlet
      */
-	protected abstract Logger getLogger();
+    protected abstract Logger getLogger();
 
     /**
      * Obtaining the application context
+     *
      * @return Node applicationContext
      */
     protected final ApplicationContext getApplicationContext() {
@@ -70,7 +72,7 @@ public abstract class AbstractNodeServlet extends HttpServlet {
         request.getSession(false).invalidate();
         String currentSession = request.getSession(true).getId();
         // Servlet code to renew the session
-        getLogger().debug(LoggingMarkerMDC.SECURITY_SUCCESS, "Session RENEWED SessionIdRegenerationInWebApp [domain : {}][path {}][sessionId {}]", request.getServerName(), getServletContext().getContextPath(),currentSession);
+        getLogger().debug(LoggingMarkerMDC.SECURITY_SUCCESS, "Session RENEWED SessionIdRegenerationInWebApp [domain : {}][path {}][sessionId {}]", request.getServerName(), getServletContext().getContextPath(), currentSession);
         return currentSession;
     }
 
@@ -86,10 +88,10 @@ public abstract class AbstractNodeServlet extends HttpServlet {
             // Renewing the session if necessary
             String currentSession;
             String messageLog;
-            if (renewSession){
+            if (renewSession) {
                 currentSession = sessionIdRegenerationInWebApp(request);
                 messageLog = "http session Renewed : {}";
-            } else{
+            } else {
                 currentSession = request.getSession().getId();
                 messageLog = "http session obtained from request : {}";
             }
@@ -111,8 +113,8 @@ public abstract class AbstractNodeServlet extends HttpServlet {
                         getLogger().debug("Cookie==session : Remove and replacing with HttpOnly {}", cookie.toString());
                         getLogger().debug("Is using SSL?", isSecure);
 
-                    //TODO: when migrating to servlet 3, use the cookie interface calls below instead of writing the http header
-                    //
+                        //TODO: when migrating to servlet 3, use the cookie interface calls below instead of writing the http header
+                        //
 //NOSONAR                        cookie.setMaxAge(0);
 //NOSONAR                        cookie.setPath(getServletContext().getContextPath());
 //NOSONAR                 cookie.setDomain(request.getServerName());
@@ -125,7 +127,7 @@ public abstract class AbstractNodeServlet extends HttpServlet {
                                 .append(EIDASValues.DOMAIN.toString()).append(EIDASValues.EQUAL.toString()).append(request.getServerName()).append(EIDASValues.SEMICOLON.toString()).append(" ")
                                 .append(EIDASValues.PATH.toString()).append(EIDASValues.EQUAL.toString()).append(getServletContext().getContextPath()).append(EIDASValues.SEMICOLON.toString()).append(" ")
                                 .append(EIDASValues.HTTP_ONLY.toString()).append(EIDASValues.SEMICOLON.toString())
-                                .append(isSecure ? EIDASValues.SECURE.toString()  : "");
+                                .append(isSecure ? EIDASValues.SECURE.toString() : "");
                         response.setHeader(EIDASValues.SETCOOKIE.toString(), httpOnlyCookie.toString());
                     }
                 }
@@ -139,7 +141,6 @@ public abstract class AbstractNodeServlet extends HttpServlet {
      * Encodes any given URL.
      *
      * @param url The URL to be encoded.
-     *
      * @return The encoded URL.
      */
     protected final String encodeURL(final String url, HttpServletResponse response) {
@@ -151,7 +152,6 @@ public abstract class AbstractNodeServlet extends HttpServlet {
         LoggingUtil.logServletCall(request, this.getClass().getName(), getLogger());
         super.service(request, response);
     }
-
 
 
     @Override
@@ -190,8 +190,8 @@ public abstract class AbstractNodeServlet extends HttpServlet {
     }
 
 
-    protected final boolean acceptsHttpRedirect(){
+    protected final boolean acceptsHttpRedirect() {
         Boolean acceptGet = ApplicationContextProvider.getNodeParameterBool(EidasParameterKeys.ALLOW_REDIRECT_BINDING.toString());
-        return acceptGet!=null && acceptGet;
+        return acceptGet != null && acceptGet;
     }
 }

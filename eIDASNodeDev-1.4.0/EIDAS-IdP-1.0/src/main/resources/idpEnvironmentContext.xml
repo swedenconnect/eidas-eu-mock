@@ -17,7 +17,8 @@
     -->
 
     <bean id="idpConfigRepository" class="java.lang.String">
-        <constructor-arg value="#{ systemProperties['IDP_CONFIG_REPOSITORY'] ?: systemEnvironment['IDP_CONFIG_REPOSITORY'] }" />
+        <constructor-arg
+                value="#{ systemProperties['IDP_CONFIG_REPOSITORY'] ?: systemEnvironment['IDP_CONFIG_REPOSITORY'] }"/>
     </bean>
 
 </beans>

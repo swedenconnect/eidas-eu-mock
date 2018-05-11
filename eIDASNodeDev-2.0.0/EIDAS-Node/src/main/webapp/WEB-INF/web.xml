@@ -35,9 +35,9 @@
         </cookie-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
-<!--<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         id="WebApp_ID" version="2.5">-->
+    <!--<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+             id="WebApp_ID" version="2.5">-->
 
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -124,18 +124,18 @@
         <param-value>en_UK</param-value>
     </context-param>
 
-	<context-param>
-		<param-name>resteasy.scan</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<param-name>resteasy.scan.providers</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<param-name>resteasy.scan.resources</param-name>
-		<param-value>false</param-value>
-	</context-param>
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.providers</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.resources</param-name>
+        <param-value>false</param-value>
+    </context-param>
     <context-param>
         <param-name>buildDate</param-name>
         <param-value>${timestamp}</param-value>
@@ -151,7 +151,7 @@
 
     <!-- Spring request listener : used by struts -->
     <listener>
-            <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
     <!-- ****************** -->
@@ -318,7 +318,6 @@
         <exception-type>eu.eidas.auth.commons.exceptions.AbstractEIDASException</exception-type>
         <location>/EidasNodeExceptionHandler</location>
     </error-page>
-
 
 
     <!-- ===================== Default MIME Type Mappings =================== -->
@@ -4393,7 +4392,7 @@
         <extension>zmm</extension>
         <mime-type>application/vnd.handheld-entertainment+xml</mime-type>
     </mime-mapping>
-	<!-- for Clustering
-	<distributable/>
-	-->
+    <!-- for Clustering
+    <distributable/>
+    -->
 </web-app>

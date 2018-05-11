@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.directive;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -44,29 +44,29 @@ import org.apache.velocity.util.introspection.Info;
  * @version $Id: Evaluate.java 898032 2010-01-11 19:51:03Z nbubna $
  * @since 1.6
  */
-public class Evaluate extends Directive
-{
+public class Evaluate extends Directive {
 
     /**
      * Return name of this directive.
+     *
      * @return The name of this directive.
      */
-    public String getName()
-    {
+    public String getName() {
         return "evaluate";
     }
 
     /**
      * Return type of this directive.
+     *
      * @return The type of this directive.
      */
-    public int getType()
-    {
+    public int getType() {
         return LINE;
     }
 
     /**
      * Initialize and check arguments.
+     *
      * @param rs
      * @param context
      * @param node
@@ -74,101 +74,89 @@ public class Evaluate extends Directive
      */
     public void init(RuntimeServices rs, InternalContextAdapter context,
                      Node node)
-        throws TemplateInitException
-    {
-        super.init( rs, context, node );
+            throws TemplateInitException {
+        super.init(rs, context, node);
 
         /**
          * Check that there is exactly one argument and it is a string or reference.
-         */  
-        
+         */
+
         int argCount = node.jjtGetNumChildren();
-        if (argCount == 0)
-        {
+        if (argCount == 0) {
             throw new TemplateInitException(
-                    "#" + getName() + "() requires exactly one argument", 
+                    "#" + getName() + "() requires exactly one argument",
                     context.getCurrentTemplateName(),
                     node.getColumn(),
-                    node.getLine());            
+                    node.getLine());
         }
-        if (argCount > 1)
-        {
-            /* 
+        if (argCount > 1) {
+            /*
              * use line/col of second argument
              */
-            
+
             throw new TemplateInitException(
-                    "#" + getName() + "() requires exactly one argument", 
+                    "#" + getName() + "() requires exactly one argument",
                     context.getCurrentTemplateName(),
                     node.jjtGetChild(1).getColumn(),
                     node.jjtGetChild(1).getLine());
         }
-        
+
         Node childNode = node.jjtGetChild(0);
-        if ( childNode.getType() !=  ParserTreeConstants.JJTSTRINGLITERAL &&
-             childNode.getType() !=  ParserTreeConstants.JJTREFERENCE )
-        {
-           throw new TemplateInitException(
-                   "#" + getName() + "()  argument must be a string literal or reference", 
-                   context.getCurrentTemplateName(),
-                   childNode.getColumn(),
-                   childNode.getLine());
+        if (childNode.getType() != ParserTreeConstants.JJTSTRINGLITERAL &&
+                childNode.getType() != ParserTreeConstants.JJTREFERENCE) {
+            throw new TemplateInitException(
+                    "#" + getName() + "()  argument must be a string literal or reference",
+                    context.getCurrentTemplateName(),
+                    childNode.getColumn(),
+                    childNode.getLine());
         }
     }
-    
+
     /**
-     * Evaluate the argument, convert to a String, and evaluate again 
+     * Evaluate the argument, convert to a String, and evaluate again
      * (with the same context).
+     *
      * @param context
      * @param writer
      * @param node
      * @return True if the directive rendered successfully.
      * @throws IOException
      * @throws ResourceNotFoundException
-     * @throws ParseErrorException 
+     * @throws ParseErrorException
      * @throws MethodInvocationException
      */
     public boolean render(InternalContextAdapter context, Writer writer,
-            Node node) throws IOException, ResourceNotFoundException,
-            ParseErrorException, MethodInvocationException
-    {
+                          Node node) throws IOException, ResourceNotFoundException,
+            ParseErrorException, MethodInvocationException {
 
         /*
          * Evaluate the string with the current context.  We know there is
          * exactly one argument and it is a string or reference.
          */
-        
-        Object value = node.jjtGetChild(0).value( context );
+
+        Object value = node.jjtGetChild(0).value(context);
         String sourceText;
-        if ( value != null )
-        {
+        if (value != null) {
             sourceText = value.toString();
-        } 
-        else
-        {
+        } else {
             sourceText = "";
         }
-        
+
         /*
          * The new string needs to be parsed since the text has been dynamically generated.
          */
         String templateName = context.getCurrentTemplateName();
         SimpleNode nodeTree = null;
 
-        try
-        {
+        try {
             nodeTree = rsvc.parse(new StringReader(sourceText), templateName, false);
-        }
-        catch (ParseException pex)
-        {
+        } catch (ParseException pex) {
             // use the line/column from the template
-            Info info = new Info( templateName, node.getLine(), node.getColumn() );
-            throw  new ParseErrorException( pex.getMessage(), info );
-        }
-        catch (TemplateInitException pex)
-        {
-            Info info = new Info( templateName, node.getLine(), node.getColumn() );
-            throw  new ParseErrorException( pex.getMessage(), info );
+            Info info = new Info(templateName, node.getLine(), node.getColumn());
+            throw new ParseErrorException(pex.getMessage(), info);
+        } catch (TemplateInitException pex) {
+            Info info = new Info(templateName, node.getLine(), node.getColumn());
+            throw new ParseErrorException(pex.getMessage(), info);
         }
 
         /*
@@ -176,53 +164,38 @@ public class Evaluate extends Directive
          * to prevent any changes to the current context.
          */
 
-        if (nodeTree != null)
-        {
+        if (nodeTree != null) {
             InternalContextAdapter ica = new EvaluateContext(context, rsvc);
 
-            ica.pushCurrentTemplateName( templateName );
+            ica.pushCurrentTemplateName(templateName);
 
-            try
-            {
-                try
-                {
-                    nodeTree.init( ica, rsvc );
-                }
-                catch (TemplateInitException pex)
-                {
-                    Info info = new Info( templateName, node.getLine(), node.getColumn() );
-                    throw  new ParseErrorException( pex.getMessage(), info );
+            try {
+                try {
+                    nodeTree.init(ica, rsvc);
+                } catch (TemplateInitException pex) {
+                    Info info = new Info(templateName, node.getLine(), node.getColumn());
+                    throw new ParseErrorException(pex.getMessage(), info);
                 }
 
-                try 
-                {
+                try {
                     preRender(ica);
 
                     /*
                      *  now render, and let any exceptions fly
                      */
-                    nodeTree.render( ica, writer );
-                }
-                catch (StopCommand stop)
-                {
-                    if (!stop.isFor(this))
-                    {
+                    nodeTree.render(ica, writer);
+                } catch (StopCommand stop) {
+                    if (!stop.isFor(this)) {
                         throw stop;
-                    }
-                    else if (rsvc.getLog().isDebugEnabled())
-                    {
+                    } else if (rsvc.getLog().isDebugEnabled()) {
                         rsvc.getLog().debug(stop.getMessage());
                     }
-                }
-                catch (ParseErrorException pex)
-                {
+                } catch (ParseErrorException pex) {
                     // convert any parsing errors to the correct line/col
-                    Info info = new Info( templateName, node.getLine(), node.getColumn() );
-                    throw  new ParseErrorException( pex.getMessage(), info );
+                    Info info = new Info(templateName, node.getLine(), node.getColumn());
+                    throw new ParseErrorException(pex.getMessage(), info);
                 }
-            }
-            finally
-            {
+            } finally {
                 ica.popCurrentTemplateName();
                 postRender(ica);
             }

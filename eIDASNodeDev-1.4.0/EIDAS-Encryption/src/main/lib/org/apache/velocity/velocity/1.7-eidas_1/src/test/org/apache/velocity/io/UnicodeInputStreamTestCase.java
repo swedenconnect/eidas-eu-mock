@@ -33,47 +33,40 @@ import org.apache.commons.lang.ArrayUtils;
 /**
  * Test the UnicodeInputStream.
  *
- * @author  $author$
- * @version  $Revision: 501574 $, $Date: 2007-01-30 13:32:26 -0800 (Tue, 30 Jan 2007) $
+ * @author $author$
+ * @version $Revision: 501574 $, $Date: 2007-01-30 13:32:26 -0800 (Tue, 30 Jan 2007) $
  */
 public class UnicodeInputStreamTestCase
-    extends TestCase
-{
+        extends TestCase {
 
-    public UnicodeInputStreamTestCase(final String name)
-    {
+    public UnicodeInputStreamTestCase(final String name) {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(UnicodeInputStreamTestCase.class);
     }
 
     public void testSimpleStream()
-        throws Exception
-    {
+            throws Exception {
         testRun(null, "Ich bin zwei Oeltanks", "US-ASCII", true);
         testRun(null, "Ich bin zwei Oeltanks", "US-ASCII", false);
     }
 
     public void testSimpleUTF8()
-        throws Exception
-    {
+            throws Exception {
         testRun(null, "Ich bin zwei Oeltanks", "UTF-8", true);
         testRun(null, "Ich bin zwei Oeltanks", "UTF-8", false);
     }
 
     public void testRealUTF8()
-        throws Exception
-    {
+            throws Exception {
         testRun(null, "Ich bin zwei \u00d6ltanks", "UTF-8", true);
         testRun(null, "Ich bin zwei \u00d6ltanks", "UTF-8", false);
     }
 
     public void testRealUTF8WithBOM()
-        throws Exception
-    {
+            throws Exception {
         testRun(UnicodeInputStream.UTF8_BOM, "Ich bin ein Test",
                 "UTF-8", true);
         testRun(UnicodeInputStream.UTF8_BOM, "Ich bin ein Test",
@@ -81,8 +74,7 @@ public class UnicodeInputStreamTestCase
     }
 
     public void testRealUTF16BEWithBOM()
-        throws Exception
-    {
+            throws Exception {
         testRun(UnicodeInputStream.UTF16BE_BOM, "Ich bin ein Test",
                 "UTF-16BE", true);
         testRun(UnicodeInputStream.UTF16BE_BOM, "Ich bin ein Test",
@@ -90,8 +82,7 @@ public class UnicodeInputStreamTestCase
     }
 
     public void testRealUTF16LEWithBOM()
-        throws Exception
-    {
+            throws Exception {
         testRun(UnicodeInputStream.UTF16LE_BOM, "Ich bin ein Test",
                 "UTF-16LE", true);
         testRun(UnicodeInputStream.UTF16LE_BOM, "Ich bin ein Test",
@@ -99,8 +90,7 @@ public class UnicodeInputStreamTestCase
     }
 
     public void testRealUTF32BEWithBOM()
-        throws Exception
-    {
+            throws Exception {
         testRun(UnicodeInputStream.UTF32BE_BOM, null,
                 "UTF-32BE", true);
         testRun(UnicodeInputStream.UTF32BE_BOM, null,
@@ -108,8 +98,7 @@ public class UnicodeInputStreamTestCase
     }
 
     public void testRealUTF32LEWithBOM()
-        throws Exception
-    {
+            throws Exception {
         testRun(UnicodeInputStream.UTF32LE_BOM, null,
                 "UTF-32LE", true);
         testRun(UnicodeInputStream.UTF32LE_BOM, null,
@@ -118,118 +107,90 @@ public class UnicodeInputStreamTestCase
 
 
     protected void testRun(final UnicodeInputStream.UnicodeBOM bom, final String str, final String testEncoding, final boolean skipBOM)
-        throws Exception
-    {
+            throws Exception {
 
-        byte [] testString = buildTestString(bom, str, testEncoding, skipBOM);
+        byte[] testString = buildTestString(bom, str, testEncoding, skipBOM);
 
         InputStream is = null;
         UnicodeInputStream uis = null;
 
-        try
-        {
+        try {
             is = createInputStream(bom, str, testEncoding);
             uis = new UnicodeInputStream(is, skipBOM);
 
             assertEquals("BOM Skipping problem", skipBOM, uis.isSkipBOM());
 
-            if (bom != null)
-            {
+            if (bom != null) {
                 assertEquals("Wrong Encoding detected", testEncoding, uis.getEncodingFromStream());
             }
 
-            byte [] result = readAllBytes(uis, testEncoding);
+            byte[] result = readAllBytes(uis, testEncoding);
 
             assertNotNull(testString);
             assertNotNull(result);
             assertEquals("Wrong result length", testString.length, result.length);
 
-            for (int i = 0; i < result.length; i++)
-            {
+            for (int i = 0; i < result.length; i++) {
                 assertEquals("Wrong Byte at " + i, testString[i], result[i]);
             }
-        }
-        finally
-        {
+        } finally {
 
-            if (uis != null)
-            {
+            if (uis != null) {
                 uis.close();
             }
 
-            if (is != null)
-            {
+            if (is != null) {
                 is.close();
             }
         }
     }
 
     protected InputStream createInputStream(final UnicodeInputStream.UnicodeBOM bom, final String str, final String enc)
-        throws Exception
-    {
+            throws Exception {
 
-        if (bom == null)
-        {
-            if (str != null)
-            {
+        if (bom == null) {
+            if (str != null) {
                 return new ByteArrayInputStream(str.getBytes(enc));
-            }
-            else
-            {
+            } else {
                 return new ByteArrayInputStream(new byte[0]);
             }
-        }
-        else
-        {
-            if (str != null)
-            {
+        } else {
+            if (str != null) {
                 return new ByteArrayInputStream(ArrayUtils.addAll(bom.getBytes(), str.getBytes(enc)));
-            }
-            else
-            {
+            } else {
                 return new ByteArrayInputStream(ArrayUtils.addAll(bom.getBytes(), new byte[0]));
             }
         }
     }
 
-    protected byte [] buildTestString(final UnicodeInputStream.UnicodeBOM bom, final String str, final String enc, final boolean skipBOM)
-        throws Exception
-    {
+    protected byte[] buildTestString(final UnicodeInputStream.UnicodeBOM bom, final String str, final String enc, final boolean skipBOM)
+            throws Exception {
 
-        byte [] strBytes = (str != null) ? str.getBytes(enc) : new byte[0];
+        byte[] strBytes = (str != null) ? str.getBytes(enc) : new byte[0];
 
-        if ((bom == null) || skipBOM)
-        {
-                return strBytes;
-        }
-        else
-        {
+        if ((bom == null) || skipBOM) {
+            return strBytes;
+        } else {
             return ArrayUtils.addAll(bom.getBytes(), strBytes);
         }
     }
 
-    protected byte [] readAllBytes(final InputStream inputStream, final String enc)
-        throws Exception
-    {
+    protected byte[] readAllBytes(final InputStream inputStream, final String enc)
+            throws Exception {
         InputStreamReader isr = null;
 
-        byte [] res = new byte[0];
+        byte[] res = new byte[0];
 
-        try
-        {
+        try {
             byte[] buf = new byte[1024];
             int read = 0;
 
-            while ((read = inputStream.read(buf)) >= 0)
-            {
+            while ((read = inputStream.read(buf)) >= 0) {
                 res = ArrayUtils.addAll(res, ArrayUtils.subarray(buf, 0, read));
             }
-        }
-        finally
-        {
+        } finally {
 
-            if (isr != null)
-            {
+            if (isr != null) {
                 isr.close();
             }
         }

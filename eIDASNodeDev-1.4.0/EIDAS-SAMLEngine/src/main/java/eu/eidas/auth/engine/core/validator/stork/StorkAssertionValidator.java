@@ -73,7 +73,7 @@ public class StorkAssertionValidator extends AssertionSchemaValidator {
         if (assertion.getAttributeStatements() != null &&
                 !assertion.getAttributeStatements().isEmpty() &&
                 assertion.getAttributeStatements().size() != 1) {
-                throw new ValidationException("Incorrect number of AttributeStatements.");
+            throw new ValidationException("Incorrect number of AttributeStatements.");
         }
 
     }

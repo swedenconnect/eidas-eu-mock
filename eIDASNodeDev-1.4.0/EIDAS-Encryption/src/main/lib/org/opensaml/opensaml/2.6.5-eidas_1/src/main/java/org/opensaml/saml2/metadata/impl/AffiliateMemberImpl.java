@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,9 +28,11 @@ import org.opensaml.xml.XMLObject;
  */
 public class AffiliateMemberImpl extends AbstractSAMLObject implements AffiliateMember {
 
-    /** ID of this member */
+    /**
+     * ID of this member
+     */
     private String id;
-    
+
     /**
      * Constructor
      *
@@ -42,12 +44,16 @@ public class AffiliateMemberImpl extends AbstractSAMLObject implements Affiliate
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getID() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setID(String newID) throws IllegalArgumentException {
         if (newID != null && newID.length() > 1024) {
             throw new IllegalArgumentException("Member ID can not exceed 1024 characters in length");
@@ -56,7 +62,9 @@ public class AffiliateMemberImpl extends AbstractSAMLObject implements Affiliate
         id = prepareForAssignment(id, newID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         // No children
         return null;

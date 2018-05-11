@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,31 +29,41 @@ import org.opensaml.xacml.policy.AttributeValueType;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 
-/** Concrete implementation of {@link ActionMatchType}. */
+/**
+ * Concrete implementation of {@link ActionMatchType}.
+ */
 public class ActionMatchTypeImpl extends AbstractXACMLObject implements ActionMatchType {
 
-    /** Match's attribute value. */
+    /**
+     * Match's attribute value.
+     */
     private AttributeValueType attributeValue;
 
-    /** Match's choice of attribute elements. */
+    /**
+     * Match's choice of attribute elements.
+     */
     private IndexedXMLObjectChildrenList<XACMLObject> attributeChoice;
 
-    /** Gets the ID of this match. */
+    /**
+     * Gets the ID of this match.
+     */
     private String matchId;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     public ActionMatchTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         attributeChoice = new IndexedXMLObjectChildrenList<XACMLObject>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeSelectorType getAttributeSelector() {
         List<XACMLObject> selectors = (List<XACMLObject>) attributeChoice
                 .subList(AttributeSelectorType.DEFAULT_ELEMENT_NAME);
@@ -64,12 +74,16 @@ public class ActionMatchTypeImpl extends AbstractXACMLObject implements ActionMa
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeValueType getAttributeValue() {
         return attributeValue;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeDesignatorType getActionAttributeDesignator() {
         List<XACMLObject> selectors = (List<XACMLObject>) attributeChoice
                 .subList(AttributeDesignatorType.ACTION_ATTRIBUTE_DESIGNATOR_ELEMENT_NAME);
@@ -80,12 +94,16 @@ public class ActionMatchTypeImpl extends AbstractXACMLObject implements ActionMa
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getMatchId() {
         return matchId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAttributeSelector(AttributeSelectorType selector) {
         AttributeSelectorType currentSelector = getAttributeSelector();
         if (currentSelector != null) {
@@ -95,12 +113,16 @@ public class ActionMatchTypeImpl extends AbstractXACMLObject implements ActionMa
         attributeChoice.add(selector);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAttributeValue(AttributeValueType value) {
         attributeValue = prepareForAssignment(attributeValue, value);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setActionAttributeDesignator(AttributeDesignatorType attribute) {
         AttributeDesignatorType currentDesignator = getActionAttributeDesignator();
         if (currentDesignator != null) {
@@ -110,12 +132,16 @@ public class ActionMatchTypeImpl extends AbstractXACMLObject implements ActionMa
         attributeChoice.add(attribute);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setMatchId(String id) {
         matchId = prepareForAssignment(matchId, id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
         children.add(attributeValue);

@@ -35,7 +35,7 @@ public interface IAUConnector {
     /**
      * Processes and validates the SAML Request
      *
-     * @param webRequest The web request which contains the httpRequestServlet params
+     * @param webRequest    The web request which contains the httpRequestServlet params
      * @param requestFromSP the saml request received from sp
      * @return the ILightResponse associated with the validated request.
      */

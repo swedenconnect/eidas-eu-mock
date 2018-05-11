@@ -26,23 +26,30 @@ import java.util.List;
 
 /**
  * The Interface RequestedAttributes.
- *
  */
 public interface RequestedAttributes extends SAMLObject {
 
-    /** The Constant DEFAULT_ELEMENT_LOCAL_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_LOCAL_NAME.
+     */
     String DEF_LOCAL_NAME = "RequestedAttributes";
 
-    /** Default element name. */
+    /**
+     * Default element name.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.EIDAS10_NS.getValue(), DEF_LOCAL_NAME,
-	    SAMLCore.EIDAS10_PREFIX.getValue());
+            SAMLCore.EIDAS10_PREFIX.getValue());
 
-    /** Local name of the XSI type. */
+    /**
+     * Local name of the XSI type.
+     */
     String TYPE_LOCAL_NAME = "RequestedAttributesType";
 
-    /** QName of the XSI type. */
+    /**
+     * QName of the XSI type.
+     */
     QName TYPE_NAME = new QName(SAMLCore.EIDAS10_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.EIDAS10_PREFIX.getValue());
+            SAMLCore.EIDAS10_PREFIX.getValue());
 
     /**
      * Gets the attributes.

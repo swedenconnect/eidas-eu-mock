@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.app.event.EventCartridge;
@@ -28,23 +28,19 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-758.
  */
-public class Velocity758TestCase extends BaseTestCase
-{
-    public Velocity758TestCase(String name)
-    {
+public class Velocity758TestCase extends BaseTestCase {
+    public Velocity758TestCase(String name) {
         super(name);
     }
 
-    public void testNullArgumentForParse()
-    {
+    public void testNullArgumentForParse() {
         assertEvalEquals("", "#parse($foo)");
     }
 
-    public void testOverrideNullArgumentForParse()
-    {
+    public void testOverrideNullArgumentForParse() {
         String nullContent = "Parse arg was null";
         addTemplate("null.vm", nullContent);
-        
+
         EventCartridge ec = new EventCartridge();
         ec.addEventHandler(new Handler());
         ec.attachToContext(context);
@@ -52,12 +48,9 @@ public class Velocity758TestCase extends BaseTestCase
         assertEvalEquals(nullContent, "#parse($foo)");
     }
 
-    public static class Handler implements IncludeEventHandler
-    {
-        public String includeEvent(String parsePath, String parentPath, String directive)
-        {
-            if (parsePath == null)
-            {
+    public static class Handler implements IncludeEventHandler {
+        public String includeEvent(String parsePath, String parentPath, String directive) {
+            if (parsePath == null) {
                 parsePath = "null.vm";
             }
             return parsePath;

@@ -87,6 +87,7 @@ public abstract class AbstractLightToken implements ILightToken, Serializable {
 
     /**
      * Abstract builder used to construct the AbstractLightToken
+     *
      * @param <B>
      * @param <T>
      */
@@ -189,35 +190,45 @@ public abstract class AbstractLightToken implements ILightToken, Serializable {
         protected abstract T newInstance();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Nonnull
     public String getId() {
         return id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Nonnull
     public String getIssuer() {
         return issuer;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Nonnull
     public DateTime getCreatedOn() {
         return createdOn;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Nonnull
     public String getFormattedCreatedOn() {
         return LIGHTTOKEN_DATE_FORMAT.print(createdOn);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Nonnull
     public String getKey() {

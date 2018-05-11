@@ -38,8 +38,8 @@ public class SPIDMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final SPID spid = (SPID) samlObject;
-	XMLHelper.appendTextContent(domElement, spid.getSPID());
+                                                final Element domElement) throws MarshallingException {
+        final SPID spid = (SPID) samlObject;
+        XMLHelper.appendTextContent(domElement, spid.getSPID());
     }
 }

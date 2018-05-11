@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,46 +33,62 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class AuthenticationStatementImpl extends SubjectStatementImpl implements AuthenticationStatement {
 
-    /** Contains the AuthenticationMethod attribute contents */
+    /**
+     * Contains the AuthenticationMethod attribute contents
+     */
     private String authenticationMethod;
 
-    /** Contains the AuthenticationMethod attribute contents */
+    /**
+     * Contains the AuthenticationMethod attribute contents
+     */
     private DateTime authenticationInstant;
 
-    /** Contains the SubjectLocality subelement */
+    /**
+     * Contains the SubjectLocality subelement
+     */
     private SubjectLocality subjectLocality;
 
-    /** Contains the AuthorityBinding subelements */
+    /**
+     * Contains the AuthorityBinding subelements
+     */
     private final XMLObjectChildrenList<AuthorityBinding> authorityBindings;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AuthenticationStatementImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         authorityBindings = new XMLObjectChildrenList<AuthorityBinding>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getAuthenticationMethod() {
         return authenticationMethod;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAuthenticationMethod(String authenticationMethod) {
         this.authenticationMethod = prepareForAssignment(this.authenticationMethod, authenticationMethod);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getAuthenticationInstant() {
         return authenticationInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAuthenticationInstant(DateTime authenticationInstant) {
         this.authenticationInstant = prepareForAssignment(this.authenticationInstant, authenticationInstant);
     }
@@ -81,22 +97,30 @@ public class AuthenticationStatementImpl extends SubjectStatementImpl implements
     // Elements
     //
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SubjectLocality getSubjectLocality() {
         return subjectLocality;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubjectLocality(SubjectLocality subjectLocality) throws IllegalArgumentException {
         this.subjectLocality = prepareForAssignment(this.subjectLocality, subjectLocality);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AuthorityBinding> getAuthorityBindings() {
         return authorityBindings;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         List<XMLObject> list = new ArrayList<XMLObject>(authorityBindings.size() + 2);
 

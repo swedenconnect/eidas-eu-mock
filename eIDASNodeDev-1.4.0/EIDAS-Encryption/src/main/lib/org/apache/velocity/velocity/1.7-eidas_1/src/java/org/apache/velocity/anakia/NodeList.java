@@ -16,7 +16,7 @@ package org.apache.velocity.anakia;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -53,46 +53,44 @@ import org.jdom.output.XMLOutputter;
  * @author <a href="mailto:szegedia@freemail.hu">Attila Szegedi</a>
  * @version $Id: NodeList.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class NodeList implements List, Cloneable
-{
+public class NodeList implements List, Cloneable {
     private static final AttributeXMLOutputter DEFAULT_OUTPUTTER =
-        new AttributeXMLOutputter();
+            new AttributeXMLOutputter();
 
-    /** The contained nodes */
+    /**
+     * The contained nodes
+     */
     private List nodes;
 
     /**
      * Creates an empty node list.
      */
-    public NodeList()
-    {
+    public NodeList() {
         nodes = new ArrayList();
     }
 
     /**
      * Creates a node list that holds a single {@link Document} node.
+     *
      * @param document
      */
-    public NodeList(Document document)
-    {
-        this((Object)document);
+    public NodeList(Document document) {
+        this((Object) document);
     }
 
     /**
      * Creates a node list that holds a single {@link Element} node.
+     *
      * @param element
      */
-    public NodeList(Element element)
-    {
-        this((Object)element);
+    public NodeList(Element element) {
+        this((Object) element);
     }
 
-    private NodeList(Object object)
-    {
-        if(object == null)
-        {
+    private NodeList(Object object) {
+        if (object == null) {
             throw new IllegalArgumentException(
-                "Cannot construct NodeList with null.");
+                    "Cannot construct NodeList with null.");
         }
         nodes = new ArrayList(1);
         nodes.add(object);
@@ -100,29 +98,28 @@ public class NodeList implements List, Cloneable
 
     /**
      * Creates a node list that holds a list of nodes.
+     *
      * @param nodes the list of nodes this template should hold. The created
-     * template will copy the passed nodes list, so changes to the passed list
-     * will not affect the model.
+     *              template will copy the passed nodes list, so changes to the passed list
+     *              will not affect the model.
      */
-    public NodeList(List nodes)
-    {
+    public NodeList(List nodes) {
         this(nodes, true);
     }
 
     /**
      * Creates a node list that holds a list of nodes.
+     *
      * @param nodes the list of nodes this template should hold.
-     * @param copy if true, the created template will copy the passed nodes
-     * list, so changes to the passed list will not affect the model. If false,
-     * the model will reference the passed list and will sense changes in it,
-     * altough no operations on the list will be synchronized.
+     * @param copy  if true, the created template will copy the passed nodes
+     *              list, so changes to the passed list will not affect the model. If false,
+     *              the model will reference the passed list and will sense changes in it,
+     *              altough no operations on the list will be synchronized.
      */
-    public NodeList(List nodes, boolean copy)
-    {
-        if(nodes == null)
-        {
+    public NodeList(List nodes, boolean copy) {
+        if (nodes == null) {
             throw new IllegalArgumentException(
-                "Cannot initialize NodeList with null list");
+                    "Cannot initialize NodeList with null list");
         }
         this.nodes = copy ? new ArrayList(nodes) : nodes;
     }
@@ -132,10 +129,10 @@ public class NodeList implements List, Cloneable
      * you can fully use the underlying list through the <code>List</code> interface
      * of this class itself. You would probably access the underlying list only for
      * synchronization purposes.
+     *
      * @return The internal node List.
      */
-    public List getList()
-    {
+    public List getList() {
         return nodes;
     }
 
@@ -146,69 +143,45 @@ public class NodeList implements List, Cloneable
      * templates, as to output a node contained in variable x as XML fragment,
      * you simply write ${x} in the template (or whatever your template engine
      * uses as its expression syntax).
+     *
      * @return The Nodelist as printable object.
      */
-    public String toString()
-    {
-        if(nodes.isEmpty())
-        {
+    public String toString() {
+        if (nodes.isEmpty()) {
             return "";
         }
 
         StringWriter sw = new StringWriter(nodes.size() * 128);
-        try
-        {
-            for(Iterator i = nodes.iterator(); i.hasNext();)
-            {
+        try {
+            for (Iterator i = nodes.iterator(); i.hasNext(); ) {
                 Object node = i.next();
-                if(node instanceof Element)
-                {
-                    DEFAULT_OUTPUTTER.output((Element)node, sw);
-                }
-                else if(node instanceof Attribute)
-                {
-                    DEFAULT_OUTPUTTER.output((Attribute)node, sw);
-                }
-                else if(node instanceof Text)
-                {
-                    DEFAULT_OUTPUTTER.output((Text)node, sw);
-                }
-                else if(node instanceof Document)
-                {
-                    DEFAULT_OUTPUTTER.output((Document)node, sw);
-                }
-                else if(node instanceof ProcessingInstruction)
-                {
-                    DEFAULT_OUTPUTTER.output((ProcessingInstruction)node, sw);
-                }
-                else if(node instanceof Comment)
-                {
-                    DEFAULT_OUTPUTTER.output((Comment)node, sw);
-                }
-                else if(node instanceof CDATA)
-                {
-                    DEFAULT_OUTPUTTER.output((CDATA)node, sw);
-                }
-                else if(node instanceof DocType)
-                {
-                    DEFAULT_OUTPUTTER.output((DocType)node, sw);
-                }
-                else if(node instanceof EntityRef)
-                {
-                    DEFAULT_OUTPUTTER.output((EntityRef)node, sw);
-                }
-                else
-                {
+                if (node instanceof Element) {
+                    DEFAULT_OUTPUTTER.output((Element) node, sw);
+                } else if (node instanceof Attribute) {
+                    DEFAULT_OUTPUTTER.output((Attribute) node, sw);
+                } else if (node instanceof Text) {
+                    DEFAULT_OUTPUTTER.output((Text) node, sw);
+                } else if (node instanceof Document) {
+                    DEFAULT_OUTPUTTER.output((Document) node, sw);
+                } else if (node instanceof ProcessingInstruction) {
+                    DEFAULT_OUTPUTTER.output((ProcessingInstruction) node, sw);
+                } else if (node instanceof Comment) {
+                    DEFAULT_OUTPUTTER.output((Comment) node, sw);
+                } else if (node instanceof CDATA) {
+                    DEFAULT_OUTPUTTER.output((CDATA) node, sw);
+                } else if (node instanceof DocType) {
+                    DEFAULT_OUTPUTTER.output((DocType) node, sw);
+                } else if (node instanceof EntityRef) {
+                    DEFAULT_OUTPUTTER.output((EntityRef) node, sw);
+                } else {
                     throw new IllegalArgumentException(
-                        "Cannot process a " +
-                        (node == null
-                         ? "null node"
-                         : "node of class " + node.getClass().getName()));
+                            "Cannot process a " +
+                                    (node == null
+                                            ? "null node"
+                                            : "node of class " + node.getClass().getName()));
                 }
             }
-        }
-        catch(IOException e)
-        {
+        } catch (IOException e) {
             // Cannot happen as we work with a StringWriter in memory
             throw new Error();
         }
@@ -217,36 +190,30 @@ public class NodeList implements List, Cloneable
 
     /**
      * Returns a NodeList that contains the same nodes as this node list.
+     *
      * @return A clone of this list.
      * @throws CloneNotSupportedException if the contained list's class does
-     * not have an accessible no-arg constructor.
+     *                                    not have an accessible no-arg constructor.
      */
     public Object clone()
-        throws CloneNotSupportedException
-    {
-        NodeList clonedList = (NodeList)super.clone();
+            throws CloneNotSupportedException {
+        NodeList clonedList = (NodeList) super.clone();
         clonedList.cloneNodes();
         return clonedList;
     }
 
     private void cloneNodes()
-        throws CloneNotSupportedException
-    {
+            throws CloneNotSupportedException {
         Class listClass = nodes.getClass();
-        try
-        {
-            List clonedNodes = (List)listClass.newInstance();
+        try {
+            List clonedNodes = (List) listClass.newInstance();
             clonedNodes.addAll(nodes);
             nodes = clonedNodes;
-        }
-        catch(IllegalAccessException e)
-        {
+        } catch (IllegalAccessException e) {
             throw new CloneNotSupportedException("Cannot clone NodeList since"
-            + " there is no accessible no-arg constructor on class "
-            + listClass.getName());
-        }
-        catch(InstantiationException e)
-        {
+                    + " there is no accessible no-arg constructor on class "
+                    + listClass.getName());
+        } catch (InstantiationException e) {
             // Cannot happen as listClass represents a concrete, non-primitive,
             // non-array, non-void class - there's an instance of it in "nodes"
             // which proves these assumptions.
@@ -256,24 +223,24 @@ public class NodeList implements List, Cloneable
 
     /**
      * Returns the hash code of the contained list.
+     *
      * @return The hashcode of the list.
      */
-    public int hashCode()
-    {
+    public int hashCode() {
         return nodes.hashCode();
     }
 
     /**
      * Tests for equality with another object.
+     *
      * @param o the object to test for equality
      * @return true if the other object is also a NodeList and their contained
      * {@link List} objects evaluate as equals.
      */
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         return o instanceof NodeList
-            ? ((NodeList)o).nodes.equals(nodes)
-            : false;
+                ? ((NodeList) o).nodes.equals(nodes)
+                : false;
     }
 
     /**
@@ -286,12 +253,12 @@ public class NodeList implements List, Cloneable
      * usually kept in the parsed template, this ensures that each XPath
      * expression is parsed only once during the lifetime of the template that
      * first invoked it.
+     *
      * @param xpathString the XPath expression you wish to apply
      * @return a NodeList representing the nodes that are the result of
      * application of the XPath to the current node list. It can be empty.
      */
-    public NodeList selectNodes(String xpathString)
-    {
+    public NodeList selectNodes(String xpathString) {
         return new NodeList(XPathCache.getXPath(xpathString).applyTo(nodes), false);
     }
 
@@ -300,184 +267,161 @@ public class NodeList implements List, Cloneable
     /**
      * @see java.util.List#add(java.lang.Object)
      */
-    public boolean add(Object o)
-    {
+    public boolean add(Object o) {
         return nodes.add(o);
     }
 
     /**
      * @see java.util.List#add(int, java.lang.Object)
      */
-    public void add(int index, Object o)
-    {
+    public void add(int index, Object o) {
         nodes.add(index, o);
     }
 
     /**
      * @see java.util.List#addAll(java.util.Collection)
      */
-    public boolean addAll(Collection c)
-    {
+    public boolean addAll(Collection c) {
         return nodes.addAll(c);
     }
 
     /**
      * @see java.util.List#addAll(int, java.util.Collection)
      */
-    public boolean addAll(int index, Collection c)
-    {
+    public boolean addAll(int index, Collection c) {
         return nodes.addAll(index, c);
     }
 
     /**
      * @see java.util.List#clear()
      */
-    public void clear()
-    {
+    public void clear() {
         nodes.clear();
     }
 
     /**
      * @see java.util.List#contains(java.lang.Object)
      */
-    public boolean contains(Object o)
-    {
+    public boolean contains(Object o) {
         return nodes.contains(o);
     }
 
     /**
      * @see java.util.List#containsAll(java.util.Collection)
      */
-    public boolean containsAll(Collection c)
-    {
+    public boolean containsAll(Collection c) {
         return nodes.containsAll(c);
     }
 
     /**
      * @see java.util.List#get(int)
      */
-    public Object get(int index)
-    {
+    public Object get(int index) {
         return nodes.get(index);
     }
 
     /**
      * @see java.util.List#indexOf(java.lang.Object)
      */
-    public int indexOf(Object o)
-    {
+    public int indexOf(Object o) {
         return nodes.indexOf(o);
     }
 
     /**
      * @see java.util.List#isEmpty()
      */
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return nodes.isEmpty();
     }
 
     /**
      * @see java.util.List#iterator()
      */
-    public Iterator iterator()
-    {
+    public Iterator iterator() {
         return nodes.iterator();
     }
 
     /**
      * @see java.util.List#lastIndexOf(java.lang.Object)
      */
-    public int lastIndexOf(Object o)
-    {
+    public int lastIndexOf(Object o) {
         return nodes.lastIndexOf(o);
     }
 
     /**
      * @see java.util.List#listIterator()
      */
-    public ListIterator listIterator()
-    {
+    public ListIterator listIterator() {
         return nodes.listIterator();
     }
 
     /**
      * @see java.util.List#listIterator(int)
      */
-    public ListIterator listIterator(int index)
-    {
+    public ListIterator listIterator(int index) {
         return nodes.listIterator(index);
     }
 
     /**
      * @see java.util.List#remove(int)
      */
-    public Object remove(int index)
-    {
+    public Object remove(int index) {
         return nodes.remove(index);
     }
 
     /**
      * @see java.util.List#remove(java.lang.Object)
      */
-    public boolean remove(Object o)
-    {
+    public boolean remove(Object o) {
         return nodes.remove(o);
     }
 
     /**
      * @see java.util.List#removeAll(java.util.Collection)
      */
-    public boolean removeAll(Collection c)
-    {
+    public boolean removeAll(Collection c) {
         return nodes.removeAll(c);
     }
 
     /**
      * @see java.util.List#retainAll(java.util.Collection)
      */
-    public boolean retainAll(Collection c)
-    {
+    public boolean retainAll(Collection c) {
         return nodes.retainAll(c);
     }
 
     /**
      * @see java.util.List#set(int, java.lang.Object)
      */
-    public Object set(int index, Object o)
-    {
+    public Object set(int index, Object o) {
         return nodes.set(index, o);
     }
 
     /**
      * @see java.util.List#size()
      */
-    public int size()
-    {
+    public int size() {
         return nodes.size();
     }
 
     /**
      * @see java.util.List#subList(int, int)
      */
-    public List subList(int fromIndex, int toIndex)
-    {
+    public List subList(int fromIndex, int toIndex) {
         return new NodeList(nodes.subList(fromIndex, toIndex));
     }
 
     /**
      * @see java.util.List#toArray()
      */
-    public Object[] toArray()
-    {
+    public Object[] toArray() {
         return nodes.toArray();
     }
 
     /**
      * @see java.util.List#toArray(java.lang.Object[])
      */
-    public Object[] toArray(Object[] a)
-    {
+    public Object[] toArray(Object[] a) {
         return nodes.toArray(a);
     }
 
@@ -487,16 +431,14 @@ public class NodeList implements List, Cloneable
      * method escapeAttributeEntities() to serialize the attribute
      * appropriately.
      */
-    private static final class AttributeXMLOutputter extends XMLOutputter
-    {
+    private static final class AttributeXMLOutputter extends XMLOutputter {
         /**
          * @param attribute
          * @param out
          * @throws IOException
          */
         public void output(Attribute attribute, Writer out)
-            throws IOException
-        {
+                throws IOException {
             out.write(" ");
             out.write(attribute.getQualifiedName());
             out.write("=");

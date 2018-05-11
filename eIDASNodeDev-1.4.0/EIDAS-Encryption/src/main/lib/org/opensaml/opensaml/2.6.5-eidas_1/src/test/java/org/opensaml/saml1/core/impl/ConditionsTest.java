@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -36,7 +36,9 @@ import org.opensaml.saml1.core.DoNotCacheCondition;
  */
 public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
     /**
@@ -51,7 +53,6 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
 
     /**
      * Constructor
-     * 
      */
     public ConditionsTest() {
         singleElementFile = "/data/org/opensaml/saml1/impl/singleConditions.xml";
@@ -65,11 +66,13 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
         // NotOnOrAfter="1970-01-01T00:00:01.000Z"
         //
         expectedNotOnOfAfter = new DateTime(1970, 1, 01, 00, 00, 01, 0, ISOChronology.getInstanceUTC());
-        
+
         qname = new QName(SAMLConstants.SAML1_NS, Conditions.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Conditions conditions;
 
@@ -83,7 +86,9 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Conditions conditions;
 
@@ -107,7 +112,9 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Wrong number of Condition children", 4, conditions.getConditions().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         Conditions conditions = (Conditions) buildXMLObject(qname);
 
@@ -115,7 +122,9 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         Conditions conditions = (Conditions) buildXMLObject(qname);
 
@@ -125,13 +134,15 @@ public class ConditionsTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, conditions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
 
         Conditions conditions = (Conditions) buildXMLObject(qname);
 
         QName arcQname = new QName(SAMLConstants.SAML1_NS, AudienceRestrictionCondition.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        
+
         conditions.getConditions().add((AudienceRestrictionCondition) buildXMLObject(arcQname));
         conditions.getConditions().add((DoNotCacheCondition) buildXMLObject(new QName(SAMLConstants.SAML1_NS, DoNotCacheCondition.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX)));
         // conditions.addCondition(condition);

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,12 +29,16 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public abstract class SSODescriptorSpecTestBase extends RoleDescriptorSpecTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SSODescriptorSpecTestBase() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         SSODescriptor ssoDescriptor = (SSODescriptor) target;
@@ -45,7 +49,7 @@ public abstract class SSODescriptorSpecTestBase extends RoleDescriptorSpecTestBa
 
     /**
      * Tests for Response Location Failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testResponseLocationFailure() throws ValidationException {

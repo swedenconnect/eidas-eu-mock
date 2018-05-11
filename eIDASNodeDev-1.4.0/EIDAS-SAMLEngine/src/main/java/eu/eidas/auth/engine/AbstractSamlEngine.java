@@ -99,7 +99,7 @@ public abstract class AbstractSamlEngine {
             SAMLBootstrap.bootstrap();
 
             Configuration.registerObjectProvider(XSAny.TYPE_NAME, new XSAnyBuilder(), new XSAnyMarshaller(),
-                                                 new XSAnyUnmarshaller());
+                    new XSAnyUnmarshaller());
         } catch (ConfigurationException ce) {
             LOG.error("Problem initializing the OpenSAML library: " + ce, ce);
             throw new IllegalStateException(ce);
@@ -118,7 +118,7 @@ public abstract class AbstractSamlEngine {
     private void checkUnencryptedResponsesAllowed() throws EIDASSAMLEngineException {
         if (isResponseEncryptionMandatory()) {
             throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorCode(),
-                                               EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
+                    EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
         }
     }
 
@@ -221,7 +221,7 @@ public abstract class AbstractSamlEngine {
     }
 
     public byte[] signAndMarshallEntitiesDescriptor(EntitiesDescriptor descriptor) throws EIDASSAMLEngineException {
-        ((MetadataSignerI)getSigner()).signMetadata(descriptor);
+        ((MetadataSignerI) getSigner()).signMetadata(descriptor);
         return marshall(descriptor);
     }
 
@@ -257,7 +257,7 @@ public abstract class AbstractSamlEngine {
     }
 
     public void signEntityDescriptor(EntityDescriptor descriptor) throws EIDASSAMLEngineException {
-        ((MetadataSignerI)getSigner()).signMetadata(descriptor);
+        ((MetadataSignerI) getSigner()).signMetadata(descriptor);
     }
 
     /**
@@ -306,7 +306,7 @@ public abstract class AbstractSamlEngine {
                 LOG.debug("Encryption finished: " + responseToSign);
             } else {
                 LOG.debug("Encryption not performed, no matching certificate for issuer=" + request.getIssuer()
-                                  + " and country=" + request.getOriginCountryCode());
+                        + " and country=" + request.getOriginCountryCode());
             }
         } else if (!SAMLEngineUtils.isErrorSamlResponse(responseToSign)) {
             checkUnencryptedResponsesAllowed();
@@ -360,7 +360,7 @@ public abstract class AbstractSamlEngine {
         } catch (UnmarshallException e) {
             LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException unmarshall.", e.getMessage(), e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -382,7 +382,7 @@ public abstract class AbstractSamlEngine {
         X509Certificate signatureCertificate =
                 getExtensionProcessor().getResponseSignatureCertificate(validResponse.getIssuer().getValue());
         getSigner().validateSignature(validResponse,
-                                      null == signatureCertificate ? null : ImmutableSet.of(signatureCertificate));
+                null == signatureCertificate ? null : ImmutableSet.of(signatureCertificate));
 
         if (this.decryptResponse() && !(validResponse).getEncryptedAssertions().isEmpty()) {
             // DECRYPT THE SAMLObject AFTER VALIDATION

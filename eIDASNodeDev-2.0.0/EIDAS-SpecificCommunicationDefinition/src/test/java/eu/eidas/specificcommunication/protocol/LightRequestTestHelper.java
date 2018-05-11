@@ -25,7 +25,8 @@ import java.util.UUID;
 
 public class LightRequestTestHelper {
 
-    private LightRequestTestHelper() {}
+    private LightRequestTestHelper() {
+    }
 
     public static ILightRequest createLightRequest(String citizenCountry, String issuerName, String relayState, String loa) {
 

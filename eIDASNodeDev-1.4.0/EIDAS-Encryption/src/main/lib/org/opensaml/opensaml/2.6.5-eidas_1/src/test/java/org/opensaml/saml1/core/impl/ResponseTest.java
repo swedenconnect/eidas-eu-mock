@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -38,22 +38,34 @@ import org.w3c.dom.Element;
  */
 public class ResponseTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
-    /** Representation of IssueInstant in test file. */
+    /**
+     * Representation of IssueInstant in test file.
+     */
     private final String expectedID;
 
-    /** Representation of IssueInstant in test file. */
+    /**
+     * Representation of IssueInstant in test file.
+     */
     private final DateTime expectedIssueInstant;
 
-    /** Representation of InResponseTo in test file. */
+    /**
+     * Representation of InResponseTo in test file.
+     */
     private final String expectedInResponseTo;
 
-    /** Representation of MinorVersion in test file. */
+    /**
+     * Representation of MinorVersion in test file.
+     */
     private final int expectedMinorVersion;
 
-    /** Representation of Recipient in test file. */
+    /**
+     * Representation of Recipient in test file.
+     */
     private final String expectedRecipient;
 
     /**
@@ -69,22 +81,24 @@ public class ResponseTest extends BaseSAMLObjectProviderTestCase {
         //
         expectedIssueInstant = new DateTime(1970, 1, 1, 0, 0, 0, 100, ISOChronology.getInstanceUTC());
 
-        expectedInResponseTo="inresponseto";
-        expectedMinorVersion=1;
-        expectedRecipient="recipient";
-        
+        expectedInResponseTo = "inresponseto";
+        expectedMinorVersion = 1;
+        expectedRecipient = "recipient";
+
         qname = Response.DEFAULT_ELEMENT_NAME;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
 
         Response response = (Response) unmarshallElement(singleElementFile);
 
         String id = response.getID();
         assertNull("ID attribute has value " + id + "expected no value", id);
-       
-        assertNull("IssueInstant attribute has a value of " + response.getIssueInstant() 
+
+        assertNull("IssueInstant attribute has a value of " + response.getIssueInstant()
                 + ", expected no value", response.getIssueInstant());
 
         assertEquals("Assertion elements count", 0, response.getAssertions().size());
@@ -94,7 +108,9 @@ public class ResponseTest extends BaseSAMLObjectProviderTestCase {
         assertNull("Status element has a value of " + status + ", expected no value", status);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Response response;
         response = (Response) unmarshallElement(singleElementOptionalAttributesFile);
@@ -112,7 +128,9 @@ public class ResponseTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("MinorVersion attribute ", expectedMinorVersion, i);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Response response = (Response) unmarshallElement(childElementsFile);
 
@@ -123,12 +141,16 @@ public class ResponseTest extends BaseSAMLObjectProviderTestCase {
         assertNotNull("No Status element found", status);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         Response response = (Response) buildXMLObject(qname);
 
@@ -140,33 +162,35 @@ public class ResponseTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, response);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         Response response = (Response) buildXMLObject(qname);
 
         response.getAssertions().add((Assertion) buildXMLObject(Assertion.DEFAULT_ELEMENT_NAME));
-        response.setStatus((Status)buildXMLObject(Status.DEFAULT_ELEMENT_NAME));
+        response.setStatus((Status) buildXMLObject(Status.DEFAULT_ELEMENT_NAME));
 
         assertEquals(expectedChildElementsDOM, response);
 
     }
-    
+
     public void testSignatureUnmarshall() {
         Response response = (Response) unmarshallElement("/data/org/opensaml/saml1/impl/ResponseWithSignature.xml");
-        
+
         assertNotNull("Response was null", response);
         assertNotNull("Signature was null", response.getSignature());
         assertNotNull("KeyInfo was null", response.getSignature().getKeyInfo());
     }
-    
+
     public void testDOMIDResolutionUnmarshall() {
         Response response = (Response) unmarshallElement("/data/org/opensaml/saml1/impl/ResponseWithSignature.xml");
-        
+
         assertNotNull("Response was null", response);
         assertNotNull("Signature was null", response.getSignature());
         Document document = response.getSignature().getDOM().getOwnerDocument();
         Element idElem = response.getDOM();
-        
+
         assertNotNull("DOM ID resolution returned null", document.getElementById(expectedID));
         assertTrue("DOM elements were not equal", idElem.isSameNode(document.getElementById(expectedID)));
     }
@@ -175,12 +199,12 @@ public class ResponseTest extends BaseSAMLObjectProviderTestCase {
         Response response = (Response) buildXMLObject(Response.DEFAULT_ELEMENT_NAME);
         response.setID(expectedID);
         response.setStatus((Status) buildXMLObject(Status.DEFAULT_ELEMENT_NAME));
-        
+
         marshallerFactory.getMarshaller(response).marshall(response);
-        
+
         Document document = response.getStatus().getDOM().getOwnerDocument();
         Element idElem = response.getDOM();
-        
+
         assertNotNull("DOM ID resolution returned null", document.getElementById(expectedID));
         assertTrue("DOM elements were not equal", idElem.isSameNode(document.getElementById(expectedID)));
     }

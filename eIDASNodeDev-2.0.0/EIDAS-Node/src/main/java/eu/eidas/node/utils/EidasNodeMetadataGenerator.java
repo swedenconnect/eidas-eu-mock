@@ -65,10 +65,10 @@ public class EidasNodeMetadataGenerator {
     private Properties nodeProps;
     private long validityDuration;
 
-    private String  singleSignOnServiceRedirectLocation;
-    private String  singleSignOnServicePostLocation;
+    private String singleSignOnServiceRedirectLocation;
+    private String singleSignOnServicePostLocation;
 
-    private static final String INVALID_METADATA="invalid metadata";
+    private static final String INVALID_METADATA = "invalid metadata";
 
     private ProtocolEngineFactory nodeProtocolEngineFactory;
 
@@ -96,17 +96,17 @@ public class EidasNodeMetadataGenerator {
         this.nodeProtocolEngineFactory = nodeProtocolEngineFactory;
     }
 
-    public String generateConnectorMetadata(ProtocolEngineI protocolEngine){
+    public String generateConnectorMetadata(ProtocolEngineI protocolEngine) {
         ContactData technicalContact = NodeMetadataUtil.createConnectorTechnicalContact(nodeProps);
         ContactData supportContact = NodeMetadataUtil.createConnectorSupportContact(nodeProps);
         OrganizationData organization = NodeMetadataUtil.createConnectorOrganizationData(nodeProps);
         return generateMetadata(false, connectorMetadataUrl, technicalContact, supportContact, organization, null, (MetadataSignerI) protocolEngine.getSigner());
     }
 
-    public String generateProxyServiceMetadata(ProtocolEngineI protocolEngine){
-        String loA=null;
-        if(getNodeProps()!=null){
-            loA=getNodeProps().getProperty(EIDASValues.EIDAS_SERVICE_LOA.toString());
+    public String generateProxyServiceMetadata(ProtocolEngineI protocolEngine) {
+        String loA = null;
+        if (getNodeProps() != null) {
+            loA = getNodeProps().getProperty(EIDASValues.EIDAS_SERVICE_LOA.toString());
         }
         ContactData technicalContact = NodeMetadataUtil.createServiceTechnicalContact(nodeProps);
         ContactData supportContact = NodeMetadataUtil.createServiceSupportContact(nodeProps);
@@ -115,10 +115,10 @@ public class EidasNodeMetadataGenerator {
     }
 
     private String generateMetadata(boolean idpRole, String url, ContactData technicalContact,
-                                    ContactData supportContact, OrganizationData organization, String loA, MetadataSignerI signer){
-        String metadata=INVALID_METADATA;
+                                    ContactData supportContact, OrganizationData organization, String loA, MetadataSignerI signer) {
+        String metadata = INVALID_METADATA;
 
-        if(url!=null && !url.isEmpty()) {
+        if (url != null && !url.isEmpty()) {
             try {
                 EidasMetadataParametersI emp = MetadataConfiguration.newParametersInstance();
                 EidasMetadataRoleParametersI emrp = MetadataConfiguration.newRoleParametersInstance();

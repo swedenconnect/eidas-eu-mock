@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,7 +29,9 @@ import org.opensaml.saml1.core.DecisionTypeEnumeration;
  */
 public class AuthorizationDecisionStatementSchemaTest extends SubjectStatementSchemaTestBase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthorizationDecisionStatementSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, AuthorizationDecisionStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
@@ -37,19 +39,21 @@ public class AuthorizationDecisionStatementSchemaTest extends SubjectStatementSc
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
 
         AuthorizationDecisionStatement authorizationDecisionStatement = (AuthorizationDecisionStatement) target;
- 
+
         authorizationDecisionStatement.setResource("resource");
         authorizationDecisionStatement.setDecision(DecisionTypeEnumeration.DENY);
-        
+
         QName qname = new QName(SAMLConstants.SAML1_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        authorizationDecisionStatement.getActions().add((Action)buildXMLObject(qname));
+        authorizationDecisionStatement.getActions().add((Action) buildXMLObject(qname));
     }
-    
+
     public void testMissingResource() {
         AuthorizationDecisionStatement authorizationDecisionStatement = (AuthorizationDecisionStatement) target;
 

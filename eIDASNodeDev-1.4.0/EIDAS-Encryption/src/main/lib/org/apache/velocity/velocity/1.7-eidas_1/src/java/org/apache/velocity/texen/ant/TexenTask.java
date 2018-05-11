@@ -16,7 +16,7 @@ package org.apache.velocity.texen.ant;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.File;
@@ -50,16 +50,15 @@ import org.apache.velocity.util.StringUtils;
  * @version $Id: TexenTask.java 463298 2006-10-12 16:10:32Z henning $
  */
 public class TexenTask
-    extends Task
-{
+        extends Task {
     /**
      * This message fragment (telling users to consult the log or
      * invoke ant with the -debug flag) is appended to rethrown
      * exception messages.
      */
     private final static String ERR_MSG_FRAGMENT =
-        ". For more information consult the velocity log, or invoke ant " +
-        "with the -debug flag.";
+            ". For more information consult the velocity log, or invoke ant " +
+                    "with the -debug flag.";
 
     /**
      * This is the control template that governs the output.
@@ -143,8 +142,8 @@ public class TexenTask
     protected String logFile;
 
     /**
-     *   Property which controls whether the resource
-     *   loader will be told to cache.  Default false
+     * Property which controls whether the resource
+     * loader will be told to cache.  Default false
      */
 
     protected String useResourceLoaderCache = "false";
@@ -156,20 +155,20 @@ public class TexenTask
     /**
      * [REQUIRED] Set the control template for the
      * generating process.
+     *
      * @param controlTemplate
      */
-    public void setControlTemplate (String controlTemplate)
-    {
+    public void setControlTemplate(String controlTemplate) {
         this.controlTemplate = controlTemplate;
     }
 
     /**
      * Get the control template for the
      * generating process.
+     *
      * @return The current control template.
      */
-    public String getControlTemplate()
-    {
+    public String getControlTemplate() {
         return controlTemplate;
     }
 
@@ -177,120 +176,115 @@ public class TexenTask
      * [REQUIRED] Set the path where Velocity will look
      * for templates using the file template
      * loader.
+     *
      * @param templatePath
      * @throws Exception
      */
 
-    public void setTemplatePath(String templatePath) throws Exception
-    {
+    public void setTemplatePath(String templatePath) throws Exception {
         StringBuffer resolvedPath = new StringBuffer();
         StringTokenizer st = new StringTokenizer(templatePath, ",");
-        while ( st.hasMoreTokens() )
-        {
+        while (st.hasMoreTokens()) {
             // resolve relative path from basedir and leave
             // absolute path untouched.
             File fullPath = project.resolveFile(st.nextToken());
             resolvedPath.append(fullPath.getCanonicalPath());
-            if ( st.hasMoreTokens() )
-            {
+            if (st.hasMoreTokens()) {
                 resolvedPath.append(",");
             }
         }
         this.templatePath = resolvedPath.toString();
 
         System.out.println(templatePath);
-     }
+    }
 
     /**
      * Get the path where Velocity will look
      * for templates using the file template
      * loader.
+     *
      * @return The template path.
      */
-    public String getTemplatePath()
-    {
+    public String getTemplatePath() {
         return templatePath;
     }
 
     /**
      * [REQUIRED] Set the output directory. It will be
      * created if it doesn't exist.
+     *
      * @param outputDirectory
      */
-    public void setOutputDirectory(File outputDirectory)
-    {
-        try
-        {
+    public void setOutputDirectory(File outputDirectory) {
+        try {
             this.outputDirectory = outputDirectory.getCanonicalPath();
-        }
-        catch (java.io.IOException ioe)
-        {
+        } catch (java.io.IOException ioe) {
             throw new BuildException(ioe);
         }
     }
 
     /**
      * Get the output directory.
+     *
      * @return The output directory.
      */
-    public String getOutputDirectory()
-    {
+    public String getOutputDirectory() {
         return outputDirectory;
     }
 
     /**
      * [REQUIRED] Set the output file for the
      * generation process.
+     *
      * @param outputFile
      */
-    public void setOutputFile(String outputFile)
-    {
+    public void setOutputFile(String outputFile) {
         this.outputFile = outputFile;
     }
 
     /**
      * Set the output encoding.
+     *
      * @param outputEncoding
      */
-    public void setOutputEncoding(String outputEncoding)
-    {
+    public void setOutputEncoding(String outputEncoding) {
         this.outputEncoding = outputEncoding;
     }
 
     /**
      * Set the input (template) encoding.
+     *
      * @param inputEncoding
      */
-    public void setInputEncoding(String inputEncoding)
-    {
+    public void setInputEncoding(String inputEncoding) {
         this.inputEncoding = inputEncoding;
     }
 
     /**
      * Get the output file for the
      * generation process.
+     *
      * @return The output file.
      */
-    public String getOutputFile()
-    {
+    public String getOutputFile() {
         return outputFile;
     }
 
     /**
      * Sets the log file.
+     *
      * @param log
      */
-    public void setLogFile(String log)
-    {
+    public void setLogFile(String log) {
         this.logFile = log;
     }
 
     /**
      * Gets the log file.
+     *
      * @return The log file.
      */
-    public String getLogFile()
-    {
+    public String getLogFile() {
         return this.logFile;
     }
 
@@ -298,11 +292,11 @@ public class TexenTask
      * Set the context properties that will be
      * fed into the initial context be the
      * generating process starts.
+     *
      * @param file
      */
-    public void setContextProperties( String file )
-    {
-        String[] sources = StringUtils.split(file,",");
+    public void setContextProperties(String file) {
+        String[] sources = StringUtils.split(file, ",");
         contextProperties = new ExtendedProperties();
 
         // Always try to get the context properties resource
@@ -311,49 +305,37 @@ public class TexenTask
         // resource in the filesystem. If this fails than attempt
         // to get the context properties resource from the
         // classpath.
-        for (int i = 0; i < sources.length; i++)
-        {
+        for (int i = 0; i < sources.length; i++) {
             ExtendedProperties source = new ExtendedProperties();
 
-            try
-            {
+            try {
                 // resolve relative path from basedir and leave
                 // absolute path untouched.
                 File fullPath = project.resolveFile(sources[i]);
                 log("Using contextProperties file: " + fullPath);
                 source.load(new FileInputStream(fullPath));
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 ClassLoader classLoader = this.getClass().getClassLoader();
 
-                try
-                {
+                try {
                     InputStream inputStream = classLoader.getResourceAsStream(sources[i]);
 
-                    if (inputStream == null)
-                    {
+                    if (inputStream == null) {
                         throw new BuildException("Context properties file " + sources[i] +
-                            " could not be found in the file system or on the classpath!");
-                    }
-                    else
-                    {
+                                " could not be found in the file system or on the classpath!");
+                    } else {
                         source.load(inputStream);
                     }
-                }
-                catch (IOException ioe)
-                {
+                } catch (IOException ioe) {
                     source = null;
                 }
             }
 
-            if (source != null)
-            {
-                for (Iterator j = source.getKeys(); j.hasNext(); )
-                {
+            if (source != null) {
+                for (Iterator j = source.getKeys(); j.hasNext(); ) {
                     String name = (String) j.next();
                     String value = StringUtils.nullTrim(source.getString(name));
-                    contextProperties.setProperty(name,value);
+                    contextProperties.setProperty(name, value);
                 }
             }
         }
@@ -363,10 +345,10 @@ public class TexenTask
      * Get the context properties that will be
      * fed into the initial context be the
      * generating process starts.
+     *
      * @return The current context properties.
      */
-    public ExtendedProperties getContextProperties()
-    {
+    public ExtendedProperties getContextProperties() {
         return contextProperties;
     }
 
@@ -375,108 +357,95 @@ public class TexenTask
      *
      * @param useClasspath true means the classpath will be used.
      */
-    public void setUseClasspath(boolean useClasspath)
-    {
+    public void setUseClasspath(boolean useClasspath) {
         this.useClasspath = useClasspath;
     }
 
     /**
      * @param useResourceLoaderCache
      */
-    public void setUseResourceLoaderCache(String useResourceLoaderCache)
-    {
+    public void setUseResourceLoaderCache(String useResourceLoaderCache) {
         this.useResourceLoaderCache = useResourceLoaderCache;
     }
 
     /**
      * @param resourceLoaderModificationCheckInterval
      */
-    public void setResourceLoaderModificationCheckInterval(String resourceLoaderModificationCheckInterval)
-    {
+    public void setResourceLoaderModificationCheckInterval(String resourceLoaderModificationCheckInterval) {
         this.resourceLoaderModificationCheckInterval = resourceLoaderModificationCheckInterval;
     }
+
     /**
      * Creates a VelocityContext.
      *
      * @return new Context
      * @throws Exception the execute method will catch
-     *         and rethrow as a <code>BuildException</code>
+     *                   and rethrow as a <code>BuildException</code>
      */
     public Context initControlContext()
-        throws Exception
-    {
+            throws Exception {
         return new VelocityContext();
     }
 
     /**
      * Execute the input script with Velocity
      *
-     * @throws BuildException
-     * BuildExceptions are thrown when required attributes are missing.
-     * Exceptions thrown by Velocity are rethrown as BuildExceptions.
+     * @throws BuildException BuildExceptions are thrown when required attributes are missing.
+     *                        Exceptions thrown by Velocity are rethrown as BuildExceptions.
      */
-    public void execute ()
-        throws BuildException
-    {
+    public void execute()
+            throws BuildException {
         // Make sure the template path is set.
-        if (templatePath == null && useClasspath == false)
-        {
+        if (templatePath == null && useClasspath == false) {
             throw new BuildException(
-                "The template path needs to be defined if you are not using " +
-                "the classpath for locating templates!");
+                    "The template path needs to be defined if you are not using " +
+                            "the classpath for locating templates!");
         }
 
         // Make sure the control template is set.
-        if (controlTemplate == null)
-        {
+        if (controlTemplate == null) {
             throw new BuildException("The control template needs to be defined!");
         }
 
         // Make sure the output directory is set.
-        if (outputDirectory == null)
-        {
+        if (outputDirectory == null) {
             throw new BuildException("The output directory needs to be defined!");
         }
 
         // Make sure there is an output file.
-        if (outputFile == null)
-        {
+        if (outputFile == null) {
             throw new BuildException("The output file needs to be defined!");
         }
 
         VelocityEngine ve = new VelocityEngine();
 
-        try
-        {
+        try {
             // Setup the Velocity Runtime.
-            if (templatePath != null)
-            {
+            if (templatePath != null) {
                 log("Using templatePath: " + templatePath, Project.MSG_VERBOSE);
                 ve.setProperty(
-                    RuntimeConstants.FILE_RESOURCE_LOADER_PATH, templatePath);
+                        RuntimeConstants.FILE_RESOURCE_LOADER_PATH, templatePath);
             }
 
-            if (useClasspath)
-            {
+            if (useClasspath) {
                 log("Using classpath");
                 ve.addProperty(
-                    VelocityEngine.RESOURCE_LOADER, "classpath");
+                        VelocityEngine.RESOURCE_LOADER, "classpath");
 
                 ve.setProperty(
-                    "classpath." + VelocityEngine.RESOURCE_LOADER + ".class",
+                        "classpath." + VelocityEngine.RESOURCE_LOADER + ".class",
                         "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 
                 ve.setProperty(
-                    "classpath." + VelocityEngine.RESOURCE_LOADER +
-                        ".cache", useResourceLoaderCache);
+                        "classpath." + VelocityEngine.RESOURCE_LOADER +
+                                ".cache", useResourceLoaderCache);
 
                 ve.setProperty(
-                    "classpath." + VelocityEngine.RESOURCE_LOADER +
-                        ".modificationCheckInterval", resourceLoaderModificationCheckInterval);
+                        "classpath." + VelocityEngine.RESOURCE_LOADER +
+                                ".modificationCheckInterval", resourceLoaderModificationCheckInterval);
             }
 
-            if (this.logFile != null)
-            {
+            if (this.logFile != null) {
                 ve.setProperty(RuntimeConstants.RUNTIME_LOG, this.logFile);
             }
 
@@ -489,16 +458,14 @@ public class TexenTask
             generator.setInputEncoding(inputEncoding);
             generator.setOutputEncoding(outputEncoding);
 
-            if (templatePath != null)
-            {
+            if (templatePath != null) {
                 generator.setTemplatePath(templatePath);
             }
 
             // Make sure the output directory exists, if it doesn't
             // then create it.
             File file = new File(outputDirectory);
-            if (! file.exists())
-            {
+            if (!file.exists()) {
                 file.mkdirs();
             }
 
@@ -521,36 +488,28 @@ public class TexenTask
             // Feed all the options into the initial
             // control context so they are available
             // in the control/worker templates.
-            if (contextProperties != null)
-            {
+            if (contextProperties != null) {
                 Iterator i = contextProperties.getKeys();
 
-                while (i.hasNext())
-                {
+                while (i.hasNext()) {
                     String property = (String) i.next();
                     String value = StringUtils.nullTrim(contextProperties.getString(property));
 
                     // Now lets quickly check to see if what
                     // we have is numeric and try to put it
                     // into the context as an Integer.
-                    try
-                    {
+                    try {
                         c.put(property, new Integer(value));
-                    }
-                    catch (NumberFormatException nfe)
-                    {
+                    } catch (NumberFormatException nfe) {
                         // Now we will try to place the value into
                         // the context as a boolean value if it
                         // maps to a valid boolean value.
                         String booleanString =
-                            contextProperties.testBoolean(value);
+                                contextProperties.testBoolean(value);
 
-                        if (booleanString != null)
-                        {
+                        if (booleanString != null) {
                             c.put(property, Boolean.valueOf(booleanString));
-                        }
-                        else
-                        {
+                        } else {
                             // We are going to do something special
                             // for properties that have a "file.contents"
                             // suffix: for these properties will pull
@@ -564,15 +523,14 @@ public class TexenTask
                             // and make it available in the context as
                             // $license. This should make texen a little
                             // more flexible.
-                            if (property.endsWith("file.contents"))
-                            {
+                            if (property.endsWith("file.contents")) {
                                 // We need to turn the license file from relative to
                                 // absolute, and let Ant help :)
                                 value = StringUtils.fileContentsToString(
-                                    project.resolveFile(value).getCanonicalPath());
+                                        project.resolveFile(value).getCanonicalPath());
 
                                 property = property.substring(
-                                    0, property.indexOf("file.contents") - 1);
+                                        0, property.indexOf("file.contents") - 1);
                             }
 
                             c.put(property, value);
@@ -586,29 +544,19 @@ public class TexenTask
             writer.close();
             generator.shutdown();
             cleanup();
-        }
-        catch( BuildException e)
-        {
+        } catch (BuildException e) {
             throw e;
-        }
-        catch( MethodInvocationException e )
-        {
+        } catch (MethodInvocationException e) {
             throw new BuildException(
-                "Exception thrown by '" + e.getReferenceName() + "." +
-                    e.getMethodName() +"'" + ERR_MSG_FRAGMENT,
-                        e.getWrappedThrowable());
-        }
-        catch( ParseErrorException e )
-        {
-            throw new BuildException("Velocity syntax error" + ERR_MSG_FRAGMENT ,e);
-        }
-        catch( ResourceNotFoundException e )
-        {
-            throw new BuildException("Resource not found" + ERR_MSG_FRAGMENT,e);
-        }
-        catch( Exception e )
-        {
-            throw new BuildException("Generation failed" + ERR_MSG_FRAGMENT ,e);
+                    "Exception thrown by '" + e.getReferenceName() + "." +
+                            e.getMethodName() + "'" + ERR_MSG_FRAGMENT,
+                    e.getWrappedThrowable());
+        } catch (ParseErrorException e) {
+            throw new BuildException("Velocity syntax error" + ERR_MSG_FRAGMENT, e);
+        } catch (ResourceNotFoundException e) {
+            throw new BuildException("Resource not found" + ERR_MSG_FRAGMENT, e);
+        } catch (Exception e) {
+            throw new BuildException("Generation failed" + ERR_MSG_FRAGMENT, e);
         }
     }
 
@@ -623,15 +571,13 @@ public class TexenTask
      * method.</p>
      *
      * @param context The context to populate, as retrieved from
-     * {@link #initControlContext()}.
-     *
+     *                {@link #initControlContext()}.
      * @throws Exception Error while populating context.  The {@link
-     * #execute()} method will catch and rethrow as a
-     * <code>BuildException</code>.
+     *                   #execute()} method will catch and rethrow as a
+     *                   <code>BuildException</code>.
      */
     protected void populateInitialContext(Context context)
-        throws Exception
-    {
+            throws Exception {
         context.put("now", new Date().toString());
     }
 
@@ -641,10 +587,9 @@ public class TexenTask
      * as the release of database connections, etc.).  By default,
      * does nothing.
      *
-     * @exception Exception Problem cleaning up.
+     * @throws Exception Problem cleaning up.
      */
     protected void cleanup()
-        throws Exception
-    {
+            throws Exception {
     }
 }

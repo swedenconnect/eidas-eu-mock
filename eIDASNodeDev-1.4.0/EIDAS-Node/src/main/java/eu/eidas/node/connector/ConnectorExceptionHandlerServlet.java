@@ -122,7 +122,7 @@ public final class ConnectorExceptionHandlerServlet extends AbstractNodeServlet 
             if (StringUtils.isBlank(exception.getSamlTokenFail())) {
                 ResourceBundleMessageSource msgResource = (ResourceBundleMessageSource) getApplicationContext().
                         getBean(NodeBeanNames.SYSADMIN_MESSAGE_RESOURCES.toString());
-                final String errorMessage = msgResource.getMessage(exception.getErrorMessage(), new Object[] {
+                final String errorMessage = msgResource.getMessage(exception.getErrorMessage(), new Object[]{
                         exception.getErrorCode()}, request.getLocale());
                 exception.setErrorMessage(errorMessage);
                 EidasNodeErrorUtil.prepareSamlResponseFail(request, exception, EidasNodeErrorUtil.ErrorSource.CONNECTOR);

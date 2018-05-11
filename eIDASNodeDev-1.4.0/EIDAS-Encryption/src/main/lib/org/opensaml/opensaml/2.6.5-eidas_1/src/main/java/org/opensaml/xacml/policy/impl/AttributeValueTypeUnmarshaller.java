@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,15 +27,21 @@ import org.opensaml.xml.util.DatatypeHelper;
 import org.opensaml.xml.util.XMLHelper;
 import org.w3c.dom.Attr;
 
-/** Unmarshaller for {@link org.opensaml.xacml.policy.AttributeValueType}. */
+/**
+ * Unmarshaller for {@link org.opensaml.xacml.policy.AttributeValueType}.
+ */
 public class AttributeValueTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public AttributeValueTypeUnmarshaller() {
         super();
-    }    
+    }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
         AttributeValueType attributeValue = (AttributeValueType) xmlObject;
 
@@ -44,20 +50,24 @@ public class AttributeValueTypeUnmarshaller extends AbstractXACMLObjectUnmarshal
             attributeValue.getUnknownAttributes().registerID(attribQName);
         }
         attributeValue.getUnknownAttributes().put(attribQName, attribute.getValue());
-        
-        if(attribute.getLocalName().equals(AttributeValueType.DATA_TYPE_ATTRIB_NAME)){
-        	attributeValue.setDataType(DatatypeHelper.safeTrimOrNullString(attribute.getValue()));
+
+        if (attribute.getLocalName().equals(AttributeValueType.DATA_TYPE_ATTRIB_NAME)) {
+            attributeValue.setDataType(DatatypeHelper.safeTrimOrNullString(attribute.getValue()));
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
             throws UnmarshallingException {
         AttributeValueType attributeValue = (AttributeValueType) parentXMLObject;
         attributeValue.getUnknownXMLObjects().add(childXMLObject);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {
         AttributeValueType attributeValue = (AttributeValueType) xmlObject;
         attributeValue.setValue(elementContent);

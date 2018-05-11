@@ -27,7 +27,7 @@
 <meta name="author" content="CEF eID - eIDAS">
 <link rel="stylesheet" href="resources/skin0/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/skin0/css/custom.css">
-<link rel="stylesheet" href="resources/skin0/css/awesome-bootstrap-checkbox.css" />
+<link rel="stylesheet" href="resources/skin0/css/awesome-bootstrap-checkbox.css"/>
 <%--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>--%>
 <link rel="apple-touch-icon" sizes="57x57" href="resources/skin0/img/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="resources/skin0/img/apple-touch-icon-60x60.png">

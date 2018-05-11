@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -49,18 +49,15 @@ import org.apache.velocity.servlet.VelocityServlet;
  *
  * @author <a href="mailto:dlr@apache.org">Daniel Rall</a>
  */
-public class VelocityServletTestCase extends TestCase
-{
+public class VelocityServletTestCase extends TestCase {
     /**
      * Default constructor.
      */
-    public VelocityServletTestCase(String name)
-    {
+    public VelocityServletTestCase(String name) {
         super(name);
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(VelocityServletTestCase.class);
     }
 
@@ -68,8 +65,7 @@ public class VelocityServletTestCase extends TestCase
      * Runs the test.
      */
     public void testVelocityServlet()
-            throws Exception
-    {
+            throws Exception {
         /*
          * Assure we have the encoding we think we should.
          */
@@ -78,250 +74,200 @@ public class VelocityServletTestCase extends TestCase
         servlet.init(new MockServletConfig());
 
         System.out.println(RuntimeConstants.OUTPUT_ENCODING + "=" +
-                           RuntimeSingleton.getProperty
-                           (RuntimeConstants.OUTPUT_ENCODING));
+                RuntimeSingleton.getProperty
+                        (RuntimeConstants.OUTPUT_ENCODING));
         HttpServletResponse res = new MockHttpServletResponse();
         servlet.visibleSetContentType(null, res);
         assertEquals("Character encoding not set to UTF-8",
-                     "UTF-8", res.getCharacterEncoding());
+                "UTF-8", res.getCharacterEncoding());
     }
 
 
-    class MockVelocityServlet extends VelocityServlet
-    {
+    class MockVelocityServlet extends VelocityServlet {
         void visibleSetContentType(HttpServletRequest req,
-                                   HttpServletResponse res)
-        {
+                                   HttpServletResponse res) {
             setContentType(req, res);
         }
 
         protected Properties loadConfiguration(ServletConfig config)
-            throws IOException
-        {
+                throws IOException {
             Properties p = new Properties();
             p.setProperty(RuntimeConstants.OUTPUT_ENCODING, "UTF-8");
             return p;
         }
 
-        public ServletConfig getServletConfig()
-        {
+        public ServletConfig getServletConfig() {
             return new MockServletConfig();
         }
     }
 
-    static class MockServletConfig implements ServletConfig
-    {
-        public String getInitParameter(String ignored)
-        {
+    static class MockServletConfig implements ServletConfig {
+        public String getInitParameter(String ignored) {
             return null;
         }
 
-        public Enumeration getInitParameterNames()
-        {
+        public Enumeration getInitParameterNames() {
             return null;
         }
 
-        public ServletContext getServletContext()
-        {
+        public ServletContext getServletContext() {
             return new MockServletContext();
         }
 
-        public String getServletName()
-        {
+        public String getServletName() {
             return "VelocityServlet";
         }
     }
 
-    static class MockServletContext implements ServletContext
-    {
-        public Object getAttribute(String ignored)
-        {
+    static class MockServletContext implements ServletContext {
+        public Object getAttribute(String ignored) {
             return null;
         }
 
-        public Enumeration getAttributeNames()
-        {
+        public Enumeration getAttributeNames() {
             return null;
         }
 
-        public ServletContext getContext(String ignored)
-        {
+        public ServletContext getContext(String ignored) {
             return this;
         }
 
-        public String getServletContextName()
-        {
+        public String getServletContextName() {
             return "VelocityTestContext";
         }
 
-        public String getInitParameter(String ignored)
-        {
+        public String getInitParameter(String ignored) {
             return null;
         }
 
-        public Enumeration getInitParameterNames()
-        {
+        public Enumeration getInitParameterNames() {
             return null;
         }
 
-        public int getMajorVersion()
-        {
+        public int getMajorVersion() {
             return -1;
         }
 
-        public String getMimeType(String ignored)
-        {
+        public String getMimeType(String ignored) {
             return null;
         }
 
-        public Set getResourcePaths(String string)
-        {
+        public Set getResourcePaths(String string) {
             return null;
         }
 
-        public int getMinorVersion()
-        {
+        public int getMinorVersion() {
             return -1;
         }
 
-        public RequestDispatcher getNamedDispatcher(String ignored)
-        {
+        public RequestDispatcher getNamedDispatcher(String ignored) {
             return null;
         }
 
-        public String getRealPath(String ignored)
-        {
+        public String getRealPath(String ignored) {
             return null;
         }
 
-        public RequestDispatcher getRequestDispatcher(String ignored)
-        {
+        public RequestDispatcher getRequestDispatcher(String ignored) {
             return null;
         }
 
         public URL getResource(String ignored)
-            throws MalformedURLException
-        {
+                throws MalformedURLException {
             return null;
         }
 
-        public InputStream getResourceAsStream(String ignored)
-        {
+        public InputStream getResourceAsStream(String ignored) {
             return null;
         }
 
-        public String getServerInfo()
-        {
+        public String getServerInfo() {
             return "Velocity Test Suite";
         }
 
         public Servlet getServlet(String ignored)
-            throws ServletException
-        {
+                throws ServletException {
             return null;
         }
 
-        public Enumeration getServletNames()
-        {
+        public Enumeration getServletNames() {
             return null;
         }
 
-        public Enumeration getServlets()
-        {
+        public Enumeration getServlets() {
             return null;
         }
 
-        public void log(Exception e, String msg)
-        {
+        public void log(Exception e, String msg) {
         }
 
-        public void log(String msg)
-        {
+        public void log(String msg) {
         }
 
-        public void log(String msg, Throwable t)
-        {
+        public void log(String msg, Throwable t) {
         }
 
-        public void removeAttribute(String name)
-        {
+        public void removeAttribute(String name) {
         }
 
-        public void setAttribute(String name, Object value)
-        {
+        public void setAttribute(String name, Object value) {
         }
     }
 
-    static class MockHttpServletResponse implements HttpServletResponse
-    {
+    static class MockHttpServletResponse implements HttpServletResponse {
         private String encoding;
 
         // ---- ServletResponse implementation -----------------------------
 
-        public void flushBuffer() throws IOException
-        {
+        public void flushBuffer() throws IOException {
         }
 
-        public void resetBuffer()
-        {
+        public void resetBuffer() {
         }
 
-        public int getBufferSize()
-        {
+        public int getBufferSize() {
             return -1;
         }
 
-        public String getCharacterEncoding()
-        {
+        public String getCharacterEncoding() {
             return (encoding != null ? encoding : "ISO-8859-1");
         }
 
-        public java.util.Locale getLocale()
-        {
+        public java.util.Locale getLocale() {
             return null;
         }
 
         public javax.servlet.ServletOutputStream getOutputStream()
-            throws IOException
-        {
+                throws IOException {
             return null;
         }
 
-        public java.io.PrintWriter getWriter() throws IOException
-        {
+        public java.io.PrintWriter getWriter() throws IOException {
             return null;
         }
 
-        public boolean isCommitted()
-        {
+        public boolean isCommitted() {
             return false;
         }
 
-        public void reset()
-        {
+        public void reset() {
         }
 
-        public void setBufferSize(int i)
-        {
+        public void setBufferSize(int i) {
         }
 
-        public void setContentLength(int i)
-        {
+        public void setContentLength(int i) {
         }
 
         /**
          * Records the character encoding.
          */
-        public void setContentType(String contentType)
-        {
-            if (contentType != null)
-            {
+        public void setContentType(String contentType) {
+            if (contentType != null) {
                 int index = contentType.lastIndexOf(';') + 1;
-                if (0 <= index || index < contentType.length())
-                {
+                if (0 <= index || index < contentType.length()) {
                     index = contentType.indexOf("charset=", index);
-                    if (index != -1)
-                    {
+                    if (index != -1) {
                         index += 8;
                         this.encoding = contentType.substring(index).trim();
                     }
@@ -329,84 +275,66 @@ public class VelocityServletTestCase extends TestCase
             }
         }
 
-        public void setLocale(java.util.Locale l)
-        {
+        public void setLocale(java.util.Locale l) {
         }
 
 
         // ---- HttpServletResponse implementation -------------------------
 
-        public void addCookie(javax.servlet.http.Cookie c)
-        {
+        public void addCookie(javax.servlet.http.Cookie c) {
         }
 
-        public void addDateHeader(String s, long l)
-        {
+        public void addDateHeader(String s, long l) {
         }
 
-        public void addHeader(String name, String value)
-        {
+        public void addHeader(String name, String value) {
         }
 
-        public void addIntHeader(String name, int value)
-        {
+        public void addIntHeader(String name, int value) {
         }
 
-        public boolean containsHeader(String name)
-        {
+        public boolean containsHeader(String name) {
             return false;
         }
 
-        public String encodeRedirectURL(String url)
-        {
+        public String encodeRedirectURL(String url) {
             return url;
         }
 
-        public String encodeRedirectUrl(String url)
-        {
+        public String encodeRedirectUrl(String url) {
             return url;
         }
 
-        public String encodeURL(String url)
-        {
+        public String encodeURL(String url) {
             return url;
         }
 
-        public String encodeUrl(String url)
-        {
+        public String encodeUrl(String url) {
             return url;
         }
 
-        public void sendError(int i) throws IOException
-        {
+        public void sendError(int i) throws IOException {
         }
 
-        public void sendError(int i, String s) throws IOException
-        {
+        public void sendError(int i, String s) throws IOException {
         }
 
-        public void sendRedirect(String s) throws IOException
-        {
+        public void sendRedirect(String s) throws IOException {
         }
 
-        public void setDateHeader(String s, long l)
-        {
+        public void setDateHeader(String s, long l) {
         }
 
-        public void setHeader(String name, String value)
-        {
+        public void setHeader(String name, String value) {
         }
 
-        public void setIntHeader(String s, int i)
-        {
+        public void setIntHeader(String s, int i) {
         }
 
-        public void setStatus(int i)
-        {
+        public void setStatus(int i) {
         }
 
-        public void setStatus(int i , String s)
-        {
+        public void setStatus(int i, String s) {
         }
     }
 }

@@ -33,73 +33,72 @@ import eu.eidas.auth.engine.core.stork.VIDPAuthenticationAttributes;
  * @author fjquevedo
  */
 public final class AuthenticationAttributesImpl extends AbstractSignableSAMLObject implements
-AuthenticationAttributes {
+        AuthenticationAttributes {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationAttributesImpl.class.getName());
 
-    /** The indexed children. */
+    /**
+     * The indexed children.
+     */
     private VIDPAuthenticationAttributes vIDPAuthenAttr;
 
     /**
      * Instantiates a new authentication attributes implementation.
      *
-     * @param namespaceURI the namespace uri
+     * @param namespaceURI     the namespace uri
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected AuthenticationAttributesImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                           final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /**
      * Gets the ordered children.
      *
      * @return the ordered children
-     *
      */
     public List<XMLObject> getOrderedChildren() {
-	final List<XMLObject> children = new ArrayList<XMLObject>();
+        final List<XMLObject> children = new ArrayList<XMLObject>();
 
-	children.add(vIDPAuthenAttr);
+        children.add(vIDPAuthenAttr);
 
-	if (getSignature() != null) {
-	    children.add(getSignature());
-	}
+        if (getSignature() != null) {
+            children.add(getSignature());
+        }
 
-	return Collections.unmodifiableList(children);
+        return Collections.unmodifiableList(children);
     }
 
     /**
      * Gets the signature reference id.
      *
      * @return the signature reference id
-     *
      */
     public String getSignatureReferenceID() {
-	return null;
+        return null;
     }
 
     /**
      * Gets the vidp authentication attributes.
      *
      * @return the VIDP authentication attributes
-     *
      */
     public VIDPAuthenticationAttributes getVIDPAuthenticationAttributes() {
-	return vIDPAuthenAttr;
+        return vIDPAuthenAttr;
     }
 
     /**
      * Sets the vidp authentication attributes.
      *
      * @param newVIDPAuthenAttr the new vidp authen attr
-     *
      */
     public void setVIDPAuthenticationAttributes(
-	    final VIDPAuthenticationAttributes newVIDPAuthenAttr) {
-	vIDPAuthenAttr = prepareForAssignment(this.vIDPAuthenAttr, newVIDPAuthenAttr);
+            final VIDPAuthenticationAttributes newVIDPAuthenAttr) {
+        vIDPAuthenAttr = prepareForAssignment(this.vIDPAuthenAttr, newVIDPAuthenAttr);
     }
+
     @Override
     public int hashCode() {//NOSONAR
         LOGGER.warn("Hashcode has been called, passed to super. Nothing foreseen here");

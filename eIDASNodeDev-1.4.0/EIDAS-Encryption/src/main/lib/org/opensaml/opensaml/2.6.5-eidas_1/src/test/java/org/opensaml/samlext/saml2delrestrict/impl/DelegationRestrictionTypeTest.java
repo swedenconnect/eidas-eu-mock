@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,58 +29,70 @@ import org.opensaml.xml.Configuration;
 public class DelegationRestrictionTypeTest extends BaseSAMLObjectProviderTestCase {
 
     private int expectedDelegateChildren;
-    
 
-    /** Constructor */
+
+    /**
+     * Constructor
+     */
     public DelegationRestrictionTypeTest() {
         singleElementFile = "/data/org/opensaml/samlext/saml2delrestrict/impl/DelegationRestrictionType.xml";
         childElementsFile = "/data/org/opensaml/samlext/saml2delrestrict/impl/DelegationRestrictionTypeChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedDelegateChildren = 3;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         DelegationRestrictionType drt = (DelegationRestrictionType) unmarshallElement(singleElementFile);
 
         assertNotNull(drt);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         DelegationRestrictionType drt = (DelegationRestrictionType) unmarshallElement(childElementsFile);
-        
+
         assertNotNull(drt);
-        
+
         assertEquals("Incorrect # of Delegate Children", expectedDelegateChildren, drt.getDelegates().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         SAMLObjectBuilder<DelegationRestrictionType> builder =
-            (SAMLObjectBuilder<DelegationRestrictionType>) Configuration.getBuilderFactory().getBuilder(DelegationRestrictionType.TYPE_NAME);
-        
+                (SAMLObjectBuilder<DelegationRestrictionType>) Configuration.getBuilderFactory().getBuilder(DelegationRestrictionType.TYPE_NAME);
+
         DelegationRestrictionType drt = builder.buildObject();
 
         assertEquals(expectedDOM, drt);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         SAMLObjectBuilder<DelegationRestrictionType> builder =
-            (SAMLObjectBuilder<DelegationRestrictionType>) Configuration.getBuilderFactory().getBuilder(DelegationRestrictionType.TYPE_NAME);
-        
+                (SAMLObjectBuilder<DelegationRestrictionType>) Configuration.getBuilderFactory().getBuilder(DelegationRestrictionType.TYPE_NAME);
+
         DelegationRestrictionType drt = builder.buildObject();
-        
+
         drt.getDelegates().add((Delegate) buildXMLObject(Delegate.DEFAULT_ELEMENT_NAME));
         drt.getDelegates().add((Delegate) buildXMLObject(Delegate.DEFAULT_ELEMENT_NAME));
         drt.getDelegates().add((Delegate) buildXMLObject(Delegate.DEFAULT_ELEMENT_NAME));
-        
+
         assertEquals(expectedChildElementsDOM, drt);
     }
 }

@@ -31,19 +31,21 @@ import eu.eidas.auth.engine.core.stork.CitizenCountryCode;
  */
 public class CitizenCountryCodeImpl extends AbstractSAMLObject implements CitizenCountryCode {
 
-    /** The citizen country code. */
+    /**
+     * The citizen country code.
+     */
     private String citizenCountryCode;
 
     /**
      * Instantiates a new sP country impl.
      *
-     * @param namespaceURI the namespace uri
+     * @param namespaceURI     the namespace uri
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected CitizenCountryCodeImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                     final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /**
@@ -52,7 +54,7 @@ public class CitizenCountryCodeImpl extends AbstractSAMLObject implements Citize
      * @return the citizen country code
      */
     public final String getCitizenCountryCode() {
-	return citizenCountryCode;
+        return citizenCountryCode;
     }
 
     /**
@@ -61,7 +63,7 @@ public class CitizenCountryCodeImpl extends AbstractSAMLObject implements Citize
      * @param newCitizenCountryCode the new citizen country code
      */
     public final void setCitizenCountryCode(final String newCitizenCountryCode) {
-	this.citizenCountryCode = prepareForAssignment(this.citizenCountryCode, newCitizenCountryCode);
+        this.citizenCountryCode = prepareForAssignment(this.citizenCountryCode, newCitizenCountryCode);
     }
 
     /**
@@ -70,7 +72,7 @@ public class CitizenCountryCodeImpl extends AbstractSAMLObject implements Citize
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

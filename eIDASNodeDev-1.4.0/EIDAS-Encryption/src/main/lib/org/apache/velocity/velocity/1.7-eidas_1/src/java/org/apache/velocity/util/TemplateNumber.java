@@ -16,7 +16,7 @@ package org.apache.velocity.util;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -26,13 +26,13 @@ package org.apache.velocity.util;
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @since 1.5
  */
-public interface TemplateNumber
-{
+public interface TemplateNumber {
 
-   /**
-    * Returns a Number that can be used in a template.
-    * @return A Number that can be used in a template.
-    */
-   public Number getAsNumber();
+    /**
+     * Returns a Number that can be used in a template.
+     *
+     * @return A Number that can be used in a template.
+     */
+    public Number getAsNumber();
 
 }

@@ -55,7 +55,7 @@ public class ProtocolEngineFactory {
                                                        @Nonnull ProtocolProcessorI protocolProcessor)
             throws EIDASSAMLEngineException {
         return createProtocolEngine(nameInstance, DefaultProtocolEngineConfigurationFactory.getInstance(),
-                                    protocolProcessor, new SamlEngineSystemClock());
+                protocolProcessor, new SamlEngineSystemClock());
     }
 
     @Nonnull
@@ -68,7 +68,7 @@ public class ProtocolEngineFactory {
                 new ProtocolEngineConfigurationFactory(configManager);
 
         return createProtocolEngine(instanceName, protocolEngineConfigurationFactory, protocolProcessor,
-                                    samlEngineClock);
+                samlEngineClock);
     }
 
     @Nonnull

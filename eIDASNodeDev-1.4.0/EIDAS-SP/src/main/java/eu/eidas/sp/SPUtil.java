@@ -47,7 +47,10 @@ import eu.eidas.encryption.exception.UnmarshallException;
 
 public class SPUtil {
 
-    SPUtil() {};
+    SPUtil() {
+    }
+
+    ;
 
     private static final Logger LOG = LoggerFactory.getLogger(SPUtil.class);
 
@@ -59,12 +62,12 @@ public class SPUtil {
         /*String envLocation = System.getenv().get(Constants.SP_CONFIG_REPOSITORY);
         String configLocation = System.getProperty(Constants.SP_CONFIG_REPOSITORY, envLocation);
         return configLocation;*/
-        return (String)ApplicationContextProvider.getApplicationContext().getBean(Constants.SP_REPO_BEAN_NAME);
+        return (String) ApplicationContextProvider.getApplicationContext().getBean(Constants.SP_REPO_BEAN_NAME);
     }
 
     private static Properties loadConfigs(String fileName) throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileReader(SPUtil.getConfigFilePath()+fileName));
+        properties.load(new FileReader(SPUtil.getConfigFilePath() + fileName));
         return properties;
     }
 

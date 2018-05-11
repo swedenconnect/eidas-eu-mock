@@ -16,7 +16,7 @@ public final class StoredAuthenticationRequest extends AbstractStoredRequest<IAu
 
     @SuppressWarnings("ParameterHidesMemberVariable")
     public static final class Builder extends
-                                      AbstractStoredRequest.AbstractBuilder<Builder, StoredAuthenticationRequest, IAuthenticationRequest> {
+            AbstractStoredRequest.AbstractBuilder<Builder, StoredAuthenticationRequest, IAuthenticationRequest> {
 
         public Builder() {
         }

@@ -17,7 +17,7 @@
  */
 
 /**
- * 
+ *
  */
 package eu.eidas.auth.engine.core.validator.eidas;
 
@@ -31,13 +31,14 @@ public abstract class AuthnRequestSchemaValidator {
 
     /**
      * Constructor
-     *
      */
     public AuthnRequestSchemaValidator() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AuthnRequest request) throws ValidationException {
     }
 }

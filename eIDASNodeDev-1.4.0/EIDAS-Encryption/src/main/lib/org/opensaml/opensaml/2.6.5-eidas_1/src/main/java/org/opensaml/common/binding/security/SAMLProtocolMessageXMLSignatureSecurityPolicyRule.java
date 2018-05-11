@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,13 +33,13 @@ import org.slf4j.LoggerFactory;
 /**
  * SAML security policy rule which validates the signature (if present) on the {@link SAMLObject} which represents the
  * SAML protocol message being processed.
- * 
+ *
  * <p>
  * If the message is not an instance of {@link SignableSAMLObject}, then no processing is performed. If signature
  * validation is successful, and the SAML message context issuer was not previously authenticated, then the context's
  * issuer authentication state will be set to <code>true</code>.
  * </p>
- * 
+ *
  * <p>
  * If an optional {@link Validator} for {@link Signature} objects is supplied, this validator will be used to validate
  * the XML Signature element prior to the actual cryptographic validation of the signature. This might for example be
@@ -50,17 +50,21 @@ import org.slf4j.LoggerFactory;
  */
 public class SAMLProtocolMessageXMLSignatureSecurityPolicyRule extends BaseSAMLXMLSignatureSecurityPolicyRule {
 
-    /** Logger. */
+    /**
+     * Logger.
+     */
     private final Logger log = LoggerFactory.getLogger(SAMLProtocolMessageXMLSignatureSecurityPolicyRule.class);
 
-    /** Validator for XML Signature instances. */
+    /**
+     * Validator for XML Signature instances.
+     */
     private Validator<Signature> sigValidator;
 
     /**
      * Constructor.
-     * 
+     * <p>
      * Signature pre-validator defaults to {@link SAMLSignatureProfileValidator}.
-     * 
+     *
      * @param engine Trust engine used to verify the signature
      */
     public SAMLProtocolMessageXMLSignatureSecurityPolicyRule(TrustEngine<Signature> engine) {
@@ -70,18 +74,20 @@ public class SAMLProtocolMessageXMLSignatureSecurityPolicyRule extends BaseSAMLX
 
     /**
      * Constructor.
-     * 
-     * @param engine Trust engine used to verify the signature
+     *
+     * @param engine             Trust engine used to verify the signature
      * @param signatureValidator optional pre-validator used to validate Signature elements prior to the actual
-     *            cryptographic validation operation
+     *                           cryptographic validation operation
      */
     public SAMLProtocolMessageXMLSignatureSecurityPolicyRule(TrustEngine<Signature> engine,
-            Validator<Signature> signatureValidator) {
+                                                             Validator<Signature> signatureValidator) {
         super(engine);
         sigValidator = signatureValidator;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void evaluate(MessageContext messageContext) throws SecurityPolicyException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.debug("Invalid message context type, this policy rule only supports SAMLMessageContext");
@@ -110,10 +116,10 @@ public class SAMLProtocolMessageXMLSignatureSecurityPolicyRule extends BaseSAMLX
     /**
      * Perform cryptographic validation and trust evaluation on the Signature token using the configured Signature trust
      * engine.
-     * 
-     * @param signature the signature which is being evaluated
+     *
+     * @param signature      the signature which is being evaluated
      * @param signableObject the signable object which contained the signature
-     * @param samlMsgCtx the SAML message context being processed
+     * @param samlMsgCtx     the SAML message context being processed
      * @throws SecurityPolicyException thrown if the signature fails validation
      */
     protected void doEvaluate(Signature signature, SignableSAMLObject signableObject, SAMLMessageContext samlMsgCtx)
@@ -123,7 +129,7 @@ public class SAMLProtocolMessageXMLSignatureSecurityPolicyRule extends BaseSAMLX
         if (contextIssuer != null) {
             String msgType = signableObject.getElementQName().toString();
             log.debug("Attempting to verify signature on signed SAML protocol message using context issuer message type: {}",
-                            msgType);
+                    msgType);
 
             if (evaluate(signature, contextIssuer, samlMsgCtx)) {
                 log.info("Validation of protocol message signature succeeded, message type: {}", msgType);
@@ -145,7 +151,7 @@ public class SAMLProtocolMessageXMLSignatureSecurityPolicyRule extends BaseSAMLX
 
     /**
      * Get the validator used to perform pre-validation on Signature tokens.
-     * 
+     *
      * @return the configured Signature validator, or null
      */
     protected Validator<Signature> getSignaturePrevalidator() {
@@ -154,7 +160,7 @@ public class SAMLProtocolMessageXMLSignatureSecurityPolicyRule extends BaseSAMLX
 
     /**
      * Perform pre-validation on the Signature token.
-     * 
+     *
      * @param signature the signature to evaluate
      * @throws SecurityPolicyException thrown if the signature element fails pre-validation
      */

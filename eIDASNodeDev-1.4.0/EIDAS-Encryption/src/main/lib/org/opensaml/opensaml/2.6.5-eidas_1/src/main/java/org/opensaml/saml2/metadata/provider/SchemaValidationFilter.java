@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,12 +32,14 @@ import org.xml.sax.SAXException;
  */
 public class SchemaValidationFilter implements MetadataFilter {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(SchemaValidationFilter.class);
 
     /**
      * Constructor.
-     * 
+     *
      * @param extensionSchemas classpath location of metadata extension schemas, may be null
      */
     public SchemaValidationFilter(String[] extensionSchemas) {
@@ -51,7 +53,9 @@ public class SchemaValidationFilter implements MetadataFilter {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void doFilter(XMLObject metadata) throws FilterException {
         Validator schemaValidator = null;
         try {

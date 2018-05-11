@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -37,7 +37,9 @@ public class ChainingMetadataProviderTest extends BaseTestCase {
 
     private String supportedProtocol;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +66,9 @@ public class ChainingMetadataProviderTest extends BaseTestCase {
         metadataProvider.addMetadataProvider(fileProvider2);
     }
 
-    /** Test the {@link ChainingMetadataProvider#getMetadata()} method. */
+    /**
+     * Test the {@link ChainingMetadataProvider#getMetadata()} method.
+     */
     public void testGetMetadata() throws MetadataProviderException {
         EntitiesDescriptor descriptor1 = (EntitiesDescriptor) metadataProvider.getMetadata();
         assertEquals(2, descriptor1.getEntitiesDescriptors().size());
@@ -75,7 +79,9 @@ public class ChainingMetadataProviderTest extends BaseTestCase {
         assertEquals(0, descriptor2.getEntityDescriptors().size());
     }
 
-    /** Tests the {@link ChainingMetadataProvider#getEntityDescriptor(String)} method. */
+    /**
+     * Tests the {@link ChainingMetadataProvider#getEntityDescriptor(String)} method.
+     */
     public void testGetEntityDescriptor() throws MetadataProviderException {
         EntityDescriptor descriptor = metadataProvider.getEntityDescriptor(entityID);
         assertNotNull("Retrieved entity descriptor was null", descriptor);
@@ -86,7 +92,9 @@ public class ChainingMetadataProviderTest extends BaseTestCase {
         assertEquals("Entity's ID does not match requested ID", entityID2, descriptor2.getEntityID());
     }
 
-    /** Tests the {@link ChainingMetadataProvider#getRole(String, javax.xml.namespace.QName)} method.  */
+    /**
+     * Tests the {@link ChainingMetadataProvider#getRole(String, javax.xml.namespace.QName)} method.
+     */
     public void testGetRole() throws MetadataProviderException {
         List<RoleDescriptor> roles = metadataProvider.getRole(entityID, IDPSSODescriptor.DEFAULT_ELEMENT_NAME);
         assertNotNull("Roles for entity descriptor was null", roles);
@@ -97,7 +105,9 @@ public class ChainingMetadataProviderTest extends BaseTestCase {
         assertEquals("Unexpected number of roles", 1, roles2.size());
     }
 
-    /** Test the {@link ChainingMetadataProvider#getRole(String, javax.xml.namespace.QName, String)} method.  */
+    /**
+     * Test the {@link ChainingMetadataProvider#getRole(String, javax.xml.namespace.QName, String)} method.
+     */
     public void testGetRoleWithSupportedProtocol() throws MetadataProviderException {
         RoleDescriptor role = metadataProvider.getRole(entityID, IDPSSODescriptor.DEFAULT_ELEMENT_NAME,
                 supportedProtocol);
@@ -108,10 +118,12 @@ public class ChainingMetadataProviderTest extends BaseTestCase {
         assertNotNull("Roles for entity descriptor was null", role2);
     }
 
-    /** Tests that metadata filters are disallowed on the chaining provider. */
+    /**
+     * Tests that metadata filters are disallowed on the chaining provider.
+     */
     public void testFilterDisallowed() {
         try {
-            metadataProvider.setMetadataFilter(new SchemaValidationFilter(new String[] {}));
+            metadataProvider.setMetadataFilter(new SchemaValidationFilter(new String[]{}));
             fail("Should fail with an UnsupportedOperationException");
         } catch (MetadataProviderException e) {
             fail("Should fail with an UnsupportedOperationException");

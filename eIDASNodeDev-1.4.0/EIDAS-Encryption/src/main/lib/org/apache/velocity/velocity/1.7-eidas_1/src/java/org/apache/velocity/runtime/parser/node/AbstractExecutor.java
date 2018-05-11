@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.lang.reflect.InvocationTargetException;
@@ -33,8 +33,7 @@ import org.apache.velocity.runtime.log.Log;
  * @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
  * @version $Id: AbstractExecutor.java 685685 2008-08-13 21:43:27Z nbubna $
  */
-public abstract class AbstractExecutor
-{
+public abstract class AbstractExecutor {
     /** */
     protected Log log = null;
 
@@ -45,13 +44,14 @@ public abstract class AbstractExecutor
 
     /**
      * Execute method against context.
+     *
      * @param o
      * @return The resulting object.
      * @throws IllegalAccessException
      * @throws InvocationTargetException
      */
-     public abstract Object execute(Object o)
-         throws IllegalAccessException, InvocationTargetException;
+    public abstract Object execute(Object o)
+            throws IllegalAccessException, InvocationTargetException;
 
     /**
      * Tell whether the executor is alive by looking
@@ -59,16 +59,14 @@ public abstract class AbstractExecutor
      *
      * @return True if executor is alive.
      */
-    public boolean isAlive()
-    {
+    public boolean isAlive() {
         return (method != null);
     }
 
     /**
      * @return The current method.
      */
-    public Method getMethod()
-    {
+    public Method getMethod() {
         return method;
     }
 
@@ -76,8 +74,7 @@ public abstract class AbstractExecutor
      * @param method
      * @since 1.5
      */
-    protected void setMethod(final Method method)
-    {
+    protected void setMethod(final Method method) {
         this.method = method;
     }
 }

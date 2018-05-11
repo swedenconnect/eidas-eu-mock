@@ -44,7 +44,7 @@ public class SPUtil {
 
     private static Properties loadConfigs(String fileName) throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileReader(SPUtil.getConfigFilePath()+fileName));
+        properties.load(new FileReader(SPUtil.getConfigFilePath() + fileName));
         return properties;
     }
 

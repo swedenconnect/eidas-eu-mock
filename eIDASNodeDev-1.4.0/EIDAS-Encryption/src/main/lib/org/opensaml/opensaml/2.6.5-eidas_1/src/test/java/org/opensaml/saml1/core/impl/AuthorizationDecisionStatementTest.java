@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -36,20 +36,28 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * 
+ *
  */
 public class AuthorizationDecisionStatementTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
-    /** Value for Resource attribute specified in test file with attributes */
+    /**
+     * Value for Resource attribute specified in test file with attributes
+     */
     private final String expectedResource = "resource";
 
-    /** Value for Resource attribute specified in test file with attributes */
+    /**
+     * Value for Resource attribute specified in test file with attributes
+     */
     private final DecisionTypeEnumeration expectedDecision = DecisionTypeEnumeration.PERMIT;
 
-    /** File with the AuthorizationDecisionStatement with illegal Decision type */
+    /**
+     * File with the AuthorizationDecisionStatement with illegal Decision type
+     */
     private String illegalAttributesFile;
 
     /**
@@ -61,11 +69,13 @@ public class AuthorizationDecisionStatementTest extends BaseSAMLObjectProviderTe
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml1/impl/singleAuthorizationDecisionStatementAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml1/impl/AuthorizationDecisionStatementWithChildren.xml";
         illegalAttributesFile = "/data/org/opensaml/saml1/impl/singleAuthorizationDecisionStatementAttributesInvalid.xml";
-        
+
         qname = new QName(SAMLConstants.SAML1_NS, AuthorizationDecisionStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementUnmarshall() {
 
@@ -78,7 +88,9 @@ public class AuthorizationDecisionStatementTest extends BaseSAMLObjectProviderTe
         assertNull("<Evidence> element present", authorizationDecisionStatement.getEvidence());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesUnmarshall() {
 
@@ -105,7 +117,9 @@ public class AuthorizationDecisionStatementTest extends BaseSAMLObjectProviderTe
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsUnmarshall() {
         AuthorizationDecisionStatement authorizationDecisionStatement;
@@ -118,13 +132,17 @@ public class AuthorizationDecisionStatementTest extends BaseSAMLObjectProviderTe
         assertEquals("Count of <Action> elements ", 3, authorizationDecisionStatement.getActions().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesMarshall() {
         AuthorizationDecisionStatement authorizationDecisionStatement;
@@ -136,7 +154,9 @@ public class AuthorizationDecisionStatementTest extends BaseSAMLObjectProviderTe
         assertEquals(expectedOptionalAttributesDOM, authorizationDecisionStatement);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testChildElementsMarshall() {
         AuthorizationDecisionStatement authorizationDecisionStatement;

@@ -16,7 +16,7 @@ package org.apache.velocity.test.sql;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -40,8 +40,7 @@ import org.apache.velocity.test.misc.TestLogChute;
 
 
 public class DataSourceResourceLoaderTestCase
-        extends BaseSQLTest
-{
+        extends BaseSQLTest {
     /**
      * Comparison file extension.
      */
@@ -72,59 +71,55 @@ public class DataSourceResourceLoaderTestCase
      * String (not containing any VTL) used to test unicode
      */
     private String UNICODE_TEMPLATE = "\\u00a9 test \\u0410 \\u0411";
-    
+
     /**
      * Name of template for testing unicode.
      */
     private String UNICODE_TEMPLATE_NAME = "testUnicode";
 
     VelocityEngine engine;
-    
+
     public DataSourceResourceLoaderTestCase(final String name)
-    	throws Exception
-    {
+            throws Exception {
         super(name, DATA_PATH);
         setUpUnicode();
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(DataSourceResourceLoaderTestCase.class);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
 
         assureResultsDirectoryExists(RESULTS_DIR);
 
-	    DataSource ds = new HsqlDataSource("jdbc:hsqldb:.");
+        DataSource ds = new HsqlDataSource("jdbc:hsqldb:.");
 
         DataSourceResourceLoader rl = new DataSourceResourceLoader();
         rl.setDataSource(ds);
 
         engine = new VelocityEngine();
-        
-        // pass in an instance to Velocity
-        engine.addProperty( "resource.loader", "ds" );
-        engine.setProperty( "ds.resource.loader.instance", rl );
 
-        engine.setProperty( "ds.resource.loader.resource.table",           "velocity_template");
-        engine.setProperty( "ds.resource.loader.resource.keycolumn",       "id");
-        engine.setProperty( "ds.resource.loader.resource.templatecolumn",  "def");
-        engine.setProperty( "ds.resource.loader.resource.timestampcolumn", "timestamp");
+        // pass in an instance to Velocity
+        engine.addProperty("resource.loader", "ds");
+        engine.setProperty("ds.resource.loader.instance", rl);
+
+        engine.setProperty("ds.resource.loader.resource.table", "velocity_template");
+        engine.setProperty("ds.resource.loader.resource.keycolumn", "id");
+        engine.setProperty("ds.resource.loader.resource.templatecolumn", "def");
+        engine.setProperty("ds.resource.loader.resource.timestampcolumn", "timestamp");
 
         Velocity.setProperty(
                 RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
 
         engine.init();
     }
-    
+
     public void setUpUnicode()
-    throws Exception
-    {
+            throws Exception {
         String insertString = "insert into velocity_template  (id, timestamp, def) VALUES " +
-        		"( '" + UNICODE_TEMPLATE_NAME + "', NOW(), '" + UNICODE_TEMPLATE + "');";
+                "( '" + UNICODE_TEMPLATE_NAME + "', NOW(), '" + UNICODE_TEMPLATE + "');";
         executeSQL(insertString);
     }
 
@@ -133,15 +128,13 @@ public class DataSourceResourceLoaderTestCase
      * from the database.
      */
     public void testSimpleTemplate()
-            throws Exception
-    {
+            throws Exception {
         Template t = executeTest("testTemplate1");
         assertFalse("Timestamp is 0", 0 == t.getLastModified());
     }
 
     public void testUnicode()
-    throws Exception
-    {
+            throws Exception {
         Template template = engine.getTemplate(UNICODE_TEMPLATE_NAME);
 
         Writer writer = new StringWriter();
@@ -151,10 +144,9 @@ public class DataSourceResourceLoaderTestCase
         writer.close();
 
         String outputText = writer.toString();
-        
+
         if (!normalizeNewlines(UNICODE_TEMPLATE).equals(
-                normalizeNewlines( outputText ) ))
-        {
+                normalizeNewlines(outputText))) {
             fail("Output incorrect for Template: " + UNICODE_TEMPLATE_NAME);
         }
     }
@@ -164,9 +156,8 @@ public class DataSourceResourceLoaderTestCase
      * from the database.
      */
     public void testRenderTool()
-            throws Exception
-    {
-	Template t = executeTest("testTemplate2");
+            throws Exception {
+        Template t = executeTest("testTemplate2");
         assertFalse("Timestamp is 0", 0 == t.getLastModified());
     }
 
@@ -174,8 +165,7 @@ public class DataSourceResourceLoaderTestCase
      * Will a NULL timestamp choke the loader?
      */
     public void testNullTimestamp()
-            throws Exception
-    {
+            throws Exception {
         Template t = executeTest("testTemplate3");
         assertEquals("Timestamp is not 0", 0, t.getLastModified());
     }
@@ -184,19 +174,17 @@ public class DataSourceResourceLoaderTestCase
      * Does it load the global Macros from the DB?
      */
     public void testMacroInvocation()
-            throws Exception
-    {
+            throws Exception {
         Template t = executeTest("testTemplate4");
         assertFalse("Timestamp is 0", 0 == t.getLastModified());
     }
 
     protected Template executeTest(final String templateName)
-    	throws Exception
-    {
+            throws Exception {
         Template template = engine.getTemplate(templateName);
 
         FileOutputStream fos =
-                new FileOutputStream (
+                new FileOutputStream(
                         getFileName(RESULTS_DIR, templateName, RESULT_FILE_EXT));
 
         Writer writer = new BufferedWriter(new OutputStreamWriter(fos));
@@ -209,24 +197,20 @@ public class DataSourceResourceLoaderTestCase
         writer.close();
 
         if (!isMatch(RESULTS_DIR, COMPARE_DIR, templateName,
-                        RESULT_FILE_EXT, CMP_FILE_EXT))
-        {
+                RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect for Template: " + templateName);
         }
 
         return template;
     }
 
-    public static final class DSRLTCTool
-    {
-	public int add(final int a, final int b)
-	{
-	    return a + b;
-	}
+    public static final class DSRLTCTool {
+        public int add(final int a, final int b) {
+            return a + b;
+        }
 
-	public String getMessage()
-	{
-	    return "And the result is:";
-	}
+        public String getMessage() {
+            return "And the result is:";
+        }
     }
 }

@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -37,27 +37,23 @@ import org.apache.velocity.util.introspection.IntrospectionCacheData;
  * @author <a href="Alexey Pachenko">alex+news@olmisoft.com</a>
  * @version $Id: IntrospectionCacheDataTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class IntrospectionCacheDataTestCase extends TestCase 
-{
-    
-    private static class CacheHitCountingVelocityContext extends VelocityContext 
-    {
+public class IntrospectionCacheDataTestCase extends TestCase {
+
+    private static class CacheHitCountingVelocityContext extends VelocityContext {
         public int cacheHit = 0;
-        
-        public IntrospectionCacheData icacheGet(Object key) 
-        {
+
+        public IntrospectionCacheData icacheGet(Object key) {
             final IntrospectionCacheData result = super.icacheGet(key);
             if (result != null) {
                 ++cacheHit;
             }
             return result;
         }
-        
+
     }
-    
-    public void testCache() throws ParseErrorException, MethodInvocationException, 
-    ResourceNotFoundException, IOException 
-    {
+
+    public void testCache() throws ParseErrorException, MethodInvocationException,
+            ResourceNotFoundException, IOException {
         CacheHitCountingVelocityContext context = new CacheHitCountingVelocityContext();
         context.put("this", this);
         StringWriter w = new StringWriter();
@@ -65,17 +61,16 @@ public class IntrospectionCacheDataTestCase extends TestCase
         assertEquals("[a][b]", w.toString());
         assertTrue(context.cacheHit > 0);
     }
-    
-    
-    /** 
+
+
+    /**
      * For use when acting as a context reference.
-     * 
+     *
      * @param value
      * @return
      */
-    public String exec(String value) 
-    {
+    public String exec(String value) {
         return "[" + value + "]";
     }
-    
+
 }

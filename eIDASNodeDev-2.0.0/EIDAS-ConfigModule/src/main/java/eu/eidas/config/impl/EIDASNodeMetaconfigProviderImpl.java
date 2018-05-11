@@ -36,14 +36,14 @@ import eu.eidas.config.node.EIDASNodeParameterMeta;
  */
 public class EIDASNodeMetaconfigProviderImpl extends EIDASNodeMetaconfigProvider {
     private static final Logger LOG = LoggerFactory.getLogger(EIDASNodeMetaconfigProviderImpl.class.getName());
-    private static final String DEFAULT_EIDAS_NODE_CONF_FILENAME="eidas.xml";
-    private EIDASNodeConfFile defaultEidasNodeConfFile=null;
+    private static final String DEFAULT_EIDAS_NODE_CONF_FILENAME = "eidas.xml";
+    private EIDASNodeConfFile defaultEidasNodeConfFile = null;
 
     private static final String EIDASNODE_METACONFIG = "/EIDASNodemetadata.xml";
 
     @Override
     public Map<String, List<EIDASNodeParameterMeta>> getCategorizedParameters() {
-        if(getCategories().isEmpty()) {
+        if (getCategories().isEmpty()) {
             loadData();
         }
 
@@ -52,60 +52,62 @@ public class EIDASNodeMetaconfigProviderImpl extends EIDASNodeMetaconfigProvider
 
     @Override
     public List<EIDASNodeParameterCategory> getCategories() {
-        if(super.getCategories().isEmpty()) {
+        if (super.getCategories().isEmpty()) {
             loadData();
         }
 
         return super.getCategories();
     }
 
-    private void loadData(){
+    private void loadData() {
         //load the info from the resurce stream
         EIDASNodeMetaconfigHolderImpl holder = loadHolder();
-        if (holder !=null && holder.getCategoryList() != null) {
+        if (holder != null && holder.getCategoryList() != null) {
             super.getCategories().clear();
             for (EIDASNodeParameterCategory c : holder.getCategoryList().getCategories()) {
                 super.getCategories().add(c);
             }
         }
-        if (holder !=null && holder.getFileList() != null) {
+        if (holder != null && holder.getFileList() != null) {
             fillFileList(holder);
         }
 
-        if (holder !=null && holder.getNodeMetadataList() != null) {
+        if (holder != null && holder.getNodeMetadataList() != null) {
             for (EIDASNodeParameterMeta m : holder.getNodeMetadataList().getNodeParameterMetadaList()) {
                 super.addMetadata(m.getName(), m);
             }
         }
 
     }
-    private void fillFileList(EIDASNodeMetaconfigHolderImpl holder){
+
+    private void fillFileList(EIDASNodeMetaconfigHolderImpl holder) {
         fileList.clear();
         for (EIDASNodeConfFile f : holder.getFileList().getFiles()) {
-            if(DEFAULT_EIDAS_NODE_CONF_FILENAME.equalsIgnoreCase(f.getFileName())){
-                defaultEidasNodeConfFile=f;
+            if (DEFAULT_EIDAS_NODE_CONF_FILENAME.equalsIgnoreCase(f.getFileName())) {
+                defaultEidasNodeConfFile = f;
             }
             fileList.add(f);
         }
 
     }
-    private EIDASNodeMetaconfigHolderImpl loadHolder(){
+
+    private EIDASNodeMetaconfigHolderImpl loadHolder() {
         EIDASNodeMetaconfigHolderImpl holder = null;
         InputStream is = null;
-        try{
+        try {
             is = EIDASNodeMetaconfigProviderImpl.class.getResourceAsStream(EIDASNODE_METACONFIG);
             StringBuilder sb = new StringBuilder();
             BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            for (int c = is.read(); c != -1; c = br.read()) sb.append((char)c);
+            for (int c = is.read(); c != -1; c = br.read()) sb.append((char) c);
             holder = new EIDASMetadataUnmarshallerImpl().readNodeMetadataFromString(sb.toString());
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             LOG.error("error loading parameter metadata", ioe.getMessage());
             LOG.debug("error loading parameter metadata", ioe);
-        }finally{
-            if(is!=null){
+        } finally {
+            if (is != null) {
                 try {
                     is.close();
-                }catch(IOException ioe){
+                } catch (IOException ioe) {
                     LOG.error("error loading parameter metadata", ioe.getMessage());
                     LOG.debug("error loading parameter metadata", ioe);
                 }
@@ -114,10 +116,10 @@ public class EIDASNodeMetaconfigProviderImpl extends EIDASNodeMetaconfigProvider
         return holder;
     }
 
-    private List<EIDASNodeConfFile> fileList=new ArrayList<EIDASNodeConfFile>();
+    private List<EIDASNodeConfFile> fileList = new ArrayList<EIDASNodeConfFile>();
 
     public List<EIDASNodeConfFile> getFileList() {
-        if(fileList.isEmpty()) {
+        if (fileList.isEmpty()) {
             loadData();
         }
         return fileList;
@@ -128,7 +130,7 @@ public class EIDASNodeMetaconfigProviderImpl extends EIDASNodeMetaconfigProvider
     }
 
     @Override
-    public EIDASNodeConfFile getDefaultConfFile(){
+    public EIDASNodeConfFile getDefaultConfFile() {
         return defaultEidasNodeConfFile;
     }
 }

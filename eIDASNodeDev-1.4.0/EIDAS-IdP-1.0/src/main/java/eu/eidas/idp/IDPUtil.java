@@ -70,7 +70,7 @@ public final class IDPUtil {
         /*String envLocation = System.getenv().get(Constants.IDP_CONFIG_REPOSITORY);
         String configLocation = System.getProperty(Constants.IDP_CONFIG_REPOSITORY, envLocation);
         return configLocation;*/
-        return (String)ApplicationContextProvider.getApplicationContext().getBean(Constants.IDP_REPO_BEAN_NAME);
+        return (String) ApplicationContextProvider.getApplicationContext().getBean(Constants.IDP_REPO_BEAN_NAME);
     }
 
     public static synchronized ProtocolEngineI getProtocolEngine() {

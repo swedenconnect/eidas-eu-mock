@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.RuntimeServices;
@@ -26,11 +26,10 @@ import org.apache.velocity.runtime.RuntimeServices;
  *
  * @author <a href="mailto:jon@latchkey.com">Jon S. Stevens</a>
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
- * @deprecated Use LogChute instead!
  * @version $Id: LogSystem.java 730039 2008-12-30 03:53:19Z byron $
+ * @deprecated Use LogChute instead!
  */
-public interface LogSystem
-{
+public interface LogSystem {
     /**
      * @deprecated This is unused and meaningless
      */
@@ -58,10 +57,11 @@ public interface LogSystem
 
     /**
      * Initializes this LogSystem.
+     *
      * @param rs
      * @throws Exception
      */
-    public void init( RuntimeServices rs ) throws Exception;
+    public void init(RuntimeServices rs) throws Exception;
 
     /**
      * @param level

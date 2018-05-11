@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 
 <properties>
-	<comment>SWModule sign with JKS.</comment>
+    <comment>SWModule sign with JKS.</comment>
     <entry key="check_certificate_validity_period">false</entry>
     <entry key="disallow_self_signed_certificate">false</entry>
     <entry key="keyStorePath">src/test/resources/keyStoreCountry3.jks</entry>

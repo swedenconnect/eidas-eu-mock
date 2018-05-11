@@ -16,11 +16,12 @@ package org.apache.velocity.test.misc;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.runtime.log.SystemLogChute;
 
@@ -34,8 +35,7 @@ import org.apache.velocity.runtime.log.SystemLogChute;
  * @author Nathan Bubna
  * @version $Id: TestLogChute.java 749684 2009-03-03 18:38:16Z nbubna $
  */
-public class TestLogChute extends SystemLogChute
-{
+public class TestLogChute extends SystemLogChute {
     public static final String TEST_LOGGER_LEVEL = "runtime.log.logsystem.test.level";
 
     private ByteArrayOutputStream log;
@@ -43,75 +43,62 @@ public class TestLogChute extends SystemLogChute
     private boolean suppress = true;
     private boolean capture = true;
 
-    public TestLogChute()
-    {
+    public TestLogChute() {
         log = new ByteArrayOutputStream();
         systemDotIn = new PrintStream(log, true);
     }
 
-    public TestLogChute(boolean suppress, boolean capture)
-    {
+    public TestLogChute(boolean suppress, boolean capture) {
         this();
         this.suppress = suppress;
         this.capture = capture;
     }
-    
+
     public void init(RuntimeServices rs)
-        throws Exception
-    {
+            throws Exception {
         super.init(rs);
 
         String level = rs.getString(TEST_LOGGER_LEVEL);
-        if (level != null)
-        {
+        if (level != null) {
             setEnabledLevel(toLevel(level));
         }
     }
 
-    public void on()
-    {
+    public void on() {
         suppress = false;
     }
 
-    public void off()
-    {
+    public void off() {
         suppress = true;
     }
 
-    public void startCapture()
-    {
+    public void startCapture() {
         capture = true;
     }
 
-    public void stopCapture()
-    {
+    public void stopCapture() {
         capture = false;
     }
 
-    public boolean isLevelEnabled(int level)
-    {
+    public boolean isLevelEnabled(int level) {
         return (!suppress || capture) && super.isLevelEnabled(level);
     }
-            
 
-    protected void write(PrintStream ps, String prefix, String message, Throwable t)
-    {
-        if (capture)
-        {
+
+    protected void write(PrintStream ps, String prefix, String message, Throwable t) {
+        if (capture) {
             super.write(systemDotIn, prefix, message, t);
-        }
-        else
-        {
+        } else {
             super.write(ps, prefix, message, t);
         }
     }
 
     /**
      * Return the captured log messages to date.
+     *
      * @return log messages
      */
-    public String getLog()
-    {
+    public String getLog() {
         return log.toString();
     }
 

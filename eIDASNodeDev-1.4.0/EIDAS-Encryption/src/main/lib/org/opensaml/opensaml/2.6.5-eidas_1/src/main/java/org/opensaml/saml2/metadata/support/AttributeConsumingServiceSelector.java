@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,22 +29,22 @@ import org.slf4j.LoggerFactory;
 /**
  * Metadata support class which selects an {@link AttributeConsumingService} based on input of a mandatory
  * {@link RoleDescriptor} and an optional index.
- * 
+ *
  * <p>
  * This implementation supports selecting an AttributeConsumingService from parent role descriptors of the following
  * types:
- * 
+ *
  * <ol>
  * <li>the standard SAML 2 metadata type {@link SPSSODescriptor}</li>
  * <li>the extension type {@link AttributeQueryDescriptorType}</li>
  * </ol>
  * </p>
- * 
+ *
  * <p>
  * Subclasses should override {@link #getCandidates()} if support for additional sources of attribute consuming services
  * is needed.
  * </p>
- * 
+ *
  * <p>
  * The selection algorithm is:
  * <ol>
@@ -59,13 +59,19 @@ import org.slf4j.LoggerFactory;
  */
 public class AttributeConsumingServiceSelector {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private Logger log = LoggerFactory.getLogger(AttributeConsumingServiceSelector.class);
 
-    /** The requested service index. */
+    /**
+     * The requested service index.
+     */
     private Integer index;
 
-    /** The AttributeConsumingService's parent role descriptor. */
+    /**
+     * The AttributeConsumingService's parent role descriptor.
+     */
     private RoleDescriptor roleDescriptor;
 
     /**
@@ -75,7 +81,7 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Get the index of the desired service.
-     * 
+     *
      * @return Returns the index.
      */
     public Integer getIndex() {
@@ -84,7 +90,7 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Set the index of the desired service.
-     * 
+     *
      * @param requestedIndex The index to set.
      */
     public void setIndex(Integer requestedIndex) {
@@ -93,7 +99,7 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Get the AttributeConsumingServie's parent RoleDescriptor.
-     * 
+     *
      * @return Returns the spSSODescriptor.
      */
     public RoleDescriptor getRoleDescriptor() {
@@ -102,7 +108,7 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Set the AttributeConsumingServie's parent RoleDescriptor.
-     * 
+     *
      * @param descriptor The roleDescriptor to set.
      */
     public void setRoleDescriptor(RoleDescriptor descriptor) {
@@ -112,7 +118,7 @@ public class AttributeConsumingServiceSelector {
     /**
      * Set the flag which determines whether, in the case of an invalid index, to return the default
      * AttributeConsumingService. Defaults to false.
-     * 
+     *
      * @param flag The onBadIndexUseDefault to set.
      */
     public void setOnBadIndexUseDefault(boolean flag) {
@@ -122,7 +128,7 @@ public class AttributeConsumingServiceSelector {
     /**
      * Get the flag which determines whether, in the case of an invalid index, to return the default
      * AttributeConsumingService. Defaults to false.
-     * 
+     *
      * @return Returns the onBadIndexUseDefault.
      */
     public boolean isOnBadIndexUseDefault() {
@@ -131,7 +137,7 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Select the AttributeConsumingService.
-     * 
+     *
      * @return the selected AttributeConsumingService, or null
      */
     public AttributeConsumingService selectService() {
@@ -159,21 +165,21 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Get the list of candidate attribute consuming services.
-     * 
+     *
      * <p>
      * This implementation supports selecting an AttributeConsumingService from parent role descriptors of the following
      * types:
-     * 
+     *
      * <ol>
      * <li>the standard SAML 2 metadata type {@link SPSSODescriptor}</li>
      * <li>the extension type {@link AttributeQueryDescriptorType}</li>
      * </ol>
      * </p>
-     * 
+     *
      * <p>
      * Subclasses should override if support for additional sources of attribute consuming services is needed.
      * </p>
-     * 
+     *
      * @return the list of candidate AttributeConsumingServices, or null if none could be resolved
      */
     protected List<AttributeConsumingService> getCandidates() {
@@ -197,7 +203,7 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Select the service based on the index value.
-     * 
+     *
      * @param candidates the list of candiate services
      * @return the selected candidate or null
      */
@@ -219,7 +225,7 @@ public class AttributeConsumingServiceSelector {
 
     /**
      * Select the default service.
-     * 
+     *
      * @param candidates the list of candiate services
      * @return the selected candidate or null
      */

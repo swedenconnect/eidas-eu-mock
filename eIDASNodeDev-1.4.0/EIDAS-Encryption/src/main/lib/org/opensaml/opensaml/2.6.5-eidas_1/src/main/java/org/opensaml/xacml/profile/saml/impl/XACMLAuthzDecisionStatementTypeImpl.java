@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,48 +27,64 @@ import org.opensaml.xacml.ctx.ResponseType;
 import org.opensaml.xacml.profile.saml.XACMLAuthzDecisionStatementType;
 import org.opensaml.xml.XMLObject;
 
-/** A concrete implementation of {@link org.opensaml.xacml.profile.saml.XACMLAuthzDecisionStatementType}. */
+/**
+ * A concrete implementation of {@link org.opensaml.xacml.profile.saml.XACMLAuthzDecisionStatementType}.
+ */
 public class XACMLAuthzDecisionStatementTypeImpl extends AbstractSAMLObject implements XACMLAuthzDecisionStatementType {
 
-    /** The request of the authorization request. */
+    /**
+     * The request of the authorization request.
+     */
     private RequestType request;
 
-    /** The response of the authorization request. */
+    /**
+     * The response of the authorization request.
+     */
     private ResponseType response;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected XACMLAuthzDecisionStatementTypeImpl(String namespaceURI, String elementLocalName,
-            String namespacePrefix) {
+                                                  String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public RequestType getRequest() {
         return request;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ResponseType getResponse() {
         return response;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRequest(RequestType request) {
         this.request = prepareForAssignment(this.request, request);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setResponse(ResponseType response) {
         this.response = prepareForAssignment(this.response, response);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

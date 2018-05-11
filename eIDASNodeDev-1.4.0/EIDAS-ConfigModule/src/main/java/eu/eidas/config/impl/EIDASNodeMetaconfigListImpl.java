@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlElement;
 public class EIDASNodeMetaconfigListImpl {
     List<CategoryImpl> categories;
     List<EIDASParameterMetaImpl> nodeParameterMetaList;
+
     @XmlElement(name = "parameter", type = EIDASParameterMetaImpl.class)
     public List<EIDASParameterMetaImpl> getNodeParameterMetadaList() {
         return nodeParameterMetaList;

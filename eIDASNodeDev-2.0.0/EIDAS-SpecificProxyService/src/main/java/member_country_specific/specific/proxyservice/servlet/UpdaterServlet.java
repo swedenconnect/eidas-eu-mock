@@ -36,8 +36,8 @@ import java.io.PrintWriter;
  *
  * @since 2.0
  */
-@WebServlet(urlPatterns={"/spsupdater/refresh"},
-        name="specificProxyServiceUpdater",
+@WebServlet(urlPatterns = {"/spsupdater/refresh"},
+        name = "specificProxyServiceUpdater",
         displayName = "specificProxyServiceUpdater",
         description = "Reloads application context and external properties")
 public class UpdaterServlet extends AbstractSpecificProxyServiceServlet {

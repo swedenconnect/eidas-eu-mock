@@ -34,31 +34,33 @@ import eu.eidas.samlengineconfig.impl.tools.EidasConfigManagerUtil;
  * serialize/deserialize an EngineInstance
  */
 public class EngineInstanceUnmarshallerImpl {
-    private static final Class JAXB_CLASSES[]={SamlEngineConfigurationImpl.class, EngineInstanceImpl.class, InstanceConfigurationImpl.class, JAXBConfigurationParameter.class};
+    private static final Class JAXB_CLASSES[] = {SamlEngineConfigurationImpl.class, EngineInstanceImpl.class, InstanceConfigurationImpl.class, JAXBConfigurationParameter.class};
     private static final Logger LOG = LoggerFactory.getLogger(EngineInstanceUnmarshallerImpl.class.getName());
     private FileService fileService;
     private String directory;
-    public SamlEngineConfiguration readEngineInstanceFromString( String config ){
+
+    public SamlEngineConfiguration readEngineInstanceFromString(String config) {
         StringReader reader = new StringReader(config);
-        Object unmarshallResult=null;
+        Object unmarshallResult = null;
         try {
             JAXBContext context = JAXBContext.newInstance(JAXB_CLASSES);
             Unmarshaller um = context.createUnmarshaller();
             unmarshallResult = um.unmarshal(reader);
-        }catch(Exception exc){
-            LOG.error("ERROR : error reading engine instance "+exc.getMessage());
-            LOG.debug("ERROR : error reading engine instance "+exc);
+        } catch (Exception exc) {
+            LOG.error("ERROR : error reading engine instance " + exc.getMessage());
+            LOG.debug("ERROR : error reading engine instance " + exc);
         }
 
-        if(unmarshallResult instanceof SamlEngineConfiguration) {
+        if (unmarshallResult instanceof SamlEngineConfiguration) {
             return (SamlEngineConfiguration) unmarshallResult;
-        }else{
+        } else {
             LOG.error("ERROR : unmarshalling result is not an EngineConfiguration object");
             return null;
         }
     }
-    public SamlEngineConfiguration readEngineInstanceFromFile( String fileName ){
-        if(!EidasConfigManagerUtil.getInstance().existsFile(fileName)){
+
+    public SamlEngineConfiguration readEngineInstanceFromFile(String fileName) {
+        if (!EidasConfigManagerUtil.getInstance().existsFile(fileName)) {
             return null;
         }
         return readEngineInstanceFromString(EidasConfigManagerUtil.getInstance().loadFileAsString(fileName));

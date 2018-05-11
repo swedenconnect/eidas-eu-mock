@@ -12,6 +12,7 @@
  * under the License.
  */
 package eu.eidas.node.auth.metadata;
+
 import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
@@ -32,7 +33,7 @@ public class DistributedMetadataCaching extends AbstractMetadataCaching {
     protected HazelcastInstanceInitializer hazelcastInstanceInitializer;
 
     @Override
-    protected Map<String, SerializedEntityDescriptor> getMap(){
+    protected Map<String, SerializedEntityDescriptor> getMap() {
         if (map == null) {
             if (getCacheName() == null) {
                 throw new InvalidParameterEIDASException("Distributed Cache Configuration mismatch");
@@ -46,6 +47,7 @@ public class DistributedMetadataCaching extends AbstractMetadataCaching {
     public String getCacheName() {
         return cacheName;
     }
+
     public void setCacheName(String cacheName) {
         this.cacheName = cacheName;
     }

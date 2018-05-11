@@ -16,7 +16,7 @@ package org.apache.velocity.test.util.introspection;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import junit.framework.Test;
@@ -32,80 +32,65 @@ import org.apache.velocity.util.introspection.ClassMap;
  * Test the ClassMap Lookup
  */
 public class ClassMapTestCase
-        extends BaseTestCase
-{
+        extends BaseTestCase {
     public ClassMapTestCase(final String name)
-    	throws Exception
-    {
+            throws Exception {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(ClassMapTestCase.class);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         Velocity.setProperty(
                 Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
 
-	Velocity.init();
+        Velocity.init();
     }
-    
-    public void tearDown()
-    {
+
+    public void tearDown() {
     }
 
     public void testPrimitives()
-    	throws Exception
-    {
-	Log log = Velocity.getLog();
-	
+            throws Exception {
+        Log log = Velocity.getLog();
+
         ClassMap c = new ClassMap(TestClassMap.class, log);
-        assertNotNull(c.findMethod("setBoolean",   new Object[] { Boolean.TRUE }));
-        assertNotNull(c.findMethod("setByte",      new Object[] { new Byte((byte) 4)}));
-        assertNotNull(c.findMethod("setCharacter", new Object[] { new Character('c')}));
-        assertNotNull(c.findMethod("setDouble",    new Object[] { new Double(8.0) }));
-        assertNotNull(c.findMethod("setFloat",     new Object[] { new Float(15.0) }));
-        assertNotNull(c.findMethod("setInteger",   new Object[] { new Integer(16) }));
-        assertNotNull(c.findMethod("setLong",      new Object[] { new Long(23) }));
-        assertNotNull(c.findMethod("setShort",     new Object[] { new Short((short)42)}));
+        assertNotNull(c.findMethod("setBoolean", new Object[]{Boolean.TRUE}));
+        assertNotNull(c.findMethod("setByte", new Object[]{new Byte((byte) 4)}));
+        assertNotNull(c.findMethod("setCharacter", new Object[]{new Character('c')}));
+        assertNotNull(c.findMethod("setDouble", new Object[]{new Double(8.0)}));
+        assertNotNull(c.findMethod("setFloat", new Object[]{new Float(15.0)}));
+        assertNotNull(c.findMethod("setInteger", new Object[]{new Integer(16)}));
+        assertNotNull(c.findMethod("setLong", new Object[]{new Long(23)}));
+        assertNotNull(c.findMethod("setShort", new Object[]{new Short((short) 42)}));
     }
 
-    public static final class TestClassMap
-    {
-        public void setBoolean(boolean b)
-        {
+    public static final class TestClassMap {
+        public void setBoolean(boolean b) {
         }
 
-        public void setByte(byte b)
-        {
+        public void setByte(byte b) {
         }
 
-        public void setCharacter(char c)
-        {
+        public void setCharacter(char c) {
         }
 
-        public void setDouble(double d)
-        {
+        public void setDouble(double d) {
         }
 
-        public void setFloat(float f)
-        {
+        public void setFloat(float f) {
         }
 
-        public void setInteger(int i)
-        {
+        public void setInteger(int i) {
         }
 
-        public void setLong(long l)
-        {
+        public void setLong(long l) {
         }
 
-        public void setShort(short s)
-        {
+        public void setShort(short s) {
         }
     }
 }

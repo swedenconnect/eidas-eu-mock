@@ -35,12 +35,15 @@
                     </form>
                     <noscript>
                         <form name="redirectForm" method="post" action="${e:forHtml(spUrl)}">
-                            <input type="hidden" id="SAMLResponse" name="SAMLResponse" value="${e:forHtml(SAMLResponse)}"/>
+                            <input type="hidden" id="SAMLResponse" name="SAMLResponse"
+                                   value="${e:forHtml(SAMLResponse)}"/>
                             <c:if test="${not empty relayState}">
-                                <input type="hidden" id="relayState" name="RelayState" value="${e:forHtml(relayState)}"/>
+                                <input type="hidden" id="relayState" name="RelayState"
+                                       value="${e:forHtml(relayState)}"/>
                             </c:if>
                             <p class="box-btn">
-                                <input type="submit" id="redirectValue_button" class="btn btn-next" value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="redirectValue_button" class="btn btn-next"
+                                       value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
                             </p>
                         </form>
                     </noscript>

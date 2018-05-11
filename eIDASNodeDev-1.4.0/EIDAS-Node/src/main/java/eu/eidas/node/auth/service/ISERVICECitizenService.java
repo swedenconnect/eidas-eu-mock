@@ -28,8 +28,8 @@ import java.util.Map;
  * Interface that supplies methods for processing citizen-related matters.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com,
- *         luis.felix@multicert.com, hugo.magalhaes@multicert.com,
- *         paulo.ribeiro@multicert.com
+ * luis.felix@multicert.com, hugo.magalhaes@multicert.com,
+ * paulo.ribeiro@multicert.com
  * @version $Revision: 1.28 $, $Date: 2010-11-18 23:17:50 $
  */
 public interface ISERVICECitizenService {
@@ -37,8 +37,8 @@ public interface ISERVICECitizenService {
     /**
      * Checks if the citizen consent has all the required mandatory attributes.
      *
-     * @param consent            The citizen supplied consent.
-     * @param ipUserAddress      The citizen's IP address.
+     * @param consent       The citizen supplied consent.
+     * @param ipUserAddress The citizen's IP address.
      * @see CitizenConsent
      * @see EidasAuthenticationRequest
      * @see ISERVICESAMLService

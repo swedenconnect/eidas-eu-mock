@@ -43,8 +43,8 @@ public final class ResponseCarryingConnectorException extends AbstractEIDASExcep
      * Exception Constructor with three strings representing the errorCode, errorMessage and encoded samlToken as
      * parameters.
      *
-     * @param errorCode The error code value.
-     * @param errorMessage The error message value.
+     * @param errorCode     The error code value.
+     * @param errorMessage  The error message value.
      * @param samlTokenFail The error SAML Token.
      */
     public ResponseCarryingConnectorException(@Nonnull String errorCode,

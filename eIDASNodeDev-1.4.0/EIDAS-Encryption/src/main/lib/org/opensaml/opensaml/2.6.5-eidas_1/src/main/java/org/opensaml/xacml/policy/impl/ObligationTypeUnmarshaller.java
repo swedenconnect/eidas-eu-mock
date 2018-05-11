@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,10 +25,14 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.w3c.dom.Attr;
 
-/** UnMarshaller for {@link org.opensaml.xacml.policy.ObligationType}. */
+/**
+ * UnMarshaller for {@link org.opensaml.xacml.policy.ObligationType}.
+ */
 public class ObligationTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {
         ObligationType obligation = (ObligationType) parentObject;
 
@@ -39,14 +43,16 @@ public class ObligationTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller 
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
 
         ObligationType obligation = (ObligationType) xmlObject;
 
         if (attribute.getLocalName().equals(ObligationType.OBLIGATION_ID_ATTRIB_NAME)) {
             obligation.setObligationId(attribute.getValue());
-        } else  if (attribute.getLocalName().equals(ObligationType.FULFILL_ON_ATTRIB_NAME)) {
+        } else if (attribute.getLocalName().equals(ObligationType.FULFILL_ON_ATTRIB_NAME)) {
             if (attribute.getValue().equals(EffectType.Permit.toString())) {
                 obligation.setFulfillOn(EffectType.Permit);
             } else {
@@ -55,6 +61,6 @@ public class ObligationTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller 
         } else {
             super.processAttribute(xmlObject, attribute);
         }
-        
+
     }
 }

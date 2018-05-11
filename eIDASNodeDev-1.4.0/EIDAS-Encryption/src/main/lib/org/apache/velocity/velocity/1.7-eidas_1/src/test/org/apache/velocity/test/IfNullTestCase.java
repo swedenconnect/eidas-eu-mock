@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.VelocityContext;
@@ -25,21 +25,17 @@ import org.apache.velocity.runtime.RuntimeConstants;
 /**
  * Used to check that nulls are properly handled in #if statements
  */
-public class IfNullTestCase extends BaseTestCase
-{
-    public IfNullTestCase(final String name)
-    {
+public class IfNullTestCase extends BaseTestCase {
+    public IfNullTestCase(final String name) {
         super(name);
     }
 
-    protected void setUpContext(VelocityContext context)
-    {
+    protected void setUpContext(VelocityContext context) {
         context.put("nullToString", new NullToString());
         context.put("notnull", new Object());
     }
 
-    public void testIfEquals()
-    {
+    public void testIfEquals() {
         // both null
         assertEvalEquals("foo", "#if( $null == $otherNull )foo#{else}bar#end");
         assertEvalEquals("foo", "#if( $null == $nullToString )foo#{else}bar#end");
@@ -52,8 +48,7 @@ public class IfNullTestCase extends BaseTestCase
         assertEvalEquals("bar", "#if( $notnull == $null )foo#{else}bar#end");
     }
 
-    public void testIfNotEquals()
-    {
+    public void testIfNotEquals() {
         // both null
         assertEvalEquals("bar", "#if( $null != $otherNull )foo#{else}bar#end");
         assertEvalEquals("bar", "#if( $null != $nullToString )foo#{else}bar#end");
@@ -66,41 +61,35 @@ public class IfNullTestCase extends BaseTestCase
         assertEvalEquals("foo", "#if( $notnull != $null )foo#{else}bar#end");
     }
 
-    public void testIfValue()
-    {
+    public void testIfValue() {
         assertEvalEquals("bar", "#if( $null )foo#{else}bar#end");
         assertEvalEquals("bar", "#if( $nullToString )foo#{else}bar#end");
         assertEvalEquals("foo", "#if( !$null )foo#{else}bar#end");
         assertEvalEquals("foo", "#if( !$nullToString )foo#{else}bar#end");
     }
 
-    public void testIfAnd()
-    {
+    public void testIfAnd() {
         assertEvalEquals("bar", "#if( $null && $nullToString )foo#{else}bar#end");
         assertEvalEquals("bar", "#if( $nullToString && $null )foo#{else}bar#end");
         assertEvalEquals("bar", "#if( $null && $notnull )foo#{else}bar#end");
         assertEvalEquals("bar", "#if( $notnull && $nullToString )foo#{else}bar#end");
     }
 
-    public void testIfOr()
-    {
+    public void testIfOr() {
         assertEvalEquals("bar", "#if( $null || $nullToString )foo#{else}bar#end");
         assertEvalEquals("bar", "#if( $nullToString || $null )foo#{else}bar#end");
         assertEvalEquals("foo", "#if( $null || $notnull )foo#{else}bar#end");
         assertEvalEquals("foo", "#if( $notnull || $nullToString )foo#{else}bar#end");
     }
 
-    public void testToStringNullCheckConfig()
-    {
+    public void testToStringNullCheckConfig() {
         engine.setProperty(RuntimeConstants.DIRECTIVE_IF_TOSTRING_NULLCHECK, Boolean.FALSE);
         assertEvalEquals("bar", "#if( $null )foo#{else}bar#end");
         assertEvalEquals("foo", "#if( $nullToString )foo#{else}bar#end");
     }
 
-    public static class NullToString
-    {
-        public String toString()
-        {
+    public static class NullToString {
+        public String toString() {
             return null;
         }
     }

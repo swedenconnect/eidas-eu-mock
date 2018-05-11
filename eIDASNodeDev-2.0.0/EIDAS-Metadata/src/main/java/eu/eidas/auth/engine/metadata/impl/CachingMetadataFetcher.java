@@ -77,7 +77,7 @@ public class CachingMetadataFetcher extends AbstractCachingMetadataFetcher imple
             } catch (EIDASMetadataException e) {
                 LOG.error("Signature validation failed for " + url);
                 LOG.error(e.toString());
-                throw(e);
+                throw (e);
             }
         }
         if (null != cache) {
@@ -159,7 +159,9 @@ public class CachingMetadataFetcher extends AbstractCachingMetadataFetcher imple
     }
 
     @Override
-    public String[] getTlsEnabledCiphers() {return super.getTlsEnabledCiphers(tlsEnabledCipherSuites); }
+    public String[] getTlsEnabledCiphers() {
+        return super.getTlsEnabledCiphers(tlsEnabledCipherSuites);
+    }
 
     @Override
     protected boolean mustValidateSignature(@Nonnull String url) {

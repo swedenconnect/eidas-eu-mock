@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -43,28 +43,30 @@ import org.springframework.mock.web.MockHttpServletRequest;
  * Test case for HTTP POST decoders.
  */
 public class HTTPPostDecoderTest extends BaseTestCase {
-    
+
     private String authnRequestDestination = "https://idp.example.com/idp/sso";
-    
+
     private String expectedRelayValue = "relay";
-    
+
     private SAMLMessageDecoder decoder;
-    
+
     private BasicSAMLMessageContext messageContext;
-    
+
     private MockHttpServletRequest httpRequest;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         httpRequest = new MockHttpServletRequest();
         httpRequest.setMethod("POST");
         httpRequest.setParameter("RelayState", expectedRelayValue);
-        
+
         messageContext = new BasicSAMLMessageContext();
         messageContext.setInboundMessageTransport(new HttpServletRequestAdapter(httpRequest));
-        
+
         decoder = new HTTPPostDecoder();
     }
 
@@ -75,7 +77,7 @@ public class HTTPPostDecoderTest extends BaseTestCase {
         httpRequest.setParameter("SAMLRequest", "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHNhbWxwOkF1dGhuUm"
                 + "VxdWVzdCBJRD0iZm9vIiBJc3N1ZUluc3RhbnQ9IjE5NzAtMDEtMDFUMDA6MDA6MDAuMDAwWiIgVmVyc2lvbj0iMi4wIiB4bW"
                 + "xuczpzYW1scD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOnByb3RvY29sIi8+");
-        
+
         decoder.decode(messageContext);
 
         assertTrue(messageContext.getInboundMessage() instanceof RequestAbstractType);
@@ -99,16 +101,16 @@ public class HTTPPostDecoderTest extends BaseTestCase {
         assertTrue(messageContext.getInboundSAMLMessage() instanceof Response);
         assertEquals(expectedRelayValue, messageContext.getRelayState());
     }
-    
+
     public void testMessageEndpointGood() throws Exception {
         AuthnRequest samlRequest = (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
-        
+
         String deliveredEndpointURL = samlRequest.getDestination();
-        
+
         httpRequest.setParameter("SAMLRequest", encodeMessage(samlRequest));
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
-        
+
         try {
             decoder.decode(messageContext);
         } catch (SecurityException e) {
@@ -117,14 +119,14 @@ public class HTTPPostDecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointGoodWithQueryParams() throws Exception {
         AuthnRequest samlRequest = (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
-        
+
         String deliveredEndpointURL = samlRequest.getDestination() + "?paramFoo=bar&paramBar=baz";
-        
+
         httpRequest.setParameter("SAMLRequest", encodeMessage(samlRequest));
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -135,14 +137,14 @@ public class HTTPPostDecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointInvalidURI() throws Exception {
         AuthnRequest samlRequest = (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
-        
+
         String deliveredEndpointURL = samlRequest.getDestination() + "/some/other/endpointURI";
-        
+
         httpRequest.setParameter("SAMLRequest", encodeMessage(samlRequest));
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -154,14 +156,14 @@ public class HTTPPostDecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointInvalidHost() throws Exception {
         AuthnRequest samlRequest = (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
-        
+
         String deliveredEndpointURL = "https://bogusidp.example.com/idp/sso";
-        
+
         httpRequest.setParameter("SAMLRequest", encodeMessage(samlRequest));
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -173,15 +175,15 @@ public class HTTPPostDecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointMissingDestinationNotSigned() throws Exception {
         AuthnRequest samlRequest = (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
         samlRequest.setDestination(null);
-        
+
         String deliveredEndpointURL = authnRequestDestination;
-        
+
         httpRequest.setParameter("SAMLRequest", encodeMessage(samlRequest));
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -192,11 +194,11 @@ public class HTTPPostDecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointMissingDestinationSigned() throws Exception {
         AuthnRequest samlRequest = (AuthnRequest) unmarshallElement("/data/org/opensaml/saml2/binding/AuthnRequest.xml");
         samlRequest.setDestination(null);
-        
+
         Signature signature = (Signature) buildXMLObject(Signature.DEFAULT_ELEMENT_NAME);
         KeyPair kp = SecurityHelper.generateKeyPair("RSA", 1024, null);
         Credential signingCred = SecurityHelper.getSimpleCredential(kp.getPublic(), kp.getPrivate());
@@ -205,11 +207,11 @@ public class HTTPPostDecoderTest extends BaseTestCase {
         SecurityHelper.prepareSignatureParams(signature, signingCred, null, null);
         marshallerFactory.getMarshaller(samlRequest).marshall(samlRequest);
         Signer.signObject(signature);
-        
+
         String deliveredEndpointURL = authnRequestDestination;
-        
+
         httpRequest.setParameter("SAMLRequest", encodeMessage(samlRequest));
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -221,7 +223,7 @@ public class HTTPPostDecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     private void populateRequestURL(MockHttpServletRequest request, String requestURL) {
         URL url = null;
         try {
@@ -243,12 +245,12 @@ public class HTTPPostDecoderTest extends BaseTestCase {
         request.setRequestURI(url.getPath());
         request.setQueryString(url.getQuery());
     }
-    
+
     protected String encodeMessage(SAMLObject message) throws Exception {
         marshallerFactory.getMarshaller(message).marshall(message);
         String messageStr = XMLHelper.nodeToString(message.getDOM());
-        
+
         return Base64.encodeBytes(messageStr.getBytes("UTF-8"), Base64.DONT_BREAK_LINES);
     }
-    
+
 }

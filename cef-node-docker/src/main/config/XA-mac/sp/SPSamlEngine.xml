@@ -33,9 +33,9 @@
             <parameter name="class"
                        value="eu.eidas.sp.SpEidasProtocolProcessor"/>
             <parameter name="coreAttributeRegistryFile"
-                       value="saml-engine-eidas-attributes.xml" />
+                       value="saml-engine-eidas-attributes.xml"/>
             <parameter name="additionalAttributeRegistryFile"
-                       value="saml-engine-additional-attributes.xml" />
+                       value="saml-engine-additional-attributes.xml"/>
             <parameter name="metadataFetcherClass"
                        value="eu.eidas.sp.metadata.SPCachingMetadataFetcher"/>
         </configuration>

@@ -36,11 +36,12 @@ import eu.eidas.samlengineconfig.impl.tools.EidasConfigManagerUtil;
  * serialize/deserialize a Metadata configuration
  */
 public class EIDASMetadataUnmarshallerImpl {
-    private static final Class JAXB_CLASSES[]={EIDASNodeMetaconfigHolderImpl.class, CategoryListImpl.class, CategoryImpl.class,
+    private static final Class JAXB_CLASSES[] = {EIDASNodeMetaconfigHolderImpl.class, CategoryListImpl.class, CategoryImpl.class,
             EIDASNodeMetaconfigListImpl.class, EIDASParameterMetaImpl.class, EIDASNodeConfFile.class, FileListImpl.class};
     private static final Logger LOG = LoggerFactory.getLogger(EIDASMetadataUnmarshallerImpl.class.getName());
     private FileService fileService;
     private String directory;
+
     public EIDASNodeMetaconfigHolderImpl readNodeMetadataFromString(String config) {
         StringReader reader = new StringReader(config);
         Object unmarshallResult = null;
@@ -53,16 +54,17 @@ public class EIDASMetadataUnmarshallerImpl {
             LOG.debug("ERROR : error reading node metadata " + exc);
         }
 
-        if (unmarshallResult instanceof EIDASNodeMetaconfigHolderImpl){
+        if (unmarshallResult instanceof EIDASNodeMetaconfigHolderImpl) {
             EIDASNodeMetaconfigHolderImpl holder = (EIDASNodeMetaconfigHolderImpl) unmarshallResult;
             return holder;
-        }else{
+        } else {
             LOG.error("ERROR : unmarshalling result is not an EIDASNodeMetadataHolder object");
             return null;
         }
     }
-    public EIDASNodeMetaconfigHolderImpl readEIDASNodeMetadataFromFile( String fileName ){
-        if(!EidasConfigManagerUtil.getInstance().existsFile(fileName)){
+
+    public EIDASNodeMetaconfigHolderImpl readEIDASNodeMetadataFromFile(String fileName) {
+        if (!EidasConfigManagerUtil.getInstance().existsFile(fileName)) {
             return null;
         }
         return readNodeMetadataFromString(EidasConfigManagerUtil.getInstance().loadFileAsString(fileName));

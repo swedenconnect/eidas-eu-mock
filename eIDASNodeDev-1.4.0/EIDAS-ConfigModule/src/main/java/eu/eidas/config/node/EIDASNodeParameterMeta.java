@@ -24,28 +24,29 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @XmlTransient
 public class EIDASNodeParameterMeta {
-    public enum Type{
+    public enum Type {
         INT,
         STRING,
         BOOLEAN;
         //TODO is it worth having other types like URL, double, list of strings?
 
 
-        public static Type fromString(String stringValue){
-            if("i".equalsIgnoreCase(stringValue) || "int".equalsIgnoreCase(stringValue)) {
+        public static Type fromString(String stringValue) {
+            if ("i".equalsIgnoreCase(stringValue) || "int".equalsIgnoreCase(stringValue)) {
                 return INT;
-            }else if("b".equalsIgnoreCase(stringValue) || "boolean".equalsIgnoreCase(stringValue)){
+            } else if ("b".equalsIgnoreCase(stringValue) || "boolean".equalsIgnoreCase(stringValue)) {
                 return BOOLEAN;
             }
             return STRING;
         }
     }
+
     String infoMessageID;
     String label;
     Type type;
     String defaultValue;
     String name;
-    Set<String> categories=new HashSet<String>();
+    Set<String> categories = new HashSet<String>();
 
     public String getInfoMessageID() {
         return infoMessageID;
@@ -78,13 +79,16 @@ public class EIDASNodeParameterMeta {
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;
     }
-    public void setCategories(Set<String> categories){
-        this.categories=categories;
+
+    public void setCategories(Set<String> categories) {
+        this.categories = categories;
     }
-    public Set<String> getCategories(){
+
+    public Set<String> getCategories() {
         return categories;
     }
-    public void addCategory(String category){
+
+    public void addCategory(String category) {
         categories.add(category);
     }
 

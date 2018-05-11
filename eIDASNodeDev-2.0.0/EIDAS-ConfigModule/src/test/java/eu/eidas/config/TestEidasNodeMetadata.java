@@ -39,28 +39,28 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/testcontext.xml")
+@ContextConfiguration(locations = "/testcontext.xml")
 @FixMethodOrder(MethodSorters.JVM)
 public class TestEidasNodeMetadata {
-    String TEST_CONTENT="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-    "<NODEMetadata>\n" +
-    "    <categories>\n" +
-    "        <category name=\"service\">ProxyService parameters</category>\n" +
-    "        <category name=\"connector\">Connector parameters</category>\n" +
-    "    </categories>\n" +
-    "    <parameters>\n" +
-    "    </parameters>\n" +
-    "</NODEMetadata>";
-    final static String TEST_CATEGORY="parameter.category.label.administer.service";
+    String TEST_CONTENT = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+            "<NODEMetadata>\n" +
+            "    <categories>\n" +
+            "        <category name=\"service\">ProxyService parameters</category>\n" +
+            "        <category name=\"connector\">Connector parameters</category>\n" +
+            "    </categories>\n" +
+            "    <parameters>\n" +
+            "    </parameters>\n" +
+            "</NODEMetadata>";
+    final static String TEST_CATEGORY = "parameter.category.label.administer.service";
 
 
     @Test
-    public void testDeserialize(){
-        EIDASMetadataUnmarshallerImpl eiui=new EIDASMetadataUnmarshallerImpl();
+    public void testDeserialize() {
+        EIDASMetadataUnmarshallerImpl eiui = new EIDASMetadataUnmarshallerImpl();
         EIDASNodeMetaconfigHolderImpl holder = eiui.readNodeMetadataFromString(TEST_CONTENT);
         assertNotNull(holder);
         CategoryListImpl categories = holder.getCategoryList();
-        EIDASNodeMetaconfigListImpl metadataList=holder.getNodeMetadataList();
+        EIDASNodeMetaconfigListImpl metadataList = holder.getNodeMetadataList();
         assertNotNull(categories);
         assertNotNull(categories.getCategories());
         assertFalse(categories.getCategories().isEmpty());
@@ -69,7 +69,7 @@ public class TestEidasNodeMetadata {
     }
 
     @Test
-    public void testNodeMetadataProvider(){
+    public void testNodeMetadataProvider() {
         EIDASNodeMetaconfigProviderImpl provider = new EIDASNodeMetaconfigProviderImpl();
         assertNotNull(provider.getCategories());
         assertFalse(provider.getCategories().isEmpty());
@@ -81,7 +81,7 @@ public class TestEidasNodeMetadata {
     private EIDASNodeMetaconfigProvider metadataProvider = null;
 
     @Test
-    public void testNodeMetadataProviderByString(){
+    public void testNodeMetadataProviderByString() {
         assertNotNull(metadataProvider);
         assertNotNull(metadataProvider.getCategories());
         assertFalse(metadataProvider.getCategories().isEmpty());

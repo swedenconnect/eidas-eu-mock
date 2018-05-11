@@ -1,2 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<saml:SubjectConfirmationData xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion">subjectconfirmation</saml:SubjectConfirmationData>
+<saml:SubjectConfirmationData xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion">subjectconfirmation
+</saml:SubjectConfirmationData>

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -35,16 +35,24 @@ import org.opensaml.xml.signature.SignatureConstants;
  */
 public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected affiliationOwnerID value */
+    /**
+     * Expected affiliationOwnerID value
+     */
     protected String expectedOwnerID;
 
-    /** Expceted ID value */
+    /**
+     * Expceted ID value
+     */
     protected String expectedID;
 
-    /** Expected cacheDuration value in miliseconds */
+    /**
+     * Expected cacheDuration value in miliseconds
+     */
     protected long expectedCacheDuration;
 
-    /** Expected validUntil value */
+    /**
+     * Expected validUntil value
+     */
     protected DateTime expectedValidUntil;
 
     /**
@@ -65,7 +73,9 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
         expectedValidUntil = new DateTime(2005, 12, 7, 10, 21, 0, 0, ISOChronology.getInstanceUTC());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AffiliationDescriptor descriptor = (AffiliationDescriptor) unmarshallElement(singleElementFile);
 
@@ -80,7 +90,9 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertNull("validUntil attribute has a value of " + validUntil + ", expected no value", validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AffiliationDescriptor descriptor = (AffiliationDescriptor) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -100,7 +112,9 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .compareTo(validUntil));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AffiliationDescriptor descriptor = (AffiliationDescriptor) unmarshallElement(childElementsFile);
 
@@ -110,7 +124,9 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Affiliate Member count ", 3, descriptor.getMembers().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AffiliationDescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
@@ -121,7 +137,9 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AffiliationDescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
@@ -142,8 +160,8 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
         descriptor.setOwnerID(expectedOwnerID);
         descriptor.setID(expectedID);
-        
-        descriptor.setSignature( buildSignatureSkeleton() );
+
+        descriptor.setSignature(buildSignatureSkeleton());
 
         QName extensionsQName = new QName(SAMLConstants.SAML20MD_NS, Extensions.LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         descriptor.setExtensions((Extensions) buildXMLObject(extensionsQName));
@@ -155,10 +173,10 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
         assertEquals(expectedChildElementsDOM, descriptor);
     }
-    
+
     /**
      * Build a Signature skeleton to use in marshalling unit tests.
-     * 
+     *
      * @return minimally populated Signature element
      */
     private Signature buildSignatureSkeleton() {
@@ -167,5 +185,5 @@ public class AffiliationDescriptorTest extends BaseSAMLObjectProviderTestCase {
         signature.setCanonicalizationAlgorithm(SignatureConstants.ALGO_ID_C14N_EXCL_OMIT_COMMENTS);
         return signature;
     }
-    
+
 }

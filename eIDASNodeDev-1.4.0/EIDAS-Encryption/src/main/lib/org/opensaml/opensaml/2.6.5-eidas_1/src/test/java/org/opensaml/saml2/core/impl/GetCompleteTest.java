@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -31,8 +31,10 @@ import org.opensaml.saml2.core.GetComplete;
  * {@link org.opensaml.saml2.core.impl.GetCompleteImpl}.
  */
 public class GetCompleteTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected element content*/
+
+    /**
+     * Expected element content
+     */
     private String expectedGetComplete;
 
     /**
@@ -40,31 +42,37 @@ public class GetCompleteTest extends BaseSAMLObjectProviderTestCase {
      */
     public GetCompleteTest() {
         super();
-        
-       singleElementFile = "/data/org/opensaml/saml2/core/impl/GetComplete.xml";
+
+        singleElementFile = "/data/org/opensaml/saml2/core/impl/GetComplete.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedGetComplete = "http://sp.example.org/idplist.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         GetComplete gc = (GetComplete) unmarshallElement(singleElementFile);
-        
-       assertEquals("Unmarshalled GetComplete URI was not the expected value", expectedGetComplete, gc.getGetComplete()); 
+
+        assertEquals("Unmarshalled GetComplete URI was not the expected value", expectedGetComplete, gc.getGetComplete());
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, GetComplete.DEFAULT_ELEMENT_LOCAL_NAME);
         GetComplete gc = (GetComplete) buildXMLObject(qname);
 
         gc.setGetComplete(expectedGetComplete);
-        
+
         assertEquals(expectedDOM, gc);
     }
 }

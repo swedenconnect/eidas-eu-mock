@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,24 +29,34 @@ import org.opensaml.saml2.core.ProxyRestriction;
  */
 public class ProxyRestrictionTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected proxy Count */
+    /**
+     * Expected proxy Count
+     */
     protected int expectedCount = 5;
 
-    /** Count of Audience subelements */
+    /**
+     * Count of Audience subelements
+     */
     protected int expectedAudienceCount = 2;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public ProxyRestrictionTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/ProxyRestriction.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/ProxyRestrictionChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         ProxyRestriction proxyRestriction = (ProxyRestriction) unmarshallElement(singleElementFile);
 
@@ -54,12 +64,16 @@ public class ProxyRestrictionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("ProxyCount not as expected", expectedCount, count);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, ProxyRestriction.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         ProxyRestriction proxyRestriction = (ProxyRestriction) buildXMLObject(qname);
@@ -69,18 +83,24 @@ public class ProxyRestrictionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, proxyRestriction);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         ProxyRestriction proxyRestriction = (ProxyRestriction) unmarshallElement(childElementsFile);
         assertEquals("Audience Count", expectedAudienceCount, proxyRestriction.getAudiences().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, ProxyRestriction.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         ProxyRestriction proxyRestriction = (ProxyRestriction) buildXMLObject(qname);

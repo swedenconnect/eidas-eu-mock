@@ -1,5 +1,5 @@
 package eu.eidas.node.auth;
 
-public class CControllerServiceImpl implements CControllerService{
+public class CControllerServiceImpl implements CControllerService {
 
 }

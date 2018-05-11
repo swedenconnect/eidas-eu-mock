@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -23,15 +23,21 @@ import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.DatatypeHelper;
 import org.w3c.dom.Element;
 
-/** Marshaller for {@link AttributeAssignmentType}. */
+/**
+ * Marshaller for {@link AttributeAssignmentType}.
+ */
 public class AttributeAssignmentTypeMarshaller extends AttributeValueTypeMarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public AttributeAssignmentTypeMarshaller() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void marshallAttributes(XMLObject samlElement, Element domElement) throws MarshallingException {
         AttributeAssignmentType attributeAssignment = (AttributeAssignmentType) samlElement;
 
@@ -39,9 +45,9 @@ public class AttributeAssignmentTypeMarshaller extends AttributeValueTypeMarshal
             domElement.setAttributeNS(null, AttributeAssignmentType.ATTR_ID_ATTRIB_NAME, attributeAssignment
                     .getAttributeId());
         }
-        if(!DatatypeHelper.isEmpty(attributeAssignment.getDataType())){
-        	super.marshallAttributes(samlElement, domElement);
+        if (!DatatypeHelper.isEmpty(attributeAssignment.getDataType())) {
+            super.marshallAttributes(samlElement, domElement);
         }
-        
+
     }
 }

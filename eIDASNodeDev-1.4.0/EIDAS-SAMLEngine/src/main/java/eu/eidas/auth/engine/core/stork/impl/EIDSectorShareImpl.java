@@ -24,26 +24,30 @@ import org.opensaml.xml.XMLObject;
 import eu.eidas.auth.engine.core.stork.EIDSectorShare;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class EIDSectorShareImpl.
  *
  * @author fjquevedo
  */
 public class EIDSectorShareImpl extends AbstractSAMLObject implements
-	EIDSectorShare {
+        EIDSectorShare {
 
-    /** The e id sector share. */
+    /**
+     * The e id sector share.
+     */
     private String eIDSectorShare;
+
     /**
      * Instantiates a new eID sector share implementation.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected EIDSectorShareImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                 final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
@@ -53,7 +57,7 @@ public class EIDSectorShareImpl extends AbstractSAMLObject implements
      * @return the eID sector share
      */
     public final String getEIDSectorShare() {
-    	return eIDSectorShare;
+        return eIDSectorShare;
     }
 
     /**
@@ -62,7 +66,7 @@ public class EIDSectorShareImpl extends AbstractSAMLObject implements
      * @param newEIDSectorShare the new eID sector share
      */
     public final void setEIDSectorShare(String newEIDSectorShare) {
-    	this.eIDSectorShare = prepareForAssignment(this.eIDSectorShare, newEIDSectorShare);
+        this.eIDSectorShare = prepareForAssignment(this.eIDSectorShare, newEIDSectorShare);
     }
 
     /**
@@ -71,7 +75,7 @@ public class EIDSectorShareImpl extends AbstractSAMLObject implements
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

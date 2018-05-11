@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,16 +30,24 @@ import org.opensaml.xml.schema.XSBooleanValue;
  */
 public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Name attribute value */
+    /**
+     * Expected Name attribute value
+     */
     protected String expectedName;
 
-    /** Expected NameFormat attribute value */
+    /**
+     * Expected NameFormat attribute value
+     */
     protected String expectedNameFormat;
 
-    /** Expected FriendlyName attribute value */
+    /**
+     * Expected FriendlyName attribute value
+     */
     protected String expectedFriendlyName;
 
-    /** Excpected isRequired attribute value */
+    /**
+     * Excpected isRequired attribute value
+     */
     protected XSBooleanValue expectedIsRequired;
 
     /**
@@ -50,7 +58,9 @@ public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/metadata/impl/RequestedAttributeOptionalAttributes.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +70,9 @@ public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
         expectedIsRequired = new XSBooleanValue(Boolean.TRUE, false);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         RequestedAttribute attribute = (RequestedAttribute) unmarshallElement(singleElementFile);
 
@@ -69,7 +81,9 @@ public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         RequestedAttribute requestedAttribute = (RequestedAttribute) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -89,7 +103,9 @@ public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
                 requestedAttribute.isRequiredXSBoolean());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, RequestedAttribute.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         RequestedAttribute requestedAttribute = (RequestedAttribute) buildXMLObject(qname);
@@ -99,7 +115,9 @@ public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, requestedAttribute);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, RequestedAttribute.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         RequestedAttribute requestedAttribute = (RequestedAttribute) buildXMLObject(qname);
@@ -111,14 +129,14 @@ public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
 
         assertEquals(expectedOptionalAttributesDOM, requestedAttribute);
     }
-    
+
     /**
      * Test the proper behavior of the XSBooleanValue attributes.
      */
     public void testXSBooleanAttributes() {
-        RequestedAttribute attrib = 
-            (RequestedAttribute) buildXMLObject(RequestedAttribute.DEFAULT_ELEMENT_NAME);
-        
+        RequestedAttribute attrib =
+                (RequestedAttribute) buildXMLObject(RequestedAttribute.DEFAULT_ELEMENT_NAME);
+
         // isRequired attribute
         attrib.setIsRequired(Boolean.TRUE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.TRUE, attrib.isRequired());
@@ -126,14 +144,14 @@ public class RequestedAttributeTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("XSBooleanValue was unexpected value", new XSBooleanValue(Boolean.TRUE, false),
                 attrib.isRequiredXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "true", attrib.isRequiredXSBoolean().toString());
-        
+
         attrib.setIsRequired(Boolean.FALSE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.FALSE, attrib.isRequired());
         assertNotNull("XSBooleanValue was null", attrib.isRequiredXSBoolean());
         assertEquals("XSBooleanValue was unexpected value", new XSBooleanValue(Boolean.FALSE, false),
                 attrib.isRequiredXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "false", attrib.isRequiredXSBoolean().toString());
-        
+
         attrib.setIsRequired((Boolean) null);
         assertEquals("Unexpected default value for boolean attribute found", Boolean.FALSE, attrib.isRequired());
         assertNull("XSBooleanValue was not null", attrib.isRequiredXSBoolean());

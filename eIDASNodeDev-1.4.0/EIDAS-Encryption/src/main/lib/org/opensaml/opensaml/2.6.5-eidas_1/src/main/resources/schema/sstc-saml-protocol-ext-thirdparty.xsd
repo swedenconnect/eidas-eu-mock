@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" targetNamespace="urn:oasis:names:tc:SAML:protocol:ext:third-party" elementFormDefault="unqualified" attributeFormDefault="unqualified" blockDefault="substitution" version="2.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+        targetNamespace="urn:oasis:names:tc:SAML:protocol:ext:third-party" elementFormDefault="unqualified"
+        attributeFormDefault="unqualified" blockDefault="substitution" version="2.0">
 
     <annotation>
         <documentation>
@@ -10,7 +12,8 @@
         </documentation>
     </annotation>
 
-    <import namespace="urn:oasis:names:tc:SAML:2.0:assertion" schemaLocation="classpath:/schema/saml-schema-assertion-2.0.xsd"/>
+    <import namespace="urn:oasis:names:tc:SAML:2.0:assertion"
+            schemaLocation="classpath:/schema/saml-schema-assertion-2.0.xsd"/>
 
     <element name="RespondTo" type="saml:NameIDType"/>
 

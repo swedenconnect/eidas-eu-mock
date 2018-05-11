@@ -28,6 +28,6 @@ public class RequestedAttributesMarshaller extends AbstractSAMLObjectMarshaller 
      * Instantiates a new requested attributes marshaller.
      */
     public RequestedAttributesMarshaller() {
-	super();
+        super();
     }
 }

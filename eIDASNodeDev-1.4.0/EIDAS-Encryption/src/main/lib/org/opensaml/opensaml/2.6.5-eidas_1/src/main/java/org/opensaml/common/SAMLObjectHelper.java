@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,23 +31,26 @@ import org.slf4j.LoggerFactory;
  * A helper class for working with SAMLObjects.
  */
 public final class SAMLObjectHelper {
-    
-    /** Constructor. */
-    private SAMLObjectHelper() { }
-    
+
     /**
-     * Examines the {@link SignableSAMLObject} for the need to declare non-visible namespaces 
+     * Constructor.
+     */
+    private SAMLObjectHelper() {
+    }
+
+    /**
+     * Examines the {@link SignableSAMLObject} for the need to declare non-visible namespaces
      * before marshalling and signing, and if required, performs the declarations.
-     * 
+     *
      * <p>
      * If the object does not already have a cached DOM, does have a signature attached,
-     * and the signature contains a {@link SAMLObjectContentReference} with a transform of either 
+     * and the signature contains a {@link SAMLObjectContentReference} with a transform of either
      * {@link SignatureConstants#TRANSFORM_C14N_EXCL_OMIT_COMMENTS}
-     * or {@link SignatureConstants#TRANSFORM_C14N_EXCL_WITH_COMMENTS}, 
+     * or {@link SignatureConstants#TRANSFORM_C14N_EXCL_WITH_COMMENTS},
      * it declares on the object all non-visible namespaces
      * as determined by {@link NamespaceManager#getNonVisibleNamespaces()}.
      * </p>
-     * 
+     *
      * @param signableObject the signable SAML object to evaluate
      */
     public static void declareNonVisibleNamespaces(SignableSAMLObject signableObject) {
@@ -57,15 +60,15 @@ public final class SAMLObjectHelper {
             boolean sawExclusive = false;
             for (ContentReference cr : signableObject.getSignature().getContentReferences()) {
                 if (cr instanceof SAMLObjectContentReference) {
-                    List<String> transforms = ((SAMLObjectContentReference)cr).getTransforms();
-                    if (transforms.contains(SignatureConstants.TRANSFORM_C14N_EXCL_WITH_COMMENTS) 
+                    List<String> transforms = ((SAMLObjectContentReference) cr).getTransforms();
+                    if (transforms.contains(SignatureConstants.TRANSFORM_C14N_EXCL_WITH_COMMENTS)
                             || transforms.contains(SignatureConstants.TRANSFORM_C14N_EXCL_OMIT_COMMENTS)) {
                         sawExclusive = true;
                         break;
                     }
                 }
             }
-            
+
             if (sawExclusive) {
                 log.debug("Saw exclusive transform, declaring non-visible namespaces on signed object");
                 for (Namespace ns : signableObject.getNamespaceManager().getNonVisibleNamespaces()) {
@@ -74,10 +77,10 @@ public final class SAMLObjectHelper {
             }
         }
     }
-    
+
     /**
      * Get an SLF4J Logger.
-     * 
+     *
      * @return a Logger instance
      */
     private static Logger getLogger() {

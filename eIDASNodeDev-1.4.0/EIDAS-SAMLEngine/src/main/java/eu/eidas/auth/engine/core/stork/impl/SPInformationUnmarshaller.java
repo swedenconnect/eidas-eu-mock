@@ -28,25 +28,23 @@ import eu.eidas.auth.engine.core.stork.SPInformation;
  * @author iinigo
  */
 public class SPInformationUnmarshaller extends
-	AbstractSAMLObjectUnmarshaller {
+        AbstractSAMLObjectUnmarshaller {
 
     /**
      * Process child element.
      *
      * @param parentObject the parent object
-     * @param childObject the child object
-     *
+     * @param childObject  the child object
      * @throws UnmarshallingException the unmarshalling exception
-     *
      */
     protected final void processChildElement(final XMLObject parentObject,
-	    final XMLObject childObject) throws UnmarshallingException {
-	final SPInformation spInformation = (SPInformation) parentObject;
+                                             final XMLObject childObject) throws UnmarshallingException {
+        final SPInformation spInformation = (SPInformation) parentObject;
 
-	if (childObject instanceof SPID) {
-        spInformation.setSPID((SPID) childObject);
-	} else {
-	    super.processChildElement(parentObject, childObject);
-	}
+        if (childObject instanceof SPID) {
+            spInformation.setSPID((SPID) childObject);
+        } else {
+            super.processChildElement(parentObject, childObject);
+        }
     }
 }

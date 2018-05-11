@@ -1,4 +1,5 @@
 package eu.eidas.samlengineconfig;
+
 import eu.eidas.samlengineconfig.PropsParameter;
 import eu.eidas.samlengineconfig.SamlEngineConfiguration;
 import eu.eidas.samlengineconfig.StringParameter;
@@ -27,40 +28,43 @@ import static org.junit.Assert.*;
  */
 @FixMethodOrder(MethodSorters.JVM)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/testcontext.xml")
+@ContextConfiguration(locations = "/testcontext.xml")
 public class TestFileAccess {
-    private static final String TEST_FILE1= "SignModule_EIDASService.xml";
-    private static final String FILEREPO_DIR="src/test/resources/";
-    private static final String FILEREPO_DIR_WRITE="target/test/sampleeidasconfig/";
+    private static final String TEST_FILE1 = "SignModule_EIDASService.xml";
+    private static final String FILEREPO_DIR = "src/test/resources/";
+    private static final String FILEREPO_DIR_WRITE = "target/test/sampleeidasconfig/";
     @Autowired
     private EidasConfigManagerUtil configUtil = null;
     @Autowired
     private EngineInstanceUnmarshallerImpl engineUnmarshaller;
+
     @Before
-    public void setUp(){
+    public void setUp() {
         assertNotNull(configUtil);
         configUtil.getFileService().setRepositoryDir(FILEREPO_DIR);
-        java.io.File sampleNodeRepo=new java.io.File(FILEREPO_DIR_WRITE+"/samlengine");
+        java.io.File sampleNodeRepo = new java.io.File(FILEREPO_DIR_WRITE + "/samlengine");
         FileSystemUtils.deleteRecursively(sampleNodeRepo);
         sampleNodeRepo.mkdirs();
     }
+
     @After
-    public void removeDir(){
-        java.io.File sampleNodeRepo=new java.io.File(FILEREPO_DIR_WRITE);
+    public void removeDir() {
+        java.io.File sampleNodeRepo = new java.io.File(FILEREPO_DIR_WRITE);
         FileSystemUtils.deleteRecursively(sampleNodeRepo);
     }
+
     @Test
-    public void testDeserializeProps(){
+    public void testDeserializeProps() {
         assertNotNull(configUtil);
         assertTrue(configUtil.existsFile(TEST_FILE1));
-        Properties p=configUtil.loadProps(TEST_FILE1);
+        Properties p = configUtil.loadProps(TEST_FILE1);
         assertNotNull(p);
         assertTrue(p.size() > 0);
     }
 
 
     @Test
-    public void testDeserialize(){
+    public void testDeserialize() {
         SamlEngineConfiguration ec = engineUnmarshaller.readEngineInstanceFromFile("SamlEngine.xml");
         assertNotNull(ec);
         assertEquals(ec.getInstances().size(), 2);
@@ -73,13 +77,13 @@ public class TestFileAccess {
     }
 
     @Test
-    public void testSerializeProps(){
-        Properties p=configUtil.loadProps(TEST_FILE1);
+    public void testSerializeProps() {
+        Properties p = configUtil.loadProps(TEST_FILE1);
         assertNotNull(p);
         assertTrue(p.size() > 0);
-        int initialSize=p.size();
+        int initialSize = p.size();
         p.setProperty("newkey", "newvalue");
-        String fileName= UUID.randomUUID().toString();
+        String fileName = UUID.randomUUID().toString();
         configUtil.getFileService().setRepositoryDir(FILEREPO_DIR_WRITE);
         configUtil.saveProps(fileName, p);
         assertEquals(initialSize + 1, configUtil.loadProps(fileName).size());

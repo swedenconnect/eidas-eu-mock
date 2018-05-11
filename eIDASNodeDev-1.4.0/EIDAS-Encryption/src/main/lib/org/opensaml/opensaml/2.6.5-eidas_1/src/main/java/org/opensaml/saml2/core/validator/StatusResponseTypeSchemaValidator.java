@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -33,12 +33,13 @@ public abstract class StatusResponseTypeSchemaValidator<StatusResponse extends S
 
     /**
      * Constructor
-     *
      */
     public StatusResponseTypeSchemaValidator() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(StatusResponse response) throws ValidationException {
         validateStatus(response);
         validateID(response);
@@ -48,21 +49,21 @@ public abstract class StatusResponseTypeSchemaValidator<StatusResponse extends S
     }
 
     /**
-     * Validates the Status child element. 
-     * 
+     * Validates the Status child element.
+     *
      * @param response
      * @throws ValidationException
      */
     protected void validateStatus(StatusResponse response) throws ValidationException {
         if (response.getStatus() == null)
             throw new ValidationException("Status is required");
-        
+
     }
-    
+
     /**
      * Validates the ID attribute
-     * 
-     * @param response 
+     *
+     * @param response
      * @throws ValidationException
      */
     protected void validateID(StatusResponse response) throws ValidationException {
@@ -72,7 +73,7 @@ public abstract class StatusResponseTypeSchemaValidator<StatusResponse extends S
 
     /**
      * Validates the Version attribute
-     * 
+     *
      * @param response
      * @throws ValidationException
      */
@@ -82,16 +83,16 @@ public abstract class StatusResponseTypeSchemaValidator<StatusResponse extends S
         if (!DatatypeHelper.safeEquals(response.getVersion().toString(), SAMLVersion.VERSION_20.toString()))
             throw new ValidationException("Wrong SAML Version");
     }
-    
+
     /**
      * Validates the IsssueInstant attribute
-     * 
+     *
      * @param response
      * @throws ValidationException
      */
     protected void validateIssueInstant(StatusResponse response) throws ValidationException {
         if (response.getIssueInstant() == null)
-            throw new ValidationException ("IssueInstant attribute must not be null");
+            throw new ValidationException("IssueInstant attribute must not be null");
     }
 
 }

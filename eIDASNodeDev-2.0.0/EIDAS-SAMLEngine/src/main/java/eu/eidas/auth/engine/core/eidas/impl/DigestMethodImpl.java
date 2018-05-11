@@ -31,19 +31,21 @@ import java.util.List;
  */
 public class DigestMethodImpl extends AbstractSAMLObject implements DigestMethod {
 
-    /** The algorithm. */
+    /**
+     * The algorithm.
+     */
     private String algorithm;
 
     /**
      * Instantiates a new DigestMethod implementation.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected DigestMethodImpl(final String namespaceURI,
                                final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
@@ -51,11 +53,10 @@ public class DigestMethodImpl extends AbstractSAMLObject implements DigestMethod
      * Gets the algorithm
      *
      * @return the algorithm
-     *
      * @see DigestMethod#getAlgorithm()
      */
     public final String getAlgorithm() {
-	return algorithm;
+        return algorithm;
     }
 
 
@@ -65,7 +66,7 @@ public class DigestMethodImpl extends AbstractSAMLObject implements DigestMethod
      * @param newAlgo the new signing algorithm
      */
     public final void setAlgorithm(final String newAlgo) {
-	    this.algorithm = prepareForAssignment(this.algorithm, newAlgo);
+        this.algorithm = prepareForAssignment(this.algorithm, newAlgo);
     }
 
 
@@ -75,7 +76,7 @@ public class DigestMethodImpl extends AbstractSAMLObject implements DigestMethod
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	    return new ArrayList<>();
+        return new ArrayList<>();
     }
 
     @Override

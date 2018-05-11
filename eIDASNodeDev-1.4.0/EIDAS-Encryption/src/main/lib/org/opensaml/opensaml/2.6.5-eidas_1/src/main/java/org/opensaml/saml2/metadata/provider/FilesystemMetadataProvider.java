@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A metadata provider that pulls metadata from a file on the local filesystem.
- * 
+ * <p>
  * This metadata provider periodically checks to see if the read metadata file has changed. The delay between each
  * refresh interval is calculated as follows. If no validUntil or cacheDuration is present then the
  * {@link #getMaxRefreshDelay()} value is used. Otherwise, the earliest refresh interval of the metadata file is checked
@@ -40,22 +40,24 @@ import org.slf4j.LoggerFactory;
  * cache actually expires, allowing a some room for error and recovery. Assuming the factor is not exceedingly close to
  * 1.0 and a min refresh delay that is not overly large, this refresh will likely occur a few times before the cache
  * expires.
- * 
  */
 public class FilesystemMetadataProvider extends AbstractReloadingMetadataProvider {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(FilesystemMetadataProvider.class);
 
-    /** The metadata file. */
+    /**
+     * The metadata file.
+     */
     private File metadataFile;
 
     /**
      * Constructor.
-     * 
+     *
      * @param metadata the metadata file
-     * 
-     * @throws MetadataProviderException  this exception is no longer thrown
+     * @throws MetadataProviderException this exception is no longer thrown
      */
     public FilesystemMetadataProvider(File metadata) throws MetadataProviderException {
         super();
@@ -64,11 +66,10 @@ public class FilesystemMetadataProvider extends AbstractReloadingMetadataProvide
 
     /**
      * Constructor.
-     * 
-     * @param metadata the metadata file
+     *
+     * @param metadata            the metadata file
      * @param backgroundTaskTimer timer used to refresh metadata in the background
-     * 
-     * @throws MetadataProviderException  this exception is no longer thrown
+     * @throws MetadataProviderException this exception is no longer thrown
      */
     public FilesystemMetadataProvider(Timer backgroundTaskTimer, File metadata) throws MetadataProviderException {
         super(backgroundTaskTimer);
@@ -77,9 +78,8 @@ public class FilesystemMetadataProvider extends AbstractReloadingMetadataProvide
 
     /**
      * Sets the file from which metadata is read.
-     * 
+     *
      * @param file path to the metadata file
-     * 
      * @throws MetadataProviderException this exception is no longer thrown
      */
     protected void setMetadataFile(File file) throws MetadataProviderException {
@@ -88,9 +88,8 @@ public class FilesystemMetadataProvider extends AbstractReloadingMetadataProvide
 
     /**
      * Gets whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
+     *
      * @return whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
      * @deprecated use {@link #requireValidMetadata()} instead
      */
     public boolean maintainExpiredMetadata() {
@@ -99,28 +98,33 @@ public class FilesystemMetadataProvider extends AbstractReloadingMetadataProvide
 
     /**
      * Sets whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
+     *
      * @param maintain whether cached metadata should be discarded if it expires and can not be refreshed.
-     * 
      * @deprecated use {@link #setRequireValidMetadata(boolean)} instead
      */
     public void setMaintainExpiredMetadata(boolean maintain) {
         setRequireValidMetadata(!maintain);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public synchronized void destroy() {
         metadataFile = null;
-        
+
         super.destroy();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected String getMetadataIdentifier() {
         return metadataFile.getAbsolutePath();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected byte[] fetchMetadata() throws MetadataProviderException {
         try {
             validateMetadataFile(metadataFile);
@@ -136,9 +140,9 @@ public class FilesystemMetadataProvider extends AbstractReloadingMetadataProvide
             throw new MetadataProviderException(errMsg, e);
         }
     }
-    
+
     /**
-     * Validate the basic properties of the specified metadata file, for example that it exists; 
+     * Validate the basic properties of the specified metadata file, for example that it exists;
      * that it is a file; and that it is readable.
      *
      * @param file the file to evaluate

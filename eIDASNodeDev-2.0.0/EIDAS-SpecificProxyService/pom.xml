@@ -24,7 +24,8 @@
     <packaging>${packaging.type}</packaging>
     <name>eIDAS Specific Proxy Service</name>
     <description>
-        The EIDAS Specific Proxy Service module provides a reference code to let each member state developer to fulfil it's own
+        The EIDAS Specific Proxy Service module provides a reference code to let each member state developer to fulfil
+        it's own
         requirements on the EIDAS Authentications (communication with IdP).
     </description>
     <parent>
@@ -182,7 +183,8 @@
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}/${proj.name}/WEB-INF/classes</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/${proj.name}/WEB-INF/classes
+                                    </outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>${project.basedir}/src/main/config/warPackaging</directory>

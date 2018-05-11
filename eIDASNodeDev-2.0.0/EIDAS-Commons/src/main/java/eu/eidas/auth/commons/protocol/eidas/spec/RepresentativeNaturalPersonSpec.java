@@ -39,7 +39,7 @@ public final class RepresentativeNaturalPersonSpec {
                 .personType(PersonType.REPV_NATURAL_PERSON)
                 .transliterationMandatory(true)
                 .xmlType(Namespace.URI, "CurrentFamilyNameType", Namespace.PREFIX)
-				.attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
+                .attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
                 .build();
 
         public static final AttributeDefinition<String> CURRENT_GIVEN_NAME = AttributeDefinition.<String>builder()
@@ -48,7 +48,7 @@ public final class RepresentativeNaturalPersonSpec {
                 .personType(PersonType.REPV_NATURAL_PERSON)
                 .transliterationMandatory(true)
                 .xmlType(Namespace.URI, "CurrentGivenNameType", Namespace.PREFIX)
-				.attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
+                .attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
                 .build();
 
         public static final AttributeDefinition<DateTime> DATE_OF_BIRTH = AttributeDefinition.<DateTime>builder()
@@ -65,7 +65,7 @@ public final class RepresentativeNaturalPersonSpec {
                 .personType(PersonType.REPV_NATURAL_PERSON)
                 .transliterationMandatory(true)
                 .xmlType(Namespace.URI, "BirthNameType", Namespace.PREFIX)
-				.attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
+                .attributeValueMarshaller(new LiteralStringAttributeValueMarshaller())
                 .build();
 
         public static final AttributeDefinition<String> PLACE_OF_BIRTH = AttributeDefinition.<String>builder()
@@ -95,6 +95,7 @@ public final class RepresentativeNaturalPersonSpec {
         private Definitions() {
         }
     }
+
     public static final class Namespace {
 
         public static final String URI = "http://eidas.europa.eu/attributes/naturalperson/representative";
@@ -107,10 +108,10 @@ public final class RepresentativeNaturalPersonSpec {
 
     public static final AttributeRegistry REGISTRY =
             AttributeRegistries.of(Definitions.PERSON_IDENTIFIER,
-                                   Definitions.CURRENT_FAMILY_NAME,
-                                   Definitions.CURRENT_GIVEN_NAME, Definitions.DATE_OF_BIRTH,
-                                   Definitions.BIRTH_NAME, Definitions.PLACE_OF_BIRTH,
-                                   Definitions.CURRENT_ADDRESS, Definitions.GENDER);
+                    Definitions.CURRENT_FAMILY_NAME,
+                    Definitions.CURRENT_GIVEN_NAME, Definitions.DATE_OF_BIRTH,
+                    Definitions.BIRTH_NAME, Definitions.PLACE_OF_BIRTH,
+                    Definitions.CURRENT_ADDRESS, Definitions.GENDER);
 
     private RepresentativeNaturalPersonSpec() {
     }

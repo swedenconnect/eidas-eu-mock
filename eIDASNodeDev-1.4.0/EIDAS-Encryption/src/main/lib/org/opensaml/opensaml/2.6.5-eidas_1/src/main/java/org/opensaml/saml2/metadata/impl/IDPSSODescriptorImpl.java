@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -43,30 +43,42 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class IDPSSODescriptorImpl extends SSODescriptorImpl implements IDPSSODescriptor {
 
-    /** wantAuthnRequestSigned attribute. */
+    /**
+     * wantAuthnRequestSigned attribute.
+     */
     private XSBooleanValue wantAuthnRequestsSigned;
 
-    /** SingleSignOn services for this entity. */
+    /**
+     * SingleSignOn services for this entity.
+     */
     private final XMLObjectChildrenList<SingleSignOnService> singleSignOnServices;
 
-    /** NameID mapping services for this entity. */
+    /**
+     * NameID mapping services for this entity.
+     */
     private final XMLObjectChildrenList<NameIDMappingService> nameIDMappingServices;
 
-    /** AssertionID request services for this entity. */
+    /**
+     * AssertionID request services for this entity.
+     */
     private final XMLObjectChildrenList<AssertionIDRequestService> assertionIDRequestServices;
 
-    /** Attribute profiles supported by this entity. */
+    /**
+     * Attribute profiles supported by this entity.
+     */
     private final XMLObjectChildrenList<AttributeProfile> attributeProfiles;
 
-    /** Attributes accepted by this entity. */
+    /**
+     * Attributes accepted by this entity.
+     */
     private final XMLObjectChildrenList<Attribute> attributes;
-    
+
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected IDPSSODescriptorImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -77,60 +89,80 @@ public class IDPSSODescriptorImpl extends SSODescriptorImpl implements IDPSSODes
         attributes = new XMLObjectChildrenList<Attribute>(this);
     }
 
-    /** {@inheritDoc} */
-    public Boolean getWantAuthnRequestsSigned(){
-        if(wantAuthnRequestsSigned != null){
+    /**
+     * {@inheritDoc}
+     */
+    public Boolean getWantAuthnRequestsSigned() {
+        if (wantAuthnRequestsSigned != null) {
             return wantAuthnRequestsSigned.getValue();
         }
-        
+
         return Boolean.FALSE;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue getWantAuthnRequestsSignedXSBoolean() {
         return wantAuthnRequestsSigned;
     }
-    
-    /** {@inheritDoc} */
-    public void setWantAuthnRequestsSigned(Boolean newWantSigned){
-        if(newWantSigned != null){
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setWantAuthnRequestsSigned(Boolean newWantSigned) {
+        if (newWantSigned != null) {
             wantAuthnRequestsSigned = prepareForAssignment(wantAuthnRequestsSigned, new XSBooleanValue(newWantSigned, false));
-        }else{
+        } else {
             wantAuthnRequestsSigned = prepareForAssignment(wantAuthnRequestsSigned, null);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setWantAuthnRequestsSigned(XSBooleanValue wantSigned) {
         wantAuthnRequestsSigned = prepareForAssignment(wantAuthnRequestsSigned, wantSigned);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<SingleSignOnService> getSingleSignOnServices() {
         return singleSignOnServices;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<NameIDMappingService> getNameIDMappingServices() {
         return nameIDMappingServices;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AssertionIDRequestService> getAssertionIDRequestServices() {
         return assertionIDRequestServices;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AttributeProfile> getAttributeProfiles() {
         return attributeProfiles;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Attribute> getAttributes() {
         return attributes;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints() {
         List<Endpoint> endpoints = new ArrayList<Endpoint>();
         endpoints.addAll(super.getEndpoints());
@@ -139,21 +171,25 @@ public class IDPSSODescriptorImpl extends SSODescriptorImpl implements IDPSSODes
         endpoints.addAll(assertionIDRequestServices);
         return Collections.unmodifiableList(endpoints);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Endpoint> getEndpoints(QName type) {
-        if(type.equals(SingleSignOnService.DEFAULT_ELEMENT_NAME)){
+        if (type.equals(SingleSignOnService.DEFAULT_ELEMENT_NAME)) {
             return Collections.unmodifiableList(new ArrayList<Endpoint>(singleSignOnServices));
-        }else if(type.equals(NameIDMappingService.DEFAULT_ELEMENT_NAME)){
+        } else if (type.equals(NameIDMappingService.DEFAULT_ELEMENT_NAME)) {
             return Collections.unmodifiableList(new ArrayList<Endpoint>(nameIDMappingServices));
-        }else if(type.equals(AssertionIDRequestService.DEFAULT_ELEMENT_NAME)){
+        } else if (type.equals(AssertionIDRequestService.DEFAULT_ELEMENT_NAME)) {
             return Collections.unmodifiableList(new ArrayList<Endpoint>(assertionIDRequestServices));
-        }else{
+        } else {
             return super.getEndpoints(type);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

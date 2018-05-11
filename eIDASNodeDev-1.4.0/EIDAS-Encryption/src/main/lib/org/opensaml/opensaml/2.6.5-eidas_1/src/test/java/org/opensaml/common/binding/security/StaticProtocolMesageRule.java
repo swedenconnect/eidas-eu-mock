@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,28 +27,34 @@ import org.opensaml.ws.security.SecurityPolicyException;
  */
 public class StaticProtocolMesageRule extends StaticIssuerRule {
 
-    /** Static issue instant to set. */
+    /**
+     * Static issue instant to set.
+     */
     private DateTime issueInstant;
 
-    /** Static message ID to set. */
+    /**
+     * Static message ID to set.
+     */
     private String messageID;
 
     /**
      * Constructor.
-     * 
-     * @param newIssuer the new issuer
+     *
+     * @param newIssuer              the new issuer
      * @param newIssuerAuthenticated the new issuer authenticated state to set
-     * @param newMessageID the new message ID
-     * @param newIssueInstant the new issue instant
+     * @param newMessageID           the new message ID
+     * @param newIssueInstant        the new issue instant
      */
     protected StaticProtocolMesageRule(String newIssuer, Boolean newIssuerAuthenticated, String newMessageID,
-            DateTime newIssueInstant) {
+                                       DateTime newIssueInstant) {
         super(newIssuer, newIssuerAuthenticated);
         messageID = newMessageID;
         issueInstant = newIssueInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void evaluate(MessageContext messageContext) throws SecurityPolicyException {
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
 

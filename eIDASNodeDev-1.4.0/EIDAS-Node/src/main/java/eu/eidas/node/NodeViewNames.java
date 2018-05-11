@@ -19,11 +19,10 @@ public enum NodeViewNames {
     PRESENT_ERROR("/presentError.jsp"),
     MISSING_PARAMETER("/missingParameter.jsp"),
     EIDAS_SERVICE_NO_CONSENT("/CitizenConsent"),
-    SERVLET_PATH_SERVICE_PROVIDER ( "/ServiceProvider"),
-    SERVLET_PATH_BKU_ANMELDUNG( "/Bku-anmeldung"),
+    SERVLET_PATH_SERVICE_PROVIDER("/ServiceProvider"),
+    SERVLET_PATH_BKU_ANMELDUNG("/Bku-anmeldung"),
     SUBMIT_ERROR("/presentSamlResponseError.jsp"),
-    EIDAS_CONNECTOR_COUNTRY_FRAMING("/countryFraming.jsp"),
-    ;
+    EIDAS_CONNECTOR_COUNTRY_FRAMING("/countryFraming.jsp"),;
 
 
     /**
@@ -33,9 +32,10 @@ public enum NodeViewNames {
 
     /**
      * Constructor
+     *
      * @param name name of the bean
      */
-    NodeViewNames(final String name){
+    NodeViewNames(final String name) {
         this.name = name;
     }
 

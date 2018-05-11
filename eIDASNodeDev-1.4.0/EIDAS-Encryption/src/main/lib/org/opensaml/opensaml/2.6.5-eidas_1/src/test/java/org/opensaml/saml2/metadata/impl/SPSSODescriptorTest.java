@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -38,23 +38,33 @@ import org.opensaml.saml2.metadata.SingleLogoutService;
 import org.opensaml.xml.schema.XSBooleanValue;
 
 /**
- * 
+ *
  */
 public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** expected value for AuthnRequestSigned attribute */
+    /**
+     * expected value for AuthnRequestSigned attribute
+     */
     protected XSBooleanValue expectedAuthnRequestSigned;
 
-    /** expected value for WantAssertionsSigned attribute */
+    /**
+     * expected value for WantAssertionsSigned attribute
+     */
     protected XSBooleanValue expectedWantAssertionsSigned;
 
-    /** List of expected supported protocols */
+    /**
+     * List of expected supported protocols
+     */
     protected ArrayList<String> expectedSupportedProtocol;
 
-    /** Expected cacheDuration value in miliseconds */
+    /**
+     * Expected cacheDuration value in miliseconds
+     */
     protected long expectedCacheDuration;
 
-    /** Expected validUntil value */
+    /**
+     * Expected validUntil value
+     */
     protected DateTime expectedValidUntil;
 
     /**
@@ -80,7 +90,9 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
         expectedValidUntil = new DateTime(2005, 12, 7, 10, 21, 0, 0, ISOChronology.getInstanceUTC());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SPSSODescriptor descriptor = (SPSSODescriptor) unmarshallElement(singleElementFile);
 
@@ -88,7 +100,9 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .getSupportedProtocols());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         SPSSODescriptor descriptor = (SPSSODescriptor) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -100,7 +114,9 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .getWantAssertionsSignedXSBoolean());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         SPSSODescriptor descriptor = (SPSSODescriptor) unmarshallElement(childElementsFile);
 
@@ -148,7 +164,9 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, SPSSODescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
@@ -201,13 +219,13 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
 
         assertEquals(expectedChildElementsDOM, descriptor);
     }
-    
+
     /**
      * Test the proper behavior of the XSBooleanValue attributes.
      */
     public void testXSBooleanAttributes() {
         SPSSODescriptor descriptor = (SPSSODescriptor) buildXMLObject(SPSSODescriptor.DEFAULT_ELEMENT_NAME);
-        
+
         // AuthnRequestsSigned
         descriptor.setAuthnRequestsSigned(Boolean.TRUE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.TRUE, descriptor.isAuthnRequestsSigned());
@@ -216,7 +234,7 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 descriptor.isAuthnRequestsSignedXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "true",
                 descriptor.isAuthnRequestsSignedXSBoolean().toString());
-        
+
         descriptor.setAuthnRequestsSigned(Boolean.FALSE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.FALSE, descriptor.isAuthnRequestsSigned());
         assertNotNull("XSBooleanValue was null", descriptor.isAuthnRequestsSignedXSBoolean());
@@ -224,13 +242,12 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 descriptor.isAuthnRequestsSignedXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "false",
                 descriptor.isAuthnRequestsSignedXSBoolean().toString());
-        
+
         descriptor.setAuthnRequestsSigned((Boolean) null);
         assertEquals("Unexpected default value for boolean attribute found", Boolean.FALSE, descriptor.isAuthnRequestsSigned());
         assertNull("XSBooleanValue was not null", descriptor.isAuthnRequestsSignedXSBoolean());
-        
-        
-        
+
+
         // WantAssertionsSigned
         descriptor.setWantAssertionsSigned(Boolean.TRUE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.TRUE, descriptor.getWantAssertionsSigned());
@@ -239,7 +256,7 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 descriptor.getWantAssertionsSignedXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "true",
                 descriptor.getWantAssertionsSignedXSBoolean().toString());
-        
+
         descriptor.setWantAssertionsSigned(Boolean.FALSE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.FALSE, descriptor.getWantAssertionsSigned());
         assertNotNull("XSBooleanValue was null", descriptor.getWantAssertionsSignedXSBoolean());
@@ -247,7 +264,7 @@ public class SPSSODescriptorTest extends BaseSAMLObjectProviderTestCase {
                 descriptor.getWantAssertionsSignedXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "false",
                 descriptor.getWantAssertionsSignedXSBoolean().toString());
-        
+
         descriptor.setWantAssertionsSigned((Boolean) null);
         assertEquals("Unexpected default value for boolean attribute found", Boolean.FALSE, descriptor.getWantAssertionsSigned());
         assertNull("XSBooleanValue was not null", descriptor.getWantAssertionsSignedXSBoolean());

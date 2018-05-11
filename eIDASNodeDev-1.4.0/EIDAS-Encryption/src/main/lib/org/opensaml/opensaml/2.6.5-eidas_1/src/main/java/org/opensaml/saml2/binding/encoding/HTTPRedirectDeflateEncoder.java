@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -49,35 +49,47 @@ import org.slf4j.LoggerFactory;
 
 /**
  * SAML 2.0 HTTP Redirect encoder using the DEFLATE encoding method.
- * 
+ * <p>
  * This encoder only supports DEFLATE compression and DSA-SHA1 and RSA-SHA1 signatures.
  */
 public class HTTPRedirectDeflateEncoder extends BaseSAML2MessageEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPRedirectDeflateEncoder.class);
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public HTTPRedirectDeflateEncoder() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_REDIRECT_BINDING_URI;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageConfidentiality(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageIntegrity(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doEncode(MessageContext messageContext) throws MessageEncodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this encoder only support SAMLMessageContext");
@@ -112,7 +124,7 @@ public class HTTPRedirectDeflateEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Removes the signature from the protocol message.
-     * 
+     *
      * @param messageContext current message context
      */
     protected void removeSignature(SAMLMessageContext messageContext) {
@@ -125,11 +137,9 @@ public class HTTPRedirectDeflateEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * DEFLATE (RFC1951) compresses the given SAML message.
-     * 
+     *
      * @param message SAML message
-     * 
      * @return DEFLATE compressed message
-     * 
      * @throws MessageEncodingException thrown if there is a problem compressing the message
      */
     protected String deflateAndBase64Encode(SAMLObject message) throws MessageEncodingException {
@@ -151,13 +161,11 @@ public class HTTPRedirectDeflateEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Builds the URL to redirect the client to.
-     * 
+     *
      * @param messagesContext current message context
-     * @param endpointURL endpoint URL to send encoded message to
-     * @param message Deflated and Base64 encoded message
-     * 
+     * @param endpointURL     endpoint URL to send encoded message to
+     * @param message         Deflated and Base64 encoded message
      * @return URL to redirect client to
-     * 
      * @throws MessageEncodingException thrown if the SAML message is neither a RequestAbstractType or Response
      */
     protected String buildRedirectURL(SAMLMessageContext messagesContext, String endpointURL, String message)
@@ -199,12 +207,10 @@ public class HTTPRedirectDeflateEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Gets the signature algorithm URI to use with the given signing credential.
-     * 
+     *
      * @param credential the credential that will be used to sign the message
-     * @param config the SecurityConfiguration to use (may be null)
-     * 
+     * @param config     the SecurityConfiguration to use (may be null)
      * @return signature algorithm to use with the given signing credential
-     * 
      * @throws MessageEncodingException thrown if the algorithm URI could not be derived from the supplied credential
      */
     protected String getSignatureAlgorithmURI(Credential credential, SecurityConfiguration config)
@@ -228,13 +234,11 @@ public class HTTPRedirectDeflateEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Generates the signature over the query string.
-     * 
+     *
      * @param signingCredential credential that will be used to sign query string
-     * @param algorithmURI algorithm URI of the signing credential
-     * @param queryString query string to be signed
-     * 
+     * @param algorithmURI      algorithm URI of the signing credential
+     * @param queryString       query string to be signed
      * @return base64 encoded signature of query string
-     * 
      * @throws MessageEncodingException there is an error computing the signature
      */
     protected String generateSignature(Credential signingCredential, String algorithmURI, String queryString)

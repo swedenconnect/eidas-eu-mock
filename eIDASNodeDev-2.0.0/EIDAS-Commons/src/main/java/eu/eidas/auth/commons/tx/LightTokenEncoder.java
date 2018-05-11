@@ -49,21 +49,28 @@ import java.util.Arrays;
  */
 public final class LightTokenEncoder {
 
-    /** Logger. */
+    /**
+     * Logger.
+     */
     private static final Logger log = LoggerFactory.getLogger(LightTokenEncoder.class);
 
-    /** Maximum size for BASE64 encoded token, but applies for the unencoded one also */
+    /**
+     * Maximum size for BASE64 encoded token, but applies for the unencoded one also
+     */
     public static final int MAX_TOKEN_SIZE = 1024;
 
-    /** Maximum number of parts for the tokenizer. */
+    /**
+     * Maximum number of parts for the tokenizer.
+     */
     public static final int MAX_PARTS = 4;
 
     /**
      * This method created a BinaryLightToken from the supplied LightToken, with the supplied parameters.
      * The resulting BinaryLightToken will contain a bytearray to be used for reference in HTTP.
      * Format of the encoded token is: ISSUER/ID/CREATEDON/DIGEST. DIGEST is in BASE64.
-     * @param token the logical to LightToken to be encoded
-     * @param secret secret for creating the digest
+     *
+     * @param token     the logical to LightToken to be encoded
+     * @param secret    secret for creating the digest
      * @param algorithm digest algorithm (SHA256 is recommended)
      * @return Object encapsulation both Logical and encoded LightToken
      * @throws NoSuchAlgorithmException
@@ -84,10 +91,11 @@ public final class LightTokenEncoder {
 
     /**
      * Same as decode, but it performs a safe BASE64 deocding as well
+     *
      * @see decode(@Nonnull byte[] bytes , @Nonnull String secret, @Nonnull String algorithm)
      */
     @Nonnull
-    public static BinaryLightToken decodeBase64(@Nonnull byte[] bytes , @Nonnull String secret, @Nonnull String algorithm) throws NoSuchAlgorithmException, SecurityEIDASException {
+    public static BinaryLightToken decodeBase64(@Nonnull byte[] bytes, @Nonnull String secret, @Nonnull String algorithm) throws NoSuchAlgorithmException, SecurityEIDASException {
         ILightToken retLightToken = null;
         if (bytes.length > MAX_TOKEN_SIZE) {
             log.error("Error parsing LightToken, size exceeds " + MAX_TOKEN_SIZE);
@@ -101,15 +109,16 @@ public final class LightTokenEncoder {
 
     /**
      * Decodes an array to a BinaryLightToken encapsulating the logical LightToken. This method is safe to process tokens coming in from the Web.
-     * @param bytes array to be decoded
-     * @param secret secret for checking the digest
+     *
+     * @param bytes     array to be decoded
+     * @param secret    secret for checking the digest
      * @param algorithm digest algorithm (SHA256 is recommended)
      * @return
      * @throws NoSuchAlgorithmException
-     * @throws SecurityEIDASException when token cannot be parsed
+     * @throws SecurityEIDASException   when token cannot be parsed
      */
     @Nonnull
-    public static BinaryLightToken decode(@Nonnull byte[] bytes , @Nonnull String secret, @Nonnull String algorithm) throws NoSuchAlgorithmException, SecurityEIDASException {
+    public static BinaryLightToken decode(@Nonnull byte[] bytes, @Nonnull String secret, @Nonnull String algorithm) throws NoSuchAlgorithmException, SecurityEIDASException {
         ILightToken retLightToken = null;
         if (bytes.length > MAX_TOKEN_SIZE) {
             log.error("Error parsing LightToken, size exceeds " + MAX_TOKEN_SIZE);
@@ -135,7 +144,7 @@ public final class LightTokenEncoder {
                         .id(parts[1])
                         .createdOn(createdOn).build();
             } catch (Exception e) {
-                log.error("Invalid LightToken - failure in builder : "+e.getMessage());
+                log.error("Invalid LightToken - failure in builder : " + e.getMessage());
                 throw new SecurityEIDASException(EidasErrors.get(EidasErrorKey.INVALID_LIGHT_TOKEN.errorCode()),
                         "LightToken parse error");
             }
@@ -158,9 +167,10 @@ public final class LightTokenEncoder {
 
     /**
      * Calclates a Digest for the supplied LightToken
+     *
      * @param lightToken logical LightToken
-     * @param secret secret for the digest
-     * @param algorithm algorithm for the digest
+     * @param secret     secret for the digest
+     * @param algorithm  algorithm for the digest
      * @return
      * @throws NoSuchAlgorithmException
      */
@@ -173,7 +183,7 @@ public final class LightTokenEncoder {
         md.update(AbstractLightToken.SEPARATOR.getBytes());
         md.update(lightToken.getFormattedCreatedOn().getBytes());
         md.update(AbstractLightToken.SEPARATOR.getBytes());
-        md.update(secret.getBytes() );
+        md.update(secret.getBytes());
         return md.digest();
     }
 

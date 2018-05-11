@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,31 +26,35 @@ import org.opensaml.saml1.core.RequestAbstractType;
  */
 public abstract class RequestAbstractTypeSchemaTestBase extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public RequestAbstractTypeSchemaTestBase() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
-        
+
         target = buildXMLObject(targetQName);
         RequestAbstractType request = (RequestAbstractType) target;
         request.setID("Ident");
         request.setIssueInstant(new DateTime());
     }
-    
+
 
     public void testMissingID() {
         RequestAbstractType request = (RequestAbstractType) target;
-        
+
         request.setID(null);
         assertValidationFail("RequestID is null, should raise a Validation Exception");
-        
+
         request.setID("");
         assertValidationFail("RequestID is empty, should raise a Validation Exception");
-        
+
         request.setID(" ");
         assertValidationFail("RequestID is invalid, should raise a Validation Exception");
     }
@@ -60,5 +64,5 @@ public abstract class RequestAbstractTypeSchemaTestBase extends BaseSAMLObjectVa
         request.setIssueInstant(null);
         assertValidationFail("Both IssueInstant attribute present, should raise a Validation Exception");
     }
-    
+
 }

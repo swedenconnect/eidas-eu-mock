@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -19,19 +19,23 @@ package org.opensaml.xacml.policy.impl;
 
 import org.opensaml.xacml.impl.AbstractXACMLObjectBuilder;
 import org.opensaml.xacml.policy.TargetType;
+
 /**
  * Implementation for {@link TargetType}.
- *
  */
 public class TargetTypeImplBuilder extends AbstractXACMLObjectBuilder<TargetType> {
 
-    /** {@inheritDoc}**/
+    /**
+     * {@inheritDoc}
+     **/
     public TargetType buildObject() {
         return buildObject(TargetType.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc}**/
-    public TargetType buildObject(String namespaceURI, String localName,String namespacePrefix) {
+    /**
+     * {@inheritDoc}
+     **/
+    public TargetType buildObject(String namespaceURI, String localName, String namespacePrefix) {
         return new TargetTypeImpl(namespaceURI, localName, namespacePrefix);
     }
 }

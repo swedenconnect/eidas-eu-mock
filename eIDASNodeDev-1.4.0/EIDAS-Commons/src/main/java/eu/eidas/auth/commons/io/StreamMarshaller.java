@@ -31,7 +31,7 @@ public interface StreamMarshaller<T> {
      * Marshals the given newValue into a file.
      *
      * @param newValue the value to marshal into the file
-     * @param output the destination file
+     * @param output   the destination file
      * @throws IOException
      */
     void marshal(@Nonnull T newValue, @Nonnull OutputStream output) throws IOException;
@@ -39,7 +39,7 @@ public interface StreamMarshaller<T> {
     /**
      * Unmarshals the given file into an instance of T.
      *
-     * @param uri the URI of the file to unmarshal
+     * @param uri   the URI of the file to unmarshal
      * @param input the file to unmarshal
      * @return a new instance of T unmarshalled from the given file.
      * @throws IOException

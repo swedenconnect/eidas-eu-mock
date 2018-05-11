@@ -28,26 +28,24 @@ import eu.eidas.auth.engine.core.stork.VIDPAuthenticationAttributes;
  * @author fjquevedo
  */
 public class AuthenticationAttributesUnmarshaller extends
-	AbstractSAMLObjectUnmarshaller {
+        AbstractSAMLObjectUnmarshaller {
 
     /**
      * Process child element.
      *
      * @param parentObject the parent object
-     * @param childObject the child object
-     *
+     * @param childObject  the child object
      * @throws UnmarshallingException the unmarshalling exception
-     *
      */
     protected final void processChildElement(final XMLObject parentObject,
-	    final XMLObject childObject) throws UnmarshallingException {
-	final AuthenticationAttributes attrStatement = (AuthenticationAttributes) parentObject;
+                                             final XMLObject childObject) throws UnmarshallingException {
+        final AuthenticationAttributes attrStatement = (AuthenticationAttributes) parentObject;
 
-	if (childObject instanceof VIDPAuthenticationAttributes) {
-	    attrStatement.setVIDPAuthenticationAttributes((VIDPAuthenticationAttributes) childObject);
-	} else {
-	    super.processChildElement(parentObject, childObject);
-	}
+        if (childObject instanceof VIDPAuthenticationAttributes) {
+            attrStatement.setVIDPAuthenticationAttributes((VIDPAuthenticationAttributes) childObject);
+        } else {
+            super.processChildElement(parentObject, childObject);
+        }
     }
 
 }

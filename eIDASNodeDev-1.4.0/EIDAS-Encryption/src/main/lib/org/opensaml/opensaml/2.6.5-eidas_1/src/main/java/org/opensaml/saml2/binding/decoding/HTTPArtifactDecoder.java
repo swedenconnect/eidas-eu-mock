@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,43 +28,53 @@ import org.opensaml.xml.util.DatatypeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** 
+/**
  * SAML 2 Artifact Binding decoder, support both HTTP GET and POST.
- * 
+ *
  * <strong>NOTE: This decoder is not yet implemented.</strong>
- * */
+ */
 public class HTTPArtifactDecoder extends BaseSAML2MessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPArtifactDecoder.class);
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param pool parser pool used to deserialize messages
      */
     public HTTPArtifactDecoder(ParserPool pool) {
         super(pool);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_ARTIFACT_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean isIntendedDestinationEndpointURIRequired(SAMLMessageContext samlMsgCtx) {
         return false;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected String getIntendedDestinationEndpointURI(SAMLMessageContext samlMsgCtx) throws MessageDecodingException {
         // Not relevant in this binding/profile, there is neither SAML message
         // nor binding parameter with this information
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doDecode(MessageContext messageContext) throws MessageDecodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this decoder only support SAMLMessageContext");
@@ -83,18 +93,17 @@ public class HTTPArtifactDecoder extends BaseSAML2MessageDecoder {
         HTTPInTransport inTransport = (HTTPInTransport) samlMsgCtx.getInboundMessageTransport();
         String relayState = DatatypeHelper.safeTrim(inTransport.getParameterValue("RelayState"));
         samlMsgCtx.setRelayState(relayState);
-        
+
         processArtifact(samlMsgCtx);
 
         populateMessageContext(samlMsgCtx);
     }
-    
+
     /**
-     * Process the incoming artifact by decoding the artifacts, dereferencing it from the artifact issuer and 
+     * Process the incoming artifact by decoding the artifacts, dereferencing it from the artifact issuer and
      * storing the resulting protocol message in the message context.
-     * 
+     *
      * @param samlMsgCtx current message context
-     * 
      * @throws MessageDecodingException thrown if there is a problem decoding or dereferencing the artifact
      */
     protected void processArtifact(SAMLMessageContext samlMsgCtx) throws MessageDecodingException {
@@ -104,7 +113,7 @@ public class HTTPArtifactDecoder extends BaseSAML2MessageDecoder {
             log.error("URL SAMLart parameter was missing or did not contain a value.");
             throw new MessageDecodingException("URL TARGET parameter was missing or did not contain a value.");
         }
-        
+
         // TODO decode artifact; resolve issuer resolution endpoint; dereference using ArtifactResolve
         // over synchronous backchannel binding; store resultant protocol message as the inbound SAML message.
     }

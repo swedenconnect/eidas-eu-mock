@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,56 +34,60 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Security policy rule implementation that enforces the AuthnRequestsSigned flag of 
+ * Security policy rule implementation that enforces the AuthnRequestsSigned flag of
  * SAML 2 metadata element @{link {@link SPSSODescriptor}.
  */
 public class SAML2AuthnRequestsSignedRule implements SecurityPolicyRule {
-    
-    /** Logger. */
+
+    /**
+     * Logger.
+     */
     private final Logger log = LoggerFactory.getLogger(SAML2AuthnRequestsSignedRule.class);
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void evaluate(MessageContext messageContext) throws SecurityPolicyException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.debug("Invalid message context type, this policy rule only supports SAMLMessageContext");
             return;
         }
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
-        
+
         SAMLObject samlMessage = samlMsgCtx.getInboundSAMLMessage();
-        if (! (samlMessage instanceof AuthnRequest) ) {
+        if (!(samlMessage instanceof AuthnRequest)) {
             log.debug("Inbound message is not an instance of AuthnRequest, skipping evaluation...");
             return;
         }
-        
+
         String messageIssuer = samlMsgCtx.getInboundMessageIssuer();
         if (DatatypeHelper.isEmpty(messageIssuer)) {
             log.warn("Inbound message issuer was empty, unable to evaluate rule");
             return;
         }
-        
+
         MetadataProvider metadataProvider = samlMsgCtx.getMetadataProvider();
         if (metadataProvider == null) {
             log.warn("Message context did not contain a metadata provider, unable to evaluate rule");
             return;
         }
-        
+
         SPSSODescriptor spssoRole;
         try {
             spssoRole = (SPSSODescriptor) metadataProvider
-                .getRole(messageIssuer, SPSSODescriptor.DEFAULT_ELEMENT_NAME, SAMLConstants.SAML20P_NS);
+                    .getRole(messageIssuer, SPSSODescriptor.DEFAULT_ELEMENT_NAME, SAMLConstants.SAML20P_NS);
         } catch (MetadataProviderException e) {
             log.warn("Error resolving SPSSODescriptor metadata for entityID '{}': {}", messageIssuer, e.getMessage());
             throw new SecurityPolicyException("Error resolving metadata for entity ID", e);
         }
-        
+
         if (spssoRole == null) {
             log.warn("SPSSODescriptor role metadata for entityID '{}' could not be resolved", messageIssuer);
             return;
         }
-        
+
         if (spssoRole.isAuthnRequestsSigned() == Boolean.TRUE) {
-            if (! isMessageSigned(samlMsgCtx)) {
+            if (!isMessageSigned(samlMsgCtx)) {
                 log.error("SPSSODescriptor for entity ID '{}' indicates AuthnRequests must be signed, "
                         + "but inbound message was not signed", messageIssuer);
                 throw new SecurityPolicyException("Inbound AuthnRequest was required to be signed but was not");
@@ -93,10 +97,10 @@ public class SAML2AuthnRequestsSignedRule implements SecurityPolicyRule {
         }
 
     }
-    
+
     /**
      * Determine whether the inbound message is signed.
-     * 
+     *
      * @param messageContext the message context being evaluated
      * @return true if the inbound message is signed, otherwise false
      */
@@ -105,7 +109,7 @@ public class SAML2AuthnRequestsSignedRule implements SecurityPolicyRule {
         // in some fashion, to handle binding-specific signature mechanisms. See JIRA issue JOWS-4.
         //
         // For now evaluate here inline for XML Signature and HTTP-Redirect and HTTP-Post-SimpleSign.
-        
+
         SAMLObject samlMessage = messageContext.getInboundSAMLMessage();
         if (samlMessage instanceof SignableSAMLObject) {
             SignableSAMLObject signableMessage = (SignableSAMLObject) samlMessage;
@@ -113,7 +117,7 @@ public class SAML2AuthnRequestsSignedRule implements SecurityPolicyRule {
                 return true;
             }
         }
-        
+
         // This handles HTTP-Redirect and HTTP-POST-SimpleSign bindings.
         HTTPInTransport inTransport = (HTTPInTransport) messageContext.getInboundMessageTransport();
         String sigParam = inTransport.getParameterValue("Signature");

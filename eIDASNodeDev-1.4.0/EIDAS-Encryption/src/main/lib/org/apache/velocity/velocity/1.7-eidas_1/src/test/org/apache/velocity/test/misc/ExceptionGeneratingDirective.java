@@ -16,7 +16,7 @@ package org.apache.velocity.test.misc;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.IOException;
@@ -36,23 +36,19 @@ import org.apache.velocity.runtime.parser.node.Node;
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: ExceptionGeneratingDirective.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ExceptionGeneratingDirective extends Directive
-{
+public class ExceptionGeneratingDirective extends Directive {
 
-    public String getName()
-    {
+    public String getName() {
         return "Exception";
     }
 
-    public int getType()
-    {
+    public int getType() {
         return Directive.BLOCK;
     }
 
     public boolean render(InternalContextAdapter context, Writer writer, Node node)
             throws IOException, ResourceNotFoundException, ParseErrorException,
-            MethodInvocationException
-    {
+            MethodInvocationException {
         throw new RuntimeException("exception");
     }
 

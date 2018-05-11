@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,13 +27,15 @@ import org.opensaml.xml.validation.ValidationException;
  * Test the SAML XML Signature profile validator.
  */
 public class SAMLSignatureProfileValidatorTest extends BaseTestCase {
-    
+
     private SAMLSignatureProfileValidator validator;
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         validator = new SAMLSignatureProfileValidator();
     }
 
@@ -42,57 +44,57 @@ public class SAMLSignatureProfileValidatorTest extends BaseTestCase {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-Valid.xml");
         assertValidationPass("Valid signature", sig);
     }
-    
+
     public void testInvalidNoXMLSignature() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-Valid.xml");
-        ((SignatureImpl)sig).setXMLSignature(null);
+        ((SignatureImpl) sig).setXMLSignature(null);
         assertValidationFail("Invalid signature - no XMLSignature", sig);
     }
-    
+
     public void testInvalidTooManyReferences() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-TooManyReferences.xml");
         assertValidationFail("Invalid signature - too many References", sig);
     }
-    
+
     public void testInvalidNonLocalURI() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-NonLocalURI.xml");
         assertValidationFail("Invalid signature - non-local Reference URI", sig);
     }
-    
+
     public void testInvalidMissingID() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-MissingID.xml");
         assertValidationFail("Invalid signature - missing ID on parent object", sig);
     }
-    
+
     public void testInvalidBadURIValue() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-BadURIValue.xml");
         assertValidationFail("Invalid signature - bad URI value", sig);
     }
-    
+
     public void testInvalidTooManyTransforms() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-TooManyTransforms.xml");
         assertValidationFail("Invalid signature - too many Transforms", sig);
     }
-    
+
     public void testInvalidBadTransform() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-BadTransform.xml");
         assertValidationFail("Invalid signature - bad Transform", sig);
     }
-    
+
     public void testInvalidMissingEnvelopedTransform() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-MissingEnvelopedTransform.xml");
         assertValidationFail("Invalid signature - missing Enveloped Transform", sig);
     }
-    
+
     public void testInvalidDuplicateIDs() {
         Signature sig = getSignature("/data/org/opensaml/security/Signed-AuthnRequest-DuplicateIDs.xml");
         assertValidationFail("Invalid signature - duplicate IDs", sig);
     }
-    
+
     /**
-     * Get the signature to validated.  Assume the document element of the file is 
+     * Get the signature to validated.  Assume the document element of the file is
      * a SignableSAMLObject.
-     * 
+     *
      * @param filename file containing a signed SignableSAMLObject as its document element.
      * @return the signature from the indicated element
      */
@@ -100,36 +102,36 @@ public class SAMLSignatureProfileValidatorTest extends BaseTestCase {
         SignableSAMLObject signableObj = (SignableSAMLObject) unmarshallElement(filename);
         return signableObj.getSignature();
     }
-    
+
     /**
-     * Asserts that the validation of the specified Signature target 
+     * Asserts that the validation of the specified Signature target
      * was successful, as expected.
-     * 
-     * @param message failure message if the validation does not pass
+     *
+     * @param message        failure message if the validation does not pass
      * @param validateTarget the XMLObject to validate
      */
     protected void assertValidationPass(String message, Signature validateTarget) {
-       try {
-           validator.validate(validateTarget);
-       } catch (ValidationException e) {
-           fail(message + " : Expected success, but validation failure raised ValidationException: " + e.getMessage());
-       }
+        try {
+            validator.validate(validateTarget);
+        } catch (ValidationException e) {
+            fail(message + " : Expected success, but validation failure raised ValidationException: " + e.getMessage());
+        }
     }
-    
+
     /**
-     * Asserts that the validation of the specified Signature target 
+     * Asserts that the validation of the specified Signature target
      * failed, as expected.
-     * 
-     * @param message failure message if the validation does not fail
+     *
+     * @param message        failure message if the validation does not fail
      * @param validateTarget XMLObject to validate
      */
     protected void assertValidationFail(String message, Signature validateTarget) {
-       try {
-           validator.validate(validateTarget);
-           fail(message + " : Validation success, expected failure to raise ValidationException");
-       } catch (ValidationException e) {
-       }
+        try {
+            validator.validate(validateTarget);
+            fail(message + " : Validation success, expected failure to raise ValidationException");
+        } catch (ValidationException e) {
+        }
     }
-    
+
 
 }

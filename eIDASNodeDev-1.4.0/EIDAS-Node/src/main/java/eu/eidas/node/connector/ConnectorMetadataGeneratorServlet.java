@@ -30,13 +30,13 @@ import eu.eidas.node.utils.PropertiesUtil;
  * generates metadata used to communicate with the Connector.
  */
 @SuppressWarnings("squid:S1989") // due to the code uses correlation maps, not http sessions
-public class ConnectorMetadataGeneratorServlet extends AbstractConnectorServlet{
+public class ConnectorMetadataGeneratorServlet extends AbstractConnectorServlet {
     /**
      * Logger object.
      */
     private static final Logger LOG = LoggerFactory.getLogger(ConnectorMetadataGeneratorServlet.class.getName());
     //TODO: Connector responder metadata generator belongs in fact to a Connector Specific module
-    private static final String IDP_METADATA_URL="/ConnectorResponderMetadata";
+    private static final String IDP_METADATA_URL = "/ConnectorResponderMetadata";
 
     @Override
     protected Logger getLogger() {
@@ -49,12 +49,12 @@ public class ConnectorMetadataGeneratorServlet extends AbstractConnectorServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String generatorName=request.getServletPath().startsWith(IDP_METADATA_URL)?NodeBeanNames.CONNECTOR_AS_IDP_METADATA_GENERATOR.toString():NodeBeanNames.CONNECTOR_METADATA_GENERATOR.toString();
-        EidasNodeMetadataGenerator generator = (EidasNodeMetadataGenerator)getApplicationContext().getBean(generatorName);
+        String generatorName = request.getServletPath().startsWith(IDP_METADATA_URL) ? NodeBeanNames.CONNECTOR_AS_IDP_METADATA_GENERATOR.toString() : NodeBeanNames.CONNECTOR_METADATA_GENERATOR.toString();
+        EidasNodeMetadataGenerator generator = (EidasNodeMetadataGenerator) getApplicationContext().getBean(generatorName);
         PropertiesUtil.checkConnectorActive();
-        if(PropertiesUtil.isMetadataEnabled()) {
+        if (PropertiesUtil.isMetadataEnabled()) {
             response.getOutputStream().print(generator.generateConnectorMetadata());
-        }else{
+        } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,22 +28,30 @@ import org.opensaml.saml2.core.AssertionURIRef;
  */
 public class AssertionURIRefTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Assertion URI value */
+    /**
+     * Expected Assertion URI value
+     */
     protected String expectedAssertionURI;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AssertionURIRefTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AssertionURIRef.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
         expectedAssertionURI = "assertion URI";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AssertionURIRef assertionURIRef = (AssertionURIRef) unmarshallElement(singleElementFile);
 
@@ -52,12 +60,16 @@ public class AssertionURIRefTest extends BaseSAMLObjectProviderTestCase {
                 assertionURI);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AssertionURIRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AssertionURIRef assertionURIRef = (AssertionURIRef) buildXMLObject(qname);
@@ -66,7 +78,9 @@ public class AssertionURIRefTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, assertionURIRef);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }

@@ -59,7 +59,7 @@ public final class XmlSchemaUtil {
         } catch (EIDASSAMLEngineException e) {
             LOG.error(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : Validate schema exception: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -69,7 +69,7 @@ public final class XmlSchemaUtil {
         } catch (EIDASSAMLEngineException e) {
             LOG.error(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : Validate schema exception: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -83,7 +83,7 @@ public final class XmlSchemaUtil {
         } catch (IOException | SAXException e) {
             LOG.error(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : Validate schema exception: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -95,7 +95,7 @@ public final class XmlSchemaUtil {
         } catch (IOException | SAXException | ParserConfigurationException e) {
             LOG.error(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : Validate schema exception: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
         validateSchema(schema, document);
         return document;
@@ -109,7 +109,7 @@ public final class XmlSchemaUtil {
         } catch (IOException | SAXException | ParserConfigurationException e) {
             LOG.error(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : Validate schema exception: " + e, e);
             throw new EIDASSAMLEngineException(EidasErrors.get(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode()),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
         validateSchema(schema, document);
         return document;
@@ -151,7 +151,7 @@ public final class XmlSchemaUtil {
      * See https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet for more details.
      * The default features set are: <ul> <li>{@link
      * javax.xml.XMLConstants#ACCESS_EXTERNAL_DTD} = ""</li> <li>{@link javax.xml.XMLConstants#ACCESS_EXTERNAL_SCHEMA} = ""
-     *</li></ul>
+     * </li></ul>
      */
     @Nonnull
     public static Map<String, String> getSecureSchemaFeatures() {

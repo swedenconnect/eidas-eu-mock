@@ -29,9 +29,9 @@ import java.util.Set;
 /**
  * This value object interface is responsible to present ALL data items for an eIDAS Metadata, inlcuding
  * technical and business information. It aggregates Role Descriptor data.
- *
+ * <p>
  * To create an instance invoke @see #eu.eidas.auth.engine.metadata.MetadataConfiguration.newParametersInstance()
- *
+ * <p>
  * use MetadataConfiguration to get a raw instance. TODO: interface for Metadata Aggregator
  * foreseen to be implemented as either proxy (embedded metadata service) or as DTO (external metadata service).
  */
@@ -40,18 +40,21 @@ public interface EidasMetadataParametersI extends Serializable {
     /**
      * EntityID is the identifier of the Metadata endpoint, also the URL where the Metadata content is located.
      * In eIDAS SAML it is the same as the Issuer and / or Destination of SAML messages.
+     *
      * @return String representation of an URL
      */
     String getEntityID();
 
     /**
      * Sets the EntityID see {@link #getEntityID()} for details.
+     *
      * @param entityID
      */
     void setEntityID(String entityID);
 
     /**
      * Getter for signing methods. The result is a list of ISO defined URLs separated with a ";".
+     *
      * @return list of methods in String
      */
     //TODO improve this method to handle list of strings
@@ -59,18 +62,21 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Setter for signing methods. See {@link #getSigningMethods()} for details.
+     *
      * @param signingMethods
      */
     void setSigningMethods(String signingMethods);
 
     /**
      * * Getter for digest methods. The result is a list of ISO defined URLs separated with a ";".
+     *
      * @return list of methods in String
      */
     String getDigestMethods();
 
     /**
      * Setter for digest methods. See {@link #getDigestMethods()} for details.
+     *
      * @param signingMethods
      */
     //TODO improve this method to handle list of strings
@@ -78,18 +84,21 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Returns with the validUntil field defined to this Metadata. If this time is passed, the metadata is not considered as valid.
+     *
      * @return Joda representation of datetime
      */
     DateTime getValidUntil();
 
     /**
      * Sets the validity time for this Metadata, see {@link #getValidUntil()} for more information.
+     *
      * @param validityDuration
      */
     void setValidUntil(DateTime validityDuration);
 
     /**
      * Returns with the level of assurance with the full URN defined
+     *
      * @return String full URN defined
      */
     //TODO this should be a list
@@ -105,6 +114,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Returns the SPType. see {@link eu.eidas.auth.commons.EIDASValues}
+     *
      * @return String representation of spType
      */
     //TODO EIDINT-1970 should be in sp role parameters
@@ -112,6 +122,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Sets SPType, see {@link eu.eidas.auth.commons.EIDASValues}
+     *
      * @param spType
      */
     //TODO EIDINT-1970 should be in sp role parameters
@@ -119,6 +130,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Returns with the organization data information provided in the Metadata.
+     *
      * @return Organization data
      */
     //TODO EIDINT-1970 should be a simple VO not a builder
@@ -126,6 +138,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Sets the organization data
+     *
      * @param organization
      */
     //TODO EIDINT-1970 should be a simple VO not a builder
@@ -133,6 +146,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Retreives the support contact for this Node
+     *
      * @return ContactData typed support contact
      */
     //TODO EIDINT-1970 should be a simple VO not a builder
@@ -140,6 +154,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Sets the support contact details for this Node
+     *
      * @param supportContact ContactData typed support contact
      */
     //TODO EIDINT-1970 should be a simple VO not a builder
@@ -147,6 +162,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Retreives the technical contact for this Node
+     *
      * @return ContactData typed technical contact
      */
     //TODO EIDINT-1970 should be a simple VO not a builder
@@ -154,6 +170,7 @@ public interface EidasMetadataParametersI extends Serializable {
 
     /**
      * Sets the technical contact details for this Node
+     *
      * @param technicalContact ContactData typed support contact
      */
     //TODO EIDINT-1970 should be a simple VO not a builder
@@ -162,12 +179,14 @@ public interface EidasMetadataParametersI extends Serializable {
     /**
      * Returns with the RoleDescriptos defined to this Node. In eIDAS it is strongly recommended to have only one role,
      * because of the structuring of the extensions.
+     *
      * @return EidasMetadataRoleParametersI typed role descriptor what can be an SP or an IDP type
      */
     Set<EidasMetadataRoleParametersI> getRoleDescriptors();
 
     /**
      * Sets the list of role descriptors. Do not use this method directly outside the boundaries of eidas-metadata module.
+     *
      * @param roleDescriptors
      */
     void setRoleDescriptors(Set<EidasMetadataRoleParametersI> roleDescriptors);
@@ -175,6 +194,7 @@ public interface EidasMetadataParametersI extends Serializable {
     /**
      * Add a role descriptor to Metadata. Outside of the eidas-metadata module use this method. To create an instance of EidasMetadataRoleParametersI
      * invoke @see #eu.eidas.auth.engine.metadata.MetadataConfiguration.newRoleParametersInstance().
+     *
      * @param roleDescriptor
      */
     void addRoleDescriptor(EidasMetadataRoleParametersI roleDescriptor);

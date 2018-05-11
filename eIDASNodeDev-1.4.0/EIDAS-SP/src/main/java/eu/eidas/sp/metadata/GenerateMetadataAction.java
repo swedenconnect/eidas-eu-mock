@@ -54,52 +54,56 @@ import static eu.eidas.sp.Constants.SP_CONF;
 
 /**
  * This Action returns an xml containing SP metadata
- *
  */
 public class GenerateMetadataAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 
-	static final Logger logger = LoggerFactory.getLogger(GenerateMetadataAction.class.getName());
-	private static final long serialVersionUID = -3995903150829760796L;
-	private transient InputStream dataStream;
-	Properties configs = SPUtil.loadSPConfigs();
+    static final Logger logger = LoggerFactory.getLogger(GenerateMetadataAction.class.getName());
+    private static final long serialVersionUID = -3995903150829760796L;
+    private transient InputStream dataStream;
+    Properties configs = SPUtil.loadSPConfigs();
 
-	public String generateMetadata(){
-		String metadata="invalid metadata";
-		if(SPUtil.isMetadataEnabled()) {
-			try {
-				EidasMetadata.Generator generator = EidasMetadata.generator();
-				MetadataConfigParams.Builder mcp = MetadataConfigParams.builder();
-				mcp.spEngine(SpProtocolEngineFactory.getSpProtocolEngine(SP_CONF));
-				mcp.entityID(configs.getProperty(Constants.SP_METADATA_URL));
-				String returnUrl = configs.getProperty(Constants.SP_RETURN);
-				mcp.assertionConsumerUrl(returnUrl);
-				mcp.technicalContact(MetadataUtil.createTechnicalContact(configs));
-				mcp.supportContact(MetadataUtil.createSupportContact(configs));
-				mcp.organization(MetadataUtil.createOrganization(configs));
-				mcp.signingMethods(configs == null ? null : configs.getProperty(SignatureKey.SIGNATURE_ALGORITHM_WHITE_LIST.getKey()));
-				mcp.digestMethods(configs == null ? null : configs.getProperty(SignatureKey.SIGNATURE_ALGORITHM_WHITE_LIST.getKey()));
-				mcp.encryptionAlgorithms(configs == null ? null : configs.getProperty(EncryptionKey.ENCRYPTION_ALGORITHM_WHITE_LIST.getKey()));
-				String spType =  configs.getProperty(Constants.SP_TYPE, null);
-				mcp.spType(StringUtils.isBlank(spType) ? null : spType);
-				generator.configParams(mcp.build());
-				metadata = generator.build().getMetadata();
-			}catch(EIDASSAMLEngineException see){
-				logger.error("error generating metadata {}", see);
-			}
-		}
-		dataStream = new ByteArrayInputStream(EidasStringUtil.getBytes(metadata));
-		return Action.SUCCESS;
-	}
+    public String generateMetadata() {
+        String metadata = "invalid metadata";
+        if (SPUtil.isMetadataEnabled()) {
+            try {
+                EidasMetadata.Generator generator = EidasMetadata.generator();
+                MetadataConfigParams.Builder mcp = MetadataConfigParams.builder();
+                mcp.spEngine(SpProtocolEngineFactory.getSpProtocolEngine(SP_CONF));
+                mcp.entityID(configs.getProperty(Constants.SP_METADATA_URL));
+                String returnUrl = configs.getProperty(Constants.SP_RETURN);
+                mcp.assertionConsumerUrl(returnUrl);
+                mcp.technicalContact(MetadataUtil.createTechnicalContact(configs));
+                mcp.supportContact(MetadataUtil.createSupportContact(configs));
+                mcp.organization(MetadataUtil.createOrganization(configs));
+                mcp.signingMethods(configs == null ? null : configs.getProperty(SignatureKey.SIGNATURE_ALGORITHM_WHITE_LIST.getKey()));
+                mcp.digestMethods(configs == null ? null : configs.getProperty(SignatureKey.SIGNATURE_ALGORITHM_WHITE_LIST.getKey()));
+                mcp.encryptionAlgorithms(configs == null ? null : configs.getProperty(EncryptionKey.ENCRYPTION_ALGORITHM_WHITE_LIST.getKey()));
+                String spType = configs.getProperty(Constants.SP_TYPE, null);
+                mcp.spType(StringUtils.isBlank(spType) ? null : spType);
+                generator.configParams(mcp.build());
+                metadata = generator.build().getMetadata();
+            } catch (EIDASSAMLEngineException see) {
+                logger.error("error generating metadata {}", see);
+            }
+        }
+        dataStream = new ByteArrayInputStream(EidasStringUtil.getBytes(metadata));
+        return Action.SUCCESS;
+    }
 
-	@Override
-	public void setServletRequest(HttpServletRequest request) {
-	}
+    @Override
+    public void setServletRequest(HttpServletRequest request) {
+    }
 
-	@Override
-	public void setServletResponse(HttpServletResponse response) {
-	}
+    @Override
+    public void setServletResponse(HttpServletResponse response) {
+    }
 
-	public InputStream getInputStream(){return dataStream;}
-	public void setInputStream(InputStream inputStream){dataStream=inputStream;}
+    public InputStream getInputStream() {
+        return dataStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        dataStream = inputStream;
+    }
 
 }

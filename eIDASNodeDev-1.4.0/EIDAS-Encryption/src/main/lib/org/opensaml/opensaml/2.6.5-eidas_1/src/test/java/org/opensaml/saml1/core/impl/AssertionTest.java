@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -37,10 +37,14 @@ import org.opensaml.xml.io.MarshallingException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-/** Test for {@link Assertion}. */
+/**
+ * Test for {@link Assertion}.
+ */
 public class AssertionTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
     private final int expectedMinorVersion;
@@ -50,6 +54,7 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
     private final DateTime expectedIssueInstant;
 
     private final String expectedID;
+
     /**
      * Constructor
      */
@@ -69,7 +74,9 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
         qname = Assertion.DEFAULT_ELEMENT_NAME;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementUnmarshall() {
 
@@ -90,7 +97,9 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("AuthorizationDecisionStatements element count", 0, assertion.getAuthorizationDecisionStatements().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesUnmarshall() {
         Assertion assertion = (Assertion) unmarshallElement(singleElementOptionalAttributesFile);
@@ -137,13 +146,17 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
                 .size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesMarshall() {
         Assertion assertion = (Assertion) buildXMLObject(qname);
@@ -156,19 +169,20 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
 
     /**
      * Test an XML file with Children
-     * @throws MarshallingException 
+     *
+     * @throws MarshallingException
      */
 
     public void testChildElementsMarshall() {
         Assertion assertion = (Assertion) buildXMLObject(qname);
-        
+
         assertion.setConditions((Conditions) buildXMLObject(Conditions.DEFAULT_ELEMENT_NAME));
         assertion.setAdvice((Advice) buildXMLObject(Advice.DEFAULT_ELEMENT_NAME));
 
         QName authenticationQname = AuthenticationStatement.DEFAULT_ELEMENT_NAME;
         QName authorizationQname = AuthorizationDecisionStatement.DEFAULT_ELEMENT_NAME;
         QName attributeQname = AttributeStatement.DEFAULT_ELEMENT_NAME;
-        
+
         assertion.getStatements().add((Statement) buildXMLObject(authenticationQname));
         assertion.getStatements().add((Statement) buildXMLObject(authorizationQname));
         assertion.getStatements().add((Statement) buildXMLObject(attributeQname));
@@ -180,23 +194,23 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
 
         assertEquals(expectedChildElementsDOM, assertion);
     }
-    
+
     public void testSignatureUnmarshall() {
         Assertion assertion = (Assertion) unmarshallElement("/data/org/opensaml/saml1/impl/AssertionWithSignature.xml");
-        
+
         assertNotNull("Assertion was null", assertion);
         assertNotNull("Signature was null", assertion.getSignature());
         assertNotNull("KeyInfo was null", assertion.getSignature().getKeyInfo());
     }
-    
+
     public void testDOMIDResolutionUnmarshall() {
         Assertion assertion = (Assertion) unmarshallElement("/data/org/opensaml/saml1/impl/AssertionWithSignature.xml");
-        
+
         assertNotNull("Assertion was null", assertion);
         assertNotNull("Signature was null", assertion.getSignature());
         Document document = assertion.getSignature().getDOM().getOwnerDocument();
         Element idElem = assertion.getDOM();
-        
+
         assertNotNull("DOM ID resolution returned null", document.getElementById(expectedID));
         assertTrue("DOM elements were not equal", idElem.isSameNode(document.getElementById(expectedID)));
     }
@@ -205,14 +219,14 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
         Assertion assertion = (Assertion) buildXMLObject(Assertion.DEFAULT_ELEMENT_NAME);
         assertion.setID(expectedID);
         assertion.getAttributeStatements().add((AttributeStatement) buildXMLObject(AttributeStatement.DEFAULT_ELEMENT_NAME));
-        
+
         marshallerFactory.getMarshaller(assertion).marshall(assertion);
-        
+
         Document document = assertion.getStatements().get(0).getDOM().getOwnerDocument();
         Element idElem = assertion.getDOM();
-        
+
         assertNotNull("DOM ID resolution returned null", document.getElementById(expectedID));
         assertTrue("DOM elements were not equal", idElem.isSameNode(document.getElementById(expectedID)));
     }
-    
+
 }

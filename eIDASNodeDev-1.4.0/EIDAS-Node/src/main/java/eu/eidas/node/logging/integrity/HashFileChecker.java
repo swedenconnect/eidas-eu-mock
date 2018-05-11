@@ -31,26 +31,29 @@ import java.nio.charset.Charset;
 /**
  * This file checker states the latest part of the log file is composed by [xxx]
  * where xxx is the hash value of the rest of the line salted with the previous line hash
+ *
  * @author vanegdi
  */
 public class HashFileChecker {
 
     private static final Logger LOG = LoggerFactory.getLogger(HashFileChecker.class.getName());
 
-    private HashFileChecker(){
+    private HashFileChecker() {
     }
+
     /**
      * Check a log file to control if the hash are consistent.
-     * @param is the input stream
+     *
+     * @param is            the input stream
      * @param hashAlgorithm a ash algorithm
      * @return true if the hashes are correct
      * @throws IllegalStateException in case of wrong format line
-     * @throws IOException in cas of error
+     * @throws IOException           in cas of error
      */
     public static boolean check(InputStream is, final String hashAlgorithm) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
         String line = bufferedReader.readLine();
-        String previousHash=null;
+        String previousHash = null;
         HashAndCounterGenerator hashAndCounterGenerator;
         long cpt = 0;
         while (line != null) {
@@ -60,17 +63,17 @@ public class HashFileChecker {
                 //int posBeginHash =
                 int posBeginHashSeparator = line.lastIndexOf('[');
                 int posEndHashSeparator = line.lastIndexOf(']');
-                if (posBeginHashSeparator<1){
+                if (posBeginHashSeparator < 1) {
                     throw new IllegalStateException("The log line doesn't contain any text");
                 }
-                if (posEndHashSeparator<posBeginHashSeparator){
+                if (posEndHashSeparator < posBeginHashSeparator) {
                     throw new IllegalStateException("Malformed hash");
                 }
                 String hashFromFile = line.substring(posBeginHashSeparator + 1, posEndHashSeparator);
-                if (hashFromFile == null || hashFromFile.length()<1){
+                if (hashFromFile == null || hashFromFile.length() < 1) {
                     throw new IllegalStateException("Empty hash");
                 }
-                String lineWithoutHash = line.substring(0,posBeginHashSeparator-1);
+                String lineWithoutHash = line.substring(0, posBeginHashSeparator - 1);
                 // Init the hash with previous hash salting
                 if (previousHash != null) {
                     hashAndCounterGenerator = new HashAndCounterGenerator(byteArrayOutputStream, previousHash, false, hashAlgorithm);
@@ -88,7 +91,7 @@ public class HashFileChecker {
                 previousHash = hashAndCounterGenerator.getLastDigest();
                 line = bufferedReader.readLine();
             } else {
-                    throw new IllegalStateException("Log line is not finished with as hash value");
+                throw new IllegalStateException("Log line is not finished with as hash value");
             }
         }
         return true;

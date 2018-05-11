@@ -40,9 +40,9 @@ import org.opensaml.xml.signature.Signature;
 import eu.eidas.auth.engine.ProtocolEngineI;
 
 public class MetadataConfigParams {
-    public static final String SP_ID_PREFIX="SP";
-    public static final String IDP_ID_PREFIX="IDP";
-    public static final String DEFAULT_LANG="en";
+    public static final String SP_ID_PREFIX = "SP";
+    public static final String IDP_ID_PREFIX = "IDP";
+    public static final String DEFAULT_LANG = "en";
 
     private final boolean wantAssertionsSigned;
     private final boolean authnRequestsSigned;
@@ -55,7 +55,7 @@ public class MetadataConfigParams {
     private final Credential spEncryptionCredential;
     private final Credential spSigningCredential;
     private final Set<String> protocolBinding;
-    private final HashMap<String,String> protocolBindingLocation;
+    private final HashMap<String, String> protocolBindingLocation;
     //supported protocol: SAML 2
     private final String spSamlProtocol;
     private final String idpSamlProtocol;
@@ -78,23 +78,23 @@ public class MetadataConfigParams {
         /**
          * 24 hours in seconds
          */
-        public static final long ONE_DAY_DURATION=86400;
+        public static final long ONE_DAY_DURATION = 86400;
 
         private boolean wantAssertionsSigned = true;
         private boolean authnRequestsSigned = true;
-        private  String assertionConsumerUrl="";
-        private  String entityID;
-        private  Signature spSignature;
-        private  Signature idpSignature;
-        private  Credential idpEncryptionCredential;
-        private  Credential idpSigningCredential;
-        private  Credential spEncryptionCredential;
-        private  Credential spSigningCredential;
-        private  Set<String> protocolBinding=new HashSet<String>();
-        HashMap<String,String> protocolBindingLocation=new HashMap<String,String>();
+        private String assertionConsumerUrl = "";
+        private String entityID;
+        private Signature spSignature;
+        private Signature idpSignature;
+        private Credential idpEncryptionCredential;
+        private Credential idpSigningCredential;
+        private Credential spEncryptionCredential;
+        private Credential spSigningCredential;
+        private Set<String> protocolBinding = new HashSet<String>();
+        HashMap<String, String> protocolBindingLocation = new HashMap<String, String>();
         //supported protocol: SAML 2
-        private String spSamlProtocol= SAMLConstants.SAML20P_NS;
-        private String idpSamlProtocol=SAMLConstants.SAML20P_NS;
+        private String spSamlProtocol = SAMLConstants.SAML20P_NS;
+        private String idpSamlProtocol = SAMLConstants.SAML20P_NS;
         private String emailAddress;
         private ProtocolEngineI idpEngine;
         private ProtocolEngineI spEngine;
@@ -123,7 +123,7 @@ public class MetadataConfigParams {
             this.spEncryptionCredential = copy.spEncryptionCredential;
             this.spSigningCredential = copy.spSigningCredential;
             this.protocolBinding = new HashSet<String>(copy.protocolBinding);
-            this.protocolBindingLocation = new HashMap<String,String>(copy.protocolBindingLocation);
+            this.protocolBindingLocation = new HashMap<String, String>(copy.protocolBindingLocation);
             //supported protocol: SAML 2
             this.spSamlProtocol = SAMLConstants.SAML20P_NS;
             this.idpSamlProtocol = SAMLConstants.SAML20P_NS;
@@ -138,7 +138,7 @@ public class MetadataConfigParams {
             this.validityDuration = copy.validityDuration;
             this.organization = new OrganizationData(copy.organization);
             this.supportContact = new ContactData(copy.supportContact);
-            this.technicalContact  = new ContactData(copy.technicalContact);
+            this.technicalContact = new ContactData(copy.technicalContact);
         }
 
         public Builder(@Nonnull MetadataConfigParams copy) {
@@ -153,7 +153,7 @@ public class MetadataConfigParams {
             this.spEncryptionCredential = copy.spEncryptionCredential;
             this.spSigningCredential = copy.spSigningCredential;
             this.protocolBinding = new HashSet<String>(copy.protocolBinding);
-            this.protocolBindingLocation = new HashMap<String,String>(copy.protocolBindingLocation);
+            this.protocolBindingLocation = new HashMap<String, String>(copy.protocolBindingLocation);
             this.spSamlProtocol = copy.spSamlProtocol;
             this.idpSamlProtocol = copy.idpSamlProtocol;
             this.emailAddress = copy.emailAddress;
@@ -167,7 +167,7 @@ public class MetadataConfigParams {
             this.validityDuration = copy.validityDuration;
             this.organization = new OrganizationData(copy.organization);
             this.supportContact = new ContactData(copy.supportContact);
-            this.technicalContact  = new ContactData(copy.technicalContact);
+            this.technicalContact = new ContactData(copy.technicalContact);
         }
 
         public Builder wantAssertionsSigned(final boolean wantAssertionsSigned) {
@@ -230,8 +230,8 @@ public class MetadataConfigParams {
             return this;
         }
 
-        public Builder protocolBindingLocation(final HashMap<String,String> protocolBindingLocation) {
-            this.protocolBindingLocation = new HashMap<String,String>(protocolBindingLocation);
+        public Builder protocolBindingLocation(final HashMap<String, String> protocolBindingLocation) {
+            this.protocolBindingLocation = new HashMap<String, String>(protocolBindingLocation);
             return this;
         }
 
@@ -291,9 +291,9 @@ public class MetadataConfigParams {
         }
 
         public Builder validityDuration(final long validityDuration) {
-            if(validityDuration > 0 && validityDuration < Integer.MAX_VALUE) {
+            if (validityDuration > 0 && validityDuration < Integer.MAX_VALUE) {
                 this.validityDuration = validityDuration;
-            }else{
+            } else {
                 this.validityDuration = Builder.ONE_DAY_DURATION;
             }
             return this;
@@ -339,7 +339,7 @@ public class MetadataConfigParams {
         this.spEncryptionCredential = builder.spEncryptionCredential;
         this.spSigningCredential = builder.spSigningCredential;
         this.protocolBinding = new HashSet<String>(builder.protocolBinding);
-        this.protocolBindingLocation = new HashMap<String,String>(builder.protocolBindingLocation);
+        this.protocolBindingLocation = new HashMap<String, String>(builder.protocolBindingLocation);
         this.spSamlProtocol = builder.spSamlProtocol;
         this.idpSamlProtocol = builder.idpSamlProtocol;
         this.emailAddress = builder.emailAddress;
@@ -353,7 +353,7 @@ public class MetadataConfigParams {
         this.validityDuration = builder.validityDuration;
         this.organization = new OrganizationData(builder.organization);
         this.supportContact = new ContactData(builder.supportContact);
-        this.technicalContact  = new ContactData(builder.technicalContact);
+        this.technicalContact = new ContactData(builder.technicalContact);
     }
 
     @Nonnull

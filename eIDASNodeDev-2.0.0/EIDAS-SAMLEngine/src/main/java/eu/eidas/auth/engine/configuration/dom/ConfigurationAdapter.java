@@ -141,12 +141,12 @@ public final class ConfigurationAdapter {
                             && cp instanceof PropsParameter) {
                         Properties properties = (Properties) cp.getValue();
                         instanceEntry.put(configurationName,
-                                          toConfigurationEntry(instanceName, configurationName, properties));
+                                toConfigurationEntry(instanceName, configurationName, properties));
                     }
                 }
             } else {
                 instanceEntry.put(configurationName,
-                                  toConfigurationEntry(instanceName, configurationName, configuration.getParameters()));
+                        toConfigurationEntry(instanceName, configurationName, configuration.getParameters()));
             }
         }
         return new InstanceEntry(instanceName, ImmutableMap.copyOf(instanceEntry));

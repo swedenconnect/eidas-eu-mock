@@ -22,21 +22,22 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class JAXBConfigurationParameter {
     String name;
     String value;
-    @XmlAttribute(name="name")
+
+    @XmlAttribute(name = "name")
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
-    @XmlAttribute(name="value")
+    @XmlAttribute(name = "value")
     public String getValue() {
         return value;
     }
 
     public void setValue(String value) {
-        this.value=value;
+        this.value = value;
     }
 }

@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -26,32 +26,27 @@ import org.apache.velocity.test.misc.TestLogChute;
 /**
  * This class tests support for custom timeouts in URLResourceLoader.
  */
-public class URLResourceLoaderTimeoutTestCase extends BaseTestCase
-{
+public class URLResourceLoaderTimeoutTestCase extends BaseTestCase {
     private static boolean isJava5plus;
-    static
-    {
-        try
-        {
+
+    static {
+        try {
             Class.forName("java.lang.annotation.Annotation");
             isJava5plus = true;
-        }
-        catch (ClassNotFoundException cnfe)
-        {
+        } catch (ClassNotFoundException cnfe) {
             isJava5plus = false;
         }
     }
+
     private TestLogChute logger = new TestLogChute();
     private URLResourceLoader loader = new URLResourceLoader();
     private int timeout = 2000;
 
-    public URLResourceLoaderTimeoutTestCase(String name)
-    {
-       super(name);
+    public URLResourceLoaderTimeoutTestCase(String name) {
+        super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         super.setUp();
         engine.setProperty("resource.loader", "url");
         engine.setProperty("url.resource.loader.instance", loader);
@@ -64,15 +59,11 @@ public class URLResourceLoaderTimeoutTestCase extends BaseTestCase
         engine.init();
     }
 
-    public void testTimeout()
-    {
-        if (isJava5plus)
-        {
+    public void testTimeout() {
+        if (isJava5plus) {
             System.out.println("Testing a 1.5+ JDK");
             assertEquals(timeout, loader.getTimeout());
-        }
-        else
-        {
+        } else {
             System.out.println("Testing a pre-1.5 JDK");
             assertEquals(-1, loader.getTimeout());
         }

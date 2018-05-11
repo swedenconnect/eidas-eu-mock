@@ -48,7 +48,7 @@ public abstract class AbstractEIDASException extends RuntimeException implements
     /**
      * Exception Constructor with two Strings representing the errorCode and errorMessage as parameters.
      *
-     * @param code The error code value.
+     * @param code    The error code value.
      * @param message The error message value.
      */
     protected AbstractEIDASException(String code, String message) {
@@ -64,7 +64,7 @@ public abstract class AbstractEIDASException extends RuntimeException implements
      * Exception Constructor with the errorMessage as parameters and the Throwable cause.
      *
      * @param message The error message value.
-     * @param cause The throwable object.
+     * @param cause   The throwable object.
      */
     protected AbstractEIDASException(String message, Throwable cause) {
 
@@ -78,9 +78,9 @@ public abstract class AbstractEIDASException extends RuntimeException implements
      * Exception Constructor with two Strings representing the errorCode and errorMessage as parameters and the
      * Throwable cause.
      *
-     * @param code The error code value.
+     * @param code    The error code value.
      * @param message The error message value.
-     * @param cause The throwable object.
+     * @param cause   The throwable object.
      */
     protected AbstractEIDASException(String code, String message, Throwable cause) {
 
@@ -102,8 +102,8 @@ public abstract class AbstractEIDASException extends RuntimeException implements
      * Exception Constructor with three Strings representing the errorCode, errorMessage and encoded samlToken as
      * parameters.
      *
-     * @param code The error code value.
-     * @param message The error message value.
+     * @param code      The error code value.
+     * @param message   The error message value.
      * @param samlToken The error SAML Token.
      */
     protected AbstractEIDASException(String code, String message, String samlToken) {

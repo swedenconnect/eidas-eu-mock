@@ -11,29 +11,31 @@
 <html>
 
 <head>
-	<jsp:include page="internal/htmlHead.jsp"/>
-	<title><fmt:message key="eidas.title" bundle="${i18n_eng}"/></title>
+    <jsp:include page="internal/htmlHead.jsp"/>
+    <title><fmt:message key="eidas.title" bundle="${i18n_eng}"/></title>
 </head>
 <body>
 <main>
-	<div class="wrapper">
-		<jsp:include page="internal/centralSliderNoAnim.jsp"/>
-		<jsp:include page="internal/leftColumnNoAnim.jsp"/>
-		<div class="col-right">
-			<div class="col-right-inner">
-				<div class="clearfix">
-					<div class="menu-top"> <a class="item text-minus" href="#"></a> <a class="item text-plus" href="#"></a> <a class="item contrast" href="#"></a> </div>
-				</div>
-				<div class="col-right-content">
-					<jsp:include page="internal/content-security-header-deactivated.jsp"/>
-					<h1 class="title">
-						<span><fmt:message key="eidas.title" bundle="${i18n_eng}"/></span>
-					</h1>
-					<h2><fmt:message key="country.framing.inactive" bundle="${i18n_eng}"/></h2>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="wrapper">
+        <jsp:include page="internal/centralSliderNoAnim.jsp"/>
+        <jsp:include page="internal/leftColumnNoAnim.jsp"/>
+        <div class="col-right">
+            <div class="col-right-inner">
+                <div class="clearfix">
+                    <div class="menu-top"><a class="item text-minus" href="#"></a> <a class="item text-plus"
+                                                                                      href="#"></a> <a
+                            class="item contrast" href="#"></a></div>
+                </div>
+                <div class="col-right-content">
+                    <jsp:include page="internal/content-security-header-deactivated.jsp"/>
+                    <h1 class="title">
+                        <span><fmt:message key="eidas.title" bundle="${i18n_eng}"/></span>
+                    </h1>
+                    <h2><fmt:message key="country.framing.inactive" bundle="${i18n_eng}"/></h2>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <script type="text/javascript" src="js/autocompleteOff.js"></script>
 <script type="text/javascript" src="js/redirectOnload.js"></script>

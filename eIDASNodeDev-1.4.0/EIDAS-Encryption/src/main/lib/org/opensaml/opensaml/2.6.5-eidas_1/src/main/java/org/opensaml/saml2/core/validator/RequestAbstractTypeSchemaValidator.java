@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.validator;
@@ -29,7 +29,7 @@ import org.opensaml.xml.validation.Validator;
 
 /**
  * Checks {@link org.opensaml.saml2.core.RequestAbstractType} for Schema compliance.
- * 
+ *
  * @param <RequestType> request type that will be validated
  */
 public abstract class RequestAbstractTypeSchemaValidator<RequestType extends RequestAbstractType> implements
@@ -41,7 +41,9 @@ public abstract class RequestAbstractTypeSchemaValidator<RequestType extends Req
     public RequestAbstractTypeSchemaValidator() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(RequestType request) throws ValidationException {
         validateID(request);
         validateVersion(request);
@@ -51,7 +53,7 @@ public abstract class RequestAbstractTypeSchemaValidator<RequestType extends Req
 
     /**
      * Validates the ID attribute.
-     * 
+     *
      * @param request request to validate
      * @throws ValidationException if invalid
      */
@@ -63,7 +65,7 @@ public abstract class RequestAbstractTypeSchemaValidator<RequestType extends Req
 
     /**
      * Validates the Version attribute.
-     * 
+     *
      * @param request request to validate
      * @throws ValidationException if invalid
      */
@@ -78,7 +80,7 @@ public abstract class RequestAbstractTypeSchemaValidator<RequestType extends Req
 
     /**
      * Validates the IsssueInstant attribute.
-     * 
+     *
      * @param request request to validate
      * @throws ValidationException if invalid
      */

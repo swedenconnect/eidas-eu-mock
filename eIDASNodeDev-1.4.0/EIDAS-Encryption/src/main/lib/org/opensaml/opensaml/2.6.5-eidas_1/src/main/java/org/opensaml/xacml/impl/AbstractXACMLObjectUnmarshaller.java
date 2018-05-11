@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,16 +28,15 @@ import org.w3c.dom.Attr;
  * {@link AbstractXACMLObject}.
  */
 public abstract class AbstractXACMLObjectUnmarshaller extends AbstractXMLObjectUnmarshaller {
-    
+
     /**
      * Constructor.
-     * 
-     * @deprecated no replacement
-     * 
+     *
      * @param targetNamespaceURI the namespace URI of either the schema type QName or element QName of the elements this
-     *            unmarshaller operates on
-     * @param targetLocalName the local name of either the schema type QName or element QName of the elements this
-     *            unmarshaller operates on
+     *                           unmarshaller operates on
+     * @param targetLocalName    the local name of either the schema type QName or element QName of the elements this
+     *                           unmarshaller operates on
+     * @deprecated no replacement
      */
     protected AbstractXACMLObjectUnmarshaller(String targetNamespaceURI, String targetLocalName) {
         super(targetNamespaceURI, targetLocalName);

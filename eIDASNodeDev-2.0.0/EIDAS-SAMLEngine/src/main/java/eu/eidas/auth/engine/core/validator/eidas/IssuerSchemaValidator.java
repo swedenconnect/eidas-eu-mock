@@ -26,5 +26,6 @@ import org.opensaml.saml.saml2.core.Issuer;
  * TODO This class was created as a temporary solution for the removal of IssuerSchemaValidator from opensaml 3.
  */
 public abstract class IssuerSchemaValidator {
-    public void validate(Issuer issuer) throws ValidationException {}
+    public void validate(Issuer issuer) throws ValidationException {
+    }
 }

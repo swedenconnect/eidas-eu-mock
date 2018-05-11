@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +11,8 @@
 
     <name>Shibboleth Project V2 Super POM</name>
     <description>
-        A POM containing properties, profiles, plugin configurations, etc. that are common across all Shibboleth V2 projects.
+        A POM containing properties, profiles, plugin configurations, etc. that are common across all Shibboleth V2
+        projects.
     </description>
 
     <properties>
@@ -26,12 +27,12 @@
         <slf4j.version>1.7.5</slf4j.version>
         <spring.groupId>org.springframework</spring.groupId>
         <spring.version>2.5.6.SEC03</spring.version>
-        
+
         <checkstyle.version>2.10</checkstyle.version>
         <checkstyle.configLocation>
             https://svn.shibboleth.net/java-parent-projects/java-parent-project-v2/trunk/resources/checkstyle/checkstyle.xml
         </checkstyle.configLocation>
-        
+
         <maven.central.url>http://repo1.maven.org/maven2</maven.central.url>
     </properties>
 

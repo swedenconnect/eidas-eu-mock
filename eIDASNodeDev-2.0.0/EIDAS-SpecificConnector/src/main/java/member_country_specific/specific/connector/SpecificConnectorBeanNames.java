@@ -27,9 +27,7 @@ import javax.annotation.Nonnull;
  */
 public enum SpecificConnectorBeanNames {
 
-    SPECIFIC_CONNECTOR_SERVICE("springManagedSpecificConnector"),
-
-    ;
+    SPECIFIC_CONNECTOR_SERVICE("springManagedSpecificConnector"),;
 
     /**
      * constant name.
@@ -39,9 +37,10 @@ public enum SpecificConnectorBeanNames {
 
     /**
      * Constructor
+     *
      * @param name name of the bean
      */
-    SpecificConnectorBeanNames(@Nonnull final String name){
+    SpecificConnectorBeanNames(@Nonnull final String name) {
         this.name = name;
     }
 

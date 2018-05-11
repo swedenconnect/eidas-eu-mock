@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -38,35 +38,53 @@ import org.opensaml.saml2.core.Subject;
  */
 public class AssertionTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Version value */
+    /**
+     * Expected Version value
+     */
     private SAMLVersion expectedVersion;
-    
-    /** Expected IssueInstant value */
+
+    /**
+     * Expected IssueInstant value
+     */
     private DateTime expectedIssueInstant;
 
-    /** Expected ID value */
+    /**
+     * Expected ID value
+     */
     private String expectedID;
 
-    /** Count of Statement subelements */
+    /**
+     * Count of Statement subelements
+     */
     private int statementCount = 7;
 
-    /** Count of AuthnStatement subelements */
+    /**
+     * Count of AuthnStatement subelements
+     */
     private int authnStatementCount = 2;
 
-    /** Count of AuthzDecisionStatement submelements */
+    /**
+     * Count of AuthzDecisionStatement submelements
+     */
     private int authzDecisionStatementCount = 2;
 
-    /** Count of AttributeStatement subelements */
+    /**
+     * Count of AttributeStatement subelements
+     */
     private int attributeStatementCount = 3;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AssertionTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Assertion.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/AssertionOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AssertionChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedVersion = SAMLVersion.VERSION_20;
@@ -74,7 +92,9 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
         expectedID = "id";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Assertion assertion = (Assertion) unmarshallElement(singleElementFile);
 
@@ -83,7 +103,9 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
                 notBefore);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         Assertion assertion = (Assertion) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -93,12 +115,14 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
 
         String id = assertion.getID();
         assertEquals("ID was " + id + ", expected " + expectedID, expectedID, id);
-        
+
         SAMLVersion version = assertion.getVersion();
         assertEquals("Version was " + version + ", expected " + expectedVersion, expectedVersion, version);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Assertion assertion = (Assertion) buildXMLObject(qname);
@@ -108,7 +132,9 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, assertion);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Assertion assertion = (Assertion) buildXMLObject(qname);
@@ -120,7 +146,9 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, assertion);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Assertion assertion = (Assertion) unmarshallElement(childElementsFile);
 
@@ -136,20 +164,22 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
                 .getAttributeStatements().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Assertion assertion = (Assertion) buildXMLObject(qname);
 
         QName issuerQName = new QName(SAMLConstants.SAML20_NS, Issuer.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         assertion.setIssuer((Issuer) buildXMLObject(issuerQName));
-        
+
         QName subjectQName = new QName(SAMLConstants.SAML20_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         assertion.setSubject((Subject) buildXMLObject(subjectQName));
-        
+
         QName conditionsQName = new QName(SAMLConstants.SAML20_NS, Conditions.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         assertion.setConditions((Conditions) buildXMLObject(conditionsQName));
-        
+
         QName adviceQName = new QName(SAMLConstants.SAML20_NS, Advice.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         assertion.setAdvice((Advice) buildXMLObject(adviceQName));
 
@@ -157,17 +187,17 @@ public class AssertionTest extends BaseSAMLObjectProviderTestCase {
         for (int i = 0; i < authnStatementCount; i++) {
             assertion.getAuthnStatements().add((AuthnStatement) buildXMLObject(authnStatementQName));
         }
-        
+
         QName authzDecisionStatementQName = new QName(SAMLConstants.SAML20_NS, AuthzDecisionStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         for (int i = 0; i < authzDecisionStatementCount; i++) {
             assertion.getAuthzDecisionStatements().add((AuthzDecisionStatement) buildXMLObject(authzDecisionStatementQName));
         }
-        
+
         QName attributeStatementQName = new QName(SAMLConstants.SAML20_NS, AttributeStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         for (int i = 0; i < attributeStatementCount; i++) {
             assertion.getAttributeStatements().add((AttributeStatement) buildXMLObject(attributeStatementQName));
         }
-        
+
         assertEquals(expectedChildElementsDOM, assertion);
     }
 }

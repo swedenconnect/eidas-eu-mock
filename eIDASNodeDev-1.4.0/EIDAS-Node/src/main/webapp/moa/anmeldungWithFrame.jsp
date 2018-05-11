@@ -11,8 +11,8 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <meta http-equiv='pragma' content='no-cache'/>
     <meta http-equiv='cache-control' content='no-cache, no-store, must-revalidate'/>
-	<meta http-equiv="Expires" content="-1"/>
-    <link href="resources/css/moa.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Expires" content="-1"/>
+    <link href="resources/css/moa.css" rel="stylesheet" type="text/css"/>
     <script src="js/browser.js" type="text/javascript"></script>
     <script src="js/deployJava.js" type="text/javascript"></script>
 </head>
@@ -136,17 +136,20 @@
         <div id="rightcontent">
             <p>
                 <a href="http://www.buergerkarte.at/de/aktivieren/online.html" target="_blank"><img
-                        src="resources/img/ecard_aktivieren.jpg" border="0" alt="eCard online aktivieren" width="210"></a>
+                        src="resources/img/ecard_aktivieren.jpg" border="0" alt="eCard online aktivieren"
+                        width="210"></a>
             </p>
 
             <p>
                 <a href="http://www.buergerkarte.at/de/aktivieren/mobil.html" target="_blank"><img
-                        src="resources/img/mobilsig_aktivieren.jpg" border="0" alt="Mobile Signatur aktivieren" width="210"></a>
+                        src="resources/img/mobilsig_aktivieren.jpg" border="0" alt="Mobile Signatur aktivieren"
+                        width="210"></a>
             </p>
 
             <p>
                 <a href="http://validator.w3.org/check?uri=referer" target="_blank">
-                    <img src="resources/img/valid-html401.png" alt="Valid HTML 4.01 Transitional" height="31" width="88"> </a>
+                    <img src="resources/img/valid-html401.png" alt="Valid HTML 4.01 Transitional" height="31"
+                         width="88"> </a>
             </p>
         </div>
 
@@ -160,13 +163,15 @@
 
                 <p>
 
-                <div style="padding-left: 20px"><img src="resources/img/info.png" alt="Informationen zu STORK" width="16"
+                <div style="padding-left: 20px"><img src="resources/img/info.png" alt="Informationen zu STORK"
+                                                     width="16"
                                                      height="16" style="vertical-align: middle">&nbsp;<a
                         href="http://www.eid-stork.eu/" target="_blank">Informationen zu STORK</a></div>
                 </p>
                 <p>
 
-                <div><img src="resources/img/Feedback.jpg" alt="Feedback" width="26" height="26" style="vertical-align: middle">&nbsp;Geben
+                <div><img src="resources/img/Feedback.jpg" alt="Feedback" width="26" height="26"
+                          style="vertical-align: middle">&nbsp;Geben
                     Sie uns Ihr Feedback - ben&uuml;tzen Sie dazu folgende Online-Feedbackformulare:
                 </div>
                 </p>

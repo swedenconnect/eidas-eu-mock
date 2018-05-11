@@ -28,19 +28,27 @@ import eu.eidas.auth.engine.core.SAMLCore;
  */
 public interface SPApplication extends SAMLObject {
 
-    /** The Constant DEFAULT_ELEMENT_LOCAL_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_LOCAL_NAME.
+     */
     String DEF_LOCAL_NAME = "spApplication";
 
-    /** The Constant DEFAULT_ELEMENT_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_NAME.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.STORK10_NS.getValue(), DEF_LOCAL_NAME,
-	    SAMLCore.STORK10_PREFIX.getValue());
+            SAMLCore.STORK10_PREFIX.getValue());
 
-    /** The Constant TYPE_LOCAL_NAME. */
+    /**
+     * The Constant TYPE_LOCAL_NAME.
+     */
     String TYPE_LOCAL_NAME = "spApplicationType";
 
-    /** The Constant TYPE_NAME. */
+    /**
+     * The Constant TYPE_NAME.
+     */
     QName TYPE_NAME = new QName(SAMLCore.STORK10_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.STORK10_PREFIX.getValue());
+            SAMLCore.STORK10_PREFIX.getValue());
 
     /**
      * Gets the service provider application.

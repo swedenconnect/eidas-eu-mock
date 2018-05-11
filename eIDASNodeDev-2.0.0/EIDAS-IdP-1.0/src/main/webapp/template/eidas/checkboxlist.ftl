@@ -34,8 +34,9 @@
         <#else>
             <#assign itemValue = stack.findString('top')/>
         </#if>
-<#assign itemKeyStr=itemKey.toString() />
-<input type="checkbox" name="${parameters.name?html}" value="${itemKeyStr?html}" id="${parameters.name?html}-${itemCount}"<#rt/>
+        <#assign itemKeyStr=itemKey.toString() />
+<input type="checkbox" name="${parameters.name?html}" value="${itemKeyStr?html}"
+       id="${parameters.name?html}-${itemCount}"<#rt/>
         <#if tag.contains(parameters.nameValue, itemKey)>
  checked="checked"<#rt/>
         </#if>
@@ -54,8 +55,9 @@
 <#else>
   &nbsp;
 </#if>
-<input type="hidden" id="__multiselect_${parameters.id?html}" name="__multiselect_${parameters.name?html}" value=""<#rt/>
+<input type="hidden" id="__multiselect_${parameters.id?html}" name="__multiselect_${parameters.name?html}"
+       value=""<#rt/>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
- /> 
+/>

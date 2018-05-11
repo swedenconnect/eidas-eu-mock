@@ -27,8 +27,8 @@ import org.apache.commons.lang.StringUtils;
  * This class holds static helper methods.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com,
- *         luis.felix@multicert.com, hugo.magalhaes@multicert.com,
- *         paulo.ribeiro@multicert.com
+ * luis.felix@multicert.com, hugo.magalhaes@multicert.com,
+ * paulo.ribeiro@multicert.com
  * @version $Revision: 1.5 $, $Date: 2010-12-15 23:19:59 $
  */
 public final class AttributeUtil {
@@ -129,9 +129,9 @@ public final class AttributeUtil {
                                      final String separator) {
 
         final StringBuilder strBuilder = new StringBuilder();
-        final Iterator<String> orderedKeys=new TreeSet<String>(map.keySet()).iterator();
+        final Iterator<String> orderedKeys = new TreeSet<String>(map.keySet()).iterator();
         while (orderedKeys.hasNext()) {
-            final String key=orderedKeys.next();
+            final String key = orderedKeys.next();
             final String entryValue = map.get(key);
             strBuilder.append(key);
             strBuilder.append('=');

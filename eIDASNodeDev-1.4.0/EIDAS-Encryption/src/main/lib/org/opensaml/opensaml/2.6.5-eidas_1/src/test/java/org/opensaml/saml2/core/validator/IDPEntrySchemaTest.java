@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -33,7 +33,6 @@ public class IDPEntrySchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Constructor
-     *
      */
     public IDPEntrySchemaTest() {
         super();
@@ -41,25 +40,27 @@ public class IDPEntrySchemaTest extends BaseSAMLObjectValidatorTestCase {
         validator = new IDPEntrySchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         IDPEntry entry = (IDPEntry) target;
         entry.setProviderID("urn:string:providerid");
     }
-    
+
     /**
-     *  Tests invalid ProviderID attribute.
+     * Tests invalid ProviderID attribute.
      */
     public void testProviderIDFailure() {
         IDPEntry entry = (IDPEntry) target;
-        
+
         entry.setProviderID(null);
         assertValidationFail("ProviderID attribute was null");
-        
+
         entry.setProviderID("");
         assertValidationFail("ProviderID attribute was empty");
-        
+
         entry.setProviderID("                 ");
         assertValidationFail("ProviderID attribute was all whitespace");
     }

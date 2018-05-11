@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,16 +24,13 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-701.
  */
-public class Velocity701TestCase extends BaseTestCase
-{
-    public Velocity701TestCase(String name)
-    {
+public class Velocity701TestCase extends BaseTestCase {
+    public Velocity701TestCase(String name) {
         super(name);
         //DEBUG = true;
     }
 
-    public void testAbstractClass()
-    {
+    public void testAbstractClass() {
         context.put("foo", new Foo() {
             public String getBar() {
                 return "bar";
@@ -43,9 +40,9 @@ public class Velocity701TestCase extends BaseTestCase
     }
 
     public static abstract class Foo {
-        
+
         public abstract String getBar();
-    
+
     }
 
     /* TODO: uncomment for jdk 1.5+

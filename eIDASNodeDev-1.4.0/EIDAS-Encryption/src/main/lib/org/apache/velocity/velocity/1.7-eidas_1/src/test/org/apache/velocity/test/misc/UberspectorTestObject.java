@@ -16,11 +16,10 @@ package org.apache.velocity.test.misc;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
-public class UberspectorTestObject
-{
+public class UberspectorTestObject {
     private String regular;
     private String premium;
 
@@ -32,88 +31,77 @@ public class UberspectorTestObject
     /**
      * @return the premium
      */
-    public String getpremium()
-    {
+    public String getpremium() {
         return premium;
     }
 
     /**
      * @param premium the premium to set
      */
-    public void setpremium(String premium)
-    {
+    public void setpremium(String premium) {
         this.premium = premium;
     }
 
     /**
      * @return the premiumBool
      */
-    public boolean ispremiumBool()
-    {
+    public boolean ispremiumBool() {
         return premiumBool;
     }
 
     /**
      * @param premiumBool the premiumBool to set
      */
-    public void setpremiumBool(boolean premiumBool)
-    {
+    public void setpremiumBool(boolean premiumBool) {
         this.premiumBool = premiumBool;
     }
 
     /**
      * @return the regular
      */
-    public String getRegular()
-    {
+    public String getRegular() {
         return regular;
     }
 
     /**
      * @param regular the regular to set
      */
-    public void setRegular(String regular)
-    {
+    public void setRegular(String regular) {
         this.regular = regular;
     }
 
     /**
      * @return the regularBool
      */
-    public boolean isRegularBool()
-    {
+    public boolean isRegularBool() {
         return regularBool;
     }
 
     /**
      * @param regularBool the regularBool to set
      */
-    public void setRegularBool(boolean regularBool)
-    {
+    public void setRegularBool(boolean regularBool) {
         this.regularBool = regularBool;
     }
 
     /**
      * @return the ambigous
      */
-    public String getAmbigous()
-    {
+    public String getAmbigous() {
         return ambigous;
     }
 
     /**
      * @param ambigous the ambigous to set
      */
-    public void setAmbigous(String ambigous)
-    {
+    public void setAmbigous(String ambigous) {
         this.ambigous = ambigous;
     }
 
     /**
      * @param ambigous the ambigous to set
      */
-    public void setAmbigous(StringBuffer ambigous)
-    {
+    public void setAmbigous(StringBuffer ambigous) {
         this.ambigous = ambigous.toString();
     }
 }

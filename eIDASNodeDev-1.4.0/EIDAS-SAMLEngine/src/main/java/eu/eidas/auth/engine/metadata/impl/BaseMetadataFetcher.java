@@ -73,8 +73,8 @@ public abstract class BaseMetadataFetcher implements MetadataFetcherI {
     protected EntityDescriptor fetchEntityDescriptor(@Nonnull String url) throws EIDASMetadataProviderException {
         if (!isAllowedMetadataUrl(url)) {
             throw new EIDASMetadataProviderException(EidasErrorKey.SAML_ENGINE_INVALID_METADATA_SOURCE.errorCode(),
-                                                     EidasErrorKey.SAML_ENGINE_INVALID_METADATA_SOURCE.errorMessage(),
-                                                     "Metadata URL is not secure: \"" + url + "\"");
+                    EidasErrorKey.SAML_ENGINE_INVALID_METADATA_SOURCE.errorMessage(),
+                    "Metadata URL is not secure: \"" + url + "\"");
         }
         URL metadataUrl = null;
         try {
@@ -105,18 +105,18 @@ public abstract class BaseMetadataFetcher implements MetadataFetcherI {
             }
             if (null == entityDescriptor) {
                 throw new EIDASMetadataProviderException(EidasErrorKey.SAML_ENGINE_NO_METADATA.errorCode(),
-                                                         EidasErrorKey.SAML_ENGINE_NO_METADATA.errorMessage(),
-                                                         "No entity descriptor for URL \"" + url + "\"");
+                        EidasErrorKey.SAML_ENGINE_NO_METADATA.errorMessage(),
+                        "No entity descriptor for URL \"" + url + "\"");
             }
             if (!entityDescriptor.isValid()) {
                 throw new EIDASMetadataProviderException(EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorCode(),
-                                                         EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorMessage(),
-                                                         "Invalid entity descriptor for URL \"" + url + "\"");
+                        EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorMessage(),
+                        "Invalid entity descriptor for URL \"" + url + "\"");
             }
         } catch (MetadataProviderException mpe) {
             LOG.error("Error fetching metadata from URL \"" + url + "\": " + mpe, mpe);
             throw new EIDASMetadataProviderException(EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorCode(),
-                                                     EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorMessage(), mpe);
+                    EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorMessage(), mpe);
         } finally {
             if (provider != null) {
                 provider.destroy();
@@ -186,7 +186,9 @@ public abstract class BaseMetadataFetcher implements MetadataFetcherI {
             }
         }
         ImmutableList<String> list = enabledProtocols.build();
-        if (list.isEmpty()) { return TLS_PROTOCOLS_SPLITTER.split(DEFAULT_TLS_ENABLED_PROTOCOLS); }
+        if (list.isEmpty()) {
+            return TLS_PROTOCOLS_SPLITTER.split(DEFAULT_TLS_ENABLED_PROTOCOLS);
+        }
         LOG.debug("TLS enabled protocols: {}", list);
         return Iterables.toArray(list, String.class);
     }

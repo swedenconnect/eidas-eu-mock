@@ -16,7 +16,7 @@ package org.apache.velocity.test.view;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedReader;
@@ -32,8 +32,7 @@ import org.apache.velocity.runtime.visitor.NodeViewMode;
  * Simple class for dumping the AST for a template.
  * Good for debugging and writing new directives.
  */
-public class TemplateNodeView
-{
+public class TemplateNodeView {
     /**
      * Root of the AST node structure that results from
      * parsing a template.
@@ -54,27 +53,23 @@ public class TemplateNodeView
      * the node structure and then produces the
      * visual representation by the visitation.
      */
-    public TemplateNodeView(String template)
-    {
-        try
-        {
+    public TemplateNodeView(String template) {
+        try {
             RuntimeSingleton.init("velocity.properties");
 
             InputStreamReader isr = new InputStreamReader(
-                                       new FileInputStream(template),
-                                       RuntimeSingleton.getString(RuntimeSingleton.INPUT_ENCODING));
+                    new FileInputStream(template),
+                    RuntimeSingleton.getString(RuntimeSingleton.INPUT_ENCODING));
 
-            BufferedReader br = new BufferedReader( isr );
+            BufferedReader br = new BufferedReader(isr);
 
-            document = RuntimeSingleton.parse( br, template);
+            document = RuntimeSingleton.parse(br, template);
 
             visitor = new NodeViewMode();
             visitor.setContext(null);
             visitor.setWriter(new PrintWriter(System.out));
             document.jjtAccept(visitor, null);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
         }

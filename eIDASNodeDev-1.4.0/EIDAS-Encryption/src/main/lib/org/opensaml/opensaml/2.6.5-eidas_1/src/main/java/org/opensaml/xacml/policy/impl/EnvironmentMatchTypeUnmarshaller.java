@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,15 +27,21 @@ import org.opensaml.xml.io.UnmarshallingException;
 import org.opensaml.xml.util.DatatypeHelper;
 import org.w3c.dom.Attr;
 
-/** Unmarshaller of {@link EnvironmentMatchType} objects. */
+/**
+ * Unmarshaller of {@link EnvironmentMatchType} objects.
+ */
 public class EnvironmentMatchTypeUnmarshaller extends AbstractXACMLObjectUnmarshaller {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public EnvironmentMatchTypeUnmarshaller() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
         if (attribute.getLocalName().equals(EnvironmentMatchType.MATCH_ID_ATTRIB_NAME)) {
             EnvironmentMatchType matchType = (EnvironmentMatchType) xmlObject;
@@ -45,7 +51,9 @@ public class EnvironmentMatchTypeUnmarshaller extends AbstractXACMLObjectUnmarsh
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
             throws UnmarshallingException {
         EnvironmentMatchType matchType = (EnvironmentMatchType) parentXMLObject;

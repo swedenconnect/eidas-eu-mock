@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -43,7 +43,9 @@ public class DiscoveryResponseTest extends BaseSAMLObjectProviderTestCase {
         singleElementOptionalAttributesFile = "/data/org/opensaml/samlext/idpdisco/DiscoveryResponseOptionalAttributes.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +56,9 @@ public class DiscoveryResponseTest extends BaseSAMLObjectProviderTestCase {
         expectedIsDefault = new XSBooleanValue(Boolean.TRUE, false);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         DiscoveryResponse service = (DiscoveryResponse) unmarshallElement(singleElementFile);
 
@@ -63,7 +67,9 @@ public class DiscoveryResponseTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Index was not expected value", expectedIndex, service.getIndex());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         DiscoveryResponse service = (DiscoveryResponse) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -74,7 +80,9 @@ public class DiscoveryResponseTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("isDefault was not expected value", expectedIsDefault, service.isDefaultXSBoolean());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         DiscoveryResponse service = (DiscoveryResponse) buildXMLObject(DiscoveryResponse.DEFAULT_ELEMENT_NAME);
 
@@ -85,7 +93,9 @@ public class DiscoveryResponseTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, service);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         DiscoveryResponse service = (DiscoveryResponse) buildXMLObject(DiscoveryResponse.DEFAULT_ELEMENT_NAME);
 

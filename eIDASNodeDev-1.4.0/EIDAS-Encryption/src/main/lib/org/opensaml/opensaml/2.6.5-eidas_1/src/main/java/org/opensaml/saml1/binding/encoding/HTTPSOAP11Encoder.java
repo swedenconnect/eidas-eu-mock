@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -44,20 +44,28 @@ import org.w3c.dom.Element;
  */
 public class HTTPSOAP11Encoder extends BaseSAML1MessageEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPSOAP11Encoder.class);
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public HTTPSOAP11Encoder() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML1_SOAP11_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageConfidentiality(MessageContext messageContext) throws MessageEncodingException {
         if (messageContext.getOutboundMessageTransport().isConfidential()) {
             return true;
@@ -66,7 +74,9 @@ public class HTTPSOAP11Encoder extends BaseSAML1MessageEncoder {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageIntegrity(MessageContext messageContext) throws MessageEncodingException {
         if (messageContext.getOutboundMessageTransport().isIntegrityProtected()) {
             return true;
@@ -75,7 +85,9 @@ public class HTTPSOAP11Encoder extends BaseSAML1MessageEncoder {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doEncode(MessageContext messageContext) throws MessageEncodingException {
         validateMessageContent(messageContext);
         SAMLMessageContext samlMsgCtx = (SAMLMessageContext) messageContext;
@@ -110,19 +122,18 @@ public class HTTPSOAP11Encoder extends BaseSAML1MessageEncoder {
 
     /**
      * Builds the SOAP message to be encoded.
-     * 
+     *
      * <p>If {@link SAMLMessageContext#getOutboundMessage()} contains
      * a pre-existing SOAP envelope, it will be used.  Any existing body content will be removed
      * before the SAML protocol message is added.
      * </p>
-     * 
+     *
      * <p>
      * Otherwise, a new Envelope will be constructed.
      * </p>
-     * 
-     * @param samlMsgCtx the SAML message context
+     *
+     * @param samlMsgCtx  the SAML message context
      * @param samlMessage body of the SOAP message
-     * 
      * @return the SOAP message
      */
     @SuppressWarnings("unchecked")
@@ -148,12 +159,11 @@ public class HTTPSOAP11Encoder extends BaseSAML1MessageEncoder {
         }
         return envelope;
     }
-    
+
     /**
      * Builds the SOAP message to be encoded.
-     * 
+     *
      * @param samlMessage body of the SOAP message
-     * 
      * @return the SOAP message
      */
     @SuppressWarnings("unchecked")
@@ -177,9 +187,8 @@ public class HTTPSOAP11Encoder extends BaseSAML1MessageEncoder {
 
     /**
      * Validates that the message context is a {@link SAMLMessageContext} and that its outbound transport is HTTP.
-     * 
+     *
      * @param messageContext current message context
-     * 
      * @throws MessageEncodingException thrown if the message context conditions are not met
      */
     protected void validateMessageContent(MessageContext messageContext) throws MessageEncodingException {

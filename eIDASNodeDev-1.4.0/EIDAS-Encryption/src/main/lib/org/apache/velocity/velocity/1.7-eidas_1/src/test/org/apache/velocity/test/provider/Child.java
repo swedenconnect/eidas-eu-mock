@@ -16,7 +16,7 @@ package org.apache.velocity.test.provider;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -27,10 +27,8 @@ package org.apache.velocity.test.provider;
  * @author <a href="mailto:jvanzyl@apache.org">Jason van Zyl</a>
  * @version $Id: Child.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class Child extends Person
-{
-    public String getName()
-    {
+public class Child extends Person {
+    public String getName() {
         return "Child";
     }
 }

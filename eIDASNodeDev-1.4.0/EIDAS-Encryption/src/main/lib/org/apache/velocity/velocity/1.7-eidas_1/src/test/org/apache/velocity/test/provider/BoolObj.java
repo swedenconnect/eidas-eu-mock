@@ -16,22 +16,20 @@ package org.apache.velocity.test.provider;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
- *  simple class to test boolean property
- *  introspection - can't use TestProvider
- *  as there is a get( String )
- *  and that comes before isProperty
- *  in the search pattern
+ * simple class to test boolean property
+ * introspection - can't use TestProvider
+ * as there is a get( String )
+ * and that comes before isProperty
+ * in the search pattern
  *
- *  @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
+ * @author <a href="mailto:geirm@apache.org">Geir Magnusson Jr.</a>
  */
-public class BoolObj
-{
-    public boolean isBoolean()
-    {
+public class BoolObj {
+    public boolean isBoolean() {
         return true;
     }
 
@@ -39,8 +37,7 @@ public class BoolObj
      *  not isProperty as it's not
      *  boolean return valued...
      */
-    public String  isNotboolean()
-    {
+    public String isNotboolean() {
         return "hello";
     }
 }

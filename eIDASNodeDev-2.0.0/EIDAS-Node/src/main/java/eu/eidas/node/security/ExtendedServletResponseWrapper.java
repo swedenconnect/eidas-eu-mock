@@ -8,7 +8,7 @@ import java.io.*;
  * @author vargata
  * @since on 04/02/2016.
  */
-public class ExtendedServletResponseWrapper extends HttpServletResponseWrapper  {
+public class ExtendedServletResponseWrapper extends HttpServletResponseWrapper {
     /* This class instantized in CSP Servlet Filter and encapsulates Response original object.
      * Has explicit flag if CSP headers are set during the filtering.
      * used in internalError.jsp */

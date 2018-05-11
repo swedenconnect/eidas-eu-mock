@@ -85,6 +85,7 @@ public final class SpEidasProtocolProcessor extends EidasProtocolProcessor imple
                                     @Nullable MetadataSignerI metadataSigner) {
         super(eidasAttributeRegistry, additionalAttributeRegistry, metadataFetcher, metadataSigner);
     }
+
     /**
      * Guesses the friendly name from the given full attribute name URI.
      *
@@ -102,6 +103,7 @@ public final class SpEidasProtocolProcessor extends EidasProtocolProcessor imple
         }
         return name.substring(lastIndexOf + 1);
     }
+
     /**
      * For the SP, we create unknown attributes on the fly so this method never returns {@code null}.
      *
@@ -113,9 +115,9 @@ public final class SpEidasProtocolProcessor extends EidasProtocolProcessor imple
     public AttributeDefinition<?> getAttributeDefinitionNullable(@Nonnull String name) {
         if (StringUtils.isBlank(name)) {
             LOG.info(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : {}",
-                     ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
+                    ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
             throw new InternalErrorEIDASException(EidasErrors.get(EidasErrorKey.INTERNAL_ERROR.errorCode()),
-                                                  ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
+                    ProtocolEngine.ATTRIBUTE_EMPTY_LITERAL);
         }
         AttributeDefinition<?> attributeDefinition = getMinimumDataSetAttributes().getByName(name);
         if (null != attributeDefinition) {

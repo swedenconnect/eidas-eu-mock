@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -25,39 +25,34 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-62.
  */
-public class Velocity62TestCase extends BaseTestCase
-{
-    public Velocity62TestCase(String name)
-    {
-       super(name);
+public class Velocity62TestCase extends BaseTestCase {
+    public Velocity62TestCase(String name) {
+        super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         super.setUp();
         engine.setProperty(RuntimeConstants.VM_CONTEXT_LOCALSCOPE, Boolean.TRUE);
         context.put("foo", "foo");
     }
 
-    public void testNested()
-    {
-        String template = "#macro( outer )#set( $foo = 'bar' )#inner()#end"+
-                          "#macro( inner )$foo#end"+
-                          "#inner()#outer()#inner()";
+    public void testNested() {
+        String template = "#macro( outer )#set( $foo = 'bar' )#inner()#end" +
+                "#macro( inner )$foo#end" +
+                "#inner()#outer()#inner()";
         assertEvalEquals("foobarfoo", template);
     }
 
-    public void testRecursive()
-    {
+    public void testRecursive() {
         context.put("i", new Integer(1));
-        String template = "#macro( recurse )"+
-                            "$i"+
-                            "#if( $i < 5 )"+
-                              "#set( $i = $i + 1 )"+
-                              "#recurse()"+
-                            "#end"+
-                          "#end"+
-                          "#recurse()";
+        String template = "#macro( recurse )" +
+                "$i" +
+                "#if( $i < 5 )" +
+                "#set( $i = $i + 1 )" +
+                "#recurse()" +
+                "#end" +
+                "#end" +
+                "#recurse()";
         assertEvalEquals("12345", template);
     }
 

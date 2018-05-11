@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,14 +30,18 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AffiliationDescriptorSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AffiliationDescriptorSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20MD_NS, AffiliationDescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
         validator = new AffiliationDescriptorSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         AffiliationDescriptor affiliationDescriptor = (AffiliationDescriptor) target;
@@ -49,7 +53,7 @@ public class AffiliationDescriptorSchemaTest extends BaseSAMLObjectValidatorTest
 
     /**
      * Tests for Owner ID failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testOwnerFailure() throws ValidationException {
@@ -67,7 +71,7 @@ public class AffiliationDescriptorSchemaTest extends BaseSAMLObjectValidatorTest
 
     /**
      * Tests for Member failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testMemberFailure() throws ValidationException {

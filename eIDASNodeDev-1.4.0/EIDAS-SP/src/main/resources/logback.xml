@@ -28,7 +28,9 @@
     -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost}
+                -%msg%n
+            </pattern>
         </encoder>
     </appender>
 
@@ -41,16 +43,18 @@
         <file>${LOG_HOME}/SP.log</file>
 
         <encoder>
-            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost}
+                -%msg%n
+            </pattern>
         </encoder>
 
-        <param name="Append" value="true" />
+        <param name="Append" value="true"/>
 
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <maxFileSize>500KB</maxFileSize>
         </triggeringPolicy>
 
-         <!--Support multiple-JVM writing to the same log file-->
+        <!--Support multiple-JVM writing to the same log file-->
         <prudent>true</prudent>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -64,7 +68,7 @@
         This define the API fine grained level
     -->
     <logger name="org.opensaml">
-        <level value="ERROR" />
+        <level value="ERROR"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </logger>
@@ -79,17 +83,17 @@
         <appender-ref ref="FILE"/>
     </logger>
     <logger name="org.springframework">
-        <level value="WARN" />
+        <level value="WARN"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </logger>
     <logger name="org.apache.xml.security">
-        <level value="WARN" />
+        <level value="WARN"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </logger>
     <logger name="freemarker">
-        <level value="WARN" />
+        <level value="WARN"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </logger>
@@ -98,7 +102,7 @@
         The root level is set to debug for development purposes, for production environment it could be set to INFO
     -->
     <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
     </root>
 </configuration>

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -38,21 +38,27 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class RequestedAuthnContextImpl extends AbstractSAMLObject implements RequestedAuthnContext {
 
-    /** AuthnContextClassRef child elements. */
+    /**
+     * AuthnContextClassRef child elements.
+     */
     private final XMLObjectChildrenList<AuthnContextClassRef> authnContextClassRefs;
 
-    /** AuthnContextDeclRef child elements. */
+    /**
+     * AuthnContextDeclRef child elements.
+     */
     private final XMLObjectChildrenList<AuthnContextDeclRef> authnContextDeclRefs;
 
-    /** Comparison attribute. */
+    /**
+     * Comparison attribute.
+     */
     private AuthnContextComparisonTypeEnumeration comparison;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected RequestedAuthnContextImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -60,27 +66,37 @@ public class RequestedAuthnContextImpl extends AbstractSAMLObject implements Req
         authnContextDeclRefs = new XMLObjectChildrenList<AuthnContextDeclRef>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AuthnContextComparisonTypeEnumeration getComparison() {
         return this.comparison;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setComparison(AuthnContextComparisonTypeEnumeration newComparison) {
         this.comparison = prepareForAssignment(this.comparison, newComparison);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AuthnContextClassRef> getAuthnContextClassRefs() {
         return this.authnContextClassRefs;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<AuthnContextDeclRef> getAuthnContextDeclRefs() {
         return this.authnContextDeclRefs;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,22 +26,23 @@ import org.opensaml.xml.validation.Validator;
  */
 public class AudienceRestrictionConditionSchemaValidator implements Validator<AudienceRestrictionCondition> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AudienceRestrictionCondition audienceRestrictionCondition) throws ValidationException {
-         validateAudiences(audienceRestrictionCondition);
+        validateAudiences(audienceRestrictionCondition);
     }
-    
+
     /**
      * Validates that the condition specifies at least one audience.
-     * 
+     *
      * @param audienceRestrictionCondition condition to validate
-     * 
      * @throws ValidationException thrown if now audience is specified in the condition
      */
-    protected void validateAudiences(AudienceRestrictionCondition audienceRestrictionCondition) throws ValidationException{
-        if (audienceRestrictionCondition.getAudiences() == null || 
+    protected void validateAudiences(AudienceRestrictionCondition audienceRestrictionCondition) throws ValidationException {
+        if (audienceRestrictionCondition.getAudiences() == null ||
                 audienceRestrictionCondition.getAudiences().size() == 0) {
-                throw new ValidationException("No Audience statements present");
-            }
+            throw new ValidationException("No Audience statements present");
+        }
     }
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,26 +29,32 @@ import org.slf4j.LoggerFactory;
  * A metadata filter that requires the presence of a <code>validUntil</code> attribute on the root element of the
  * metadata document. It can optionally also enforce that the validity period (now minus <code>validUntil</code> date)
  * is not longer than a specified amount.
- * 
+ * <p>
  * A maximum validity interval of less than 1 means the no restriction is placed on the metadata's
  * <code>validUntil</code> attribute.
  */
 public class RequiredValidUntilFilter implements MetadataFilter {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(RequiredValidUntilFilter.class);
 
-    /** The maximum interval, in milliseconds, between now and the <code>validUntil</code> date. */
+    /**
+     * The maximum interval, in milliseconds, between now and the <code>validUntil</code> date.
+     */
     private long maxValidityInterval;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public RequiredValidUntilFilter() {
         maxValidityInterval = 0;
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param maxValidity maximum internal, in seconds, between now and the <code>validUntil</code> date
      */
     public RequiredValidUntilFilter(long maxValidity) {
@@ -58,14 +64,16 @@ public class RequiredValidUntilFilter implements MetadataFilter {
     /**
      * Gets the maximum internal, in milliseconds, between now and the <code>validUntil</code> date. A value of less than 1
      * indicates that there is no restriction.
-     * 
+     *
      * @return maximum internal, in milliseconds, between now and the <code>validUntil</code> date
      */
     public long getMaxValidityInterval() {
         return maxValidityInterval;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void doFilter(XMLObject metadata) throws FilterException {
         DateTime validUntil = getValidUntil(metadata);
 
@@ -85,13 +93,11 @@ public class RequiredValidUntilFilter implements MetadataFilter {
 
     /**
      * Gets the validUntil time of the metadata, if present.
-     * 
+     *
      * @param metadata metadata from which to get the validUntil instant
-     * 
      * @return the valid until instant or null if it is not present
-     * 
      * @throws FilterException thrown if the given XML object is not an {@link EntitiesDescriptor} or
-     *             {@link EntityDescriptor}
+     *                         {@link EntityDescriptor}
      */
     protected DateTime getValidUntil(XMLObject metadata) throws FilterException {
         if (metadata instanceof EntitiesDescriptor) {

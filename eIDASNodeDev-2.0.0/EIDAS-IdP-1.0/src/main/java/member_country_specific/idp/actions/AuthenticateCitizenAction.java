@@ -21,9 +21,9 @@ package member_country_specific.idp.actions;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AuthenticateCitizenAction extends ActionSupport{
+public class AuthenticateCitizenAction extends ActionSupport {
 
-	private static final long serialVersionUID = -7243683543548722148L;
+    private static final long serialVersionUID = -7243683543548722148L;
 
     @Override
     public String execute() {

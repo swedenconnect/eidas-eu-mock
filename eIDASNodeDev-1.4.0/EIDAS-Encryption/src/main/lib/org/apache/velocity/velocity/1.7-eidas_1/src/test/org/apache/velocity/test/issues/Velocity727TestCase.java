@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -25,16 +25,13 @@ import org.apache.velocity.exception.VelocityException;
 /**
  * This class tests VELOCITY-727.
  */
-public class Velocity727TestCase extends BaseTestCase
-{
-    public Velocity727TestCase(String name)
-    {
+public class Velocity727TestCase extends BaseTestCase {
+    public Velocity727TestCase(String name) {
         super(name);
         DEBUG = false;
     }
 
-    public void testDefineWithNoArgument()
-    {
+    public void testDefineWithNoArgument() {
         assertEvalException("#define() foo bar #end", VelocityException.class);
     }
 }

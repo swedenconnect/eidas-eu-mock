@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -40,9 +40,8 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:daveb@miceda-data.com">Dave Bryson</a>
  * @version $Id: MultiLoaderTestCase.java 832247 2009-11-03 01:29:30Z wglass $
  */
-public class MultiLoaderTestCase extends BaseTestCase
-{
-     /**
+public class MultiLoaderTestCase extends BaseTestCase {
+    /**
      * VTL file extension.
      */
     private static final String TMPL_FILE_EXT = "vm";
@@ -74,20 +73,18 @@ public class MultiLoaderTestCase extends BaseTestCase
     private static final String COMPARE_DIR = TEST_COMPARE_DIR + "/multiloader/compare";
 
     VelocityEngine engine;
-    
+
     /**
      * Default constructor.
      */
-    public MultiLoaderTestCase(String name)
-    {
+    public MultiLoaderTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         engine = new VelocityEngine();
-        
+
         assureResultsDirectoryExists(RESULTS_DIR);
 
         /*
@@ -108,14 +105,14 @@ public class MultiLoaderTestCase extends BaseTestCase
          */
 
         engine.setProperty(
-            "classpath." + RuntimeConstants.RESOURCE_LOADER + ".class",
+                "classpath." + RuntimeConstants.RESOURCE_LOADER + ".class",
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 
         engine.setProperty(
-            "classpath." + RuntimeConstants.RESOURCE_LOADER + ".cache", "false");
+                "classpath." + RuntimeConstants.RESOURCE_LOADER + ".cache", "false");
 
         engine.setProperty(
-            "classpath." + RuntimeConstants.RESOURCE_LOADER + ".modificationCheckInterval",
+                "classpath." + RuntimeConstants.RESOURCE_LOADER + ".modificationCheckInterval",
                 "2");
 
         /*
@@ -123,11 +120,11 @@ public class MultiLoaderTestCase extends BaseTestCase
          */
 
         engine.setProperty(
-                             "jar." + RuntimeConstants.RESOURCE_LOADER + ".class",
-                             "org.apache.velocity.runtime.resource.loader.JarResourceLoader");
+                "jar." + RuntimeConstants.RESOURCE_LOADER + ".class",
+                "org.apache.velocity.runtime.resource.loader.JarResourceLoader");
 
-        engine.setProperty( "jar." + RuntimeConstants.RESOURCE_LOADER + ".path",
-                              "jar:file:" + FILE_RESOURCE_LOADER_PATH + "/test2.jar" );
+        engine.setProperty("jar." + RuntimeConstants.RESOURCE_LOADER + ".path",
+                "jar:file:" + FILE_RESOURCE_LOADER_PATH + "/test2.jar");
 
 
         engine.setProperty(
@@ -136,17 +133,15 @@ public class MultiLoaderTestCase extends BaseTestCase
         engine.init();
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(MultiLoaderTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testMultiLoader ()
-            throws Exception
-    {
+    public void testMultiLoader()
+            throws Exception {
         /*
          *  lets ensure the results directory exists
          */
@@ -156,7 +151,7 @@ public class MultiLoaderTestCase extends BaseTestCase
          * Template to find with the file loader.
          */
         Template template1 = engine.getTemplate(
-            getFileName(null, "path1", TMPL_FILE_EXT));
+                getFileName(null, "path1", TMPL_FILE_EXT));
 
         /*
          * Template to find with the classpath loader.
@@ -173,16 +168,16 @@ public class MultiLoaderTestCase extends BaseTestCase
          */
 
         FileOutputStream fos1 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "path1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "path1", RESULT_FILE_EXT));
 
         FileOutputStream fos2 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "test2", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "test2", RESULT_FILE_EXT));
 
         FileOutputStream fos3 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "test3", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "test3", RESULT_FILE_EXT));
 
         Writer writer1 = new BufferedWriter(new OutputStreamWriter(fos1));
         Writer writer2 = new BufferedWriter(new OutputStreamWriter(fos2));
@@ -206,18 +201,15 @@ public class MultiLoaderTestCase extends BaseTestCase
         writer3.flush();
         writer3.close();
 
-        if (!isMatch(RESULTS_DIR,COMPARE_DIR,"path1",RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "path1", RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect for FileResourceLoader test.");
         }
 
-        if (!isMatch(RESULTS_DIR,COMPARE_DIR,"test2",RESULT_FILE_EXT,CMP_FILE_EXT) )
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "test2", RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect for ClasspathResourceLoader test.");
         }
 
-        if( !isMatch(RESULTS_DIR,COMPARE_DIR,"test3",RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "test3", RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect for JarResourceLoader test.");
         }
     }

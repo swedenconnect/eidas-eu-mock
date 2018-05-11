@@ -87,7 +87,7 @@ public class EidasAuthnRequestValidator extends AuthnRequestSchemaValidator {
         }
 
         if (request.getConsent() != null && !request.getConsent().equals(ALLOWED_CONSENT)) {
-                throw new ValidationException("Consent is invalid.");
+            throw new ValidationException("Consent is invalid.");
         }
 
         if (request.isForceAuthn() == null) {
@@ -107,12 +107,12 @@ public class EidasAuthnRequestValidator extends AuthnRequestSchemaValidator {
         }
 
         if (request.getProtocolBinding() != null && !isValidProtocolBinding(request)) {
-                throw new ValidationException("ProtocolBinding is invalid.");
+            throw new ValidationException("ProtocolBinding is invalid.");
         }
-        if (request.getProtocolBinding()!=null && (request.getProtocolBinding().equals(ALLOWED_PROTOCOL_BINDING_HTTP_POST) ||
+        if (request.getProtocolBinding() != null && (request.getProtocolBinding().equals(ALLOWED_PROTOCOL_BINDING_HTTP_POST) ||
                 request.getProtocolBinding().equals(SAMLConstants.SAML2_REDIRECT_BINDING_URI)) &&
                 request.getDestination() == null) {
-                throw new ValidationException("Destination is required.");
+            throw new ValidationException("Destination is required.");
         }
 
         //TODO move destination validation against local URI here from AISERVICESAML.processAuthenticationRequest after Metadata has been made accessible
@@ -130,8 +130,8 @@ public class EidasAuthnRequestValidator extends AuthnRequestSchemaValidator {
             throw new ValidationException("Extensions is required.");
         }
         if (request.getNameIDPolicy() != null &&
-            StringUtils.isNotBlank(request.getNameIDPolicy().getFormat()) &&
-            null == SamlNameIdFormat.fromString(request.getNameIDPolicy().getFormat())) {
+                StringUtils.isNotBlank(request.getNameIDPolicy().getFormat()) &&
+                null == SamlNameIdFormat.fromString(request.getNameIDPolicy().getFormat())) {
             String message = "NameIDPolicy format has to be one of the following: " +
                     SamlNameIdFormat.mapper().unmodifiableKeyList(SamlNameIdFormat.values());
             LOG.error(message);
@@ -141,7 +141,7 @@ public class EidasAuthnRequestValidator extends AuthnRequestSchemaValidator {
         }
     }
 
-    private boolean isValidProtocolBinding(AuthnRequest request){
+    private boolean isValidProtocolBinding(AuthnRequest request) {
         return request.getProtocolBinding().equals(ALLOWED_PROTOCOL_BINDING_HTTP_POST)
                 || request.getProtocolBinding().equals(ALLOWED_PROTOCOL_BINDING_HTTP_REDIRECT)
                 || request.getProtocolBinding().equals(ALLOWED_PROTOCOL_BINDING_SOAP)

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -21,8 +21,8 @@ import org.opensaml.common.impl.AbstractSAMLObjectBuilder;
 import org.opensaml.common.xml.SAMLConstants;
 import org.opensaml.saml1.core.Assertion;
 
-/** 
- * Builder of {@link AssertionImpl} objects. 
+/**
+ * Builder of {@link AssertionImpl} objects.
  */
 public class AssertionBuilder extends AbstractSAMLObjectBuilder<Assertion> {
 
@@ -33,12 +33,16 @@ public class AssertionBuilder extends AbstractSAMLObjectBuilder<Assertion> {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AssertionImpl buildObject() {
         return new AssertionImpl(SAMLConstants.SAML1_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AssertionImpl buildObject(String namespaceURI, String localName, String namespacePrefix) {
         return new AssertionImpl(namespaceURI, localName, namespacePrefix);
     }

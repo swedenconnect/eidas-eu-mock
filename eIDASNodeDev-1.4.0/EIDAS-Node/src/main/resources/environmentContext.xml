@@ -22,11 +22,13 @@
     -->
 
     <bean id="eidasConfigRepository" class="java.lang.String">
-        <constructor-arg value="#{ systemProperties['EIDAS_CONFIG_REPOSITORY'] ?: systemEnvironment['EIDAS_CONFIG_REPOSITORY'] }" />
+        <constructor-arg
+                value="#{ systemProperties['EIDAS_CONFIG_REPOSITORY'] ?: systemEnvironment['EIDAS_CONFIG_REPOSITORY'] }"/>
     </bean>
 
     <bean id="eidasSpecificConfigRepository" class="java.lang.String">
-        <constructor-arg value="#{ systemProperties['SPECIFIC_CONFIG_REPOSITORY'] ?: systemEnvironment['SPECIFIC_CONFIG_REPOSITORY'] }" />
+        <constructor-arg
+                value="#{ systemProperties['SPECIFIC_CONFIG_REPOSITORY'] ?: systemEnvironment['SPECIFIC_CONFIG_REPOSITORY'] }"/>
     </bean>
 
 </beans>

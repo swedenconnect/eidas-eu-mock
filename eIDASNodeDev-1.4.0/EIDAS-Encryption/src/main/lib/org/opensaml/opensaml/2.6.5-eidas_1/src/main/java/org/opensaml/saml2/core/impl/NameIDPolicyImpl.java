@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -33,78 +33,102 @@ import org.opensaml.xml.schema.XSBooleanValue;
  */
 public class NameIDPolicyImpl extends AbstractSAMLObject implements NameIDPolicy {
 
-    /** NameID Format URI. */
+    /**
+     * NameID Format URI.
+     */
     private String format;
 
-    /** NameID Format URI. */
+    /**
+     * NameID Format URI.
+     */
     private String spNameQualifier;
 
-    /** NameID Format URI. */
+    /**
+     * NameID Format URI.
+     */
     private XSBooleanValue allowCreate;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected NameIDPolicyImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getFormat() {
         return format;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setFormat(String newFormat) {
         format = prepareForAssignment(format, newFormat);
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getSPNameQualifier() {
         return spNameQualifier;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSPNameQualifier(String newSPNameQualifier) {
         spNameQualifier = prepareForAssignment(spNameQualifier, newSPNameQualifier);
 
     }
-    
-    /** {@inheritDoc} */
-    public Boolean getAllowCreate(){
-        if(allowCreate != null){
+
+    /**
+     * {@inheritDoc}
+     */
+    public Boolean getAllowCreate() {
+        if (allowCreate != null) {
             return allowCreate.getValue();
         }
-        
+
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue getAllowCreateXSBoolean() {
         return allowCreate;
     }
 
-    /** {@inheritDoc} */
-    public void setAllowCreate(Boolean newAllowCreate){
-        if(newAllowCreate != null){
+    /**
+     * {@inheritDoc}
+     */
+    public void setAllowCreate(Boolean newAllowCreate) {
+        if (newAllowCreate != null) {
             allowCreate = prepareForAssignment(allowCreate, new XSBooleanValue(newAllowCreate, false));
-        }else{
+        } else {
             allowCreate = prepareForAssignment(allowCreate, null);
         }
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void setAllowCreate(XSBooleanValue newAllowCreate) {
         allowCreate = prepareForAssignment(allowCreate, newAllowCreate);
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         // no children
         return null;

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -33,7 +33,9 @@ import org.opensaml.saml1.core.Subject;
  */
 public class AuthenticationQueryTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
     private final String expectedAuthenticationMethod;
@@ -49,42 +51,54 @@ public class AuthenticationQueryTest extends BaseSAMLObjectProviderTestCase {
         qname = new QName(SAMLConstants.SAML10P_NS, AuthenticationQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
 
         AuthenticationQuery authenticationQuery;
-        
+
         authenticationQuery = (AuthenticationQuery) unmarshallElement(singleElementFile);
 
-        assertNull("AuthenticationQuery attribute present", authenticationQuery.getAuthenticationMethod());;
+        assertNull("AuthenticationQuery attribute present", authenticationQuery.getAuthenticationMethod());
+        ;
         assertNull("Subject element present", authenticationQuery.getSubject());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AuthenticationQuery authenticationQuery;
-        
+
         authenticationQuery = (AuthenticationQuery) unmarshallElement(singleElementOptionalAttributesFile);
 
-        assertEquals("AuthenticationQuery attribute", expectedAuthenticationMethod, authenticationQuery.getAuthenticationMethod());;
+        assertEquals("AuthenticationQuery attribute", expectedAuthenticationMethod, authenticationQuery.getAuthenticationMethod());
+        ;
         assertNull("Subject element present", authenticationQuery.getSubject());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AuthenticationQuery authenticationQuery;
-        
+
         authenticationQuery = (AuthenticationQuery) unmarshallElement(childElementsFile);
 
         assertNotNull("No Subject element found", authenticationQuery.getSubject());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         AuthenticationQuery authenticationQuery = (AuthenticationQuery) buildXMLObject(qname);
 
@@ -92,7 +106,9 @@ public class AuthenticationQueryTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, authenticationQuery);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         AuthenticationQuery authenticationQuery = (AuthenticationQuery) buildXMLObject(qname);
 

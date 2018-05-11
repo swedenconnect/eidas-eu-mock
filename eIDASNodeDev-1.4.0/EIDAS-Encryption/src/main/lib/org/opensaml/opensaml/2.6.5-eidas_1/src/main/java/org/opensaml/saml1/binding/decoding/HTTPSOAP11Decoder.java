@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -43,16 +43,24 @@ import org.slf4j.LoggerFactory;
  */
 public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPSOAP11Decoder.class);
 
-    /** QNames of understood SOAP headers. */
+    /**
+     * QNames of understood SOAP headers.
+     */
     private List<QName> understoodHeaders;
 
-    /** QName of SOAP mustUnderstand header attribute. */
+    /**
+     * QName of SOAP mustUnderstand header attribute.
+     */
     private final QName soapMustUnderstand = new QName(SAMLConstants.SOAP11ENV_NS, "mustUnderstand");
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public HTTPSOAP11Decoder() {
         super();
         understoodHeaders = new LazyList<QName>();
@@ -60,7 +68,7 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
 
     /**
      * Constructor.
-     * 
+     *
      * @param pool parser pool used to deserialize messages
      */
     public HTTPSOAP11Decoder(ParserPool pool) {
@@ -70,9 +78,8 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
 
     /**
      * Constructor.
-     * 
+     *
      * @param map Artifact to SAML map
-     * 
      * @deprecated
      */
     public HTTPSOAP11Decoder(SAMLArtifactMap map) {
@@ -82,10 +89,9 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
 
     /**
      * Constructor.
-     * 
-     * @param map used to map artifacts to SAML
+     *
+     * @param map  used to map artifacts to SAML
      * @param pool parser pool used to deserialize messages
-     * 
      * @deprecated
      */
     public HTTPSOAP11Decoder(SAMLArtifactMap map, ParserPool pool) {
@@ -93,14 +99,16 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
         understoodHeaders = new LazyList<QName>();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML1_SOAP11_BINDING_URI;
     }
 
     /**
      * Gets the SOAP header names that are understood by the application.
-     * 
+     *
      * @return SOAP header names that are understood by the application
      */
     public List<QName> getUnderstoodHeaders() {
@@ -109,7 +117,7 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
 
     /**
      * Sets the SOAP header names that are understood by the application.
-     * 
+     *
      * @param headerNames SOAP header names that are understood by the application
      */
     public void setUnderstoodHeaders(List<QName> headerNames) {
@@ -119,7 +127,9 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doDecode(MessageContext messageContext) throws MessageDecodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this decoder only support SAMLMessageContext");
@@ -174,11 +184,10 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
 
     /**
      * Checks that, if any SOAP headers, require understand that they are in the understood header list.
-     * 
+     *
      * @param headers SOAP headers to check
-     * 
      * @throws MessageDecodingException thrown if a SOAP header requires understanding but is not understood by the
-     *             decoder
+     *                                  decoder
      */
     protected void checkUnderstoodSOAPHeaders(List<XMLObject> headers) throws MessageDecodingException {
         if (headers == null || headers.isEmpty()) {
@@ -200,7 +209,9 @@ public class HTTPSOAP11Decoder extends BaseSAML1MessageDecoder {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean isIntendedDestinationEndpointURIRequired(SAMLMessageContext samlMsgCtx) {
         return false;
     }

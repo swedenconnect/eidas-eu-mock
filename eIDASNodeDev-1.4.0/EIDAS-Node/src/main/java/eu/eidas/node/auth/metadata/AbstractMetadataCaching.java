@@ -31,19 +31,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class AbstractMetadataCaching implements IMetadataCachingService {
-    private static final String SIGNATURE_HOLDER_ID_PREFIX="signatureholder";
+    private static final String SIGNATURE_HOLDER_ID_PREFIX = "signatureholder";
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractMetadataCaching.class);
 
     @Override
     public final EntityDescriptor getDescriptor(String url) throws EIDASMetadataProviderException {
-        if(getMap()!=null){
-            SerializedEntityDescriptor content=getMap().get(url);
-            if(content!=null && !content.getSerializedEntityDescriptor().isEmpty()) {
+        if (getMap() != null) {
+            SerializedEntityDescriptor content = getMap().get(url);
+            if (content != null && !content.getSerializedEntityDescriptor().isEmpty()) {
                 try {
                     return deserializeEntityDescriptor(content.getSerializedEntityDescriptor());
                 } catch (UnmarshallException e) {
-                    LOG.error("Unable to deserialize metadata entity descriptor from cache for "+url);
+                    LOG.error("Unable to deserialize metadata entity descriptor from cache for " + url);
                     LOG.error(e.getStackTrace().toString());
                     throw new EIDASMetadataProviderException(e.getMessage());
                 }
@@ -54,10 +54,10 @@ public abstract class AbstractMetadataCaching implements IMetadataCachingService
 
     @Override
     public final void putDescriptor(String url, EntityDescriptor ed, EntityDescriptorType type) {
-        if(getMap()!=null){
-            if(ed==null){
+        if (getMap() != null) {
+            if (ed == null) {
                 getMap().remove(url);
-            }else {
+            } else {
                 String content = serializeEntityDescriptor(ed);
                 if (content != null && !content.isEmpty()) {
                     getMap().put(url, new SerializedEntityDescriptor(content, type));
@@ -65,6 +65,7 @@ public abstract class AbstractMetadataCaching implements IMetadataCachingService
             }
         }
     }
+
     @Override
     public final EntityDescriptorType getDescriptorType(String url) {
         if (getMap() != null) {
@@ -76,7 +77,7 @@ public abstract class AbstractMetadataCaching implements IMetadataCachingService
         return null;
     }
 
-    private String serializeEntityDescriptor(XMLObject ed){
+    private String serializeEntityDescriptor(XMLObject ed) {
         try {
             return EidasStringUtil.toString(OpenSamlHelper.marshall(ed));
         } catch (MarshallException e) {
@@ -85,23 +86,23 @@ public abstract class AbstractMetadataCaching implements IMetadataCachingService
     }
 
     private EntityDescriptor deserializeEntityDescriptor(String content) throws UnmarshallException {
-    	EntityDescriptorContainer container = MetadataUtil.deserializeEntityDescriptor(content);
-        return container.getEntityDescriptors().isEmpty()?null:container.getEntityDescriptors().get(0);
+        EntityDescriptorContainer container = MetadataUtil.deserializeEntityDescriptor(content);
+        return container.getEntityDescriptors().isEmpty() ? null : container.getEntityDescriptors().get(0);
     }
 
     protected abstract Map<String, SerializedEntityDescriptor> getMap();
 
     @Override
-	public void putDescriptorSignatureHolder(String url, SignableXMLObject container){
-    	getMap().put(SIGNATURE_HOLDER_ID_PREFIX+url, new SerializedEntityDescriptor(serializeEntityDescriptor(container), EntityDescriptorType.NONE));
-	}
+    public void putDescriptorSignatureHolder(String url, SignableXMLObject container) {
+        getMap().put(SIGNATURE_HOLDER_ID_PREFIX + url, new SerializedEntityDescriptor(serializeEntityDescriptor(container), EntityDescriptorType.NONE));
+    }
 
     @Override
-	public void putDescriptorSignatureHolder(String url, EntityDescriptorContainer container){
-    	if(container.getSerializedEntitesDescriptor()!=null){
-    		getMap().put(SIGNATURE_HOLDER_ID_PREFIX+url, new SerializedEntityDescriptor(EidasStringUtil.toString(container.getSerializedEntitesDescriptor()), EntityDescriptorType.SERIALIZED_SIGNATURE_HOLDER));
-    	}else{
-    		putDescriptorSignatureHolder(url, container.getEntitiesDescriptor());
-    	}
+    public void putDescriptorSignatureHolder(String url, EntityDescriptorContainer container) {
+        if (container.getSerializedEntitesDescriptor() != null) {
+            getMap().put(SIGNATURE_HOLDER_ID_PREFIX + url, new SerializedEntityDescriptor(EidasStringUtil.toString(container.getSerializedEntitesDescriptor()), EntityDescriptorType.SERIALIZED_SIGNATURE_HOLDER));
+        } else {
+            putDescriptorSignatureHolder(url, container.getEntitiesDescriptor());
+        }
     }
 }

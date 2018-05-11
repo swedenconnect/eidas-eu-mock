@@ -52,14 +52,14 @@
 >
 <#else>
 <#if parameters.type?? && parameters.type=="image">
-<@s.property value="parameters.body"/>
+    <@s.property value="parameters.body"/>
 <input type="image"<#rt/>
-<#if parameters.label??>
+    <#if parameters.label??>
  alt="${parameters.label?html}"<#rt/>
-</#if>
-<#if parameters.src??>
+    </#if>
+    <#if parameters.src??>
  src="${parameters.src?html}"<#rt/>
-</#if>
+    </#if>
 <#else>
 <input type="submit"<#rt/>
 </#if>

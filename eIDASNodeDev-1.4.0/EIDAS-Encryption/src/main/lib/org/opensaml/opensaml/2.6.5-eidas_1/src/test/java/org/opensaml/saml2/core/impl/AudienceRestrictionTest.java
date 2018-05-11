@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,33 +29,45 @@ import org.opensaml.saml2.core.AudienceRestriction;
  */
 public class AudienceRestrictionTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Count of Audience subelements */
+    /**
+     * Count of Audience subelements
+     */
     protected int expectedAudienceCount = 2;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AudienceRestrictionTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AudienceRestriction.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AudienceRestrictionChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AudienceRestriction audienceRestriction = (AudienceRestriction) unmarshallElement(singleElementFile);
 
         assertNotNull(audienceRestriction);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AudienceRestriction.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AudienceRestriction audienceRestriction = (AudienceRestriction) buildXMLObject(qname);
@@ -63,18 +75,24 @@ public class AudienceRestrictionTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, audienceRestriction);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AudienceRestriction audienceRestriction = (AudienceRestriction) unmarshallElement(childElementsFile);
         assertEquals("Audience Count", expectedAudienceCount, audienceRestriction.getAudiences().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AudienceRestriction.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AudienceRestriction audienceRestriction = (AudienceRestriction) buildXMLObject(qname);

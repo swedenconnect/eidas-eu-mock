@@ -61,8 +61,8 @@ public abstract class AbstractCachingMetadataFetcher extends BaseMetadataFetcher
         }
 
         throw new EIDASMetadataProviderException(EidasErrorKey.SAML_ENGINE_NO_METADATA.errorCode(),
-                                                 EidasErrorKey.SAML_ENGINE_NO_METADATA.errorMessage(),
-                                                 "No entity descriptor for URL " + url);
+                EidasErrorKey.SAML_ENGINE_NO_METADATA.errorMessage(),
+                "No entity descriptor for URL " + url);
     }
 
     @Nullable

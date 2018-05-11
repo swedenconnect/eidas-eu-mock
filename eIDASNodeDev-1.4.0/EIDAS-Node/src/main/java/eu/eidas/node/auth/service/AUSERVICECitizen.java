@@ -43,7 +43,7 @@ import eu.eidas.auth.engine.ProtocolEngineI;
  * attribute list on session or citizen consent based.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.7 $, $Date: 2010-11-18 23:17:50 $
  * @see ISERVICETranslatorService
  */
@@ -108,12 +108,12 @@ public final class AUSERVICECitizen implements ISERVICECitizenService {
                 String errorCode = EidasErrors.get(EidasErrorKey.CITIZEN_RESPONSE_MANDATORY.errorCode());
 
                 byte[] error = samlService.generateErrorAuthenticationResponse(storedRequest.getRequest(), EIDASStatusCode.REQUESTER_URI.toString(),
-                                                                               EIDASSubStatusCode.REQUEST_DENIED_URI.toString(),
-                                                                               errorCode, errorMessage, ipUserAddress, true);
+                        EIDASSubStatusCode.REQUEST_DENIED_URI.toString(),
+                        errorCode, errorMessage, ipUserAddress, true);
                 throw new ResponseCarryingServiceException(errorCode, errorMessage,
-                                                           EidasStringUtil.encodeToBase64(error),
-                                                           storedRequest.getRequest().getAssertionConsumerServiceURL(),
-                                                           storedRequest.getRelayState());
+                        EidasStringUtil.encodeToBase64(error),
+                        storedRequest.getRequest().getAssertionConsumerServiceURL(),
+                        storedRequest.getRelayState());
             }
             LOG.debug(name + " found");
         }
@@ -132,7 +132,7 @@ public final class AUSERVICECitizen implements ISERVICECitizenService {
                 serviceUtil.getConfigs().getProperty(EIDASValues.DISABLE_CHECK_MANDATORY_ATTRIBUTES.toString())) &&
                 !samlService.checkMandatoryAttributeSet(attributes)) {
             throw new EIDASServiceException(EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorCode()),
-                                            EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
+                    EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
         }
     }
 

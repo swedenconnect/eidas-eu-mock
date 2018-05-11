@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,37 +29,53 @@ import org.opensaml.saml2.core.EncryptedAssertion;
  */
 public class AdviceTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Count of AssertionIDRef subelements */
+    /**
+     * Count of AssertionIDRef subelements
+     */
     protected int assertionIDRefCount = 3;
 
-    /** Count of AssertionURIRef subelements */
+    /**
+     * Count of AssertionURIRef subelements
+     */
     protected int assertionURIRefCount = 2;
 
-    /** Count of Assertion subelements */
+    /**
+     * Count of Assertion subelements
+     */
     protected int assertionCount = 3;
 
-    /** Count of Assertion subelements */
+    /**
+     * Count of Assertion subelements
+     */
     protected int encryptedAssertionCount = 2;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AdviceTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Advice.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AdviceChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Advice advice = (Advice) unmarshallElement(singleElementFile);
 
         assertNotNull(advice);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Advice advice = (Advice) unmarshallElement(childElementsFile);
 
@@ -70,18 +86,22 @@ public class AdviceTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Assertion count not as expected", assertionCount, advice.getAssertions().size());
         assertEquals("EncryptedAssertion count not as expected", encryptedAssertionCount, advice.getEncryptedAssertions().size());
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         Advice advice = (Advice) buildXMLObject(Advice.DEFAULT_ELEMENT_NAME);
 
         assertEquals(expectedDOM, advice);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         Advice advice = (Advice) buildXMLObject(Advice.DEFAULT_ELEMENT_NAME);
-        
+
         advice.getChildren().add(buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));
         advice.getChildren().add(buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
         advice.getChildren().add(buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));

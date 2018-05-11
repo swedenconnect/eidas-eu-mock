@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -35,22 +35,34 @@ import org.opensaml.xml.signature.SignatureConstants;
  */
 public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Name attribute value */
+    /**
+     * Expected Name attribute value
+     */
     protected String expectedName;
 
-    /** Expected ID attribute value */
+    /**
+     * Expected ID attribute value
+     */
     protected String expectedID;
 
-    /** Expected cacheDuration value in miliseconds */
+    /**
+     * Expected cacheDuration value in miliseconds
+     */
     protected long expectedCacheDuration;
 
-    /** Expected validUntil value */
+    /**
+     * Expected validUntil value
+     */
     protected DateTime expectedValidUntil;
 
-    /** Expected number of child EntitiesDescriptors */
+    /**
+     * Expected number of child EntitiesDescriptors
+     */
     protected int expectedEntitiesDescriptorsCount;
 
-    /** Expected number of child EntityDescriptors */
+    /**
+     * Expected number of child EntityDescriptors
+     */
     protected int expectedEntityDescriptorsCount;
 
     /**
@@ -62,7 +74,9 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
         childElementsFile = "/data/org/opensaml/saml2/metadata/impl/EntitiesDescriptorChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -74,7 +88,9 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
         expectedEntityDescriptorsCount = 2;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         EntitiesDescriptor entitiesDescriptorObj = (EntitiesDescriptor) unmarshallElement(singleElementFile);
 
@@ -88,7 +104,9 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertNull("validUntil attribute has a value of " + validUntil + ", expected no value", validUntil);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         EntitiesDescriptor entitiesDescriptorObj = (EntitiesDescriptor) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -108,7 +126,9 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .compareTo(validUntil));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         EntitiesDescriptor entitiesDescriptor = (EntitiesDescriptor) unmarshallElement(childElementsFile);
 
@@ -120,7 +140,9 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .getEntityDescriptors().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, EntitiesDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         EntitiesDescriptor entitiesDescriptor = (EntitiesDescriptor) buildXMLObject(qname);
@@ -128,7 +150,9 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, entitiesDescriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, EntitiesDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         EntitiesDescriptor entitiesDescriptor = (EntitiesDescriptor) buildXMLObject(qname);
@@ -141,17 +165,19 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, entitiesDescriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, EntitiesDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         EntitiesDescriptor entitiesDescriptor = (EntitiesDescriptor) buildXMLObject(qname);
         entitiesDescriptor.setID(expectedID);
-        
-        entitiesDescriptor.setSignature( buildSignatureSkeleton() );
+
+        entitiesDescriptor.setSignature(buildSignatureSkeleton());
 
         QName extensionsQName = new QName(SAMLConstants.SAML20MD_NS, Extensions.LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         entitiesDescriptor.setExtensions((Extensions) buildXMLObject(extensionsQName));
-        
+
         QName entitiesDescriptorQName = new QName(SAMLConstants.SAML20MD_NS, EntitiesDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         QName entityDescriptorQName = new QName(SAMLConstants.SAML20MD_NS, EntityDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         entitiesDescriptor.getEntitiesDescriptors().add((EntitiesDescriptor) buildXMLObject(entitiesDescriptorQName));
@@ -161,10 +187,10 @@ public class EntitiesDescriptorTest extends BaseSAMLObjectProviderTestCase {
         entitiesDescriptor.getEntitiesDescriptors().add((EntitiesDescriptor) buildXMLObject(entitiesDescriptorQName));
         assertEquals(expectedChildElementsDOM, entitiesDescriptor);
     }
-    
+
     /**
      * Build a Signature skeleton to use in marshalling unit tests.
-     * 
+     *
      * @return minimally populated Signature element
      */
     private Signature buildSignatureSkeleton() {

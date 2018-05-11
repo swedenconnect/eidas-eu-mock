@@ -16,7 +16,7 @@ package org.apache.velocity.test.sql;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.sql.Connection;
@@ -35,24 +35,20 @@ import org.apache.velocity.test.BaseTestCase;
  */
 
 public abstract class BaseSQLTest
-        extends BaseTestCase
-{
+        extends BaseTestCase {
     private static HsqlDB hsqlDB = null;
 
     public BaseSQLTest(String name, String path)
-            throws Exception
-    {
+            throws Exception {
         super(name);
 
-        if (hsqlDB == null)
-        {
+        if (hsqlDB == null) {
             hsqlDB = new HsqlDB("jdbc:hsqldb:.", path + "/create-db.sql");
         }
     }
-    
+
     public void executeSQL(String sql)
-    throws SQLException
-    {
+            throws SQLException {
         Connection connection = hsqlDB.getConnection();
         Statement statement = connection.createStatement();
         statement.executeUpdate(sql);

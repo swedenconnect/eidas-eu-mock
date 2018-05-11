@@ -20,7 +20,6 @@ import eu.eidas.engine.exceptions.EIDASMetadataProviderException;
  */
 public interface IMetadataCachingService {
     /**
-     *
      * @param url
      * @return the descriptor (stored in the cache) associated with url
      */
@@ -28,6 +27,7 @@ public interface IMetadataCachingService {
 
     /**
      * add a descriptor in the cache
+     *
      * @param url
      * @param eidasMetadataParameters
      */

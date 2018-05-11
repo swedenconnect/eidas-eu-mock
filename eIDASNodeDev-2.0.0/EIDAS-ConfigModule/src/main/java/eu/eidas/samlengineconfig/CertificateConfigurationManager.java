@@ -24,11 +24,18 @@ import eu.eidas.config.EIDASNodeConfiguration;
 public interface CertificateConfigurationManager {
 
     void setLocation(String location);
+
     String getLocation();
+
     void setParentConfiguration(EIDASNodeConfiguration parentConfiguration);
+
     EIDASNodeConfiguration getParentConfiguration();
-    void addConfiguration(String name, String type, Map<String,String> props, boolean replaceExisting);
+
+    void addConfiguration(String name, String type, Map<String, String> props, boolean replaceExisting);
+
     EngineInstance getInstance(String name);
+
     Map<String, EngineInstance> getConfiguration();
+
     boolean isActive();
 }

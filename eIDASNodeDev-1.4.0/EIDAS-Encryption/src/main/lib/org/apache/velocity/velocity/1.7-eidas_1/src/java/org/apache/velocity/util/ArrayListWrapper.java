@@ -29,29 +29,24 @@ import java.util.AbstractList;
  * @version $Revision: 685685 $ $Date: 2006-04-14 19:40:41 $
  * @since 1.6
  */
-public class ArrayListWrapper extends AbstractList
-{
+public class ArrayListWrapper extends AbstractList {
     private Object array;
 
-    public ArrayListWrapper(Object array)
-    {
+    public ArrayListWrapper(Object array) {
         this.array = array;
     }
 
-    public Object get(int index)
-    {
+    public Object get(int index) {
         return Array.get(array, index);
     }
 
-    public Object set(int index, Object element)
-    {
+    public Object set(int index, Object element) {
         Object old = get(index);
         Array.set(array, index, element);
         return old;
     }
 
-    public int size()
-    {
+    public int size() {
         return Array.getLength(array);
     }
 

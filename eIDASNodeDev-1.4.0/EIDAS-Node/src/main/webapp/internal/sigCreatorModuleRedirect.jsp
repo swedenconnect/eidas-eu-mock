@@ -19,7 +19,9 @@
         <div class="col-right">
             <div class="col-right-inner">
                 <div class="clearfix">
-                    <div class="menu-top"> <a class="item text-minus" href="#"></a> <a class="item text-plus" href="#"></a> <a class="item contrast" href="#"></a> </div>
+                    <div class="menu-top"><a class="item text-minus" href="#"></a> <a class="item text-plus"
+                                                                                      href="#"></a> <a
+                            class="item contrast" href="#"></a></div>
                 </div>
                 <div class="col-right-content">
                     <jsp:include page="content-security-header-deactivated.jsp"/>
@@ -28,11 +30,16 @@
                     </h1>
                     <h2 class="sub-title">Redirecting ...</h2>
                     <form name="redirectForm" action="${e:forHtml(sigCreatorModuleURL)}" method="get">
-                        <input type="hidden" name="DataURL" value="${e:forHtml(DataURL)}" id="http-security-layer-request_DataURL"/>
-                        <input type="hidden" name="XMLRequest" value="${e:forHtml(data)}" id="http-security-layer-request_XMLRequest"/>
-                        <input type="hidden" name="appletBackgroundColor" value="#FFFFFF" id="http-security-layer-request_appletBackgroundColor"/>
-                        <input type="hidden" name="appletHeight" value="250" id="http-security-layer-request_appletHeight"/>
-                        <input type="hidden" name="appletWidth" value="300" id="http-security-layer-request_appletWidth"/>
+                        <input type="hidden" name="DataURL" value="${e:forHtml(DataURL)}"
+                               id="http-security-layer-request_DataURL"/>
+                        <input type="hidden" name="XMLRequest" value="${e:forHtml(data)}"
+                               id="http-security-layer-request_XMLRequest"/>
+                        <input type="hidden" name="appletBackgroundColor" value="#FFFFFF"
+                               id="http-security-layer-request_appletBackgroundColor"/>
+                        <input type="hidden" name="appletHeight" value="250"
+                               id="http-security-layer-request_appletHeight"/>
+                        <input type="hidden" name="appletWidth" value="300"
+                               id="http-security-layer-request_appletWidth"/>
                     </form>
                 </div>
             </div>

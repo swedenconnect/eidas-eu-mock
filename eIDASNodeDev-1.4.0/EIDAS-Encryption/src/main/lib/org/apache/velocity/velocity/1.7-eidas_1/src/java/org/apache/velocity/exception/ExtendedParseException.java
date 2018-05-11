@@ -16,7 +16,7 @@ package org.apache.velocity.exception;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -29,22 +29,24 @@ package org.apache.velocity.exception;
  * @version $Id: ExtendedParseException.java 685685 2008-08-13 21:43:27Z nbubna $
  * @since 1.5
  */
-public interface ExtendedParseException
-{
+public interface ExtendedParseException {
     /**
      * returns the Template name where this exception occured.
+     *
      * @return The Template name where this exception occured.
      */
     String getTemplateName();
 
     /**
      * returns the line number where this exception occured.
+     *
      * @return The line number where this exception occured.
      */
     int getLineNumber();
 
     /**
      * returns the column number where this exception occured.
+     *
      * @return The column number where this exception occured.
      */
     int getColumnNumber();

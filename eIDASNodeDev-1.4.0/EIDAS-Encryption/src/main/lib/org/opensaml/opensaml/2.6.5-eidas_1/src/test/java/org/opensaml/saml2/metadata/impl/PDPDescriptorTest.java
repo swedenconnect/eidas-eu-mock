@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -40,16 +40,24 @@ import org.opensaml.saml2.metadata.PDPDescriptor;
  */
 public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
 
-    /** List of expected supported protocols */
+    /**
+     * List of expected supported protocols
+     */
     protected ArrayList<String> expectedSupportedProtocol;
 
-    /** Expected cacheDuration value in miliseconds */
+    /**
+     * Expected cacheDuration value in miliseconds
+     */
     protected long expectedCacheDuration;
 
-    /** Expected validUntil value */
+    /**
+     * Expected validUntil value
+     */
     protected DateTime expectedValidUntil;
 
-    /** Expected error url */
+    /**
+     * Expected error url
+     */
     protected String expectedErrorURL;
 
     /**
@@ -61,7 +69,9 @@ public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
         childElementsFile = "/data/org/opensaml/saml2/metadata/impl/PDPDescriptorChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -75,7 +85,9 @@ public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
         expectedErrorURL = "http://example.org";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         PDPDescriptor descriptor = (PDPDescriptor) unmarshallElement(singleElementFile);
 
@@ -83,7 +95,9 @@ public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
                 .getSupportedProtocols());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         PDPDescriptor descriptor = (PDPDescriptor) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -93,7 +107,9 @@ public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("ErrorURL was not expected value", expectedErrorURL, descriptor.getErrorURL());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         PDPDescriptor descriptor = (PDPDescriptor) unmarshallElement(childElementsFile);
 
@@ -105,7 +121,9 @@ public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("NameIDFormat count", 1, descriptor.getNameIDFormats().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, PDPDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         PDPDescriptor descriptor = (PDPDescriptor) buildXMLObject(qname);
@@ -117,7 +135,9 @@ public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, PDPDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         PDPDescriptor descriptor = (PDPDescriptor) buildXMLObject(qname);
@@ -133,7 +153,9 @@ public class PDPDescriptorTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, descriptor);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, PDPDescriptor.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         PDPDescriptor descriptor = (PDPDescriptor) buildXMLObject(qname);

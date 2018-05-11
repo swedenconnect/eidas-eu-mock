@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -30,13 +30,14 @@ public class NameIDMappingRequestSchemaValidator extends RequestAbstractTypeSche
 
     /**
      * Constructor
-     *
      */
     public NameIDMappingRequestSchemaValidator() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(NameIDMappingRequest request) throws ValidationException {
         super.validate(request);
         validateIdentifiers(request);
@@ -45,13 +46,13 @@ public class NameIDMappingRequestSchemaValidator extends RequestAbstractTypeSche
 
     /**
      * Validates the identifier child types (BaseID, NameID, EncryptedID).
-     * 
+     *
      * @param request
-     * @throws ValidationException 
+     * @throws ValidationException
      */
     protected void validateIdentifiers(NameIDMappingRequest request) throws ValidationException {
         int idCount = 0;
-        
+
         if (request.getBaseID() != null) {
             idCount++;
         }
@@ -61,20 +62,20 @@ public class NameIDMappingRequestSchemaValidator extends RequestAbstractTypeSche
         if (request.getEncryptedID() != null) {
             idCount++;
         }
-        
+
         if (idCount != 1) {
             throw new ValidationException("NameIDMappingRequest must contain exactly one of: BaseID, NameID, EncryptedID");
         }
     }
-    
+
     /**
      * Validates the NameIDPolicy child element.
-     * 
+     *
      * @param request
-     * @throws ValidationException 
+     * @throws ValidationException
      */
     private void validateNameIDPolicy(NameIDMappingRequest request) throws ValidationException {
-        if(request.getNameIDPolicy() == null) {
+        if (request.getNameIDPolicy() == null) {
             throw new ValidationException("NameIDPolicy is required");
         }
     }

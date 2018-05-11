@@ -30,9 +30,7 @@ public enum SpecificConnectorViewNames {
 
     COLLEAGUE_RESPONSE_REDIRECT("/colleagueResponseRedirect.jsp"),
 
-    TOKEN_REDIRECT("/tokenRedirect.jsp"),
-
-    ;
+    TOKEN_REDIRECT("/tokenRedirect.jsp"),;
 
     /**
      * constant name.

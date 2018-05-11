@@ -22,57 +22,57 @@
     <title>Internal error page</title>
     <link href="resources/css/stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
-    <body>
-        <div id="container">
-            <div id="header">
-                <div class="logo"></div>
-                <div class="logo_ue"></div>
-                <div class="headerTitle">
-                    <fmt:message key="eidas.title" bundle="${i18n_eng}"/> this is internalError.jsp
-                </div>
-            </div>
-            <div id="border">
-                <div id="principal">
-                    <div id="margin">
-                        <h2><fmt:message key="unexpected.error" bundle="${i18n_error}"/></h2>
+<body>
+<div id="container">
+    <div id="header">
+        <div class="logo"></div>
+        <div class="logo_ue"></div>
+        <div class="headerTitle">
+            <fmt:message key="eidas.title" bundle="${i18n_eng}"/> this is internalError.jsp
+        </div>
+    </div>
+    <div id="border">
+        <div id="principal">
+            <div id="margin">
+                <h2><fmt:message key="unexpected.error" bundle="${i18n_error}"/></h2>
 
-                        <p><fmt:message key="report.error" bundle="${i18n_error}" /></p>
+                <p><fmt:message key="report.error" bundle="${i18n_error}"/></p>
 
-                        <p><fmt:message key="thank.message" bundle="${i18n_error}" /></p>
-                        <br />
-                        <%
-                            Logger LOG = LoggerFactory.getLogger("InternalErrorPage.jsp");
-                            boolean HttpStatusLogged = false; // Set to true after loggin of the error
-                            if(pageContext != null) {
-                                ErrorData errorData=null;
-                                try {
-                                    errorData = pageContext.getErrorData();
-                                } catch(NullPointerException ne) {
-                                    // If the error page was accessed directly, a NullPointerException
-                                    // is thrown at (PageContext.java:514).
-                                    // Catch and ignore it... it effectively means we can't use the ErrorData
-                                    LOG.info("ERROR : errorData is null {}", ne.getMessage());
-                                    LOG.debug("ERROR : errorData is null {}", ne);
-                                }
-                                if (errorData!=null){
-                                    LOG.info("ERROR : HTTP error {} at {}", errorData.getStatusCode(), errorData.getRequestURI());
-                                    LOG.info("ERROR : HTTP error throwable {}", errorData.getThrowable());
-                                }
-                                HttpStatusLogged =true;
-                            }
-							if(request.getAttribute("javax.servlet.error.exception") instanceof ServletException)
-								getServletContext().getRequestDispatcher("/InternalExceptionHandler").forward(request, response);
-                            if(!HttpStatusLogged) { // when the page is directly accessed
-                                LOG.info("Direct access to the error page");
-                            }
-                            if (exception != null){
-                                LOG.debug("Exception returned {}", exception);
-                            }
-                        %>
-                        <div id="cspMessage" class="warningCsp"></div>
-                    </div>
-                </div>
+                <p><fmt:message key="thank.message" bundle="${i18n_error}"/></p>
+                <br/>
+                <%
+                    Logger LOG = LoggerFactory.getLogger("InternalErrorPage.jsp");
+                    boolean HttpStatusLogged = false; // Set to true after loggin of the error
+                    if (pageContext != null) {
+                        ErrorData errorData = null;
+                        try {
+                            errorData = pageContext.getErrorData();
+                        } catch (NullPointerException ne) {
+                            // If the error page was accessed directly, a NullPointerException
+                            // is thrown at (PageContext.java:514).
+                            // Catch and ignore it... it effectively means we can't use the ErrorData
+                            LOG.info("ERROR : errorData is null {}", ne.getMessage());
+                            LOG.debug("ERROR : errorData is null {}", ne);
+                        }
+                        if (errorData != null) {
+                            LOG.info("ERROR : HTTP error {} at {}", errorData.getStatusCode(), errorData.getRequestURI());
+                            LOG.info("ERROR : HTTP error throwable {}", errorData.getThrowable());
+                        }
+                        HttpStatusLogged = true;
+                    }
+                    if (request.getAttribute("javax.servlet.error.exception") instanceof ServletException)
+                        getServletContext().getRequestDispatcher("/InternalExceptionHandler").forward(request, response);
+                    if (!HttpStatusLogged) { // when the page is directly accessed
+                        LOG.info("Direct access to the error page");
+                    }
+                    if (exception != null) {
+                        LOG.debug("Exception returned {}", exception);
+                    }
+                %>
+                <div id="cspMessage" class="warningCsp"></div>
             </div>
         </div>
-    </body>
+    </div>
+</div>
+</body>
 </html>

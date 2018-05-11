@@ -24,7 +24,6 @@ import eu.eidas.auth.engine.core.eidas.DigestMethod;
 
 /**
  * The Class DigestMethodMarshaller.
- *
  */
 public class DigestMethodMarshaller extends AbstractSAMLObjectMarshaller {
 
@@ -36,8 +35,8 @@ public class DigestMethodMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	    final DigestMethod method = (DigestMethod) samlObject;
+                                                final Element domElement) throws MarshallingException {
+        final DigestMethod method = (DigestMethod) samlObject;
         domElement.setAttribute("Algorithm", method.getAlgorithm());
     }
 }

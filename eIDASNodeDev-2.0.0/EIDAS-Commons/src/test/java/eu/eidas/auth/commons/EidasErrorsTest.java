@@ -38,8 +38,8 @@ public class EidasErrorsTest {
      */
     @Test
     public void testGet() {
-        assertEquals("202002",EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
-        assertEquals("invalid.connector.samlrequest",EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()));
+        assertEquals("202002", EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()));
+        assertEquals("invalid.connector.samlrequest", EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()));
     }
 
 }

@@ -19,7 +19,6 @@ import org.opensaml.common.impl.AbstractSAMLObjectMarshaller;
 
 /**
  * The Class RequestedAttributesMarshaller.
- *
  */
 public class RequestedAttributesMarshaller extends AbstractSAMLObjectMarshaller {
 
@@ -27,6 +26,6 @@ public class RequestedAttributesMarshaller extends AbstractSAMLObjectMarshaller 
      * Instantiates a new requested attributes marshaller.
      */
     public RequestedAttributesMarshaller() {
-	super();
+        super();
     }
 }

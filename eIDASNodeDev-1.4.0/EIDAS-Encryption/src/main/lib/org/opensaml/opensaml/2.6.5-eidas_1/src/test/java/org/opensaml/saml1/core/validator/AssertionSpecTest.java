@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -34,14 +34,18 @@ import org.opensaml.saml1.core.DoNotCacheCondition;
  */
 public class AssertionSpecTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AssertionSpecTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         validator = new AssertionSpecValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         Assertion assertion = (Assertion) target;
@@ -49,9 +53,9 @@ public class AssertionSpecTest extends BaseSAMLObjectValidatorTestCase {
         assertion.setID("ident");
         assertion.setIssueInstant(new DateTime());
         QName name = new QName(SAMLConstants.SAML1_NS, AttributeStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        assertion.getStatements().add((AttributeStatement)buildXMLObject(name));
+        assertion.getStatements().add((AttributeStatement) buildXMLObject(name));
     }
-    
+
     public void testDoNotCache() {
         Assertion assertion = (Assertion) target;
         QName oqname = new QName(SAMLConstants.SAML1_NS, Conditions.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);

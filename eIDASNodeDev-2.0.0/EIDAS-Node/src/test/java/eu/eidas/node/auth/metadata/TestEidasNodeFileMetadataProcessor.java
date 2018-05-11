@@ -51,18 +51,18 @@ import java.util.Map;
 public class TestEidasNodeFileMetadataProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestEidasNodeFileMetadataProcessor.class.getName());
 
-    private static final String FILEREPO_DIR_READ="src/test/resources/EntityDescriptors2/";
-    private static final String FILEREPO_DIR_WRITE1="target/test/EntityDescriptors1/";
-    private static final String FILEREPO_DIR_WRITE2="target/test/EntityDescriptors2/";
-    private static final String FILEREPO_DIR_WRITE_EMPTY="target/test/EntityDescriptorsEmpty/";
-    private static final String FILEREPO_DIR_READ_UPD="src/test/resources/EntityDescriptors1/";
-    private static final String FILEREPO_DIR_READ_COMBO="src/test/resources/EntityDescriptors3/";
-    private static final String FILEREPO_DIR_WRITE3="target/test/EntityDescriptors3/";
-    private static final String FILEREPO_DIR_READ_COMBO_4="src/test/resources/EntityDescriptors4/";
-    private static final String FILEREPO_DIR_WRITE4="target/test/EntityDescriptors4/";
+    private static final String FILEREPO_DIR_READ = "src/test/resources/EntityDescriptors2/";
+    private static final String FILEREPO_DIR_WRITE1 = "target/test/EntityDescriptors1/";
+    private static final String FILEREPO_DIR_WRITE2 = "target/test/EntityDescriptors2/";
+    private static final String FILEREPO_DIR_WRITE_EMPTY = "target/test/EntityDescriptorsEmpty/";
+    private static final String FILEREPO_DIR_READ_UPD = "src/test/resources/EntityDescriptors1/";
+    private static final String FILEREPO_DIR_READ_COMBO = "src/test/resources/EntityDescriptors3/";
+    private static final String FILEREPO_DIR_WRITE3 = "target/test/EntityDescriptors3/";
+    private static final String FILEREPO_DIR_READ_COMBO_4 = "src/test/resources/EntityDescriptors4/";
+    private static final String FILEREPO_DIR_WRITE4 = "target/test/EntityDescriptors4/";
 
-    private static final String ENTITY_ID_1="http://peps:8888/PEPS/SPEPSMetadata";
-    private static final String ENTITY_ID_2="eumiddleware";
+    private static final String ENTITY_ID_1 = "http://peps:8888/PEPS/SPEPSMetadata";
+    private static final String ENTITY_ID_2 = "eumiddleware";
 
     private ProtocolEngineI getEngine() {
         ProtocolEngineI engine = null;
@@ -75,24 +75,26 @@ public class TestEidasNodeFileMetadataProcessor {
     }
 
     @BeforeClass
-    public static void setUp(){
-        LOGGER.debug("initializing directory "+FILEREPO_DIR_WRITE1);
+    public static void setUp() {
+        LOGGER.debug("initializing directory " + FILEREPO_DIR_WRITE1);
         initWorkFolder(FILEREPO_DIR_READ, FILEREPO_DIR_WRITE1);
-        LOGGER.debug("initializing directory "+FILEREPO_DIR_WRITE2);
+        LOGGER.debug("initializing directory " + FILEREPO_DIR_WRITE2);
         initWorkFolder(FILEREPO_DIR_READ, FILEREPO_DIR_WRITE2);
         new File(FILEREPO_DIR_WRITE_EMPTY).mkdirs();
         initWorkFolder(FILEREPO_DIR_READ_COMBO, FILEREPO_DIR_WRITE3);
         initWorkFolder(FILEREPO_DIR_READ_COMBO_4, FILEREPO_DIR_WRITE4);
         OpenSamlHelper.initialize();
     }
-    private static void initWorkFolder(String sourceFolder, String folderName){
-        File sampleNodeRepo=new File(folderName);
+
+    private static void initWorkFolder(String sourceFolder, String folderName) {
+        File sampleNodeRepo = new File(folderName);
         FileSystemUtils.deleteRecursively(sampleNodeRepo);
         sampleNodeRepo.mkdirs();
         FileUtils.copyFile(new File(sourceFolder), sampleNodeRepo);
     }
+
     @AfterClass
-    public static void removeDir(){
+    public static void removeDir() {
         FileSystemUtils.deleteRecursively(new File(FILEREPO_DIR_WRITE1));
         FileSystemUtils.deleteRecursively(new File(FILEREPO_DIR_WRITE2));
         FileSystemUtils.deleteRecursively(new File(FILEREPO_DIR_WRITE3));
@@ -101,8 +103,8 @@ public class TestEidasNodeFileMetadataProcessor {
     }
 
     @Test
-    public void testGetEntityDescriptorsEmpty(){
-        FileMetadataLoader processor=new FileMetadataLoader();
+    public void testGetEntityDescriptorsEmpty() {
+        FileMetadataLoader processor = new FileMetadataLoader();
         processor.setRepositoryPath(FILEREPO_DIR_WRITE_EMPTY);
         List<EntityDescriptorContainer> list = null;
         try {
@@ -112,9 +114,10 @@ public class TestEidasNodeFileMetadataProcessor {
         }
         Assert.assertTrue(list == null || list.isEmpty());
     }
+
     @Test
-    public void testGetEntityDescriptors(){
-        FileMetadataLoader processor=new FileMetadataLoader();
+    public void testGetEntityDescriptors() {
+        FileMetadataLoader processor = new FileMetadataLoader();
         processor.setRepositoryPath(FILEREPO_DIR_WRITE1);
         List<EntityDescriptorContainer> list = null;
         try {
@@ -122,9 +125,9 @@ public class TestEidasNodeFileMetadataProcessor {
         } catch (EIDASMetadataProviderException e) {
             e.printStackTrace();
         }
-        Assert.assertTrue(list.size()==2);
+        Assert.assertTrue(list.size() == 2);
 
-        Map<String,EntityDescriptor> entityDescriptors = new HashMap<String, EntityDescriptor>();
+        Map<String, EntityDescriptor> entityDescriptors = new HashMap<String, EntityDescriptor>();
         entityDescriptors.put(list.get(0).getEntityDescriptors().get(0).getEntityID(), list.get(0).getEntityDescriptors().get(0));
         entityDescriptors.put(list.get(1).getEntityDescriptors().get(0).getEntityID(), list.get(1).getEntityDescriptors().get(0));
 
@@ -138,8 +141,8 @@ public class TestEidasNodeFileMetadataProcessor {
     }
 
     @Test
-    public void testUpdateEntityDescriptors(){
-        FileMetadataLoader processor=new FileMetadataLoader();
+    public void testUpdateEntityDescriptors() {
+        FileMetadataLoader processor = new FileMetadataLoader();
         processor.setRepositoryPath(FILEREPO_DIR_WRITE2);
         List<EntityDescriptorContainer> list = null;
         try {
@@ -147,12 +150,12 @@ public class TestEidasNodeFileMetadataProcessor {
         } catch (EIDASMetadataProviderException e) {
             e.printStackTrace();
         }
-        Assert.assertTrue(list.size()==2);
-        File sampleNodeRepo=new File(FILEREPO_DIR_WRITE2);
+        Assert.assertTrue(list.size() == 2);
+        File sampleNodeRepo = new File(FILEREPO_DIR_WRITE2);
         FileUtils.copyFile(new File(FILEREPO_DIR_READ_UPD), sampleNodeRepo);
-        try{
+        try {
             Thread.sleep(3000);
-        }catch(InterruptedException ie){
+        } catch (InterruptedException ie) {
             Assert.fail("got interrupted exception");
         }
         try {
@@ -160,19 +163,19 @@ public class TestEidasNodeFileMetadataProcessor {
         } catch (EIDASMetadataProviderException e) {
             e.printStackTrace();
         }
-        Assert.assertTrue(list.size()==3);
+        Assert.assertTrue(list.size() == 3);
     }
 
     @Test
     public void testCombo() throws Exception {
-        FileMetadataLoader processor=new FileMetadataLoader();
+        FileMetadataLoader processor = new FileMetadataLoader();
         processor.setRepositoryPath(FILEREPO_DIR_WRITE3);
         List<EntityDescriptorContainer> list = processor.getEntityDescriptors();
-        Assert.assertTrue(list.size()==2);
+        Assert.assertTrue(list.size() == 2);
         XMLObjectBuilderFactory builderFactory = XMLObjectProviderRegistrySupport.getBuilderFactory();
-        EntitiesDescriptor eds = (EntitiesDescriptor)builderFactory.getBuilder(EntitiesDescriptor.DEFAULT_ELEMENT_NAME).buildObject(EntitiesDescriptor.DEFAULT_ELEMENT_NAME);
-        for(EntityDescriptorContainer edc:list){
-        	eds.getEntityDescriptors().addAll(edc.getEntityDescriptors());
+        EntitiesDescriptor eds = (EntitiesDescriptor) builderFactory.getBuilder(EntitiesDescriptor.DEFAULT_ELEMENT_NAME).buildObject(EntitiesDescriptor.DEFAULT_ELEMENT_NAME);
+        for (EntityDescriptorContainer edc : list) {
+            eds.getEntityDescriptors().addAll(edc.getEntityDescriptors());
         }
         MetadataSignerI signer = (MetadataSignerI) getEngine().getSigner();
         EntitiesDescriptor entitiesDescriptor = signer.signMetadata(eds);
@@ -180,7 +183,7 @@ public class TestEidasNodeFileMetadataProcessor {
         //String s=SAMLEngineUtils.serializeObject(eds);
         Assert.assertFalse(s.isEmpty());
 
-		EntityDescriptorContainer edc = MetadataUtil.deserializeEntityDescriptor(s);
+        EntityDescriptorContainer edc = MetadataUtil.deserializeEntityDescriptor(s);
 
         signer.validateMetadataSignature(edc.getEntitiesDescriptor());
     }
@@ -188,26 +191,26 @@ public class TestEidasNodeFileMetadataProcessor {
 
     /**
      * Test method for {@link FileMetadataLoader#getEntityDescriptors()}.
-     *
+     * <p>
      * It should ignore all files except well-formed XML and with the .xml extension
-     *
+     * <p>
      * It must succeed and throw no exception.
      *
      * @throws Exception
      */
     @Test
     public void testComboFirstXmlFileInvalid() throws Exception {
-        FileMetadataLoader processor=new FileMetadataLoader();
+        FileMetadataLoader processor = new FileMetadataLoader();
         processor.setRepositoryPath(FILEREPO_DIR_WRITE4);
         List<EntityDescriptorContainer> list = processor.getEntityDescriptors();
 
-        Assert.assertTrue("Check if only one file is XML well-formed and has .xml extension.",list.size()==1);
+        Assert.assertTrue("Check if only one file is XML well-formed and has .xml extension.", list.size() == 1);
 
         final String entityIDExpectedWellFormedXmlExtensionFile = "http://eidasnode:8889/EidasNode/ServiceMetadata33";
         final String entityID = list.get(0).getEntityDescriptors().get(0).getEntityID();
-        final boolean isCorrectEntityId= StringUtils.equals(entityID, entityIDExpectedWellFormedXmlExtensionFile);
+        final boolean isCorrectEntityId = StringUtils.equals(entityID, entityIDExpectedWellFormedXmlExtensionFile);
 
-        Assert.assertTrue("check if entityID matches the one of XML well-formed and with .xml extension file.",isCorrectEntityId);
+        Assert.assertTrue("check if entityID matches the one of XML well-formed and with .xml extension file.", isCorrectEntityId);
     }
 
 

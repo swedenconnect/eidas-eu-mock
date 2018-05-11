@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,26 +30,30 @@ import org.opensaml.saml1.core.SubjectConfirmation;
  */
 public class SubjectSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SubjectSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML1_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
         validator = new SubjectSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
 
         Subject subject = (Subject) target;
-        
+
         QName qname = new QName(SAMLConstants.SAML1_NS, NameIdentifier.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        subject.setNameIdentifier((NameIdentifier)buildXMLObject(qname));
+        subject.setNameIdentifier((NameIdentifier) buildXMLObject(qname));
         qname = new QName(SAMLConstants.SAML1_NS, SubjectConfirmation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        subject.setSubjectConfirmation((SubjectConfirmation)buildXMLObject(qname));
+        subject.setSubjectConfirmation((SubjectConfirmation) buildXMLObject(qname));
     }
-    
-    public void testMissingNameId(){
+
+    public void testMissingNameId() {
         Subject subject = (Subject) target;
 
         subject.setNameIdentifier(null);
@@ -58,7 +62,7 @@ public class SubjectSchemaTest extends BaseSAMLObjectValidatorTestCase {
         assertValidationFail("No NameIdenitifer and no SubjectConfirmation");
     }
 
-    public void testMissingSubjectConf(){
+    public void testMissingSubjectConf() {
         Subject subject = (Subject) target;
 
         subject.setSubjectConfirmation(null);

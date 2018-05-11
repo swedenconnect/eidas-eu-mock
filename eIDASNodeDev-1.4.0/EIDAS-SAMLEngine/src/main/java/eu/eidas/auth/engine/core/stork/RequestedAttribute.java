@@ -27,13 +27,17 @@ import eu.eidas.auth.engine.core.SAMLCore;
 public interface RequestedAttribute extends eu.eidas.auth.engine.core.RequestedAttribute {
 
 
-    /** Default element name. */
+    /**
+     * Default element name.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.STORK10_NS.getValue(), DEF_LOCAL_NAME,
-	    SAMLCore.STORK10_PREFIX.getValue());
+            SAMLCore.STORK10_PREFIX.getValue());
 
-    /** QName of the XSI type. */
+    /**
+     * QName of the XSI type.
+     */
     QName TYPE_NAME = new QName(SAMLCore.STORK10_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.STORK10_PREFIX.getValue());
+            SAMLCore.STORK10_PREFIX.getValue());
 
 
 }

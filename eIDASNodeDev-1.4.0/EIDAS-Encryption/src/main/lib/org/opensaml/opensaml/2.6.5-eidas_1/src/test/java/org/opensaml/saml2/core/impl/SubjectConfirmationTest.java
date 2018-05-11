@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,26 +33,36 @@ import org.w3c.dom.Document;
  */
 public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Method value */
+    /**
+     * Expected Method value
+     */
     private String expectedMethod;
-    
-    /** File with test data for EncryptedID use case. */
+
+    /**
+     * File with test data for EncryptedID use case.
+     */
     private String childElementsWithEncryptedIDFile;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SubjectConfirmationTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/SubjectConfirmation.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/SubjectConfirmationChildElements.xml";
         childElementsWithEncryptedIDFile = "/data/org/opensaml/saml2/core/impl/SubjectConfirmationChildElementsWithEncryptedID.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedMethod = "conf method";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) unmarshallElement(singleElementFile);
 
@@ -60,12 +70,16 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Method not as expected", expectedMethod, method);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, SubjectConfirmation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) buildXMLObject(qname);
@@ -74,12 +88,16 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, subjectConfirmation);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) unmarshallElement(childElementsFile);
 
@@ -87,20 +105,22 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
         assertNotNull("SubjectConfirmationData element not present", subjectConfirmation.getSubjectConfirmationData());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, SubjectConfirmation.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) buildXMLObject(qname);
 
         QName nameIDQName = new QName(SAMLConstants.SAML20_NS, NameID.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         subjectConfirmation.setNameID((NameID) buildXMLObject(nameIDQName));
-        
+
         QName subjectConfirmationDataQName = new QName(SAMLConstants.SAML20_NS, SubjectConfirmationData.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         subjectConfirmation.setSubjectConfirmationData((SubjectConfirmationData) buildXMLObject(subjectConfirmationDataQName));
 
         assertEquals(expectedChildElementsDOM, subjectConfirmation);
     }
-    
+
     public void testChildElementsWithEncryptedIDUnmarshall() {
         SubjectConfirmation subjectConfirmation = (SubjectConfirmation) unmarshallElement(childElementsWithEncryptedIDFile);
 
@@ -116,10 +136,10 @@ public class SubjectConfirmationTest extends BaseSAMLObjectProviderTestCase {
 
         QName encryptedIDQName = new QName(SAMLConstants.SAML20_NS, EncryptedID.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         subjectConfirmation.setEncryptedID((EncryptedID) buildXMLObject(encryptedIDQName));
-        
+
         QName subjectConfirmationDataQName = new QName(SAMLConstants.SAML20_NS, SubjectConfirmationData.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         subjectConfirmation.setSubjectConfirmationData((SubjectConfirmationData) buildXMLObject(subjectConfirmationDataQName));
-        
+
         Document expectedChildElementsWithEncryptedID = parser.parse(SubjectConfirmationTest.class
                 .getResourceAsStream(childElementsWithEncryptedIDFile));
         assertEquals(expectedChildElementsWithEncryptedID, subjectConfirmation);

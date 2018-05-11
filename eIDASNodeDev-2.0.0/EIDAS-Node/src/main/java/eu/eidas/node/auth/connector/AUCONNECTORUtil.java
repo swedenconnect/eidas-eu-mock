@@ -38,7 +38,7 @@ import eu.eidas.node.auth.AUNODEUtil;
  * a loaded configuration file or to validate the SP.
  *
  * @author ricardo.ferreira@multicert.com, renato.portela@multicert.com, luis.felix@multicert.com,
- *         hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
+ * hugo.magalhaes@multicert.com, paulo.ribeiro@multicert.com
  * @version $Revision: 1.7 $, $Date: 2011-02-18 02:02:39 $
  */
 public final class AUCONNECTORUtil extends AUNODEUtil {
@@ -185,7 +185,7 @@ public final class AUCONNECTORUtil extends AUNODEUtil {
             return false;
         }
         LOG.trace("BUSINESS EXCEPTION : " + spID + " is trustable and has either a valid QAALevel: " + spQAALevel
-                          + " or a valid LoA: " + spLoA);
+                + " or a valid LoA: " + spLoA);
         return true;
     }
 
@@ -203,7 +203,7 @@ public final class AUCONNECTORUtil extends AUNODEUtil {
     /**
      * Checks if the requested SP's QAALevel is less than configured SP's QAALevel.
      *
-     * @param spQAALevel The QAA Level of the SP.
+     * @param spQAALevel   The QAA Level of the SP.
      * @param confQAALevel The QAA Level from the configurations.
      * @return True if spQAALevel is valid. False otherwise.
      */

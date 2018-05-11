@@ -38,7 +38,7 @@ public class SpecificProxyServiceApplicationContextProvider implements Applicati
         SpecificProxyServiceApplicationContextProvider.setGlobalAppContext(ctx);
     }
 
-    private static void setGlobalAppContext(ApplicationContext ctx){
+    private static void setGlobalAppContext(ApplicationContext ctx) {
         applicationContext = ctx;
     }
 }

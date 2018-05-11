@@ -17,6 +17,6 @@
   --%>
 <div class="col-md-6">
     <div class="illustration">
-      <h1><span class="demo-name">SP</span></h1>
+        <h1><span class="demo-name">SP</span></h1>
     </div>
 </div>

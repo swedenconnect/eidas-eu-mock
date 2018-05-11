@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
  */
 public enum NodeSpecificViewNames {
 
-    SPECIFIC_SP_RESPONSE ("/EidasNode/ConnectorResponse"),
+    SPECIFIC_SP_RESPONSE("/EidasNode/ConnectorResponse"),
 
     IDP_REQUEST("/EidasNode/ProxyServiceRequest"),
 

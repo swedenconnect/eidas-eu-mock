@@ -38,7 +38,7 @@ public final class ProtocolEngineTest {
                 .providerName("Prov")
                 .assertionConsumerServiceURL("https://source.europa.eu/metadata")
                 .requestedAttributes(ImmutableAttributeMap.of(EidasSpec.Definitions.PERSON_IDENTIFIER,
-                                                              new StringAttributeValue[] {}))
+                        new StringAttributeValue[]{}))
                 .build();
 
         IRequestMessage requestMessage =
@@ -50,7 +50,7 @@ public final class ProtocolEngineTest {
                 .inResponseTo(request.getId())
                 .issuer("https://destination.europa.eu/metadata")
                 .attributes(ImmutableAttributeMap.of(EidasSpec.Definitions.PERSON_IDENTIFIER,
-                                                     new StringAttributeValue("LU/BE/1", false)))
+                        new StringAttributeValue("LU/BE/1", false)))
                 .build();
 
         IResponseMessage responseMessage = protocolEngine.generateResponseMessage(request, response, true, "127.0.0.1");

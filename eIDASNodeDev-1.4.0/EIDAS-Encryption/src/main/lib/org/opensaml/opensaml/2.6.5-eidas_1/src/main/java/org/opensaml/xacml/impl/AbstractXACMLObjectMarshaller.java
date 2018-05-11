@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,24 +27,22 @@ import org.w3c.dom.Element;
  * the boilerplate code for Marshallers.
  */
 public abstract class AbstractXACMLObjectMarshaller extends AbstractXMLObjectMarshaller {
-    
+
     /**
      * Constructor.
-     *
      */
     public AbstractXACMLObjectMarshaller() {
         super();
     }
-    
+
     /**
      * Constructor.
-     * 
-     * @deprecated no replacement
-     * 
+     *
      * @param targetNamespaceURI the namespace URI of either the schema type QName or element QName of the elements this
-     *            marshaller operates on
-     * @param targetLocalName the local name of either the schema type QName or element QName of the elements this
-     *            marshaller operates on
+     *                           marshaller operates on
+     * @param targetLocalName    the local name of either the schema type QName or element QName of the elements this
+     *                           marshaller operates on
+     * @deprecated no replacement
      */
     protected AbstractXACMLObjectMarshaller(String targetNamespaceURI, String targetLocalName) {
         super(targetNamespaceURI, targetLocalName);
@@ -53,7 +51,7 @@ public abstract class AbstractXACMLObjectMarshaller extends AbstractXMLObjectMar
     /**
      * No-op method. Extending implementations should override this method if they have attributes to marshall into the
      * Element.
-     * 
+     * <p>
      * {@inheritDoc}
      */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
@@ -63,7 +61,7 @@ public abstract class AbstractXACMLObjectMarshaller extends AbstractXMLObjectMar
     /**
      * No-op method. Extending implementations should override this method if they have text content to marshall into
      * the Element.
-     * 
+     * <p>
      * {@inheritDoc}
      */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {

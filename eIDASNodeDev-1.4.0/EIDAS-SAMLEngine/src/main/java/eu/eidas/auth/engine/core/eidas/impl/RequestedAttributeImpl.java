@@ -31,10 +31,9 @@ import javax.annotation.Nullable;
 
 /**
  * The Class RequestedAttributeImpl.
- *
  */
 public class RequestedAttributeImpl extends AbstractSAMLObject implements
-	RequestedAttribute {
+        RequestedAttribute {
 
     /**
      * The attribute values.
@@ -43,45 +42,41 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
 
     /**
      * The friendly name.
-     *
      */
     private String friendlyName;
 
     /**
      * The is required.
-    */
+     */
     private String isRequired;
 
     /**
      * The name.
-     *
      */
     private String name;
 
     /**
      * The name format.
-     *
      */
     private String nameFormat;
 
     /**
      * The unknown attributes.
-     *
      */
     private AttributeMap unknownAttributes;
 
     /**
      * Instantiates a new requested attribute impl.
      *
-     * @param namespaceURI the namespace uri
+     * @param namespaceURI     the namespace uri
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected RequestedAttributeImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
-	unknownAttributes = new AttributeMap(this);
-	attributeValues = new XMLObjectChildrenList<XMLObject>(this);
+                                     final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
+        unknownAttributes = new AttributeMap(this);
+        attributeValues = new XMLObjectChildrenList<XMLObject>(this);
     }
 
 
@@ -91,7 +86,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @return the attribute values
      */
     public final List<XMLObject> getAttributeValues() {
-	return attributeValues;
+        return attributeValues;
     }
 
     /**
@@ -100,7 +95,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @return the friendly name.
      */
     public final String getFriendlyName() {
-	return friendlyName;
+        return friendlyName;
     }
 
 
@@ -120,7 +115,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @return the XSBoolean if it's required.
      */
     public final String getIsRequiredXSBoolean() {
-	return isRequired;
+        return isRequired;
     }
 
 
@@ -130,7 +125,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @return the name
      */
     public final String getName() {
-	return name;
+        return name;
     }
 
 
@@ -140,7 +135,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @return the name format.
      */
     public final String getNameFormat() {
-	return nameFormat;
+        return nameFormat;
     }
 
     /**
@@ -149,9 +144,9 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @return the list of XMLObject.
      */
     public final List<XMLObject> getOrderedChildren() {
-	final List<XMLObject> children = new ArrayList<XMLObject>();
-	children.addAll(attributeValues);
-	return Collections.unmodifiableList(children);
+        final List<XMLObject> children = new ArrayList<XMLObject>();
+        children.addAll(attributeValues);
+        return Collections.unmodifiableList(children);
     }
 
     /**
@@ -160,7 +155,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @return the attribute map
      */
     public final AttributeMap getUnknownAttributes() {
-	return unknownAttributes;
+        return unknownAttributes;
     }
 
     /**
@@ -169,16 +164,17 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @param newFriendlyName the new friendly name format
      */
     public final void setFriendlyName(final String newFriendlyName) {
-	this.friendlyName = prepareForAssignment(this.friendlyName,
-		newFriendlyName);
+        this.friendlyName = prepareForAssignment(this.friendlyName,
+                newFriendlyName);
     }
 
     /**
      * Set new boolean value isRequired.
+     *
      * @param newIsRequired then new value
      */
     public final void setIsRequired(final String newIsRequired) {
-	isRequired = prepareForAssignment(this.isRequired, newIsRequired);
+        isRequired = prepareForAssignment(this.isRequired, newIsRequired);
 
     }
 
@@ -188,7 +184,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @param newName the new name
      */
     public final void setName(final String newName) {
-	this.name = prepareForAssignment(this.name, newName);
+        this.name = prepareForAssignment(this.name, newName);
     }
 
     /**
@@ -197,7 +193,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @param newNameFormat the new name format
      */
     public final void setNameFormat(final String newNameFormat) {
-	this.nameFormat = prepareForAssignment(this.nameFormat, newNameFormat);
+        this.nameFormat = prepareForAssignment(this.nameFormat, newNameFormat);
     }
 
     /**
@@ -206,7 +202,7 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
      * @param newUnknownAttr the new unknown attributes
      */
     public final void setUnknownAttributes(final AttributeMap newUnknownAttr) {
-	this.unknownAttributes = newUnknownAttr;
+        this.unknownAttributes = newUnknownAttr;
     }
 
     @Override
@@ -215,12 +211,12 @@ public class RequestedAttributeImpl extends AbstractSAMLObject implements
     }
 
     @Override
-    public void setIsRequired(@Nullable  Boolean aBoolean) {
+    public void setIsRequired(@Nullable Boolean aBoolean) {
         this.isRequired = String.valueOf(aBoolean);
     }
 
     @Override
-    public void setIsRequired(@ Nullable XSBooleanValue xsBooleanValue) {
+    public void setIsRequired(@Nullable XSBooleanValue xsBooleanValue) {
         this.isRequired = String.valueOf(xsBooleanValue);
     }
 

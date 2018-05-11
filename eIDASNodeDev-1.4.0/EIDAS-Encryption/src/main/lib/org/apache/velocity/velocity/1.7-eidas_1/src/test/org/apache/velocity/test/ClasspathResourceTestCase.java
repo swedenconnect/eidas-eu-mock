@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -40,9 +40,8 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:daveb@miceda-data.com">Dave Bryson</a>
  * @version $Id: ClasspathResourceTestCase.java 704299 2008-10-14 03:13:16Z nbubna $
  */
-public class ClasspathResourceTestCase extends BaseTestCase
-{
-     /**
+public class ClasspathResourceTestCase extends BaseTestCase {
+    /**
      * VTL file extension.
      */
     private static final String TMPL_FILE_EXT = "vm";
@@ -70,14 +69,12 @@ public class ClasspathResourceTestCase extends BaseTestCase
     /**
      * Default constructor.
      */
-    public ClasspathResourceTestCase(String name)
-    {
+    public ClasspathResourceTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         assureResultsDirectoryExists(RESULTS_DIR);
 
         Velocity.setProperty(Velocity.RESOURCE_LOADER, "classpath");
@@ -104,17 +101,15 @@ public class ClasspathResourceTestCase extends BaseTestCase
         Velocity.init();
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(ClasspathResourceTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testClasspathResource ()
-            throws Exception
-    {
+    public void testClasspathResource()
+            throws Exception {
         /*
          *  lets ensure the results directory exists
          */
@@ -127,8 +122,8 @@ public class ClasspathResourceTestCase extends BaseTestCase
         //                getFileName(null, "template/test2", TMPL_FILE_EXT));
 
         FileOutputStream fos1 =
-            new FileOutputStream (
-                getFileName(RESULTS_DIR, "test1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULTS_DIR, "test1", RESULT_FILE_EXT));
 
         // Uncomment when http://jira.codehaus.org/browse/MPTEST-57 has been resolved
         //            FileOutputStream fos2 =
@@ -154,11 +149,10 @@ public class ClasspathResourceTestCase extends BaseTestCase
         //            writer2.flush();
         //            writer2.close();
 
-        if (!isMatch(RESULTS_DIR,COMPARE_DIR,"test1",RESULT_FILE_EXT,CMP_FILE_EXT)
-                // Uncomment when http://jira.codehaus.org/browse/MPTEST-57 has been resolved
-                //                || !isMatch(RESULTS_DIR,COMPARE_DIR,"test2",RESULT_FILE_EXT,CMP_FILE_EXT)
-            )
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "test1", RESULT_FILE_EXT, CMP_FILE_EXT)
+            // Uncomment when http://jira.codehaus.org/browse/MPTEST-57 has been resolved
+            //                || !isMatch(RESULTS_DIR,COMPARE_DIR,"test2",RESULT_FILE_EXT,CMP_FILE_EXT)
+                ) {
             fail("Output is incorrect!");
         }
     }

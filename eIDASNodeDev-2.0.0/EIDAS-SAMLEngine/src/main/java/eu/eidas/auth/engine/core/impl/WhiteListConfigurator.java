@@ -104,7 +104,9 @@ public final class WhiteListConfigurator {
         }
 
         ImmutableSet<String> set = allowed.build();
-        if (set.isEmpty()) { return defaultWhiteList; }
+        if (set.isEmpty()) {
+            return defaultWhiteList;
+        }
         return set;
     }
 

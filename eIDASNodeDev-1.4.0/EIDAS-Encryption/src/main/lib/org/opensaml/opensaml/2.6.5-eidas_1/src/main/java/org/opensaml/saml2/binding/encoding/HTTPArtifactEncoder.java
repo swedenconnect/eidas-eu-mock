@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -46,30 +46,42 @@ import org.slf4j.LoggerFactory;
  */
 public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPArtifactEncoder.class);
 
-    /** Whether the POST encoding should be used, instead of GET. */
+    /**
+     * Whether the POST encoding should be used, instead of GET.
+     */
     private boolean postEncoding;
 
-    /** Velocity engine used to evaluate the template when performing POST encoding. */
+    /**
+     * Velocity engine used to evaluate the template when performing POST encoding.
+     */
     private VelocityEngine velocityEngine;
 
-    /** ID of the velocity template used when performing POST encoding. */
+    /**
+     * ID of the velocity template used when performing POST encoding.
+     */
     private String velocityTemplateId;
 
-    /** SAML artifact map used to store created artifacts for later retrieval. */
+    /**
+     * SAML artifact map used to store created artifacts for later retrieval.
+     */
     private SAMLArtifactMap artifactMap;
 
-    /** Default artifact type to use when encoding messages. */
+    /**
+     * Default artifact type to use when encoding messages.
+     */
     private byte[] defaultArtifactType;
 
     /**
      * Constructor.
-     * 
-     * @param engine velocity engine used to construct the POST form
+     *
+     * @param engine   velocity engine used to construct the POST form
      * @param template ID of velocity template used to construct the POST form
-     * @param map artifact map used to store artifact/message bindings
+     * @param map      artifact map used to store artifact/message bindings
      */
     public HTTPArtifactEncoder(VelocityEngine engine, String template, SAMLArtifactMap map) {
         super();
@@ -80,14 +92,16 @@ public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
         defaultArtifactType = SAML2ArtifactType0004.TYPE_CODE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_ARTIFACT_BINDING_URI;
     }
 
     /**
      * Gets whether the encoder will encode the artifact via POST encoding.
-     * 
+     *
      * @return true if POST encoding will be used, false if GET encoding will be used
      */
     public boolean isPostEncoding() {
@@ -96,24 +110,30 @@ public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Sets whether the encoder will encode the artifact via POST encoding.
-     * 
+     *
      * @param post true if POST encoding will be used, false if GET encoding will be used
      */
     public void setPostEncoding(boolean post) {
         postEncoding = post;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageConfidentiality(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageIntegrity(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doEncode(MessageContext messageContext) throws MessageEncodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this encoder only support SAMLMessageContext");
@@ -140,10 +160,9 @@ public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Performs HTTP POST based encoding.
-     * 
+     *
      * @param artifactContext current request context
-     * @param outTransport outbound HTTP transport
-     * 
+     * @param outTransport    outbound HTTP transport
      * @throws MessageEncodingException thrown if there is a problem POST encoding the artifact
      */
     protected void postEncode(SAMLMessageContext artifactContext, HTTPOutTransport outTransport)
@@ -178,10 +197,9 @@ public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Performs HTTP GET based encoding.
-     * 
+     *
      * @param artifactContext current request context
-     * @param outTransport outbound HTTP transport
-     * 
+     * @param outTransport    outbound HTTP transport
      * @throws MessageEncodingException thrown if there is a problem GET encoding the artifact
      */
     protected void getEncode(SAMLMessageContext artifactContext, HTTPOutTransport outTransport)
@@ -193,7 +211,7 @@ public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
         List<Pair<String, String>> params = urlBuilder.getQueryParams();
 
         AbstractSAMLArtifact artifact = buildArtifact(artifactContext);
-        if(artifact == null){
+        if (artifact == null) {
             log.error("Unable to build artifact for message to relying party");
             throw new MessageEncodingException("Unable to builder artifact for message to relying party");
         }
@@ -208,11 +226,9 @@ public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Builds the SAML 2 artifact for the outgoing message.
-     * 
+     *
      * @param artifactContext current request context
-     * 
      * @return SAML 2 artifact for outgoing message
-     * 
      * @throws MessageEncodingException thrown if the artifact can not be created
      */
     protected AbstractSAML2Artifact buildArtifact(SAMLMessageContext artifactContext) throws MessageEncodingException {
@@ -227,7 +243,7 @@ public class HTTPArtifactEncoder extends BaseSAML2MessageEncoder {
         }
 
         AbstractSAML2Artifact artifact = artifactBuilder.buildArtifact(artifactContext);
-        if(artifact == null){
+        if (artifact == null) {
             log.error("Unable to build artifact for message to relying party");
             throw new MessageEncodingException("Unable to builder artifact for message to relying party");
         }

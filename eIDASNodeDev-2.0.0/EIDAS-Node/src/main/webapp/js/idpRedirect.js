@@ -25,9 +25,12 @@ function submitIdpChoiceAction() {
     idpForm.action = document.getElementById("idpList").value;
     document.getElementsByName('redirectForm')[0].submit();
 }
-function init_idpRedirect () {
+
+function init_idpRedirect() {
     var buttonSubmitIdp = document.getElementById("submit_idp_choice");
-    buttonSubmitIdp.addEventListener ("click", function () {submitIdpChoiceAction()});
+    buttonSubmitIdp.addEventListener("click", function () {
+        submitIdpChoiceAction()
+    });
 }
 
 init_idpRedirect();

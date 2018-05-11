@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,40 +28,47 @@ import org.opensaml.saml2.core.StatusMessage;
  * {@link org.opensaml.saml2.core.impl.StatusMessageImpl}.
  */
 public class StatusMessageTest extends BaseSAMLObjectProviderTestCase {
-    
-   /** The expected message*/ 
+
+    /**
+     * The expected message
+     */
     protected String expectedMessage;
-    
+
     /**
      * Constructor
-     *
      */
     public StatusMessageTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/StatusMessage.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectedMessage = "Status Message";
     }
-    
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, StatusMessage.DEFAULT_ELEMENT_LOCAL_NAME);
         StatusMessage message = (StatusMessage) buildXMLObject(qname);
-        
+
         message.setMessage(expectedMessage);
-        
+
         assertEquals(expectedDOM, message);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         StatusMessage message = (StatusMessage) unmarshallElement(singleElementFile);
-        
-        assertEquals("Unmarshalled status message was not the expected value", expectedMessage, message.getMessage());   
+
+        assertEquals("Unmarshalled status message was not the expected value", expectedMessage, message.getMessage());
     }
 }

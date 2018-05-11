@@ -61,9 +61,9 @@ public final class AttributeDefinitionTest {
     @Test
     public void testGetName() throws Exception {
         assertThat(CURRENT_FAMILY_NAME.getNameUri(),
-                   is(new URI("http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName")));
+                is(new URI("http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName")));
         assertThat(CURRENT_GIVEN_NAME.getNameUri(),
-                   is(new URI("http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName")));
+                is(new URI("http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName")));
     }
 
     @Test
@@ -86,9 +86,9 @@ public final class AttributeDefinitionTest {
     @Test
     public void testGetXmlType() throws Exception {
         assertThat(CURRENT_FAMILY_NAME.getXmlType(),
-                   is(new QName("http://eidas.europa.eu/attributes/naturalperson", "CurrentFamilyNameType")));
+                is(new QName("http://eidas.europa.eu/attributes/naturalperson", "CurrentFamilyNameType")));
         assertThat(CURRENT_GIVEN_NAME.getXmlType(),
-                   is(new QName("http://eidas.europa.eu/attributes/naturalperson", "CurrentGivenNameType")));
+                is(new QName("http://eidas.europa.eu/attributes/naturalperson", "CurrentGivenNameType")));
     }
 
     @Test
@@ -133,7 +133,7 @@ public final class AttributeDefinitionTest {
     @Test
     public void testToString() throws Exception {
         assertEquals("AttributeDefinition{nameUri='http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName', friendlyName='FamilyName', personType=NaturalPerson, required=true, transliterationMandatory=false, uniqueIdentifier=false, xmlType='{http://eidas.europa.eu/attributes/naturalperson}CurrentFamilyNameType', attributeValueMarshaller='eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller'}",
-                     CURRENT_FAMILY_NAME.toString());
+                CURRENT_FAMILY_NAME.toString());
     }
 
     @Test

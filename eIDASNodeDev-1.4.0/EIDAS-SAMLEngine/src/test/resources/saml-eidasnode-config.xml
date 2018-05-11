@@ -5,7 +5,7 @@
             xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
             xmlns="http://www.opensaml.org/xmltooling-config">
 
-<!-- SAML 2.0 Protocol Object providers -->
+    <!-- SAML 2.0 Protocol Object providers -->
 
     <!--  SAML 2.0 Schema Validation Rules -->
 

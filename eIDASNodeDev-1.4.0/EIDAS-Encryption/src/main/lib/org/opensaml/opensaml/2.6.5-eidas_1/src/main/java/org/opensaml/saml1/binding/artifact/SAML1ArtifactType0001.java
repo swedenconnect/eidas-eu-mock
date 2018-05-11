@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,28 +25,35 @@ import java.util.Arrays;
  */
 public class SAML1ArtifactType0001 extends AbstractSAML1Artifact {
 
-    /** Artifact type code (0x0001). */
-    public static final byte[] TYPE_CODE = { 0, 1 };
+    /**
+     * Artifact type code (0x0001).
+     */
+    public static final byte[] TYPE_CODE = {0, 1};
 
-    /** 20 byte artifact source ID. */
+    /**
+     * 20 byte artifact source ID.
+     */
     private byte[] sourceID;
 
-    /** 20 byte assertion handle. */
+    /**
+     * 20 byte assertion handle.
+     */
     private byte[] assertionHandle;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public SAML1ArtifactType0001() {
         super(TYPE_CODE);
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param source 20 byte source ID of the artifact
      * @param handle 20 byte assertion handle of the artifact
-     * 
      * @throws IllegalArgumentException thrown if the given source ID or message handle are not of the current length
-     *             (20 bytes)
+     *                                  (20 bytes)
      */
     public SAML1ArtifactType0001(byte[] source, byte[] handle) {
         super(TYPE_CODE);
@@ -57,20 +64,18 @@ public class SAML1ArtifactType0001 extends AbstractSAML1Artifact {
 
     /**
      * Constructs a SAML 1 artifact from its byte array representation.
-     * 
+     *
      * @param artifact the byte array representing the artifact
-     * 
      * @return the artifact created from the byte array
-     * 
      * @throws IllegalArgumentException thrown if the artifact is not the right type or lenght (42 bytes) or is not of
-     *             the correct type (0x0001)
+     *                                  the correct type (0x0001)
      */
     public static SAML1ArtifactType0001 parseArtifact(byte[] artifact) {
         if (artifact.length != 42) {
             throw new IllegalArgumentException("Artifact length must be 42 bytes it was " + artifact.length + "bytes");
         }
 
-        byte[] typeCode = { artifact[0], artifact[1] };
+        byte[] typeCode = {artifact[0], artifact[1]};
         if (!Arrays.equals(typeCode, TYPE_CODE)) {
             throw new IllegalArgumentException("Artifact is not of appropriate type.");
         }
@@ -86,7 +91,7 @@ public class SAML1ArtifactType0001 extends AbstractSAML1Artifact {
 
     /**
      * Gets the 20 byte source ID of the artifact.
-     * 
+     *
      * @return the source ID of the artifact
      */
     public byte[] getSourceID() {
@@ -95,9 +100,8 @@ public class SAML1ArtifactType0001 extends AbstractSAML1Artifact {
 
     /**
      * Sets the 20 byte source ID of the artifact.
-     * 
+     *
      * @param newSourceID 20 byte source ID of the artifact
-     * 
      * @throws IllegalArgumentException thrown if the given source ID is not 20 bytes
      */
     protected void setSourceID(byte[] newSourceID) {
@@ -109,7 +113,7 @@ public class SAML1ArtifactType0001 extends AbstractSAML1Artifact {
 
     /**
      * Gets the artifiact's 20 byte assertion handle.
-     * 
+     *
      * @return artifiact's 20 byte assertion handle
      */
     public byte[] getAssertionHandle() {
@@ -118,7 +122,7 @@ public class SAML1ArtifactType0001 extends AbstractSAML1Artifact {
 
     /**
      * Sets the artifiact's 20 byte assertion handle.
-     * 
+     *
      * @param handle artifiact's 20 byte assertion handle
      */
     public void setAssertionHandle(byte[] handle) {
@@ -128,7 +132,9 @@ public class SAML1ArtifactType0001 extends AbstractSAML1Artifact {
         assertionHandle = handle;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public byte[] getRemainingArtifact() {
         byte[] remainingArtifact = new byte[40];
 

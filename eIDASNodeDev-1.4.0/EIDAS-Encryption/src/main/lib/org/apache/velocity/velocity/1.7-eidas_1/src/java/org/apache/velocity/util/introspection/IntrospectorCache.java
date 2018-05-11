@@ -16,7 +16,7 @@ package org.apache.velocity.util.introspection;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -34,7 +34,7 @@ public interface IntrospectorCache {
     void clear();
 
     /**
-     * Lookup a given Class object in the cache. If it does not exist, 
+     * Lookup a given Class object in the cache. If it does not exist,
      * check whether this is due to a class change and purge the caches
      * eventually.
      *

@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,27 +24,24 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-630.
  */
-public class Velocity630TestCase extends BaseTestCase
-{
-    public Velocity630TestCase(String name)
-    {
+public class Velocity630TestCase extends BaseTestCase {
+    public Velocity630TestCase(String name) {
         super(name);
         DEBUG = false;
     }
 
-    public void test630()
-    {
+    public void test630() {
         // this template is logically equivalent to the demo in VELOCITY-630
         String template = "#macro( test $a )" +
-                            "#foreach( $i in [1..3] )" +
-                                "$a" +
-                            "#end" +
-                          "#end" +
-                          "#test( \"#if($i == 2)" +
-                                        " yes" +
-                                   "#else" +
-                                        " no" +
-                                   "#end\" )";
+                "#foreach( $i in [1..3] )" +
+                "$a" +
+                "#end" +
+                "#end" +
+                "#test( \"#if($i == 2)" +
+                " yes" +
+                "#else" +
+                " no" +
+                "#end\" )";
         assertEvalEquals(" no yes no", template);
     }
 

@@ -24,16 +24,16 @@ public class EidasAttributeTestUtil {
     }
 
     public static AttributeDefinition<String> newEidasAttributeDefinition(String canoniclaName,
-                                                                  String friendlyName,
-                                                                  boolean required) {
+                                                                          String friendlyName,
+                                                                          boolean required) {
         return newEidasAttributeDefinition(canoniclaName, friendlyName, required, false, false);
     }
 
     public static AttributeDefinition<String> newEidasAttributeDefinition(String canoniclaName,
-                                                                  String friendlyName,
-                                                                  boolean required,
-                                                                  boolean uniqueIdentifier,
-                                                                  boolean transliterationMandatory) {
+                                                                          String friendlyName,
+                                                                          boolean required,
+                                                                          boolean uniqueIdentifier,
+                                                                          boolean transliterationMandatory) {
         return new AttributeDefinition.Builder<String>()
                 .nameUri(NaturalPersonSpec.Namespace.URI + "/" + canoniclaName)
                 .friendlyName(friendlyName)
@@ -47,8 +47,8 @@ public class EidasAttributeTestUtil {
     }
 
     public static AttributeDefinition<String> newAttributeDefinition(String fullName,
-                                                                  String friendlyName,
-                                                                  boolean required) {
+                                                                     String friendlyName,
+                                                                     boolean required) {
         return new AttributeDefinition.Builder<String>().nameUri(fullName)
                 .friendlyName(friendlyName)
                 .personType(PersonType.NATURAL_PERSON)

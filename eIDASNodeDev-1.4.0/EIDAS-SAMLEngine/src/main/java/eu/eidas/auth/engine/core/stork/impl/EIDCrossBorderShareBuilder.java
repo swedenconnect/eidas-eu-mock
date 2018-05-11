@@ -24,29 +24,29 @@ import eu.eidas.auth.engine.core.stork.EIDCrossBorderShare;
  *
  * @author fjquevedo
  */
-public class EIDCrossBorderShareBuilder extends	AbstractSAMLObjectBuilder<EIDCrossBorderShare> {
+public class EIDCrossBorderShareBuilder extends AbstractSAMLObjectBuilder<EIDCrossBorderShare> {
 
 
-	/**
-	 * Builds the object.
-	 *
-	 * @return the identifier cross border share
-	 */
-	public final EIDCrossBorderShare buildObject() {
-		return buildObject(EIDCrossBorderShare.DEF_ELEMENT_NAME);
-	}
+    /**
+     * Builds the object.
+     *
+     * @return the identifier cross border share
+     */
+    public final EIDCrossBorderShare buildObject() {
+        return buildObject(EIDCrossBorderShare.DEF_ELEMENT_NAME);
+    }
 
 
-	/**
-	 * Builds the object.
-	 *
-	 * @param namespaceURI the namespace uri
-	 * @param localName the local name
-	 * @param namespacePrefix the namespace prefix
-	 * @return the eID cross border share
-	 */
-	public final EIDCrossBorderShare buildObject(final String namespaceURI,
-			final String localName, final String namespacePrefix) {
-		return new EIDCrossBorderShareImpl(namespaceURI, localName, namespacePrefix);
-	}
+    /**
+     * Builds the object.
+     *
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
+     * @param namespacePrefix the namespace prefix
+     * @return the eID cross border share
+     */
+    public final EIDCrossBorderShare buildObject(final String namespaceURI,
+                                                 final String localName, final String namespacePrefix) {
+        return new EIDCrossBorderShareImpl(namespaceURI, localName, namespacePrefix);
+    }
 }

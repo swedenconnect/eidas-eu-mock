@@ -26,8 +26,8 @@
 <meta name="author" content="CEF eID Team">
 <link rel="stylesheet" href="resource/skin0/css/bootstrap.min.css">
 <link rel="stylesheet" href="resource/skin0/css/customSpecific.css">
-<link rel="stylesheet" href="resource/skin0/css/switchery.min.css" />
-<link rel="stylesheet" href="resource/skin0/css/awesome-bootstrap-checkbox.css" />
+<link rel="stylesheet" href="resource/skin0/css/switchery.min.css"/>
+<link rel="stylesheet" href="resource/skin0/css/awesome-bootstrap-checkbox.css"/>
 <link rel="apple-touch-icon" sizes="57x57" href="resource/skin0/favicon/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="resource/skin0/favicon/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="resource/skin0/favicon/apple-touch-icon-72x72.png">
@@ -41,7 +41,8 @@
 <link rel="icon" type="image/png" href="resource/skin0/favicon/android-chrome-192x192.png" sizes="192x192">
 <link rel="icon" type="image/png" href="resource/skin0/favicon/favicon-96x96.png" sizes="96x96">
 <link rel="icon" type="image/png" href="resource/skin0/favicon/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="manifest.json"> <!-- TODO : add resource-->
+<link rel="manifest" href="manifest.json">
+<!-- TODO : add resource-->
 <meta name="msapplication-TileColor" content="#ffc40d">
 <meta name="msapplication-TileImage" content="mstile-144x144.png">
 <meta name="theme-color" content="#ffffff">

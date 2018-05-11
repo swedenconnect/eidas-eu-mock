@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,42 +28,56 @@ import org.opensaml.xml.XMLObject;
  */
 public class NameIdentifierImpl extends AbstractSAMLObject implements NameIdentifier {
 
-    /** Contents of the NameQualifierAttribute */
+    /**
+     * Contents of the NameQualifierAttribute
+     */
     String nameQualifier;
 
-    /** Contents of the Format */
+    /**
+     * Contents of the Format
+     */
     String format;
 
-    /** Contents of the elemen body */
+    /**
+     * Contents of the elemen body
+     */
     String nameIdentifier;
 
     /**
      * Constructor
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected NameIdentifierImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getNameQualifier() {
         return nameQualifier;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getFormat() {
         return this.format;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getNameIdentifier() {
         return nameIdentifier;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNameQualifier(String nameQualifier) {
         this.nameQualifier = prepareForAssignment(this.nameQualifier, nameQualifier);
     }
@@ -76,7 +90,9 @@ public class NameIdentifierImpl extends AbstractSAMLObject implements NameIdenti
         this.nameIdentifier = prepareForAssignment(this.nameIdentifier, nameIdentifier);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return null;
     }

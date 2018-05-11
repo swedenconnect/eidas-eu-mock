@@ -72,7 +72,7 @@ public class CachingMetadataFetcher extends AbstractCachingMetadataFetcher imple
             } catch (EIDASSAMLEngineException e) {
                 LOG.error("Signature validation failed for " + url);
                 LOG.error(e.toString());
-                throw(e);
+                throw (e);
             }
         }
         if (null != cache) {

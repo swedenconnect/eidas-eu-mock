@@ -16,12 +16,11 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
 
 
 /**
@@ -32,8 +31,7 @@ import junit.framework.TestSuite;
  * @version $Id: TexenClasspathTestCase.java 463298 2006-10-12 16:10:32Z henning $
  */
 public class TexenClasspathTestCase
-    extends BaseTestCase
-{
+        extends BaseTestCase {
     /**
      * Directory where results are generated.
      */
@@ -46,32 +44,27 @@ public class TexenClasspathTestCase
 
     /**
      * Creates a new instance.
-     *
      */
-    public TexenClasspathTestCase(String name)
-    {
+    public TexenClasspathTestCase(String name) {
         super(name);
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(TexenClasspathTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testTexenClasspath ()
-            throws Exception
-    {
+    public void testTexenClasspath()
+            throws Exception {
         assureResultsDirectoryExists(RESULTS_DIR);
 
-        if (!isMatch(RESULTS_DIR,COMPARE_DIR,"TurbineWeather","java","java") ||
-            !isMatch(RESULTS_DIR,COMPARE_DIR,"TurbineWeatherService","java","java") ||
-            !isMatch(RESULTS_DIR,COMPARE_DIR,"WeatherService","java","java") ||
-            !isMatch(RESULTS_DIR,COMPARE_DIR,"book","txt","txt") ||
-            !isMatch(RESULTS_DIR,COMPARE_DIR,"Test","txt","txt"))
-        {
+        if (!isMatch(RESULTS_DIR, COMPARE_DIR, "TurbineWeather", "java", "java") ||
+                !isMatch(RESULTS_DIR, COMPARE_DIR, "TurbineWeatherService", "java", "java") ||
+                !isMatch(RESULTS_DIR, COMPARE_DIR, "WeatherService", "java", "java") ||
+                !isMatch(RESULTS_DIR, COMPARE_DIR, "book", "txt", "txt") ||
+                !isMatch(RESULTS_DIR, COMPARE_DIR, "Test", "txt", "txt")) {
             fail("Output is incorrect!");
         }
     }

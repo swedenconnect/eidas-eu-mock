@@ -38,8 +38,8 @@ public class SPSectorMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final SPSector spSector = (SPSector) samlObject;
-	XMLHelper.appendTextContent(domElement, spSector.getSPSector());
+                                                final Element domElement) throws MarshallingException {
+        final SPSector spSector = (SPSector) samlObject;
+        XMLHelper.appendTextContent(domElement, spSector.getSPSector());
     }
 }

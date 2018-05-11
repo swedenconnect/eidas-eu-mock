@@ -16,7 +16,7 @@ package org.apache.velocity.anakia;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.util.ArrayList;
@@ -38,13 +38,11 @@ import org.jdom.Element;
  * @author <a href="mailto:szegedia@freemail.hu">Attila Szegedi</a>
  * @version $Id: TreeWalker.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class TreeWalker
-{
+public class TreeWalker {
     /**
      * Empty constructor
      */
-    public TreeWalker()
-    {
+    public TreeWalker() {
         // Left blank
     }
 
@@ -54,22 +52,20 @@ public class TreeWalker
      * @param e the starting Element node
      * @return Vector a vector of Element nodes
      */
-    public NodeList allElements(Element e)
-    {
+    public NodeList allElements(Element e) {
         ArrayList theElements = new ArrayList();
-        treeWalk (e, theElements);
+        treeWalk(e, theElements);
         return new NodeList(theElements, false);
     }
 
     /**
      * A recursive method to walk the Element tree.
+     *
      * @param Element the current Element
      */
-    private final void treeWalk(Element e, Collection theElements )
-    {
-        for (Iterator i=e.getChildren().iterator(); i.hasNext(); )
-        {
-            Element child = (Element)i.next();
+    private final void treeWalk(Element e, Collection theElements) {
+        for (Iterator i = e.getChildren().iterator(); i.hasNext(); ) {
+            Element child = (Element) i.next();
             theElements.add(child);
             treeWalk(child, theElements);
         }

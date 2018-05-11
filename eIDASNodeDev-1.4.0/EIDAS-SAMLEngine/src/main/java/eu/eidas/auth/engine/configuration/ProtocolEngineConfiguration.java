@@ -16,7 +16,7 @@ import eu.eidas.util.Preconditions;
 
 /**
  * This constitutes the configuration of the {@link eu.eidas.auth.engine.ProtocolEngineI}.
- *
+ * <p>
  * The ProtocolEngineConfiguration is composed of
  * <ol>
  * <li>A unique name (e.g. "MyEngineName" )</li>

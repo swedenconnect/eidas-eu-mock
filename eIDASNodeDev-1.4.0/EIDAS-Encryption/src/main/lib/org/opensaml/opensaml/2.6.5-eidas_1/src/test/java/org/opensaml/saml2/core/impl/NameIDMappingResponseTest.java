@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -33,7 +33,6 @@ public class NameIDMappingResponseTest extends StatusResponseTestBase {
 
     /**
      * Constructor
-     *
      */
     public NameIDMappingResponseTest() {
         super();
@@ -41,68 +40,82 @@ public class NameIDMappingResponseTest extends StatusResponseTestBase {
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/NameIDMappingResponseOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/NameIDMappingResponseChildElements.xml";
     }
-    
-    
-    /** {@inheritDoc} */
+
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, NameIDMappingResponse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         NameIDMappingResponse resp = (NameIDMappingResponse) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(resp);
-        
+
         assertEquals(expectedDOM, resp);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, NameIDMappingResponse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         NameIDMappingResponse resp = (NameIDMappingResponse) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(resp);
         super.populateOptionalAttributes(resp);
-        
+
         assertEquals(expectedOptionalAttributesDOM, resp);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, NameIDMappingResponse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         NameIDMappingResponse req = (NameIDMappingResponse) buildXMLObject(qname);
-        
+
         super.populateChildElements(req);
-        
+
         QName nameIDQName = new QName(SAMLConstants.SAML20_NS, NameID.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         req.setNameID((NameID) buildXMLObject(nameIDQName));
-        
+
         assertEquals(expectedChildElementsDOM, req);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         NameIDMappingResponse resp = (NameIDMappingResponse) unmarshallElement(singleElementFile);
-        
+
         assertNotNull("NameIDMappingResponse was null", resp);
         super.helperTestSingleElementUnmarshall(resp);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         NameIDMappingResponse resp = (NameIDMappingResponse) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertNotNull("NameIDMappingResponse was null", resp);
         super.helperTestSingleElementOptionalAttributesUnmarshall(resp);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         NameIDMappingResponse resp = (NameIDMappingResponse) unmarshallElement(childElementsFile);
-        
+
         assertNotNull("Identifier was null", resp.getNameID());
         super.helperTestChildElementsUnmarshall(resp);
     }

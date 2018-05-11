@@ -24,7 +24,6 @@ import org.opensaml.saml.common.AbstractSAMLObjectBuilder;
 
 /**
  * The Class RequestedAttributesBuilder.
- *
  */
 public class RequestedAttributesBuilder extends
         AbstractSAMLObjectBuilder<RequestedAttributes> {
@@ -36,21 +35,21 @@ public class RequestedAttributesBuilder extends
      * @return the requested attributes
      */
     public final RequestedAttributes buildObject() {
-	return buildObject(RequestedAttributes.DEF_ELEMENT_NAME);
+        return buildObject(RequestedAttributes.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the requested attributes
      */
     public final RequestedAttributes buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new RequestedAttributesImpl(namespaceURI, localName,
-		namespacePrefix);
+                                                 final String localName, final String namespacePrefix) {
+        return new RequestedAttributesImpl(namespaceURI, localName,
+                namespacePrefix);
     }
 
 }

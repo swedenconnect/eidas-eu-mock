@@ -20,12 +20,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <import resource="classpath:specificProxyServiceEnvironmentContext.xml" />
+    <import resource="classpath:specificProxyServiceEnvironmentContext.xml"/>
 
     <import resource="classpath:specificCommunicationDefinitionApplicationContext.xml"/>
 
     <!-- PROPERTIES -->
-    <bean id="applicationContextProvider" class="member_country_specific.specific.proxyservice.SpecificProxyServiceApplicationContextProvider"/>
+    <bean id="applicationContextProvider"
+          class="member_country_specific.specific.proxyservice.SpecificProxyServiceApplicationContextProvider"/>
 
     <bean id="specificProxyServiceConfigWithPath" class="java.lang.String">
         <constructor-arg value="file:#{specificProxyServiceConfigRepository}#{specificProxyServiceConfigFile}"/>
@@ -36,10 +37,11 @@
     </bean>
 
     <bean id="deploymentSpecificProxyServiceConfig" class="java.lang.String">
-        <constructor-arg value="classpath:deploymentSpecificProxyServiceConfig.properties" />
+        <constructor-arg value="classpath:deploymentSpecificProxyServiceConfig.properties"/>
     </bean>
 
-    <bean id="specificProxyserviceProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+    <bean id="specificProxyserviceProperties"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="ignoreResourceNotFound" value="true"/>
         <property name="order" value="0"/>
@@ -49,7 +51,7 @@
                 <ref bean="deploymentSpecificProxyServiceConfig"/>
             </list>
         </property>
-        <property name="fileEncoding" value="UTF-8" />
+        <property name="fileEncoding" value="UTF-8"/>
     </bean>
 
     <bean id="useDistributedMapsSpecificProxyService" class="java.lang.String">
@@ -66,47 +68,60 @@
         <constructor-arg value="eidasHazelcastInstance"/>
     </bean>
     <!-- production environment hazelcast initializer bean - injected into map providers -->
-    <bean id="eidasHazelcastInstanceInitializer" class=" eu.eidas.auth.commons.cache.HazelcastInstanceInitializer" init-method="initializeInstance" lazy-init="true">
+    <bean id="eidasHazelcastInstanceInitializer" class=" eu.eidas.auth.commons.cache.HazelcastInstanceInitializer"
+          init-method="initializeInstance" lazy-init="true">
         <property name="hazelcastConfigfileName" value="#{eidasConfigRepository}hazelcast.xml"/>
         <property name="hazelcastInstanceName" ref="defaultHazelcastInstance"/>
     </bean>
 
-    <bean id="specificMSIdpRequestCorrelationMap" class="member_country_specific.specific.proxyservice.tx.StoredMSProxyServiceRequestCorrelationMap">
-        <constructor-arg ref="springServiceCMapspecificMSIdpCorProvider#{distributedEnvSuffixSpecificProxyService.toString()}"/>
+    <bean id="specificMSIdpRequestCorrelationMap"
+          class="member_country_specific.specific.proxyservice.tx.StoredMSProxyServiceRequestCorrelationMap">
+        <constructor-arg
+                ref="springServiceCMapspecificMSIdpCorProvider#{distributedEnvSuffixSpecificProxyService.toString()}"/>
     </bean>
-    <bean id="tokenRequestCorrelationMap" class="member_country_specific.specific.proxyservice.tx.StoredMSProxyServiceTokenRequestCorrelationMap">
-        <constructor-arg ref="springServiceCMapspecificMSTokenIdpCorProvider#{distributedEnvSuffixSpecificProxyService.toString()}"/>
+    <bean id="tokenRequestCorrelationMap"
+          class="member_country_specific.specific.proxyservice.tx.StoredMSProxyServiceTokenRequestCorrelationMap">
+        <constructor-arg
+                ref="springServiceCMapspecificMSTokenIdpCorProvider#{distributedEnvSuffixSpecificProxyService.toString()}"/>
     </bean>
-    <bean id="tokenResponseCorrelationMap" class="member_country_specific.specific.proxyservice.tx.StoredMSConsentTokenResponseCorrelationMap">
-        <constructor-arg ref="springServiceCMapspecificMSTokenResponseIdpCorProvider#{distributedEnvSuffixSpecificProxyService.toString()}"/>
+    <bean id="tokenResponseCorrelationMap"
+          class="member_country_specific.specific.proxyservice.tx.StoredMSConsentTokenResponseCorrelationMap">
+        <constructor-arg
+                ref="springServiceCMapspecificMSTokenResponseIdpCorProvider#{distributedEnvSuffixSpecificProxyService.toString()}"/>
     </bean>
 
     <!-- Correlation maps provided by Hazelcast for distributed environment, use these in productions! -->
     <!-- Authreq correlation maps -->
-    <bean id="springServiceCMapspecificMSIdpCorProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+    <bean id="springServiceCMapspecificMSIdpCorProviderProd"
+          class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
         <property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
         <property name="cacheName" value="specificIdpRequestCorrelationCacheService"/>
     </bean>
-    <bean id="springServiceCMapspecificMSTokenIdpCorProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+    <bean id="springServiceCMapspecificMSTokenIdpCorProviderProd"
+          class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
         <property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
         <property name="cacheName" value="specificConsentRequestTokenCorrelationCacheService"/>
     </bean>
-    <bean id="springServiceCMapspecificMSTokenResponseIdpCorProviderProd" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+    <bean id="springServiceCMapspecificMSTokenResponseIdpCorProviderProd"
+          class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
         <property name="hazelcastInstanceInitializer" ref="eidasHazelcastInstanceInitializer"/>
         <property name="cacheName" value="specificConsentResponseTokenCorrelationCacheService"/>
     </bean>
 
     <!-- Correlation maps for simple dev mode -->
     <!-- Authreq correlation maps for DEV -->
-    <bean id="springServiceCMapspecificMSIdpCorProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+    <bean id="springServiceCMapspecificMSIdpCorProviderDev"
+          class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
         <property name="expireAfterAccess" value="1800"/>
         <property name="maximumSize" value="1000"/>
     </bean>
-    <bean id="springServiceCMapspecificMSTokenIdpCorProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+    <bean id="springServiceCMapspecificMSTokenIdpCorProviderDev"
+          class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
         <property name="expireAfterAccess" value="1800"/>
         <property name="maximumSize" value="1000"/>
     </bean>
-    <bean id="springServiceCMapspecificMSTokenResponseIdpCorProviderDev" class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
+    <bean id="springServiceCMapspecificMSTokenResponseIdpCorProviderDev"
+          class="eu.eidas.auth.commons.cache.ConcurrentMapServiceDefaultImpl">
         <property name="expireAfterAccess" value="1800"/>
         <property name="maximumSize" value="1000"/>
     </bean>
@@ -127,12 +142,14 @@
         <constructor-arg value="#{specificProxyServiceConfigRepository}#{specificAdditionalAttributesFile}"/>
     </bean>
 
-    <bean id="springManagedSpecificProxyService" class="member_country_specific.specific.proxyservice.communication.SpecificProxyService" scope="prototype">
+    <bean id="springManagedSpecificProxyService"
+          class="member_country_specific.specific.proxyservice.communication.SpecificProxyService" scope="prototype">
         <property name="specificMSIdpRequestCorrelationMap" ref="specificMSIdpRequestCorrelationMap"/>
         <property name="tokenRequestCorrelationMap" ref="tokenRequestCorrelationMap"/>
         <property name="tokenResponseCorrelationMap" ref="tokenResponseCorrelationMap"/>
         <property name="specificIdpResponseServiceUrl" value="${specific.proxyservice.idp.response.service.url}"/>
-        <property name="defaultSpecificIdpResponseServiceUrl" value="${default.specific.proxyservice.idp.response.service.url}"/>
+        <property name="defaultSpecificIdpResponseServiceUrl"
+                  value="${default.specific.proxyservice.idp.response.service.url}"/>
         <property name="specificProxyServiceDeployedJar" value="${specificProxyServiceDeployedJar}"/>
         <property name="idpUrl" value="${idp.url}"/>
         <property name="specificProxyserviceResponseUrl" value="${specific.proxyservice.response.url}"/>
@@ -140,7 +157,8 @@
         <property name="additionalAttributesFile" ref="specificProxyServiceAdditionalAttributesFileWithPath"/>
         <property name="askConsentRequest" value="${ask.consent.request}"/>
         <property name="askConsentResponse" value="${ask.consent.response}"/>
-        <property name="askConsentResponseShowOnlyEidasAttributes" value="${ask.consent.response.show.only.eidas.attributes}"/>
+        <property name="askConsentResponseShowOnlyEidasAttributes"
+                  value="${ask.consent.response.show.only.eidas.attributes}"/>
         <property name="askConsentResponseShowAttributeValues" value="${ask.consent.response.show.attribute.values}"/>
         <property name="issuerName" value="${issuer.name}"/>
         <property name="consentRequestLightTokenSecret" value="${consent.Request.LightToken.Secret}"/>

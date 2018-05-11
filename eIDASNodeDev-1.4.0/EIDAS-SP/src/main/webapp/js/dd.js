@@ -11,7 +11,7 @@
 var msBeautify = msBeautify || {};
 (function ($) {
     msBeautify = {
-        version: {msDropdown:'3.5.2'},
+        version: {msDropdown: '3.5.2'},
         author: "Marghoob Suleman",
         counter: 20,
         debug: function (v) {
@@ -39,19 +39,32 @@ var msBeautify = msBeautify || {};
     $.extend(true, $.msDropDown, msBeautify);
     $.extend(true, $.msDropdown, msBeautify);
 // make compatibiliy with old and new jquery
-    if ($.fn.prop === undefined) {$.fn.prop = $.fn.attr;}
-    if ($.fn.on === undefined) {$.fn.on = $.fn.bind;$.fn.off = $.fn.unbind;}
+    if ($.fn.prop === undefined) {
+        $.fn.prop = $.fn.attr;
+    }
+    if ($.fn.on === undefined) {
+        $.fn.on = $.fn.bind;
+        $.fn.off = $.fn.unbind;
+    }
     if (typeof $.expr.createPseudo === 'function') {
 //jQuery 1.8 or greater
-        $.expr[':'].Contains = $.expr.createPseudo(function (arg) {return function (elem) { return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0; }; });
+        $.expr[':'].Contains = $.expr.createPseudo(function (arg) {
+            return function (elem) {
+                return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+            };
+        });
     } else {
 //lower version
-        $.expr[':'].Contains = function (a, i, m) {return $(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; };
+        $.expr[':'].Contains = function (a, i, m) {
+            return $(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+        };
     }
+
 //dropdown class
     function dd(element, settings) {
         var settings = $.extend(true,
-            {byJson: {data: null, selectedIndex: 0, name: null, size: 0, multiple: false, width: 250},
+            {
+                byJson: {data: null, selectedIndex: 0, name: null, size: 0, multiple: false, width: 250},
                 mainCSS: 'dd',
                 height: 120, //not using currently
                 visibleRows: 7,
@@ -60,178 +73,241 @@ var msBeautify = msBeautify || {};
                 zIndex: 9999,
                 useSprite: false,
                 animStyle: 'slideDown',
-                event:'click',
+                event: 'click',
                 openDirection: 'auto', //auto || alwaysUp || alwaysDown
                 jsonTitle: true,
                 style: '',
                 disabledOpacity: 0.7,
                 disabledOptionEvents: true,
-                childWidth:0,
-                enableCheckbox:false, //this needs to multiple or it will set element to multiple
-                checkboxNameSuffix:'_mscheck',
-                append:'',
-                prepend:'',
-                reverseMode:true, //it will update the msdropdown UI/value if you update the original dropdown - will be usefull if are using knockout.js or playing with original dropdown
-                roundedCorner:true,
-                enableAutoFilter:true,
-                on: {create: null,open: null,close: null,add: null,remove: null,change: null,blur: null,click: null,dblclick: null,mousemove: null,mouseover: null,mouseout: null,focus: null,mousedown: null,mouseup: null}
+                childWidth: 0,
+                enableCheckbox: false, //this needs to multiple or it will set element to multiple
+                checkboxNameSuffix: '_mscheck',
+                append: '',
+                prepend: '',
+                reverseMode: true, //it will update the msdropdown UI/value if you update the original dropdown - will be usefull if are using knockout.js or playing with original dropdown
+                roundedCorner: true,
+                enableAutoFilter: true,
+                on: {
+                    create: null,
+                    open: null,
+                    close: null,
+                    add: null,
+                    remove: null,
+                    change: null,
+                    blur: null,
+                    click: null,
+                    dblclick: null,
+                    mousemove: null,
+                    mouseover: null,
+                    mouseout: null,
+                    focus: null,
+                    mousedown: null,
+                    mouseup: null
+                }
             }, settings);
         var $this = this; //this class
-        var holderId = {postElementHolder: '_msddHolder', postID: '_msdd', postTitleID: '_title',postTitleTextID: '_titleText', postChildID: '_child'};
-        var css = {dd:settings.mainCSS, ddTitle: 'ddTitle', arrow: 'ddArrow arrowoff', ddChild: 'ddChild', ddTitleText: 'ddTitleText',disabled: 'disabled', enabled: 'enabled', ddOutOfVision: 'ddOutOfVision', borderTop: 'borderTop', noBorderTop: 'noBorderTop', selected: 'selected', divider: 'divider', optgroup: "optgroup", optgroupTitle: "optgroupTitle", description: "description", label: "ddlabel",hover: 'hover',disabledAll: 'disabledAll'};
-        var css_i = {li: '_msddli_',borderRadiusTp: 'borderRadiusTp',ddChildMore: 'border shadow',fnone: "fnone"};
-        var isList = false, isMultiple=false,isDisabled=false, cacheElement = {}, element, orginial = {}, isOpen=false;
-        var DOWN_ARROW = 40, UP_ARROW = 38, LEFT_ARROW=37, RIGHT_ARROW=39, ESCAPE = 27, ENTER = 13, ALPHABETS_START = 47, SHIFT=16, CONTROL = 17, BACKSPACE=8, DELETE=46;
-        var shiftHolded=false, controlHolded=false,lastTarget=null,forcedTrigger=false, oldSelected, isCreated = false;
+        var holderId = {
+            postElementHolder: '_msddHolder',
+            postID: '_msdd',
+            postTitleID: '_title',
+            postTitleTextID: '_titleText',
+            postChildID: '_child'
+        };
+        var css = {
+            dd: settings.mainCSS,
+            ddTitle: 'ddTitle',
+            arrow: 'ddArrow arrowoff',
+            ddChild: 'ddChild',
+            ddTitleText: 'ddTitleText',
+            disabled: 'disabled',
+            enabled: 'enabled',
+            ddOutOfVision: 'ddOutOfVision',
+            borderTop: 'borderTop',
+            noBorderTop: 'noBorderTop',
+            selected: 'selected',
+            divider: 'divider',
+            optgroup: "optgroup",
+            optgroupTitle: "optgroupTitle",
+            description: "description",
+            label: "ddlabel",
+            hover: 'hover',
+            disabledAll: 'disabledAll'
+        };
+        var css_i = {li: '_msddli_', borderRadiusTp: 'borderRadiusTp', ddChildMore: 'border shadow', fnone: "fnone"};
+        var isList = false, isMultiple = false, isDisabled = false, cacheElement = {}, element, orginial = {},
+            isOpen = false;
+        var DOWN_ARROW = 40, UP_ARROW = 38, LEFT_ARROW = 37, RIGHT_ARROW = 39, ESCAPE = 27, ENTER = 13,
+            ALPHABETS_START = 47, SHIFT = 16, CONTROL = 17, BACKSPACE = 8, DELETE = 46;
+        var shiftHolded = false, controlHolded = false, lastTarget = null, forcedTrigger = false, oldSelected,
+            isCreated = false;
         var doc = document, ua = window.navigator.userAgent, isIE = ua.match(/msie/i);
         settings.reverseMode = settings.reverseMode.toString();
         settings.roundedCorner = settings.roundedCorner.toString();
-        var isArray = function(obj) {
-            return (Object.prototype.toString.call(obj)=="[object Array]") ? true : false;
+        var isArray = function (obj) {
+            return (Object.prototype.toString.call(obj) == "[object Array]") ? true : false;
         };
-        var msieversion = function()
-        {
+        var msieversion = function () {
             var msie = ua.indexOf("MSIE");
-            if ( msie > 0 ) { // If Internet Explorer, return version number
-                return parseInt (ua.substring (msie+5, ua.indexOf (".", msie)));
+            if (msie > 0) { // If Internet Explorer, return version number
+                return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
             } else { // If another browser, return 0
                 return 0;
-            };
+            }
+            ;
         };
-        var checkDataSetting = function() {
-            settings.mainCSS = $("#"+element).data("maincss") || settings.mainCSS;
-            settings.visibleRows = $("#"+element).data("visiblerows") || settings.visibleRows;
-            settings.rowHeight = $("#"+element).data("rowheight") || settings.rowHeight;
-            if($("#"+element).data("showicon")==false) {settings.showIcon = $("#"+element).data("showicon");};
-            settings.useSprite = $("#"+element).data("usesprite") || settings.useSprite;
-            settings.animStyle = $("#"+element).data("animstyle") || settings.animStyle;
-            settings.event = $("#"+element).data("event") || settings.event;
-            settings.openDirection = $("#"+element).data("opendirection") || settings.openDirection;
-            settings.jsonTitle = $("#"+element).data("jsontitle") || settings.jsonTitle;
-            settings.disabledOpacity = $("#"+element).data("disabledopacity") || settings.disabledOpacity;
-            settings.childWidth = $("#"+element).data("childwidth") || settings.childWidth;
-            settings.enableCheckbox = $("#"+element).data("enablecheckbox") || settings.enableCheckbox;
-            settings.checkboxNameSuffix = $("#"+element).data("checkboxnamesuffix") || settings.checkboxNameSuffix;
-            settings.append = $("#"+element).data("append") || settings.append;
-            settings.prepend = $("#"+element).data("prepend") || settings.prepend;
-            settings.reverseMode = $("#"+element).data("reversemode") || settings.reverseMode;
-            settings.roundedCorner = $("#"+element).data("roundedcorner") || settings.roundedCorner;
-            settings.enableAutoFilter = $("#"+element).data("enableautofilter") || settings.enableAutoFilter;
+        var checkDataSetting = function () {
+            settings.mainCSS = $("#" + element).data("maincss") || settings.mainCSS;
+            settings.visibleRows = $("#" + element).data("visiblerows") || settings.visibleRows;
+            settings.rowHeight = $("#" + element).data("rowheight") || settings.rowHeight;
+            if ($("#" + element).data("showicon") == false) {
+                settings.showIcon = $("#" + element).data("showicon");
+            }
+            ;
+            settings.useSprite = $("#" + element).data("usesprite") || settings.useSprite;
+            settings.animStyle = $("#" + element).data("animstyle") || settings.animStyle;
+            settings.event = $("#" + element).data("event") || settings.event;
+            settings.openDirection = $("#" + element).data("opendirection") || settings.openDirection;
+            settings.jsonTitle = $("#" + element).data("jsontitle") || settings.jsonTitle;
+            settings.disabledOpacity = $("#" + element).data("disabledopacity") || settings.disabledOpacity;
+            settings.childWidth = $("#" + element).data("childwidth") || settings.childWidth;
+            settings.enableCheckbox = $("#" + element).data("enablecheckbox") || settings.enableCheckbox;
+            settings.checkboxNameSuffix = $("#" + element).data("checkboxnamesuffix") || settings.checkboxNameSuffix;
+            settings.append = $("#" + element).data("append") || settings.append;
+            settings.prepend = $("#" + element).data("prepend") || settings.prepend;
+            settings.reverseMode = $("#" + element).data("reversemode") || settings.reverseMode;
+            settings.roundedCorner = $("#" + element).data("roundedcorner") || settings.roundedCorner;
+            settings.enableAutoFilter = $("#" + element).data("enableautofilter") || settings.enableAutoFilter;
 //make string
             settings.reverseMode = settings.reverseMode.toString();
             settings.roundedCorner = settings.roundedCorner.toString();
             settings.enableAutoFilter = settings.enableAutoFilter.toString();
         };
-        var getElement = function(ele) {
+        var getElement = function (ele) {
             if (cacheElement[ele] === undefined) {
                 cacheElement[ele] = doc.getElementById(ele);
             }
             return cacheElement[ele];
         };
-        var getIndex = function(opt) {
+        var getIndex = function (opt) {
             var childid = getPostID("postChildID");
-            return $("#"+childid + " li."+css_i.li).index(opt);
+            return $("#" + childid + " li." + css_i.li).index(opt);
         };
-        var createByJson = function() {
+        var createByJson = function () {
             if (settings.byJson.data) {
-                var validData = ["description","image","title"];
+                var validData = ["description", "image", "title"];
                 try {
                     if (!element.id) {
-                        element.id = "dropdown"+msBeautify.counter;
-                    };
+                        element.id = "dropdown" + msBeautify.counter;
+                    }
+                    ;
                     settings.byJson.data = $.parseJSON(settings.byJson.data);
 //change element
-                    var id = "msdropdown"+(msBeautify.counter++);
+                    var id = "msdropdown" + (msBeautify.counter++);
                     var obj = {};
                     obj.id = id;
                     obj.name = settings.byJson.name || element.id; //its name
-                    if (settings.byJson.size>0) {
+                    if (settings.byJson.size > 0) {
                         obj.size = settings.byJson.size;
-                    };
+                    }
+                    ;
                     obj.multiple = settings.byJson.multiple;
                     var oSelect = createElement("select", obj);
-                    for(var i=0;i<settings.byJson.data.length;i++) {
+                    for (var i = 0; i < settings.byJson.data.length; i++) {
                         var current = settings.byJson.data[i];
                         var opt = new Option(current.text, current.value);
-                        for(var p in current) {
+                        for (var p in current) {
                             if (p.toLowerCase() != 'text') {
-                                var key = ($.inArray(p.toLowerCase(), validData)!=-1) ? "data-" : "";
-                                opt.setAttribute(key+p, current[p]);
-                            };
-                        };
+                                var key = ($.inArray(p.toLowerCase(), validData) != -1) ? "data-" : "";
+                                opt.setAttribute(key + p, current[p]);
+                            }
+                            ;
+                        }
+                        ;
                         oSelect.options[i] = opt;
-                    };
+                    }
+                    ;
                     getElement(element.id).appendChild(oSelect);
                     oSelect.selectedIndex = settings.byJson.selectedIndex;
-                    $(oSelect).css({width: settings.byJson.width+'px'});
+                    $(oSelect).css({width: settings.byJson.width + 'px'});
 //now change element for access other things
                     element = oSelect;
-                } catch(e) {
+                } catch (e) {
                     throw "There is an error in json data.";
-                };
-            };
+                }
+                ;
+            }
+            ;
         };
-        var init = function() {
+        var init = function () {
 //set properties
             createByJson();
             if (!element.id) {
-                element.id = "msdrpdd"+(msBeautify.counter++);
-            };
+                element.id = "msdrpdd" + (msBeautify.counter++);
+            }
+            ;
             element = element.id;
             $this.element = element;
             checkDataSetting();
             isDisabled = getElement(element).disabled;
             var useCheckbox = settings.enableCheckbox;
-            if(useCheckbox.toString()==="true") {
+            if (useCheckbox.toString() === "true") {
                 getElement(element).multiple = true;
                 settings.enableCheckbox = true;
-            };
-            isList = (getElement(element).size>1 || getElement(element).multiple==true) ? true : false;
+            }
+            ;
+            isList = (getElement(element).size > 1 || getElement(element).multiple == true) ? true : false;
 //trace("isList "+isList);
-            if (isList) {isMultiple = getElement(element).multiple;};
+            if (isList) {
+                isMultiple = getElement(element).multiple;
+            }
+            ;
             mergeAllProp();
 //create layout
             createLayout();
 //set ui prop
             updateProp("uiData", getDataAndUI());
-            updateProp("selectedOptions", $("#"+element +" option:selected"));
+            updateProp("selectedOptions", $("#" + element + " option:selected"));
             var childid = getPostID("postChildID");
             oldSelected = $("#" + childid + " li." + css.selected);
-            if(settings.reverseMode==="true") {
-                $("#"+element).on("change", function() {
+            if (settings.reverseMode === "true") {
+                $("#" + element).on("change", function () {
                     setValue(this.selectedIndex);
                 });
-            };
+            }
+            ;
 //add refresh method
-            getElement(element).refresh = function(e) {
-                $("#"+element).msDropdown().data("dd").refresh();
+            getElement(element).refresh = function (e) {
+                $("#" + element).msDropdown().data("dd").refresh();
             };
         };
         /********************************************************************************************/
         var getPostID = function (id) {
-            return element+holderId[id];
+            return element + holderId[id];
         };
-        var getInternalStyle = function(ele) {
+        var getInternalStyle = function (ele) {
             var s = (ele.style === undefined) ? "" : ele.style.cssText;
             return s;
         };
-        var parseOption = function(opt) {
-            var imagePath = '', title ='', description='', value=-1, text='', className='', imagecss = '', index;
+        var parseOption = function (opt) {
+            var imagePath = '', title = '', description = '', value = -1, text = '', className = '', imagecss = '',
+                index;
             if (opt !== undefined) {
                 var attrTitle = opt.title || "";
 //data-title
-                if (attrTitle!="") {
+                if (attrTitle != "") {
                     var reg = /^\{.*\}$/;
                     var isJson = reg.test(attrTitle);
                     if (isJson && settings.jsonTitle) {
-                        var obj = $.parseJSON("["+attrTitle+"]");
-                    };
+                        var obj = $.parseJSON("[" + attrTitle + "]");
+                    }
+                    ;
                     title = (isJson && settings.jsonTitle) ? obj[0].title : title;
                     description = (isJson && settings.jsonTitle) ? obj[0].description : description;
                     imagePath = (isJson && settings.jsonTitle) ? obj[0].image : attrTitle;
                     imagecss = (isJson && settings.jsonTitle) ? obj[0].imagecss : imagecss;
                     index = opt.index;
-                };
+                }
+                ;
                 text = opt.text || '';
                 value = opt.value || '';
                 className = opt.className || "";
@@ -241,55 +317,71 @@ var msBeautify = msBeautify || {};
                 imagePath = $(opt).prop("data-image") || $(opt).data("image") || (imagePath || "");
                 imagecss = $(opt).prop("data-imagecss") || $(opt).data("imagecss") || (imagecss || "");
                 index = $(opt).index();
+            }
+            ;
+            var o = {
+                image: imagePath,
+                title: title,
+                description: description,
+                value: value,
+                text: text,
+                className: className,
+                imagecss: imagecss,
+                index: index
             };
-            var o = {image: imagePath, title: title, description: description, value: value, text: text, className: className, imagecss:imagecss, index:index};
             return o;
         };
-        var createElement = function(nm, attr, html) {
+        var createElement = function (nm, attr, html) {
             var tag = doc.createElement(nm);
             if (attr) {
-                for(var i in attr) {
-                    switch(i) {
+                for (var i in attr) {
+                    switch (i) {
                         case "style":
                             tag.style.cssText = attr[i];
                             break;
                         default:
                             tag[i] = attr[i];
                             break;
-                    };
-                };
-            };
+                    }
+                    ;
+                }
+                ;
+            }
+            ;
             if (html) {
                 tag.innerHTML = html;
-            };
+            }
+            ;
             return tag;
         };
         /********************************************************************************************/
         /*********************** <layout> *************************************/
-        var hideOriginal = function() {
+        var hideOriginal = function () {
             var hidid = getPostID("postElementHolder");
-            if ($("#"+hidid).length==0) {
-                var obj = {style: 'height: 0px;overflow: hidden;position: absolute;',className: css.ddOutOfVision};
+            if ($("#" + hidid).length == 0) {
+                var obj = {style: 'height: 0px;overflow: hidden;position: absolute;', className: css.ddOutOfVision};
                 obj.id = hidid;
                 var oDiv = createElement("div", obj);
-                $("#"+element).after(oDiv);
-                $("#"+element).appendTo($("#"+hidid));
+                $("#" + element).after(oDiv);
+                $("#" + element).appendTo($("#" + hidid));
             } else {
-                $("#"+hidid).css({height: 0,overflow: 'hidden',position: 'absolute'});
-            };
+                $("#" + hidid).css({height: 0, overflow: 'hidden', position: 'absolute'});
+            }
+            ;
             getElement(element).tabIndex = -1;
         };
         var createWrapper = function () {
             var brdRds = (settings.roundedCorner == "true") ? " borderRadius" : "";
             var obj = {
-                className: css.dd + " ddcommon"+brdRds
+                className: css.dd + " ddcommon" + brdRds
             };
             var intcss = getInternalStyle(getElement(element));
             var w = $("#" + element).outerWidth();
             obj.style = "width: " + w + "px;";
             if (intcss.length > 0) {
                 obj.style = obj.style + "" + intcss;
-            };
+            }
+            ;
             obj.id = getPostID("postID");
             obj.tabIndex = getElement(element).tabIndex;
             var oDiv = createElement("div", obj);
@@ -297,20 +389,24 @@ var msBeautify = msBeautify || {};
         };
         var createTitle = function () {
             var selectedOption;
-            if(getElement(element).selectedIndex>=0) {
+            if (getElement(element).selectedIndex >= 0) {
                 selectedOption = getElement(element).options[getElement(element).selectedIndex];
             } else {
-                selectedOption = {value:'', text:''};
+                selectedOption = {value: '', text: ''};
             }
             var spriteClass = "", selectedClass = "";
 //check sprite
-            var useSprite = $("#"+element).data("usesprite");
-            if(useSprite) { settings.useSprite = useSprite; };
+            var useSprite = $("#" + element).data("usesprite");
+            if (useSprite) {
+                settings.useSprite = useSprite;
+            }
+            ;
             if (settings.useSprite != false) {
                 spriteClass = " " + settings.useSprite;
                 selectedClass = " " + selectedOption.className;
-            };
-            var brdRdsTp = (settings.roundedCorner == "true") ? " "+css_i.borderRadiusTp : "" ;
+            }
+            ;
+            var brdRdsTp = (settings.roundedCorner == "true") ? " " + css_i.borderRadiusTp : "";
             var oTitle = createElement("div", {className: css.ddTitle + spriteClass + brdRdsTp});
 //divider
             var oDivider = createElement("span", {className: css.divider});
@@ -325,16 +421,19 @@ var msBeautify = msBeautify || {};
             if (arrowPath != "" && settings.showIcon) {
                 var oIcon = createElement("img");
                 oIcon.src = arrowPath;
-                if(parsed.imagecss!="") {
-                    oIcon.className = parsed.imagecss+" ";
-                };
-            };
+                if (parsed.imagecss != "") {
+                    oIcon.className = parsed.imagecss + " ";
+                }
+                ;
+            }
+            ;
             var oTitleText_in = createElement("span", {className: css.label}, sText);
             oTitle.appendChild(oDivider);
             oTitle.appendChild(oArrow);
             if (oIcon) {
                 oTitleText.appendChild(oIcon);
-            };
+            }
+            ;
             oTitleText.appendChild(oTitleText_in);
             oTitle.appendChild(oTitleText);
             var oDescription = createElement("span", {className: css.description}, parsed.description);
@@ -344,62 +443,86 @@ var msBeautify = msBeautify || {};
         var createFilterBox = function () {
             var tid = getPostID("postTitleTextID");
             var brdRds = (settings.roundedCorner == "true") ? "borderRadius" : "";
-            var sText = createElement("input", {id: tid, type: 'text', value: '', autocomplete: 'off', className: 'text shadow '+brdRds, style: 'display: none'});
+            var sText = createElement("input", {
+                id: tid,
+                type: 'text',
+                value: '',
+                autocomplete: 'off',
+                className: 'text shadow ' + brdRds,
+                style: 'display: none'
+            });
             return sText;
         };
         var createChild = function (opt) {
             var obj = {};
             var intcss = getInternalStyle(opt);
-            if (intcss.length > 0) {obj.style = intcss; };
+            if (intcss.length > 0) {
+                obj.style = intcss;
+            }
+            ;
             var css2 = (opt.disabled) ? css.disabled : css.enabled;
             css2 = (opt.selected) ? (css2 + " " + css.selected) : css2;
             css2 = css2 + " " + css_i.li;
             obj.className = css2;
             if (settings.useSprite != false) {
                 obj.className = css2 + " " + opt.className;
-            };
+            }
+            ;
             var li = createElement("li", obj);
             var parsed = parseOption(opt);
             if (parsed.title != "") {
                 li.title = parsed.title;
-            };
+            }
+            ;
             var arrowPath = parsed.image;
             if (arrowPath != "" && settings.showIcon) {
                 var oIcon = createElement("img");
                 oIcon.src = arrowPath;
-                if(parsed.imagecss!="") {
-                    oIcon.className = parsed.imagecss+" ";
-                };
-            };
+                if (parsed.imagecss != "") {
+                    oIcon.className = parsed.imagecss + " ";
+                }
+                ;
+            }
+            ;
             if (parsed.description != "") {
                 var oDescription = createElement("span", {
                     className: css.description
                 }, parsed.description);
-            };
+            }
+            ;
             var sText = opt.text || "";
             var oTitleText = createElement("span", {
                 className: css.label
             }, sText);
 //checkbox
-            if(settings.enableCheckbox===true) {
+            if (settings.enableCheckbox === true) {
                 var chkbox = createElement("input", {
-                    type: 'checkbox', name:element+settings.checkboxNameSuffix+'[]', value:opt.value||"", className:"checkbox"}); //this can be used for future
+                    type: 'checkbox',
+                    name: element + settings.checkboxNameSuffix + '[]',
+                    value: opt.value || "",
+                    className: "checkbox"
+                }); //this can be used for future
                 li.appendChild(chkbox);
-                if(settings.enableCheckbox===true) {
+                if (settings.enableCheckbox === true) {
                     chkbox.checked = (opt.selected) ? true : false;
-                };
-            };
+                }
+                ;
+            }
+            ;
             if (oIcon) {
                 li.appendChild(oIcon);
-            };
+            }
+            ;
             li.appendChild(oTitleText);
             if (oDescription) {
                 li.appendChild(oDescription);
             } else {
                 if (oIcon) {
-                    oIcon.className = oIcon.className+css_i.fnone;
-                };
-            };
+                    oIcon.className = oIcon.className + css_i.fnone;
+                }
+                ;
+            }
+            ;
             var oClear = createElement("div", {className: 'clear'});
             li.appendChild(oClear);
             return li;
@@ -411,16 +534,19 @@ var msBeautify = msBeautify || {};
                 obj.style = "z-index: " + settings.zIndex;
             } else {
                 obj.style = "z-index:1";
-            };
-            var childWidth = $("#"+element).data("childwidth") || settings.childWidth;
-            if(childWidth) {
-                obj.style = (obj.style || "") + ";width:"+childWidth;
-            };
+            }
+            ;
+            var childWidth = $("#" + element).data("childwidth") || settings.childWidth;
+            if (childWidth) {
+                obj.style = (obj.style || "") + ";width:" + childWidth;
+            }
+            ;
             var oDiv = createElement("div", obj);
             var ul = createElement("ul");
             if (settings.useSprite != false) {
                 ul.className = settings.useSprite;
-            };
+            }
+            ;
             var allOptions = getElement(element).children;
             for (var i = 0; i < allOptions.length; i++) {
                 var current = allOptions[i];
@@ -435,13 +561,16 @@ var msBeautify = msBeautify || {};
                     for (var j = 0; j < optChildren.length; j++) {
                         var opt_li = createChild(optChildren[j]);
                         optul.appendChild(opt_li);
-                    };
+                    }
+                    ;
                     li.appendChild(optul);
                 } else {
                     li = createChild(current);
-                };
+                }
+                ;
                 ul.appendChild(li);
-            };
+            }
+            ;
             oDiv.appendChild(ul);
             return oDiv;
         };
@@ -449,30 +578,35 @@ var msBeautify = msBeautify || {};
             var childid = getPostID("postChildID");
             if (val) {
                 if (val == -1) { //auto
-                    $("#"+childid).css({height: "auto", overflow: "auto"});
+                    $("#" + childid).css({height: "auto", overflow: "auto"});
                 } else {
-                    $("#"+childid).css("height", val+"px");
-                };
+                    $("#" + childid).css("height", val + "px");
+                }
+                ;
                 return false;
-            };
+            }
+            ;
 //else return height
             var iHeight;
             var totalOptions = getElement(element).options.length;
             if (totalOptions > settings.visibleRows || settings.visibleRows) {
                 var firstLI = $("#" + childid + " li:first");
                 var margin = parseInt(firstLI.css("padding-bottom")) + parseInt(firstLI.css("padding-top"));
-                if(settings.rowHeight===0) {
-                    $("#" + childid).css({visibility:'hidden',display:'block'}); //hack for first child
+                if (settings.rowHeight === 0) {
+                    $("#" + childid).css({visibility: 'hidden', display: 'block'}); //hack for first child
                     settings.rowHeight = Math.ceil(firstLI.height());
-                    $("#" + childid).css({visibility:'visible'});
-                    if(!isList || settings.enableCheckbox===true) {
-                        $("#" + childid).css({display:'none'});
-                    };
-                };
-                iHeight = ((settings.rowHeight + margin) * Math.min(settings.visibleRows,totalOptions)) + 3;
+                    $("#" + childid).css({visibility: 'visible'});
+                    if (!isList || settings.enableCheckbox === true) {
+                        $("#" + childid).css({display: 'none'});
+                    }
+                    ;
+                }
+                ;
+                iHeight = ((settings.rowHeight + margin) * Math.min(settings.visibleRows, totalOptions)) + 3;
             } else if (isList) {
                 iHeight = $("#" + element).height(); //get height from original element
-            };
+            }
+            ;
             return iHeight;
         };
         var applyChildEvents = function () {
@@ -484,12 +618,14 @@ var msBeautify = msBeautify || {};
                 e.stopPropagation();
                 if (isList) {
                     bind_on_events();
-                };
+                }
+                ;
             });
             $("#" + childid + " li." + css.enabled).on("click", function (e) {
-                if(e.target.nodeName.toLowerCase() !== "input") {
+                if (e.target.nodeName.toLowerCase() !== "input") {
                     close(this);
-                };
+                }
+                ;
             });
             $("#" + childid + " li." + css.enabled).on("mousedown", function (e) {
                 if (isDisabled === true) return false;
@@ -498,11 +634,13 @@ var msBeautify = msBeautify || {};
                 e.preventDefault();
                 e.stopPropagation();
 //select current input
-                if(settings.enableCheckbox===true) {
-                    if(e.target.nodeName.toLowerCase() === "input") {
+                if (settings.enableCheckbox === true) {
+                    if (e.target.nodeName.toLowerCase() === "input") {
                         controlHolded = true;
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
                 if (isList === true) {
                     if (isMultiple) {
                         if (shiftHolded === true) {
@@ -516,37 +654,46 @@ var msBeautify = msBeautify || {};
                                 if (lastIndex > ind2) {
                                     ind1 = (lastIndex);
                                     ind2 = ind2 + 1;
-                                };
+                                }
+                                ;
                                 for (var i = Math.min(ind1, ind2); i <= Math.max(ind1, ind2); i++) {
                                     var current = items[i];
                                     if ($(current).hasClass(css.enabled)) {
                                         $(current).addClass(css.selected);
-                                    };
-                                };
-                            };
+                                    }
+                                    ;
+                                }
+                                ;
+                            }
+                            ;
                         } else if (controlHolded === true) {
                             $(this).toggleClass(css.selected); //toggle
-                            if(settings.enableCheckbox===true) {
+                            if (settings.enableCheckbox === true) {
                                 var checkbox = this.childNodes[0];
                                 checkbox.checked = !checkbox.checked; //toggle
-                            };
+                            }
+                            ;
                         } else {
                             $("#" + childid + " li." + css.selected).removeClass(css.selected);
                             $("#" + childid + " input:checkbox").prop("checked", false);
                             $(this).addClass(css.selected);
-                            if(settings.enableCheckbox===true) {
+                            if (settings.enableCheckbox === true) {
                                 this.childNodes[0].checked = true;
-                            };
-                        };
+                            }
+                            ;
+                        }
+                        ;
                     } else {
                         $("#" + childid + " li." + css.selected).removeClass(css.selected);
                         $(this).addClass(css.selected);
-                    };
+                    }
+                    ;
 //fire event on mouseup
                 } else {
                     $("#" + childid + " li." + css.selected).removeClass(css.selected);
                     $(this).addClass(css.selected);
-                };
+                }
+                ;
             });
             $("#" + childid + " li." + css.enabled).on("mouseenter", function (e) {
                 if (isDisabled === true) return false;
@@ -555,11 +702,14 @@ var msBeautify = msBeautify || {};
                 if (lastTarget != null) {
                     if (isMultiple) {
                         $(this).addClass(css.selected);
-                        if(settings.enableCheckbox===true) {
+                        if (settings.enableCheckbox === true) {
                             this.childNodes[0].checked = true;
-                        };
-                    };
-                };
+                        }
+                        ;
+                    }
+                    ;
+                }
+                ;
             });
             $("#" + childid + " li." + css.enabled).on("mouseover", function (e) {
                 if (isDisabled === true) return false;
@@ -573,9 +723,10 @@ var msBeautify = msBeautify || {};
                 if (isDisabled === true) return false;
                 e.preventDefault();
                 e.stopPropagation();
-                if(settings.enableCheckbox===true) {
+                if (settings.enableCheckbox === true) {
                     controlHolded = false;
-                };
+                }
+                ;
                 var selected = $("#" + childid + " li." + css.selected).length;
                 forcedTrigger = (oldSelected.length != selected || selected == 0) ? true : false;
                 fireAfterItemClicked();
@@ -609,7 +760,8 @@ var msBeautify = msBeautify || {};
                     if (isDisabled === true) return false;
                     fireOptionEventIfExist(this, "mouseup");
                 });
-            };
+            }
+            ;
         };
         var removeChildEvents = function () {
             var childid = getPostID("postChildID");
@@ -649,8 +801,10 @@ var msBeautify = msBeautify || {};
                     } else {
                         e.preventDefault();
                         e.stopImmediatePropagation();
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
             });
             $("#" + id).on("focus", wrapperFocusHandler);
             $("#" + id).on("blur", wrapperBlurHandler);
@@ -676,14 +830,15 @@ var msBeautify = msBeautify || {};
         var fixedForList = function () {
             var id = getPostID("postID");
             var childid = getPostID("postChildID");
-            if (isList === true && settings.enableCheckbox===false) {
+            if (isList === true && settings.enableCheckbox === false) {
                 $("#" + id + " ." + css.ddTitle).hide();
                 $("#" + childid).css({display: 'block', position: 'relative'});
 //open();
             } else {
-                if(settings.enableCheckbox===false) {
+                if (settings.enableCheckbox === false) {
                     isMultiple = false; //set multiple off if this is not a list
-                };
+                }
+                ;
                 $("#" + id + " ." + css.ddTitle).show();
                 $("#" + childid).css({display: 'none', position: 'absolute'});
 //set value
@@ -691,7 +846,8 @@ var msBeautify = msBeautify || {};
                 $("#" + childid + " li." + css.selected).removeClass(css.selected);
                 var index = getIndex($(first).addClass(css.selected));
                 setValue(index);
-            };
+            }
+            ;
             childHeight(childHeight()); //get and set height
         };
         var fixedForDisabled = function () {
@@ -701,14 +857,16 @@ var msBeautify = msBeautify || {};
                 $("#" + id).addClass(css.disabledAll);
             } else {
                 $("#" + id).removeClass(css.disabledAll);
-            };
+            }
+            ;
         };
         var fixedSomeUI = function () {
 //auto filter
             var tid = getPostID("postTitleTextID");
-            if(settings.enableAutoFilter=="true") {
+            if (settings.enableAutoFilter == "true") {
                 $("#" + tid).on("keyup", applyFilters);
-            };
+            }
+            ;
 //if is list
             fixedForList();
             fixedForDisabled();
@@ -728,44 +886,53 @@ var msBeautify = msBeautify || {};
             applyEvents();
             var childid = getPostID("postChildID");
 //append
-            if(settings.append!='') {
+            if (settings.append != '') {
                 $("#" + childid).append(settings.append);
-            };
+            }
+            ;
 //prepend
-            if(settings.prepend!='') {
+            if (settings.prepend != '') {
                 $("#" + childid).prepend(settings.prepend);
-            };
+            }
+            ;
             if (typeof settings.on.create == "function") {
                 settings.on.create.apply($this, arguments);
-            };
+            }
+            ;
         };
-        var selectUI_LI = function(indexes) {
+        var selectUI_LI = function (indexes) {
             var childid = getPostID("postChildID");
             $("#" + childid + " li." + css_i.li).removeClass(css.selected);
-            if(settings.enableCheckbox===true) {
+            if (settings.enableCheckbox === true) {
                 $("#" + childid + " li." + css_i.li + " input.checkbox").prop("checked", false);
-            };
-            if(isArray(indexes)===true) {
-                for(var i=0;i<indexes.length;i++) {
+            }
+            ;
+            if (isArray(indexes) === true) {
+                for (var i = 0; i < indexes.length; i++) {
                     updateNow(indexes[i]);
-                };
+                }
+                ;
             } else {
                 updateNow(indexes);
-            };
+            }
+            ;
+
             function updateNow(index) {
                 $($("#" + childid + " li." + css_i.li)[index]).addClass(css.selected);
-                if(settings.enableCheckbox===true) {
+                if (settings.enableCheckbox === true) {
                     $($("#" + childid + " li." + css_i.li)[index]).find("input.checkbox").prop("checked", "checked");
-                };
+                }
+                ;
             };
         };
         var selectMutipleOptions = function (bySelected, useIndexes) {
             var childid = getPostID("postChildID");
             var selected = bySelected || $("#" + childid + " li." + css.selected); //bySelected or by argument
             for (var i = 0; i < selected.length; i++) {
-                var ind = (useIndexes===true) ? selected[i] : getIndex(selected[i]);
+                var ind = (useIndexes === true) ? selected[i] : getIndex(selected[i]);
                 getElement(element).options[ind].selected = "selected";
-            };
+            }
+            ;
             setValue(selected);
         };
         var fireAfterItemClicked = function () {
@@ -774,7 +941,8 @@ var msBeautify = msBeautify || {};
             var selected = $("#" + childid + " li." + css.selected);
             if (isMultiple && (shiftHolded || controlHolded) || forcedTrigger) {
                 getElement(element).selectedIndex = -1; //reset old
-            };
+            }
+            ;
             var index;
             if (selected.length == 0) {
                 index = -1;
@@ -784,8 +952,9 @@ var msBeautify = msBeautify || {};
             } else {
 //if one selected
                 index = getIndex($("#" + childid + " li." + css.selected));
-            };
-            if ((getElement(element).selectedIndex != index || forcedTrigger) && selected.length<=1) {
+            }
+            ;
+            if ((getElement(element).selectedIndex != index || forcedTrigger) && selected.length <= 1) {
                 forcedTrigger = false;
                 var evt = has_handler("change");
                 getElement(element).selectedIndex = index;
@@ -794,9 +963,11 @@ var msBeautify = msBeautify || {};
                 if (typeof settings.on.change == "function") {
                     var d = getDataAndUI();
                     settings.on.change(d.data, d.ui);
-                };
+                }
+                ;
                 $("#" + element).trigger("change");
-            };
+            }
+            ;
         };
         var setValue = function (index, byvalue) {
             if (index !== undefined) {
@@ -823,15 +994,18 @@ var msBeautify = msBeautify || {};
                         selectedText = (byvalue && byvalue.text) || getElement(element).options[getElement(element).selectedIndex].text || "";
                         updateTitleUI(selectedIndex);
 //check if this is multiple checkbox
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
                 updateProp("selectedIndex", selectedIndex);
                 updateProp("value", value);
                 updateProp("selectedText", selectedText);
                 updateProp("children", getElement(element).children);
                 updateProp("uiData", getDataAndUI());
                 updateProp("selectedOptions", $("#" + element + " option:selected"));
-            };
+            }
+            ;
         };
         var has_handler = function (name) {
 //True if a handler has been added in the html.
@@ -843,8 +1017,9 @@ var msBeautify = msBeautify || {};
                 if (obj.prop("on" + name) !== null) {
                     evt.hasEvent = true;
                     evt.byElement = true;
-                };
-            } catch(e) {
+                }
+                ;
+            } catch (e) {
 //console.log(e.message);
             }
 // True if a handler has been added using jQuery.
@@ -853,11 +1028,13 @@ var msBeautify = msBeautify || {};
                 evs = $._data(obj[0], "events");
             } else {
                 evs = obj.data("events");
-            };
+            }
+            ;
             if (evs && evs[name]) {
                 evt.hasEvent = true;
                 evt.byJQuery = true;
-            };
+            }
+            ;
             return evt;
         };
         var bind_on_events = function () {
@@ -875,9 +1052,10 @@ var msBeautify = msBeautify || {};
             $(document).off("keyup", on_keyup);
         };
         var applyFilters = function (e) {
-            if(e.keyCode < ALPHABETS_START && e.keyCode!=BACKSPACE && e.keyCode!=DELETE) {
+            if (e.keyCode < ALPHABETS_START && e.keyCode != BACKSPACE && e.keyCode != DELETE) {
                 return false;
-            };
+            }
+            ;
             var childid = getPostID("postChildID");
             var tid = getPostID("postTitleTextID");
             var sText = getElement(tid).value;
@@ -889,18 +1067,22 @@ var msBeautify = msBeautify || {};
                 var items = $("#" + childid + " li:Contains('" + sText + "')").show();
                 if ($("#" + childid + " li:visible").length <= settings.visibleRows) {
                     childHeight(-1); //set autoheight
-                };
+                }
+                ;
                 if (items.length > 0 && !isList || !isMultiple) {
                     $("#" + childid + " ." + css.selected).removeClass(css.selected);
                     $(items[0]).addClass(css.selected);
-                };
-            };
+                }
+                ;
+            }
+            ;
             if (!isList) {
                 adjustOpen();
-            };
+            }
+            ;
         };
         var showFilterBox = function () {
-            if(settings.enableAutoFilter=="true") {
+            if (settings.enableAutoFilter == "true") {
                 var id = getPostID("postID");
                 var tid = getPostID("postTitleTextID");
                 if ($("#" + tid + ":hidden").length > 0 && controlHolded == false) {
@@ -908,15 +1090,18 @@ var msBeautify = msBeautify || {};
 //blur the wrapper without triggering the handler
                     triggerBypassingHandler(id, "blur", wrapperBlurHandler);
                     getElement(tid).focus();
-                };
-            };
+                }
+                ;
+            }
+            ;
         };
         var hideFilterBox = function () {
             var tid = getPostID("postTitleTextID");
             if ($("#" + tid + ":visible").length > 0) {
                 $("#" + tid + ":visible").hide();
                 getElement(tid).blur();
-            };
+            }
+            ;
         };
         var on_keydown = function (evt) {
             var tid = getPostID("postTitleTextID");
@@ -956,9 +1141,11 @@ var msBeautify = msBeautify || {};
                 default:
                     if (evt.keyCode >= ALPHABETS_START && isList === false) {
                         showFilterBox();
-                    };
+                    }
+                    ;
                     break;
-            };
+            }
+            ;
             if (isDisabled === true) return false;
             fireEventIfExist("keydown");
         };
@@ -970,7 +1157,8 @@ var msBeautify = msBeautify || {};
                 case CONTROL:
                     controlHolded = false;
                     break;
-            };
+            }
+            ;
             if (isDisabled === true) return false;
             fireEventIfExist("keyup");
         };
@@ -1006,13 +1194,15 @@ var msBeautify = msBeautify || {};
             if ($(opt).prop("on" + name) != undefined) {
                 evt.hasEvent = true;
                 evt.byElement = true;
-            };
+            }
+            ;
 // True if a handler has been added using jQuery.
             var evs = $(opt).data("events");
             if (evs && evs[name]) {
                 evt.hasEvent = true;
                 evt.byJQuery = true;
-            };
+            }
+            ;
             return evt;
         };
         var fireOptionEventIfExist = function (li, evt_n) {
@@ -1022,7 +1212,8 @@ var msBeautify = msBeautify || {};
                 if (option_has_handler(opt, evt_n).hasEvent === true) {
                     if (option_has_handler(opt, evt_n).byElement === true) {
                         opt["on" + evt_n]();
-                    };
+                    }
+                    ;
                     if (option_has_handler(opt, evt_n).byJQuery === true) {
                         switch (evt_n) {
                             case "keydown":
@@ -1032,17 +1223,22 @@ var msBeautify = msBeautify || {};
                             default:
                                 $(opt).trigger(evt_n);
                                 break;
-                        };
-                    };
+                        }
+                        ;
+                    }
+                    ;
                     return false;
-                };
-            };
+                }
+                ;
+            }
+            ;
         };
         var fireEventIfExist = function (evt_n) {
 //local
             if (typeof settings.on[evt_n] == "function") {
                 settings.on[evt_n].apply(this, arguments);
-            };
+            }
+            ;
 //check if original has some
             if (has_handler(evt_n).hasEvent === true) {
                 if (has_handler(evt_n).byElement === true) {
@@ -1056,10 +1252,13 @@ var msBeautify = msBeautify || {};
                         default:
                             $("#" + element).triggerHandler(evt_n);
                             break;
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
                 return false;
-            };
+            }
+            ;
         };
         /******************************* navigation **********************************************/
         var scrollToIfNeeded = function (opt) {
@@ -1070,42 +1269,52 @@ var msBeautify = msBeautify || {};
                 var pos = parseInt(($(opt).position().top));
                 var ch = parseInt($("#" + childid).height());
                 if (pos > ch) {
-                    var top = pos + $("#" + childid).scrollTop() - (ch/2);
-                    $("#" + childid).animate({scrollTop:top}, 500);
-                };
-            };
+                    var top = pos + $("#" + childid).scrollTop() - (ch / 2);
+                    $("#" + childid).animate({scrollTop: top}, 500);
+                }
+                ;
+            }
+            ;
         };
         var next = function () {
             var childid = getPostID("postChildID");
             var items = $("#" + childid + " li:visible." + css_i.li);
             var selected = $("#" + childid + " li:visible." + css.selected);
-            selected = (selected.length==0) ? items[0] : selected;
+            selected = (selected.length == 0) ? items[0] : selected;
             var index = $("#" + childid + " li:visible." + css_i.li).index(selected);
             if ((index < items.length - 1)) {
                 index = getNext(index);
                 if (index < items.length) { //check again - hack for last disabled
                     if (!shiftHolded || !isList || !isMultiple) {
                         $("#" + childid + " ." + css.selected).removeClass(css.selected);
-                    };
+                    }
+                    ;
                     $(items[index]).addClass(css.selected);
                     updateTitleUI(index);
                     if (isList == true) {
                         fireAfterItemClicked();
-                    };
+                    }
+                    ;
                     scrollToIfNeeded($(items[index]));
-                };
+                }
+                ;
                 if (!isList) {
                     adjustOpen();
-                };
-            };
+                }
+                ;
+            }
+            ;
+
             function getNext(ind) {
                 ind = ind + 1;
                 if (ind > items.length) {
                     return ind;
-                };
+                }
+                ;
                 if ($(items[ind]).hasClass(css.enabled) === true) {
                     return ind;
-                };
+                }
+                ;
                 return ind = getNext(ind);
             };
         };
@@ -1119,29 +1328,38 @@ var msBeautify = msBeautify || {};
                 if (index >= 0) { //check again - hack for disabled
                     if (!shiftHolded || !isList || !isMultiple) {
                         $("#" + childid + " ." + css.selected).removeClass(css.selected);
-                    };
+                    }
+                    ;
                     $(items[index]).addClass(css.selected);
                     updateTitleUI(index);
                     if (isList == true) {
                         fireAfterItemClicked();
-                    };
+                    }
+                    ;
                     if (parseInt(($(items[index]).position().top + $(items[index]).height())) <= 0) {
                         var top = ($("#" + childid).scrollTop() - $("#" + childid).height()) - $(items[index]).height();
                         $("#" + childid).animate({scrollTop: top}, 500);
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
                 if (!isList) {
                     adjustOpen();
-                };
-            };
+                }
+                ;
+            }
+            ;
+
             function getPrev(ind) {
                 ind = ind - 1;
                 if (ind < 0) {
                     return ind;
-                };
+                }
+                ;
                 if ($(items[ind]).hasClass(css.enabled) === true) {
                     return ind;
-                };
+                }
+                ;
                 return ind = getPrev(ind);
             };
         };
@@ -1158,30 +1376,40 @@ var msBeautify = msBeautify || {};
             if (((wH + st) < Math.floor(cH + mH + pos.top) || direction == 'alwaysup') && direction != 'alwaysdown') {
                 top = cH;
                 $("#" + childid).css({top: "-" + top + "px", display: 'block', zIndex: settings.zIndex});
-                if(settings.roundedCorner == "true") {
+                if (settings.roundedCorner == "true") {
                     $("#" + id).removeClass("borderRadius borderRadiusTp").addClass("borderRadiusBtm");
-                };
+                }
+                ;
                 var top = $("#" + childid).offset().top;
                 if (top < -10) {
-                    $("#" + childid).css({top: (parseInt($("#" + childid).css("top")) - top + 20 + st) + "px", zIndex: settings.zIndex});
-                    if(settings.roundedCorner == "true") {
+                    $("#" + childid).css({
+                        top: (parseInt($("#" + childid).css("top")) - top + 20 + st) + "px",
+                        zIndex: settings.zIndex
+                    });
+                    if (settings.roundedCorner == "true") {
                         $("#" + id).removeClass("borderRadiusBtm borderRadiusTp").addClass("borderRadius");
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
             } else {
                 $("#" + childid).css({top: top + "px", zIndex: settings.zIndex});
-                if(settings.roundedCorner == "true") {
+                if (settings.roundedCorner == "true") {
                     $("#" + id).removeClass("borderRadius borderRadiusBtm").addClass("borderRadiusTp");
-                };
-            };
+                }
+                ;
+            }
+            ;
 //hack for ie zindex
 //i hate ie :D
-            if(isIE) {
-                if(msieversion()<=7) {
-                    $('div.ddcommon').css("zIndex", settings.zIndex-10);
-                    $("#" + id).css("zIndex", settings.zIndex+5);
-                };
-            };
+            if (isIE) {
+                if (msieversion() <= 7) {
+                    $('div.ddcommon').css("zIndex", settings.zIndex - 10);
+                    $("#" + id).css("zIndex", settings.zIndex + 5);
+                }
+                ;
+            }
+            ;
         };
         var open = function (e) {
             if (isDisabled === true) return false;
@@ -1191,53 +1419,62 @@ var msBeautify = msBeautify || {};
                 isOpen = true;
                 if (msBeautify.oldDiv != '') {
                     $("#" + msBeautify.oldDiv).css({display: "none"}); //hide all
-                };
+                }
+                ;
                 msBeautify.oldDiv = childid;
                 $("#" + childid + " li:hidden").show(); //show if hidden
                 adjustOpen();
                 var animStyle = settings.animStyle;
-                if(animStyle=="" || animStyle=="none") {
-                    $("#" + childid).css({display:"block"});
+                if (animStyle == "" || animStyle == "none") {
+                    $("#" + childid).css({display: "block"});
                     scrollToIfNeeded();
                     if (typeof settings.on.open == "function") {
                         var d = getDataAndUI();
                         settings.on.open(d.data, d.ui);
-                    };
+                    }
+                    ;
                 } else {
                     $("#" + childid)[animStyle]("fast", function () {
                         scrollToIfNeeded();
                         if (typeof settings.on.open == "function") {
                             var d = getDataAndUI();
                             settings.on.open(d.data, d.ui);
-                        };
+                        }
+                        ;
                     });
-                };
+                }
+                ;
                 bind_on_events();
             } else {
-                if(settings.event!=='mouseover') {
+                if (settings.event !== 'mouseover') {
                     close();
-                };
-            };
+                }
+                ;
+            }
+            ;
         };
         var close = function (e) {
             isOpen = false;
             var id = getPostID("postID");
             var childid = getPostID("postChildID");
-            if (isList === false || settings.enableCheckbox===true) {
+            if (isList === false || settings.enableCheckbox === true) {
                 $("#" + childid).css({display: "none"});
-                if(settings.roundedCorner == "true") {
+                if (settings.roundedCorner == "true") {
                     $("#" + id).removeClass("borderRadiusTp borderRadiusBtm").addClass("borderRadius");
-                };
-            };
+                }
+                ;
+            }
+            ;
             unbind_on_events();
             if (typeof settings.on.close == "function") {
                 var d = getDataAndUI();
                 settings.on.close(d.data, d.ui);
-            };
+            }
+            ;
 //rest some old stuff
             hideFilterBox();
             childHeight(childHeight()); //its needed after filter applied
-            $("#" + childid).css({zIndex:1});
+            $("#" + childid).css({zIndex: 1});
 //update the title in case the user clicked outside
             updateTitleUI(getElement(element).selectedIndex);
         };
@@ -1248,11 +1485,14 @@ var msBeautify = msBeautify || {};
                 for (var i in orginial) {
                     if (typeof orginial[i] != "function") {
                         $this[i] = orginial[i]; //properties
-                    };
-                };
-            } catch(e) {
+                    }
+                    ;
+                }
+                ;
+            } catch (e) {
 //silent
-            };
+            }
+            ;
             $this.selectedText = (getElement(element).selectedIndex >= 0) ? getElement(element).options[getElement(element).selectedIndex].text : "";
             $this.version = msBeautify.version.msDropdown;
             $this.author = msBeautify.author;
@@ -1263,7 +1503,8 @@ var msBeautify = msBeautify || {};
                 var data = parseOption(opt);
                 var ui = $("#" + childid + " li." + css_i.li + ":eq(" + (opt.index) + ")");
                 return {data: data, ui: ui, option: opt, index: opt.index};
-            };
+            }
+            ;
             return null;
         };
         var getDataAndUI = function () {
@@ -1283,7 +1524,8 @@ var msBeautify = msBeautify || {};
                         var pd = getIndex(ui[i]);
                         d.push(pd);
                         op.push(ele.options[pd]);
-                    };
+                    }
+                    ;
                     data = d;
                     option = op;
                     index = d;
@@ -1291,8 +1533,10 @@ var msBeautify = msBeautify || {};
                     option = ele.options[ele.selectedIndex];
                     data = parseOption(option);
                     index = ele.selectedIndex;
-                };
-            };
+                }
+                ;
+            }
+            ;
             return {data: data, ui: ui, index: index, option: option};
         };
         var updateTitleUI = function (index, byvalue) {
@@ -1308,7 +1552,8 @@ var msBeautify = msBeautify || {};
                 value = parseOption(opt);
             } else {
                 value = byvalue;
-            };
+            }
+            ;
 //update title and current
             $("#" + titleid).find("." + css.label).html(value.text);
             getElement(titleid).className = css.ddTitleText + " " + value.className;
@@ -1317,22 +1562,27 @@ var msBeautify = msBeautify || {};
                 $("#" + titleid).find("." + css.description).html(value.description).show();
             } else {
                 $("#" + titleid).find("." + css.description).html("").hide();
-            };
+            }
+            ;
 //update icon
             var img = $("#" + titleid).find("img");
             if (img.length > 0) {
                 $(img).remove();
-            };
+            }
+            ;
             if (value.image != "" && settings.showIcon) {
                 img = createElement("img", {src: value.image});
                 $("#" + titleid).prepend(img);
-                if(value.imagecss!="") {
-                    img.className = value.imagecss+" ";
-                };
+                if (value.imagecss != "") {
+                    img.className = value.imagecss + " ";
+                }
+                ;
                 if (value.description == "") {
-                    img.className = img.className+css_i.fnone;
-                };
-            };
+                    img.className = img.className + css_i.fnone;
+                }
+                ;
+            }
+            ;
         };
         var updateProp = function (p, v) {
             $this[p] = v;
@@ -1348,18 +1598,21 @@ var msBeautify = msBeautify || {};
                         index = i;
                     } else {
                         index = $("#" + childid + " li." + css_i.li).length - 1;
-                    };
+                    }
+                    ;
                     if (index < 0 || !index) {
                         $("#" + childid + " ul").append(li);
                     } else {
                         var at = $("#" + childid + " li." + css_i.li)[index];
                         $(at).before(li);
-                    };
+                    }
+                    ;
                     removeChildEvents();
                     applyChildEvents();
                     if (settings.on.add != null) {
                         settings.on.add.apply(this, arguments);
-                    };
+                    }
+                    ;
                     break;
                 case "remove":
                     wasSelected = $($("#" + childid + " li." + css_i.li)[i]).hasClass(css.selected);
@@ -1370,19 +1623,25 @@ var msBeautify = msBeautify || {};
                             $(items[0]).addClass(css.selected);
                             var ind = $("#" + childid + " li." + css_i.li).index(items[0]);
                             setValue(ind);
-                        };
-                    };
+                        }
+                        ;
+                    }
+                    ;
                     if (items.length == 0) {
                         setValue(-1);
-                    };
+                    }
+                    ;
                     if ($("#" + childid + " li." + css_i.li).length < settings.visibleRows && !isList) {
                         childHeight(-1); //set autoheight
-                    };
+                    }
+                    ;
                     if (settings.on.remove != null) {
                         settings.on.remove.apply(this, arguments);
-                    };
+                    }
+                    ;
                     break;
-            };
+            }
+            ;
         };
         /************************** public methods/events **********************/
         this.act = function () {
@@ -1400,9 +1659,11 @@ var msBeautify = msBeautify || {};
                         getElement(element)[action].apply(getElement(element), arguments);
                     } catch (e) {
 //there is some error.
-                    };
+                    }
+                    ;
                     break;
-            };
+            }
+            ;
         };
         this.add = function () {
             var text, value, title, image, description;
@@ -1422,7 +1683,8 @@ var msBeautify = msBeautify || {};
                 $(opt).data("description", description);
                 $(opt).data("image", image);
                 $(opt).data("title", title);
-            };
+            }
+            ;
             arguments[0] = opt; //this option
             getElement(element).add.apply(getElement(element), arguments);
             updateProp("children", getElement(element)["children"]);
@@ -1440,13 +1702,16 @@ var msBeautify = msBeautify || {};
             prop = prop.toString();
             try {
                 updateProp(prop, val);
-            } catch (e) {/*this is ready only */};
+            } catch (e) {/*this is ready only */
+            }
+            ;
             switch (prop) {
                 case "size":
                     getElement(element)[prop] = val;
                     if (val == 0) {
                         getElement(element).multiple = false; //if size is zero multiple should be false
-                    };
+                    }
+                    ;
                     isList = (getElement(element).size > 1 || getElement(element).multiple == true) ? true : false;
                     fixedForList();
                     break;
@@ -1464,15 +1729,16 @@ var msBeautify = msBeautify || {};
                     break;
                 case "selectedIndex":
                 case "value":
-                    if(prop=="selectedIndex" && isArray(val)===true) {
-                        $("#"+element +" option").prop("selected", false);
+                    if (prop == "selectedIndex" && isArray(val) === true) {
+                        $("#" + element + " option").prop("selected", false);
                         selectMutipleOptions(val, true);
                         selectUI_LI(val); //setValue is being called from selectMutipleOptions
                     } else {
                         getElement(element)[prop] = val;
                         selectUI_LI(getElement(element).selectedIndex);
                         setValue(getElement(element).selectedIndex);
-                    };
+                    }
+                    ;
                     break;
                 case "length":
                     var childid = getPostID("postChildID");
@@ -1485,11 +1751,14 @@ var msBeautify = msBeautify || {};
                             $("#" + childid + " li." + css_i.li + ":gt(" + (val - 1) + ")").remove();
                             if ($("#" + childid + " li." + css.selected).length == 0) {
                                 $("#" + childid + " li." + css.enabled + ":eq(0)").addClass(css.selected);
-                            };
-                        };
+                            }
+                            ;
+                        }
+                        ;
                         updateProp(prop, val);
                         updateProp("children", getElement(element)["children"]);
-                    };
+                    }
+                    ;
                     break;
                 case "id":
 //please i need this. so preventing to change it. will work on this later
@@ -1501,9 +1770,11 @@ var msBeautify = msBeautify || {};
                         updateProp(prop, val);
                     } catch (e) {
 //silent
-                    };
+                    }
+                    ;
                     break;
-            };
+            }
+            ;
         };
         this.get = function (prop) {
             return $this[prop] || getElement(element)[prop]; //return if local else from original
@@ -1515,8 +1786,9 @@ var msBeautify = msBeautify || {};
             } else if (val === false) {
                 $("#" + id).hide();
             } else {
-                return ($("#" + id).css("display")=="none") ? false : true;
-            };
+                return ($("#" + id).css("display") == "none") ? false : true;
+            }
+            ;
         };
         this.debug = function (v) {
             msBeautify.debug(v);
@@ -1530,7 +1802,8 @@ var msBeautify = msBeautify || {};
         this.showRows = function (r) {
             if (typeof r == "undefined" || r == 0) {
                 return false;
-            };
+            }
+            ;
             settings.visibleRows = r;
             childHeight(childHeight());
         };
@@ -1554,7 +1827,7 @@ var msBeautify = msBeautify || {};
             return getDataAndUIByOption(opt);
         };
 //v 3.2
-        this.setIndexByValue = function(val) {
+        this.setIndexByValue = function (val) {
             this.set("value", val);
         };
         this.destroy = function () {
@@ -1566,7 +1839,7 @@ var msBeautify = msBeautify || {};
             $("#" + element).parent().replaceWith($("#" + element));
             $("#" + element).data("dd", null);
         };
-        this.refresh = function() {
+        this.refresh = function () {
             setValue(getElement(element).selectedIndex);
         };
 //Create msDropDown
@@ -1574,14 +1847,13 @@ var msBeautify = msBeautify || {};
     };
 //bind in jquery
     $.fn.extend({
-        msDropDown: function(settings)
-        {
-            return this.each(function()
-            {
-                if (!$(this).data('dd')){
+        msDropDown: function (settings) {
+            return this.each(function () {
+                if (!$(this).data('dd')) {
                     var mydropdown = new dd(this, settings);
                     $(this).data('dd', mydropdown);
-                };
+                }
+                ;
             });
         }
     });

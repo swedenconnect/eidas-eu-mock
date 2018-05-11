@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,40 +28,54 @@ import org.opensaml.xacml.ctx.StatusType;
 import org.opensaml.xacml.impl.AbstractXACMLObject;
 import org.opensaml.xml.XMLObject;
 
-/** Concrete implementation of {@link StatusType}. */
+/**
+ * Concrete implementation of {@link StatusType}.
+ */
 public class StatusTypeImpl extends AbstractXACMLObject implements StatusType {
 
-    /** Status code. */
+    /**
+     * Status code.
+     */
     private StatusCodeType statusCode;
 
-    /** The status message. */
+    /**
+     * The status message.
+     */
     private StatusMessageType statusMessage;
 
-    /** Status detail element. */
+    /**
+     * Status detail element.
+     */
     private StatusDetailType statusDetail;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected StatusTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusCodeType getStatusCode() {
         return statusCode;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusCode(StatusCodeType newStatusCode) {
         statusCode = prepareForAssignment(this.statusCode, newStatusCode);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
@@ -80,22 +94,30 @@ public class StatusTypeImpl extends AbstractXACMLObject implements StatusType {
         return Collections.unmodifiableList(children);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusMessageType getStatusMessage() {
         return statusMessage;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusMessage(StatusMessageType newStatusMessage) {
         this.statusMessage = prepareForAssignment(this.statusMessage, newStatusMessage);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusDetailType getStatusDetail() {
         return statusDetail;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusDetail(StatusDetailType newStatusDetail) {
         this.statusDetail = prepareForAssignment(this.statusDetail, newStatusDetail);
     }

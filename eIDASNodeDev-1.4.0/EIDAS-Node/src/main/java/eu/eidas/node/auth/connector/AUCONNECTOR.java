@@ -145,7 +145,7 @@ public final class AUCONNECTOR implements ICONNECTORService {
                 !samlService.checkMandatoryAttributes(authData.getRequestedAttributes())) {
             LOG.error("BUSINESS EXCEPTION : incomplete mandatory set");
             throw new EidasNodeException(EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorCode()),
-                                         EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
+                    EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
         }
 
         //Validate Representative
@@ -157,16 +157,16 @@ public final class AUCONNECTOR implements ICONNECTORService {
         }
 
         /* EID-423: wrong attribute name was implemented prior to 1.4, backward compatibility if for the Network only to ensure business continuity, the
-        *  Specific must Request the right ones in the interface*/
+         *  Specific must Request the right ones in the interface*/
         //TODO START remove check of erroneous attributes after transition period of EID-423
         ImmutableSet<AttributeDefinition<?>> requestedAttributes = authData.getRequestedAttributes().getDefinitions();
         if (requestedAttributes != null && requestedAttributes.contains(LegalPersonSpec.Definitions.LEGAL_ADDRESS)) {
-            LOG.error("BUSINESS EXCEPTION : "+LegalPersonSpec.Definitions.LEGAL_ADDRESS.getNameUri().toASCIIString()+" was requested instead of "+LegalPersonSpec.Definitions.LEGAL_PERSON_ADDRESS.getNameUri().toASCIIString());
+            LOG.error("BUSINESS EXCEPTION : " + LegalPersonSpec.Definitions.LEGAL_ADDRESS.getNameUri().toASCIIString() + " was requested instead of " + LegalPersonSpec.Definitions.LEGAL_PERSON_ADDRESS.getNameUri().toASCIIString());
             throw new EidasNodeException(EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()),
                     EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()));
         }
         if (requestedAttributes != null && requestedAttributes.contains(LegalPersonSpec.Definitions.VAT_REGISTRATION)) {
-            LOG.error("BUSINESS EXCEPTION : "+LegalPersonSpec.Definitions.VAT_REGISTRATION.getNameUri().toASCIIString()+" was requested instead of "+LegalPersonSpec.Definitions.VAT_REGISTRATION_NUMBER.getNameUri().toASCIIString());
+            LOG.error("BUSINESS EXCEPTION : " + LegalPersonSpec.Definitions.VAT_REGISTRATION.getNameUri().toASCIIString() + " was requested instead of " + LegalPersonSpec.Definitions.VAT_REGISTRATION_NUMBER.getNameUri().toASCIIString());
             throw new EidasNodeException(EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorCode()),
                     EidasErrors.get(EidasErrorKey.COLLEAGUE_REQ_INVALID_SAML.errorMessage()));
         }
@@ -232,7 +232,7 @@ public final class AUCONNECTOR implements ICONNECTORService {
         // processing the webRequest
         AuthenticationExchange authenticationExchange =
                 samlService.processProxyServiceResponse(webRequest, connectorRequestCorrelationMap,
-                                                        specificSpRequestCorrelationMap);
+                        specificSpRequestCorrelationMap);
 
         IAuthenticationResponse connectorResponse = authenticationExchange.getConnectorResponse();
 

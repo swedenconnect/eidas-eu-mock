@@ -93,7 +93,7 @@ public class SpecificProxyServiceImplTest {
                     .personType(PersonType.NATURAL_PERSON)
                     .required(true)
                     .xmlType("http://eidas.europa.eu/attributes/naturalperson", "CurrentFamilyNameType",
-                             "eidas-natural")
+                            "eidas-natural")
                     .attributeValueMarshaller(new StringAttributeValueMarshaller())
                     .transliterationMandatory(true)
                     .build();
@@ -171,7 +171,7 @@ public class SpecificProxyServiceImplTest {
         byte[] bytes = "Response".getBytes("UTF-8");
         byte[] encodedSamlResponse = Base64.encode(bytes);
         Map<String, String[]> params = new HashMap<>();
-        params.put("SAMLResponse", new String[] {new String(encodedSamlResponse)});
+        params.put("SAMLResponse", new String[]{new String(encodedSamlResponse)});
         HttpServletRequest httpServletRequest = httpServletRequest(params);
 
         StoredLightRequest storedLightRequest = StoredLightRequest.builder().request(lightRequest()).remoteIpAddress(REMOTE_ADDRESS).build();
@@ -207,7 +207,7 @@ public class SpecificProxyServiceImplTest {
         byte[] bytes = "Response".getBytes("UTF-8");
         byte[] encodedSamlResponse = Base64.encode(bytes);
         Map<String, String[]> params = new HashMap<>();
-        params.put("SAMLResponse", new String[] {new String(encodedSamlResponse)});
+        params.put("SAMLResponse", new String[]{new String(encodedSamlResponse)});
         HttpServletRequest httpServletRequest = httpServletRequest(params);
 
         StoredLightRequest storedLightRequest = StoredLightRequest.builder().request(lightRequest()).remoteIpAddress(REMOTE_ADDRESS).build();
@@ -241,7 +241,7 @@ public class SpecificProxyServiceImplTest {
         byte[] bytes = "Response".getBytes("UTF-8");
         byte[] encodedSamlResponse = Base64.encode(bytes);
         Map<String, String[]> params = new HashMap<>();
-        params.put("SAMLResponse", new String[] {new String(encodedSamlResponse)});
+        params.put("SAMLResponse", new String[]{new String(encodedSamlResponse)});
         HttpServletRequest httpServletRequest = httpServletRequest(params);
 
         StoredLightRequest storedLightRequest = StoredLightRequest.builder().request(lightRequest()).remoteIpAddress(REMOTE_ADDRESS).build();
@@ -289,7 +289,7 @@ public class SpecificProxyServiceImplTest {
                 .build();
     }
 
-    private HttpServletRequest httpServletRequest(final  Map<String, String[]> params) {
+    private HttpServletRequest httpServletRequest(final Map<String, String[]> params) {
         final Map<String, Object> attributes = new HashMap<>();
 
         return new HttpServletRequest() {

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,23 +32,33 @@ import org.opensaml.saml2.core.SubjectLocality;
  */
 public class AuthnStatementTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected AuthnInstant value */
+    /**
+     * Expected AuthnInstant value
+     */
     private DateTime expectedAuthnInstant;
 
-    /** Expected SessionIndex value */
+    /**
+     * Expected SessionIndex value
+     */
     private String expectedSessionIndex;
 
-    /** Expected SessionNotOnOrAfter value */
+    /**
+     * Expected SessionNotOnOrAfter value
+     */
     private DateTime expectedSessionNotOnOrAfter;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthnStatementTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AuthnStatement.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/AuthnStatementOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AuthnStatementChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedAuthnInstant = new DateTime(1984, 8, 26, 10, 01, 30, 43, ISOChronology.getInstanceUTC());
@@ -56,7 +66,9 @@ public class AuthnStatementTest extends BaseSAMLObjectProviderTestCase {
         expectedSessionNotOnOrAfter = new DateTime(1984, 8, 26, 10, 11, 30, 43, ISOChronology.getInstanceUTC());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AuthnStatement authnStatement = (AuthnStatement) unmarshallElement(singleElementFile);
 
@@ -65,7 +77,9 @@ public class AuthnStatementTest extends BaseSAMLObjectProviderTestCase {
                 authnInstant);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AuthnStatement authnStatement = (AuthnStatement) unmarshallElement(singleElementOptionalAttributesFile);
 
@@ -82,7 +96,9 @@ public class AuthnStatementTest extends BaseSAMLObjectProviderTestCase {
                 expectedSessionNotOnOrAfter, sessionNotOnOrAfter);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthnStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthnStatement authnStatement = (AuthnStatement) buildXMLObject(qname);
@@ -91,7 +107,9 @@ public class AuthnStatementTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, authnStatement);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthnStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthnStatement authnStatement = (AuthnStatement) buildXMLObject(qname);
@@ -103,24 +121,28 @@ public class AuthnStatementTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedOptionalAttributesDOM, authnStatement);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AuthnStatement authnStatement = (AuthnStatement) unmarshallElement(childElementsFile);
         assertNotNull("AuthnContext element not present", authnStatement.getAuthnContext());
         assertNotNull("SubjectLocality element not present", authnStatement.getSubjectLocality());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthnStatement.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthnStatement authnStatement = (AuthnStatement) buildXMLObject(qname);
 
         QName subjectLocalityQName = new QName(SAMLConstants.SAML20_NS, SubjectLocality.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         authnStatement.setSubjectLocality((SubjectLocality) buildXMLObject(subjectLocalityQName));
-        
+
         QName authnContextQName = new QName(SAMLConstants.SAML20_NS, AuthnContext.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         authnStatement.setAuthnContext((AuthnContext) buildXMLObject(authnContextQName));
-        
+
         assertEquals(expectedChildElementsDOM, authnStatement);
     }
 }

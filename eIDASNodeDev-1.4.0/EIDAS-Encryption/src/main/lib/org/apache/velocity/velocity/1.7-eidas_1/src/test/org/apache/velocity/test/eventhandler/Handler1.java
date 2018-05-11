@@ -16,7 +16,7 @@ package org.apache.velocity.test.eventhandler;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.app.event.IncludeEventHandler;
@@ -31,46 +31,42 @@ import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
  * @version $Id: Handler1.java 463298 2006-10-12 16:10:32Z henning $
  */
 public class Handler1
-    implements NullSetEventHandler, ReferenceInsertionEventHandler, MethodExceptionEventHandler, IncludeEventHandler {
+        implements NullSetEventHandler, ReferenceInsertionEventHandler, MethodExceptionEventHandler, IncludeEventHandler {
 
-        /**
-         * never log
-         */
-        public boolean shouldLogOnNullSet(String lhs, String rhs)
-        {
-            return false;
-        }
+    /**
+     * never log
+     */
+    public boolean shouldLogOnNullSet(String lhs, String rhs) {
+        return false;
+    }
 
-        /**
-         * display output twice, once uppercase and once lowercase
-         */
-        public Object referenceInsert(String reference, Object value)
-        {
-            if (value == null)
-                return null;
-            else
-                return value.toString().toUpperCase() + value.toString().toLowerCase();
-        }
+    /**
+     * display output twice, once uppercase and once lowercase
+     */
+    public Object referenceInsert(String reference, Object value) {
+        if (value == null)
+            return null;
+        else
+            return value.toString().toUpperCase() + value.toString().toLowerCase();
+    }
 
-        /**
-         * throw the exception
-         */
-        public Object methodException(Class claz, String method, Exception e) throws Exception
-        {
-            throw e;
-        }
+    /**
+     * throw the exception
+     */
+    public Object methodException(Class claz, String method, Exception e) throws Exception {
+        throw e;
+    }
 
-        /*
-         * redirect all requests to a page "login.vm" (simulates access control).
-         */
-        public String includeEvent(
+    /*
+     * redirect all requests to a page "login.vm" (simulates access control).
+     */
+    public String includeEvent(
             String includeResourcePath,
             String currentResourcePath,
-            String directiveName)
-        {
+            String directiveName) {
 
-            return "notfound.vm";
+        return "notfound.vm";
 
-        }
+    }
 
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,21 +27,29 @@ import org.opensaml.xml.encryption.EncryptedKey;
  */
 public class EncryptedAttributeTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Count of EncryptedKey subelements. */
+    /**
+     * Count of EncryptedKey subelements.
+     */
     private int encryptedKeyCount = 3;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public EncryptedAttributeTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/EncryptedAttribute.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/EncryptedAttributeChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         EncryptedAttribute encElement = (EncryptedAttribute) unmarshallElement(singleElementFile);
 
@@ -49,33 +57,39 @@ public class EncryptedAttributeTest extends BaseSAMLObjectProviderTestCase {
         assertNull("EncryptedData child element", encElement.getEncryptedData());
         assertEquals("# of EncryptedKey children", 0, encElement.getEncryptedKeys().size());
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         EncryptedAttribute encElement = (EncryptedAttribute) unmarshallElement(childElementsFile);
-        
+
         assertNotNull("EncryptedAttribute was null", encElement);
         assertNotNull("EncryptedData child element", encElement.getEncryptedData());
         assertEquals("# of EncryptedKey children", encryptedKeyCount, encElement.getEncryptedKeys().size());
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         EncryptedAttribute encElement = (EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME);
 
         assertEquals(expectedDOM, encElement);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         EncryptedAttribute encElement = (EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME);
-        
+
         encElement.setEncryptedData((EncryptedData) buildXMLObject(EncryptedData.DEFAULT_ELEMENT_NAME));
-        for (int i=0; i < encryptedKeyCount; i++) {
+        for (int i = 0; i < encryptedKeyCount; i++) {
             encElement.getEncryptedKeys().add((EncryptedKey) buildXMLObject(EncryptedKey.DEFAULT_ELEMENT_NAME));
         }
-        
+
         assertEquals(expectedChildElementsDOM, encElement);
     }
 }

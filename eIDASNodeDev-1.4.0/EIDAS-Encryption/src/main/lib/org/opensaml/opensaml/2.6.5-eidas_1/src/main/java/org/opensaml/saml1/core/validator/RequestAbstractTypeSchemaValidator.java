@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.validator;
@@ -31,7 +31,9 @@ import org.opensaml.xml.validation.Validator;
  */
 public class RequestAbstractTypeSchemaValidator<RequestType extends RequestAbstractType> implements Validator<RequestType> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(RequestType requestAbstractType) throws ValidationException {
         validateVersion(requestAbstractType);
 
@@ -42,7 +44,7 @@ public class RequestAbstractTypeSchemaValidator<RequestType extends RequestAbstr
 
     /**
      * Validates that this is SAML1.0 or SAML 1.1
-     * 
+     *
      * @param request
      * @throws ValidationException
      */
@@ -54,7 +56,7 @@ public class RequestAbstractTypeSchemaValidator<RequestType extends RequestAbstr
 
     /**
      * Validate that the ID is present and valid
-     * 
+     *
      * @param request
      * @throws ValidationException
      */
@@ -66,7 +68,7 @@ public class RequestAbstractTypeSchemaValidator<RequestType extends RequestAbstr
 
     /**
      * Validate that the IssueInstant is present.
-     * 
+     *
      * @param request
      * @throws ValidationException
      */

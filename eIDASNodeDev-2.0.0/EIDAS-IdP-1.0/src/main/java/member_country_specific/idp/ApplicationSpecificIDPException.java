@@ -16,6 +16,6 @@ public class ApplicationSpecificIDPException extends RuntimeException {
     }
 
     public String getTitle() {
-		return title;
-	}
+        return title;
+    }
 }

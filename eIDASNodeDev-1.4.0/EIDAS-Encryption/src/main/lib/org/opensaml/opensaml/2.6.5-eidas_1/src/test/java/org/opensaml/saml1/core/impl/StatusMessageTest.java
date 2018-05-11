@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml1.core.impl;
 
@@ -27,18 +27,19 @@ import org.opensaml.common.xml.SAMLConstants;
 import org.opensaml.saml1.core.StatusMessage;
 
 /**
- * Test for org.opensaml.saml1.core.StatusMessage 
+ * Test for org.opensaml.saml1.core.StatusMessage
  */
 public class StatusMessageTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
     private final String contents;
 
     /**
      * Constructor
-     *
      */
     public StatusMessageTest() {
         super();
@@ -46,31 +47,39 @@ public class StatusMessageTest extends BaseSAMLObjectProviderTestCase {
         contents = "Nibble a Happy Warthog";
         singleElementFile = "/data/org/opensaml/saml1/impl/singleStatusMessage.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml1/impl/FullStatusMessage.xml";
-        
+
         qname = new QName(SAMLConstants.SAML10P_NS, StatusMessage.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementUnmarshall() {
         StatusMessage statusMessage = (StatusMessage) unmarshallElement(singleElementFile);
         assertNull("Contents", statusMessage.getMessage());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesUnmarshall() {
         StatusMessage statusMessage = (StatusMessage) unmarshallElement(singleElementOptionalAttributesFile);
         assertEquals("Contents", contents, statusMessage.getMessage());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
 
     public void testSingleElementOptionalAttributesMarshall() {
         StatusMessage statusMessage = (StatusMessage) buildXMLObject(qname);

@@ -43,14 +43,16 @@ import eu.eidas.auth.engine.core.SAMLExtensionFormat;
 
 import javax.annotation.Nonnull;
 
-/** since 2.0.0 */
+/**
+ * since 2.0.0
+ */
 public class EidasSAMLFormat implements SAMLExtensionFormat {
 
     @Nonnull
     private final transient String name = "eidas";
 
     @Nonnull
-    private final transient String assertionNS =  SAMLCore.EIDAS10_NS.getValue();
+    private final transient String assertionNS = SAMLCore.EIDAS10_NS.getValue();
 
     @Nonnull
     private final transient String assertionPrefix = SAMLCore.EIDAS10_PREFIX.getValue();

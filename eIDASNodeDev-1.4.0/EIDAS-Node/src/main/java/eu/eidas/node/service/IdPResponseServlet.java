@@ -170,7 +170,7 @@ public final class IdPResponseServlet extends AbstractServiceServlet {
             // send the error back:
             if (LOG.isErrorEnabled()) {
                 LOG.error("Could not correlate any eIDAS request to the received specific IdP response: "
-                                  + lightResponse);
+                        + lightResponse);
             }
             throw new ServletException(
                     "Could not correlate specific response ID: " + lightResponse.getId() + " to any eIDAS request");
@@ -192,14 +192,14 @@ public final class IdPResponseServlet extends AbstractServiceServlet {
             // send the error back:
             if (LOG.isErrorEnabled()) {
                 LOG.error("Received failed authentication from Specific Idp: errorMessage=\"" + errorMessage
-                                  + "\", statusCode=\"" + statusCode + "\", subCode=\"" + errorSubCode + "\"");
+                        + "\", statusCode=\"" + statusCode + "\", subCode=\"" + errorSubCode + "\"");
             }
             retVal = NodeViewNames.EIDAS_CONNECTOR_REDIRECT.toString();
 
             getLogger().trace("Generate SAMLTokenFail because of authentication failure received from specific IdP");
             String samlTokenFail = controllerService.getProxyService()
                     .generateSamlTokenFail(originalRequest, statusCode, null, errorSubCode, errorMessage,
-                                           webRequest.getRemoteIpAddress(), false);
+                            webRequest.getRemoteIpAddress(), false);
 
             request.setAttribute(NodeParameterNames.SAML_TOKEN_FAIL.toString(), samlTokenFail);
         } else {
@@ -214,8 +214,8 @@ public final class IdPResponseServlet extends AbstractServiceServlet {
                         "Generate SAMLTokenFail proactively in case of future consent refusal by the citizen");
                 String samlTokenFail = controllerService.getProxyService()
                         .generateSamlTokenFail(originalRequest, EIDASStatusCode.REQUESTER_URI.toString(),
-                                               EidasErrorKey.CITIZEN_NO_CONSENT_MANDATORY,
-                                               webRequest.getRemoteIpAddress());
+                                EidasErrorKey.CITIZEN_NO_CONSENT_MANDATORY,
+                                webRequest.getRemoteIpAddress());
 
                 request.setAttribute(NodeParameterNames.SAML_TOKEN_FAIL.toString(), samlTokenFail);
 
@@ -274,11 +274,11 @@ public final class IdPResponseServlet extends AbstractServiceServlet {
                 }
             }
             request.setAttribute(NodeParameterNames.EIDAS_ATTRIBUTES_PARAM.toString(),
-                                 Boolean.valueOf(hasEidasAttributes));
+                    Boolean.valueOf(hasEidasAttributes));
 
             if (StringUtils.isNotBlank(authnResponse.getLevelOfAssurance())) {
                 request.setAttribute(NodeParameterNames.LOA_VALUE.toString(),
-                                     EidasAttributesUtil.getUserFriendlyLoa(authnResponse.getLevelOfAssurance()));
+                        EidasAttributesUtil.getUserFriendlyLoa(authnResponse.getLevelOfAssurance()));
             }
         }
 
@@ -296,11 +296,11 @@ public final class IdPResponseServlet extends AbstractServiceServlet {
 
         // These attributes are used by citizenConsent.jsp
         request.setAttribute(NodeParameterNames.REDIRECT_URL.toString(),
-                             response.encodeRedirectURL(redirectUrl)); // Correct URl redirect cookie implementation
+                response.encodeRedirectURL(redirectUrl)); // Correct URl redirect cookie implementation
         request.setAttribute(EidasParameterKeys.SP_ID.toString(), originalRequest.getProviderName());
         if (originalRequest instanceof IStorkAuthenticationRequest) {
             request.setAttribute(NodeParameterNames.QAA_LEVEL.toString(),
-                                 ((IStorkAuthenticationRequest) originalRequest).getQaa());
+                    ((IStorkAuthenticationRequest) originalRequest).getQaa());
         }
 
         String relayState = storedAuthenticationRequest.getRelayState();

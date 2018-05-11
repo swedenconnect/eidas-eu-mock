@@ -30,8 +30,8 @@ import eu.eidas.auth.engine.metadata.impl.EidasMetadataRoleParameters;
  * This is a factory for {@link EidasMetadataParametersI} objects.
  * Now it is simply returning the default implemented object. In the future there there is a possible change in the design:
  * - have two implementations, on in Metadata service, another one in the dependent module(s). The first is similar to
- *   the as-is, it just returns with an object, but in the dependents it could invoke a proxy operation. It depends
- *   on how the Metadata service is designed.
+ * the as-is, it just returns with an object, but in the dependents it could invoke a proxy operation. It depends
+ * on how the Metadata service is designed.
  */
 public class MetadataConfiguration {
 

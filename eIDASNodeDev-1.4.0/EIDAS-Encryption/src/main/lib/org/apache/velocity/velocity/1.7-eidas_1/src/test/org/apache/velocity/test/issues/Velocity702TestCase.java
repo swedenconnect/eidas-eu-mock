@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.app.VelocityEngine;
@@ -28,15 +28,12 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-702.
  */
-public class Velocity702TestCase extends BaseTestCase
-{
-    public Velocity702TestCase(String name)
-    {
+public class Velocity702TestCase extends BaseTestCase {
+    public Velocity702TestCase(String name) {
         super(name);
     }
 
-    public void setUpEngine(VelocityEngine engine)
-    {
+    public void setUpEngine(VelocityEngine engine) {
         engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "high,low");
         engine.addProperty("high.resource.loader.class", StringResourceLoader.class.getName());
         engine.addProperty("high.resource.loader.cache", "false");
@@ -51,8 +48,7 @@ public class Velocity702TestCase extends BaseTestCase
         engine.init();
     }
 
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         addToHigh("foo", "foo");
         addToLow("foo", "bar");
         assertTmplEquals("foo", "foo");
@@ -65,34 +61,28 @@ public class Velocity702TestCase extends BaseTestCase
         assertTmplEquals("woogie", "foo");
     }
 
-    private void addToHigh(String name, String content)
-    {
+    private void addToHigh(String name, String content) {
         getHighRepo().putStringResource(name, content);
     }
 
-    private void removeFromHigh(String name)
-    {
+    private void removeFromHigh(String name) {
         getHighRepo().removeStringResource(name);
     }
 
-    private StringResourceRepository getHighRepo()
-    {
-        return (StringResourceRepository)engine.getApplicationAttribute("high");
+    private StringResourceRepository getHighRepo() {
+        return (StringResourceRepository) engine.getApplicationAttribute("high");
     }
 
-    private void addToLow(String name, String content)
-    {
+    private void addToLow(String name, String content) {
         getLowRepo().putStringResource(name, content);
     }
 
-    private void removeFromLow(String name)
-    {
+    private void removeFromLow(String name) {
         getLowRepo().removeStringResource(name);
     }
 
-    private StringResourceRepository getLowRepo()
-    {
-        return (StringResourceRepository)engine.getApplicationAttribute("low");
+    private StringResourceRepository getLowRepo() {
+        return (StringResourceRepository) engine.getApplicationAttribute("low");
     }
 
 }

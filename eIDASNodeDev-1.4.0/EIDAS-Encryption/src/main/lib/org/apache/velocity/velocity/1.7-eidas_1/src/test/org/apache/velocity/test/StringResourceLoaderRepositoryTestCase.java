@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -39,17 +39,14 @@ import org.apache.velocity.runtime.resource.util.StringResourceRepositoryImpl;
  * @author Nathan Bubna
  * @version $Id: StringResourceLoaderRepositoryTestCase.java 479058 2006-11-25 00:26:32Z henning $
  */
-public class StringResourceLoaderRepositoryTestCase extends TestCase
-{
+public class StringResourceLoaderRepositoryTestCase extends TestCase {
     private VelocityContext context;
 
-    public StringResourceLoaderRepositoryTestCase(String name)
-    {
+    public StringResourceLoaderRepositoryTestCase(String name) {
         super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         Velocity.setProperty(Velocity.RESOURCE_LOADER, "string");
         Velocity.addProperty("string.resource.loader.class", StringResourceLoader.class.getName());
         Velocity.addProperty("string.resource.loader.modificationCheckInterval", "1");
@@ -60,8 +57,7 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
 
         // this will fail when run as part of suite of tests in one process
         // but it's only required for several tests
-        if (repo != null)
-        {
+        if (repo != null) {
             repo.putStringResource("foo", "This is $foo");
             repo.putStringResource("bar", "This is $bar");
         }
@@ -73,17 +69,14 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
     }
 
 
-    protected VelocityEngine newStringEngine(String repoName, boolean isStatic)
-    {
+    protected VelocityEngine newStringEngine(String repoName, boolean isStatic) {
         VelocityEngine engine = new VelocityEngine();
         engine.setProperty(Velocity.RESOURCE_LOADER, "string");
         engine.addProperty("string.resource.loader.class", StringResourceLoader.class.getName());
-        if (repoName != null)
-        {
+        if (repoName != null) {
             engine.addProperty("string.resource.loader.repository.name", repoName);
         }
-        if (!isStatic)
-        {
+        if (!isStatic) {
             engine.addProperty("string.resource.loader.repository.static", "false");
         }
         engine.addProperty("string.resource.loader.modificationCheckInterval", "1");
@@ -91,42 +84,30 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
         return engine;
     }
 
-    protected StringResourceRepository getRepo(String name, VelocityEngine engine)
-    {
-        if (engine == null)
-        {
-            if (name == null)
-            {
+    protected StringResourceRepository getRepo(String name, VelocityEngine engine) {
+        if (engine == null) {
+            if (name == null) {
                 return StringResourceLoader.getRepository();
-            }
-            else
-            {
+            } else {
                 return StringResourceLoader.getRepository(name);
             }
-        }
-        else
-        {
-            if (name == null)
-            {
-                return (StringResourceRepository)engine.getApplicationAttribute(StringResourceLoader.REPOSITORY_NAME_DEFAULT);
-            }
-            else
-            {
-                return (StringResourceRepository)engine.getApplicationAttribute(name);
+        } else {
+            if (name == null) {
+                return (StringResourceRepository) engine.getApplicationAttribute(StringResourceLoader.REPOSITORY_NAME_DEFAULT);
+            } else {
+                return (StringResourceRepository) engine.getApplicationAttribute(name);
             }
         }
     }
 
-    protected String render(Template template) throws Exception
-    {
+    protected String render(Template template) throws Exception {
         StringWriter out = new StringWriter();
         template.merge(this.context, out);
         return out.toString();
     }
 
 
-    public void testSharedRepo() throws Exception
-    {
+    public void testSharedRepo() throws Exception {
         // this engine's string resource loader should share a repository
         // with the singleton's string resource loader
         VelocityEngine engine = newStringEngine(null, true);
@@ -139,8 +120,7 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
         assertEquals(engineOut, singletonOut);
     }
 
-    public void testAlternateStaticRepo() throws Exception
-    {
+    public void testAlternateStaticRepo() throws Exception {
         VelocityEngine engine = newStringEngine("alternate.repo", true);
         // should be null be for init
         StringResourceRepository repo = getRepo("alternate.repo", null);
@@ -159,8 +139,7 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
         assertFalse(engineOut.equals(singletonOut));
     }
 
-    public void testPreCreatedStaticRepo() throws Exception
-    {
+    public void testPreCreatedStaticRepo() throws Exception {
         VelocityEngine engine = newStringEngine("my.repo", true);
         MyRepo repo = new MyRepo();
         repo.put("bar", "This is NOT $bar");
@@ -170,8 +149,7 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
         assertEquals(out, "This is NOT horrible!");
     }
 
-    public void testAppRepo() throws Exception
-    {
+    public void testAppRepo() throws Exception {
         VelocityEngine engine = newStringEngine(null, false);
         engine.init();
 
@@ -183,8 +161,7 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
         assertEquals(out, "What is a woogie?");
     }
 
-    public void testAlternateAppRepo() throws Exception
-    {
+    public void testAlternateAppRepo() throws Exception {
         VelocityEngine engine = newStringEngine("alternate.app.repo", false);
         engine.init();
 
@@ -196,8 +173,7 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
         assertEquals(out, "You look wonderful!");
     }
 
-    public void testPreCreatedAppRepo() throws Exception
-    {
+    public void testPreCreatedAppRepo() throws Exception {
         VelocityEngine engine = newStringEngine("my.app.repo", false);
         MyRepo repo = new MyRepo();
         repo.put("you/bar.vm", "You look $bar");
@@ -207,10 +183,8 @@ public class StringResourceLoaderRepositoryTestCase extends TestCase
         assertEquals(out, "You look horrible!");
     }
 
-    public static class MyRepo extends StringResourceRepositoryImpl
-    {
-        public void put(String name, String template)
-        {
+    public static class MyRepo extends StringResourceRepositoryImpl {
+        public void put(String name, String template) {
             putStringResource(name, template);
         }
     }

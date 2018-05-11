@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,15 +22,21 @@ import javax.xml.namespace.QName;
 import org.opensaml.xacml.XACMLConstants;
 import org.opensaml.xacml.XACMLObject;
 
-/** XACML XPathVersion schema. */
+/**
+ * XACML XPathVersion schema.
+ */
 public interface XPathVersion extends XACMLObject {
-    
-   
-    /** Local name of the element. */
+
+
+    /**
+     * Local name of the element.
+     */
     public static final String ELEMENT_LOCAL_NAME = "XPathVersion";
 
-    /** QName of the element element. */
+    /**
+     * QName of the element element.
+     */
     public static final QName DEFAULTS_ELEMENT_NAME = new QName(XACMLConstants.XACML20_NS,
-           ELEMENT_LOCAL_NAME, XACMLConstants.XACML_PREFIX);
+            ELEMENT_LOCAL_NAME, XACMLConstants.XACML_PREFIX);
 
 }

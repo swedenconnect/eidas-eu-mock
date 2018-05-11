@@ -21,7 +21,7 @@
   --%>
 
 <div class="col-md-6">
-  <div class="illustration">
-    <h1>Use your national <span>e</span>ID and access online services</h1>
-    <img src="resources/skin0/img/ico-stork.svg" alt="Stork" class="ico-stork"> </div>
+    <div class="illustration">
+        <h1>Use your national <span>e</span>ID and access online services</h1>
+        <img src="resources/skin0/img/ico-stork.svg" alt="Stork" class="ico-stork"></div>
 </div>

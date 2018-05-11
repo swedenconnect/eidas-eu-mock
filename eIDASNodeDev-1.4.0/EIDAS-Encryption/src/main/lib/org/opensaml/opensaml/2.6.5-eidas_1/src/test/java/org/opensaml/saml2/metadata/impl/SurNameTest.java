@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.metadata.impl;
 
@@ -31,36 +31,44 @@ import org.opensaml.saml2.metadata.SurName;
  * {@link org.opensaml.saml2.metadata.SurName}.
  */
 public class SurNameTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected description */
+
+    /**
+     * Expected description
+     */
     protected String expectedName;
-    
+
     /**
      * Constructor
      */
     public SurNameTest() {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/SurName.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectedName = "Smith";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SurName name = (SurName) unmarshallElement(singleElementFile);
-        
+
         assertEquals("Name was not expected value", expectedName, name.getName());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, SurName.DEFAULT_ELEMENT_LOCAL_NAME);
         SurName name = (SurName) buildXMLObject(qname);
-        
+
         name.setName(expectedName);
 
         assertEquals(expectedDOM, name);

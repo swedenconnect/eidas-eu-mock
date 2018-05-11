@@ -27,31 +27,33 @@ import eu.eidas.samlengineconfig.impl.CertificateManagerConfigurationImpl;
 
 public class EidasConfigManagerUtil implements ApplicationContextAware {
     private static final Logger LOG = LoggerFactory.getLogger(EidasConfigManagerUtil.class.getName());
-    static EidasConfigManagerUtil activeInstance=null;
-    static String samlEngineSubDirectory=null;
-    FileService fileService=null;
-    CertificateManagerConfigurationImpl certificateManagerConfiguration=null;
+    static EidasConfigManagerUtil activeInstance = null;
+    static String samlEngineSubDirectory = null;
+    FileService fileService = null;
+    CertificateManagerConfigurationImpl certificateManagerConfiguration = null;
 
-    public static EidasConfigManagerUtil getInstance(){
-        if(activeInstance==null){
+    public static EidasConfigManagerUtil getInstance() {
+        if (activeInstance == null) {
             LOG.error("ERROR : using EidasConfigManagerUtil before init");
         }
         return activeInstance;
     }
+
     public void setApplicationContext(ApplicationContext ctx) throws BeansException {
         EidasConfigManagerUtil.setActiveInstance(ctx.getBean(EidasConfigManagerUtil.class));
         setCertificateManagerConfiguration(ctx.getBean(CertificateManagerConfigurationImpl.class));
-        if(certificateManagerConfiguration.getParentConfiguration()!=null) {
+        if (certificateManagerConfiguration.getParentConfiguration() != null) {
             EidasConfigManagerUtil.setDirectory(certificateManagerConfiguration.getLocation());
-        }else{
+        } else {
             EidasConfigManagerUtil.setDirectory(null);
         }
     }
 
-    private static void setDirectory(String location){
+    private static void setDirectory(String location) {
         samlEngineSubDirectory = location;
     }
-    private static void setActiveInstance(EidasConfigManagerUtil instance){
+
+    private static void setActiveInstance(EidasConfigManagerUtil instance) {
         activeInstance = instance;
     }
 
@@ -64,27 +66,32 @@ public class EidasConfigManagerUtil implements ApplicationContextAware {
         this.fileService = fileService;
     }
 
-    private String getActualFileName(String fileName){
-        return samlEngineSubDirectory==null?fileName:samlEngineSubDirectory+"/"+fileName;
+    private String getActualFileName(String fileName) {
+        return samlEngineSubDirectory == null ? fileName : samlEngineSubDirectory + "/" + fileName;
     }
-    public boolean existsFile(String fileName){
+
+    public boolean existsFile(String fileName) {
         return fileService.existsFile(getActualFileName(fileName));
     }
-    public Properties loadProps(String fileName){
+
+    public Properties loadProps(String fileName) {
         return fileService.loadPropsFromXml(getActualFileName(fileName));
     }
-    public void saveProps(String fileName, Properties props){
+
+    public void saveProps(String fileName, Properties props) {
         fileService.saveToXMLFile(getActualFileName(fileName), props);
     }
-    public void saveFile(String fileName, String fileContents){
-        if(fileService==null || !fileService.existsFile("")){
+
+    public void saveFile(String fileName, String fileContents) {
+        if (fileService == null || !fileService.existsFile("")) {
             LOG.error("ERROR : the persistence support is not active");
-            return ;
+            return;
         }
         //String contents= serializeEngineInstance(config);
         fileService.stringToFile(getActualFileName(fileName), fileContents);
 
     }
+
     public String loadFileAsString(String fileName) {
         if (fileService == null || !fileService.existsFile("")) {
             LOG.error("ERROR : the file service is incorrectly configured");

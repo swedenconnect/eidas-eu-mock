@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:query="urn:oasis:names:tc:SAML:metadata:ext:query" targetNamespace="urn:oasis:names:tc:SAML:metadata:ext:query" elementFormDefault="unqualified" attributeFormDefault="unqualified" blockDefault="substitution" version="2.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+        xmlns:query="urn:oasis:names:tc:SAML:metadata:ext:query"
+        targetNamespace="urn:oasis:names:tc:SAML:metadata:ext:query" elementFormDefault="unqualified"
+        attributeFormDefault="unqualified" blockDefault="substitution" version="2.0">
 
     <annotation>
         <documentation>
@@ -10,7 +13,8 @@
         </documentation>
     </annotation>
 
-    <import namespace="urn:oasis:names:tc:SAML:2.0:metadata" schemaLocation="classpath:/schema/saml-schema-metadata-2.0.xsd"/>
+    <import namespace="urn:oasis:names:tc:SAML:2.0:metadata"
+            schemaLocation="classpath:/schema/saml-schema-metadata-2.0.xsd"/>
 
     <complexType name="QueryDescriptorType" abstract="true">
         <complexContent>

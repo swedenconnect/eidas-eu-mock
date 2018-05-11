@@ -30,16 +30,16 @@ import eu.eidas.auth.engine.core.stork.EIDSectorShare;
  */
 public class EIDSectorShareMarshaller extends AbstractSAMLObjectMarshaller {
 
-	/**
-	 * Marshall element content.
-	 *
-	 * @param samlObject the SAML object
-	 * @param domElement the DOM element
-	 * @throws MarshallingException the marshalling exception
-	 */
-	protected final void marshallElementContent(final XMLObject samlObject,
-			final Element domElement) throws MarshallingException {
-		final EIDSectorShare sectorShare = (EIDSectorShare) samlObject;
-		XMLHelper.appendTextContent(domElement, sectorShare.getEIDSectorShare());
-	}
+    /**
+     * Marshall element content.
+     *
+     * @param samlObject the SAML object
+     * @param domElement the DOM element
+     * @throws MarshallingException the marshalling exception
+     */
+    protected final void marshallElementContent(final XMLObject samlObject,
+                                                final Element domElement) throws MarshallingException {
+        final EIDSectorShare sectorShare = (EIDSectorShare) samlObject;
+        XMLHelper.appendTextContent(domElement, sectorShare.getEIDSectorShare());
+    }
 }

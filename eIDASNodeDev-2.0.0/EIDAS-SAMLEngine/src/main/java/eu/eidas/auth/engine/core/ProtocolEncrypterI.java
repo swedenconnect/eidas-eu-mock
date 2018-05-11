@@ -38,7 +38,7 @@ public interface ProtocolEncrypterI extends ProtocolCipherI {
     /**
      * Encrypts the given response with the given destination certificate.
      *
-     * @param authResponse the response to encrypt
+     * @param authResponse           the response to encrypt
      * @param destinationCertificate the certificate to encrypt with
      * @return the encrypted response
      * @throws EIDASSAMLEngineException if any error occurs
@@ -59,7 +59,7 @@ public interface ProtocolEncrypterI extends ProtocolCipherI {
      * Returns whether encryption is enabled for the given country.
      *
      * @param countryCode the 2-letter country code as defined in ISO 3166 of the country the response is being sent
-     * to.
+     *                    to.
      * @return whether encryption is enabled for the given country.
      * @see ProtocolEncrypterI#isResponseEncryptionMandatory()
      */

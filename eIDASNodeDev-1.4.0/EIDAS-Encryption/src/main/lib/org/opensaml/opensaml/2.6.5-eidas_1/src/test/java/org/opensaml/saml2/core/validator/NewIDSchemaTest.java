@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -33,7 +33,6 @@ public class NewIDSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Constructor
-     *
      */
     public NewIDSchemaTest() {
         super();
@@ -41,25 +40,27 @@ public class NewIDSchemaTest extends BaseSAMLObjectValidatorTestCase {
         validator = new NewIDSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         NewID newid = (NewID) target;
         newid.setNewID("some cool new NameID");
     }
-    
+
     /**
-     *  Test invalid element content.
+     * Test invalid element content.
      */
     public void testNewIDFailure() {
         NewID newid = (NewID) target;
-        
+
         newid.setNewID(null);
         assertValidationFail("NewID was null");
-        
+
         newid.setNewID("");
         assertValidationFail("NewID was empty");
-        
+
         newid.setNewID("                      ");
         assertValidationFail("NewID was all whitespace");
     }

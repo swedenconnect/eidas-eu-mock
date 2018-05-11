@@ -31,29 +31,31 @@ import org.apache.velocity.runtime.Renderable;
 import org.apache.velocity.runtime.parser.Token;
 
 /**
- *  This file describes the interface between the Velocity code
- *  and the JavaCC generated code.
+ * This file describes the interface between the Velocity code
+ * and the JavaCC generated code.
  *
  * @author <a href="mailto:hps@intermeta.de">Henning P. Schmiedehausen</a>
  * @version $Id: Node.java 737539 2009-01-25 17:24:29Z nbubna $
  */
 
-public interface Node extends Renderable
-{
-    /** This method is called after the node has been made the current
-     * node.  It indicates that child nodes can now be added to it. */
+public interface Node extends Renderable {
+    /**
+     * This method is called after the node has been made the current
+     * node.  It indicates that child nodes can now be added to it.
+     */
     public void jjtOpen();
 
-    /** This method is called after all the child nodes have been
-      added.
+    /**
+     * This method is called after all the child nodes have been
+     * added.
      */
     public void jjtClose();
 
     /**
      * This pair of methods are used to inform the node of its
      * parent.
-     * @param n
      *
+     * @param n
      */
     public void jjtSetParent(Node n);
 
@@ -65,6 +67,7 @@ public interface Node extends Renderable
     /**
      * This method tells the node to add its argument to the node's
      * list of children.
+     *
      * @param n
      * @param i
      */
@@ -73,6 +76,7 @@ public interface Node extends Renderable
     /**
      * This method returns a child node.  The children are numbered
      * from zero, left to right.
+     *
      * @param i
      * @return A child node.
      */
@@ -80,6 +84,7 @@ public interface Node extends Renderable
 
     /**
      * Return the number of children the node has.
+     *
      * @return The number of children of this node.
      */
     public int jjtGetNumChildren();
@@ -101,10 +106,10 @@ public interface Node extends Renderable
      */
 
     /**
-     * @see #jjtAccept(ParserVisitor, Object)
      * @param visitor
      * @param data
      * @return The node execution result.
+     * @see #jjtAccept(ParserVisitor, Object)
      */
     public Object childrenAccept(ParserVisitor visitor, Object data);
 
@@ -112,10 +117,12 @@ public interface Node extends Renderable
      * @return The first token.
      */
     public Token getFirstToken();
+
     /**
      * @return The last token.
      */
     public Token getLastToken();
+
     /**
      * @return The NodeType.
      */
@@ -127,23 +134,23 @@ public interface Node extends Renderable
      * @return The init result.
      * @throws TemplateInitException
      */
-    public Object init( InternalContextAdapter context, Object data) throws TemplateInitException;
+    public Object init(InternalContextAdapter context, Object data) throws TemplateInitException;
 
     /**
      * @param context
      * @return The evaluation result.
      * @throws MethodInvocationException
      */
-    public boolean evaluate( InternalContextAdapter context)
-        throws MethodInvocationException;
+    public boolean evaluate(InternalContextAdapter context)
+            throws MethodInvocationException;
 
     /**
      * @param context
      * @return The node value.
      * @throws MethodInvocationException
      */
-    public Object value( InternalContextAdapter context)
-        throws MethodInvocationException;
+    public Object value(InternalContextAdapter context)
+            throws MethodInvocationException;
 
     /**
      * @param context
@@ -154,8 +161,8 @@ public interface Node extends Renderable
      * @throws ParseErrorException
      * @throws ResourceNotFoundException
      */
-    public boolean render( InternalContextAdapter context, Writer writer)
-        throws IOException,MethodInvocationException, ParseErrorException, ResourceNotFoundException;
+    public boolean render(InternalContextAdapter context, Writer writer)
+            throws IOException, MethodInvocationException, ParseErrorException, ResourceNotFoundException;
 
     /**
      * @param o
@@ -164,7 +171,7 @@ public interface Node extends Renderable
      * @throws MethodInvocationException
      */
     public Object execute(Object o, InternalContextAdapter context)
-      throws MethodInvocationException;
+            throws MethodInvocationException;
 
     /**
      * @param info
@@ -200,7 +207,7 @@ public interface Node extends Renderable
      * @return The current column position.
      */
     public int getColumn();
-    
+
     /**
      * @return the file name of the template
      */

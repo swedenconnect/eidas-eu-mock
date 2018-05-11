@@ -41,7 +41,7 @@ public class EidasIssuerValidator extends IssuerSchemaValidator {
 
         // format is optional
         if (issuer.getFormat() != null && !issuer.getFormat().equals(FORMAT_ALLOWED_VALUE)) {
-                throw new ValidationException("Format has an invalid value.");
+            throw new ValidationException("Format has an invalid value.");
         }
 
     }

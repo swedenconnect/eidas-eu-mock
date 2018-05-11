@@ -16,7 +16,7 @@ package org.apache.velocity.anakia;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -29,8 +29,7 @@ package org.apache.velocity.anakia;
  * @author <a href="mailto:jon@latchkey.com">Jon S. Stevens</a>
  * @version $Id: Escape.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class Escape
-{
+public class Escape {
     /**
      *
      */
@@ -39,56 +38,51 @@ public class Escape
     /**
      * Empty constructor
      */
-    public Escape()
-    {
+    public Escape() {
         // left blank on purpose
     }
 
     /**
      * Do the escaping.
+     *
      * @param st
      * @return The escaped text.
      */
-    public static final String getText(String st)
-    {
+    public static final String getText(String st) {
         StringBuffer buff = new StringBuffer();
         char[] block = st.toCharArray();
         String stEntity = null;
         int i, last;
 
-        for (i=0, last=0; i < block.length; i++)
-        {
-            switch(block[i])
-            {
-                case '<' :
+        for (i = 0, last = 0; i < block.length; i++) {
+            switch (block[i]) {
+                case '<':
                     stEntity = "&lt;";
                     break;
-                case '>' :
+                case '>':
                     stEntity = "&gt;";
                     break;
-                case '&' :
+                case '&':
                     stEntity = "&amp;";
                     break;
-                case '"' :
+                case '"':
                     stEntity = "&quot;";
                     break;
-                case '\n' :
+                case '\n':
                     stEntity = LINE_SEPARATOR;
                     break;
-                default :
+                default:
                     /* no-op */
                     break;
             }
-            if (stEntity != null)
-            {
+            if (stEntity != null) {
                 buff.append(block, last, i - last);
                 buff.append(stEntity);
                 stEntity = null;
                 last = i + 1;
             }
         }
-        if(last < block.length)
-        {
+        if (last < block.length) {
             buff.append(block, last, i - last);
         }
         return buff.toString();

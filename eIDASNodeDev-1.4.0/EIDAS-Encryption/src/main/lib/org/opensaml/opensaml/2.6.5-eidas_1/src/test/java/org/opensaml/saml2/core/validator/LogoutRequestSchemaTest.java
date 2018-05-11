@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -35,7 +35,6 @@ public class LogoutRequestSchemaTest extends RequestSchemaTestBase {
 
     /**
      * Constructor
-     *
      */
     public LogoutRequestSchemaTest() {
         super();
@@ -43,37 +42,39 @@ public class LogoutRequestSchemaTest extends RequestSchemaTestBase {
         validator = new LogoutRequestSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         LogoutRequest request = (LogoutRequest) target;
         NameID nameid = (NameID) buildXMLObject(new QName(SAMLConstants.SAML20_NS, NameID.DEFAULT_ELEMENT_LOCAL_NAME));
         request.setNameID(nameid);
     }
-    
-    
+
+
     public void testNoIdentifiersFailure() {
         LogoutRequest request = (LogoutRequest) target;
-        
+
         request.setNameID(null);
         assertValidationFail("No name identifier was present");
     }
-    
+
     public void testTooManyIdentifiersFailure() {
         LogoutRequest request = (LogoutRequest) target;
-        
-        request.setBaseID( new MockBaseID() );
+
+        request.setBaseID(new MockBaseID());
         assertValidationFail("Both NameID and BaseID were present");
     }
-    
+
     public void testOtherValidIdentifiers() {
         LogoutRequest request = (LogoutRequest) target;
-        
+
         request.setNameID(null);
-        request.setBaseID( new MockBaseID() );
+        request.setBaseID(new MockBaseID());
         request.setEncryptedID(null);
         assertValidationPass("BaseID was present");
-        
+
         request.setNameID(null);
         request.setBaseID(null);
         request.setEncryptedID((EncryptedID) buildXMLObject(EncryptedID.DEFAULT_ELEMENT_NAME));

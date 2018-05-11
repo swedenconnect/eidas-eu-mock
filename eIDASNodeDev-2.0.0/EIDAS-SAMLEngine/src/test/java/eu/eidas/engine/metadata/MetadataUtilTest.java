@@ -30,7 +30,7 @@ import org.opensaml.saml.saml2.metadata.EntityDescriptor;
 import java.util.Iterator;
 import java.util.List;
 
-public class MetadataUtilTest  {
+public class MetadataUtilTest {
 
     @BeforeClass
     public static void setup() throws ConfigurationException {

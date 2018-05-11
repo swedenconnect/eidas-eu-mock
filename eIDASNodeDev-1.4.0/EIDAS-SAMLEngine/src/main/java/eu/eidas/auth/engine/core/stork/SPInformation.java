@@ -23,23 +23,32 @@ import eu.eidas.auth.engine.core.SAMLCore;
 
 /**
  * The Interface EIDCrossBorderShare.
+ *
  * @author iinigo
  */
 public interface SPInformation extends SAMLObject {
 
-    /** The Constant DEFAULT_ELEMENT_LOCAL_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_LOCAL_NAME.
+     */
     String DEF_LOCAL_NAME = "SPInformation";
 
-    /** The Constant DEFAULT_ELEMENT_NAME. */
+    /**
+     * The Constant DEFAULT_ELEMENT_NAME.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.STORK10P_NS.getValue(), DEF_LOCAL_NAME,
-	    SAMLCore.STORK10P_PREFIX.getValue());
+            SAMLCore.STORK10P_PREFIX.getValue());
 
-    /** The Constant TYPE_LOCAL_NAME. */
+    /**
+     * The Constant TYPE_LOCAL_NAME.
+     */
     String TYPE_LOCAL_NAME = "SPInformationType";
 
-    /** The Constant TYPE_NAME. */
+    /**
+     * The Constant TYPE_NAME.
+     */
     QName TYPE_NAME = new QName(SAMLCore.STORK10P_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.STORK10P_PREFIX.getValue());
+            SAMLCore.STORK10P_PREFIX.getValue());
 
     /**
      * Gets the SP Id.

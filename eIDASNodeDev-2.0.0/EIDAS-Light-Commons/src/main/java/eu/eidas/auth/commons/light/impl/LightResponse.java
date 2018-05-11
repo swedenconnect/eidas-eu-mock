@@ -26,15 +26,16 @@ import eu.eidas.auth.commons.light.ILightResponse;
 @Immutable
 @ThreadSafe
 @XmlRootElement
-@XmlType(factoryMethod="newInstance")
+@XmlType(factoryMethod = "newInstance")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso(AbstractLightResponse.class)
 public final class LightResponse extends AbstractLightResponse implements Serializable {
 
-	@SuppressWarnings("unused")
-	private static LightResponse newInstance(){
-		return new LightResponse(builder());
-	}
+    @SuppressWarnings("unused")
+    private static LightResponse newInstance() {
+        return new LightResponse(builder());
+    }
+
     /**
      * Builder pattern for the {@link LightResponse} class.
      * <p/>

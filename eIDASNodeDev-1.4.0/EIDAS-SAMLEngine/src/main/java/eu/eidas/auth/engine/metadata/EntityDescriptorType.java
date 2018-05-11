@@ -14,8 +14,8 @@
 package eu.eidas.auth.engine.metadata;
 
 public enum EntityDescriptorType {
-	NONE,
-	SERIALIZED_SIGNATURE_HOLDER,
+    NONE,
+    SERIALIZED_SIGNATURE_HOLDER,
     STATIC,
     DYNAMIC;
 

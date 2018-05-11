@@ -16,7 +16,7 @@ package org.apache.velocity.test.misc;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.InputStream;
@@ -33,25 +33,20 @@ import org.apache.velocity.runtime.resource.loader.ResourceLoader;
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  * @version $Id: ExceptionGeneratingResourceLoader.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class ExceptionGeneratingResourceLoader extends ResourceLoader
-{
+public class ExceptionGeneratingResourceLoader extends ResourceLoader {
 
-    public void init(ExtendedProperties configuration)
-    {
+    public void init(ExtendedProperties configuration) {
     }
 
-    public InputStream getResourceStream(String source) throws ResourceNotFoundException
-    {
+    public InputStream getResourceStream(String source) throws ResourceNotFoundException {
         throw new RuntimeException("exception");
     }
 
-    public boolean isSourceModified(Resource resource)
-    {
+    public boolean isSourceModified(Resource resource) {
         return false;
     }
 
-    public long getLastModified(Resource resource)
-    {
+    public long getLastModified(Resource resource) {
         return 0;
     }
 

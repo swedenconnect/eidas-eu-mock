@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,65 +27,81 @@ import org.opensaml.saml2.core.EncryptedAttribute;
  */
 public class AttributeStatementTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Count of Attribute subelements. */
+    /**
+     * Count of Attribute subelements.
+     */
     private int expectedAttributeCount = 3;
-    
-    /** Count of EncryptedAttribute subelements. */
+
+    /**
+     * Count of EncryptedAttribute subelements.
+     */
     private int expectedEncryptedAttributeCount = 3;
 
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public AttributeStatementTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AttributeStatement.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/AttributeStatementChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AttributeStatement attributeStatement = (AttributeStatement) unmarshallElement(singleElementFile);
 
         assertNotNull(attributeStatement);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         AttributeStatement attributeStatement = (AttributeStatement) unmarshallElement(childElementsFile);
         assertEquals("Attribute Count", expectedAttributeCount, attributeStatement.getAttributes().size());
-        assertEquals("EncryptedAttribute Count", 
+        assertEquals("EncryptedAttribute Count",
                 expectedEncryptedAttributeCount, attributeStatement.getEncryptedAttributes().size());
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
-        AttributeStatement attributeStatement = 
-            (AttributeStatement) buildXMLObject(AttributeStatement.DEFAULT_ELEMENT_NAME);
+        AttributeStatement attributeStatement =
+                (AttributeStatement) buildXMLObject(AttributeStatement.DEFAULT_ELEMENT_NAME);
 
         assertEquals(expectedDOM, attributeStatement);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
-        AttributeStatement attributeStatement = 
-            (AttributeStatement) buildXMLObject(AttributeStatement.DEFAULT_ELEMENT_NAME);
+        AttributeStatement attributeStatement =
+                (AttributeStatement) buildXMLObject(AttributeStatement.DEFAULT_ELEMENT_NAME);
 
         attributeStatement.getAttributes()
-            .add((Attribute) buildXMLObject(Attribute.DEFAULT_ELEMENT_NAME));
+                .add((Attribute) buildXMLObject(Attribute.DEFAULT_ELEMENT_NAME));
         attributeStatement.getEncryptedAttributes()
-            .add((EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME));
+                .add((EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME));
         attributeStatement.getAttributes()
-            .add((Attribute) buildXMLObject(Attribute.DEFAULT_ELEMENT_NAME));
+                .add((Attribute) buildXMLObject(Attribute.DEFAULT_ELEMENT_NAME));
         attributeStatement.getEncryptedAttributes()
-            .add((EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME));
+                .add((EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME));
         attributeStatement.getEncryptedAttributes()
-            .add((EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME));
+                .add((EncryptedAttribute) buildXMLObject(EncryptedAttribute.DEFAULT_ELEMENT_NAME));
         attributeStatement.getAttributes()
-            .add((Attribute) buildXMLObject(Attribute.DEFAULT_ELEMENT_NAME));
+                .add((Attribute) buildXMLObject(Attribute.DEFAULT_ELEMENT_NAME));
 
         assertEquals(expectedChildElementsDOM, attributeStatement);
     }

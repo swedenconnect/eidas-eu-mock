@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -32,44 +32,45 @@ import org.opensaml.saml2.core.RequestedAuthnContext;
  *
  */
 public class RequestedAuthnContextSchemaTest extends BaseSAMLObjectValidatorTestCase {
-    
+
     private QName classRefName;
-    private QName  declRefName;
+    private QName declRefName;
 
     /**
      * Constructor
-     *
      */
     public RequestedAuthnContextSchemaTest() {
         super();
         targetQName = new QName(SAMLConstants.SAML20P_NS, RequestedAuthnContext.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         validator = new RequestedAuthnContextSchemaValidator();
-        
+
         classRefName = AuthnContextClassRef.DEFAULT_ELEMENT_NAME;
-        declRefName  = AuthnContextDeclRef.DEFAULT_ELEMENT_NAME;
+        declRefName = AuthnContextDeclRef.DEFAULT_ELEMENT_NAME;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         RequestedAuthnContext rac = (RequestedAuthnContext) target;
-        
+
         rac.getAuthnContextClassRefs().add((AuthnContextClassRef) buildXMLObject(classRefName));
     }
-    
+
     /**
      * Tests for invalid combinations of child elements.
      */
     public void testChildrenFailure() {
         RequestedAuthnContext rac = (RequestedAuthnContext) target;
-        
+
         rac.getAuthnContextDeclRefs().add((AuthnContextDeclRef) buildXMLObject(declRefName));
         assertValidationFail("Element had both AuthnContextClassRef and AuthnContextDeclRef children");
-        
+
         rac.getAuthnContextClassRefs().clear();
         rac.getAuthnContextDeclRefs().clear();
         assertValidationFail("Element had neither AuthnContextClassRef nor AuthnContextDeclRef children");
     }
-    
-    
+
+
 }

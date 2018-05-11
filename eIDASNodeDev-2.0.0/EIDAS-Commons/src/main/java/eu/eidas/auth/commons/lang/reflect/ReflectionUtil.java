@@ -108,7 +108,7 @@ public final class ReflectionUtil {
         Preconditions.checkNotNull(additionalInterfaces, "additionalInterfaces");
 
         return (T) Proxy.newProxyInstance(contextClassLoader, toArray(interfaceType, additionalInterfaces),
-                                          invocationHandler);
+                invocationHandler);
     }
 
     /**
@@ -139,9 +139,9 @@ public final class ReflectionUtil {
      * The final field can have any modifier including private or package-private.
      *
      * @param declaringClass the Class which declares the given final field.
-     * @param instance the object containing the given final field, maybe null for a static field.
-     * @param fieldName the name of the given final field
-     * @param value the value to set to the given final field
+     * @param instance       the object containing the given final field, maybe null for a static field.
+     * @param fieldName      the name of the given final field
+     * @param value          the value to set to the given final field
      */
     public static <T> void setFinalFieldValue(@Nonnull Class<? super T> declaringClass,
                                               @Nullable T instance,

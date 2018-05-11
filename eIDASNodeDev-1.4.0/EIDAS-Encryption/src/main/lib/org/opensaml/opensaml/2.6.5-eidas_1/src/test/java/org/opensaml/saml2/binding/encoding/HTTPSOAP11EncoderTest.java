@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -42,7 +42,7 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
 
     /**
      * Tests encoding a SAML message to an servlet response.
-     * 
+     *
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -73,13 +73,13 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
         messageContext.setOutboundSAMLMessage(samlMessage);
         messageContext.setRelayState("relay");
-        
+
         HTTPSOAP11Encoder encoder = new HTTPSOAP11Encoder();
         encoder.encode(messageContext);
 
@@ -89,10 +89,10 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
         assertEquals("http://www.oasis-open.org/committees/security", response.getHeader("SOAPAction"));
         assertEquals(-227316372, response.getContentAsString().hashCode());
     }
-    
+
     /**
      * Tests encoding a SAML message to an servlet response using a pre-existing SOAP Envelope.
-     * 
+     *
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -120,16 +120,16 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
         Endpoint samlEndpoint = endpointBuilder.buildObject();
         samlEndpoint.setLocation("http://example.org");
         samlEndpoint.setResponseLocation("http://example.org/response");
-        
+
         SOAPObjectBuilder<Envelope> envelopeBuilder = (SOAPObjectBuilder<Envelope>) builderFactory
                 .getBuilder(Envelope.DEFAULT_ELEMENT_NAME);
         Envelope envelope = envelopeBuilder.buildObject();
-        
+
         SOAPObjectBuilder<Header> headerBuilder = (SOAPObjectBuilder<Header>) builderFactory
                 .getBuilder(Header.DEFAULT_ELEMENT_NAME);
         Header header = headerBuilder.buildObject();
         envelope.setHeader(header);
-        
+
         WSAddressingObjectBuilder<Action> actionBuilder = (WSAddressingObjectBuilder<Action>) builderFactory
                 .getBuilder(Action.ELEMENT_NAME);
         Action action = actionBuilder.buildObject();
@@ -138,14 +138,14 @@ public class HTTPSOAP11EncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
         messageContext.setOutboundSAMLMessage(samlMessage);
         messageContext.setOutboundMessage(envelope);
         messageContext.setRelayState("relay");
-        
+
         HTTPSOAP11Encoder encoder = new HTTPSOAP11Encoder();
         encoder.encode(messageContext);
 

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -26,37 +26,42 @@ import org.opensaml.xml.util.LazyList;
 /**
  * Implementation of {@link SubjectAttributeDesignatorType}.
  */
-public class SubjectAttributeDesignatorTypeImpl extends AttributeDesignatorTypeImpl 
+public class SubjectAttributeDesignatorTypeImpl extends AttributeDesignatorTypeImpl
         implements SubjectAttributeDesignatorType {
 
-    /** Subject category. */
+    /**
+     * Subject category.
+     */
     private String subjectCategory;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI
-     *                the namespace the element is in
-     * @param elementLocalName
-     *                the local name of the XML element this Object represents
-     * @param namespacePrefix
-     *                the prefix for the given namespace
+     *
+     * @param namespaceURI     the namespace the element is in
+     * @param elementLocalName the local name of the XML element this Object represents
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected SubjectAttributeDesignatorTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getSubjectCategory() {
         return subjectCategory;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubjectCategory(String category) {
         this.subjectCategory = prepareForAssignment(this.subjectCategory, category);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return new LazyList<XMLObject>();
     }

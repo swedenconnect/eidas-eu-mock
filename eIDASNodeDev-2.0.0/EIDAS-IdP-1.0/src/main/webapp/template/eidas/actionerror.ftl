@@ -33,11 +33,11 @@
 <#if parameters.cssStyle??>
  style="${parameters.cssStyle?html}"<#rt/>
 </#if>
->
+    >
 	<#list actionErrors as error>
 		<#if error?if_exists != "">
             <li><span><#if parameters.escape>${error!?html}<#else>${error!}</#if></span><#rt/></li><#rt/>
         </#if>
-	</#list>
-	</ul>
+    </#list>
+    </ul>
 </#if>

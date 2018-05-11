@@ -22,7 +22,7 @@
 -->
 <#setting number_format="#.#####">
 <select<#rt/>
- name="${parameters.name?default("")?html}"<#rt/>
+        name="${parameters.name?default("")?html}"<#rt/>
 <#if parameters.get("size")??>
  size="${parameters.get("size")?html}"<#rt/>
 </#if>
@@ -57,27 +57,27 @@
     <option value=""></option>
 </#if>
 <@s.iterator value="parameters.list">
-        <#if parameters.listKey??>
-            <#if stack.findValue(parameters.listKey)??>
-              <#assign itemKey = stack.findValue(parameters.listKey)/>
-              <#assign itemKeyStr = stack.findString(parameters.listKey)/>
-            <#else>
-              <#assign itemKey = ''/>
-              <#assign itemKeyStr = ''/>
-            </#if>
+    <#if parameters.listKey??>
+        <#if stack.findValue(parameters.listKey)??>
+            <#assign itemKey = stack.findValue(parameters.listKey)/>
+            <#assign itemKeyStr = stack.findString(parameters.listKey)/>
         <#else>
-            <#assign itemKey = stack.findValue('top')/>
-            <#assign itemKeyStr = stack.findString('top')>
+            <#assign itemKey = ''/>
+            <#assign itemKeyStr = ''/>
         </#if>
-        <#if parameters.listValue??>
-            <#if stack.findString(parameters.listValue)??>
-              <#assign itemValue = stack.findString(parameters.listValue)/>
-            <#else>
-              <#assign itemValue = ''/>
-            </#if>
+    <#else>
+        <#assign itemKey = stack.findValue('top')/>
+        <#assign itemKeyStr = stack.findString('top')>
+    </#if>
+    <#if parameters.listValue??>
+        <#if stack.findString(parameters.listValue)??>
+            <#assign itemValue = stack.findString(parameters.listValue)/>
         <#else>
-            <#assign itemValue = stack.findString('top')/>
+            <#assign itemValue = ''/>
         </#if>
+    <#else>
+        <#assign itemValue = stack.findString('top')/>
+    </#if>
     <option value="${itemKeyStr?html}"<#rt/>
         <#if tag.contains(parameters.nameValue, itemKey) == true>
  selected="selected"<#rt/>
@@ -89,9 +89,10 @@
 
 </select>
 <#if parameters.multiple?default(false)>
-<input type="hidden" id="__multiselect_${parameters.id?html}" name="__multiselect_${parameters.name?html}" value=""<#rt/>
+<input type="hidden" id="__multiselect_${parameters.id?html}" name="__multiselect_${parameters.name?html}"
+       value=""<#rt/>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
- />
+/>
 </#if>

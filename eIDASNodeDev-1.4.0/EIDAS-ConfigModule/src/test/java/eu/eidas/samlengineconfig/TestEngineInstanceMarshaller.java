@@ -15,19 +15,19 @@ import static org.junit.Assert.assertNotNull;
 
 public class TestEngineInstanceMarshaller {
     @Test
-    public void testSerialize(){
-        EngineInstanceMarshallerImpl eimi=new EngineInstanceMarshallerImpl();
-        SamlEngineConfiguration config=new SamlEngineConfigurationImpl();
-        EngineInstance instance=new EngineInstanceImpl();
-        StringParameter sp=new StringParameter();
+    public void testSerialize() {
+        EngineInstanceMarshallerImpl eimi = new EngineInstanceMarshallerImpl();
+        SamlEngineConfiguration config = new SamlEngineConfigurationImpl();
+        EngineInstance instance = new EngineInstanceImpl();
+        StringParameter sp = new StringParameter();
         sp.setName("sp-name");
         sp.setValue("sp-value");
-        InstanceConfigurationImpl ic=new InstanceConfigurationImpl("name",null);
+        InstanceConfigurationImpl ic = new InstanceConfigurationImpl("name", null);
         ic.getParameters().add(sp);
         instance.addConfiguration(ic);
         instance.setName("engineinstance");
         config.addInstance(instance);
-        String s=eimi.serializeEngineInstance(config);
+        String s = eimi.serializeEngineInstance(config);
         assertNotNull(s);
         assertNotNull(s);
     }

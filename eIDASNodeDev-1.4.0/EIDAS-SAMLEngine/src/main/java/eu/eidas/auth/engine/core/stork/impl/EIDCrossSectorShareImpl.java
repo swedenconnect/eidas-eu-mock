@@ -30,24 +30,25 @@ import eu.eidas.auth.engine.core.stork.EIDCrossSectorShare;
  * @author fjquevedo
  */
 public class EIDCrossSectorShareImpl extends AbstractSAMLObject implements
-	EIDCrossSectorShare {
+        EIDCrossSectorShare {
 
-	/** The citizen country code. */
+    /**
+     * The citizen country code.
+     */
     private String eIDCrossSectorShare;
 
 
     /**
      * Instantiates a new eID cross sector share implementation.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected EIDCrossSectorShareImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                      final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
-
 
 
     /**
@@ -56,7 +57,7 @@ public class EIDCrossSectorShareImpl extends AbstractSAMLObject implements
      * @return the eID cross sector share
      */
     public final String getEIDCrossSectorShare() {
-    	return eIDCrossSectorShare;
+        return eIDCrossSectorShare;
     }
 
 
@@ -66,7 +67,7 @@ public class EIDCrossSectorShareImpl extends AbstractSAMLObject implements
      * @param newEIDCrossSectorShare the new eID cross sector share
      */
     public final void setEIDCrossSectorShare(String newEIDCrossSectorShare) {
-    	this.eIDCrossSectorShare = prepareForAssignment(this.eIDCrossSectorShare, newEIDCrossSectorShare);
+        this.eIDCrossSectorShare = prepareForAssignment(this.eIDCrossSectorShare, newEIDCrossSectorShare);
     }
 
     /**
@@ -75,7 +76,7 @@ public class EIDCrossSectorShareImpl extends AbstractSAMLObject implements
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

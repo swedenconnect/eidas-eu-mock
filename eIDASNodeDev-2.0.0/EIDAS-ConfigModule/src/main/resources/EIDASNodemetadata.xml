@@ -95,7 +95,7 @@
         <parameter name="saml.service">
             <category>parameter.category.label.administer.connector</category>
             <info></info>
-            <label>Connector-Connector SAML configuration </label>
+            <label>Connector-Connector SAML configuration</label>
             <default></default>
             <file>eidas.xml</file>
         </parameter>
@@ -167,7 +167,7 @@
         <parameter name="max.invalidAttributeList.size">
             <category>parameter.category.nodeutil</category>
             <info></info>
-            <label>Maximum Personal Attribute List size </label>
+            <label>Maximum Personal Attribute List size</label>
             <default></default>
             <file>nodeUtil</file>
         </parameter>
@@ -300,14 +300,14 @@
         <parameter name="max.service.redirectUrl.size">
             <category>parameter.category.nodeutil</category>
             <info></info>
-            <label>Max ProxyService SAML Request (from Connector to ProxyService)  AssertionConsumerURL size</label>
+            <label>Max ProxyService SAML Request (from Connector to ProxyService) AssertionConsumerURL size</label>
             <default></default>
             <file>nodeUtil</file>
         </parameter>
         <parameter name="max.SAMLRequest.size">
             <category>parameter.category.nodeutil</category>
             <info></info>
-            <label>Max SAML Request (from Connector to ProxyService)  HTTP Parameter</label>
+            <label>Max SAML Request (from Connector to ProxyService) HTTP Parameter</label>
             <default></default>
             <file>nodeUtil</file>
         </parameter>
@@ -396,7 +396,7 @@
         <parameter name="security.header.HSTS.includeSubDomains">
             <category>parameter.category.node.security</category>
             <info></info>
-            <label>Prefer HTTP Strict-Transport-Security </label>
+            <label>Prefer HTTP Strict-Transport-Security</label>
             <default></default>
             <file>eidas.xml</file>
             <type>boolean</type>

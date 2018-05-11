@@ -59,7 +59,7 @@ public class ProcessLogin {
             return IDPUtil.loadConfigs(path);
         } catch (IOException e) {
             logger.error(e.getMessage());
-            throw new ApplicationSpecificIDPException("Could not load configuration file '"+path+"'", e);
+            throw new ApplicationSpecificIDPException("Could not load configuration file '" + path + "'", e);
         }
     }
 
@@ -127,7 +127,7 @@ public class ProcessLogin {
 
         if (username == null || password == null) {
             sendErrorRedirect(authnRequest, request, EIDASSubStatusCode.AUTHN_FAILED_URI,
-                              EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
+                    EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
             return false;
         }
 
@@ -144,7 +144,7 @@ public class ProcessLogin {
 
         if (pass == null || (!pass.equals(password))) {
             sendErrorRedirect(authnRequest, request, EIDASSubStatusCode.AUTHN_FAILED_URI,
-                              EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
+                    EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
             return false;
         }
 
@@ -230,7 +230,7 @@ public class ProcessLogin {
                         .startsWith("No attribute values in response.")) {
                     // special IdP case when subject cannot be constructed due to missing unique identifier
                     sendErrorRedirect(processedAuthnRequest, request, EIDASSubStatusCode.INVALID_ATTR_NAME_VALUE_URI,
-                                      EidasErrorKey.ATT_VERIFICATION_MANDATORY.toString());
+                            EidasErrorKey.ATT_VERIFICATION_MANDATORY.toString());
                 } else {
                     throw se;
                 }
@@ -280,8 +280,8 @@ public class ProcessLogin {
             EidasAuthenticationRequest.Builder builder =
                     EidasAuthenticationRequest.builder((IEidasAuthenticationRequest) authnRequest);
             callback = MetadataUtil.getAssertionConsumerUrlFromMetadata(idpMetadataFetcher,
-                                                                        (MetadataSignerI) engine.getSigner(),
-                                                                        authnRequest);
+                    (MetadataSignerI) engine.getSigner(),
+                    authnRequest);
 
             builder.assertionConsumerServiceURL(callback);
             newAuthnRequest = builder.build();

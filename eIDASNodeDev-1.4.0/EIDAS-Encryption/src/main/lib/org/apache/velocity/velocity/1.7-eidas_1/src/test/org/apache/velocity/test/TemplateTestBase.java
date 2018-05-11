@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -26,8 +26,7 @@ package org.apache.velocity.test;
  * @author <a href="mailto:jon@latchkey.com">Jon S. Stevens</a>
  * @version $Id: TemplateTestBase.java 463298 2006-10-12 16:10:32Z henning $
  */
-public interface TemplateTestBase
-{
+public interface TemplateTestBase {
     /**
      * Directory relative to the distribution root, where the
      * values to compare test results to are stored.
@@ -61,24 +60,24 @@ public interface TemplateTestBase
      * value in the default velocity properties file.
      */
     public final static String FILE_RESOURCE_LOADER_PATH =
-                          TEST_COMPARE_DIR + "/templates";
+            TEST_COMPARE_DIR + "/templates";
 
     /**
      * Properties file that lists which template tests to run.
      */
     public final static String TEST_CASE_PROPERTIES =
-                          FILE_RESOURCE_LOADER_PATH + "/templates.properties";
+            FILE_RESOURCE_LOADER_PATH + "/templates.properties";
 
     /**
      * Results relative to the build directory.
      */
     public final static String RESULT_DIR =
-                          TEST_RESULT_DIR + "/templates";
+            TEST_RESULT_DIR + "/templates";
 
     /**
      * Results relative to the build directory.
      */
     public final static String COMPARE_DIR =
-                          FILE_RESOURCE_LOADER_PATH + "/compare";
+            FILE_RESOURCE_LOADER_PATH + "/compare";
 
 }

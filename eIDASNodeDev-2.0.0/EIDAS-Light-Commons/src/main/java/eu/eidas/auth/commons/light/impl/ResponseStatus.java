@@ -25,16 +25,16 @@ import eu.eidas.auth.commons.light.IResponseStatus;
 @Immutable
 @ThreadSafe
 
-@XmlType(factoryMethod="newInstance")
+@XmlType(factoryMethod = "newInstance")
 @XmlAccessorType(XmlAccessType.FIELD)
 public final class ResponseStatus extends AbstractResponseStatus implements Serializable {
 
-	private static ResponseStatus newInstance(){
-		return builder()
-				.statusCode("##").statusMessage("##").subStatusCode("##")
-				.build();
-	}
-	
+    private static ResponseStatus newInstance() {
+        return builder()
+                .statusCode("##").statusMessage("##").subStatusCode("##")
+                .build();
+    }
+
     /**
      * Builder pattern for the {@link ResponseStatus} class.
      * <p/>

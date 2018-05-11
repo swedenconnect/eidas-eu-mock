@@ -22,7 +22,9 @@ package eu.eidas.engine.exceptions;
  */
 public class EIDASSAMLEngineRuntimeException extends RuntimeException {
 
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 5829810358581493517L;
 
     /**
@@ -31,7 +33,7 @@ public class EIDASSAMLEngineRuntimeException extends RuntimeException {
      * @param wrappedException the wrapped exception
      */
     public EIDASSAMLEngineRuntimeException(final Exception wrappedException) {
-	super(wrappedException);
+        super(wrappedException);
     }
 
     /**
@@ -40,17 +42,17 @@ public class EIDASSAMLEngineRuntimeException extends RuntimeException {
      * @param cause the exception cause.
      */
     public EIDASSAMLEngineRuntimeException(final String cause) {
-	super(cause);
+        super(cause);
     }
 
     /**
      * Instantiates a new EIDASSAML engine runtime exception.
      *
-     * @param message the message
+     * @param message          the message
      * @param wrappedException the wrapped exception
      */
     public EIDASSAMLEngineRuntimeException(final String message,
-	    final Exception wrappedException) {
-	super(message, wrappedException);
+                                           final Exception wrappedException) {
+        super(message, wrappedException);
     }
 }

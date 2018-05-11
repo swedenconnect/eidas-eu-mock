@@ -63,6 +63,7 @@ public final class BinaryLightToken {
 
     /**
      * Logical LightToken what is equal to the encoded physical one
+     *
      * @return logical light token
      */
     @Nonnull
@@ -72,6 +73,7 @@ public final class BinaryLightToken {
 
     /**
      * Binary or physical LightToken what is equal to the logical one
+     *
      * @return physical light token (need to be BASE64 encoded in the requests)
      */
     @Nonnull

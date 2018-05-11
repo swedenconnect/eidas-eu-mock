@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.validator;
@@ -31,19 +31,23 @@ import org.opensaml.xml.validation.Validator;
  */
 public class AssertionURIRefSchemaValidator implements Validator<AssertionURIRef> {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AssertionURIRefSchemaValidator() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(AssertionURIRef assertionURIRef) throws ValidationException {
         validateURIRef(assertionURIRef);
     }
 
     /**
      * Checks that the URI reference is present.
-     * 
+     *
      * @param assertionURIRef
      * @throws ValidationException
      */

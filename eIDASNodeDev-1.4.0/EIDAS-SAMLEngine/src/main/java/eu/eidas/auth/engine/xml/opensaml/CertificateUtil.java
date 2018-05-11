@@ -56,7 +56,7 @@ public final class CertificateUtil {
         LOG.debug("" + entityX509Cred.getEntityCertificate().getSerialNumber());
         if (!keyTrustEvaluator.validate(entityX509Cred, (Iterable<Credential>) trustedCredentials)) {
             throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_UNTRUSTED_CERTIFICATE.errorCode(),
-                                               EidasErrorKey.SAML_ENGINE_UNTRUSTED_CERTIFICATE.errorMessage());
+                    EidasErrorKey.SAML_ENGINE_UNTRUSTED_CERTIFICATE.errorMessage());
         }
     }
 
@@ -198,7 +198,7 @@ public final class CertificateUtil {
             return (X509Certificate) certificateFactory.generateCertificate(bais);
         } catch (CertificateException ce) {
             throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorCode(),
-                                               EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorMessage(), ce);
+                    EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorMessage(), ce);
         }
     }
 
@@ -280,7 +280,7 @@ public final class CertificateUtil {
             return result.trim();
         } catch (EIDASSAMLEngineException e) {
             LOG.error(AbstractProtocolEngine.SAML_EXCHANGE,
-                      "BUSINESS EXCEPTION : Procces getCountry from certificate: " + e.getMessage(), e);
+                    "BUSINESS EXCEPTION : Procces getCountry from certificate: " + e.getMessage(), e);
             throw new EIDASSAMLEngineRuntimeException(e);
         }
     }

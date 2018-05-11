@@ -31,6 +31,7 @@ import org.slf4j.MarkerFactory;
  * Neil Harrison described this method in the book Patterns for Logging Diagnostic Messages in Pattern Languages of Program Design 3,
  * edited by R. Martin, D. Riehle, and F. Buschmann (Addison-Wesley, 1997). Logback leverages a variant of this technique included in the SLF4J API:
  * Mapped Diagnostic Contexts (MDC).
+ *
  * @author vanegdi
  * @since 1.2.2
  */
@@ -55,9 +56,10 @@ public final class LoggingMarkerMDC {
     /*Dedicated marker for the SAML exchanges*/
     public static final Marker SAML_EXCHANGE = MarkerFactory.getMarker("SAML_EXCHANGE");
     public static final Marker CRYPTO = MarkerFactory.getMarker("CRYPTO");
+
     /**
      * private constructor
      */
-    private LoggingMarkerMDC(){
+    private LoggingMarkerMDC() {
     }
 }

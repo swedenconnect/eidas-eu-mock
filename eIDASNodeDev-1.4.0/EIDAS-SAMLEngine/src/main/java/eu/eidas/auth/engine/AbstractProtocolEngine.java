@@ -82,7 +82,7 @@ public abstract class AbstractProtocolEngine {
             SAMLBootstrap.bootstrap();
 
             Configuration.registerObjectProvider(XSAny.TYPE_NAME, new XSAnyBuilder(), new XSAnyMarshaller(),
-                                                 new XSAnyUnmarshaller());
+                    new XSAnyUnmarshaller());
         } catch (ConfigurationException ce) {
             LOG.error("Problem initializing the OpenSAML library: " + ce, ce);
             throw new IllegalStateException(ce);
@@ -111,7 +111,7 @@ public abstract class AbstractProtocolEngine {
         if (null != protocolDecrypter) {
             if (protocolDecrypter.isResponseEncryptionMandatory()) {
                 throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_DECRYPTING_RESPONSE.errorCode(),
-                                                   EidasErrorKey.SAML_ENGINE_DECRYPTING_RESPONSE.errorMessage());
+                        EidasErrorKey.SAML_ENGINE_DECRYPTING_RESPONSE.errorMessage());
             }
         }
     }
@@ -126,7 +126,7 @@ public abstract class AbstractProtocolEngine {
         if (null != encrypter) {
             if (encrypter.isResponseEncryptionMandatory()) {
                 throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorCode(),
-                                                   EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
+                        EidasErrorKey.SAML_ENGINE_UNENCRYPTED_RESPONSE.errorMessage());
             }
         }
     }
@@ -301,7 +301,7 @@ public abstract class AbstractProtocolEngine {
                 responseToSign = getProtocolEncrypter().encryptSamlResponse(responseToSign, destinationCertificate);
                 LOG.debug("Encryption finished: " + responseToSign);
             } else if (getProtocolEncrypter().isEncryptionEnabled(request.getOriginCountryCode())) {
-                LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : encryption cannot be performed, no matching certificate for issuer="+ request.getIssuer()
+                LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : encryption cannot be performed, no matching certificate for issuer=" + request.getIssuer()
                         + " and country=" + request.getOriginCountryCode());
                 throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorCode(),
                         EidasErrorKey.SAML_ENGINE_INVALID_CERTIFICATE.errorMessage());
@@ -344,7 +344,7 @@ public abstract class AbstractProtocolEngine {
         } catch (UnmarshallException e) {
             LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException unmarshall.", e.getMessage(), e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -361,7 +361,7 @@ public abstract class AbstractProtocolEngine {
         X509Certificate signatureCertificate =
                 getProtocolProcessor().getResponseSignatureCertificate(validResponse.getIssuer().getValue());
         getSigner().validateSignature(validResponse,
-                                      null == signatureCertificate ? null : ImmutableSet.of(signatureCertificate));
+                null == signatureCertificate ? null : ImmutableSet.of(signatureCertificate));
 
         if (null != getProtocolDecrypter()) {
             if (!validResponse.getEncryptedAssertions().isEmpty()) {

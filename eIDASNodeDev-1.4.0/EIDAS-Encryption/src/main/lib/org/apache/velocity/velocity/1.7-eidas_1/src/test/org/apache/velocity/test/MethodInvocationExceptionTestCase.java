@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -36,22 +36,20 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: MethodInvocationExceptionTestCase.java 704299 2008-10-14 03:13:16Z nbubna $
  */
-public class MethodInvocationExceptionTestCase extends TestCase
-{
+public class MethodInvocationExceptionTestCase extends TestCase {
     protected boolean DEBUG = false;
 
     /**
      * Default constructor.
+     *
      * @param name
      */
-    public MethodInvocationExceptionTestCase(String name)
-    {
+    public MethodInvocationExceptionTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         /*
          *  init() Runtime with defaults
          */
@@ -62,66 +60,58 @@ public class MethodInvocationExceptionTestCase extends TestCase
         Velocity.init();
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(MethodInvocationExceptionTestCase.class);
     }
 
-    protected void log(String out)
-    {
+    protected void log(String out) {
         Velocity.getLog().debug(out);
-        if (DEBUG)
-        {
+        if (DEBUG) {
             System.out.println(out);
         }
     }
 
     /**
      * Runs the test :
+     * <p>
+     * uses the Velocity class to eval a string
+     * which accesses a method that throws an
+     * exception.
      *
-     *  uses the Velocity class to eval a string
-     *  which accesses a method that throws an
-     *  exception.
-     *  @throws Exception
+     * @throws Exception
      */
-    public void testNormalMethodInvocationException ()
-            throws Exception
-    {
+    public void testNormalMethodInvocationException()
+            throws Exception {
         String template = "$woogie.doException() boing!";
 
         VelocityContext vc = new VelocityContext();
 
-        vc.put("woogie", this );
+        vc.put("woogie", this);
 
         StringWriter w = new StringWriter();
 
-        try
-        {
-            Velocity.evaluate( vc,  w, "test", template );
+        try {
+            Velocity.evaluate(vc, w, "test", template);
             fail("No exception thrown");
-        }
-        catch( MethodInvocationException mie )
-        {
-            log("Caught MIE (good!) :" );
-            log("  reference = " + mie.getReferenceName() );
-            log("  method    = " + mie.getMethodName() );
+        } catch (MethodInvocationException mie) {
+            log("Caught MIE (good!) :");
+            log("  reference = " + mie.getReferenceName());
+            log("  method    = " + mie.getMethodName());
 
             Throwable t = mie.getWrappedThrowable();
-            log("  throwable = " + t );
+            log("  throwable = " + t);
 
-            if( t instanceof Exception)
-            {
-                log("  exception = " + ( (Exception) t).getMessage() );
+            if (t instanceof Exception) {
+                log("  exception = " + ((Exception) t).getMessage());
             }
         }
     }
 
 
-    public void testGetterMethodInvocationException ()
-            throws Exception
-    {
+    public void testGetterMethodInvocationException()
+            throws Exception {
         VelocityContext vc = new VelocityContext();
-        vc.put("woogie", this );
+        vc.put("woogie", this);
 
         StringWriter w = new StringWriter();
 
@@ -132,86 +122,72 @@ public class MethodInvocationExceptionTestCase extends TestCase
 
         String template = "$woogie.foo boing!";
 
-        try
-        {
-            Velocity. evaluate( vc,  w, "test", template );
+        try {
+            Velocity.evaluate(vc, w, "test", template);
             fail("No exception thrown, second test.");
-        }
-        catch( MethodInvocationException mie )
-        {
-            log("Caught MIE (good!) :" );
-            log("  reference = " + mie.getReferenceName() );
-            log("  method    = " + mie.getMethodName() );
+        } catch (MethodInvocationException mie) {
+            log("Caught MIE (good!) :");
+            log("  reference = " + mie.getReferenceName());
+            log("  method    = " + mie.getMethodName());
 
             Throwable t = mie.getWrappedThrowable();
-            log("  throwable = " + t );
+            log("  throwable = " + t);
 
-            if( t instanceof Exception)
-            {
-                log("  exception = " + ( (Exception) t).getMessage() );
+            if (t instanceof Exception) {
+                log("  exception = " + ((Exception) t).getMessage());
             }
         }
     }
 
 
-    public void testCapitalizedGetterMethodInvocationException ()
-            throws Exception
-    {
+    public void testCapitalizedGetterMethodInvocationException()
+            throws Exception {
         VelocityContext vc = new VelocityContext();
-        vc.put("woogie", this );
+        vc.put("woogie", this);
 
         StringWriter w = new StringWriter();
 
         String template = "$woogie.Foo boing!";
 
-        try
-        {
-            Velocity. evaluate( vc,  w, "test", template );
+        try {
+            Velocity.evaluate(vc, w, "test", template);
             fail("No exception thrown, third test.");
-        }
-        catch( MethodInvocationException mie )
-        {
-            log("Caught MIE (good!) :" );
-            log("  reference = " + mie.getReferenceName() );
-            log("  method    = " + mie.getMethodName() );
+        } catch (MethodInvocationException mie) {
+            log("Caught MIE (good!) :");
+            log("  reference = " + mie.getReferenceName());
+            log("  method    = " + mie.getMethodName());
 
             Throwable t = mie.getWrappedThrowable();
-            log("  throwable = " + t );
+            log("  throwable = " + t);
 
-            if( t instanceof Exception)
-            {
-                log("  exception = " + ( (Exception) t).getMessage() );
+            if (t instanceof Exception) {
+                log("  exception = " + ((Exception) t).getMessage());
             }
         }
     }
 
-    public void testSetterMethodInvocationException ()
-            throws Exception
-    {
+    public void testSetterMethodInvocationException()
+            throws Exception {
         VelocityContext vc = new VelocityContext();
-        vc.put("woogie", this );
+        vc.put("woogie", this);
 
         StringWriter w = new StringWriter();
 
         String template = "#set($woogie.foo = 'lala') boing!";
 
-        try
-        {
-            Velocity. evaluate( vc,  w, "test", template );
+        try {
+            Velocity.evaluate(vc, w, "test", template);
             fail("No exception thrown, set test.");
-        }
-        catch( MethodInvocationException mie )
-        {
-            log("Caught MIE (good!) :" );
-            log("  reference = " + mie.getReferenceName() );
-            log("  method    = " + mie.getMethodName() );
+        } catch (MethodInvocationException mie) {
+            log("Caught MIE (good!) :");
+            log("  reference = " + mie.getReferenceName());
+            log("  method    = " + mie.getMethodName());
 
             Throwable t = mie.getWrappedThrowable();
-            log("  throwable = " + t );
+            log("  throwable = " + t);
 
-            if( t instanceof Exception)
-            {
-                log("  exception = " + ( (Exception) t).getMessage() );
+            if (t instanceof Exception) {
+                log("  exception = " + ((Exception) t).getMessage());
             }
         }
     }
@@ -221,58 +197,49 @@ public class MethodInvocationExceptionTestCase extends TestCase
      * test that no exception is thrown when in parameter to macro.
      * This is the way we expect the system to work, but it would be better
      * to throw an exception.
+     *
      * @throws Exception
      */
-    public void testMacroInvocationException ()
-            throws Exception
-    {
+    public void testMacroInvocationException()
+            throws Exception {
         VelocityContext vc = new VelocityContext();
-        vc.put("woogie", this );
+        vc.put("woogie", this);
 
         StringWriter w = new StringWriter();
 
         String template = "#macro (macro1 $param) $param #end  #macro1($woogie.getFoo())";
 
-        try
-        {
-            Velocity. evaluate( vc,  w, "test", template );
+        try {
+            Velocity.evaluate(vc, w, "test", template);
             fail("No exception thrown, macro invocation test.");
-        }
-        catch( MethodInvocationException mie )
-        {
-            log("Caught MIE (good!) :" );
-            log("  reference = " + mie.getReferenceName() );
-            log("  method    = " + mie.getMethodName() );
+        } catch (MethodInvocationException mie) {
+            log("Caught MIE (good!) :");
+            log("  reference = " + mie.getReferenceName());
+            log("  method    = " + mie.getMethodName());
 
             Throwable t = mie.getWrappedThrowable();
-            log("  throwable = " + t );
+            log("  throwable = " + t);
 
-            if( t instanceof Exception)
-            {
-                log("  exception = " + ( (Exception) t).getMessage() );
+            if (t instanceof Exception) {
+                log("  exception = " + ((Exception) t).getMessage());
             }
-        }
-        catch( Exception e)
-        {
+        } catch (Exception e) {
             fail("Wrong exception thrown, test of exception within macro parameter");
         }
     }
 
     public void doException()
-        throws Exception
-    {
+            throws Exception {
         throw new NullPointerException();
     }
 
     public void getFoo()
-        throws Exception
-    {
-        throw new Exception("Hello from getFoo()" );
+            throws Exception {
+        throw new Exception("Hello from getFoo()");
     }
 
-    public void  setFoo( String foo )
-        throws Exception
-    {
+    public void setFoo(String foo)
+            throws Exception {
         throw new Exception("Hello from setFoo()");
     }
 }

@@ -40,7 +40,7 @@ public class InvalidParameterEIDASServiceException extends EIDASServiceException
      * @param errorMessage The error code message value.
      */
     public InvalidParameterEIDASServiceException(final String errorCode,
-                                          final String errorMessage) {
+                                                 final String errorMessage) {
         super(errorCode, errorMessage);
     }
 

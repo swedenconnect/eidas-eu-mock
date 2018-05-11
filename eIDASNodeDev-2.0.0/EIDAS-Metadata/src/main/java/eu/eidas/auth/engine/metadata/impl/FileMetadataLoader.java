@@ -53,14 +53,14 @@ public class FileMetadataLoader implements MetadataLoaderPlugin {
             try {
                 descriptors = loadDescriptors(fileName);
             } catch (UnmarshallException e) {
-                LOG.error("Failed to unmarshall entity descriptors from static metadata file '"+fileName+"'");
+                LOG.error("Failed to unmarshall entity descriptors from static metadata file '" + fileName + "'");
                 LOG.error(e.toString());
             }
             if (descriptors != null) {
                 list.add(descriptors);
                 List<String> ids = new ArrayList<>();
                 for (EntityDescriptor ed : descriptors.getEntityDescriptors()) {
-                    LOG.info("Added entity descriptor for "+ed.getEntityID());
+                    LOG.info("Added entity descriptor for " + ed.getEntityID());
                     ids.add(ed.getEntityID());
                 }
             }
@@ -79,7 +79,7 @@ public class FileMetadataLoader implements MetadataLoaderPlugin {
         }
     }
 
-    private List<String> getFiles(){
+    private List<String> getFiles() {
         return fileService.getFileList(false);
     }
 
@@ -89,12 +89,12 @@ public class FileMetadataLoader implements MetadataLoaderPlugin {
             return null;
         }
 
-        LOG.info("Loading entity descriptors from file "+ fileName);
+        LOG.info("Loading entity descriptors from file " + fileName);
         byte[] content = fileService.loadBinaryFile(fileName);
-        return content==null?null : MetadataUtil.deserializeEntityDescriptor(EidasStringUtil.toString(content));
+        return content == null ? null : MetadataUtil.deserializeEntityDescriptor(EidasStringUtil.toString(content));
     }
 
-    public void addListenerContentChanged( IStaticMetadataChangeListener listener){
+    public void addListenerContentChanged(IStaticMetadataChangeListener listener) {
         if (!listeners.contains(listener)) {
             listeners.add(listener);
         }

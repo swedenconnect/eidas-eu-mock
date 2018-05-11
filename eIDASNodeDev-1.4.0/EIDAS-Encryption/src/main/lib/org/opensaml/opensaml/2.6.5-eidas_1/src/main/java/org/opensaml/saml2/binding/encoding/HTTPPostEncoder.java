@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -44,19 +44,25 @@ import org.slf4j.LoggerFactory;
  */
 public class HTTPPostEncoder extends BaseSAML2MessageEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPPostEncoder.class);
 
-    /** Velocity engine used to evaluate the template when performing POST encoding. */
+    /**
+     * Velocity engine used to evaluate the template when performing POST encoding.
+     */
     private VelocityEngine velocityEngine;
 
-    /** ID of the Velocity template used when performing POST encoding. */
+    /**
+     * ID of the Velocity template used when performing POST encoding.
+     */
     private String velocityTemplateId;
 
     /**
      * Constructor.
-     * 
-     * @param engine Velocity engine instance used to create POST body
+     *
+     * @param engine     Velocity engine instance used to create POST body
      * @param templateId ID of the template used to create POST body
      */
     public HTTPPostEncoder(VelocityEngine engine, String templateId) {
@@ -65,22 +71,30 @@ public class HTTPPostEncoder extends BaseSAML2MessageEncoder {
         velocityTemplateId = templateId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_POST_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageConfidentiality(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageIntegrity(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doEncode(MessageContext messageContext) throws MessageEncodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this encoder only support SAMLMessageContext");
@@ -114,10 +128,9 @@ public class HTTPPostEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Base64 and POST encodes the outbound message and writes it to the outbound transport.
-     * 
+     *
      * @param messageContext current message context
-     * @param endpointURL endpoint URL to which to encode message
-     * 
+     * @param endpointURL    endpoint URL to which to encode message
      * @throws MessageEncodingException thrown if there is a problem encoding the message
      */
     protected void postEncode(SAMLMessageContext messageContext, String endpointURL) throws MessageEncodingException {
@@ -143,15 +156,15 @@ public class HTTPPostEncoder extends BaseSAML2MessageEncoder {
 
     /**
      * Populate the Velocity context instance which will be used to render the POST body.
-     * 
+     *
      * @param velocityContext the Velocity context instance to populate with data
-     * @param messageContext the SAML message context source of data
-     * @param endpointURL endpoint URL to which to encode message
+     * @param messageContext  the SAML message context source of data
+     * @param endpointURL     endpoint URL to which to encode message
      * @throws MessageEncodingException thrown if there is a problem encoding the message
      */
     protected void populateVelocityContext(VelocityContext velocityContext, SAMLMessageContext messageContext,
-            String endpointURL) throws MessageEncodingException {
-        
+                                           String endpointURL) throws MessageEncodingException {
+
         Encoder esapiEncoder = ESAPI.encoder();
 
         String encodedEndpointURL = esapiEncoder.encodeForHTMLAttribute(endpointURL);

@@ -37,23 +37,24 @@ public class Zip {
 
     static final int BUFFER_SIZE = 4096;
 
-    private Zip(){
+    private Zip() {
 
     }
-    public static void zip (List<String> sourceFiles, String destinationFileName, String baseDirectoryPath) throws ConfigurationException {
-        List<String> relativeFileNames=new ArrayList<String>();
-        String directoryPath=baseDirectoryPath.replace('\\','/');
-        for(String fileName:sourceFiles){
-            if(fileName.replace('\\','/').startsWith(directoryPath)) {
-                fileName=fileName.substring(baseDirectoryPath.length());
+
+    public static void zip(List<String> sourceFiles, String destinationFileName, String baseDirectoryPath) throws ConfigurationException {
+        List<String> relativeFileNames = new ArrayList<String>();
+        String directoryPath = baseDirectoryPath.replace('\\', '/');
+        for (String fileName : sourceFiles) {
+            if (fileName.replace('\\', '/').startsWith(directoryPath)) {
+                fileName = fileName.substring(baseDirectoryPath.length());
             }
             relativeFileNames.add(fileName);
-            zip(sourceFiles,relativeFileNames, destinationFileName);
+            zip(sourceFiles, relativeFileNames, destinationFileName);
         }
     }
 
     @SuppressWarnings("squid:S2095")
-    public static void zip (List<String> sourceFiles, List<String> sourceFilesNames, String destinationFileName) throws ConfigurationException {
+    public static void zip(List<String> sourceFiles, List<String> sourceFilesNames, String destinationFileName) throws ConfigurationException {
         ZipOutputStream out = null;
         FileInputStream fi = null;
         BufferedInputStream origin = null;
@@ -64,11 +65,11 @@ public class Zip {
             out.setMethod(ZipOutputStream.DEFLATED);
             byte data[] = new byte[BUFFER_SIZE];
 
-            for (int i=0;i<sourceFiles.size();i++) {
+            for (int i = 0; i < sourceFiles.size(); i++) {
                 String file = sourceFiles.get(i);
-                String entryName=file;
-                if(sourceFilesNames!=null && sourceFilesNames.size()>i){
-                    entryName=sourceFilesNames.get(i);
+                String entryName = file;
+                if (sourceFilesNames != null && sourceFilesNames.size() > i) {
+                    entryName = sourceFilesNames.get(i);
                 }
                 fi = new FileInputStream(file);
                 origin = new BufferedInputStream(fi, BUFFER_SIZE);
@@ -83,10 +84,10 @@ public class Zip {
             LOG.error("error during backup {}", e);
             throw new ConfigurationException("", "", e);
         } finally {
-            if (out != null){
+            if (out != null) {
                 try {
                     out.close();
-                }catch(IOException ioe){
+                } catch (IOException ioe) {
                     LOG.error("ERROR : cannot close output stream {}", ioe.getMessage());
                     LOG.debug("ERROR : cannot close output stream {}", ioe);
                 }
@@ -94,7 +95,7 @@ public class Zip {
             if (origin != null) {
                 try {
                     origin.close();
-                }catch(IOException ioe){
+                } catch (IOException ioe) {
                     LOG.error("ERROR : cannot close input stream {}", ioe.getMessage());
                     LOG.debug("ERROR : cannot close input stream {}", ioe);
                 }

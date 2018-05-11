@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,59 +24,53 @@ import org.apache.velocity.test.misc.TestLogChute;
 import org.apache.velocity.runtime.RuntimeConstants;
 
 /**
- *  Test the #stop directive
+ * Test the #stop directive
  */
-public class StopDirectiveTestCase extends BaseTestCase
-{
-    public StopDirectiveTestCase(String name)
-    {
+public class StopDirectiveTestCase extends BaseTestCase {
+    public StopDirectiveTestCase(String name) {
         super(name);
     }
-  
-    public void setUp() throws Exception
-    {
+
+    public void setUp() throws Exception {
         super.setUp();
         engine.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, "test/stop/");
         engine.setProperty(RuntimeConstants.VM_LIBRARY, "vmlib1.vm");
     }
 
-    public void testStop()
-    {
-      // Make it works through the evaluate method call
-      assertEvalEquals("Text1", "Text1#{stop}Text2");
-      // Make sure stop works in a template
-      assertTmplEquals("Text 1", "stop1.vm");
-      // Make sure stop works when called from a velocity macro
-      assertTmplEquals("Text123stuff1", "stop2.vm");
-      // Make sure stop works when called located in another parsed file
-      assertTmplEquals("text1blaa1", "stop3.vm");
+    public void testStop() {
+        // Make it works through the evaluate method call
+        assertEvalEquals("Text1", "Text1#{stop}Text2");
+        // Make sure stop works in a template
+        assertTmplEquals("Text 1", "stop1.vm");
+        // Make sure stop works when called from a velocity macro
+        assertTmplEquals("Text123stuff1", "stop2.vm");
+        // Make sure stop works when called located in another parsed file
+        assertTmplEquals("text1blaa1", "stop3.vm");
     }
 
-    public void testNestedStopAll()
-    {
-        addTemplate("ns", ",template"+
-                          "#macro(vm),macro${bodyContent}macro#end"+
-                          "#define($define),define"+
-                            "#foreach($i in [1..2]),foreach"+
-                              "#{stop}foreach"+
-                            "#{end}define"+
-                          "#{end}"+
-                          "#@vm(),bodyContent"+
-                            "${define}bodyContent"+
-                          "#{end}template");
+    public void testNestedStopAll() {
+        addTemplate("ns", ",template" +
+                "#macro(vm),macro${bodyContent}macro#end" +
+                "#define($define),define" +
+                "#foreach($i in [1..2]),foreach" +
+                "#{stop}foreach" +
+                "#{end}define" +
+                "#{end}" +
+                "#@vm(),bodyContent" +
+                "${define}bodyContent" +
+                "#{end}template");
         String expected = "evaluate,template,macro,bodyContent,define,foreach";
         assertEvalEquals(expected, "#evaluate('evaluate#parse(\"ns\")evaluate')");
     }
 
-    public void testStopMessage()
-    {
+    public void testStopMessage() {
         log.setEnabledLevel(TestLogChute.DEBUG_ID);
         log.off();
         context.put("log", log);
 
         assertEvalEquals("a", "a$!log.startCapture()#stop('woogie!')b");
 
-        info("Log: "+log.getLog());
+        info("Log: " + log.getLog());
         assertTrue(log.getLog().indexOf("StopCommand: woogie!") >= 0);
     }
 

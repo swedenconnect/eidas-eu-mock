@@ -29,8 +29,11 @@ import eu.eidas.auth.engine.core.stork.impl.QAAAttributeImpl;
  */
 public class ExtensionsSchemaValidator implements Validator<Extensions> {
 
-    /** The Constant LOG. */
+    /**
+     * The Constant LOG.
+     */
     private static final Logger LOG = LoggerFactory.getLogger(ExtensionsSchemaValidator.class.getName());
+
     /**
      * validate the extensions.
      *
@@ -46,11 +49,11 @@ public class ExtensionsSchemaValidator implements Validator<Extensions> {
         //Unknown elements are unmarshalled as XSAnyImpl type objects
         for (Object element : extensions.getUnknownXMLObjects()) {
             LOG.debug("element ClassName " + element.getClass().toString());
-            if (element instanceof QAAAttributeImpl){
+            if (element instanceof QAAAttributeImpl) {
                 throw new ValidationException("QAA Level attribute is the STORK 1 attribute");
             }
             if (element instanceof XSAnyImpl) {
-                LOG.debug("ExtensionsSchemaValidator validation "+ ((XSAnyImpl) element).getElementQName());
+                LOG.debug("ExtensionsSchemaValidator validation " + ((XSAnyImpl) element).getElementQName());
                 throw new ValidationException(
                         "Extensions element is not valid: " + ((XSAnyImpl) element).getElementQName());
             }

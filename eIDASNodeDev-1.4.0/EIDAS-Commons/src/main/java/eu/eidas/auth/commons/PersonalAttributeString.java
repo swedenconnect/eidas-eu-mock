@@ -191,11 +191,11 @@ public final class PersonalAttributeString {
             if (pal.isEmptyValue()) {
                 if (!pal.isEmptyComplexValue()) {
                     AttributeUtil.appendIfNotNull(strBuild, AttributeUtil.mapToString(pal.getComplexValue(),
-                                                                                      EIDASValues.ATTRIBUTE_VALUE_SEP.toString()));
+                            EIDASValues.ATTRIBUTE_VALUE_SEP.toString()));
                 }
             } else {
                 AttributeUtil.appendIfNotNull(strBuild, AttributeUtil.listToString(pal.getValue(),
-                                                                                   EIDASValues.ATTRIBUTE_VALUE_SEP.toString()));
+                        EIDASValues.ATTRIBUTE_VALUE_SEP.toString()));
             }
 
             strBuild.append(']');

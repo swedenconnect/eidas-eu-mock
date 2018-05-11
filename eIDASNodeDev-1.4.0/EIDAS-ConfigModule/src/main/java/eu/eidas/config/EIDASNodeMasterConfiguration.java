@@ -31,7 +31,7 @@ public class EIDASNodeMasterConfiguration {
     }
 
     public EIDASNodeConfiguration getNodeConfiguration() {
-        if(eidasNodeConfiguration!=null && eidasNodeConfiguration.getRepository()==null){
+        if (eidasNodeConfiguration != null && eidasNodeConfiguration.getRepository() == null) {
             eidasNodeConfiguration.setRepository(repository);
         }
         return eidasNodeConfiguration;
@@ -41,12 +41,14 @@ public class EIDASNodeMasterConfiguration {
         this.eidasNodeConfiguration = nodeConfiguration;
     }
 
-    public byte[] getRawContent(String url){
+    public byte[] getRawContent(String url) {
         return getRepository().getRawContent(url);
     }
-    public void setRawContent(String url, byte[] os){
+
+    public void setRawContent(String url, byte[] os) {
         getRepository().setRawContent(url, os);
     }
+
     public void backup() throws ConfigurationException {
         getRepository().backup();
     }

@@ -24,61 +24,61 @@ package eu.eidas.node.exceptions;
 
 /**
  * EidasNodeInterceptorException bean.
- * 
+ *
  * @see RuntimeException
  */
 public final class EidasNodeInterceptorException extends RuntimeException {
-  
-  /**
-   * Unique identifier.
-   */
-  private static final long serialVersionUID = 8126567583461952110L;
-  
-  /**
-   * Error code.
-   */
-  private final String errorCode;
-  
-  /**
-   * Error message.
-   */
-  private final String errorMessage;
-  
-  /**
-   * Class constructor for EidasNodeInterceptorException.
-   * 
-   * @param code The code of the error.
-   * @param message The description of the error.
-   */
-  public EidasNodeInterceptorException(final String code, final String message) {
-    super(message);
-    this.errorCode = code;
-    this.errorMessage = message;
-  }
-  
-  /**
-   * {@inheritDoc}
-   */
-  public String getMessage() {
-    return errorMessage;
-  }
-  
-  /**
-   * Getter for errorCode.
-   * 
-   * @return The errorCode value.
-   */
-  public String getErrorCode() {
-    return this.errorCode;
-  }
 
-  
-  /**
-   * Getter for errorMessage.
-   * 
-   * @return The errorMessage value.
-   */
-  public String getErrorMessage() {
-    return this.errorMessage;
-  }
+    /**
+     * Unique identifier.
+     */
+    private static final long serialVersionUID = 8126567583461952110L;
+
+    /**
+     * Error code.
+     */
+    private final String errorCode;
+
+    /**
+     * Error message.
+     */
+    private final String errorMessage;
+
+    /**
+     * Class constructor for EidasNodeInterceptorException.
+     *
+     * @param code    The code of the error.
+     * @param message The description of the error.
+     */
+    public EidasNodeInterceptorException(final String code, final String message) {
+        super(message);
+        this.errorCode = code;
+        this.errorMessage = message;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getMessage() {
+        return errorMessage;
+    }
+
+    /**
+     * Getter for errorCode.
+     *
+     * @return The errorCode value.
+     */
+    public String getErrorCode() {
+        return this.errorCode;
+    }
+
+
+    /**
+     * Getter for errorMessage.
+     *
+     * @return The errorMessage value.
+     */
+    public String getErrorMessage() {
+        return this.errorMessage;
+    }
 }

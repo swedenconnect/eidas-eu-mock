@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -32,7 +32,6 @@ public class ArtifactResponseTest extends StatusResponseTestBase {
 
     /**
      * Constructor
-     *
      */
     public ArtifactResponseTest() {
         super();
@@ -40,71 +39,82 @@ public class ArtifactResponseTest extends StatusResponseTestBase {
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/core/impl/ArtifactResponseOptionalAttributes.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/ArtifactResponseChildElements.xml";
     }
-    
-    
-    
-    /** {@inheritDoc} */
+
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, ArtifactResponse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         ArtifactResponse ar = (ArtifactResponse) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(ar);
 
         assertEquals(expectedDOM, ar);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, ArtifactResponse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         ArtifactResponse ar = (ArtifactResponse) buildXMLObject(qname);
-        
+
         super.populateRequiredAttributes(ar);
         super.populateOptionalAttributes(ar);
-        
+
         assertEquals(expectedOptionalAttributesDOM, ar);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, ArtifactResponse.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20P_PREFIX);
         ArtifactResponse ar = (ArtifactResponse) buildXMLObject(qname);
-        
+
         super.populateChildElements(ar);
-        
+
         assertEquals(expectedChildElementsDOM, ar);
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         ArtifactResponse ar = (ArtifactResponse) unmarshallElement(singleElementFile);
-        
+
         super.helperTestSingleElementUnmarshall(ar);
     }
 
-  
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         ArtifactResponse ar = (ArtifactResponse) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         super.helperTestSingleElementOptionalAttributesUnmarshall(ar);
 
     }
 
 
-
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         ArtifactResponse ar = (ArtifactResponse) unmarshallElement(childElementsFile);
-        
+
         super.helperTestChildElementsUnmarshall(ar);
     }
 }

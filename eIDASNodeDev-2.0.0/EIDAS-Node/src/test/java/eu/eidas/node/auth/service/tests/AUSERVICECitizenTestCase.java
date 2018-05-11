@@ -64,14 +64,14 @@ public final class AUSERVICECitizenTestCase {
 
     private static WebRequest newEmptyWebRequest() {
         return new IncomingRequest(BindingMethod.POST, ImmutableMap.<String, ImmutableList<String>>of(),
-                                   "127.0.0.1", null);
+                "127.0.0.1", null);
     }
 
     private static WebRequest newSingleParamWebRequest(String paramName, String paramValue) {
         return new IncomingRequest(BindingMethod.POST,
-                                   ImmutableMap.<String, ImmutableList<String>>of(paramName,
-                                                                                  ImmutableList.<String>of(paramValue)),
-                                   "127.0.0.1", null);
+                ImmutableMap.<String, ImmutableList<String>>of(paramName,
+                        ImmutableList.<String>of(paramValue)),
+                "127.0.0.1", null);
     }
 
     private static WebRequest newWebRequest(String paramName1,
@@ -79,10 +79,10 @@ public final class AUSERVICECitizenTestCase {
                                             String paramName2,
                                             String paramValue2) {
         return new IncomingRequest(BindingMethod.POST,
-                                   ImmutableMap.<String, ImmutableList<String>>of(paramName1,
-                                                                                  ImmutableList.<String>of(paramValue1),
-                                                                                  paramName2, ImmutableList.<String>of(
-                                                   paramValue2)), "127.0.0.1", null);
+                ImmutableMap.<String, ImmutableList<String>>of(paramName1,
+                        ImmutableList.<String>of(paramValue1),
+                        paramName2, ImmutableList.<String>of(
+                                paramValue2)), "127.0.0.1", null);
     }
 
     /**
@@ -109,11 +109,11 @@ public final class AUSERVICECitizenTestCase {
      * EidasAuthenticationRequest object.
      */
     private static final StoredAuthenticationRequest AUTH_DATA = StoredAuthenticationRequest.builder().request(EidasAuthenticationRequest.builder().requestedAttributes(ATTR_LIST).destination(TestingConstants.REQUEST_DESTINATION_CONS.toString())
-                    .issuer(TestingConstants.REQUEST_ISSUER_CONS.toString())
-                    .assertionConsumerServiceURL(TestingConstants.ASSERTION_URL_CONS.toString())
-                    .citizenCountryCode(TestingConstants.CITIZEN_COUNTRY_CODE_CONS.toString())
-                    .id(TestingConstants.REQUEST_ID_CONS.toString())
-                    .build()).remoteIpAddress("127.0.0.1").build();
+            .issuer(TestingConstants.REQUEST_ISSUER_CONS.toString())
+            .assertionConsumerServiceURL(TestingConstants.ASSERTION_URL_CONS.toString())
+            .citizenCountryCode(TestingConstants.CITIZEN_COUNTRY_CODE_CONS.toString())
+            .id(TestingConstants.REQUEST_ID_CONS.toString())
+            .build()).remoteIpAddress("127.0.0.1").build();
 
     /**
      * Dummy User IP.
@@ -130,15 +130,15 @@ public final class AUSERVICECitizenTestCase {
         ISERVICESAMLService mockedServiceSAMLService = mock(ISERVICESAMLService.class);
 
         when(mockedServiceSAMLService.generateErrorAuthenticationResponse((IAuthenticationRequest) any(), anyString(),
-                                                                          anyString(), anyString(), anyString(), anyString(),
-                                                                          anyBoolean())).thenReturn(new byte[0]);
+                anyString(), anyString(), anyString(), anyString(),
+                anyBoolean())).thenReturn(new byte[0]);
 
         when(mockedServiceSAMLService.updateRequest((IAuthenticationRequest) any(), (ImmutableAttributeMap) any())).thenReturn(AUTH_DATA.getRequest());
 
         when(mockedServiceSAMLService.getSamlEngine()).thenReturn(DefaultProtocolEngineFactory.getInstance()
-                                                                          .getProtocolEngine(TestingConstants.SAML_INSTANCE_CONS.toString()));
+                .getProtocolEngine(TestingConstants.SAML_INSTANCE_CONS.toString()));
 
-        ((AUSERVICECitizen)AUSERVICECITIZEN).setSamlService(mockedServiceSAMLService);
+        ((AUSERVICECitizen) AUSERVICECITIZEN).setSamlService(mockedServiceSAMLService);
     }
 
     private IAuthenticationRequest getFreshRequestWithAttrs() {

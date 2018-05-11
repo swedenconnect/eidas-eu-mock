@@ -30,7 +30,6 @@ import javax.annotation.Nonnull;
 
 /**
  * This class is a service used by {@link AUSERVICE} and to check mandatory and representative attributes.
- *
  */
 public final class AUSERVICECitizen implements ISERVICECitizenService {
 
@@ -56,7 +55,7 @@ public final class AUSERVICECitizen implements ISERVICECitizenService {
                 serviceUtil.getConfigs().getProperty(EIDASValues.DISABLE_CHECK_MANDATORY_ATTRIBUTES.toString())) &&
                 !samlService.checkMandatoryAttributeSet(attributes)) {
             throw new EIDASServiceException(EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorCode()),
-                                            EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
+                    EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
         }
     }
 

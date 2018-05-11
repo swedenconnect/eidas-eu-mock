@@ -187,9 +187,9 @@ public final class KeyStoreConfigurator {
 
     public static final KeyStoreConfigurationKeys DEFAULT_KEYSTORE_CONFIGURATION_KEYS =
             new KeyStoreConfigurationKeys(KeyStoreKey.KEYSTORE_PATH.getKey(), KeyStoreKey.KEYSTORE_TYPE.getKey(),
-                                          KeyStoreKey.KEYSTORE_PROVIDER.getKey(),
-                                          KeyStoreKey.KEYSTORE_PASSWORD.getKey(), KeyStoreKey.KEY_ALIAS.getKey(),
-                                          KeyStoreKey.KEY_PASSWORD.getKey());
+                    KeyStoreKey.KEYSTORE_PROVIDER.getKey(),
+                    KeyStoreKey.KEYSTORE_PASSWORD.getKey(), KeyStoreKey.KEY_ALIAS.getKey(),
+                    KeyStoreKey.KEY_PASSWORD.getKey());
 
     /**
      * The logger.
@@ -225,7 +225,7 @@ public final class KeyStoreConfigurator {
             return certificates.build();
         } catch (Exception e) {
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
         }
     }
 
@@ -249,7 +249,7 @@ public final class KeyStoreConfigurator {
                     + "\"";
             LOG.error(msg);
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), msg);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), msg);
         }
         String keyStoreType = properties.get(configurationKeys.getKeyStoreTypeConfigurationKey());
         String keyStoreProvider = properties.get(configurationKeys.getKeyStoreProviderConfigurationKey());
@@ -259,7 +259,7 @@ public final class KeyStoreConfigurator {
         String keyPasswordStr = properties.get(configurationKeys.getKeyPasswordConfigurationKey());
         char[] keyPassword = toChars(keyPasswordStr);
         return new KeyStoreConfiguration(keyStorePath, keyStoreType, keyStoreProvider, keyStorePassword, keyAlias,
-                                         keyPassword);
+                keyPassword);
     }
 
     public static KeyStoreContent getKeyStoreContent(KeyStore keyStore, char[] password)
@@ -308,7 +308,7 @@ public final class KeyStoreConfigurator {
             throw e;
         } catch (Exception e) {
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
         }
     }
 
@@ -340,7 +340,7 @@ public final class KeyStoreConfigurator {
             throw e;
         } catch (Exception e) {
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
         }
     }
 
@@ -355,7 +355,7 @@ public final class KeyStoreConfigurator {
             throw wrongPassword;
         } catch (Exception e) {
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
         }
         return null;
     }
@@ -381,7 +381,7 @@ public final class KeyStoreConfigurator {
             return null;
         } catch (Exception e) {
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
         }
     }
 
@@ -427,14 +427,14 @@ public final class KeyStoreConfigurator {
             keyStoreType = KeyStore.getDefaultType();
             if (traceEnabled) {
                 LOG.trace("No keyStoreType configured for keyStore file \"" + keyStoreConfiguration.getKeyStorePath()
-                                  + "\" using KeyStore.getDefaultType(): \"" + keyStoreType + "\"");
+                        + "\" using KeyStore.getDefaultType(): \"" + keyStoreType + "\"");
             }
         }
         try {
             if (traceEnabled) {
                 LOG.trace("Loading keyStore file \"" + keyStoreConfiguration.getKeyStorePath() + "\", keyStoreType \""
-                                  + keyStoreType + "\", keyStoreProvider \""
-                                  + keyStoreConfiguration.getKeyStoreProvider() + "\"");
+                        + keyStoreType + "\", keyStoreProvider \""
+                        + keyStoreConfiguration.getKeyStoreProvider() + "\"");
             }
             KeyStore keyStore;
             if (StringUtils.isBlank(keyStoreConfiguration.getKeyStoreProvider())) {
@@ -447,14 +447,14 @@ public final class KeyStoreConfigurator {
                 resource = ResourceLocator.getResource(keyStoreConfiguration.getKeyStorePath());
             } catch (IOException ioe) {
                 throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                           EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(),
-                                                           ioe);
+                        EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(),
+                        ioe);
             }
             if (traceEnabled) {
                 LOG.trace("Found keyStore file \"" + keyStoreConfiguration.getKeyStorePath() + "\", keyStoreType \""
-                                  + keyStoreType + "\", keyStoreProvider \""
-                                  + keyStoreConfiguration.getKeyStoreProvider() + "\" at \"" + resource.toExternalForm()
-                                  + "\"");
+                        + keyStoreType + "\", keyStoreProvider \""
+                        + keyStoreConfiguration.getKeyStoreProvider() + "\" at \"" + resource.toExternalForm()
+                        + "\"");
             }
             try (InputStream fis = resource.openStream()) {
                 keyStore.load(fis, keyStoreConfiguration.getKeyStorePassword());
@@ -473,7 +473,7 @@ public final class KeyStoreConfigurator {
         } catch (Exception e) {
             LOG.error("Unable to load keyStore: " + e, e);
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
         }
     }
 
@@ -496,10 +496,10 @@ public final class KeyStoreConfigurator {
         KeyStore keyStore = loadKeyStore();
         try {
             return getPrivateKeyEntry(keyStore, keyStoreConfiguration.getKeyAlias(),
-                                      keyStoreConfiguration.getKeyPassword());
+                    keyStoreConfiguration.getKeyPassword());
         } catch (UnrecoverableEntryException e) {
             throw new ProtocolEngineConfigurationException(EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorCode(),
-                                                       EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
+                    EidasErrorKey.SAML_ENGINE_INVALID_KEYSTORE.errorMessage(), e);
         }
     }
 

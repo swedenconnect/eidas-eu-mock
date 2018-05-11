@@ -30,19 +30,21 @@ import java.util.List;
  */
 public class SPTypeImpl extends AbstractSAMLObject implements SPType {
 
-    /** The type. */
+    /**
+     * The type.
+     */
     private String spType;
 
     /**
      * Instantiates a new Service provider sector implementation.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected SPTypeImpl(final String namespaceURI,
                          final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
@@ -50,11 +52,10 @@ public class SPTypeImpl extends AbstractSAMLObject implements SPType {
      * Gets the service provider sector.
      *
      * @return the SP sector
-     *
      * @see SPType#getSPType()
      */
     public final String getSPType() {
-	return spType;
+        return spType;
     }
 
 
@@ -64,7 +65,7 @@ public class SPTypeImpl extends AbstractSAMLObject implements SPType {
      * @param newSpType the new sector type
      */
     public final void setSPType(final String newSpType) {
-	this.spType = prepareForAssignment(this.spType, newSpType);
+        this.spType = prepareForAssignment(this.spType, newSpType);
     }
 
 

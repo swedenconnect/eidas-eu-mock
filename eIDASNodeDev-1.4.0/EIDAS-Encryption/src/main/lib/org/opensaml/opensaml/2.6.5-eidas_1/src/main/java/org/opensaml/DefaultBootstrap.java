@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -37,60 +37,66 @@ import org.slf4j.LoggerFactory;
  * This class can be used to bootstrap the OpenSAML library with the default configurations that ship with the library.
  */
 public class DefaultBootstrap {
-    
-    /** System property used to disable global default HTTPS hostname verification in Apache Commons HttpClient. */
-    public static final String SYSPROP_HTTPCLIENT_HTTPS_DISABLE_HOSTNAME_VERIFICATION = 
+
+    /**
+     * System property used to disable global default HTTPS hostname verification in Apache Commons HttpClient.
+     */
+    public static final String SYSPROP_HTTPCLIENT_HTTPS_DISABLE_HOSTNAME_VERIFICATION =
             "org.opensaml.httpclient.https.disableHostnameVerification";
 
-    /** List of default XMLTooling configuration files. */
-    private static String[] xmlToolingConfigs = { 
-        "/default-config.xml", 
-        "/schema-config.xml", 
-        "/signature-config.xml",
-        "/signature-validation-config.xml", 
-        "/encryption-config.xml", 
-        "/encryption-validation-config.xml",
-        "/soap11-config.xml", 
-        "/wsfed11-protocol-config.xml",
-        "/saml1-assertion-config.xml", 
-        "/saml1-protocol-config.xml",
-        "/saml1-core-validation-config.xml", 
-        "/saml2-assertion-config.xml", 
-        "/saml2-protocol-config.xml",
-        "/saml2-core-validation-config.xml", 
-        "/saml1-metadata-config.xml", 
-        "/saml2-metadata-config.xml",
-        "/saml2-metadata-validation-config.xml", 
-        "/saml2-metadata-attr-config.xml",
-        "/saml2-metadata-idp-discovery-config.xml",
-        "/saml2-metadata-ui-config.xml",
-        "/saml2-protocol-aslo-config.xml",
-        "/saml2-protocol-thirdparty-config.xml",
-        "/saml2-metadata-query-config.xml", 
-        "/saml2-assertion-delegation-restriction-config.xml",    
-        "/saml2-ecp-config.xml",
-        "/saml2-channel-binding-config.xml",
-        "/saml-ec-gss-config.xml",
-        "/xacml10-saml2-profile-config.xml",
-        "/xacml11-saml2-profile-config.xml",
-        "/xacml20-context-config.xml",
-        "/xacml20-policy-config.xml",
-        "/xacml2-saml2-profile-config.xml",
-        "/xacml3-saml2-profile-config.xml",    
-        "/wsaddressing-config.xml",
-        "/wssecurity-config.xml",
-        "/wstrust-config.xml",
-        "/wspolicy-config.xml",
+    /**
+     * List of default XMLTooling configuration files.
+     */
+    private static String[] xmlToolingConfigs = {
+            "/default-config.xml",
+            "/schema-config.xml",
+            "/signature-config.xml",
+            "/signature-validation-config.xml",
+            "/encryption-config.xml",
+            "/encryption-validation-config.xml",
+            "/soap11-config.xml",
+            "/wsfed11-protocol-config.xml",
+            "/saml1-assertion-config.xml",
+            "/saml1-protocol-config.xml",
+            "/saml1-core-validation-config.xml",
+            "/saml2-assertion-config.xml",
+            "/saml2-protocol-config.xml",
+            "/saml2-core-validation-config.xml",
+            "/saml1-metadata-config.xml",
+            "/saml2-metadata-config.xml",
+            "/saml2-metadata-validation-config.xml",
+            "/saml2-metadata-attr-config.xml",
+            "/saml2-metadata-idp-discovery-config.xml",
+            "/saml2-metadata-ui-config.xml",
+            "/saml2-protocol-aslo-config.xml",
+            "/saml2-protocol-thirdparty-config.xml",
+            "/saml2-metadata-query-config.xml",
+            "/saml2-assertion-delegation-restriction-config.xml",
+            "/saml2-ecp-config.xml",
+            "/saml2-channel-binding-config.xml",
+            "/saml-ec-gss-config.xml",
+            "/xacml10-saml2-profile-config.xml",
+            "/xacml11-saml2-profile-config.xml",
+            "/xacml20-context-config.xml",
+            "/xacml20-policy-config.xml",
+            "/xacml2-saml2-profile-config.xml",
+            "/xacml3-saml2-profile-config.xml",
+            "/wsaddressing-config.xml",
+            "/wssecurity-config.xml",
+            "/wstrust-config.xml",
+            "/wspolicy-config.xml",
     };
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     protected DefaultBootstrap() {
 
     }
 
     /**
      * Initializes the OpenSAML library, loading default configurations.
-     * 
+     *
      * @throws ConfigurationException thrown if there is a problem initializing the OpenSAML library
      */
     public static synchronized void bootstrap() throws ConfigurationException {
@@ -102,20 +108,20 @@ public class DefaultBootstrap {
         initializeArtifactBuilderFactories();
 
         initializeGlobalSecurityConfiguration();
-        
+
         initializeParserPool();
-        
+
         initializeESAPI();
-        
+
         initializeHttpClient();
     }
 
     /**
-     *  Initializes the Apache Commons HttpClient library.
+     * Initializes the Apache Commons HttpClient library.
      */
     protected static void initializeHttpClient() {
         if (!Boolean.getBoolean(SYSPROP_HTTPCLIENT_HTTPS_DISABLE_HOSTNAME_VERIFICATION)) {
-            ProtocolSocketFactory socketFactory = 
+            ProtocolSocketFactory socketFactory =
                     new TLSProtocolSocketFactory(null, null, new StrictHostnameVerifier());
             Protocol.registerProtocol("https", new Protocol("https", socketFactory, 443));
         }
@@ -128,7 +134,7 @@ public class DefaultBootstrap {
         Logger log = getLogger();
         String systemPropertyKey = "org.owasp.esapi.SecurityConfiguration";
         String opensamlConfigImpl = ESAPISecurityConfig.class.getName();
-        
+
         String currentValue = System.getProperty(systemPropertyKey);
         if (currentValue == null || currentValue.isEmpty()) {
             log.debug("Setting ESAPI SecurityConfiguration impl to OpenSAML internal class: {}", opensamlConfigImpl);
@@ -146,20 +152,20 @@ public class DefaultBootstrap {
 
     /**
      * Initializes the default global parser pool instance.
-     * 
+     *
      * <p>
      * The ParserPool configured by default here is an instance of
-     * {@link StaticBasicParserPool}, with a maxPoolSize property of 50 
+     * {@link StaticBasicParserPool}, with a maxPoolSize property of 50
      * and all other properties with default values.
      * </p>
-     * 
+     *
      * <p>
      * If a deployment wishes to use a different parser pool implementation,
      * or one configured with different characteristics, they may either override this method,
-     * or simply configure a different ParserPool after bootstrapping via 
+     * or simply configure a different ParserPool after bootstrapping via
      * {@link Configuration#setParserPool(org.opensaml.xml.parse.ParserPool)}.
      * </p>
-     * 
+     *
      * @throws ConfigurationException thrown if there is a problem initializing the parser pool
      */
     protected static void initializeParserPool() throws ConfigurationException {
@@ -182,7 +188,7 @@ public class DefaultBootstrap {
 
     /**
      * Initializes the Apache XMLSecurity libary.
-     * 
+     *
      * @throws ConfigurationException thrown is there is a problem initializing the library
      */
     protected static void initializeXMLSecurity() throws ConfigurationException {
@@ -197,10 +203,10 @@ public class DefaultBootstrap {
             Init.init();
         }
     }
-    
+
     /**
      * Initializes the XMLTooling library with a default set of object providers.
-     * 
+     *
      * @throws ConfigurationException thrown if there is a problem loading the configuration files
      */
     protected static void initializeXMLTooling() throws ConfigurationException {
@@ -209,9 +215,8 @@ public class DefaultBootstrap {
 
     /**
      * Initializes the XMLTooling library with an explicitly supplied set of object providers.
-     * 
+     *
      * @param providerConfigs list of provider configuration files located on the classpath
-     * 
      * @throws ConfigurationException thrown if there is a problem loading the configuration files
      */
     protected static void initializeXMLTooling(String[] providerConfigs) throws ConfigurationException {
@@ -227,7 +232,7 @@ public class DefaultBootstrap {
 
     /**
      * Initializes the artifact factories for SAML 1 and SAML 2 artifacts.
-     * 
+     *
      * @throws ConfigurationException thrown if there is a problem initializing the artifact factory
      */
     protected static void initializeArtifactBuilderFactories() throws ConfigurationException {
@@ -236,10 +241,10 @@ public class DefaultBootstrap {
         Configuration.setSAML1ArtifactBuilderFactory(new SAML1ArtifactBuilderFactory());
         Configuration.setSAML2ArtifactBuilderFactory(new SAML2ArtifactBuilderFactory());
     }
-    
+
     /**
      * Get an SLF4J Logger.
-     * 
+     *
      * @return a Logger instance
      */
     protected static Logger getLogger() {

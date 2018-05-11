@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,18 +27,19 @@ import org.opensaml.xml.util.Base64;
  */
 public abstract class AbstractSAMLArtifact {
 
-    /** 2 byte artifact type code. */
+    /**
+     * 2 byte artifact type code.
+     */
     private byte[] typeCode;
 
     /**
      * Constructor.
-     * 
+     *
      * @param code the artifact type code
-     * 
      * @throws IllegalArgumentException thrown if the given type code is not two bytes in length
      */
     protected AbstractSAMLArtifact(byte[] code) {
-        if(code.length != 2){
+        if (code.length != 2) {
             throw new IllegalArgumentException("Type code was not 2-bytes in size");
         }
         typeCode = code;
@@ -46,7 +47,7 @@ public abstract class AbstractSAMLArtifact {
 
     /**
      * Gets the bytes for the artifact.
-     * 
+     *
      * @return the bytes for the artifact
      */
     public byte[] getArtifactBytes() {
@@ -61,7 +62,7 @@ public abstract class AbstractSAMLArtifact {
 
     /**
      * Gets the 2 byte type code for this artifact.
-     * 
+     *
      * @return the type code for this artifact
      */
     public byte[] getTypeCode() {
@@ -70,9 +71,8 @@ public abstract class AbstractSAMLArtifact {
 
     /**
      * Sets the 2 byte type code for this artifact.
-     * 
+     *
      * @param newTypeCode 2 byte type code for this artifact
-     * 
      * @throws IllegalArgumentException thrown if the given type code is not two bytes
      */
     protected void setTypeCode(byte[] newTypeCode) {
@@ -81,14 +81,14 @@ public abstract class AbstractSAMLArtifact {
 
     /**
      * Gets the artifact bytes minus the type code.
-     * 
+     *
      * @return artifact bytes minus the type code
      */
     public abstract byte[] getRemainingArtifact();
 
     /**
      * Gets the Base64 encoded artifact.
-     * 
+     *
      * @return Base64 encoded artifact.
      */
     public String base64Encode() {
@@ -97,19 +97,21 @@ public abstract class AbstractSAMLArtifact {
 
     /**
      * Gets the hex encoded artifact.
-     * 
+     *
      * @return hex encoded artifact
      */
     public String hexEncode() {
         return new String(Hex.encode(getArtifactBytes()));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean equals(Object o) {
-        if(o == this){
+        if (o == this) {
             return true;
         }
-        
+
         if (o instanceof AbstractSAMLArtifact) {
             AbstractSAMLArtifact otherArtifact = (AbstractSAMLArtifact) o;
             return Arrays.equals(getArtifactBytes(), otherArtifact.getArtifactBytes());
@@ -118,13 +120,17 @@ public abstract class AbstractSAMLArtifact {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         return Arrays.hashCode(getArtifactBytes());
     }
-    
-    /** {@inheritDoc} */
-    public String toString(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public String toString() {
         return base64Encode();
     }
 }

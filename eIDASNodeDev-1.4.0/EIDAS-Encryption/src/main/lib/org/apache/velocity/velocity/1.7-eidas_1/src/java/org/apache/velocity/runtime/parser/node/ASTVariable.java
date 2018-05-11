@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.parser.Parser;
@@ -25,13 +25,11 @@ import org.apache.velocity.runtime.parser.Parser;
 /**
  *
  */
-public class ASTVariable extends SimpleNode
-{
+public class ASTVariable extends SimpleNode {
     /**
      * @param id
      */
-    public ASTVariable(int id)
-    {
+    public ASTVariable(int id) {
         super(id);
     }
 
@@ -39,16 +37,14 @@ public class ASTVariable extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTVariable(Parser p, int id)
-    {
+    public ASTVariable(Parser p, int id) {
         super(p, id);
     }
 
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -50,9 +50,11 @@ import eu.eidas.auth.commons.EidasStringUtil;
 public final class SSETestUtils {
 
 
-    /** The Constant LOG. */
+    /**
+     * The Constant LOG.
+     */
     private static final Logger LOG = LoggerFactory
-	    .getLogger(SSETestUtils.class.getName());
+            .getLogger(SSETestUtils.class.getName());
 
     /**
      * Instantiates a new sSE test utils.
@@ -64,115 +66,109 @@ public final class SSETestUtils {
      * Prints the tree DOM.
      *
      * @param samlToken the SAML token
-     * @param isIndent the is indent
-     *
+     * @param isIndent  the is indent
      * @return the string
      * @throws TransformerException the exception
      */
     public static String printTreeDOM(final Element samlToken,
-	    final boolean isIndent) throws TransformerException {
-	// set up a transformer
-	final TransformerFactory transfac = TransformerFactory.newInstance();
-	final Transformer trans = transfac.newTransformer();
-	trans.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-	trans.setOutputProperty(OutputKeys.INDENT, String.valueOf(isIndent));
+                                      final boolean isIndent) throws TransformerException {
+        // set up a transformer
+        final TransformerFactory transfac = TransformerFactory.newInstance();
+        final Transformer trans = transfac.newTransformer();
+        trans.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        trans.setOutputProperty(OutputKeys.INDENT, String.valueOf(isIndent));
 
-	// create string from XML tree
-	final StringWriter stringWriter = new StringWriter();
-	final StreamResult result = new StreamResult(stringWriter);
-	final DOMSource source = new DOMSource(samlToken);
-	trans.transform(source, result);
-	final String xmlString = stringWriter.toString();
+        // create string from XML tree
+        final StringWriter stringWriter = new StringWriter();
+        final StreamResult result = new StreamResult(stringWriter);
+        final DOMSource source = new DOMSource(samlToken);
+        trans.transform(source, result);
+        final String xmlString = stringWriter.toString();
 
-	return xmlString;
+        return xmlString;
     }
 
     /**
      * Marshall.
      *
      * @param samlToken the SAML token
-     *
      * @return the byte[]
-     *
-     * @throws MarshallingException the marshalling exception
+     * @throws MarshallingException         the marshalling exception
      * @throws ParserConfigurationException the parser configuration exception
-     * @throws TransformerException the transformer exception
+     * @throws TransformerException         the transformer exception
      */
     public static byte[] marshall(final XMLObject samlToken)
-	    throws MarshallingException, ParserConfigurationException,
-	    TransformerException {
+            throws MarshallingException, ParserConfigurationException,
+            TransformerException {
 
-	final javax.xml.parsers.DocumentBuilderFactory dbf = javax.xml.parsers.DocumentBuilderFactory
-		.newInstance();
-	dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-	dbf.setNamespaceAware(true);
-	dbf.setIgnoringComments(true);
-	final javax.xml.parsers.DocumentBuilder docBuild = dbf
-		.newDocumentBuilder();
+        final javax.xml.parsers.DocumentBuilderFactory dbf = javax.xml.parsers.DocumentBuilderFactory
+                .newInstance();
+        dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        dbf.setNamespaceAware(true);
+        dbf.setIgnoringComments(true);
+        final javax.xml.parsers.DocumentBuilder docBuild = dbf
+                .newDocumentBuilder();
 
-	// Get the marshaller factory
-	final MarshallerFactory marshallerFactory = Configuration
-		.getMarshallerFactory();
+        // Get the marshaller factory
+        final MarshallerFactory marshallerFactory = Configuration
+                .getMarshallerFactory();
 
-	// Get the Subject marshaller
-	final Marshaller marshaller = marshallerFactory
-		.getMarshaller(samlToken);
+        // Get the Subject marshaller
+        final Marshaller marshaller = marshallerFactory
+                .getMarshaller(samlToken);
 
-	final Document doc = docBuild.newDocument();
+        final Document doc = docBuild.newDocument();
 
-	// Marshall the SAML token
-	marshaller.marshall(samlToken, doc);
+        // Marshall the SAML token
+        marshaller.marshall(samlToken, doc);
 
-	// Obtain a byte array representation of the marshalled SAML object
-	final DOMSource domSource = new DOMSource(doc);
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	final StreamResult result = new StreamResult(new OutputStreamWriter(baos, Constants.UTF8));
-	final TransformerFactory transFact = TransformerFactory.newInstance();
-	final Transformer transformer = transFact.newTransformer();
-	transformer.transform(domSource, result);
+        // Obtain a byte array representation of the marshalled SAML object
+        final DOMSource domSource = new DOMSource(doc);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        final StreamResult result = new StreamResult(new OutputStreamWriter(baos, Constants.UTF8));
+        final TransformerFactory transFact = TransformerFactory.newInstance();
+        final Transformer transformer = transFact.newTransformer();
+        transformer.transform(domSource, result);
 
-	return baos.toByteArray();
+        return baos.toByteArray();
     }
 
     /**
      * Encode SAML token.
      *
      * @param samlToken the SAML token
-     *
      * @return the string
      */
     public static String encodeSAMLToken(final byte[] samlToken) {
-	return EidasStringUtil.encodeToBase64(samlToken);
+        return EidasStringUtil.encodeToBase64(samlToken);
     }
 
     /**
      * Read SAML from file.
      *
      * @param resource the resource
-     *
      * @return the byte[]
      * @throws IOException the exception
-     *
      */
     public static byte[] readSamlFromFile(final String resource)
-	    throws IOException {
-	InputStream inputStream = null;
-	byte[] bytes;
+            throws IOException {
+        InputStream inputStream = null;
+        byte[] bytes;
 
-	try {
-	    inputStream = AuthRequestTest.class
-		.getResourceAsStream(resource);
+        try {
+            inputStream = AuthRequestTest.class
+                    .getResourceAsStream(resource);
 
-	    // Create the byte array to hold the data
-	    bytes = new byte[(int) inputStream.available()];
-	    inputStream.read(bytes);
-	} catch (IOException e) {
-	    LOG.error("Error read from file: " + resource);
-	    throw e;
-	} finally {
-	    IOUtils.closeQuietly(inputStream);
-	}
-	return bytes;
+            // Create the byte array to hold the data
+            bytes = new byte[(int) inputStream.available()];
+            inputStream.read(bytes);
+        } catch (IOException e) {
+            LOG.error("Error read from file: " + resource);
+            throw e;
+        } finally {
+            IOUtils.closeQuietly(inputStream);
+        }
+        return bytes;
 
     }
 }

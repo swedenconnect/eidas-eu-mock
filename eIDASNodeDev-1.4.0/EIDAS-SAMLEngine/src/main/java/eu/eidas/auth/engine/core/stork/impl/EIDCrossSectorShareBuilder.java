@@ -25,7 +25,7 @@ import eu.eidas.auth.engine.core.stork.EIDCrossSectorShare;
  * @author fjquevedo
  */
 public class EIDCrossSectorShareBuilder extends
-	AbstractSAMLObjectBuilder<EIDCrossSectorShare> {
+        AbstractSAMLObjectBuilder<EIDCrossSectorShare> {
 
     /**
      * Builds the object.
@@ -33,20 +33,20 @@ public class EIDCrossSectorShareBuilder extends
      * @return the eID cross sector share
      */
     public final EIDCrossSectorShare buildObject() {
-	return buildObject(EIDCrossSectorShare.DEF_ELEMENT_NAME);
+        return buildObject(EIDCrossSectorShare.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the eID cross sector share implementation
      */
     public final EIDCrossSectorShareImpl buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new EIDCrossSectorShareImpl(namespaceURI, localName,
-		namespacePrefix);
+                                                     final String localName, final String namespacePrefix) {
+        return new EIDCrossSectorShareImpl(namespaceURI, localName,
+                namespacePrefix);
     }
 }

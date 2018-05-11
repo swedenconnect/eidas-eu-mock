@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.StringWriter;
@@ -36,8 +36,7 @@ import org.apache.velocity.exception.ParseErrorException;
  * @author <a href="mailto:wglass@apache.org">Will Glass-Husain</a>
  * @version $Id: ParseExceptionTestCase.java 736027 2009-01-20 14:19:54Z byron $
  */
-public class ParseExceptionTestCase extends BaseTestCase
-{
+public class ParseExceptionTestCase extends BaseTestCase {
     /**
      * Path for templates. This property will override the
      * value in the default velocity properties file.
@@ -47,31 +46,29 @@ public class ParseExceptionTestCase extends BaseTestCase
 
     /**
      * Default constructor.
+     *
      * @param name name of test
      */
-    public ParseExceptionTestCase(String name)
-    {
+    public ParseExceptionTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
 
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(ParseExceptionTestCase.class);
     }
 
     /**
      * Tests that parseException has useful info when called by template.marge()
+     *
      * @throws Exception
      */
-    public void testParseExceptionFromTemplate ()
-            throws Exception
-    {
+    public void testParseExceptionFromTemplate()
+            throws Exception {
 
         VelocityEngine ve = new VelocityEngine();
 
@@ -84,22 +81,16 @@ public class ParseExceptionTestCase extends BaseTestCase
 
         VelocityContext context = new VelocityContext();
 
-        try
-        {
+        try {
             Template template = ve.getTemplate("badtemplate.vm");
             template.merge(context, writer);
             fail("Should have thown a ParseErrorException");
-        }
-        catch (ParseErrorException e)
-        {
-            assertEquals("badtemplate.vm",e.getTemplateName());
-            assertEquals(5,e.getLineNumber());
-            assertEquals(9,e.getColumnNumber());
-        }
-        finally
-        {
-            if (writer != null)
-            {
+        } catch (ParseErrorException e) {
+            assertEquals("badtemplate.vm", e.getTemplateName());
+            assertEquals(5, e.getLineNumber());
+            assertEquals(9, e.getColumnNumber());
+        } finally {
+            if (writer != null) {
                 writer.close();
             }
         }
@@ -107,11 +98,11 @@ public class ParseExceptionTestCase extends BaseTestCase
 
     /**
      * Tests that parseException has useful info when thrown in VelocityEngine.evaluate()
+     *
      * @throws Exception
      */
-    public void testParseExceptionFromEval ()
-            throws Exception
-    {
+    public void testParseExceptionFromEval()
+            throws Exception {
 
         VelocityEngine ve = new VelocityEngine();
         ve.init();
@@ -120,21 +111,15 @@ public class ParseExceptionTestCase extends BaseTestCase
 
         Writer writer = new StringWriter();
 
-        try
-        {
-            ve.evaluate(context,writer,"test","   #set($abc)   ");
+        try {
+            ve.evaluate(context, writer, "test", "   #set($abc)   ");
             fail("Should have thown a ParseErrorException");
-        }
-        catch (ParseErrorException e)
-        {
-            assertEquals("test",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(13,e.getColumnNumber());
-        }
-        finally
-        {
-            if (writer != null)
-            {
+        } catch (ParseErrorException e) {
+            assertEquals("test", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(13, e.getColumnNumber());
+        } finally {
+            if (writer != null) {
                 writer.close();
             }
         }
@@ -143,11 +128,11 @@ public class ParseExceptionTestCase extends BaseTestCase
     /**
      * Tests that parseException has useful info when thrown in VelocityEngine.evaluate()
      * and the problem comes from a macro definition
+     *
      * @throws Exception
      */
-    public void testParseExceptionFromMacroDef ()
-            throws Exception
-    {
+    public void testParseExceptionFromMacroDef()
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
 
@@ -155,21 +140,15 @@ public class ParseExceptionTestCase extends BaseTestCase
 
         Writer writer = new StringWriter();
 
-        try
-        {
-            ve.evaluate(context,writer,"testMacro","#macro($blarg) foo #end");
+        try {
+            ve.evaluate(context, writer, "testMacro", "#macro($blarg) foo #end");
             fail("Should have thown a ParseErrorException");
-        }
-        catch (ParseErrorException e)
-        {
-            assertEquals("testMacro",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(7,e.getColumnNumber());
-        }
-        finally
-        {
-            if (writer != null)
-            {
+        } catch (ParseErrorException e) {
+            assertEquals("testMacro", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(7, e.getColumnNumber());
+        } finally {
+            if (writer != null) {
                 writer.close();
             }
         }
@@ -178,33 +157,27 @@ public class ParseExceptionTestCase extends BaseTestCase
     /**
      * Tests that parseException has useful info when thrown in VelocityEngine.evaluate()
      * and the problem comes from a macro definition
+     *
      * @throws Exception
      */
-    public void testParseExceptionFromMacroDefBody ()
-            throws Exception
-    {
+    public void testParseExceptionFromMacroDefBody()
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
 
         VelocityContext context = new VelocityContext();
-        
+
         Writer writer = new StringWriter();
 
-        try
-        {
-            ve.evaluate(context,writer,"testMacro","#macro(aa $blarg) #set(!! = bb) #end #aa('aa')");
+        try {
+            ve.evaluate(context, writer, "testMacro", "#macro(aa $blarg) #set(!! = bb) #end #aa('aa')");
             fail("Should have thown a ParseErrorException");
-        }
-        catch (ParseErrorException e)
-        {
-            assertEquals("testMacro",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(24,e.getColumnNumber());
-        }
-        finally
-        {
-            if (writer != null)
-            {
+        } catch (ParseErrorException e) {
+            assertEquals("testMacro", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(24, e.getColumnNumber());
+        } finally {
+            if (writer != null) {
                 writer.close();
             }
         }
@@ -213,11 +186,11 @@ public class ParseExceptionTestCase extends BaseTestCase
     /**
      * Tests that parseException has useful info when thrown in VelocityEngine.evaluate()
      * and the problem comes from a macro invocation
+     *
      * @throws Exception
      */
-    public void testParseExceptionFromMacroInvoke ()
-            throws Exception
-    {
+    public void testParseExceptionFromMacroInvoke()
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
 
@@ -225,21 +198,15 @@ public class ParseExceptionTestCase extends BaseTestCase
 
         Writer writer = new StringWriter();
 
-        try
-        {
-            ve.evaluate(context,writer,"testMacroInvoke", "#macro(   foo $a) $a #end #foo(woogie)");
+        try {
+            ve.evaluate(context, writer, "testMacroInvoke", "#macro(   foo $a) $a #end #foo(woogie)");
             fail("Should have thown a ParseErrorException");
-        }
-        catch (org.apache.velocity.exception.TemplateInitException e)
-        {
-            assertEquals("testMacroInvoke",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(27,e.getColumnNumber());
-        }
-        finally
-        {
-            if (writer != null)
-            {
+        } catch (org.apache.velocity.exception.TemplateInitException e) {
+            assertEquals("testMacroInvoke", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(27, e.getColumnNumber());
+        } finally {
+            if (writer != null) {
                 writer.close();
             }
         }
@@ -249,68 +216,58 @@ public class ParseExceptionTestCase extends BaseTestCase
     /**
      * Tests that parseException has useful info with macro calls with
      * invalid number of arguments
+     *
      * @throws Exception
      */
-    public void testParseExceptionMacroInvalidArgumentCount ()
-            throws Exception
-    {
+    public void testParseExceptionMacroInvalidArgumentCount()
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
-        ve.setProperty("velocimacro.arguments.strict","true");
+        ve.setProperty("velocimacro.arguments.strict", "true");
         ve.init();
-        
+
         VelocityContext context = new VelocityContext();
-        
+
         Writer writer = new StringWriter();
-        
-        try 
-        {
-            ve.evaluate(context,writer,"testMacroInvoke", "#macro(foo $a) $a #end #foo('test1' 'test2')");     
+
+        try {
+            ve.evaluate(context, writer, "testMacroInvoke", "#macro(foo $a) $a #end #foo('test1' 'test2')");
             fail("Should have thown a ParseErrorException");
-        } 
-        catch (ParseErrorException e) 
-        {
-            assertEquals("testMacroInvoke",e.getTemplateName());
-            assertEquals(1,e.getLineNumber());
-            assertEquals(24,e.getColumnNumber());
-        } 
-        finally
-        {
-            if (writer != null)
-            {
+        } catch (ParseErrorException e) {
+            assertEquals("testMacroInvoke", e.getTemplateName());
+            assertEquals(1, e.getLineNumber());
+            assertEquals(24, e.getColumnNumber());
+        } finally {
+            if (writer != null) {
                 writer.close();
             }
         }
     }
 
-    
+
     /**
      * Tests that parseException has useful info with macro calls with
      * invalid number of arguments
+     *
      * @throws Exception
      */
-    public void testParseExceptionMacroInvalidArgumentCountNoException ()
-            throws Exception
-    {
+    public void testParseExceptionMacroInvalidArgumentCountNoException()
+            throws Exception {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
-        
+
         VelocityContext context = new VelocityContext();
-        
+
         Writer writer = new StringWriter();
 
         // will not throw an exception
-        try 
-        {
-            ve.evaluate(context,writer,"testMacroInvoke", "#macro(foo $a) $a #end #foo('test1' 'test2')");     
-        }
-        finally
-        {
-            if (writer != null)
-            {
+        try {
+            ve.evaluate(context, writer, "testMacroInvoke", "#macro(foo $a) $a #end #foo('test1' 'test2')");
+        } finally {
+            if (writer != null) {
                 writer.close();
             }
         }
     }
 
-    
+
 }

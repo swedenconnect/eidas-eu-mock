@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -21,16 +21,20 @@ import org.opensaml.xacml.impl.AbstractXACMLObjectBuilder;
 import org.opensaml.xacml.policy.AttributeSelectorType;
 
 /**
- *Builder for {@link AttributeSelectorType}.
+ * Builder for {@link AttributeSelectorType}.
  */
-public class AttributeSelectorTypeImplBuilder extends AbstractXACMLObjectBuilder<AttributeSelectorType>  {
+public class AttributeSelectorTypeImplBuilder extends AbstractXACMLObjectBuilder<AttributeSelectorType> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeSelectorType buildObject(String namespaceURI, String localName, String namespacePrefix) {
-        return new AttributeSelectorTypeImpl(namespaceURI,localName,namespacePrefix);
+        return new AttributeSelectorTypeImpl(namespaceURI, localName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public AttributeSelectorType buildObject() {
         return buildObject(AttributeSelectorType.DEFAULT_ELEMENT_NAME);
     }

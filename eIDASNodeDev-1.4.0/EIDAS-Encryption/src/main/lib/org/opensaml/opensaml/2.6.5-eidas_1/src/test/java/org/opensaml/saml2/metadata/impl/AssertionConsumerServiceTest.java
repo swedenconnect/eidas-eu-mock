@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.metadata.impl;
 
@@ -32,13 +32,13 @@ import org.opensaml.xml.schema.XSBooleanValue;
  * {@link org.opensaml.saml2.metadata.impl.AssertionConsumerServiceImpl}.
  */
 public class AssertionConsumerServiceTest extends BaseSAMLObjectProviderTestCase {
-    
+
     protected String expectedBinding;
     protected String expectedLocation;
     protected String expectedResponseLocation;
     protected Integer expectedIndex;
     protected XSBooleanValue expectedIsDefault;
-    
+
     /**
      * Constructor
      */
@@ -46,11 +46,13 @@ public class AssertionConsumerServiceTest extends BaseSAMLObjectProviderTestCase
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/AssertionConsumerService.xml";
         singleElementOptionalAttributesFile = "/data/org/opensaml/saml2/metadata/impl/AssertionConsumerServiceOptionalAttributes.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectedBinding = "urn:binding:foo";
         expectedLocation = "example.org";
         expectedResponseLocation = "example.org/response";
@@ -58,19 +60,23 @@ public class AssertionConsumerServiceTest extends BaseSAMLObjectProviderTestCase
         expectedIsDefault = new XSBooleanValue(Boolean.TRUE, false);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AssertionConsumerService service = (AssertionConsumerService) unmarshallElement(singleElementFile);
-        
+
         assertEquals("Binding URI was not expected value", expectedBinding, service.getBinding());
         assertEquals("Location was not expected value", expectedLocation, service.getLocation());
         assertEquals("Index was not expected value", expectedIndex, service.getIndex());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AssertionConsumerService service = (AssertionConsumerService) unmarshallElement(singleElementOptionalAttributesFile);
-        
+
         assertEquals("Binding URI was not expected value", expectedBinding, service.getBinding());
         assertEquals("Location was not expected value", expectedLocation, service.getLocation());
         assertEquals("Index was not expected value", expectedIndex, service.getIndex());
@@ -78,11 +84,13 @@ public class AssertionConsumerServiceTest extends BaseSAMLObjectProviderTestCase
         assertEquals("isDefault was not expected value", expectedIsDefault, service.isDefaultXSBoolean());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AssertionConsumerService.DEFAULT_ELEMENT_LOCAL_NAME);
         AssertionConsumerService service = (AssertionConsumerService) buildXMLObject(qname);
-        
+
         service.setBinding(expectedBinding);
         service.setLocation(expectedLocation);
         service.setIndex(expectedIndex);
@@ -90,11 +98,13 @@ public class AssertionConsumerServiceTest extends BaseSAMLObjectProviderTestCase
         assertEquals(expectedDOM, service);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, AssertionConsumerService.DEFAULT_ELEMENT_LOCAL_NAME);
         AssertionConsumerService service = (AssertionConsumerService) buildXMLObject(qname);
-        
+
         service.setBinding(expectedBinding);
         service.setLocation(expectedLocation);
         service.setIndex(expectedIndex);
@@ -103,14 +113,14 @@ public class AssertionConsumerServiceTest extends BaseSAMLObjectProviderTestCase
 
         assertEquals(expectedOptionalAttributesDOM, service);
     }
-    
+
     /**
      * Test the proper behavior of the XSBooleanValue attributes.
      */
     public void testXSBooleanAttributes() {
-        AssertionConsumerService acs = 
-            (AssertionConsumerService) buildXMLObject(AssertionConsumerService.DEFAULT_ELEMENT_NAME);
-        
+        AssertionConsumerService acs =
+                (AssertionConsumerService) buildXMLObject(AssertionConsumerService.DEFAULT_ELEMENT_NAME);
+
         // isDefault attribute
         acs.setIsDefault(Boolean.TRUE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.TRUE, acs.isDefault());
@@ -118,14 +128,14 @@ public class AssertionConsumerServiceTest extends BaseSAMLObjectProviderTestCase
         assertEquals("XSBooleanValue was unexpected value", new XSBooleanValue(Boolean.TRUE, false),
                 acs.isDefaultXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "true", acs.isDefaultXSBoolean().toString());
-        
+
         acs.setIsDefault(Boolean.FALSE);
         assertEquals("Unexpected value for boolean attribute found", Boolean.FALSE, acs.isDefault());
         assertNotNull("XSBooleanValue was null", acs.isDefaultXSBoolean());
         assertEquals("XSBooleanValue was unexpected value", new XSBooleanValue(Boolean.FALSE, false),
                 acs.isDefaultXSBoolean());
         assertEquals("XSBooleanValue string was unexpected value", "false", acs.isDefaultXSBoolean().toString());
-        
+
         acs.setIsDefault((Boolean) null);
         assertEquals("Unexpected default value for boolean attribute found", Boolean.FALSE, acs.isDefault());
         assertNull("XSBooleanValue was not null", acs.isDefaultXSBoolean());

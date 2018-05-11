@@ -33,11 +33,11 @@
 <#if parameters.cssStyle??>
  style="${parameters.cssStyle?html}"<#rt/>
 </#if>
->
+    >
 		<#list actionMessages as message>
             <#if message?if_exists != "">
                 <li><span><#if parameters.escape>${message!?html}<#else>${message!}</#if></span></li>
             </#if>
-		</#list>
-	</ul>
+        </#list>
+    </ul>
 </#if>

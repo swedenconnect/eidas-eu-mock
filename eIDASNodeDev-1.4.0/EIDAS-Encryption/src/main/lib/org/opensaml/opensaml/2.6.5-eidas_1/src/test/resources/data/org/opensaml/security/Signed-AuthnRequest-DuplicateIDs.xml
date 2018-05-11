@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-    ProviderName="Outer"
-    AssertionConsumerServiceURL="https://service.example.com/Shibboleth.sso/SAML2/POST"
-    ID="abc123" IssueInstant="2008-03-14T17:31:17Z"
-    ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Version="2.0">
-    
+                    ProviderName="Outer"
+                    AssertionConsumerServiceURL="https://service.example.com/Shibboleth.sso/SAML2/POST"
+                    ID="abc123" IssueInstant="2008-03-14T17:31:17Z"
+                    ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Version="2.0">
+
     <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">https://bad.example.com/shibboleth</saml:Issuer>
-    
+
     <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
         <ds:SignedInfo>
             <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
@@ -16,7 +16,8 @@
                 <ds:Transforms>
                     <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
                     <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#WithComments">
-                        <ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="ds saml samlp"/>
+                        <ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#"
+                                                PrefixList="ds saml samlp"/>
                     </ds:Transform>
                 </ds:Transforms>
                 <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
@@ -33,20 +34,21 @@
             bUXxgQABGQ5uzRrKksuuICOFprcULf1wJfbdkg==
         </ds:SignatureValue>
     </ds:Signature>
-    
+
     <samlp:Extensions>
-        <test:Container xmlns:test="urn:test" >
+        <test:Container xmlns:test="urn:test">
             <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-                ProviderName="Inner"
-                AssertionConsumerServiceURL="https://service.example.com/Shibboleth.sso/SAML2/POST"
-                ID="abc123" IssueInstant="2008-03-14T17:31:17Z"
-                ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Version="2.0">
-                <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">https://good.example.com/shibboleth</saml:Issuer>
+                                ProviderName="Inner"
+                                AssertionConsumerServiceURL="https://service.example.com/Shibboleth.sso/SAML2/POST"
+                                ID="abc123" IssueInstant="2008-03-14T17:31:17Z"
+                                ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Version="2.0">
+                <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">https://good.example.com/shibboleth
+                </saml:Issuer>
                 <samlp:NameIDPolicy AllowCreate="1"/>
-            </samlp:AuthnRequest> 
+            </samlp:AuthnRequest>
         </test:Container>
     </samlp:Extensions>
-    
+
     <samlp:NameIDPolicy AllowCreate="1"/>
-        
+
 </samlp:AuthnRequest>

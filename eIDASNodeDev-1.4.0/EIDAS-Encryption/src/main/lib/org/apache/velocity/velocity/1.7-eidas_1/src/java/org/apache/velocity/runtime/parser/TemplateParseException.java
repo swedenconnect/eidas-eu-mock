@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.exception.ExtendedParseException;
@@ -27,16 +27,14 @@ import org.apache.velocity.runtime.log.Log;
  * This is an extension of the ParseException, which also takes a
  * template name.
  *
- * @see org.apache.velocity.runtime.parser.ParseException
- *
  * @author <a href="hps@intermeta.de">Henning P. Schmiedehausen</a>
  * @version $Id: TemplateParseException.java 703544 2008-10-10 18:15:53Z nbubna $
+ * @see org.apache.velocity.runtime.parser.ParseException
  * @since 1.5
  */
 public class TemplateParseException
         extends ParseException
-        implements ExtendedParseException
-{
+        implements ExtendedParseException {
     private static final long serialVersionUID = -3146323135623083918L;
 
     /**
@@ -48,14 +46,14 @@ public class TemplateParseException
     /**
      * This constructor is used to add a template name
      * to info cribbed from a ParseException generated in the parser.
+     *
      * @param currentTokenVal
      * @param expectedTokenSequencesVal
      * @param tokenImageVal
      * @param templateNameVal
      */
-    public TemplateParseException(Token currentTokenVal, int [][] expectedTokenSequencesVal, String [] tokenImageVal,
-        String templateNameVal)
-    {
+    public TemplateParseException(Token currentTokenVal, int[][] expectedTokenSequencesVal, String[] tokenImageVal,
+                                  String templateNameVal) {
         super(currentTokenVal, expectedTokenSequencesVal, tokenImageVal);
         this.templateName = templateNameVal;
     }
@@ -70,13 +68,13 @@ public class TemplateParseException
      * This constructor calls its super class with the empty string
      * to force the "toString" method of parent class "Throwable" to
      * print the error message in the form:
-     *     ParseException: <result of getMessage>
+     * ParseException: <result of getMessage>
+     *
      * @param currentTokenVal
      * @param expectedTokenSequencesVal
      * @param tokenImageVal
      */
-    public TemplateParseException(Token currentTokenVal, int [][] expectedTokenSequencesVal, String [] tokenImageVal)
-    {
+    public TemplateParseException(Token currentTokenVal, int[][] expectedTokenSequencesVal, String[] tokenImageVal) {
         super(currentTokenVal, expectedTokenSequencesVal, tokenImageVal);
         templateName = "*unset*";
     }
@@ -90,8 +88,7 @@ public class TemplateParseException
      * relevant information.  The JavaCC generated code does not use
      * these constructors.
      */
-    public TemplateParseException()
-    {
+    public TemplateParseException() {
         super();
         templateName = "*unset*";
     }
@@ -101,49 +98,42 @@ public class TemplateParseException
      *
      * @param message TODO: DOCUMENT ME!
      */
-    public TemplateParseException(String message)
-    {
+    public TemplateParseException(String message) {
         super(message);
         templateName = "*unset*";
     }
 
     /**
      * returns the Template name where this exception occured.
+     *
      * @return The Template name where this exception occured.
      */
-    public String getTemplateName()
-    {
+    public String getTemplateName() {
         return templateName;
     }
 
     /**
      * returns the line number where this exception occured.
+     *
      * @return The line number where this exception occured.
      */
-    public int getLineNumber()
-    {
-        if ((currentToken != null) && (currentToken.next != null))
-        {
+    public int getLineNumber() {
+        if ((currentToken != null) && (currentToken.next != null)) {
             return currentToken.next.beginLine;
-        }
-        else
-        {
+        } else {
             return -1;
         }
     }
 
     /**
      * returns the column number where this exception occured.
+     *
      * @return The column number where this exception occured.
      */
-    public int getColumnNumber()
-    {
-        if ((currentToken != null) && (currentToken.next != null))
-        {
+    public int getColumnNumber() {
+        if ((currentToken != null) && (currentToken.next != null)) {
             return currentToken.next.beginColumn;
-        }
-        else
-        {
+        } else {
             return -1;
         }
     }
@@ -157,12 +147,11 @@ public class TemplateParseException
      * from the parser), then this method is called during the printing
      * of the final stack trace, and hence the correct error message
      * gets displayed.
+     *
      * @return The error message.
      */
-    public String getMessage()
-    {
-        if (!specialConstructor)
-        {
+    public String getMessage() {
+        if (!specialConstructor) {
             StringBuffer sb = new StringBuffer(super.getMessage());
             appendTemplateInfo(sb);
             return sb.toString();
@@ -172,20 +161,16 @@ public class TemplateParseException
 
         StringBuffer expected = new StringBuffer();
 
-        for (int i = 0; i < expectedTokenSequences.length; i++)
-        {
-            if (maxSize < expectedTokenSequences[i].length)
-            {
+        for (int i = 0; i < expectedTokenSequences.length; i++) {
+            if (maxSize < expectedTokenSequences[i].length) {
                 maxSize = expectedTokenSequences[i].length;
             }
 
-            for (int j = 0; j < expectedTokenSequences[i].length; j++)
-            {
+            for (int j = 0; j < expectedTokenSequences[i].length; j++) {
                 expected.append(tokenImage[expectedTokenSequences[i][j]]).append(" ");
             }
 
-            if (expectedTokenSequences[i][expectedTokenSequences[i].length - 1] != 0)
-            {
+            if (expectedTokenSequences[i][expectedTokenSequences[i].length - 1] != 0) {
                 expected.append("...");
             }
 
@@ -195,15 +180,12 @@ public class TemplateParseException
         StringBuffer retval = new StringBuffer("Encountered \"");
         Token tok = currentToken.next;
 
-        for (int i = 0; i < maxSize; i++)
-        {
-            if (i != 0)
-            {
+        for (int i = 0; i < maxSize; i++) {
+            if (i != 0) {
                 retval.append(" ");
             }
 
-            if (tok.kind == 0)
-            {
+            if (tok.kind == 0) {
                 retval.append(tokenImage[0]);
                 break;
             }
@@ -215,12 +197,9 @@ public class TemplateParseException
         retval.append("\" at ");
         appendTemplateInfo(retval);
 
-        if (expectedTokenSequences.length == 1)
-        {
+        if (expectedTokenSequences.length == 1) {
             retval.append("Was expecting:").append(eol).append("    ");
-        }
-        else
-        {
+        } else {
             retval.append("Was expecting one of:").append(eol).append("    ");
         }
 
@@ -232,8 +211,7 @@ public class TemplateParseException
     /**
      * @param sb
      */
-    protected void appendTemplateInfo(final StringBuffer sb)
-    {
+    protected void appendTemplateInfo(final StringBuffer sb) {
         sb.append(Log.formatFileString(getTemplateName(), getLineNumber(), getColumnNumber()));
         sb.append(eol);
     }

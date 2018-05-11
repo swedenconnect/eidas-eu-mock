@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,12 +27,16 @@ import org.opensaml.common.BaseTestCase;
 import org.opensaml.common.SAMLObjectBuilder;
 import org.opensaml.saml2.metadata.EntitiesDescriptor;
 
-/** Unit test for {@link RequiredValidUntilFilter}. */
+/**
+ * Unit test for {@link RequiredValidUntilFilter}.
+ */
 public class RequiredValidUntilTest extends BaseTestCase {
 
     private File metadataFile;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -69,7 +73,7 @@ public class RequiredValidUntilTest extends BaseTestCase {
             return;
         }
     }
-    
+
     public void testRequiredValidUntilAlreadyPast() throws Exception {
         SAMLObjectBuilder<EntitiesDescriptor> entitiesDescriptorBuilder = (SAMLObjectBuilder<EntitiesDescriptor>) Configuration.getBuilderFactory().getBuilder(EntitiesDescriptor.TYPE_NAME);
         EntitiesDescriptor descriptor = entitiesDescriptorBuilder.buildObject();
@@ -77,7 +81,7 @@ public class RequiredValidUntilTest extends BaseTestCase {
 
         RequiredValidUntilFilter filter = new RequiredValidUntilFilter(-1);
         filter.doFilter(descriptor);
-        
+
         filter = new RequiredValidUntilFilter();
         filter.doFilter(descriptor);
     }

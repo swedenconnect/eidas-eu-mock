@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.metadata.impl;
 
@@ -31,36 +31,44 @@ import org.opensaml.saml2.metadata.TelephoneNumber;
  * {@link org.opensaml.saml2.metadata.TelephoneNumber}.
  */
 public class TelephoneNumberTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected telephone number */
+
+    /**
+     * Expected telephone number
+     */
     protected String expectedNumber;
-    
+
     /**
      * Constructor
      */
     public TelephoneNumberTest() {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/TelephoneNumber.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectedNumber = "888.100.1212";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         TelephoneNumber number = (TelephoneNumber) unmarshallElement(singleElementFile);
-        
+
         assertEquals("Telephone number was not expected value", expectedNumber, number.getNumber());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, TelephoneNumber.DEFAULT_ELEMENT_LOCAL_NAME);
         TelephoneNumber number = (TelephoneNumber) buildXMLObject(qname);
-        
+
         number.setNumber(expectedNumber);
 
         assertEquals(expectedDOM, number);

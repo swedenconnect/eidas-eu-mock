@@ -136,6 +136,7 @@ public class EidasMetadataRoleParameters implements EidasMetadataRoleParametersI
     public void setDefaultBinding(String defaultBinding) {
         this.defaultBinding = defaultBinding;
     }
+
     @Override
     public Set<String> getProtocolBindings() {
         return getProtocolBindingLocations().keySet();

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.impl;
 
@@ -33,17 +33,20 @@ import org.opensaml.saml2.core.RequestedAuthnContext;
  *
  */
 public class RequestedAuthnContextTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected Comparison attribute */
+
+    /**
+     * Expected Comparison attribute
+     */
     private AuthnContextComparisonTypeEnumeration expectedComparison;
-    
-    /** Expected Comparison attribute */
+
+    /**
+     * Expected Comparison attribute
+     */
     private int expectedNumClassRefs;
 
 
     /**
      * Constructor
-     *
      */
     public RequestedAuthnContextTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/RequestedAuthnContext.xml";
@@ -51,7 +54,9 @@ public class RequestedAuthnContextTest extends BaseSAMLObjectProviderTestCase {
         childElementsFile = "/data/org/opensaml/saml2/core/impl/RequestedAuthnContextChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         expectedComparison = AuthnContextComparisonTypeEnumeration.EXACT;
@@ -59,57 +64,69 @@ public class RequestedAuthnContextTest extends BaseSAMLObjectProviderTestCase {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, RequestedAuthnContext.DEFAULT_ELEMENT_LOCAL_NAME);
         RequestedAuthnContext rac = (RequestedAuthnContext) buildXMLObject(qname);
-        
+
         assertEquals(expectedDOM, rac);
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, RequestedAuthnContext.DEFAULT_ELEMENT_LOCAL_NAME);
         RequestedAuthnContext rac = (RequestedAuthnContext) buildXMLObject(qname);
-        
+
         rac.setComparison(AuthnContextComparisonTypeEnumeration.EXACT);
-        
+
         assertEquals(expectedOptionalAttributesDOM, rac);
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20P_NS, RequestedAuthnContext.DEFAULT_ELEMENT_LOCAL_NAME);
         RequestedAuthnContext rac = (RequestedAuthnContext) buildXMLObject(qname);
-        
+
         QName authnContextClassRefQName = new QName(SAMLConstants.SAML20_NS, AuthnContextClassRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
-        for (int i=0; i< expectedNumClassRefs; i++){
+        for (int i = 0; i < expectedNumClassRefs; i++) {
             rac.getAuthnContextClassRefs().add((AuthnContextClassRef) buildXMLObject(authnContextClassRefQName));
         }
-        
+
         assertEquals(expectedChildElementsDOM, rac);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         RequestedAuthnContext rac = (RequestedAuthnContext) unmarshallElement(singleElementFile);
-        
+
         assertNotNull("RequestedAuthnContext", rac);
         assertNull("Comparison", rac.getComparison());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         RequestedAuthnContext rac = (RequestedAuthnContext) unmarshallElement(singleElementOptionalAttributesFile);
         assertNotNull("Comparison", rac.getComparison());
         assertEquals("The unmarshalled Comparison attribute was not the expected value", expectedComparison.toString(), rac.getComparison().toString());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         RequestedAuthnContext rac = (RequestedAuthnContext) unmarshallElement(childElementsFile);
-       
+
         assertEquals("AuthnContextClassRef", expectedNumClassRefs, rac.getAuthnContextClassRefs().size());
     }
 }

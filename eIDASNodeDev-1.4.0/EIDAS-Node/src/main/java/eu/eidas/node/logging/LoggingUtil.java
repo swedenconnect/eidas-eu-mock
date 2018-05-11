@@ -34,9 +34,10 @@ import org.slf4j.MDC;
  */
 public class LoggingUtil {
 
-    private LoggingUtil(){
+    private LoggingUtil() {
     }
-    public static void logServletCall(HttpServletRequest request, final String className, final Logger logger){
+
+    public static void logServletCall(HttpServletRequest request, final String className, final Logger logger) {
         String sessionId = "N/A";
         HttpSession session = request.getSession(false);
         if (null != session) {

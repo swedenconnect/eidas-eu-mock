@@ -86,7 +86,7 @@ final class FileAttributeDefinitionDao implements AttributeDefinitionDao {
      * <p>
      * The given files must comply with the attribute registry format (see {@link AttributeSetPropertiesConverter}.
      *
-     * @param fileName the name of the first configuration file.
+     * @param fileName  the name of the first configuration file.
      * @param fileNames the names of the other configuration files.
      */
     FileAttributeDefinitionDao(@Nonnull String fileName, @Nullable String defaultPath, @Nonnull String... fileNames) {

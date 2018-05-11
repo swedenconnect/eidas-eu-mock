@@ -75,7 +75,7 @@ public class StorkAuthnRequestValidator extends AuthnRequestSchemaValidator {
         }
 
         if (request.getConsent() != null && !request.getConsent().equals(ALLOWED_CONSENT)) {
-                throw new ValidationException("Consent is invalid.");
+            throw new ValidationException("Consent is invalid.");
         }
 
         if (request.isForceAuthn() == null) {
@@ -108,7 +108,7 @@ public class StorkAuthnRequestValidator extends AuthnRequestSchemaValidator {
         if ((request.getProtocolBinding().equals(ALLOWED_PROTOCOL_BINDING_HTTP_POST) ||
                 request.getProtocolBinding().equals(SAMLConstants.SAML2_REDIRECT_BINDING_URI)) &&
                 request.getDestination() == null) {
-                throw new ValidationException("Destination is required.");
+            throw new ValidationException("Destination is required.");
         }
 
         if (request.getAssertionConsumerServiceURL() == null) {

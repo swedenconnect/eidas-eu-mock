@@ -29,19 +29,21 @@ import eu.eidas.auth.engine.core.eidas.SigningMethod;
  */
 public class SigningMethodImpl extends AbstractSAMLObject implements SigningMethod {
 
-    /** The algorithm. */
+    /**
+     * The algorithm.
+     */
     private String algorithm;
 
     /**
      * Instantiates a new SigningMethod implementation.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected SigningMethodImpl(final String namespaceURI,
                                 final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
@@ -49,11 +51,10 @@ public class SigningMethodImpl extends AbstractSAMLObject implements SigningMeth
      * Gets the algorithm
      *
      * @return the algorithm
-     *
      * @see SigningMethod#getAlgorithm()
      */
     public final String getAlgorithm() {
-	return algorithm;
+        return algorithm;
     }
 
 
@@ -63,7 +64,7 @@ public class SigningMethodImpl extends AbstractSAMLObject implements SigningMeth
      * @param newAlgo the new signing algorithm
      */
     public final void setAlgorithm(final String newAlgo) {
-	    this.algorithm = prepareForAssignment(this.algorithm, newAlgo);
+        this.algorithm = prepareForAssignment(this.algorithm, newAlgo);
     }
 
 
@@ -73,7 +74,7 @@ public class SigningMethodImpl extends AbstractSAMLObject implements SigningMeth
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	    return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
     @Override

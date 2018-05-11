@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" AssertionID="ident" IssueInstant="1970-01-02T01:01:02.100Z" Issuer="issuer" MajorVersion="1" MinorVersion="1">
+<saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" AssertionID="ident"
+                IssueInstant="1970-01-02T01:01:02.100Z" Issuer="issuer" MajorVersion="1" MinorVersion="1">
     <saml:AuthenticationStatement AuthenticationInstant="1970-01-02T01:01:02.100Z" AuthenticationMethod="method">
         <saml:Subject>
             <saml:NameIdentifier>John Doe</saml:NameIdentifier>

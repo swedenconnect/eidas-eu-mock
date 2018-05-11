@@ -83,34 +83,34 @@ public abstract class AbstractProtocolSigner implements ProtocolSignerI, Metadat
 
     private static final ImmutableSet<String> ALLOWED_ALGORITHMS_FOR_SIGNING =
             ImmutableSet.of(SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA256,
-                            SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA384,
-                            SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA512,
-                            // RIPEMD is not allowed to sign
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA256,
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA384,
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA512,
-                            XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1);
+                    SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA384,
+                    SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA512,
+                    // RIPEMD is not allowed to sign
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA256,
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA384,
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA512,
+                    XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1);
 
     private static final ImmutableSet<String> ALLOWED_ALGORITHMS_FOR_VERIFYING =
             ImmutableSet.of(SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA256,
-                            SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA384,
-                            SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA512,
-                            // RIPEMD is allowed to verify
-                            SignatureConstants.ALGO_ID_SIGNATURE_RSA_RIPEMD160,
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA256,
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA384,
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA512,
-                            XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1);
+                    SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA384,
+                    SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA512,
+                    // RIPEMD is allowed to verify
+                    SignatureConstants.ALGO_ID_SIGNATURE_RSA_RIPEMD160,
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA256,
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA384,
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA512,
+                    XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1);
 
     private static final ImmutableSet<String> DEFAULT_ALGORITHM_WHITE_LIST =
             ImmutableSet.of(SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA256,
-                            SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA384,
-                            SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA512,
-                            // RIPEMD is not allowed to sign
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA256,
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA384,
-                            SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA512,
-                            XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1);
+                    SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA384,
+                    SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA512,
+                    // RIPEMD is not allowed to sign
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA256,
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA384,
+                    SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA512,
+                    XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1);
 
     private static final String DEFAULT_DIGEST_ALGORITHM = SignatureConstants.ALGO_ID_DIGEST_SHA512;
 
@@ -121,7 +121,7 @@ public abstract class AbstractProtocolSigner implements ProtocolSignerI, Metadat
                     .put(SignatureConstants.ALGO_ID_SIGNATURE_RSA_SHA512, SignatureConstants.ALGO_ID_DIGEST_SHA512)
                     // RIPEMD is allowed to verify
                     .put(SignatureConstants.ALGO_ID_SIGNATURE_RSA_RIPEMD160,
-                         SignatureConstants.ALGO_ID_DIGEST_RIPEMD160)
+                            SignatureConstants.ALGO_ID_DIGEST_RIPEMD160)
                     .put(SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA256, SignatureConstants.ALGO_ID_DIGEST_SHA256)
                     .put(SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA384, SignatureConstants.ALGO_ID_DIGEST_SHA384)
                     .put(SignatureConstants.ALGO_ID_SIGNATURE_ECDSA_SHA512, SignatureConstants.ALGO_ID_DIGEST_SHA512)
@@ -323,7 +323,7 @@ public abstract class AbstractProtocolSigner implements ProtocolSignerI, Metadat
      * <p>
      * If it is trusted, returns this certificate otherwise throws an EIDASSAMLEngineException exception.
      *
-     * @param signature the signature instance
+     * @param signature             the signature instance
      * @param trustedCredentialList the trusted certificates which can be used to sign the given signature
      * @return the signing certificate if it is trusted, or throws an exception otherwise.
      * @throws EIDASSAMLEngineException when the signature is signed by an untrusted certificate
@@ -381,7 +381,7 @@ public abstract class AbstractProtocolSigner implements ProtocolSignerI, Metadat
             String digestAlgorithm = validateDigestAlgorithm(getSignatureAlgorithm());
             List<ContentReference> contentReferences = signature.getContentReferences();
             if (isNotEmpty(contentReferences)) {
-                ((SAMLObjectContentReference)contentReferences.get(0)).setDigestAlgorithm(digestAlgorithm);
+                ((SAMLObjectContentReference) contentReferences.get(0)).setDigestAlgorithm(digestAlgorithm);
             } else {
                 LOG.error("Unable to set DigestMethodAlgorithm - algorithm {} not set", digestAlgorithm);
             }

@@ -38,9 +38,9 @@ public class SPInstitutionMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final SPInstitution spInstitution = (SPInstitution) samlObject;
-	XMLHelper.appendTextContent(domElement, spInstitution
-		.getSPInstitution());
+                                                final Element domElement) throws MarshallingException {
+        final SPInstitution spInstitution = (SPInstitution) samlObject;
+        XMLHelper.appendTextContent(domElement, spInstitution
+                .getSPInstitution());
     }
 }

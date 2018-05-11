@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,22 +28,30 @@ import org.opensaml.saml2.core.Audience;
  */
 public class AudienceTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Audience URI value */
+    /**
+     * Expected Audience URI value
+     */
     protected String expectedAudienceURI;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AudienceTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Audience.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
         expectedAudienceURI = "audience URI";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Audience audience = (Audience) unmarshallElement(singleElementFile);
 
@@ -52,12 +60,16 @@ public class AudienceTest extends BaseSAMLObjectProviderTestCase {
                 audienceURI);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, Audience.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         Audience audience = (Audience) buildXMLObject(qname);
@@ -66,7 +78,9 @@ public class AudienceTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, audience);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }

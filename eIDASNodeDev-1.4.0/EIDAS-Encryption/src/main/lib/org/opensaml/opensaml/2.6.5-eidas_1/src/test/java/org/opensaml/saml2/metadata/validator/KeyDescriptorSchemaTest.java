@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,42 +30,46 @@ import org.opensaml.xml.signature.KeyInfo;
  */
 public class KeyDescriptorSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public KeyDescriptorSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20MD_NS, KeyDescriptor.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20MD_PREFIX);
         validator = new KeyDescriptorSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         KeyDescriptor keyDescriptor = (KeyDescriptor) target;
         keyDescriptor.setKeyInfo((KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME));
     }
-    
+
     /**
      * Tests for valid values of use attribute.
      */
     public void testUseValuesSuccess() {
         KeyDescriptor keyDescriptor = (KeyDescriptor) target;
-        
+
         keyDescriptor.setUse(UsageType.SIGNING);
         assertValidationPass("Use attribute had legal value 'SIGNING'");
-        
+
         keyDescriptor.setUse(UsageType.ENCRYPTION);
         assertValidationPass("Use attribute had legal value 'ENCRYPTION'");
-        
+
         keyDescriptor.setUse(UsageType.UNSPECIFIED);
         assertValidationPass("Use attribute had legal value 'UNSPECIFIED'");
     }
-    
+
     /**
      * Tests missing KeyInfo.
      */
     public void testMissingKeyInfo() {
         KeyDescriptor keyDescriptor = (KeyDescriptor) target;
-        
+
         keyDescriptor.setKeyInfo(null);
         assertValidationFail("KeyInfo was missing");
     }

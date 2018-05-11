@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" ID="abc123" IssueInstant="2007-01-26T10:01:30.043Z">
+<saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" ID="abc123"
+                IssueInstant="2007-01-26T10:01:30.043Z">
     <saml:Issuer>urn:string:issuer</saml:Issuer>
     <saml:Subject>
         <saml:NameID>SomeNameID</saml:NameID>
@@ -9,7 +10,8 @@
             <saml:AuthnContextClassRef>urn:string:someACClassRef</saml:AuthnContextClassRef>
         </saml:AuthnContext>
     </saml:AuthnStatement>
-    <saml:AttributeStatement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <saml:AttributeStatement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                             xmlns:xs="http://www.w3.org/2001/XMLSchema">
         <saml:Attribute>
             <saml:AttributeValue Name="urn:string:attribName" xsi:type="xs:string">SomeValue</saml:AttributeValue>
         </saml:Attribute>

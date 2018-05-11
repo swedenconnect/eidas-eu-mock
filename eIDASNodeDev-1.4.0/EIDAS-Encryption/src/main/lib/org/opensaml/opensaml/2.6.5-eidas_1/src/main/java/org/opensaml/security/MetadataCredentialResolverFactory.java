@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -22,33 +22,34 @@ import org.opensaml.xml.util.AbstractWrappedSingletonFactory;
 
 /**
  * Singleton factory for producing instances of {@link MetadataCredentialResolver}
- * based on a given instance of {@link MetadataProvider}.  
- * 
+ * based on a given instance of {@link MetadataProvider}.
+ *
  * <p>
- * Only once instance of a metadata credential resolver will exist for 
+ * Only once instance of a metadata credential resolver will exist for
  * each metadata provider instance.
  * </p>
  */
-public class MetadataCredentialResolverFactory 
-    extends AbstractWrappedSingletonFactory<MetadataProvider, MetadataCredentialResolver> {
-    
-    /** The global instance of the factory itself. */
+public class MetadataCredentialResolverFactory
+        extends AbstractWrappedSingletonFactory<MetadataProvider, MetadataCredentialResolver> {
+
+    /**
+     * The global instance of the factory itself.
+     */
     private static MetadataCredentialResolverFactory factory;
-    
+
     /**
      * Constructor.
-     * 
+     * <p>
      * This constructor hides the superclass public constructor, forcing
      * the single, global factory instance to be obtained from {@link #getFactory()}.
-     * 
      */
     protected MetadataCredentialResolverFactory() {
         super();
     }
-    
+
     /**
      * Return the global factory instance.
-     * 
+     *
      * @return the global factory instance
      */
     public static synchronized MetadataCredentialResolverFactory getFactory() {
@@ -58,9 +59,11 @@ public class MetadataCredentialResolverFactory
         return factory;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected MetadataCredentialResolver createNewInstance(MetadataProvider metadataProvider) {
         return new MetadataCredentialResolver(metadataProvider);
     }
-    
+
 }

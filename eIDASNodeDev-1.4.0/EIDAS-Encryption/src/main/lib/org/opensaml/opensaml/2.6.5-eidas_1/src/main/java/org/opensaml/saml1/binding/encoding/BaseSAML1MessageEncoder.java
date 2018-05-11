@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -47,22 +47,26 @@ import org.slf4j.LoggerFactory;
 /**
  * Base class for SAML 1 message encoders.
  */
-public abstract class BaseSAML1MessageEncoder extends BaseMessageEncoder implements SAMLMessageEncoder{
+public abstract class BaseSAML1MessageEncoder extends BaseMessageEncoder implements SAMLMessageEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(BaseSAML1MessageEncoder.class);
-    
-    /** The list of schemes allowed to appear in URLs related to the encoded message. Defaults to 'http' and 'https'. */
+
+    /**
+     * The list of schemes allowed to appear in URLs related to the encoded message. Defaults to 'http' and 'https'.
+     */
     private List<String> allowedURLSchemes;
 
     public BaseSAML1MessageEncoder() {
         super();
-        setAllowedURLSchemes(new String[] { "http", "https" });
+        setAllowedURLSchemes(new String[]{"http", "https"});
     }
 
     /**
      * Gets the unmodifiable list of schemes allowed to appear in URLs related to the encoded message.
-     * 
+     *
      * @return list of URL schemes allowed to appear in a message
      */
     public List<String> getAllowedURLSchemes() {
@@ -72,7 +76,7 @@ public abstract class BaseSAML1MessageEncoder extends BaseMessageEncoder impleme
     /**
      * Sets the list of list of schemes allowed to appear in URLs related to the encoded message. Note, the appearance
      * of schemes such as 'javascript' may open the system up to attacks (e.g. cross-site scripting attacks).
-     * 
+     *
      * @param schemes URL schemes allowed to appear in a message
      */
     public void setAllowedURLSchemes(String[] schemes) {
@@ -91,11 +95,9 @@ public abstract class BaseSAML1MessageEncoder extends BaseMessageEncoder impleme
      * Gets the response URL from the relying party endpoint. If the SAML message is a {@link Response} and the relying
      * party endpoint contains a response location then that location is returned otherwise the normal endpoint location
      * is returned.
-     * 
+     *
      * @param messageContext current message context
-     * 
      * @return response URL from the relying party endpoint
-     * 
      * @throws MessageEncodingException throw if no relying party endpoint is available
      */
     protected URLBuilder getEndpointURL(SAMLMessageContext messageContext) throws MessageEncodingException {
@@ -114,18 +116,17 @@ public abstract class BaseSAML1MessageEncoder extends BaseMessageEncoder impleme
             }
             urlBuilder = new URLBuilder(endpoint.getLocation());
         }
-        
-        if(!getAllowedURLSchemes().contains(urlBuilder.getScheme())){
-           throw new MessageEncodingException("Relying party endpoint used the untrusted URL scheme " + urlBuilder.getScheme()); 
+
+        if (!getAllowedURLSchemes().contains(urlBuilder.getScheme())) {
+            throw new MessageEncodingException("Relying party endpoint used the untrusted URL scheme " + urlBuilder.getScheme());
         }
         return urlBuilder;
     }
 
     /**
      * Signs the given SAML message if it a {@link SignableSAMLObject} and this encoder has signing credentials.
-     * 
+     *
      * @param messageContext current message context
-     * 
      * @throws MessageEncodingException thrown if there is a problem preparing the signature for signing
      */
     @SuppressWarnings("unchecked")

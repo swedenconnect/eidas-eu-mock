@@ -31,11 +31,13 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 /**
  * Specific encoder used to provide identifies the complete object handled.
  * The SHA-256 hash is over the functional data
+ *
  * @author vanegdi
  */
 public class HashPatternLayoutEncoder extends PatternLayoutEncoder {
     /**
      * Replacing default outputStream
+     *
      * @param outputStream the outputstream
      * @throws java.io.IOException
      */

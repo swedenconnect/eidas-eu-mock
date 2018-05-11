@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,13 +29,17 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class AudienceSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AudienceSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20_NS, Audience.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         validator = new AudienceSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         Audience audience = (Audience) target;
@@ -44,7 +48,7 @@ public class AudienceSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Tests absent URI failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testURIFailure() throws ValidationException {
@@ -55,7 +59,7 @@ public class AudienceSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
         audience.setAudienceURI("");
         assertValidationFail("URI was empty string, should raise a Validation Exception");
-        
+
         audience.setAudienceURI("    ");
         assertValidationFail("URI was white space, should raise a Validation Exception");
     }

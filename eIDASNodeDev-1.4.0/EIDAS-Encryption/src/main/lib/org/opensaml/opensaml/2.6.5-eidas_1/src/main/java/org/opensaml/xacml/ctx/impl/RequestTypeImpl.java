@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,27 +30,37 @@ import org.opensaml.xacml.impl.AbstractXACMLObject;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 
-/** Concrete implementation of {@link RequestType}. */
+/**
+ * Concrete implementation of {@link RequestType}.
+ */
 public class RequestTypeImpl extends AbstractXACMLObject implements RequestType {
 
-    /** The subjects of the request. */
+    /**
+     * The subjects of the request.
+     */
     private XMLObjectChildrenList<SubjectType> subjects;
 
-    /** The resources of the request. */
+    /**
+     * The resources of the request.
+     */
     private XMLObjectChildrenList<ResourceType> resources;
 
-    /** The environment of the request. */
+    /**
+     * The environment of the request.
+     */
     private EnvironmentType environment;
 
-    /** The action of the request. */
+    /**
+     * The action of the request.
+     */
     private ActionType action;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected RequestTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -58,37 +68,51 @@ public class RequestTypeImpl extends AbstractXACMLObject implements RequestType 
         resources = new XMLObjectChildrenList<ResourceType>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<SubjectType> getSubjects() {
         return subjects;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<ResourceType> getResources() {
         return resources;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EnvironmentType getEnvironment() {
         return environment;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setEnvironment(EnvironmentType environment) {
         this.environment = prepareForAssignment(this.environment, environment);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public ActionType getAction() {
         return action;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAction(ActionType action) {
         this.action = prepareForAssignment(this.action, action);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

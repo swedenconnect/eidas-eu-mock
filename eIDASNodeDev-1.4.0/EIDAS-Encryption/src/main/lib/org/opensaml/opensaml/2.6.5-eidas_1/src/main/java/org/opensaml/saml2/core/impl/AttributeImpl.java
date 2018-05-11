@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,27 +32,37 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
  */
 public class AttributeImpl extends AbstractSAMLObject implements Attribute {
 
-    /** Name of the attribute. */
+    /**
+     * Name of the attribute.
+     */
     private String name;
 
-    /** Format of the name of the attribute. */
+    /**
+     * Format of the name of the attribute.
+     */
     private String nameFormat;
 
-    /** Human readable name of the attribute. */
+    /**
+     * Human readable name of the attribute.
+     */
     private String friendlyName;
 
-    /** "anyAttribute" attributes. */
+    /**
+     * "anyAttribute" attributes.
+     */
     private AttributeMap unknownAttributes;
 
-    /** List of attribute values for this attribute. */
+    /**
+     * List of attribute values for this attribute.
+     */
     private final XMLObjectChildrenList<XMLObject> attributeValues;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AttributeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
@@ -60,32 +70,44 @@ public class AttributeImpl extends AbstractSAMLObject implements Attribute {
         attributeValues = new XMLObjectChildrenList<XMLObject>(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getName() {
         return name;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setName(String name) {
         this.name = prepareForAssignment(this.name, name);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getNameFormat() {
         return nameFormat;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNameFormat(String nameFormat) {
         this.nameFormat = prepareForAssignment(this.nameFormat, nameFormat);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getFriendlyName() {
         return friendlyName;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setFriendlyName(String friendlyName) {
         this.friendlyName = prepareForAssignment(this.friendlyName, friendlyName);
     }
@@ -97,12 +119,16 @@ public class AttributeImpl extends AbstractSAMLObject implements Attribute {
         return unknownAttributes;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getAttributeValues() {
         return attributeValues;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

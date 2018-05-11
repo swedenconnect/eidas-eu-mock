@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,25 +28,29 @@ public abstract class AbstractSAMLObject extends AbstractValidatingXMLObject {
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AbstractSAMLObject(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public final boolean equals(Object obj) {
-        if(obj == this){
+        if (obj == this) {
             return true;
         }
-        
+
         return super.equals(obj);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         return super.hashCode();
     }
@@ -54,14 +58,13 @@ public abstract class AbstractSAMLObject extends AbstractValidatingXMLObject {
     /**
      * A helper function for derived classes that checks to see if the old and new value are equal and if so releases
      * the cached dom. Derived classes are expected to use this thus: <code>
-     *   this.foo = prepareForAssignment(this.foo, foo);
-     *   </code>
-     * 
+     * this.foo = prepareForAssignment(this.foo, foo);
+     * </code>
+     * <p>
      * This method will do a (null) safe compare of the objects and will also invalidate the DOM if appropriate
-     * 
+     *
      * @param oldValue - current value
      * @param newValue - proposed new value
-     * 
      * @return The value to assign to the saved Object.
      */
     protected DateTime prepareForAssignment(DateTime oldValue, DateTime newValue) {

@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,15 +24,12 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-631.
  */
-public class Velocity631TestCase extends BaseTestCase
-{
-    public Velocity631TestCase(String name)
-    {
+public class Velocity631TestCase extends BaseTestCase {
+    public Velocity631TestCase(String name) {
         super(name);
     }
-   
-    public void test631()
-    {
+
+    public void test631() {
         assertEvalEquals("$a", "$a #set($b = 1)");
         assertEvalEquals("$a", "$a#set($b = 1)");
         assertEvalEquals("$a.b", "$a.b#set($b = 1)");

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,23 +25,31 @@ import org.opensaml.samlext.saml1md.SourceID;
  */
 public class SourceIDTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected source ID value */
+    /**
+     * Expected source ID value
+     */
     private String expectedValue;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public SourceIDTest() {
         super();
         singleElementFile = "/data/org/opensaml/samlext/saml1md/impl/SourceID.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
         expectedValue = "9392kjc98";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         SourceIDBuilder builder = (SourceIDBuilder) builderFactory.getBuilder(SourceID.DEFAULT_ELEMENT_NAME);
 
@@ -51,7 +59,9 @@ public class SourceIDTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, sourceID);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         SourceID sourceID = (SourceID) unmarshallElement(singleElementFile);
 

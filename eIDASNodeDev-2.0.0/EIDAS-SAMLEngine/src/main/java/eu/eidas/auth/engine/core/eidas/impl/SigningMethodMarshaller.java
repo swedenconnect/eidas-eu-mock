@@ -26,7 +26,6 @@ import org.w3c.dom.Element;
 
 /**
  * The Class SigningMethodMarshaller.
- *
  */
 public class SigningMethodMarshaller extends AbstractSAMLObjectMarshaller {
 
@@ -38,8 +37,8 @@ public class SigningMethodMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	    final SigningMethod method = (SigningMethod) samlObject;
+                                                final Element domElement) throws MarshallingException {
+        final SigningMethod method = (SigningMethod) samlObject;
         domElement.setAttribute("Algorithm", method.getAlgorithm());
     }
 }

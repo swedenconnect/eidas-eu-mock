@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="abc123" IssueInstant="2007-06-18T05:17:13.568Z" Version="2.0">
-    <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">
+<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="abc123"
+                    IssueInstant="2007-06-18T05:17:13.568Z" Version="2.0">
+    <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+                 Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">
         SomeCoolIssuer
     </saml:Issuer>
     <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
@@ -11,7 +13,8 @@
                 <ds:Transforms>
                     <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
                     <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#WithComments">
-                        <ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="ds saml samlp"/>
+                        <ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#"
+                                                PrefixList="ds saml samlp"/>
                     </ds:Transform>
                 </ds:Transforms>
                 <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>

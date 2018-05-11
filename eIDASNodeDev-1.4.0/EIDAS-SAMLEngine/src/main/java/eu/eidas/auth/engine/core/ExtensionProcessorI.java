@@ -51,7 +51,7 @@ public interface ExtensionProcessorI {
             throws EIDASSAMLEngineException;
 
     /**
-     * @param  samlRequest
+     * @param samlRequest
      * @return a parsed request extracted from the SAML extensions
      * @throws EIDASSAMLEngineException
      * @deprecated since 1.1
@@ -150,7 +150,7 @@ public interface ExtensionProcessorI {
 
     /**
      * @param samlCoreProperties the configuration properties
-     * @param request the request for which the extension will be generated
+     * @param request            the request for which the extension will be generated
      * @return a SAML extension based on the request
      * @throws EIDASSAMLEngineException
      * @deprecated since 1.1
@@ -183,7 +183,7 @@ public interface ExtensionProcessorI {
     /**
      * Validate parameters from authentication request.
      *
-     * @param request the request.
+     * @param request       the request.
      * @param serviceIssuer the target service issuer URI (metadata URL).
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      * @deprecated since 1.1
@@ -204,7 +204,7 @@ public interface ExtensionProcessorI {
      * Generate attribute from a list of values.
      *
      * @param attributeDefinition the name of the attribute.
-     * @param values the value of the attribute.
+     * @param values              the value of the attribute.
      * @return the attribute
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      * @deprecated since 1.1
@@ -220,9 +220,9 @@ public interface ExtensionProcessorI {
      * TODO: this is STORK only.
      *
      * @param attributeDefinition the name of the attribute.
-     * @param status the status of the parameter: "Available", "NotAvailable" or "Withheld" (only for STORK).
-     * @param values the value of the attribute.
-     * @param isHashing the is hashing with "SHA-512" algorithm.
+     * @param status              the status of the parameter: "Available", "NotAvailable" or "Withheld" (only for STORK).
+     * @param values              the value of the attribute.
+     * @param isHashing           the is hashing with "SHA-512" algorithm.
      * @return the attribute
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      * @deprecated since 1.1
@@ -239,7 +239,7 @@ public interface ExtensionProcessorI {
     /**
      * Computes SAML binding from http binding
      *
-     * @param  request
+     * @param request
      * @return
      */
     @Nullable
@@ -312,7 +312,7 @@ public interface ExtensionProcessorI {
      * <p>
      * This method can return {@code null} when it is not supported.
      *
-     * @param issuer the target service issuer (metadata URL)
+     * @param issuer     the target service issuer (metadata URL)
      * @param bindingUri the kind of SAML binding
      * @return the service URL
      * @throws EIDASSAMLEngineException
@@ -325,7 +325,7 @@ public interface ExtensionProcessorI {
      * Verifies if the incoming request (received by the Proxy Service) is valid and conform.
      *
      * @param authnRequest the incoming request
-     * @param httpMethod the current HTTP method (verb) or {@code null} if the HTTP binding is not relevant
+     * @param httpMethod   the current HTTP method (verb) or {@code null} if the HTTP binding is not relevant
      * @return {@code true} if the given request is valid and can be processed, returns {@code false} otherwise.
      * @throws EIDASSAMLEngineException
      */

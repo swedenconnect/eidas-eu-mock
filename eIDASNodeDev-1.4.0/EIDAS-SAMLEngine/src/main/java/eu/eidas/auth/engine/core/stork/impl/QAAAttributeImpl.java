@@ -29,22 +29,24 @@ import eu.eidas.auth.engine.core.stork.QAAAttribute;
  * @author fjquevedo
  */
 public class QAAAttributeImpl extends AbstractSAMLObject implements
-	QAAAttribute {
+        QAAAttribute {
 
-    /** The quality authentication assurance level. */
+    /**
+     * The quality authentication assurance level.
+     */
     private String qaaLevel;
 
     /**
      * Constructor.
      *
-     * @param namespaceURI the namespace the element is in
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object
-     * represents
-     * @param namespacePrefix the prefix for the given namespace
+     *                         represents
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected QAAAttributeImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                               final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /**
@@ -53,7 +55,7 @@ public class QAAAttributeImpl extends AbstractSAMLObject implements
      * @return the quality authentication assurance level
      */
     public final String getQaaLevel() {
-	return qaaLevel;
+        return qaaLevel;
     }
 
     /**
@@ -62,7 +64,7 @@ public class QAAAttributeImpl extends AbstractSAMLObject implements
      * @param newQaaLevel the new quality authentication assurance level
      */
     public final void setQaaLevel(final String newQaaLevel) {
-	this.qaaLevel = prepareForAssignment(this.qaaLevel, newQaaLevel);
+        this.qaaLevel = prepareForAssignment(this.qaaLevel, newQaaLevel);
     }
 
     /**
@@ -71,7 +73,7 @@ public class QAAAttributeImpl extends AbstractSAMLObject implements
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

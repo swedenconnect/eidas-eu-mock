@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.core.impl;
@@ -39,54 +39,80 @@ import org.opensaml.xml.schema.XSBooleanValue;
  */
 public class AuthnRequestImpl extends RequestAbstractTypeImpl implements AuthnRequest {
 
-    /** Subject child element. */
+    /**
+     * Subject child element.
+     */
     private Subject subject;
 
-    /** NameIDPolicy child element. */
+    /**
+     * NameIDPolicy child element.
+     */
     private NameIDPolicy nameIDPolicy;
 
-    /** Conditions child element. */
+    /**
+     * Conditions child element.
+     */
     private Conditions conditions;
 
-    /** RequestedAuthnContext child element. */
+    /**
+     * RequestedAuthnContext child element.
+     */
     private RequestedAuthnContext requestedAuthnContext;
 
-    /** Scoping child element. */
+    /**
+     * Scoping child element.
+     */
     private Scoping scoping;
 
-    /** ForeceAuthn attribute. */
+    /**
+     * ForeceAuthn attribute.
+     */
     private XSBooleanValue forceAuthn;
 
-    /** IsPassive attribute. */
+    /**
+     * IsPassive attribute.
+     */
     private XSBooleanValue isPassive;
 
-    /** ProtocolBinding attribute. */
+    /**
+     * ProtocolBinding attribute.
+     */
     private String protocolBinding;
 
-    /** AssertionConsumerServiceIndex attribute. */
+    /**
+     * AssertionConsumerServiceIndex attribute.
+     */
     private Integer assertionConsumerServiceIndex;
 
-    /** AssertionConsumerServiceURL attribute. */
+    /**
+     * AssertionConsumerServiceURL attribute.
+     */
     private String assertionConsumerServiceURL;
 
-    /** AttributeConsumingServiceIndex attribute. */
+    /**
+     * AttributeConsumingServiceIndex attribute.
+     */
     private Integer attributeConsumingServiceIndex;
 
-    /** ProviderName attribute. */
+    /**
+     * ProviderName attribute.
+     */
     private String providerName;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected AuthnRequestImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Boolean isForceAuthn() {
         if (forceAuthn != null) {
             return forceAuthn.getValue();
@@ -95,12 +121,16 @@ public class AuthnRequestImpl extends RequestAbstractTypeImpl implements AuthnRe
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue isForceAuthnXSBoolean() {
         return forceAuthn;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setForceAuthn(Boolean newForceAuth) {
         if (newForceAuth != null) {
             forceAuthn = prepareForAssignment(forceAuthn, new XSBooleanValue(newForceAuth, false));
@@ -109,12 +139,16 @@ public class AuthnRequestImpl extends RequestAbstractTypeImpl implements AuthnRe
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setForceAuthn(XSBooleanValue newForceAuthn) {
         forceAuthn = prepareForAssignment(this.forceAuthn, newForceAuthn);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Boolean isPassive() {
         if (isPassive != null) {
             return isPassive.getValue();
@@ -123,12 +157,16 @@ public class AuthnRequestImpl extends RequestAbstractTypeImpl implements AuthnRe
         return Boolean.FALSE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XSBooleanValue isPassiveXSBoolean() {
         return isPassive;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIsPassive(Boolean newIsPassive) {
         if (newIsPassive != null) {
             isPassive = prepareForAssignment(isPassive, new XSBooleanValue(newIsPassive, false));
@@ -137,115 +175,159 @@ public class AuthnRequestImpl extends RequestAbstractTypeImpl implements AuthnRe
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setIsPassive(XSBooleanValue newIsPassive) {
         this.isPassive = prepareForAssignment(this.isPassive, newIsPassive);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getProtocolBinding() {
         return this.protocolBinding;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setProtocolBinding(String newProtocolBinding) {
         this.protocolBinding = prepareForAssignment(this.protocolBinding, newProtocolBinding);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Integer getAssertionConsumerServiceIndex() {
         return assertionConsumerServiceIndex;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAssertionConsumerServiceIndex(Integer newAssertionConsumerServiceIndex) {
         this.assertionConsumerServiceIndex = prepareForAssignment(this.assertionConsumerServiceIndex,
                 newAssertionConsumerServiceIndex);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getAssertionConsumerServiceURL() {
         return this.assertionConsumerServiceURL;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAssertionConsumerServiceURL(String newAssertionConsumerServiceURL) {
         this.assertionConsumerServiceURL = prepareForAssignment(this.assertionConsumerServiceURL,
                 newAssertionConsumerServiceURL);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Integer getAttributeConsumingServiceIndex() {
         return this.attributeConsumingServiceIndex;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAttributeConsumingServiceIndex(Integer newAttributeConsumingServiceIndex) {
         this.attributeConsumingServiceIndex = prepareForAssignment(this.attributeConsumingServiceIndex,
                 newAttributeConsumingServiceIndex);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getProviderName() {
         return this.providerName;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setProviderName(String newProviderName) {
         this.providerName = prepareForAssignment(this.providerName, newProviderName);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Subject getSubject() {
         return this.subject;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubject(Subject newSubject) {
         this.subject = prepareForAssignment(this.subject, newSubject);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public NameIDPolicy getNameIDPolicy() {
         return this.nameIDPolicy;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNameIDPolicy(NameIDPolicy newNameIDPolicy) {
         this.nameIDPolicy = prepareForAssignment(this.nameIDPolicy, newNameIDPolicy);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Conditions getConditions() {
         return this.conditions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setConditions(Conditions newConditions) {
         this.conditions = prepareForAssignment(this.conditions, newConditions);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public RequestedAuthnContext getRequestedAuthnContext() {
         return this.requestedAuthnContext;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRequestedAuthnContext(RequestedAuthnContext newRequestedAuthnContext) {
         this.requestedAuthnContext = prepareForAssignment(this.requestedAuthnContext, newRequestedAuthnContext);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Scoping getScoping() {
         return this.scoping;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setScoping(Scoping newScoping) {
         this.scoping = prepareForAssignment(this.scoping, newScoping);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * SAML 2.0 HTTP-POST-SimpleSign binding message encoder.
- * 
+ *
  * <p>
  * The spec does not preclude the SAML 2 protocol message from being signed using the XML Signature method, in addition
  * to the SimpleSign method specified by this binding. Signing via XML Signature over the SAML request and response
@@ -53,7 +53,9 @@ import org.slf4j.LoggerFactory;
  */
 public class HTTPPostSimpleSignEncoder extends HTTPPostEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPPostSimpleSignEncoder.class);
 
     /**
@@ -64,8 +66,8 @@ public class HTTPPostSimpleSignEncoder extends HTTPPostEncoder {
 
     /**
      * Constructor.
-     * 
-     * @param engine Velocity engine instance used to create POST body
+     *
+     * @param engine     Velocity engine instance used to create POST body
      * @param templateId ID of the template used to create POST body
      */
     public HTTPPostSimpleSignEncoder(VelocityEngine engine, String templateId) {
@@ -75,32 +77,38 @@ public class HTTPPostSimpleSignEncoder extends HTTPPostEncoder {
 
     /**
      * Constructor.
-     * 
-     * @param engine Velocity engine instance used to create POST body
-     * @param templateId ID of the template used to create POST body
+     *
+     * @param engine                 Velocity engine instance used to create POST body
+     * @param templateId             ID of the template used to create POST body
      * @param signXMLProtocolMessage if true, the protocol message will be signed according to the XML Signature
-     *            specification, in addition to the HTTP-POST-SimpleSign binding specification
+     *                               specification, in addition to the HTTP-POST-SimpleSign binding specification
      */
     public HTTPPostSimpleSignEncoder(VelocityEngine engine, String templateId, boolean signXMLProtocolMessage) {
         super(engine, templateId);
         signProtocolMessageWithXMLDSIG = signXMLProtocolMessage;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML2_POST_SIMPLE_SIGN_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void signMessage(SAMLMessageContext messageContext) throws MessageEncodingException {
         if (signProtocolMessageWithXMLDSIG) {
             super.signMessage(messageContext);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateVelocityContext(VelocityContext velocityContext, SAMLMessageContext messageContext,
-            String endpointURL) throws MessageEncodingException {
+                                           String endpointURL) throws MessageEncodingException {
 
         super.populateVelocityContext(velocityContext, messageContext, endpointURL);
 
@@ -129,11 +137,11 @@ public class HTTPPostSimpleSignEncoder extends HTTPPostEncoder {
 
     /**
      * Build the {@link KeyInfo} from the signing credential.
-     * 
+     *
      * @param signingCredential the credential used for signing
-     * @param kiGenerator the generator for the KeyInfo
-     * @throws MessageEncodingException thrown if there is an error generating or marshalling the KeyInfo
+     * @param kiGenerator       the generator for the KeyInfo
      * @return the marshalled, serialized and base64-encoded KeyInfo, or null if none was generated
+     * @throws MessageEncodingException thrown if there is an error generating or marshalling the KeyInfo
      */
     protected String buildKeyInfo(Credential signingCredential, KeyInfoGenerator kiGenerator)
             throws MessageEncodingException {
@@ -163,12 +171,11 @@ public class HTTPPostSimpleSignEncoder extends HTTPPostEncoder {
 
     /**
      * Build the form control data string over which the signature is computed.
-     * 
+     *
      * @param velocityContext the Velocity context which is already populated with the values for SAML message and relay
-     *            state
+     *                        state
      * @param messageContext  the SAML message context being processed
-     * @param sigAlgURI the signature algorithm URI
-     * 
+     * @param sigAlgURI       the signature algorithm URI
      * @return the form control data string for signature computation
      */
     protected String buildFormDataToSign(VelocityContext velocityContext, SAMLMessageContext messageContext, String sigAlgURI) {
@@ -210,12 +217,10 @@ public class HTTPPostSimpleSignEncoder extends HTTPPostEncoder {
 
     /**
      * Gets the signature algorithm URI to use with the given signing credential.
-     * 
+     *
      * @param credential the credential that will be used to sign the message
-     * @param config the SecurityConfiguration to use (may be null)
-     * 
+     * @param config     the SecurityConfiguration to use (may be null)
      * @return signature algorithm to use with the given signing credential
-     * 
      * @throws MessageEncodingException thrown if the algorithm URI could not be derived from the supplied credential
      */
     protected String getSignatureAlgorithmURI(Credential credential, SecurityConfiguration config)
@@ -239,13 +244,11 @@ public class HTTPPostSimpleSignEncoder extends HTTPPostEncoder {
 
     /**
      * Generates the signature over the string of concatenated form control data as indicated by the SimpleSign spec.
-     * 
+     *
      * @param signingCredential credential that will be used to sign
-     * @param algorithmURI algorithm URI of the signing credential
-     * @param formData form control data to be signed
-     * 
+     * @param algorithmURI      algorithm URI of the signing credential
+     * @param formData          form control data to be signed
      * @return base64 encoded signature of form control data
-     * 
      * @throws MessageEncodingException there is an error computing the signature
      */
     protected String generateSignature(Credential signingCredential, String algorithmURI, String formData)

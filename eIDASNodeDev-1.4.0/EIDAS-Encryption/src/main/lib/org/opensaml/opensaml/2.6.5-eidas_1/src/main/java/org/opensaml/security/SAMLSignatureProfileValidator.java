@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -41,10 +41,14 @@ import org.w3c.dom.Element;
  */
 public class SAMLSignatureProfileValidator implements Validator<Signature> {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(SAMLSignatureProfileValidator.class);
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(Signature signature) throws ValidationException {
 
         if (!(signature instanceof SignatureImpl)) {
@@ -59,7 +63,7 @@ public class SAMLSignatureProfileValidator implements Validator<Signature> {
     /**
      * Validate an instance of {@link SignatureImpl}, which is in turn based on underlying Apache XML Security
      * <code>XMLSignature</code> instance.
-     * 
+     *
      * @param sigImpl the signature implementation object to validate
      * @throws ValidationException thrown if the signature is not valid with respect to the profile
      */
@@ -80,23 +84,23 @@ public class SAMLSignatureProfileValidator implements Validator<Signature> {
         Reference ref = validateReference(apacheSig);
 
         String uri = ref.getURI();
-        
+
         validateReferenceURI(uri, signableObject);
 
         validateTransforms(ref);
-        
+
         validateObjectChildren(apacheSig);
     }
 
     /**
      * Validate the Signature's SignedInfo Reference.
-     * 
+     * <p>
      * The SignedInfo must contain exactly 1 Reference.
-     * 
+     *
      * @param apacheSig the Apache XML Signature instance
      * @return the valid Reference contained within the SignedInfo
      * @throws ValidationException thrown if the Signature does not contain exactly 1 Reference, or if there is an error
-     *             obtaining the Reference instance
+     *                             obtaining the Reference instance
      */
     protected Reference validateReference(XMLSignature apacheSig) throws ValidationException {
         int numReferences = apacheSig.getSignedInfo().getLength();
@@ -118,42 +122,41 @@ public class SAMLSignatureProfileValidator implements Validator<Signature> {
         }
         return ref;
     }
-    
+
     /**
      * Validate the Signature's Reference URI.
-     * 
-     * First validate the Reference URI against the parent's ID itself.  Then validate that the 
+     * <p>
+     * First validate the Reference URI against the parent's ID itself.  Then validate that the
      * URI (if non-empty) resolves to the same Element node as is cached by the SignableSAMLObject.
-     * 
-     * 
-     * @param uri the Signature Reference URI attribute value
+     *
+     * @param uri            the Signature Reference URI attribute value
      * @param signableObject the SignableSAMLObject whose signature is being validated
-     * @throws ValidationException  if the URI is invalid or doesn't resolve to the expected DOM node
+     * @throws ValidationException if the URI is invalid or doesn't resolve to the expected DOM node
      */
     protected void validateReferenceURI(String uri, SignableSAMLObject signableObject) throws ValidationException {
         String id = signableObject.getSignatureReferenceID();
         validateReferenceURI(uri, id);
-        
+
         if (DatatypeHelper.isEmpty(uri)) {
             return;
         }
-        
+
         String uriID = uri.substring(1);
-        
+
         Element expected = signableObject.getDOM();
         if (expected == null) {
             log.error("SignableSAMLObject does not have a cached DOM Element.");
             throw new ValidationException("SignableSAMLObject does not have a cached DOM Element.");
         }
         Document doc = expected.getOwnerDocument();
-        
+
         Element resolved = IdResolver.getElementById(doc, uriID);
         if (resolved == null) {
             log.error("Apache xmlsec IdResolver could not resolve the Element for id reference: {}", uriID);
             throw new ValidationException("Apache xmlsec IdResolver could not resolve the Element for id reference: "
-                    +  uriID);
+                    + uriID);
         }
-        
+
         if (!expected.isSameNode(resolved)) {
             log.error("Signature Reference URI '{}' did not resolve to the expected parent Element", uri);
             throw new ValidationException("Signature Reference URI did not resolve to the expected parent Element");
@@ -162,12 +165,12 @@ public class SAMLSignatureProfileValidator implements Validator<Signature> {
 
     /**
      * Validate the Reference URI and parent ID attribute values.
-     * 
+     * <p>
      * The URI must either be null or empty (indicating that the entire enclosing document was signed), or else it must
      * be a local document fragment reference and point to the SAMLObject parent via the latter's ID attribute value.
-     * 
+     *
      * @param uri the Signature Reference URI attribute value
-     * @param id the Signature parents ID attribute value
+     * @param id  the Signature parents ID attribute value
      * @throws ValidationException thrown if the URI or ID attribute values are invalid
      */
     protected void validateReferenceURI(String uri, String id) throws ValidationException {
@@ -187,11 +190,11 @@ public class SAMLSignatureProfileValidator implements Validator<Signature> {
 
     /**
      * Validate the transforms included in the Signature Reference.
-     * 
+     * <p>
      * The Reference may contain at most 2 transforms. One of them must be the Enveloped signature transform. An
      * Exclusive Canonicalization transform (with or without comments) may also be present. No other transforms are
      * allowed.
-     * 
+     *
      * @param reference the Signature reference containing the transforms to evaluate
      * @throws ValidationException thrown if the set of transforms is invalid
      */
@@ -245,7 +248,7 @@ public class SAMLSignatureProfileValidator implements Validator<Signature> {
 
     /**
      * Validate that the Signature instance does not contain any ds:Object children.
-     * 
+     *
      * @param apacheSig the Apache XML Signature instance
      * @throws ValidationException if the signature contains ds:Object children
      */

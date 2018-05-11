@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml1.core.impl;
@@ -38,14 +38,20 @@ import org.w3c.dom.Document;
  */
 public class AuthorizationDecisionQueryTest extends BaseSAMLObjectProviderTestCase {
 
-    /** name used to generate objects */
+    /**
+     * name used to generate objects
+     */
     private final QName qname;
 
-    /** A file with a AuthenticationQuery with kids */
+    /**
+     * A file with a AuthenticationQuery with kids
+     */
 
     private final String fullElementsFile;
 
-    /** The expected result of a marshalled multiple element */
+    /**
+     * The expected result of a marshalled multiple element
+     */
 
     private Document expectedFullDOM;
 
@@ -60,11 +66,13 @@ public class AuthorizationDecisionQueryTest extends BaseSAMLObjectProviderTestCa
         fullElementsFile = "/data/org/opensaml/saml1/impl/AuthorizationDecisionQueryWithChildren.xml";
 
         expectedResource = "resource";
-        
-        qname =new QName(SAMLConstants.SAML10P_NS, AuthorizationDecisionQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
+
+        qname = new QName(SAMLConstants.SAML10P_NS, AuthorizationDecisionQuery.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1P_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
@@ -72,7 +80,9 @@ public class AuthorizationDecisionQueryTest extends BaseSAMLObjectProviderTestCa
                 .getResourceAsStream(fullElementsFile));
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
 
         AuthorizationDecisionQuery authorizationDecisionQuery;
@@ -84,7 +94,9 @@ public class AuthorizationDecisionQueryTest extends BaseSAMLObjectProviderTestCa
         assertNull("Evidence element present", authorizationDecisionQuery.getEvidence());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         AuthorizationDecisionQuery authorizationDecisionQuery;
         authorizationDecisionQuery = (AuthorizationDecisionQuery) unmarshallElement(singleElementOptionalAttributesFile);
@@ -107,12 +119,16 @@ public class AuthorizationDecisionQueryTest extends BaseSAMLObjectProviderTestCa
         assertNotNull("Evidence element present", authorizationDecisionQuery.getEvidence());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         assertEquals(expectedDOM, buildXMLObject(qname));
-    } 
+    }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         AuthorizationDecisionQuery authorizationDecisionQuery;
         authorizationDecisionQuery = (AuthorizationDecisionQuery) buildXMLObject(qname);
@@ -123,7 +139,6 @@ public class AuthorizationDecisionQueryTest extends BaseSAMLObjectProviderTestCa
 
     /**
      * Test Marshalling up a file with children
-     * 
      */
     public void testFullElementsMarshall() {
         AuthorizationDecisionQuery authorizationDecisionQuery;
@@ -131,11 +146,11 @@ public class AuthorizationDecisionQueryTest extends BaseSAMLObjectProviderTestCa
         authorizationDecisionQuery.setSubject((Subject) buildXMLObject(new QName(SAMLConstants.SAML1_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX)));
 
         QName actionQname = new QName(SAMLConstants.SAML1_NS, Action.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX);
-        List <Action> list = authorizationDecisionQuery.getActions();
+        List<Action> list = authorizationDecisionQuery.getActions();
         list.add((Action) buildXMLObject(actionQname));
         list.add((Action) buildXMLObject(actionQname));
         list.add((Action) buildXMLObject(actionQname));
-        
+
         authorizationDecisionQuery.setEvidence((Evidence) buildXMLObject(new QName(SAMLConstants.SAML1_NS, Evidence.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML1_PREFIX)));
         assertEquals(expectedFullDOM, authorizationDecisionQuery);
 

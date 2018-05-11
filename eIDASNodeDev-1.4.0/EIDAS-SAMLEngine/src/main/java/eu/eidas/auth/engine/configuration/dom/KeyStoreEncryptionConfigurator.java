@@ -38,8 +38,8 @@ public final class KeyStoreEncryptionConfigurator {
         KeyStoreContent keyStoreContent = new KeyStoreConfigurator(properties, defaultPath).loadKeyStoreContent();
 
         return new EncryptionConfiguration(checkedValidityPeriod, disallowedSelfSignedCertificate,
-                                           responseEncryptionMandatory, keyStoreContent.getPrivateKeyEntries(),
-                                           keyStoreContent.getCertificates(), dataEncryptionAlgorithm,
-                                           keyEncryptionAlgorithm, jcaProviderName, encryptionAlgorithmWhiteList);
+                responseEncryptionMandatory, keyStoreContent.getPrivateKeyEntries(),
+                keyStoreContent.getCertificates(), dataEncryptionAlgorithm,
+                keyEncryptionAlgorithm, jcaProviderName, encryptionAlgorithmWhiteList);
     }
 }

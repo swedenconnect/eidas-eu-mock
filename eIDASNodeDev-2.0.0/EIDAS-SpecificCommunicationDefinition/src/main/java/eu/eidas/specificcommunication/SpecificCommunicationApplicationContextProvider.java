@@ -39,7 +39,7 @@ public class SpecificCommunicationApplicationContextProvider implements Applicat
         SpecificCommunicationApplicationContextProvider.setGlobalAppContext(ctx);
     }
 
-    private static void setGlobalAppContext(ApplicationContext ctx){
+    private static void setGlobalAppContext(ApplicationContext ctx) {
         applicationContext = ctx;
     }
 }

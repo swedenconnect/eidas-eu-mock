@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 
 package org.opensaml.saml2.metadata.impl;
@@ -44,18 +44,24 @@ public class OrganizationTest extends BaseSAMLObjectProviderTestCase {
         childElementsFile = "/data/org/opensaml/saml2/metadata/impl/OrganizationChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Organization org = (Organization) unmarshallElement(singleElementFile);
         assertEquals("Display names", 0, org.getDisplayNames().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Organization org = (Organization) unmarshallElement(childElementsFile);
 
@@ -65,7 +71,9 @@ public class OrganizationTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("URL count", 1, org.getURLs().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, Organization.DEFAULT_ELEMENT_LOCAL_NAME);
         Organization org = (Organization) buildXMLObject(qname);
@@ -74,7 +82,7 @@ public class OrganizationTest extends BaseSAMLObjectProviderTestCase {
     }
 
     /**
-     * 
+     *
      */
     public void testChildElementsMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, Organization.DEFAULT_ELEMENT_LOCAL_NAME);
@@ -98,7 +106,7 @@ public class OrganizationTest extends BaseSAMLObjectProviderTestCase {
 
         QName urlQName = new QName(SAMLConstants.SAML20MD_NS, OrganizationURL.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         org.getURLs().add((OrganizationURL) buildXMLObject(urlQName));
-        
+
         assertEquals(expectedChildElementsDOM, org);
     }
 }

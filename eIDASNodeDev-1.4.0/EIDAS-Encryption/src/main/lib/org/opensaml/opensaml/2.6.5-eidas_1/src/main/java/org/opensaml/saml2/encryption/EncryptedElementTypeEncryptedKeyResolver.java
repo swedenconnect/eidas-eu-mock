@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,27 +28,29 @@ import org.opensaml.xml.encryption.EncryptedKeyResolver;
 
 /**
  * An implementation of {@link EncryptedKeyResolver} which resolves {@link EncryptedKey}
- * elements which appear as immediate children of the {@link EncryptedElementType} which 
+ * elements which appear as immediate children of the {@link EncryptedElementType} which
  * is the parent of the {@link EncryptedData} context.
  */
 public class EncryptedElementTypeEncryptedKeyResolver extends AbstractEncryptedKeyResolver {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Iterable<EncryptedKey> resolve(EncryptedData encryptedData) {
         List<EncryptedKey> resolvedEncKeys = new ArrayList<EncryptedKey>();
-        
-        if (! (encryptedData.getParent() instanceof EncryptedElementType) ) {
+
+        if (!(encryptedData.getParent() instanceof EncryptedElementType)) {
             return resolvedEncKeys;
         }
-        
+
         EncryptedElementType encElementType = (EncryptedElementType) encryptedData.getParent();
-        
+
         for (EncryptedKey encKey : encElementType.getEncryptedKeys()) {
             if (matchRecipient(encKey.getRecipient())) {
                 resolvedEncKeys.add(encKey);
             }
         }
-        
+
         return resolvedEncKeys;
     }
 }

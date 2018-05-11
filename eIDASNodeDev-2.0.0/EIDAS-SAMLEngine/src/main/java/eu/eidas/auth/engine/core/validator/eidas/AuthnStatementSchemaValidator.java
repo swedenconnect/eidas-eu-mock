@@ -25,5 +25,6 @@ import org.opensaml.saml.saml2.core.AuthnStatement;
  * TODO This class was created as a temporary solution for the removal of AuthnStatementSchemaValidator from opensaml 3.
  */
 public abstract class AuthnStatementSchemaValidator {
-    public void validate(AuthnStatement stmnt) throws ValidationException {}
+    public void validate(AuthnStatement stmnt) throws ValidationException {
+    }
 }

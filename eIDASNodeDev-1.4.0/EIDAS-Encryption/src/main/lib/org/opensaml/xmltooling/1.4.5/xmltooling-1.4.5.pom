@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,7 +16,9 @@
     <packaging>jar</packaging>
 
     <name>XMLTooling-J</name>
-    <description>XMLTooling-J is a low-level library that may be used to construct libraries that allow developers to work with XML in a Java beans manner.</description>
+    <description>XMLTooling-J is a low-level library that may be used to construct libraries that allow developers to
+        work with XML in a Java beans manner.
+    </description>
 
     <properties>
         <svn.relative.location>java-xmltooling</svn.relative.location>
@@ -49,7 +51,7 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -73,7 +75,7 @@
             <groupId>org.apache.santuario</groupId>
             <artifactId>xmlsec</artifactId>
         </dependency>
-        
+
         <!-- Provided dependencies -->
 
         <!-- Runtime dependencies -->

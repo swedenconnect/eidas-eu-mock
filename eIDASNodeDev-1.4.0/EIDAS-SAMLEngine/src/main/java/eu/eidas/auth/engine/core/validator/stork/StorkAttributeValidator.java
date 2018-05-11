@@ -68,7 +68,7 @@ public class StorkAttributeValidator extends AttributeSchemaValidator {
         if (attr.getUnknownAttributes() != null) {
             AttributeMap map = attr.getUnknownAttributes();
             String value = map.get(DEFAULT_STORK_ATTRIBUTE_QNAME);
-            if (value != null && !ALLOWED_ATTRIBUTE_STATUS_AVAIL.equals(value) && !ALLOWED_ATTRIBUTE_STATUS_NOT_AVAIL.equals(value) && !ALLOWED_ATTRIBUTE_STATUS_WITHHELD.equals(value) ){
+            if (value != null && !ALLOWED_ATTRIBUTE_STATUS_AVAIL.equals(value) && !ALLOWED_ATTRIBUTE_STATUS_NOT_AVAIL.equals(value) && !ALLOWED_ATTRIBUTE_STATUS_WITHHELD.equals(value)) {
                 throw new ValidationException("AttributeStatus is invalid.");
             }
         }
@@ -122,8 +122,8 @@ public class StorkAttributeValidator extends AttributeSchemaValidator {
             validateAttributeValueFormat(value, attrName, STORKAttributes.STORK_ATTRIBUTE_AGE, PATTERN_AGE);
             validateAttributeValueFormat(value, attrName, STORKAttributes.STORK_ATTRIBUTE_ISAGEOVER, PATTERN_ISAGEOVER);
             if ((attr.getName().equals(STORKAttributes.STORK_ATTRIBUTE_AGE) || attr.getName().equals(STORKAttributes.STORK_ATTRIBUTE_ISAGEOVER)) &&
-                Integer.parseInt(((XSString) attr.getAttributeValues().get(0)).getValue()) > MAX_AGE) {
-                    throw new ValidationException("Maximum age reached");
+                    Integer.parseInt(((XSString) attr.getAttributeValues().get(0)).getValue()) > MAX_AGE) {
+                throw new ValidationException("Maximum age reached");
             }
 
             validateAttributeValueFormat(value, attrName, STORKAttributes.STORK_ATTRIBUTE_CITIZENQAALEVEL, PATTERN_CITIZENQAALEVEL);

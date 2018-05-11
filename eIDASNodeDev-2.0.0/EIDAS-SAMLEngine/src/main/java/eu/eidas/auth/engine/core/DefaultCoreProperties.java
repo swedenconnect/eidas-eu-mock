@@ -497,7 +497,6 @@ public final class DefaultCoreProperties implements SamlEngineCoreProperties {
 
     /**
      * Method that loads the configuration file for the SAML Engine.
-     *
      */
     @Nonnull
     private TypedState loadConfiguration() {
@@ -543,7 +542,7 @@ public final class DefaultCoreProperties implements SamlEngineCoreProperties {
             Integer timeNotOnOrAfter = Integer.valueOf(samlCoreProp.get("timeNotOnOrAfter"));
             if (timeNotOnOrAfter.intValue() < 0) {
                 LOGGER.error("{} - timeNotOnOrAfter cannot be negative.",
-                             DOMConfigurationParser.DEFAULT_CONFIGURATION_FILE);
+                        DOMConfigurationParser.DEFAULT_CONFIGURATION_FILE);
                 throw new ProtocolEngineConfigurationException(
                         DOMConfigurationParser.DEFAULT_CONFIGURATION_FILE + " - timeNotOnOrAfter cannot be negative.");
             }
@@ -588,8 +587,8 @@ public final class DefaultCoreProperties implements SamlEngineCoreProperties {
             consentAuthnResp = RequestAbstractType.UNSPECIFIED_CONSENT;
         } else {
             LOGGER.info("ERROR : " + DOMConfigurationParser.DEFAULT_CONFIGURATION_FILE + " - "
-                                + SAMLCore.CONSENT_AUTHN_RES.getValue() + " is not supported (" + consentAuthnResp
-                                + ").");
+                    + SAMLCore.CONSENT_AUTHN_RES.getValue() + " is not supported (" + consentAuthnResp
+                    + ").");
             throw new ProtocolEngineConfigurationException(
                     DOMConfigurationParser.DEFAULT_CONFIGURATION_FILE + " - " + SAMLCore.CONSENT_AUTHN_RES.getValue()
                             + " is not supported (" + consentAuthnResp + ").");
@@ -601,8 +600,8 @@ public final class DefaultCoreProperties implements SamlEngineCoreProperties {
      * Load protocol biding.
      *
      * @throws ProtocolEngineConfigurationException the SAML engine exception
-     *
-     * // TODO check this, as it means that the SAML Engine can only be used with HTTP-POST
+     *                                              <p>
+     *                                              // TODO check this, as it means that the SAML Engine can only be used with HTTP-POST
      */
     @Nonnull
     private String loadProtocolBiding() throws ProtocolEngineConfigurationException {

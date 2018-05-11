@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecp="urn:oasis:names:tc:SAML:2.0:profiles:SSO:ecp" xmlns="http://www.opensaml.org/xmltooling-config" xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd">
- 
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:ecp="urn:oasis:names:tc:SAML:2.0:profiles:SSO:ecp" xmlns="http://www.opensaml.org/xmltooling-config"
+            xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd">
+
     <!-- SAML 2.0 ECP Object providers -->
     <ObjectProviders>
-        
+
         <!-- Request -->
         <ObjectProvider qualifiedName="ecp:Request">
             <BuilderClass className="org.opensaml.saml2.ecp.impl.RequestBuilder"/>
@@ -16,7 +18,7 @@
             <MarshallingClass className="org.opensaml.saml2.ecp.impl.RequestMarshaller"/>
             <UnmarshallingClass className="org.opensaml.saml2.ecp.impl.RequestUnmarshaller"/>
         </ObjectProvider>
-        
+
         <!-- Response -->
         <ObjectProvider qualifiedName="ecp:Response">
             <BuilderClass className="org.opensaml.saml2.ecp.impl.ResponseBuilder"/>
@@ -29,7 +31,7 @@
             <MarshallingClass className="org.opensaml.saml2.ecp.impl.ResponseMarshaller"/>
             <UnmarshallingClass className="org.opensaml.saml2.ecp.impl.ResponseUnmarshaller"/>
         </ObjectProvider>
-        
+
         <!-- RelayState -->
         <ObjectProvider qualifiedName="ecp:RelayState">
             <BuilderClass className="org.opensaml.saml2.ecp.impl.RelayStateBuilder"/>
@@ -42,8 +44,8 @@
             <MarshallingClass className="org.opensaml.saml2.ecp.impl.RelayStateMarshaller"/>
             <UnmarshallingClass className="org.opensaml.saml2.ecp.impl.RelayStateUnmarshaller"/>
         </ObjectProvider>
- 
-         <!-- RequestAuthenticated -->
+
+        <!-- RequestAuthenticated -->
         <ObjectProvider qualifiedName="ecp:RequestAuthenticated">
             <BuilderClass className="org.opensaml.saml2.ecp.impl.RequestAuthenticatedBuilder"/>
             <MarshallingClass className="org.opensaml.saml2.ecp.impl.RequestAuthenticatedMarshaller"/>
@@ -68,6 +70,6 @@
             <MarshallingClass className="org.opensaml.saml2.ecp.impl.SubjectConfirmationMarshaller"/>
             <UnmarshallingClass className="org.opensaml.saml2.ecp.impl.SubjectConfirmationUnmarshaller"/>
         </ObjectProvider>
- 
+
     </ObjectProviders>
- </XMLTooling>
+</XMLTooling>

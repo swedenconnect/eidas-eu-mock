@@ -19,22 +19,22 @@ import java.io.StringReader;
  */
 public class XmlExternalEntityTest {
 
-    public final String PATH_LINUX ="/home/rvaz/Desktop/test";//linux path to system file e.g. text file with "important info" content
-    public final String PATH_WINDOWS ="file:///c:/temp/test/test.txt";//windows (see AbstractRequestModifier in validator repository) path to system file e.g. text file with "important info" content
+    public final String PATH_LINUX = "/home/rvaz/Desktop/test";//linux path to system file e.g. text file with "important info" content
+    public final String PATH_WINDOWS = "file:///c:/temp/test/test.txt";//windows (see AbstractRequestModifier in validator repository) path to system file e.g. text file with "important info" content
 
     public final String path = PATH_LINUX;//change this accordingly
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
-    public final String XML = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n"+
-            " <!DOCTYPE foo [  \n"+
-            "  <!ELEMENT foo ANY >\n"+
+    public final String XML = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" +
+            " <!DOCTYPE foo [  \n" +
+            "  <!ELEMENT foo ANY >\n" +
             "  <!ENTITY xxe SYSTEM \"" + path + "\" >]><foo>&xxe;</foo>";
 
 
     @BeforeClass
-    public static void setUp(){
+    public static void setUp() {
         try {
             SAMLBootstrap.bootstrap();
         } catch (ConfigurationException ce) {
@@ -47,13 +47,12 @@ public class XmlExternalEntityTest {
      * Test method to check the possibility of XXE in {@link DocumentBuilderFactoryUtil#marshall(Node, boolean)}.
      * If XXE is possible it should result in an xml in which appears the content of the system file
      * referred by {@link XmlExternalEntityTest#path}
-     *
+     * <p>
      * It should succeed if XXE is possible.
-     *
+     * <p>
      * Note This method is not to be run for now in the build but to be used for POC and for that has been set with Ignore.
      *
      * @throws Exception
-     *
      */
     @Ignore
     @Test
@@ -72,13 +71,12 @@ public class XmlExternalEntityTest {
 
     /**
      * Test method to check the possibility of XXE while using {@link DocumentBuilderFactoryUtil#parse(String)}.
-     *
+     * <p>
      * It should fail.
-     *
+     * <p>
      * Note This method is not to be run for now in the build but to be used for POC and for that has been set with Ignore.
      *
      * @throws Exception
-     *
      */
     @Ignore
     @Test

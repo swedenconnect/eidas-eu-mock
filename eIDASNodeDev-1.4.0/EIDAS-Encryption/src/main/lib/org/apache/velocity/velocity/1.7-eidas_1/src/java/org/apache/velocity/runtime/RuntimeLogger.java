@@ -16,7 +16,7 @@ package org.apache.velocity.runtime;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -27,33 +27,32 @@ package org.apache.velocity.runtime;
  * @version $Id: RuntimeLogger.java 463298 2006-10-12 16:10:32Z henning $
  * @deprecated This functionality has been taken over by the Log class
  */
-public interface RuntimeLogger
-{
+public interface RuntimeLogger {
     /**
-     * @deprecated Use Log.warn(Object).
-     * @see org.apache.velocity.runtime.log.Log#warn(Object)
      * @param message The message to log.
+     * @see org.apache.velocity.runtime.log.Log#warn(Object)
+     * @deprecated Use Log.warn(Object).
      */
     public void warn(Object message);
 
     /**
-     * @deprecated Use Log.info(Object)
-     * @see org.apache.velocity.runtime.log.Log#info(Object)
      * @param message The message to log.
+     * @see org.apache.velocity.runtime.log.Log#info(Object)
+     * @deprecated Use Log.info(Object)
      */
-    public  void info(Object message);
+    public void info(Object message);
 
     /**
-     * @deprecated Use Log.error(Object)
-     * @see org.apache.velocity.runtime.log.Log#error(Object)
      * @param message The message to log.
+     * @see org.apache.velocity.runtime.log.Log#error(Object)
+     * @deprecated Use Log.error(Object)
      */
     public void error(Object message);
 
     /**
-     * @deprecated Use Log.debug(Object)
-     * @see org.apache.velocity.runtime.log.Log#debug(Object)
      * @param message The message to log.
+     * @see org.apache.velocity.runtime.log.Log#debug(Object)
+     * @deprecated Use Log.debug(Object)
      */
     public void debug(Object message);
 }

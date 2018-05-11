@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -30,18 +30,24 @@ import org.opensaml.xml.security.credential.CredentialContext;
  */
 public class SAMLMDCredentialContext implements CredentialContext {
 
-    /** Key descriptor which contained the KeyInfo used. */
+    /**
+     * Key descriptor which contained the KeyInfo used.
+     */
     private KeyDescriptor keyDescriptor;
 
-    /** Role in which credential was resolved. */
+    /**
+     * Role in which credential was resolved.
+     */
     private RoleDescriptor role;
 
-    /** Encryption methods associated with the credential. */
+    /**
+     * Encryption methods associated with the credential.
+     */
     private List<EncryptionMethod> encMethods;
 
     /**
      * Constructor.
-     * 
+     *
      * @param descriptor the KeyDescriptor context from which a credential was resolved
      */
     public SAMLMDCredentialContext(KeyDescriptor descriptor) {
@@ -56,7 +62,7 @@ public class SAMLMDCredentialContext implements CredentialContext {
 
     /**
      * Get the key descriptor context.
-     * 
+     *
      * @return key descriptor
      */
     public KeyDescriptor getKeyDescriptor() {
@@ -65,17 +71,17 @@ public class SAMLMDCredentialContext implements CredentialContext {
 
     /**
      * Return the list of {@link EncryptionMethod}'s associated with credential context.
-     * 
+     *
      * @return a list of SAML metadata encryption method associated with this context
      * @deprecated due to typo, use {@link #getEncryptionMethods()}.
      */
     public List<EncryptionMethod> getEncryptionMethod() {
         return getEncryptionMethods();
     }
-    
+
     /**
      * Return the list of {@link EncryptionMethod}'s associated with credential context.
-     * 
+     *
      * @return a list of SAML metadata encryption method associated with this context
      */
     public List<EncryptionMethod> getEncryptionMethods() {
@@ -84,7 +90,7 @@ public class SAMLMDCredentialContext implements CredentialContext {
 
     /**
      * Get the role descriptor context.
-     * 
+     *
      * @return role descriptor
      */
     public RoleDescriptor getRoleDescriptor() {

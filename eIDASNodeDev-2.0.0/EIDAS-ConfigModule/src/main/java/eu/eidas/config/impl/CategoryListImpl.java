@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlElement;
  */
 public class CategoryListImpl {
     List<CategoryImpl> categories;
+
     @XmlElement(name = "category", type = CategoryImpl.class)
     public List<CategoryImpl> getCategories() {
         return categories;

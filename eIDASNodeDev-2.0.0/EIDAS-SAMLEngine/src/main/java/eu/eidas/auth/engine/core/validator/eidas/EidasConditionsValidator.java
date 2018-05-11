@@ -38,8 +38,8 @@ public class EidasConditionsValidator extends ConditionsSpecValidator {
 
     @Override
     public void validate(Conditions conditions) throws ValidationException {
-        LOG.debug("conditions.getNotBefore() "+ conditions.getNotBefore());
-        LOG.debug("conditions.getNotOnOrAfter() "+ conditions.getNotOnOrAfter());
+        LOG.debug("conditions.getNotBefore() " + conditions.getNotBefore());
+        LOG.debug("conditions.getNotOnOrAfter() " + conditions.getNotOnOrAfter());
 
         super.validate(conditions);
 

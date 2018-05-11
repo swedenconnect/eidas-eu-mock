@@ -16,7 +16,7 @@ package org.apache.velocity.test.issues;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.test.BaseTestCase;
@@ -24,43 +24,36 @@ import org.apache.velocity.test.BaseTestCase;
 /**
  * This class tests VELOCITY-616.
  */
-public class Velocity616TestCase extends BaseTestCase
-{
-    public Velocity616TestCase(String name)
-    {
-       super(name);
+public class Velocity616TestCase extends BaseTestCase {
+    public Velocity616TestCase(String name) {
+        super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         super.setUp();
         context.put("bar", "bar");
         context.put("foo", Boolean.FALSE);
     }
 
-    public void testIfNoBrackets()
-    {
+    public void testIfNoBrackets() {
         String template = "\\#if ($foo) \\$bar \\#end";
         String expected = "#if (false) $bar #end";
         assertEvalEquals(expected, template);
     }
 
-    public void testForeachBrackets()
-    {
+    public void testForeachBrackets() {
         String template = "\\#{foreach}( $i in [1..3] )$i\\#{end}";
         String expected = "#{foreach}( $i in [1..3] )$i#{end}";
         assertEvalEquals(expected, template);
     }
 
-    public void testIfBrackets()
-    {
+    public void testIfBrackets() {
         String template = "\\#{if} ($foo) \\$bar \\#{end}";
         String expected = "#{if} (false) $bar #{end}";
         assertEvalEquals(expected, template);
     }
 
-    public void testIfBracketsOnEndOnly()
-    {
+    public void testIfBracketsOnEndOnly() {
         String template = "\\#if( $foo ) \\$bar \\#{end}";
         String expected = "#if( false ) $bar #{end}";
         assertEvalEquals(expected, template);

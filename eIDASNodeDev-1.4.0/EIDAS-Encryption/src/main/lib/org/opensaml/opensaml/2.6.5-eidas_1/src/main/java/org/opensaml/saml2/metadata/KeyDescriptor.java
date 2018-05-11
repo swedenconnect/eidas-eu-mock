@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,52 +28,62 @@ import org.opensaml.xml.signature.KeyInfo;
 
 public interface KeyDescriptor extends SAMLObject {
 
-    /** Element name, no namespace */
+    /**
+     * Element name, no namespace
+     */
     public final static String DEFAULT_ELEMENT_LOCAL_NAME = "KeyDescriptor";
-    
-    /** Default element name */
+
+    /**
+     * Default element name
+     */
     public final static QName DEFAULT_ELEMENT_NAME = new QName(SAMLConstants.SAML20MD_NS, DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
-    
-    /** Local name of the XSI type */
-    public final static String TYPE_LOCAL_NAME = "KeyDescriptorType"; 
-        
-    /** QName of the XSI type */
+
+    /**
+     * Local name of the XSI type
+     */
+    public final static String TYPE_LOCAL_NAME = "KeyDescriptorType";
+
+    /**
+     * QName of the XSI type
+     */
     public final static QName TYPE_NAME = new QName(SAMLConstants.SAML20MD_NS, TYPE_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
 
-    /** "use" attribute's local name */
+    /**
+     * "use" attribute's local name
+     */
     public final static String USE_ATTRIB_NAME = "use";
 
     /**
      * Gets the use of this key.
-     * 
+     *
      * @return the use of this key
      */
     public UsageType getUse();
 
     /**
      * Sets the use of this key.
-     * 
+     *
      * @param newType the use of this key
      */
     public void setUse(UsageType newType);
 
     /**
      * Gets information about the key, including the key itself.
-     * 
+     *
      * @return information about the key, including the key itself
      */
     public KeyInfo getKeyInfo();
 
     /**
      * Sets information about the key, including the key itself.
-     * 
+     *
      * @param newKeyInfo information about the key, including the key itself
      */
     public void setKeyInfo(KeyInfo newKeyInfo);
 
     /**
      * Gets the encryption methods that are supported by the entity.
-     * 
+     *
      * @return the encryption methods that are supported by the entity
      */
     public List<EncryptionMethod> getEncryptionMethods();

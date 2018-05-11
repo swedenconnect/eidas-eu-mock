@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,20 +27,28 @@ import org.opensaml.xml.schema.XSString;
  * Mock BaseID class for testing purposes.
  */
 public class MockBaseID extends AbstractSAMLObject implements BaseID, XSString {
-    
-    /** String content. */
+
+    /**
+     * String content.
+     */
     private String content;
-    
-    /** Name qualifier. */
+
+    /**
+     * Name qualifier.
+     */
     private String nameQualifier;
-    
-    /** SP name qualifier. */
+
+    /**
+     * SP name qualifier.
+     */
     private String spNameQualifier;
-    
-    /** Constructor. */
+
+    /**
+     * Constructor.
+     */
     public MockBaseID() {
         this(
-                BaseID.DEFAULT_ELEMENT_NAME.getNamespaceURI(), 
+                BaseID.DEFAULT_ELEMENT_NAME.getNamespaceURI(),
                 BaseID.DEFAULT_ELEMENT_LOCAL_NAME,
                 BaseID.DEFAULT_ELEMENT_NAME.getPrefix());
     }
@@ -56,37 +64,51 @@ public class MockBaseID extends AbstractSAMLObject implements BaseID, XSString {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getNameQualifier() {
         return nameQualifier;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getSPNameQualifier() {
         return spNameQualifier;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNameQualifier(String newNameQualifier) {
         nameQualifier = prepareForAssignment(nameQualifier, newNameQualifier);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSPNameQualifier(String newSPNameQualifier) {
         spNameQualifier = prepareForAssignment(spNameQualifier, newSPNameQualifier);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getValue() {
         return content;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setValue(String newValue) {
         content = prepareForAssignment(content, newValue);
     }

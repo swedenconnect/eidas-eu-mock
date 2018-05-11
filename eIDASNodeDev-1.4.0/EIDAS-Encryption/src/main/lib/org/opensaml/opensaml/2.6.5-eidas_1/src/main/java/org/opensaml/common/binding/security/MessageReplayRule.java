@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,18 +31,24 @@ import org.slf4j.LoggerFactory;
  */
 public class MessageReplayRule implements SecurityPolicyRule {
 
-    /** Logger. */
+    /**
+     * Logger.
+     */
     private final Logger log = LoggerFactory.getLogger(MessageReplayRule.class);
 
-    /** Message replay cache instance to use. */
+    /**
+     * Message replay cache instance to use.
+     */
     private ReplayCache replayCache;
 
-    /** Whether this rule is required to be met. */
+    /**
+     * Whether this rule is required to be met.
+     */
     private boolean requiredRule;
 
     /**
      * Constructor.
-     * 
+     *
      * @param newReplayCache the new replay cache instance
      */
     public MessageReplayRule(ReplayCache newReplayCache) {
@@ -52,7 +58,7 @@ public class MessageReplayRule implements SecurityPolicyRule {
 
     /**
      * Gets whether this rule is required to be met.
-     * 
+     *
      * @return whether this rule is required to be met
      */
     public boolean isRequiredRule() {
@@ -61,14 +67,16 @@ public class MessageReplayRule implements SecurityPolicyRule {
 
     /**
      * Sets whether this rule is required to be met.
-     * 
+     *
      * @param required whether this rule is required to be met
      */
     public void setRequiredRule(boolean required) {
         requiredRule = required;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void evaluate(MessageContext messageContext) throws SecurityPolicyException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.debug("Invalid message context type, this policy rule only supports SAMLMessageContext");

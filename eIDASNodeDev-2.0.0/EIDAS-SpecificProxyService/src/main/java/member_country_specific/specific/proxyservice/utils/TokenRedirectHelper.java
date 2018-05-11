@@ -36,14 +36,15 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Helper class for preparing token redirect page fields.
- *
+ * <p>
  * Puts the {@link ILightResponse} in the communication cache.
  *
  * @since 2.0
  */
 public class TokenRedirectHelper {
 
-    private TokenRedirectHelper() {}
+    private TokenRedirectHelper() {
+    }
 
     public static void setTokenRedirectAttributes(@Nonnull HttpServletRequest httpServletRequest, ILightResponse lightResponse, ApplicationContext applicationContext, String redirectUrl) throws SpecificCommunicationException {
         final SpecificProxyserviceCommunicationServiceImpl specificProxyserviceCommunicationService = (SpecificProxyserviceCommunicationServiceImpl) applicationContext.getBean(SpecificCommunicationDefinitionBeanNames.SPECIFIC_PROXYSERVICE_COMMUNICATION_SERVICE.toString());

@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 
 /**
  * Validates the attributes and values.
- *
+ * <p>
  * the validation eIdentifier (PERSON_IDENTIFIER & LEGAL_PERSON_IDENTIFIER ) are reported to the connector validation
  */
 public final class EidasAttributeValidator extends AttributeSchemaValidator {

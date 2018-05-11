@@ -30,19 +30,21 @@ import eu.eidas.auth.engine.core.stork.SPID;
  */
 public class SPIDImpl extends AbstractSAMLObject implements SPID {
 
-    /** The citizen country code. */
+    /**
+     * The citizen country code.
+     */
     private String spId;
 
     /**
      * Instantiates a new sP country impl.
      *
-     * @param namespaceURI the namespace uri
+     * @param namespaceURI     the namespace uri
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected SPIDImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                       final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /**
@@ -51,7 +53,7 @@ public class SPIDImpl extends AbstractSAMLObject implements SPID {
      * @return the SP ID
      */
     public final String getSPID() {
-    	return spId;
+        return spId;
     }
 
     /**
@@ -60,7 +62,7 @@ public class SPIDImpl extends AbstractSAMLObject implements SPID {
      * @param newSPID the new SP ID
      */
     public final void setSPID(final String newSPID) {
-    	this.spId = prepareForAssignment(this.spId, newSPID);
+        this.spId = prepareForAssignment(this.spId, newSPID);
     }
 
     /**
@@ -69,7 +71,7 @@ public class SPIDImpl extends AbstractSAMLObject implements SPID {
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-    	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

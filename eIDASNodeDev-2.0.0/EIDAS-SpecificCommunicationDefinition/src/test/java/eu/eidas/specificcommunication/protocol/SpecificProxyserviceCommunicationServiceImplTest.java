@@ -110,7 +110,7 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
         final ILightRequest iLightRequestIn = LightRequestTestHelper.createDefaultLightRequest();
         final BinaryLightToken binaryLightToken = getSpecificCommunicationService().putRequest(iLightRequestIn);
         final String tokenBase64 = BinaryLightTokenHelper.encodeBinaryLightTokenBase64(binaryLightToken);
-        final ILightRequest iLightRequestOut = getSpecificCommunicationService().getAndRemoveRequest(tokenBase64,iLightRequestIn.getRequestedAttributes().getDefinitions());
+        final ILightRequest iLightRequestOut = getSpecificCommunicationService().getAndRemoveRequest(tokenBase64, iLightRequestIn.getRequestedAttributes().getDefinitions());
         assertNotNull(iLightRequestOut);
     }
 
@@ -124,7 +124,7 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
     @Test
     public void testRemoveRequestFromCommunicationCacheValidTokenEmptyCache() throws Exception {
         final String tokenBase64 = VALID_BINARY_LIGHT_TOKEN_REQUEST_BASE64;
-        final ILightRequest iLightRequest = getSpecificCommunicationService().getAndRemoveRequest(tokenBase64,null);
+        final ILightRequest iLightRequest = getSpecificCommunicationService().getAndRemoveRequest(tokenBase64, null);
         Assert.assertNull(iLightRequest);
     }
 
@@ -143,7 +143,7 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
         thrown.expectMessage("LightToken digest failure");
 
         final String tokenBase64 = VALID_BINARY_LIGHT_TOKEN_RESPONSE_BASE64;
-        final ILightRequest iLightRequest = getSpecificCommunicationService().getAndRemoveRequest(tokenBase64,null);
+        final ILightRequest iLightRequest = getSpecificCommunicationService().getAndRemoveRequest(tokenBase64, null);
         Assert.assertNull(iLightRequest);
     }
 
@@ -160,7 +160,7 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
         thrown.expectMessage("LightToken parse error");
 
         final String tokenBase64 = INVALID_BINARY_LIGHT_TOKEN;
-        getSpecificCommunicationService().getAndRemoveRequest(tokenBase64,null);
+        getSpecificCommunicationService().getAndRemoveRequest(tokenBase64, null);
     }
 
     /**
@@ -205,9 +205,9 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
         final ILightResponse iLightResponseIn = LightResponseTestHelper.createDefaultLightResponse();
         final BinaryLightToken binaryLightToken = getSpecificCommunicationService().putResponse(iLightResponseIn);
         final String tokenBase64 = BinaryLightTokenHelper.encodeBinaryLightTokenBase64(binaryLightToken);
-        final ILightResponse iLightResponseOut = getSpecificCommunicationService().getAndRemoveResponse(tokenBase64,iLightResponseIn.getAttributes().getDefinitions());
+        final ILightResponse iLightResponseOut = getSpecificCommunicationService().getAndRemoveResponse(tokenBase64, iLightResponseIn.getAttributes().getDefinitions());
         //Assert.assertSame(iLightResponseIn, iLightResponseOut);
-        Assert.assertNotNull( iLightResponseOut);
+        Assert.assertNotNull(iLightResponseOut);
     }
 
     /**
@@ -220,7 +220,7 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
     @Test
     public void testRemoveResponseFromCommunicationCacheValidTokenEmptyCache() throws Exception {
         final String tokenBase64 = VALID_BINARY_LIGHT_TOKEN_RESPONSE_BASE64;
-        final ILightResponse iLightResponse = getSpecificCommunicationService().getAndRemoveResponse(tokenBase64,null);
+        final ILightResponse iLightResponse = getSpecificCommunicationService().getAndRemoveResponse(tokenBase64, null);
         Assert.assertNull(iLightResponse);
     }
 
@@ -239,7 +239,7 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
         thrown.expectMessage("LightToken digest failure");
 
         final String tokenBase64 = VALID_BINARY_LIGHT_TOKEN_REQUEST_BASE64;
-        final ILightResponse iLightResponse = getSpecificCommunicationService().getAndRemoveResponse(tokenBase64,null);
+        final ILightResponse iLightResponse = getSpecificCommunicationService().getAndRemoveResponse(tokenBase64, null);
         Assert.assertNull(iLightResponse);
     }
 
@@ -256,7 +256,7 @@ public class SpecificProxyserviceCommunicationServiceImplTest {
         thrown.expectMessage("LightToken parse error");
 
         final String tokenBase64 = INVALID_BINARY_LIGHT_TOKEN;
-        getSpecificCommunicationService().getAndRemoveResponse(tokenBase64,null);
+        getSpecificCommunicationService().getAndRemoveResponse(tokenBase64, null);
     }
 
     public SpecificProxyserviceCommunicationServiceImpl getSpecificCommunicationService() {

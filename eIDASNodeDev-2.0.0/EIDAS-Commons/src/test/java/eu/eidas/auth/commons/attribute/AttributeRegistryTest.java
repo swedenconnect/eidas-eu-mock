@@ -142,7 +142,7 @@ public final class AttributeRegistryTest {
     }
 
     @Test
-    public void testWrongAttributeCannotBeFound() throws Exception{
+    public void testWrongAttributeCannotBeFound() throws Exception {
         ImmutableSortedSet<AttributeDefinition<?>> attributes = attributeRegistry.getAttributes();
         assertThat(attributes.contains(TOTALLY_WRONG_ATTRIBUTE), is(Boolean.FALSE));
     }

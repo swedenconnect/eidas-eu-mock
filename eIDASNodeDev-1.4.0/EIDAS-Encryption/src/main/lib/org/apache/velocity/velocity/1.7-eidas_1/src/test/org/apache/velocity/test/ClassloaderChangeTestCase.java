@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.File;
@@ -39,8 +39,7 @@ import org.apache.velocity.util.introspection.IntrospectorCacheImpl;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ClassloaderChangeTestCase.java 680817 2008-07-29 19:49:41Z nbubna $
  */
-public class ClassloaderChangeTestCase extends TestCase implements LogChute
-{
+public class ClassloaderChangeTestCase extends TestCase implements LogChute {
     private VelocityEngine ve = null;
     private boolean sawCacheDump = false;
 
@@ -50,26 +49,22 @@ public class ClassloaderChangeTestCase extends TestCase implements LogChute
     /**
      * Default constructor.
      */
-    public ClassloaderChangeTestCase(String name)
-    {
+    public ClassloaderChangeTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         ve = new VelocityEngine();
-        ve.setProperty(VelocityEngine.RUNTIME_LOG_LOGSYSTEM, this );
+        ve.setProperty(VelocityEngine.RUNTIME_LOG_LOGSYSTEM, this);
         ve.init();
     }
 
-    public void init( RuntimeServices rs )
-    {
+    public void init(RuntimeServices rs) {
         // do nothing with it
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(ClassloaderChangeTestCase.class);
     }
 
@@ -77,8 +72,7 @@ public class ClassloaderChangeTestCase extends TestCase implements LogChute
      * Runs the test.
      */
     public void testClassloaderChange()
-        throws Exception
-    {
+            throws Exception {
         sawCacheDump = false;
 
         VelocityContext vc = new VelocityContext();
@@ -102,15 +96,14 @@ public class ClassloaderChangeTestCase extends TestCase implements LogChute
          *  that will get it into the introspector cache
          */
         StringWriter writer = new StringWriter();
-        ve.evaluate( vc, writer, "test", "$foo.doIt()");
+        ve.evaluate(vc, writer, "test", "$foo.doIt()");
 
         /*
          *  Check to make sure ok.  note the obvious
          *  dependency on the Foo class...
          */
 
-        if ( !writer.toString().equals( OUTPUT ))
-        {
+        if (!writer.toString().equals(OUTPUT)) {
             fail("Output from doIt() incorrect");
         }
 
@@ -124,76 +117,67 @@ public class ClassloaderChangeTestCase extends TestCase implements LogChute
         vc.put("foo", foo);
 
         writer = new StringWriter();
-        ve.evaluate( vc, writer, "test", "$foo.doIt()");
+        ve.evaluate(vc, writer, "test", "$foo.doIt()");
 
-        if ( !writer.toString().equals( OUTPUT ))
-        {
+        if (!writer.toString().equals(OUTPUT)) {
             fail("Output from doIt() incorrect");
         }
 
-        if (!sawCacheDump)
-        {
+        if (!sawCacheDump) {
             fail("Didn't see introspector cache dump.");
         }
     }
 
     /**
-     *  method to catch Velocity log messages.  When we
-     *  see the introspector dump message, then set the flag
+     * method to catch Velocity log messages.  When we
+     * see the introspector dump message, then set the flag
      */
-    public void log(int level, String message)
-    {
-        if (message.equals( IntrospectorCacheImpl.CACHEDUMP_MSG) )
-        {
+    public void log(int level, String message) {
+        if (message.equals(IntrospectorCacheImpl.CACHEDUMP_MSG)) {
             sawCacheDump = true;
         }
     }
 
     /**
-     *  method to catch Velocity log messages.  When we
-     *  see the introspector dump message, then set the flag
+     * method to catch Velocity log messages.  When we
+     * see the introspector dump message, then set the flag
      */
-    public void log(int level, String message, Throwable t)
-    {
+    public void log(int level, String message, Throwable t) {
         // ignore the Throwable for this test
         log(level, message);
     }
 
-    public boolean isLevelEnabled(int level)
-    {
+    public boolean isLevelEnabled(int level) {
         return true;
     }
 }
 
 /**
- *  Simple (real simple...) classloader that depends
- *  on a Foo.class being located in the classloader
- *  directory under test
+ * Simple (real simple...) classloader that depends
+ * on a Foo.class being located in the classloader
+ * directory under test
  */
-class TestClassloader extends ClassLoader
-{
+class TestClassloader extends ClassLoader {
     private final static String testclass =
-        "test/classloader/Foo.class";
+            "test/classloader/Foo.class";
 
     private Class fooClass = null;
 
     public TestClassloader()
-            throws Exception
-    {
-        File f = new File( testclass );
+            throws Exception {
+        File f = new File(testclass);
 
-        byte[] barr = new byte[ (int) f.length() ];
+        byte[] barr = new byte[(int) f.length()];
 
-        FileInputStream fis = new FileInputStream( f );
-        fis.read( barr );
+        FileInputStream fis = new FileInputStream(f);
+        fis.read(barr);
         fis.close();
 
         fooClass = defineClass("Foo", barr, 0, barr.length);
     }
 
 
-    public Class findClass(String name)
-    {
+    public Class findClass(String name) {
         return fooClass;
     }
 }

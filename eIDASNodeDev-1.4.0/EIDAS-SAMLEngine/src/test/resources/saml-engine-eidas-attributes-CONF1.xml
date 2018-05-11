@@ -11,7 +11,8 @@
     <entry key="1.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="1.XmlType.LocalPart">PersonIdentifierType</entry>
     <entry key="1.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="1.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="1.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="2.NameUri">http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName</entry>
     <entry key="2.FriendlyName">FamilyName</entry>
@@ -40,7 +41,8 @@
     <entry key="4.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="4.XmlType.LocalPart">DateOfBirthType</entry>
     <entry key="4.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="4.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.DateTimeAttributeValueMarshaller</entry>
+    <entry key="4.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.DateTimeAttributeValueMarshaller
+    </entry>
 
     <entry key="5.NameUri">http://eidas.europa.eu/attributes/naturalperson/BirthName</entry>
     <entry key="5.FriendlyName">BirthName</entry>
@@ -57,7 +59,8 @@
     <entry key="6.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="6.XmlType.LocalPart">PlaceOfBirthType</entry>
     <entry key="6.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="6.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="6.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="7.NameUri">http://eidas.europa.eu/attributes/naturalperson/CurrentAddress</entry>
     <entry key="7.FriendlyName">CurrentAddress</entry>
@@ -65,7 +68,9 @@
     <entry key="7.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="7.XmlType.LocalPart">CurrentAddressType</entry>
     <entry key="7.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="7.AttributeValueMarshaller">eu.eidas.auth.commons.protocol.eidas.impl.CurrentAddressAttributeValueMarshaller</entry>
+    <entry key="7.AttributeValueMarshaller">
+        eu.eidas.auth.commons.protocol.eidas.impl.CurrentAddressAttributeValueMarshaller
+    </entry>
 
     <entry key="8.NameUri">http://eidas.europa.eu/attributes/naturalperson/Gender</entry>
     <entry key="8.FriendlyName">Gender</entry>
@@ -73,7 +78,8 @@
     <entry key="8.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="8.XmlType.LocalPart">GenderType</entry>
     <entry key="8.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="8.AttributeValueMarshaller">eu.eidas.auth.commons.protocol.eidas.impl.GenderAttributeValueMarshaller</entry>
+    <entry key="8.AttributeValueMarshaller">eu.eidas.auth.commons.protocol.eidas.impl.GenderAttributeValueMarshaller
+    </entry>
 
     <entry key="9.NameUri">http://eidas.europa.eu/attributes/legalperson/LegalPersonIdentifier</entry>
     <entry key="9.FriendlyName">LegalPersonIdentifier</entry>
@@ -83,7 +89,8 @@
     <entry key="9.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="9.XmlType.LocalPart">LegalPersonIdentifierType</entry>
     <entry key="9.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="9.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="9.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="10.NameUri">http://eidas.europa.eu/attributes/legalperson/LegalName</entry>
     <entry key="10.FriendlyName">LegalName</entry>
@@ -101,7 +108,9 @@
     <entry key="11.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="11.XmlType.LocalPart">LegalPersonAddressType</entry>
     <entry key="11.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="11.AttributeValueMarshaller">eu.eidas.auth.commons.protocol.eidas.impl.LegalAddressAttributeValueMarshaller</entry>
+    <entry key="11.AttributeValueMarshaller">
+        eu.eidas.auth.commons.protocol.eidas.impl.LegalAddressAttributeValueMarshaller
+    </entry>
 
     <entry key="12.NameUri">http://eidas.europa.eu/attributes/legalperson/VATRegistration</entry>
     <entry key="12.FriendlyName">VATRegistration</entry>
@@ -109,7 +118,9 @@
     <entry key="12.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="12.XmlType.LocalPart">VATRegistrationNumberType</entry>
     <entry key="12.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="12.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="12.AttributeValueMarshaller">
+        eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="13.NameUri">http://eidas.europa.eu/attributes/legalperson/TaxReference</entry>
     <entry key="13.FriendlyName">TaxReference</entry>
@@ -117,7 +128,9 @@
     <entry key="13.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="13.XmlType.LocalPart">TaxReferenceType</entry>
     <entry key="13.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="13.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="13.AttributeValueMarshaller">
+        eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="14.NameUri">http://eidas.europa.eu/attributes/legalperson/D-2012-17-EUIdentifier</entry>
     <entry key="14.FriendlyName">D-2012-17-EUIdentifier</entry>
@@ -125,7 +138,9 @@
     <entry key="14.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="14.XmlType.LocalPart">D-2012-17-EUIdentifierType</entry>
     <entry key="14.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="14.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="14.AttributeValueMarshaller">
+        eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="15.NameUri">http://eidas.europa.eu/attributes/legalperson/LEI</entry>
     <entry key="15.FriendlyName">LEI</entry>
@@ -133,7 +148,9 @@
     <entry key="15.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="15.XmlType.LocalPart">LEIType</entry>
     <entry key="15.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="15.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="15.AttributeValueMarshaller">
+        eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="16.NameUri">http://eidas.europa.eu/attributes/legalperson/EORI</entry>
     <entry key="16.FriendlyName">EORI</entry>
@@ -141,7 +158,9 @@
     <entry key="16.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="16.XmlType.LocalPart">EORIType</entry>
     <entry key="16.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="16.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="16.AttributeValueMarshaller">
+        eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="17.NameUri">http://eidas.europa.eu/attributes/legalperson/SEED</entry>
     <entry key="17.FriendlyName">SEED</entry>
@@ -149,7 +168,9 @@
     <entry key="17.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="17.XmlType.LocalPart">SEEDType</entry>
     <entry key="17.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="17.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="17.AttributeValueMarshaller">
+        eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 
     <entry key="18.NameUri">http://eidas.europa.eu/attributes/legalperson/SIC</entry>
     <entry key="18.FriendlyName">SIC</entry>
@@ -157,5 +178,7 @@
     <entry key="18.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="18.XmlType.LocalPart">SICType</entry>
     <entry key="18.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="18.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="18.AttributeValueMarshaller">
+        eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller
+    </entry>
 </properties>

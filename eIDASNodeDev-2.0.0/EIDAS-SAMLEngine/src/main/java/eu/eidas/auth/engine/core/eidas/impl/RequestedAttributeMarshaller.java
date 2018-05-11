@@ -33,7 +33,6 @@ import java.util.Map.Entry;
 
 /**
  * The Class RequestedAttributeMarshaller.
- *
  */
 public class RequestedAttributeMarshaller extends AbstractSAMLObjectMarshaller {
 
@@ -41,112 +40,109 @@ public class RequestedAttributeMarshaller extends AbstractSAMLObjectMarshaller {
      * Marshall attributes.
      *
      * @param samlElement the SAML element
-     * @param domElement the DOM element
+     * @param domElement  the DOM element
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallAttributes(final XMLObject samlElement,
-	    final Element domElement) throws MarshallingException {
-	final RequestedAttribute requestedAttr = (RequestedAttribute) samlElement;
+                                            final Element domElement) throws MarshallingException {
+        final RequestedAttribute requestedAttr = (RequestedAttribute) samlElement;
 
-	if (requestedAttr.getName() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.NAME_ATTRIB_NAME, requestedAttr
-			    .getName());
-	}
+        if (requestedAttr.getName() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.NAME_ATTRIB_NAME, requestedAttr
+                            .getName());
+        }
 
-	if (requestedAttr.getNameFormat() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.NAME_FORMAT_ATTR, requestedAttr
-			    .getNameFormat());
-	}
+        if (requestedAttr.getNameFormat() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.NAME_FORMAT_ATTR, requestedAttr
+                            .getNameFormat());
+        }
 
-	if (requestedAttr.getFriendlyName() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.FRIENDLY_NAME_ATT, requestedAttr
-			    .getFriendlyName());
-	}
+        if (requestedAttr.getFriendlyName() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.FRIENDLY_NAME_ATT, requestedAttr
+                            .getFriendlyName());
+        }
 
-	if (requestedAttr.getIsRequiredXSBoolean() != null) {
-	    domElement.setAttributeNS(null,
-		    RequestedAttribute.IS_REQUIRED_ATTR, requestedAttr
-			    .getIsRequiredXSBoolean());
-	}
+        if (requestedAttr.getIsRequiredXSBoolean() != null) {
+            domElement.setAttributeNS(null,
+                    RequestedAttribute.IS_REQUIRED_ATTR, requestedAttr
+                            .getIsRequiredXSBoolean());
+        }
 
-		Attr attr;
-		for (Entry<QName, String> entry : requestedAttr.getUnknownAttributes().entrySet()) {
-			attr = constructAttribute(domElement.getOwnerDocument(), entry.getKey());
-			attr.setValue(entry.getValue());
-			domElement.setAttributeNodeNS(attr);
-			if (XMLObjectProviderRegistrySupport.isIDAttribute(entry.getKey())
-					|| requestedAttr.getUnknownAttributes().isIDAttribute(
-					entry.getKey())) {
-				attr.getOwnerElement().setIdAttributeNode(attr, true);
-			}
-		}
+        Attr attr;
+        for (Entry<QName, String> entry : requestedAttr.getUnknownAttributes().entrySet()) {
+            attr = constructAttribute(domElement.getOwnerDocument(), entry.getKey());
+            attr.setValue(entry.getValue());
+            domElement.setAttributeNodeNS(attr);
+            if (XMLObjectProviderRegistrySupport.isIDAttribute(entry.getKey())
+                    || requestedAttr.getUnknownAttributes().isIDAttribute(
+                    entry.getKey())) {
+                attr.getOwnerElement().setIdAttributeNode(attr, true);
+            }
+        }
     }
 
-	/**
-	 * Constructs an attribute owned by the given document with the given name.
-	 *
-	 * @param owningDocument the owning document
-	 * @param attributeName the name of that attribute
-	 *
-	 * @return the constructed attribute
-	 */
-	private Attr constructAttribute(Document owningDocument, QName attributeName) {
-		return constructAttribute(owningDocument, attributeName.getNamespaceURI(), attributeName.getLocalPart(),
-				attributeName.getPrefix());
-	}
+    /**
+     * Constructs an attribute owned by the given document with the given name.
+     *
+     * @param owningDocument the owning document
+     * @param attributeName  the name of that attribute
+     * @return the constructed attribute
+     */
+    private Attr constructAttribute(Document owningDocument, QName attributeName) {
+        return constructAttribute(owningDocument, attributeName.getNamespaceURI(), attributeName.getLocalPart(),
+                attributeName.getPrefix());
+    }
 
-	/**
-	 * Constructs an attribute owned by the given document with the given name.
-	 *
-	 * @param document the owning document
-	 * @param namespaceURI the URI for the namespace the attribute is in
-	 * @param localName the local name
-	 * @param prefix the prefix of the namespace that attribute is in
-	 *
-	 * @return the constructed attribute
-	 */
-	private Attr constructAttribute(Document document, String namespaceURI, String localName, String prefix) {
-		String trimmedLocalName = safeTrimOrNullString(localName);
+    /**
+     * Constructs an attribute owned by the given document with the given name.
+     *
+     * @param document     the owning document
+     * @param namespaceURI the URI for the namespace the attribute is in
+     * @param localName    the local name
+     * @param prefix       the prefix of the namespace that attribute is in
+     * @return the constructed attribute
+     */
+    private Attr constructAttribute(Document document, String namespaceURI, String localName, String prefix) {
+        String trimmedLocalName = safeTrimOrNullString(localName);
 
-		if (trimmedLocalName == null) {
-			throw new IllegalArgumentException("Local name may not be null or empty");
-		}
+        if (trimmedLocalName == null) {
+            throw new IllegalArgumentException("Local name may not be null or empty");
+        }
 
-		String qualifiedName;
-		String trimmedPrefix = safeTrimOrNullString(prefix);
-		if (trimmedPrefix != null) {
-			qualifiedName = trimmedPrefix + ":" + safeTrimOrNullString(trimmedLocalName);
-		} else {
-			qualifiedName = safeTrimOrNullString(trimmedLocalName);
-		}
+        String qualifiedName;
+        String trimmedPrefix = safeTrimOrNullString(prefix);
+        if (trimmedPrefix != null) {
+            qualifiedName = trimmedPrefix + ":" + safeTrimOrNullString(trimmedLocalName);
+        } else {
+            qualifiedName = safeTrimOrNullString(trimmedLocalName);
+        }
 
-		if (StringUtils.isEmpty(namespaceURI)) {
-			return document.createAttributeNS(null, qualifiedName);
-		} else {
-			return document.createAttributeNS(namespaceURI, qualifiedName);
-		}
-	}
+        if (StringUtils.isEmpty(namespaceURI)) {
+            return document.createAttributeNS(null, qualifiedName);
+        } else {
+            return document.createAttributeNS(namespaceURI, qualifiedName);
+        }
+    }
 
-	/**
-	 * Removes preceeding or proceeding whitespace from a string or return null if the string is null or of zero length
-	 * after trimming (i.e. if the string only contained whitespace).
-	 *
-	 * @param s the string to trim
-	 *
-	 * @return the trimmed string or null
-	 */
-	private String safeTrimOrNullString(String s) {
-		if (s != null) {
-			String sTrimmed = s.trim();
-			if (sTrimmed.length() > 0) {
-				return sTrimmed;
-			}
-		}
+    /**
+     * Removes preceeding or proceeding whitespace from a string or return null if the string is null or of zero length
+     * after trimming (i.e. if the string only contained whitespace).
+     *
+     * @param s the string to trim
+     * @return the trimmed string or null
+     */
+    private String safeTrimOrNullString(String s) {
+        if (s != null) {
+            String sTrimmed = s.trim();
+            if (sTrimmed.length() > 0) {
+                return sTrimmed;
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 
 }

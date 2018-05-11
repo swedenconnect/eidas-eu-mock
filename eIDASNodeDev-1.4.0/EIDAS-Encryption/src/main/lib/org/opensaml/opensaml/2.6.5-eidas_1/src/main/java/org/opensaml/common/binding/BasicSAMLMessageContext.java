@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,314 +31,454 @@ import org.opensaml.xml.util.DatatypeHelper;
 
 /**
  * Base implemention of {@link SAMLMessageContext}.
- * 
- * @param <InboundMessageType> type of inbound SAML message
+ *
+ * @param <InboundMessageType>  type of inbound SAML message
  * @param <OutboundMessageType> type of outbound SAML message
- * @param <NameIdentifierType> type of name identifier used for subjects
+ * @param <NameIdentifierType>  type of name identifier used for subjects
  */
 public class BasicSAMLMessageContext<InboundMessageType extends SAMLObject, OutboundMessageType extends SAMLObject, NameIdentifierType extends SAMLObject>
         extends BaseMessageContext implements SAMLMessageContext<InboundMessageType, OutboundMessageType, NameIdentifierType> {
 
-    /** Gets the artifact type used for outbound messages. */
+    /**
+     * Gets the artifact type used for outbound messages.
+     */
     private byte[] artifactType;
-    
-    /** Name identifier for the Subject of the message. */
+
+    /**
+     * Name identifier for the Subject of the message.
+     */
     private NameIdentifierType subjectNameIdentifer;
-    
-    /** Local entity's ID. */
+
+    /**
+     * Local entity's ID.
+     */
     private String localEntityId;
 
-    /** Local entity's metadata. */
+    /**
+     * Local entity's metadata.
+     */
     private EntityDescriptor localEntityMetadata;
 
-    /** Asserting entity's role. */
+    /**
+     * Asserting entity's role.
+     */
     private QName localEntityRole;
 
-    /** Asserting entity's role metadata. */
+    /**
+     * Asserting entity's role metadata.
+     */
     private RoleDescriptor localEntityRoleMetadata;
 
-    /** Inbound SAML message. */
+    /**
+     * Inbound SAML message.
+     */
     private InboundMessageType inboundSAMLMessage;
 
-    /** Whether the inbound SAML message has been authenticated. */
+    /**
+     * Whether the inbound SAML message has been authenticated.
+     */
     private boolean inboundSAMLMessageAuthenticated;
 
-    /** Inbound SAML message's ID. */
+    /**
+     * Inbound SAML message's ID.
+     */
     private String inboundSAMLMessageId;
 
-    /** Inbound SAML message's issue instant. */
+    /**
+     * Inbound SAML message's issue instant.
+     */
     private DateTime inboundSAMLMessageIssueInstant;
 
-    /** Inbound SAML protocol. */
+    /**
+     * Inbound SAML protocol.
+     */
     private String inboundSAMLProtocol;
 
-    /** Metadata provider used to lookup entity information. */
+    /**
+     * Metadata provider used to lookup entity information.
+     */
     private MetadataProvider metdataProvider;
 
-    /** Outbound SAML message. */
+    /**
+     * Outbound SAML message.
+     */
     private OutboundMessageType outboundSAMLMessage;
 
-    /** Outbound SAML message's ID. */
+    /**
+     * Outbound SAML message's ID.
+     */
     private String outboundSAMLMessageId;
 
-    /** Outbound SAML message's issue instant. */
+    /**
+     * Outbound SAML message's issue instant.
+     */
     private DateTime outboundSAMLMessageIssueInstant;
 
-    /** Outboud SAML message signing credential. */
+    /**
+     * Outboud SAML message signing credential.
+     */
     private Credential outboundSAMLMessageSigningCredential;
 
-    /** Outbound SAML procotol. */
+    /**
+     * Outbound SAML procotol.
+     */
     private String outboundSAMLProtocol;
 
-    /** Message relay state. */
+    /**
+     * Message relay state.
+     */
     private String relayState;
 
-    /** Peer entity's endpoint. */
+    /**
+     * Peer entity's endpoint.
+     */
     private Endpoint peerEntityEndpoint;
 
-    /**Peer entity's ID. */
+    /**
+     * Peer entity's ID.
+     */
     private String peerEntityId;
 
-    /** Peer entity's metadata. */
+    /**
+     * Peer entity's metadata.
+     */
     private EntityDescriptor peerEntityMetadata;
 
-    /** Peer entity's role. */
+    /**
+     * Peer entity's role.
+     */
     private QName peerEntityRole;
 
-    /** Peer entity's role metadata. */
+    /**
+     * Peer entity's role metadata.
+     */
     private RoleDescriptor peerEntityRoleMetadata;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public InboundMessageType getInboundSAMLMessage() {
         return inboundSAMLMessage;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getInboundSAMLMessageId() {
         return inboundSAMLMessageId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getInboundSAMLMessageIssueInstant() {
         return inboundSAMLMessageIssueInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getInboundSAMLProtocol() {
         return inboundSAMLProtocol;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getLocalEntityId() {
         return localEntityId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EntityDescriptor getLocalEntityMetadata() {
         return localEntityMetadata;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public QName getLocalEntityRole() {
         return localEntityRole;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public RoleDescriptor getLocalEntityRoleMetadata() {
         return localEntityRoleMetadata;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public MetadataProvider getMetadataProvider() {
         return metdataProvider;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Credential getOuboundSAMLMessageSigningCredential() {
         return outboundSAMLMessageSigningCredential;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public OutboundMessageType getOutboundSAMLMessage() {
         return outboundSAMLMessage;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getOutboundSAMLMessageId() {
         return outboundSAMLMessageId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public DateTime getOutboundSAMLMessageIssueInstant() {
         return outboundSAMLMessageIssueInstant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getOutboundSAMLProtocol() {
         return outboundSAMLProtocol;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Endpoint getPeerEntityEndpoint() {
         return peerEntityEndpoint;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getPeerEntityId() {
         return peerEntityId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public EntityDescriptor getPeerEntityMetadata() {
         return peerEntityMetadata;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public QName getPeerEntityRole() {
         return peerEntityRole;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public RoleDescriptor getPeerEntityRoleMetadata() {
         return peerEntityRoleMetadata;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getRelayState() {
         return relayState;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public NameIdentifierType getSubjectNameIdentifier() {
         return subjectNameIdentifer;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isInboundSAMLMessageAuthenticated() {
         return inboundSAMLMessageAuthenticated;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInboundSAMLMessage(InboundMessageType message) {
         inboundSAMLMessage = message;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInboundSAMLMessageAuthenticated(boolean isAuthenticated) {
         inboundSAMLMessageAuthenticated = isAuthenticated;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInboundSAMLMessageId(String id) {
         inboundSAMLMessageId = DatatypeHelper.safeTrimOrNullString(id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInboundSAMLMessageIssueInstant(DateTime instant) {
         inboundSAMLMessageIssueInstant = instant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInboundSAMLProtocol(String protocol) {
         inboundSAMLProtocol = DatatypeHelper.safeTrimOrNullString(protocol);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setLocalEntityId(String id) {
         localEntityId = DatatypeHelper.safeTrimOrNullString(id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setLocalEntityMetadata(EntityDescriptor metadata) {
         localEntityMetadata = metadata;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setLocalEntityRole(QName role) {
         localEntityRole = role;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setLocalEntityRoleMetadata(RoleDescriptor role) {
         localEntityRoleMetadata = role;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setMetadataProvider(MetadataProvider provider) {
         metdataProvider = provider;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOutboundSAMLMessage(OutboundMessageType message) {
         outboundSAMLMessage = message;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOutboundSAMLMessageId(String id) {
         outboundSAMLMessageId = DatatypeHelper.safeTrimOrNullString(id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOutboundSAMLMessageIssueInstant(DateTime instant) {
         outboundSAMLMessageIssueInstant = instant;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOutboundSAMLMessageSigningCredential(Credential credential) {
         outboundSAMLMessageSigningCredential = credential;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOutboundSAMLProtocol(String protocol) {
         outboundSAMLProtocol = DatatypeHelper.safeTrimOrNullString(protocol);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPeerEntityEndpoint(Endpoint endpoint) {
         peerEntityEndpoint = endpoint;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPeerEntityId(String id) {
         peerEntityId = DatatypeHelper.safeTrimOrNullString(id);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPeerEntityMetadata(EntityDescriptor metadata) {
         peerEntityMetadata = metadata;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPeerEntityRole(QName role) {
         peerEntityRole = role;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPeerEntityRoleMetadata(RoleDescriptor role) {
         peerEntityRoleMetadata = role;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRelayState(String state) {
         relayState = DatatypeHelper.safeTrimOrNullString(state);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSubjectNameIdentifier(NameIdentifierType identifier) {
         subjectNameIdentifer = identifier;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public byte[] getOutboundMessageArtifactType() {
         return artifactType;
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public void setOutboundMessageArtifactType(byte[] type) {
         artifactType = type;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isIssuerAuthenticated() {
         return isInboundSAMLMessageAuthenticated() || super.isIssuerAuthenticated();
     }

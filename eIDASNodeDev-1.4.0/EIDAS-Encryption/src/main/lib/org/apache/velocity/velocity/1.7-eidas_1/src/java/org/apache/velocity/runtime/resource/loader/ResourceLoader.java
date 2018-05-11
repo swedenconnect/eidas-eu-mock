@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.resource.loader;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.InputStream;
@@ -37,13 +37,12 @@ import org.apache.commons.collections.ExtendedProperties;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ResourceLoader.java 832280 2009-11-03 02:47:55Z wglass $
  */
-public abstract class ResourceLoader
-{
+public abstract class ResourceLoader {
     /**
      * Does this loader want templates produced with it
      * cached in the Runtime.
      */
-     protected boolean isCachingOn = false;
+    protected boolean isCachingOn = false;
 
     /**
      * This property will be passed on to the templates
@@ -64,11 +63,11 @@ public abstract class ResourceLoader
      * This initialization is used by all resource
      * loaders and must be called to set up common
      * properties shared by all resource loaders
+     *
      * @param rs
      * @param configuration
      */
-    public void commonInit( RuntimeServices rs, ExtendedProperties configuration)
-    {
+    public void commonInit(RuntimeServices rs, ExtendedProperties configuration) {
         this.rsvc = rs;
         this.log = rsvc.getLog();
 
@@ -80,25 +79,19 @@ public abstract class ResourceLoader
          *  don't cache, and modCheckInterval irrelevant...
          */
 
-        try
-        {
+        try {
             isCachingOn = configuration.getBoolean("cache", false);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             isCachingOn = false;
-            String msg = "Exception parsing cache setting: "+configuration.getString("cache");
+            String msg = "Exception parsing cache setting: " + configuration.getString("cache");
             log.error(msg, e);
             throw new VelocityException(msg, e);
         }
-        try
-        {
+        try {
             modificationCheckInterval = configuration.getLong("modificationCheckInterval", 0);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             modificationCheckInterval = 0;
-            String msg = "Exception parsing modificationCheckInterval setting: "+configuration.getString("modificationCheckInterval");
+            String msg = "Exception parsing modificationCheckInterval setting: " + configuration.getString("modificationCheckInterval");
             log.error(msg, e);
             throw new VelocityException(msg, e);
         }
@@ -107,12 +100,9 @@ public abstract class ResourceLoader
          * this is a must!
          */
         className = ResourceCacheImpl.class.getName();
-        try
-        {
+        try {
             className = configuration.getString("class", className);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             String msg = "Exception retrieving resource cache class name";
             log.error(msg, e);
             throw new VelocityException(msg, e);
@@ -122,23 +112,26 @@ public abstract class ResourceLoader
     /**
      * Initialize the template loader with a
      * a resources class.
+     *
      * @param configuration
      */
-    public abstract void init( ExtendedProperties configuration);
+    public abstract void init(ExtendedProperties configuration);
 
     /**
      * Get the InputStream that the Runtime will parse
      * to create a template.
+     *
      * @param source
      * @return The input stream for the requested resource.
      * @throws ResourceNotFoundException
      */
-    public abstract InputStream getResourceStream( String source )
-        throws ResourceNotFoundException;
+    public abstract InputStream getResourceStream(String source)
+            throws ResourceNotFoundException;
 
     /**
      * Given a template, check to see if the source of InputStream
      * has been modified.
+     *
      * @param resource
      * @return True if the resource has been modified.
      */
@@ -149,6 +142,7 @@ public abstract class ResourceLoader
      * that was used to create the template. We need the template
      * here because we have to extract the name of the template
      * in order to locate the InputStream source.
+     *
      * @param resource
      * @return Time in millis when the resource has been modified.
      */
@@ -156,10 +150,10 @@ public abstract class ResourceLoader
 
     /**
      * Return the class name of this resource Loader
+     *
      * @return Class name of the resource loader.
      */
-    public String getClassName()
-    {
+    public String getClassName() {
         return className;
     }
 
@@ -168,10 +162,10 @@ public abstract class ResourceLoader
      * would like the Runtime to cache templates that
      * have been created with InputStreams provided
      * by this loader.
+     *
      * @param value
      */
-    public void setCachingOn(boolean value)
-    {
+    public void setCachingOn(boolean value) {
         isCachingOn = value;
     }
 
@@ -180,73 +174,61 @@ public abstract class ResourceLoader
      * template loader wants the Runtime to cache
      * templates created with InputStreams provided
      * by this loader.
+     *
      * @return True if this resource loader caches.
      */
-    public boolean isCachingOn()
-    {
+    public boolean isCachingOn() {
         return isCachingOn;
     }
 
     /**
      * Set the interval at which the InputStream source
      * should be checked for modifications.
+     *
      * @param modificationCheckInterval
      */
-    public void setModificationCheckInterval(long modificationCheckInterval)
-    {
+    public void setModificationCheckInterval(long modificationCheckInterval) {
         this.modificationCheckInterval = modificationCheckInterval;
     }
 
     /**
      * Get the interval at which the InputStream source
      * should be checked for modifications.
+     *
      * @return The modification check interval.
      */
-    public long getModificationCheckInterval()
-    {
+    public long getModificationCheckInterval() {
         return modificationCheckInterval;
     }
 
     /**
      * Check whether any given resource exists. This is not really
      * a very efficient test and it can and should be overridden in the
-     * subclasses extending ResourceLoader. 
+     * subclasses extending ResourceLoader.
      *
      * @param resourceName The name of a resource.
      * @return true if a resource exists and can be accessed.
      * @since 1.6
      */
-    public boolean resourceExists(final String resourceName)
-    {
+    public boolean resourceExists(final String resourceName) {
         InputStream is = null;
-        try
-        {
+        try {
             is = getResourceStream(resourceName);
-        }
-        catch (ResourceNotFoundException e)
-        {
-            if (log.isDebugEnabled())
-            {
-                log.debug("Could not load resource '" + resourceName 
-                        + "' from ResourceLoader " + this.getClass().getName() 
+        } catch (ResourceNotFoundException e) {
+            if (log.isDebugEnabled()) {
+                log.debug("Could not load resource '" + resourceName
+                        + "' from ResourceLoader " + this.getClass().getName()
                         + ": " + e.getMessage());
             }
-        }
-        finally
-        {
-            try
-            {
-                if (is != null)
-                {
+        } finally {
+            try {
+                if (is != null) {
                     is.close();
                 }
-            }
-            catch (Exception e)
-            {
-                if (log.isErrorEnabled())
-                {
+            } catch (Exception e) {
+                if (log.isErrorEnabled()) {
                     String msg = "While closing InputStream for resource '" + resourceName
-                        + "' from ResourceLoader "+this.getClass().getName();
+                            + "' from ResourceLoader " + this.getClass().getName();
                     log.error(msg, e);
                     throw new VelocityException(msg, e);
                 }

@@ -30,19 +30,21 @@ import eu.eidas.auth.engine.core.stork.SPCountry;
  */
 public class SPCountryImpl extends AbstractSAMLObject implements SPCountry {
 
-    /** The service provider country. */
+    /**
+     * The service provider country.
+     */
     private String spCountry;
 
     /**
      * Instantiates a new service provider country.
      *
-     * @param namespaceURI the namespace uri
+     * @param namespaceURI     the namespace uri
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected SPCountryImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                            final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /**
@@ -51,7 +53,7 @@ public class SPCountryImpl extends AbstractSAMLObject implements SPCountry {
      * @return the service provider country
      */
     public final String getSPCountry() {
-	return spCountry;
+        return spCountry;
     }
 
     /**
@@ -60,7 +62,7 @@ public class SPCountryImpl extends AbstractSAMLObject implements SPCountry {
      * @param newSpCountry the new service provider country
      */
     public final void setSPCountry(final String newSpCountry) {
-	this.spCountry = prepareForAssignment(this.spCountry, newSpCountry);
+        this.spCountry = prepareForAssignment(this.spCountry, newSpCountry);
     }
 
     /**
@@ -69,7 +71,7 @@ public class SPCountryImpl extends AbstractSAMLObject implements SPCountry {
      * @return the ordered children
      */
     public final List<XMLObject> getOrderedChildren() {
-	return new ArrayList<XMLObject>();
+        return new ArrayList<XMLObject>();
     }
 
 }

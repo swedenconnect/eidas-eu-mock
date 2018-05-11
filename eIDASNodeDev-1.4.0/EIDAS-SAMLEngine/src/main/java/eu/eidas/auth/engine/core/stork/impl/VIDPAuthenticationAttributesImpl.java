@@ -34,25 +34,29 @@ import eu.eidas.auth.engine.core.stork.VIDPAuthenticationAttributes;
  * @author fjquevedo
  */
 public final class VIDPAuthenticationAttributesImpl extends AbstractSignableSAMLObject implements
-VIDPAuthenticationAttributes {
+        VIDPAuthenticationAttributes {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VIDPAuthenticationAttributesImpl.class.getName());
-    /** The citizen country code. */
+    /**
+     * The citizen country code.
+     */
     private CitizenCountryCode citizenCountryCode;
 
-    /** The SP information. */
+    /**
+     * The SP information.
+     */
     private SPInformation spInformation;
 
-	/**
+    /**
      * Instantiates a new requested attributes implement.
      *
-     * @param namespaceURI the namespace URI
+     * @param namespaceURI     the namespace URI
      * @param elementLocalName the element local name
-     * @param namespacePrefix the namespace prefix
+     * @param namespacePrefix  the namespace prefix
      */
     protected VIDPAuthenticationAttributesImpl(final String namespaceURI,
-	    final String elementLocalName, final String namespacePrefix) {
-	super(namespaceURI, elementLocalName, namespacePrefix);
+                                               final String elementLocalName, final String namespacePrefix) {
+        super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
 
@@ -62,7 +66,7 @@ VIDPAuthenticationAttributes {
      * @return the citizen country code
      */
     public CitizenCountryCode getCitizenCountryCode() {
-    	return citizenCountryCode;
+        return citizenCountryCode;
     }
 
     /**
@@ -71,26 +75,25 @@ VIDPAuthenticationAttributes {
      * @return the SP information
      */
     public SPInformation getSPInformation() {
-		return spInformation;
-	}
+        return spInformation;
+    }
 
     /**
      * Gets the ordered children.
      *
      * @return the ordered children
-     *
      */
     public List<XMLObject> getOrderedChildren() {
-	final List<XMLObject> children = new ArrayList<XMLObject>();
+        final List<XMLObject> children = new ArrayList<XMLObject>();
 
-	children.add(citizenCountryCode);
-	children.add(spInformation);
+        children.add(citizenCountryCode);
+        children.add(spInformation);
 
-	if (getSignature() != null) {
-	    children.add(getSignature());
-	}
+        if (getSignature() != null) {
+            children.add(getSignature());
+        }
 
-	return Collections.unmodifiableList(children);
+        return Collections.unmodifiableList(children);
 
     }
 
@@ -98,31 +101,29 @@ VIDPAuthenticationAttributes {
      * Gets the signature reference id.
      *
      * @return the signature reference id
-     *
      */
     public String getSignatureReferenceID() {
-	return null;
+        return null;
     }
 
     /**
      * Sets the citizen country code.
      *
      * @param newCitizenCountryCode the new citizen country code
-     *
      */
     public void setCitizenCountryCode(CitizenCountryCode newCitizenCountryCode) {
-	this.citizenCountryCode = prepareForAssignment(this.citizenCountryCode, newCitizenCountryCode);
+        this.citizenCountryCode = prepareForAssignment(this.citizenCountryCode, newCitizenCountryCode);
     }
 
     /**
      * Sets the SP information.
      *
      * @param newSPInformation the new SP information
-     *
      */
     public void setSPInformation(SPInformation newSPInformation) {
-		this.spInformation = prepareForAssignment(this.spInformation, newSPInformation);
-	}
+        this.spInformation = prepareForAssignment(this.spInformation, newSPInformation);
+    }
+
     @Override
     public int hashCode() {//NOSONAR
         LOGGER.warn("Hashcode has been called, passed to super. Nothing foreseen here");

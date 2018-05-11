@@ -121,7 +121,7 @@ public final class AUCONNECTOR implements ICONNECTORService {
                 !samlService.checkMandatoryAttributes(authData.getRequestedAttributes())) {
             LOG.error("BUSINESS EXCEPTION : incomplete mandatory set");
             throw new EidasNodeException(EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorCode()),
-                                         EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
+                    EidasErrors.get(EidasErrorKey.EIDAS_MANDATORY_ATTRIBUTES.errorMessage()));
         }
 
         //Validate Representative
@@ -192,7 +192,7 @@ public final class AUCONNECTOR implements ICONNECTORService {
         // processing the webRequest
         AuthenticationExchange authenticationExchange =
                 samlService.processProxyServiceResponse(webRequest, connectorRequestCorrelationMap,
-                                                        specificSpRequestCorrelationMap);
+                        specificSpRequestCorrelationMap);
 
         IAuthenticationResponse connectorResponse = authenticationExchange.getConnectorResponse();
 

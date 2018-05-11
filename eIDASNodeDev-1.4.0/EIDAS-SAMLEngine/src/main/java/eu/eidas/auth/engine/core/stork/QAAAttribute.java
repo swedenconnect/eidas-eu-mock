@@ -28,24 +28,36 @@ import eu.eidas.auth.engine.core.SAMLCore;
  */
 public interface QAAAttribute extends SAMLObject {
 
-    /** Element local name. */
+    /**
+     * Element local name.
+     */
     String DEF_LOCAL_NAME = "QualityAuthenticationAssuranceLevel";
 
-    /** Default element name. */
+    /**
+     * Default element name.
+     */
     QName DEF_ELEMENT_NAME = new QName(SAMLCore.STORK10_NS.getValue(), DEF_LOCAL_NAME,
-	    SAMLCore.STORK10_PREFIX.getValue());
+            SAMLCore.STORK10_PREFIX.getValue());
 
-    /** Local name of the XSI type. */
+    /**
+     * Local name of the XSI type.
+     */
     String TYPE_LOCAL_NAME = "QualityAuthenticationAssuranceLevelAbstractType";
 
-    /** QName of the XSI type. */
+    /**
+     * QName of the XSI type.
+     */
     QName TYPE_NAME = new QName(SAMLCore.STORK10_NS.getValue(), TYPE_LOCAL_NAME,
-	    SAMLCore.STORK10_PREFIX.getValue());
+            SAMLCore.STORK10_PREFIX.getValue());
 
-    /** The minimum value allowed. */
+    /**
+     * The minimum value allowed.
+     */
     int MIN_VALUE = 1;
 
-    /** The Max value allowed. */
+    /**
+     * The Max value allowed.
+     */
     int MAX_VALUE = 4;
 
     /**
@@ -59,7 +71,6 @@ public interface QAAAttribute extends SAMLObject {
      * Sets the qAA level.
      *
      * @param qaaLevel the new qAA level
-     *
      */
     void setQaaLevel(String qaaLevel);
 }

@@ -111,13 +111,13 @@ public final class Preconditions {
      * Ensures that a {@code CharSequence} passed as a parameter to the calling method is not shorter than a given
      * minimum length and not greater than a maximum length.
      *
-     * @param reference a {@code CharSequence}
+     * @param reference     a {@code CharSequence}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
-     * @param maxLength the maximum length allowed
+     * @param minLength     the minimum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null {@code CharSequence} that was validated
      * @throws IllegalArgumentException if the {@code CharSequence} is shorter than the given {@code minLength} or
-     * longer than the given {@code maxLength}
+     *                                  longer than the given {@code maxLength}
      */
     @Nonnull
     public static CharSequence checkLength(CharSequence reference,
@@ -131,13 +131,13 @@ public final class Preconditions {
      * Ensures that a {@code Collection} passed as a parameter to the calling method is not shorter than a given minimum
      * length and not greater than a maximum length.
      *
-     * @param reference a {@code Collection}
+     * @param reference     a {@code Collection}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
-     * @param maxLength the maximum length allowed
+     * @param minLength     the minimum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null {@code Collection} that was validated
      * @throws IllegalArgumentException if the {@code Collection} is shorter than the given {@code minLength} or longer
-     * than the given {@code maxLength}
+     *                                  than the given {@code maxLength}
      */
     @Nonnull
     public static <T, C extends Collection<T>> C checkLength(C reference,
@@ -151,13 +151,13 @@ public final class Preconditions {
      * Ensures that a {@code Map} passed as a parameter to the calling method is not shorter than a given minimum length
      * and not greater than a maximum length.
      *
-     * @param reference a {@code Map}
+     * @param reference     a {@code Map}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
-     * @param maxLength the maximum length allowed
+     * @param minLength     the minimum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null {@code Map} that was validated
      * @throws IllegalArgumentException if the {@code Map} is shorter than the given {@code minLength} or longer than
-     * the given {@code maxLength}
+     *                                  the given {@code maxLength}
      */
     @Nonnull
     public static <K, V, C extends Map<K, V>> C checkLength(C reference,
@@ -171,13 +171,13 @@ public final class Preconditions {
      * Ensures that an array passed as a parameter to the calling method is not shorter than a given minimum length and
      * not greater than a maximum length.
      *
-     * @param reference an array
+     * @param reference     an array
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
-     * @param maxLength the maximum length allowed
+     * @param minLength     the minimum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null array that was validated
      * @throws IllegalArgumentException if the array is shorter than the given {@code minLength} or longer than the
-     * given {@code maxLength}
+     *                                  given {@code maxLength}
      */
     @Nonnull
     public static <T> T[] checkLength(T[] reference, @Nonnull String referenceName, int minLength, int maxLength)
@@ -189,13 +189,13 @@ public final class Preconditions {
      * Ensures that an array passed as a parameter to the calling method is not shorter than a given minimum length and
      * not greater than a maximum length.
      *
-     * @param reference an array
+     * @param reference     an array
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
-     * @param maxLength the maximum length allowed
+     * @param minLength     the minimum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null array that was validated
      * @throws IllegalArgumentException if the array is shorter than the given {@code minLength} or longer than the
-     * given {@code maxLength}
+     *                                  given {@code maxLength}
      */
     @Nonnull
     public static byte[] checkLength(byte[] reference, @Nonnull String referenceName, int minLength, int maxLength)
@@ -222,7 +222,7 @@ public final class Preconditions {
     /**
      * Ensures that a {@code String} passed as a parameter to the calling method is not blank.
      *
-     * @param reference a {@code String}
+     * @param reference     a {@code String}
      * @param referenceName the {@code String} name which will appear in the exception message
      * @return the not-blank {@code String} that was validated
      * @throws IllegalArgumentException if {@code reference} is null, empty or blank
@@ -240,7 +240,7 @@ public final class Preconditions {
     /**
      * Ensures that an array reference passed as a parameter to the calling method is neither null, empty nor blank.
      *
-     * @param reference an array reference
+     * @param reference     an array reference
      * @param referenceName the array name which will appear in the exception message
      * @return the non-null array reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null or empty
@@ -260,7 +260,7 @@ public final class Preconditions {
     /**
      * Ensures that a {@code String} (involved in the state of the calling instance) is not blank.
      *
-     * @param reference a {@code String}
+     * @param reference     a {@code String}
      * @param referenceName the {@code String} name which will appear in the exception message
      * @return the not-blank {@code String} that was validated
      * @throws IllegalStateException if {@code reference} is null, empty or blank
@@ -278,7 +278,7 @@ public final class Preconditions {
     /**
      * Ensures that an array reference passed as a parameter to the calling method is neither null nor empty.
      *
-     * @param reference an array reference
+     * @param reference     an array reference
      * @param referenceName the array name which will appear in the exception message
      * @return the non-null array reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null or empty
@@ -298,7 +298,7 @@ public final class Preconditions {
     /**
      * Ensures that an array reference passed as a parameter to the calling method is neither null nor empty.
      *
-     * @param reference an array reference
+     * @param reference     an array reference
      * @param referenceName the array name which will appear in the exception message
      * @return the non-null array reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null or empty
@@ -317,7 +317,7 @@ public final class Preconditions {
     /**
      * Ensures that an array reference passed as a parameter to the calling method is neither null nor empty.
      *
-     * @param reference an array reference
+     * @param reference     an array reference
      * @param referenceName the array name which will appear in the exception message
      * @return the non-null array reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null or empty
@@ -336,7 +336,7 @@ public final class Preconditions {
     /**
      * Ensures that an array reference passed as a parameter to the calling method is neither null nor empty.
      *
-     * @param reference an array reference
+     * @param reference     an array reference
      * @param referenceName the array name which will appear in the exception message
      * @return the non-null array reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null or empty
@@ -353,7 +353,7 @@ public final class Preconditions {
     /**
      * Ensures that a Collection reference passed as a parameter to the calling method is neither null nor empty.
      *
-     * @param reference a Collection reference
+     * @param reference     a Collection reference
      * @param referenceName the Collection name which will appear in the exception message
      * @return the non-null Collection reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null or empty
@@ -371,7 +371,7 @@ public final class Preconditions {
     /**
      * Ensures that a Map reference passed as a parameter to the calling method is neither null nor empty.
      *
-     * @param reference a Map reference
+     * @param reference     a Map reference
      * @param referenceName the Map name which will appear in the exception message
      * @return the non-null Map reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null or empty
@@ -390,9 +390,9 @@ public final class Preconditions {
      * Ensures that a {@code CharSequence} passed as a parameter to the calling method is not longer than a given
      * maximum length.
      *
-     * @param reference a {@code CharSequence}
+     * @param reference     a {@code CharSequence}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param maxLength the maximum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null {@code CharSequence} that was validated
      * @throws IllegalArgumentException if the {@code CharSequence} is longer than the given {@code maxLength}
      */
@@ -406,9 +406,9 @@ public final class Preconditions {
      * Ensures that a {@code Collection} passed as a parameter to the calling method is not longer than a given maximum
      * length.
      *
-     * @param reference a {@code Collection}
+     * @param reference     a {@code Collection}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param maxLength the maximum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null {@code Collection} that was validated
      * @throws IllegalArgumentException if the {@code Collection} is longer than the given {@code maxLength}
      */
@@ -423,9 +423,9 @@ public final class Preconditions {
      * Ensures that a {@code Map} passed as a parameter to the calling method is not longer than a given maximum
      * length.
      *
-     * @param reference a {@code Map}
+     * @param reference     a {@code Map}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param maxLength the maximum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null {@code Map} that was validated
      * @throws IllegalArgumentException if the {@code Map} is longer than the given {@code maxLength}
      */
@@ -439,9 +439,9 @@ public final class Preconditions {
     /**
      * Ensures that an array passed as a parameter to the calling method is not longer than a given maximum length.
      *
-     * @param reference an array
+     * @param reference     an array
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param maxLength the maximum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null array that was validated
      * @throws IllegalArgumentException if the array is longer than the given {@code maxLength}
      */
@@ -454,9 +454,9 @@ public final class Preconditions {
     /**
      * Ensures that an array passed as a parameter to the calling method is not longer than a given maximum length.
      *
-     * @param reference an array
+     * @param reference     an array
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param maxLength the maximum length allowed
+     * @param maxLength     the maximum length allowed
      * @return the non-null array that was validated
      * @throws IllegalArgumentException if the array is longer than the given {@code maxLength}
      */
@@ -482,11 +482,11 @@ public final class Preconditions {
     /**
      * Ensures that a given value is non negative (ie &gt;= 0).
      *
-     * @param value the value to check
+     * @param value         the value to check
      * @param referenceName the variable name which will appear in the exception message
      * @return the given {@code value} when valid otherwise throws an IllegalArgumentException.
      * @throws IllegalArgumentException if {@code value} is lower than the given {@code min} or is higher than the given
-     * {@code max}.
+     *                                  {@code max}.
      * @since 2015-12-14
      */
     public static int checkNotNegative(int value, @Nonnull String referenceName) throws IllegalArgumentException {
@@ -499,7 +499,7 @@ public final class Preconditions {
     /**
      * Ensures that an object reference passed as a parameter to the calling method is not null.
      *
-     * @param reference an object reference
+     * @param reference     an object reference
      * @param referenceName the object name which will appear in the exception message
      * @return the non-null reference that was validated
      * @throws IllegalArgumentException if {@code reference} is null
@@ -516,7 +516,7 @@ public final class Preconditions {
     /**
      * Ensures that an object reference (involved in the state of the calling instance) is not null.
      *
-     * @param reference an object reference
+     * @param reference     an object reference
      * @param referenceName the object name which will appear in the exception message
      * @return the non-null reference that was validated
      * @throws IllegalStateException if {@code reference} is null
@@ -534,9 +534,9 @@ public final class Preconditions {
      * Ensures that a {@code CharSequence} passed as a parameter to the calling method is not shorter than a given
      * minimum length.
      *
-     * @param reference a {@code CharSequence}
+     * @param reference     a {@code CharSequence}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
+     * @param minLength     the minimum length allowed
      * @return the non-null {@code CharSequence} that was validated
      * @throws IllegalArgumentException if the {@code CharSequence} is shorter than the given {@code minLength}
      */
@@ -550,9 +550,9 @@ public final class Preconditions {
      * Ensures that a {@code Collection} passed as a parameter to the calling method is not shorter than a given minimum
      * length.
      *
-     * @param reference a {@code Collection}
+     * @param reference     a {@code Collection}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
+     * @param minLength     the minimum length allowed
      * @return the non-null {@code Collection} that was validated
      * @throws IllegalArgumentException if the {@code Collection} is shorter than the given {@code minLength}
      */
@@ -567,9 +567,9 @@ public final class Preconditions {
      * Ensures that a {@code Map} passed as a parameter to the calling method is not shorter than a given minimum
      * length.
      *
-     * @param reference a {@code Map}
+     * @param reference     a {@code Map}
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
+     * @param minLength     the minimum length allowed
      * @return the non-null {@code Map} that was validated
      * @throws IllegalArgumentException if the {@code Map} is shorter than the given {@code minLength}
      */
@@ -584,9 +584,9 @@ public final class Preconditions {
      * Ensures that an array passed as a parameter to the calling method is not shorter than a given minimum
      * length.
      *
-     * @param reference the array
+     * @param reference     the array
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
+     * @param minLength     the minimum length allowed
      * @return the non-null {@code Collection} that was validated
      * @throws IllegalArgumentException if the {@code Collection} is shorter than the given {@code minLength}
      */
@@ -600,9 +600,9 @@ public final class Preconditions {
      * Ensures that an array passed as a parameter to the calling method is not shorter than a given minimum
      * length.
      *
-     * @param reference the array
+     * @param reference     the array
      * @param referenceName the {@code String} name which will appear in the exception message
-     * @param minLength the minimum length allowed
+     * @param minLength     the minimum length allowed
      * @return the non-null {@code Collection} that was validated
      * @throws IllegalArgumentException if the {@code Collection} is shorter than the given {@code minLength}
      */
@@ -633,7 +633,7 @@ public final class Preconditions {
      * @param referenceName the {@code String} name which will appear in the exception message
      * @return the reference that was validated
      * @throws IllegalArgumentException if {@code referenceList} is null, empty, contains more than one value or
-     * contains a blank value.
+     *                                  contains a blank value.
      */
     public static List<String> checkSingleValuedList(List<String> referenceList, String referenceName) {
         checkNotNull(referenceList, referenceName);
@@ -655,11 +655,11 @@ public final class Preconditions {
      * Ensures that a given value is within the given bounds (greater or equal to the given minimum and lower or eqal to
      * the given maximum).
      *
-     * @param value the value to check
+     * @param value         the value to check
      * @param referenceName the variable name which will appear in the exception message
      * @return the given {@code value} when valid otherwise throws an IllegalArgumentException.
      * @throws IllegalArgumentException if {@code value} is lower than the given {@code min} or is higher than the given
-     * {@code max}.
+     *                                  {@code max}.
      */
     public static int checkWithinBounds(int value, @Nonnull String referenceName, int min, int max)
             throws IllegalArgumentException {
@@ -689,7 +689,7 @@ public final class Preconditions {
      * Preconditions.isAlphanumeric("ab-c") = IllegalArgumentException
      * </pre>
      *
-     * @param reference the value to check
+     * @param reference     the value to check
      * @param referenceName the variable name which will appear in the exception message
      * @return the given {@code reference} when valid otherwise throws an IllegalArgumentException.
      * @throws IllegalArgumentException if {@code reference} contains non alphanumeric characters.
@@ -718,7 +718,7 @@ public final class Preconditions {
      * Preconditions.isAlphanumericSpace("ab-c") = IllegalArgumentException
      * </pre>
      *
-     * @param reference the value to check
+     * @param reference     the value to check
      * @param referenceName the variable name which will appear in the exception message
      * @return the given {@code reference} when valid otherwise throws an IllegalArgumentException.
      * @throws IllegalArgumentException if {@code reference} contains non alphanumeric and/or space characters.

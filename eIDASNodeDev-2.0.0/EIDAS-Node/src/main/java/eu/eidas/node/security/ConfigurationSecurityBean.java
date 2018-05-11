@@ -4,6 +4,7 @@ import org.springframework.context.MessageSource;
 
 /**
  * Contains the security parameters configuration.
+ *
  * @author vanegdi
  */
 public class ConfigurationSecurityBean {

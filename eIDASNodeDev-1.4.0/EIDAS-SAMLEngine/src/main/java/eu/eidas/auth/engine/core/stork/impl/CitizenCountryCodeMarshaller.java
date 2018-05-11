@@ -38,8 +38,8 @@ public class CitizenCountryCodeMarshaller extends AbstractSAMLObjectMarshaller {
      * @throws MarshallingException the marshalling exception
      */
     protected final void marshallElementContent(final XMLObject samlObject,
-	    final Element domElement) throws MarshallingException {
-	final CitizenCountryCode citizenCountryCode = (CitizenCountryCode) samlObject;
-	XMLHelper.appendTextContent(domElement, citizenCountryCode.getCitizenCountryCode());
+                                                final Element domElement) throws MarshallingException {
+        final CitizenCountryCode citizenCountryCode = (CitizenCountryCode) samlObject;
+        XMLHelper.appendTextContent(domElement, citizenCountryCode.getCitizenCountryCode());
     }
 }

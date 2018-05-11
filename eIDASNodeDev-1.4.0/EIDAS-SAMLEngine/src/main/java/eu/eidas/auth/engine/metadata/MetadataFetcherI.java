@@ -31,9 +31,9 @@ public interface MetadataFetcherI {
     /**
      * Returns the metadata EntityDescriptor instance fetched from the given URL.
      *
-     * @param url the url of the metadata file
+     * @param url            the url of the metadata file
      * @param metadataSigner the metadataSigner which can be used to verify the digital signature of the retrieved
-     * EntityDescriptor via the ({@link MetadataSignerI#validateMetadataSignature(SignableXMLObject)} method.
+     *                       EntityDescriptor via the ({@link MetadataSignerI#validateMetadataSignature(SignableXMLObject)} method.
      * @return the entity descriptor associated with the given url.
      * @throws EIDASSAMLEngineException in case of errors
      */

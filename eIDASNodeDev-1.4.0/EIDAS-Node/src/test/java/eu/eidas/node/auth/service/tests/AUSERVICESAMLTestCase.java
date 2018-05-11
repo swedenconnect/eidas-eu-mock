@@ -96,7 +96,7 @@ public final class AUSERVICESAMLTestCase {
     /**
      * byte[] dummy SAML token.
      */
-    private static byte[] SAML_TOKEN_ARRAY = new byte[] {
+    private static byte[] SAML_TOKEN_ARRAY = new byte[]{
             60, 82, 101, 113, 117, 101, 115, 116, 62, 46, 46, 46, 60, 47, 82, 101, 113, 117, 101, 115, 116, 62};
 
     /**
@@ -214,8 +214,8 @@ public final class AUSERVICESAMLTestCase {
     @Test(expected = InternalErrorEIDASException.class)
     public void testGenerateAuthenticationResponseEmptyAuthDataAuditable() {
         AUSERVICESAML.processIdpSpecificResponse(EMPTY_EIDAS_AUTHENTICATION_REQUEST,
-                                                     AuthenticationResponse.builder().build(),
-                                                     TestingConstants.USER_IP_CONS.toString(), true);
+                AuthenticationResponse.builder().build(),
+                TestingConstants.USER_IP_CONS.toString(), true);
     }
 
     /**
@@ -226,8 +226,8 @@ public final class AUSERVICESAMLTestCase {
     @Test(expected = InternalErrorEIDASException.class)
     public void testGenerateAuthenticationResponseEmptyAuthData() {
         AUSERVICESAML.processIdpSpecificResponse(EMPTY_EIDAS_AUTHENTICATION_REQUEST,
-                                                     AuthenticationResponse.builder().build(),
-                                                     TestingConstants.USER_IP_CONS.toString(), false);
+                AuthenticationResponse.builder().build(),
+                TestingConstants.USER_IP_CONS.toString(), false);
     }
 
     private AUSERVICESAML provideauservicesaml() {
@@ -255,11 +255,11 @@ public final class AUSERVICESAMLTestCase {
         auservice.setLoggerBean(mockLoggerBean);
 
         auservice.generateErrorAuthenticationResponse(EMPTY_EIDAS_AUTHENTICATION_REQUEST,
-                                                      TestingConstants.ERROR_STATUS_CONS.toString(),
-                                                      TestingConstants.SUB_ERROR_CODE_CONS.toString(),
-                                                      TestingConstants.ERROR_CODE_CONS.toString(),
-                                                      TestingConstants.ERROR_MESSAGE_CONS.toString(),
-                                                      TestingConstants.USER_IP_CONS.toString(), true);
+                TestingConstants.ERROR_STATUS_CONS.toString(),
+                TestingConstants.SUB_ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_MESSAGE_CONS.toString(),
+                TestingConstants.USER_IP_CONS.toString(), true);
     }
 
     /**
@@ -280,11 +280,11 @@ public final class AUSERVICESAMLTestCase {
         auconnectorsaml.setLoggerBean(mockLoggerBean);
 
         auconnectorsaml.generateErrorAuthenticationResponse(EMPTY_EIDAS_AUTHENTICATION_REQUEST,
-                                                            TestingConstants.ERROR_STATUS_CONS.toString(),
-                                                            TestingConstants.SUB_ERROR_CODE_CONS.toString(),
-                                                            TestingConstants.ERROR_CODE_CONS.toString(),
-                                                            TestingConstants.ERROR_MESSAGE_CONS.toString(),
-                                                            TestingConstants.USER_IP_CONS.toString(), false);
+                TestingConstants.ERROR_STATUS_CONS.toString(),
+                TestingConstants.SUB_ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_MESSAGE_CONS.toString(),
+                TestingConstants.USER_IP_CONS.toString(), false);
     }
 
     /**
@@ -304,12 +304,12 @@ public final class AUSERVICESAMLTestCase {
         auconnectorsaml.setLoggerBean(mockLoggerBean);
 
         assertTrue(auconnectorsaml.generateErrorAuthenticationResponse(EIDAS_AUTHENTICATION_REQUEST,
-                                                                       TestingConstants.ERROR_STATUS_CONS.toString(),
-                                                                       TestingConstants.SUB_ERROR_CODE_CONS.toString(),
-                                                                       TestingConstants.ERROR_CODE_CONS.toString(),
-                                                                       TestingConstants.ERROR_MESSAGE_CONS.toString(),
-                                                                       TestingConstants.USER_IP_CONS.toString(),
-                                                                       true).length > 0);
+                TestingConstants.ERROR_STATUS_CONS.toString(),
+                TestingConstants.SUB_ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_MESSAGE_CONS.toString(),
+                TestingConstants.USER_IP_CONS.toString(),
+                true).length > 0);
     }
 
     /**
@@ -329,12 +329,12 @@ public final class AUSERVICESAMLTestCase {
         auconnectorsaml.setLoggerBean(mockLoggerBean);
 
         assertTrue(auconnectorsaml.generateErrorAuthenticationResponse(EIDAS_AUTHENTICATION_REQUEST,
-                                                                       TestingConstants.ERROR_STATUS_CONS.toString(),
-                                                                       TestingConstants.SUB_ERROR_CODE_CONS.toString(),
-                                                                       TestingConstants.ERROR_CODE_CONS.toString(),
-                                                                       TestingConstants.ERROR_MESSAGE_CONS.toString(),
-                                                                       TestingConstants.USER_IP_CONS.toString(),
-                                                                       false).length > 0);
+                TestingConstants.ERROR_STATUS_CONS.toString(),
+                TestingConstants.SUB_ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_CODE_CONS.toString(),
+                TestingConstants.ERROR_MESSAGE_CONS.toString(),
+                TestingConstants.USER_IP_CONS.toString(),
+                false).length > 0);
     }
 
     /**
@@ -360,7 +360,7 @@ public final class AUSERVICESAMLTestCase {
 
 
         auconnectorsaml.processConnectorRequest(HTTP_METHOD, null, TestingConstants.USER_IP_CONS.toString(),
-                                                     RELAY_STATE);
+                RELAY_STATE);
     }
 
     /**
@@ -379,7 +379,7 @@ public final class AUSERVICESAMLTestCase {
         IEIDASLogger mockLoggerBean = mock(IEIDASLogger.class);
         auconnectorsaml.setLoggerBean(mockLoggerBean);
         auconnectorsaml.processConnectorRequest(HTTP_METHOD, saml, TestingConstants.USER_IP_CONS.toString(),
-                                                     RELAY_STATE);
+                RELAY_STATE);
     }
 
     @Test
@@ -431,8 +431,8 @@ public final class AUSERVICESAMLTestCase {
         auconnectorsaml.setLoggerBean(mockLoggerBean);
         auconnectorsaml.setCountryCode(TestingConstants.LOCAL_CONS.toString());
         IAuthenticationRequest req = auconnectorsaml.processConnectorRequest(HTTP_METHOD, saml,
-                                                                                  TestingConstants.USER_IP_CONS.toString(),
-                                                                                  RELAY_STATE);
+                TestingConstants.USER_IP_CONS.toString(),
+                RELAY_STATE);
         assertNotNull(req.getLevelOfAssurance());
     }
 
@@ -465,7 +465,7 @@ public final class AUSERVICESAMLTestCase {
         auconnectorsaml.setMaxQAAlevel(TestingConstants.MAX_QAA_CONS.intValue());
         auconnectorsaml.setMinQAA(TestingConstants.MIN_QAA_CONS.intValue());
         auconnectorsaml.processConnectorRequest(HTTP_METHOD, saml, TestingConstants.USER_IP_CONS.toString(),
-                                                     RELAY_STATE);
+                RELAY_STATE);
     }
 
     /**
@@ -498,7 +498,7 @@ public final class AUSERVICESAMLTestCase {
         auservicesaml.setMaxQAAlevel(TestingConstants.MAX_QAA_CONS.intValue());
         auservicesaml.setMinQAA(TestingConstants.MIN_QAA_CONS.intValue());
         auservicesaml.processConnectorRequest(HTTP_METHOD, saml, TestingConstants.USER_IP_CONS.toString(),
-                                                   RELAY_STATE);
+                RELAY_STATE);
     }
 
     @Test

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -43,26 +43,38 @@ import org.w3c.dom.Element;
  * Intermediate class that serves to initialize the configuration environment for other base test classes.
  */
 public abstract class BaseTestCase extends XMLTestCase {
-    
-    /** Parser manager used to parse XML. */
+
+    /**
+     * Parser manager used to parse XML.
+     */
     protected static BasicParserPool parser;
-    
-    /** XMLObject builder factory. */
+
+    /**
+     * XMLObject builder factory.
+     */
     protected static XMLObjectBuilderFactory builderFactory;
 
-    /** XMLObject marshaller factory. */
+    /**
+     * XMLObject marshaller factory.
+     */
     protected static MarshallerFactory marshallerFactory;
 
-    /** XMLObject unmarshaller factory. */
+    /**
+     * XMLObject unmarshaller factory.
+     */
     protected static UnmarshallerFactory unmarshallerFactory;
-    
-    /** Class logger. */
+
+    /**
+     * Class logger.
+     */
     private static Logger log = LoggerFactory.getLogger(BaseTestCase.class);
-    
-    /** Constructor. */
-    public BaseTestCase(){
+
+    /**
+     * Constructor.
+     */
+    public BaseTestCase() {
         super();
-        
+
         parser = new BasicParserPool();
         parser.setNamespaceAware(true);
         builderFactory = Configuration.getBuilderFactory();
@@ -70,28 +82,33 @@ public abstract class BaseTestCase extends XMLTestCase {
         unmarshallerFactory = Configuration.getUnmarshallerFactory();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
         XMLUnit.setIgnoreWhitespace(true);
-        
-        try{
+
+        try {
             TestBootstrap.bootstrap();
-        }catch(ConfigurationException e){
+        } catch (ConfigurationException e) {
             fail(e.getMessage());
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void tearDown() throws Exception {
         super.tearDown();
     }
+
     /**
      * Asserts a given XMLObject is equal to an expected DOM. The XMLObject is marshalled and the resulting DOM object
      * is compared against the expected DOM object for equality.
-     * 
+     *
      * @param expectedDOM the expected DOM
-     * @param xmlObject the XMLObject to be marshalled and compared against the expected DOM
+     * @param xmlObject   the XMLObject to be marshalled and compared against the expected DOM
      */
     public void assertEquals(Document expectedDOM, XMLObject xmlObject) {
         assertEquals("Marshalled DOM was not the same as the expected DOM", expectedDOM, xmlObject);
@@ -100,20 +117,20 @@ public abstract class BaseTestCase extends XMLTestCase {
     /**
      * Asserts a given XMLObject is equal to an expected DOM. The XMLObject is marshalled and the resulting DOM object
      * is compared against the expected DOM object for equality.
-     * 
+     *
      * @param failMessage the message to display if the DOMs are not equal
      * @param expectedDOM the expected DOM
-     * @param xmlObject the XMLObject to be marshalled and compared against the expected DOM
+     * @param xmlObject   the XMLObject to be marshalled and compared against the expected DOM
      */
     public void assertEquals(String failMessage, Document expectedDOM, XMLObject xmlObject) {
         Marshaller marshaller = marshallerFactory.getMarshaller(xmlObject);
-        if(marshaller == null){
+        if (marshaller == null) {
             fail("Unable to locate marshaller for " + xmlObject.getElementQName() + " can not perform equality check assertion");
         }
-        
+
         try {
             Element generatedDOM = marshaller.marshall(xmlObject, parser.newDocument());
-            if(log.isDebugEnabled()) {
+            if (log.isDebugEnabled()) {
                 log.debug("Marshalled DOM was " + XMLHelper.nodeToString(generatedDOM));
             }
             assertXMLEqual(failMessage, expectedDOM, generatedDOM.getOwnerDocument());
@@ -122,27 +139,25 @@ public abstract class BaseTestCase extends XMLTestCase {
             fail("Marshalling failed with the following error: " + e);
         }
     }
-    
+
     /**
      * Builds the requested XMLObject.
-     * 
+     *
      * @param objectQName name of the XMLObject
-     * 
      * @return the build XMLObject
      */
-    public XMLObject buildXMLObject(QName objectQName){
+    public XMLObject buildXMLObject(QName objectQName) {
         XMLObjectBuilder builder = Configuration.getBuilderFactory().getBuilder(objectQName);
-        if(builder == null){
+        if (builder == null) {
             fail("Unable to retrieve builder for object QName " + objectQName);
         }
         return builder.buildObject(objectQName.getNamespaceURI(), objectQName.getLocalPart(), objectQName.getPrefix());
     }
-    
+
     /**
      * Unmarshalls an element file into its SAMLObject.
-     * 
+     *
      * @param elementFile the classpath path to an XML document to unmarshall
-     * 
      * @return the SAMLObject from the file
      */
     protected XMLObject unmarshallElement(String elementFile) {

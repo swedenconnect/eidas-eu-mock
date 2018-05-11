@@ -111,7 +111,7 @@ public final class KeyStoreContent {
         KeyStoreContent that = (KeyStoreContent) o;
 
         if (privateKeyEntries != null ? !privateKeyEntries.equals(that.privateKeyEntries)
-                                      : that.privateKeyEntries != null) {
+                : that.privateKeyEntries != null) {
             return false;
         }
         return certificates != null ? certificates.equals(that.certificates) : that.certificates == null;

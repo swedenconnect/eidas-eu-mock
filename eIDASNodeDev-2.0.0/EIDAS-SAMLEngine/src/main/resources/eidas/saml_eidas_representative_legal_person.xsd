@@ -44,7 +44,8 @@
     <xsd:complexType name="LegalPersonAddressStructuredType">
         <xsd:annotation>
             <xsd:documentation>
-                The address the legal person has registered with the MS authority or operating address if not registered. For a company this should be the registered address within the MS issuing the eID.
+                The address the legal person has registered with the MS authority or operating address if not
+                registered. For a company this should be the registered address within the MS issuing the eID.
             </xsd:documentation>
         </xsd:annotation>
         <xsd:sequence>
@@ -63,7 +64,9 @@
     <xsd:simpleType name="LegalPersonAddressType">
         <xsd:annotation>
             <xsd:documentation>
-                The address the legal person has registered with the MS authority or operating address if not registered. For a company this should be the registered address within the MS issuing the eID as a base64 encoded string.
+                The address the legal person has registered with the MS authority or operating address if not
+                registered. For a company this should be the registered address within the MS issuing the eID as a
+                base64 encoded string.
             </xsd:documentation>
         </xsd:annotation>
         <xsd:restriction base="xsd:string"/>

@@ -16,7 +16,7 @@ package org.apache.velocity.test.eventhandler;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.app.event.IncludeEventHandler;
@@ -31,21 +31,19 @@ import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
  * @version $Id: Handler2.java 463298 2006-10-12 16:10:32Z henning $
  */
 public class Handler2
-    implements NullSetEventHandler, ReferenceInsertionEventHandler, MethodExceptionEventHandler, IncludeEventHandler {
+        implements NullSetEventHandler, ReferenceInsertionEventHandler, MethodExceptionEventHandler, IncludeEventHandler {
 
     /**
      * always log
      */
-    public boolean shouldLogOnNullSet(String lhs, String rhs)
-    {
+    public boolean shouldLogOnNullSet(String lhs, String rhs) {
         return true;
     }
 
     /**
      * convert output to upper case
      */
-    public Object referenceInsert(String reference, Object value)
-    {
+    public Object referenceInsert(String reference, Object value) {
         if (value == null)
             return null;
         else
@@ -55,8 +53,7 @@ public class Handler2
     /**
      * print the exception
      */
-    public Object methodException(Class claz, String method, Exception e) throws Exception
-    {
+    public Object methodException(Class claz, String method, Exception e) throws Exception {
         return "Exception: " + e;
     }
 
@@ -64,10 +61,9 @@ public class Handler2
      * redirect all requests to a new directory "subdir" (simulates localization).
      */
     public String includeEvent(
-        String includeResourcePath,
-        String currentResourcePath,
-        String directiveName)
-    {
+            String includeResourcePath,
+            String currentResourcePath,
+            String directiveName) {
 
         return "subdir/" + includeResourcePath;
 

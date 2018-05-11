@@ -36,21 +36,26 @@
                                 </c:forEach>
                             </select>
                             <p class="box-btn">
-                                <input type="submit" id="submit_idp_choice" class="btn btn-next" value="<fmt:message key='common.next' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="submit_idp_choice" class="btn btn-next"
+                                       value="<fmt:message key='common.next' bundle="${i18n_eng}"/>"/>
                             </p>
                             <script type="text/javascript" src="js/idpRedirect.js"></script>
                         </div>
                     </c:if>
                     <form name="redirectForm" method="${e:forHtml(binding)}" action="${e:forHtml(idpUrl)}">
                         <input type="hidden" id="SAMLRequest" name="SAMLRequest" value="${e:forHtml(samlToken)}"/>
-                        <input type="hidden" id="messageFormat" name="messageFormat" value="${e:forHtml(requestScope["request.format"])}"/>
+                        <input type="hidden" id="messageFormat" name="messageFormat"
+                               value="${e:forHtml(requestScope["request.format"])}"/>
                     </form>
                     <noscript>
                         <form name="redirectFormNoJS" method="${e:forHtml(binding)}" action="${e:forHtml(idpUrl)}">
-                            <input type="hidden" id="SAMLRequest_noJS" name="SAMLRequest" value="${e:forHtml(samlToken)}"/>
-                            <input type="hidden" id="messageFormat_noJS" name="messageFormat" value="${e:forHtml(requestScope["request.format"])}"/>
+                            <input type="hidden" id="SAMLRequest_noJS" name="SAMLRequest"
+                                   value="${e:forHtml(samlToken)}"/>
+                            <input type="hidden" id="messageFormat_noJS" name="messageFormat"
+                                   value="${e:forHtml(requestScope["request.format"])}"/>
                             <p class="box-btn">
-                                <input type="submit" id="ConsentValue_button_noJS" class="btn btn-next" value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
+                                <input type="submit" id="ConsentValue_button_noJS" class="btn btn-next"
+                                       value="<fmt:message key='accept.button' bundle="${i18n_eng}"/>"/>
                             </p>
                         </form>
                     </noscript>

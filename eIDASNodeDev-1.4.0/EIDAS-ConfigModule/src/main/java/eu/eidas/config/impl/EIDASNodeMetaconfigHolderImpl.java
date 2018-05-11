@@ -28,27 +28,31 @@ public class EIDASNodeMetaconfigHolderImpl {
     private CategoryListImpl categories;
     private EIDASNodeMetaconfigListImpl nodeMetadataList;
     private FileListImpl fileList;
-    @XmlElement(name = "categories", type=CategoryListImpl.class)
-    public CategoryListImpl getCategoryList(){
+
+    @XmlElement(name = "categories", type = CategoryListImpl.class)
+    public CategoryListImpl getCategoryList() {
         return categories;
     }
-    public void setCategoryList(CategoryListImpl categories){
-        this.categories=categories;
+
+    public void setCategoryList(CategoryListImpl categories) {
+        this.categories = categories;
     }
 
-    @XmlElement(name = "files", type=FileListImpl.class)
-    public FileListImpl getFileList(){
+    @XmlElement(name = "files", type = FileListImpl.class)
+    public FileListImpl getFileList() {
         return fileList;
     }
-    public void setFileList(FileListImpl fileList){
-        this.fileList=fileList;
+
+    public void setFileList(FileListImpl fileList) {
+        this.fileList = fileList;
     }
 
-    @XmlElement(name = "parameters", type=EIDASNodeMetaconfigListImpl.class)
-    public EIDASNodeMetaconfigListImpl getNodeMetadataList(){
+    @XmlElement(name = "parameters", type = EIDASNodeMetaconfigListImpl.class)
+    public EIDASNodeMetaconfigListImpl getNodeMetadataList() {
         return nodeMetadataList;
     }
-    public void setNodeMetadataList(EIDASNodeMetaconfigListImpl nodeMetadataList){
-        this.nodeMetadataList=nodeMetadataList;
+
+    public void setNodeMetadataList(EIDASNodeMetaconfigListImpl nodeMetadataList) {
+        this.nodeMetadataList = nodeMetadataList;
     }
 }

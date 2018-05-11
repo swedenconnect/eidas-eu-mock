@@ -6,7 +6,7 @@ document.getElementById('bkuhandy').addEventListener('click', function () {
     bkuHandyClicked();
 });
 
-function initMoaAnmeldung(){
+function initMoaAnmeldung() {
     document.getElementById("localBKU").style.display = "none";
     document.getElementById("installJava").style.display = "none";
     document.getElementById("BrowserNOK").style.display = "none";
@@ -32,9 +32,9 @@ function bkuOnlineClicked() {
     var el = document.getElementById("bkulogin");
     var parent = el.parentNode;
 
-    if (cookieAllowed && navigator.javaEnabled() && ( deployJava.versionCheck("1.6.0_11+")
-        || (  BrowserDetect.browser.toLowerCase() == "safari"
-        && navigator.platform.toLowerCase().indexOf('win') == 0 ))) {
+    if (cookieAllowed && navigator.javaEnabled() && (deployJava.versionCheck("1.6.0_11+")
+        || (BrowserDetect.browser.toLowerCase() == "safari"
+            && navigator.platform.toLowerCase().indexOf('win') == 0))) {
 
         if (BrowserDetect.browser.toLowerCase() != "explorer" && BrowserDetect.browser.toLowerCase()
             != "firefox" && BrowserDetect.browser.toLowerCase() != "mozilla") {
@@ -103,6 +103,7 @@ function getBaseURL() {
     newURL = window.location.protocol + "//" + window.location.host + "/" + pathArray[1];
     return newURL;
 }
+
 function fillLocalBKU() {
     var baseURL = getBaseURL();
     document.getElementById("moaLocal").action = document.getElementById("MoaIdConnectionURLGlobal").value;

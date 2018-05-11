@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -25,27 +25,35 @@ import org.opensaml.xacml.ctx.StatusCodeType;
 import org.opensaml.xacml.impl.AbstractXACMLObject;
 import org.opensaml.xml.XMLObject;
 
-/** Concrete implementation of {@link StatusCodeType}. */
+/**
+ * Concrete implementation of {@link StatusCodeType}.
+ */
 public class StatusCodeTypeImpl extends AbstractXACMLObject implements StatusCodeType {
 
-    /** Sub status code. */
+    /**
+     * Sub status code.
+     */
     private StatusCodeType statusCode;
 
-    /** The attribute Value. */
+    /**
+     * The attribute Value.
+     */
     private String value;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected StatusCodeTypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
@@ -56,22 +64,30 @@ public class StatusCodeTypeImpl extends AbstractXACMLObject implements StatusCod
         return Collections.unmodifiableList(children);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusCodeType getStatusCode() {
         return statusCode;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getValue() {
         return value;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusCode(StatusCodeType code) {
         statusCode = prepareForAssignment(statusCode, code);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setValue(String newValue) {
         this.value = prepareForAssignment(this.value, newValue);
     }

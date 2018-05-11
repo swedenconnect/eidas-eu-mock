@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,44 +32,58 @@ import org.opensaml.xml.XMLObject;
  */
 public class StatusCodeImpl extends AbstractSAMLObject implements StatusCode {
 
-    /** Contents of the Value attribute. */
+    /**
+     * Contents of the Value attribute.
+     */
     private QName value = null;
 
-    /** The child StatusCode sub element. */
+    /**
+     * The child StatusCode sub element.
+     */
     private StatusCode childStatusCode = null;
 
     /**
      * Constructor.
-     * 
-     * @param namespaceURI the namespace the element is in
+     *
+     * @param namespaceURI     the namespace the element is in
      * @param elementLocalName the local name of the XML element this Object represents
-     * @param namespacePrefix the prefix for the given namespace
+     * @param namespacePrefix  the prefix for the given namespace
      */
     protected StatusCodeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public QName getValue() {
         return value;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setValue(QName newValue) {
         this.value = prepareAttributeValueForAssignment(StatusCode.VALUE_ATTRIB_NAME, this.value, newValue);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public StatusCode getStatusCode() {
         return childStatusCode;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setStatusCode(StatusCode statusCode) {
         childStatusCode = prepareForAssignment(childStatusCode, statusCode);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         if (childStatusCode != null) {
             ArrayList<XMLObject> contents = new ArrayList<XMLObject>(1);

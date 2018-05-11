@@ -122,7 +122,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
      */
     public static final StorkExtensionProcessor INSTANCE =
             new StorkExtensionProcessor(STORK_ATTRIBUTE_REGISTRY,
-                                        AttributeRegistries.empty());
+                    AttributeRegistries.empty());
 
     static {
         INSTANCE.configureExtension();
@@ -158,10 +158,10 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
     private void validateExtension(final Extensions extensions) throws EIDASSAMLEngineException {
         if (extensions.getUnknownXMLObjects(RequestedAttributes.DEF_ELEMENT_NAME) == null) {
             LOG.info(AbstractProtocolEngine.SAML_EXCHANGE,
-                     "BUSINESS EXCEPTION : Extensions not contains any requested attribute.");
+                    "BUSINESS EXCEPTION : Extensions not contains any requested attribute.");
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               "Extensions not contains any requested attribute.");
+                    EidasErrorKey.INTERNAL_ERROR.errorCode(),
+                    "Extensions not contains any requested attribute.");
         }
     }
 
@@ -279,8 +279,8 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         if (null == qaa) {
             LOG.trace("QAA was not found in extensions.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "QAA was not found in extensions.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "QAA was not found in extensions.");
         }
 
         ImmutableAttributeMap.Builder attributeMapBuilder = new ImmutableAttributeMap.Builder();
@@ -292,8 +292,8 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
             AttributeDefinition<?> attributeDefinition = getAttributeDefinitionNullable(attribute.getName());
             if (null == attributeDefinition) {
                 LOG.info(AbstractProtocolEngine.SAML_EXCHANGE,
-                         "BUSINESS EXCEPTION : Attribute name: {} was not found. It will be removed from the request object",
-                         attribute.getName());
+                        "BUSINESS EXCEPTION : Attribute name: {} was not found. It will be removed from the request object",
+                        attribute.getName());
                 continue;
             }
 
@@ -330,7 +330,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
                 } catch (AttributeValueMarshallingException e) {
                     LOG.error("Illegal attribute value: " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                       EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
+                            EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
                 }
                 setBuilder.add(attributeValue);
             }
@@ -497,11 +497,11 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
             if (transformer != null && xmlString != null && xmlString.getUnknownXMLObjects() != null
                     && !xmlString.getUnknownXMLObjects().isEmpty()) {
                 transformer.transform(new DOMSource(xmlString.getUnknownXMLObjects().get(0).getDOM()),
-                                      new StreamResult(buffer));
+                        new StreamResult(buffer));
             }
         } catch (TransformerException e) {
             LOG.info(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : Error transformer exception",
-                     e.getMessage());
+                    e.getMessage());
             LOG.debug(AbstractProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : Error transformer exception", e);
         }
         return buffer.toString();
@@ -512,7 +512,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
      * Generate stork extensions.
      *
      * @param samlCoreProperties
-     * @param authRequest the request
+     * @param authRequest        the request
      * @return the extensions
      * @throws EIDASSAMLEngineException the STORKSAML engine exception
      */
@@ -691,9 +691,9 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
             if (null == requestedAttribute) {
                 LOG.trace("Attribute name: {} was not found.", attributeDefinition.getNameUri());
                 throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   "Attribute name: " + attributeDefinition.getNameUri()
-                                                           + " was not found.");
+                        EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                        "Attribute name: " + attributeDefinition.getNameUri()
+                                + " was not found.");
             }
 
             LOG.trace("Generate requested attribute: " + requestedAttribute);
@@ -701,13 +701,13 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
             ImmutableSet.Builder<String> builder = ImmutableSet.builder();
             for (final eu.eidas.auth.commons.attribute.AttributeValue<?> attributeValue : entry.getValue()) {
                 try {
-                    String marshalledValue = attributeValueMarshaller.marshal((eu.eidas.auth.commons.attribute.AttributeValue)attributeValue);
+                    String marshalledValue = attributeValueMarshaller.marshal((eu.eidas.auth.commons.attribute.AttributeValue) attributeValue);
                     builder.add(marshalledValue);
                 } catch (AttributeValueMarshallingException e) {
                     LOG.error("Illegal attribute value: " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                       EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                       e);
+                            EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                            e);
                 }
             }
 
@@ -722,7 +722,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
      * Generate requested attribute.
      *
      * @param attributeDefinition the attributeDefinition
-     * @param values the value
+     * @param values              the value
      * @return the requested attribute
      */
     protected static RequestedAttribute generateReqAuthnAttributeSimple(AttributeDefinition<?> attributeDefinition,
@@ -737,7 +737,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         requested.setNameFormat(RequestedAttribute.URI_REFERENCE);
         requested.setIsRequired(String.valueOf(attributeDefinition.isRequired()));
         fillRequestAttributeValues(attributeDefinition.getNameUri().toASCIIString(), values,
-                                   requested.getAttributeValues());
+                requested.getAttributeValues());
         // The value is optional in an authentication request.
 
         return requested;
@@ -753,7 +753,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
                         // Create the attribute statement
                         final XSAny attrValue =
                                 (XSAny) BuilderFactoryUtil.buildXmlObject(STORK_REQUESTED_ATTRIBUTE_VALUE_TYPE,
-                                                                          XSAny.TYPE_NAME);
+                                        XSAny.TYPE_NAME);
 
                         attrValue.setTextContent(value.trim());
                         attributeValues.add(attrValue);
@@ -854,31 +854,31 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
 
         if (!(request instanceof IStorkAuthenticationRequest)) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "ProtocolEngine: Request does not implement IEidasAuthenticationRequest: "
-                                                       + request);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "ProtocolEngine: Request does not implement IEidasAuthenticationRequest: "
+                            + request);
         }
 
         // URL to which Authentication Response must be sent.
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "ProtocolEngine: Assertion Consumer Service URL is mandatory.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "ProtocolEngine: Assertion Consumer Service URL is mandatory.");
         }
 
         // the name of the original service provider requesting the
         // authentication.
         if (StringUtils.isBlank(request.getProviderName())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "ProtocolEngine: Service Provider is mandatory.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "ProtocolEngine: Service Provider is mandatory.");
         }
 
         // object that contain all attributes requesting.
         if (request.getRequestedAttributes() == null || request.getRequestedAttributes().isEmpty()) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "attributeQueries is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "attributeQueries is null or empty.");
         }
 
         IStorkAuthenticationRequest storkAuthenticationRequest = (IStorkAuthenticationRequest) request;
@@ -887,7 +887,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         int qaa = storkAuthenticationRequest.getQaa();
         if (qaa < QAAAttribute.MIN_VALUE || qaa > QAAAttribute.MAX_VALUE) {
             throw new EIDASSAMLEngineException(EidasErrorKey.QAALEVEL.errorCode(), EidasErrorKey.QAALEVEL.errorCode(),
-                                               "QAA level: " + qaa + ", is invalid.");
+                    "QAA level: " + qaa + ", is invalid.");
         }
 
         return request;
@@ -897,20 +897,20 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
     public void checkRequestSanity(IAuthenticationRequest request) throws EIDASSAMLEngineException {
         if (StringUtils.isBlank(request.getIssuer())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Request Issuer must not be blank.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Request Issuer must not be blank.");
         }
 
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Request AssertionConsumerServiceURL must not be blank.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Request AssertionConsumerServiceURL must not be blank.");
         }
 
         if (StringUtils.isBlank(request.getId())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Request ID must not be blank.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Request ID must not be blank.");
         }
     }
 
@@ -979,7 +979,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
                     // Create the attribute statement
                     final XSAny attrValueSimple = (XSAny) BuilderFactoryUtil.buildXmlObject(
                             new QName(SAMLCore.STORK10_NS.getValue(), pairs.getKey(),
-                                      SAMLCore.STORK10_PREFIX.getValue()), XSAny.TYPE_NAME);
+                                    SAMLCore.STORK10_PREFIX.getValue()), XSAny.TYPE_NAME);
 
                     // if it's necessary encode the information.
                     if (isHashing) {
@@ -1015,20 +1015,20 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
             document = DocumentBuilderFactoryUtil.parse(value);
         } catch (SAXException e1) {
             LOG.info(ProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : SAX Error while parsing signModule attribute",
-                     e1.getMessage());
+                    e1.getMessage());
             LOG.debug(ProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : SAX Error while parsing signModule attribute",
-                      e1);
+                    e1);
             throw new EIDASSAMLEngineRuntimeException(e1);
         } catch (ParserConfigurationException e2) {
             LOG.info(ProtocolEngine.SAML_EXCHANGE,
-                     "BUSINESS EXCEPTION : Parser Configuration Error while parsing signModule attribute",
-                     e2.getMessage());
+                    "BUSINESS EXCEPTION : Parser Configuration Error while parsing signModule attribute",
+                    e2.getMessage());
             LOG.debug(ProtocolEngine.SAML_EXCHANGE,
-                      "BUSINESS EXCEPTION : Parser Configuration Error while parsing signModule attribute", e2);
+                    "BUSINESS EXCEPTION : Parser Configuration Error while parsing signModule attribute", e2);
             throw new EIDASSAMLEngineRuntimeException(e2);
         } catch (IOException e4) {
             LOG.info(ProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : IO Error while parsing signModule attribute",
-                     e4.getMessage());
+                    e4.getMessage());
             LOG.debug(ProtocolEngine.SAML_EXCHANGE, "BUSINESS EXCEPTION : IO Error while parsing signModule attribute", e4);
             throw new EIDASSAMLEngineRuntimeException(e4);
         }
@@ -1088,7 +1088,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
     }
 
     private AttributeDefinition<?> customizeDefinition(@Nonnull AttributeDefinition<?> existingAttribute,
-                                                    @Nonnull AttributeDefinition<?> requestedAttribute) {
+                                                       @Nonnull AttributeDefinition<?> requestedAttribute) {
         if (existingAttribute.isRequired() != requestedAttribute.isRequired()) {
             return AttributeDefinition.builder(existingAttribute).required(requestedAttribute.isRequired()).build();
         }
@@ -1290,9 +1290,9 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
 
         Assertion assertion =
                 AssertionUtil.generateResponseAssertion(true, ipAddress, request, responseFail.getIssuer(),
-                                                        ImmutableAttributeMap.of(), notOnOrAfter,
-                                                        coreProperties.getFormatEntity(), coreProperties.getResponder(),
-                                                        getFormat(), coreProperties.isOneTimeUse());
+                        ImmutableAttributeMap.of(), notOnOrAfter,
+                        coreProperties.getFormatEntity(), coreProperties.getResponder(),
+                        getFormat(), coreProperties.isOneTimeUse());
         addResponseAuthnContextClassRef(response, assertion);
         responseFail.getAssertions().add(assertion);
 
@@ -1338,7 +1338,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
     /**
      * Validate parameter from response fail.
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -1347,28 +1347,28 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         LOG.trace("Validate parameters response fail.");
         if (StringUtils.isBlank(response.getStatusCode())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Error Status Code is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Error Status Code is null or empty.");
         }
 
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "assertionConsumerServiceURL is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "assertionConsumerServiceURL is null or empty.");
         }
 
         if (StringUtils.isBlank(request.getId())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "request ID is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "request ID is null or empty.");
         }
     }
 
     /**
      * Generates authentication response in one of the supported formats.
      *
-     * @param request the request
-     * @param response the authentication response from the IdP
+     * @param request   the request
+     * @param response  the authentication response from the IdP
      * @param ipAddress the IP address
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
@@ -1384,8 +1384,8 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         // At this point the assertion consumer service URL is mandatory (and must have been replaced by the value from the metadata if needed)
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Request AssertionConsumerServiceURL must not be blank.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Request AssertionConsumerServiceURL must not be blank.");
         }
 
         // Mandatory SAML
@@ -1414,9 +1414,9 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
 
         Assertion assertion =
                 AssertionUtil.generateResponseAssertion(false, ipAddress, request, samlResponse.getIssuer(),
-                                                        response.getAttributes(), notOnOrAfter,
-                                                        coreProperties.getFormatEntity(), coreProperties.getResponder(),
-                                                        getFormat(), coreProperties.isOneTimeUse());
+                        response.getAttributes(), notOnOrAfter,
+                        coreProperties.getFormatEntity(), coreProperties.getResponder(),
+                        getFormat(), coreProperties.isOneTimeUse());
 
         AttributeStatement attrStatement = generateResponseAttributeStatement(response.getAttributes());
 
@@ -1432,9 +1432,9 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
     /**
      * Instantiates a new authentication response.
      *
-     * @param status the status
+     * @param status            the status
      * @param assertConsumerURL the assert consumer URL.
-     * @param inResponseTo the in response to
+     * @param inResponseTo      the in response to
      * @return the response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -1446,7 +1446,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         LOG.debug("Generate Authentication Response base.");
         Response response =
                 BuilderFactoryUtil.generateResponse(SAMLEngineUtils.generateNCName(), SAMLEngineUtils.getCurrentTime(),
-                                                    status);
+                        status);
 
         // Set name Spaces
         registerResponseNamespace(response);
@@ -1534,7 +1534,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
             } catch (AttributeValueMarshallingException e) {
                 LOG.error("Illegal attribute value: " + e, e);
                 throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
+                        EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
             }
         }
 
@@ -1561,7 +1561,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         LOG.trace("validateEidasResponse");
         Assertion assertion =
                 ResponseUtil.extractVerifiedAssertion(response, verifyBearerIpAddress, userIpAddress, beforeSkewTimeInMillis,
-                                                      afterSkewTimeInMillis, now, audienceRestriction);
+                        afterSkewTimeInMillis, now, audienceRestriction);
 
         if (null != assertion) {
             LOG.trace("Set notOnOrAfter.");
@@ -1571,16 +1571,16 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
             builder.notBefore(assertion.getConditions().getNotBefore());
 
             builder.audienceRestriction((assertion.getConditions().getAudienceRestrictions().get(0)).getAudiences()
-                                                .get(0)
-                                                .getAudienceURI());
+                    .get(0)
+                    .getAudienceURI());
             if (!assertion.getAuthnStatements().isEmpty()
                     && assertion.getAuthnStatements().get(0).getAuthnContext() != null &&
                     assertion.getAuthnStatements().get(0).getAuthnContext().getAuthnContextClassRef() != null) {
                 builder.levelOfAssurance(assertion.getAuthnStatements()
-                                                 .get(0)
-                                                 .getAuthnContext()
-                                                 .getAuthnContextClassRef()
-                                                 .getAuthnContextClassRef());
+                        .get(0)
+                        .getAuthnContext()
+                        .getAuthnContextClassRef()
+                        .getAuthnContextClassRef());
             }
         }
 
@@ -1674,7 +1674,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
 
                             // Process simple value.
                             setBuilder.add(attributeValueMarshaller.unmarshal(xsAny.getTextContent(),
-                                                                              isNonLatinScriptAlternateVersion));
+                                    isNonLatinScriptAlternateVersion));
                         }
 
                         // TODO: remove
@@ -1682,19 +1682,19 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
                         // Process simple value.
                         setBuilder.add(
                                 attributeValueMarshaller.unmarshal(((GenericEidasAttributeType) xmlObject).getValue(),
-                                                                   false));
+                                        false));
                     } else {
                         LOG.info("BUSINESS EXCEPTION : attribute value is unknown in generatePersonalAttributeList.");
                         throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                           EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                           "Attribute value is unknown for \""
-                                                                   + attributeDefinition.getNameUri().toASCIIString()
-                                                                   + "\" - value: \"" + xmlObject + "\"");
+                                EidasErrorKey.INTERNAL_ERROR.errorCode(),
+                                "Attribute value is unknown for \""
+                                        + attributeDefinition.getNameUri().toASCIIString()
+                                        + "\" - value: \"" + xmlObject + "\"");
                     }
                 } catch (AttributeValueMarshallingException e) {
                     LOG.error("BUSINESS EXCEPTION : Illegal Attribute Value: " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                       EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
+                            EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
                 }
             }
 
@@ -1710,8 +1710,8 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
         if (null == attributeDefinition) {
             LOG.error("BUSINESS EXCEPTION : Attribute name: {} is not known.", name);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               "Attribute name: " + name + " is not known.");
+                    EidasErrorKey.INTERNAL_ERROR.errorCode(),
+                    "Attribute name: " + name + " is not known.");
         }
         return attributeDefinition;
     }
@@ -1736,7 +1736,7 @@ public class StorkExtensionProcessor implements ExtensionProcessorI {
                     transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
                     StringWriter stringWriter = new StringWriter();
                     transformer.transform(new DOMSource(unknownXMLObjects.get(0).getDOM()),
-                                          new StreamResult(stringWriter));
+                            new StreamResult(stringWriter));
                     return stringWriter.toString();
                 } catch (TransformerConfigurationException e) {
                     LOG.warn(SAML_EXCHANGE, "ERROR : transformer configuration exception", e);

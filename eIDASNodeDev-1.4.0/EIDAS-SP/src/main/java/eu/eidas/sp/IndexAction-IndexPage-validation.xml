@@ -7,13 +7,13 @@
         <field-validator type="requiredstring">
             <message key="requiredstring"/>
         </field-validator>
-    </field>    
-	<field name="nodeUrl">
+    </field>
+    <field name="nodeUrl">
         <field-validator type="requiredstring">
             <message key="requiredstring"/>
         </field-validator>
     </field>
-	<field name="returnUrl">
+    <field name="returnUrl">
         <field-validator type="requiredstring">
             <message key="requiredstring"/>
         </field-validator>

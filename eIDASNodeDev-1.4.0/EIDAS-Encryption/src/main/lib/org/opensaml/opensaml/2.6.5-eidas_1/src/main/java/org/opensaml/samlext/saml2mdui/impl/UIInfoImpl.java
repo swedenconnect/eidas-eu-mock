@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -33,37 +33,51 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
 
 /**
  * Concrete implementation of {@link org.opensaml.samlext.saml2mdui.UIInfo}.
+ *
  * @author Rod Widdowson
  */
 public class UIInfoImpl extends AbstractSAMLObject implements UIInfo {
-    
-    /** localized descriptions. */
+
+    /**
+     * localized descriptions.
+     */
     private final XMLObjectChildrenList<Description> descriptions;
-    
-    /** localized displayNames. */
+
+    /**
+     * localized displayNames.
+     */
     private final XMLObjectChildrenList<DisplayName> displayNames;
-        
-    /** localized displayNames. */
+
+    /**
+     * localized displayNames.
+     */
     private final XMLObjectChildrenList<Keywords> keywords;
-        
-    /** (posibly) localized Logos. */
+
+    /**
+     * (posibly) localized Logos.
+     */
     private final XMLObjectChildrenList<Logo> logos;
- 
-    /** localized Informational URLs. */
+
+    /**
+     * localized Informational URLs.
+     */
     private final XMLObjectChildrenList<InformationURL> urls;
- 
-    /** localized PrivacyStatementURLs. */
+
+    /**
+     * localized PrivacyStatementURLs.
+     */
     private final XMLObjectChildrenList<PrivacyStatementURL> privacyStatementURLs;
- 
+
     /**
      * Constructor.
-     * @param namespaceURI namespaceURI
+     *
+     * @param namespaceURI     namespaceURI
      * @param elementLocalName elementLocalName
-     * @param namespacePrefix namespacePrefix
+     * @param namespacePrefix  namespacePrefix
      */
     protected UIInfoImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
-        
+
         descriptions = new XMLObjectChildrenList<Description>(this);
         displayNames = new XMLObjectChildrenList<DisplayName>(this);
         logos = new XMLObjectChildrenList<Logo>(this);
@@ -72,41 +86,55 @@ public class UIInfoImpl extends AbstractSAMLObject implements UIInfo {
         privacyStatementURLs = new XMLObjectChildrenList<PrivacyStatementURL>(this);
     }
 
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     public List<Description> getDescriptions() {
         return descriptions;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<DisplayName> getDisplayNames() {
         return displayNames;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Keywords> getKeywords() {
         return keywords;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<InformationURL> getInformationURLs() {
         return urls;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<Logo> getLogos() {
         return logos;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<PrivacyStatementURL> getPrivacyStatementURLs() {
         return privacyStatementURLs;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
-        
+
         children.addAll(displayNames);
         children.addAll(descriptions);
         children.addAll(keywords);

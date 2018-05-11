@@ -16,7 +16,7 @@ package org.apache.velocity.test.provider;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.util.TemplateNumber;
@@ -27,20 +27,17 @@ import org.apache.velocity.util.TemplateNumber;
  *
  * @author <a href="mailto:wglass@forio.com">Will Glass-Husain</a>
  */
-public class TestNumber implements TemplateNumber
-{
+public class TestNumber implements TemplateNumber {
 
-   private Number n;
+    private Number n;
 
-   public TestNumber(double val)
-   {
-       n = new Double(val);
-   }
+    public TestNumber(double val) {
+        n = new Double(val);
+    }
 
-   public Number getAsNumber()
-   {
-       return n;
-   }
+    public Number getAsNumber() {
+        return n;
+    }
 
 
 }

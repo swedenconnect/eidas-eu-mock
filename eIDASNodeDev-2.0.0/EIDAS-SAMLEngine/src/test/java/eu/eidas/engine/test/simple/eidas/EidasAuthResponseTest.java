@@ -432,7 +432,7 @@ public class EidasAuthResponseTest {
                 .build();
         try {
             getEngine().generateResponseMessage(authnRequestCopyButNullAssertionConsumerUrl, response, false,
-                                                ipAddress);
+                    ipAddress);
             fail("generateAuthnResponse(...) should've thrown an EIDASSAMLEngineException!");
         } catch (EIDASSAMLEngineException e) {
             LOG.error("Error: " + e, e);
@@ -524,11 +524,11 @@ public class EidasAuthResponseTest {
     public final void testResponseInvalidParametersAttr() {
         ImmutableAttributeMap attributeMap = ImmutableAttributeMap.builder()
                 .put(new AttributeDefinition.Builder<String>().nameUri("urn:example.com/AttrWrong")
-                             .friendlyName("AttrWrong")
-                             .personType(PersonType.NATURAL_PERSON)
-                             .xmlType("urn:example.com", "AttrWrongType", "wrong")
-                             .attributeValueMarshaller(new StringAttributeValueMarshaller())
-                             .build())
+                        .friendlyName("AttrWrong")
+                        .personType(PersonType.NATURAL_PERSON)
+                        .xmlType("urn:example.com", "AttrWrongType", "wrong")
+                        .attributeValueMarshaller(new StringAttributeValueMarshaller())
+                        .build())
                 .build();
 
         AuthenticationResponse response = new AuthenticationResponse.Builder().attributes(attributeMap)
@@ -575,7 +575,7 @@ public class EidasAuthResponseTest {
         } catch (EIDASSAMLEngineException e) {
             LOG.error("Error: " + e, e);
             fail("validateAuthenticationResponse(...) should not have thrown an EIDASSAMLEngineException due to the Ip validation (because IP validation disabled in the conf)!: "
-                         + e);
+                    + e);
         }
     }
 
@@ -696,7 +696,7 @@ public class EidasAuthResponseTest {
 
         try {
             authResponse = getEngine().generateResponseErrorMessage(authnRequestCopyButNullAssertionConsumerUrl,
-                                                                    response.build(), ipAddress).getMessageBytes();
+                    response.build(), ipAddress).getMessageBytes();
             fail("generateAuthnResponseFail(...) should've thrown an EIDASSAMLEngineException!");
         } catch (EIDASSAMLEngineException e) {
             LOG.error("Error: " + e, e);

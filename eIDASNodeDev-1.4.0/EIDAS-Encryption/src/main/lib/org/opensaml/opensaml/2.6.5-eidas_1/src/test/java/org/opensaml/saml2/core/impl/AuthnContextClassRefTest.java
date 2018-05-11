@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -28,22 +28,30 @@ import org.opensaml.saml2.core.AuthnContextClassRef;
  */
 public class AuthnContextClassRefTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Expected Class Reference value */
+    /**
+     * Expected Class Reference value
+     */
     protected String expectedClassRef;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AuthnContextClassRefTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/AuthnContextClassRef.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
 
         expectedClassRef = "class reference";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         AuthnContextClassRef authnContextClassRef = (AuthnContextClassRef) unmarshallElement(singleElementFile);
 
@@ -51,12 +59,16 @@ public class AuthnContextClassRefTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("Class Reference was " + classRef + ", expected " + expectedClassRef, expectedClassRef, classRef);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesUnmarshall() {
         // do nothing
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20_NS, AuthnContextClassRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         AuthnContextClassRef authnContextClassRef = (AuthnContextClassRef) buildXMLObject(qname);
@@ -65,7 +77,9 @@ public class AuthnContextClassRefTest extends BaseSAMLObjectProviderTestCase {
         assertEquals(expectedDOM, authnContextClassRef);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementOptionalAttributesMarshall() {
         // do nothing
     }

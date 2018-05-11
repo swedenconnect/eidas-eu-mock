@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -23,14 +23,18 @@ import org.opensaml.xacml.policy.PolicySetCombinerParametersType;
 /**
  * Builder for {@link PolicySetCombinerParametersType}.
  */
-public class PolicySetCombinerParametersTypeImplBuilder  extends AbstractXACMLObjectBuilder<PolicySetCombinerParametersType> {
+public class PolicySetCombinerParametersTypeImplBuilder extends AbstractXACMLObjectBuilder<PolicySetCombinerParametersType> {
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public PolicySetCombinerParametersType buildObject(String namespaceURI, String localName, String namespacePrefix) {
-        return new PolicySetCombinerParametersTypeImpl(namespaceURI,localName,namespacePrefix);
+        return new PolicySetCombinerParametersTypeImpl(namespaceURI, localName, namespacePrefix);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public PolicySetCombinerParametersType buildObject() {
         return buildObject(PolicySetCombinerParametersType.DEFAULT_ELEMENT_NAME);
     }

@@ -247,7 +247,7 @@ public abstract class AbstractAuthenticationResponse implements IAuthenticationR
          * T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         private void internalValidate() throws IllegalArgumentException {
             ResponseStatus responseStatus = responseStatusBuilder.build();
@@ -259,7 +259,7 @@ public abstract class AbstractAuthenticationResponse implements IAuthenticationR
          * Validates the state of this Builder before allowing to create new instances of the built type {@code T}.
          *
          * @throws IllegalArgumentException if the builder is not in a legal state allowing to proceed with the creation
-         * of a {@code T} instance.
+         *                                  of a {@code T} instance.
          */
         protected abstract void validate() throws IllegalArgumentException;
 
@@ -508,7 +508,7 @@ public abstract class AbstractAuthenticationResponse implements IAuthenticationR
             return false;
         }
         if (audienceRestriction != null ? !audienceRestriction.equals(that.audienceRestriction)
-                                        : that.audienceRestriction != null) {
+                : that.audienceRestriction != null) {
             return false;
         }
         if (notOnOrAfter != null ? !notOnOrAfter.equals(that.notOnOrAfter) : that.notOnOrAfter != null) {

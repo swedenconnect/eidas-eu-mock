@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -37,7 +37,7 @@ import org.apache.velocity.test.misc.TestLogChute;
 /**
  * Tests if we are context safe : can we switch objects in the context
  * and re-merge the template safely.
- *
+ * <p>
  * NOTE:
  * This class should not extend RuntimeTestCase because this test
  * is run from the VelocityTestSuite which in effect a runtime
@@ -47,16 +47,13 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: ContextSafetyTestCase.java 704299 2008-10-14 03:13:16Z nbubna $
  */
-public class ContextSafetyTestCase extends BaseTestCase implements TemplateTestBase
-{
-    public ContextSafetyTestCase(String name)
-    {
+public class ContextSafetyTestCase extends BaseTestCase implements TemplateTestBase {
+    public ContextSafetyTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         Velocity.setProperty(
                 Velocity.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
 
@@ -66,26 +63,24 @@ public class ContextSafetyTestCase extends BaseTestCase implements TemplateTestB
         Velocity.init();
     }
 
-    public static Test suite()
-    {
+    public static Test suite() {
         return new TestSuite(ContextSafetyTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testContextSafety ()
-        throws Exception
-    {
+    public void testContextSafety()
+            throws Exception {
         /*
          *  make a Vector and String array because
          *  they are treated differently in Foreach()
          */
         Vector v = new Vector();
 
-        v.addElement( new String("vector hello 1") );
-        v.addElement( new String("vector hello 2") );
-        v.addElement( new String("vector hello 3") );
+        v.addElement(new String("vector hello 1"));
+        v.addElement(new String("vector hello 2"));
+        v.addElement(new String("vector hello 3"));
 
         String strArray[] = new String[3];
 
@@ -102,15 +97,15 @@ public class ContextSafetyTestCase extends BaseTestCase implements TemplateTestB
          */
 
         Template template = RuntimeSingleton.getTemplate(
-            getFileName(null, "context_safety", TMPL_FILE_EXT));
+                getFileName(null, "context_safety", TMPL_FILE_EXT));
 
         FileOutputStream fos1 =
-            new FileOutputStream (
-                getFileName(RESULT_DIR, "context_safety1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULT_DIR, "context_safety1", RESULT_FILE_EXT));
 
         FileOutputStream fos2 =
-            new FileOutputStream (
-                getFileName(RESULT_DIR, "context_safety2", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULT_DIR, "context_safety2", RESULT_FILE_EXT));
 
         Writer writer1 = new BufferedWriter(new OutputStreamWriter(fos1));
         Writer writer2 = new BufferedWriter(new OutputStreamWriter(fos2));
@@ -133,11 +128,10 @@ public class ContextSafetyTestCase extends BaseTestCase implements TemplateTestB
         writer2.flush();
         writer2.close();
 
-        if (!isMatch(RESULT_DIR,COMPARE_DIR,"context_safety1",
-                RESULT_FILE_EXT,CMP_FILE_EXT) ||
-            !isMatch(RESULT_DIR,COMPARE_DIR,"context_safety2",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULT_DIR, COMPARE_DIR, "context_safety1",
+                RESULT_FILE_EXT, CMP_FILE_EXT) ||
+                !isMatch(RESULT_DIR, COMPARE_DIR, "context_safety2",
+                        RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect.");
         }
     }

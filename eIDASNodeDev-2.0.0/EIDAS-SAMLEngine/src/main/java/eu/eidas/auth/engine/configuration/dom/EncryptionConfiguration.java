@@ -137,15 +137,15 @@ public final class EncryptionConfiguration {
             return false;
         }
         if (encryptionCertificates != null ? !encryptionCertificates.equals(that.encryptionCertificates)
-                                           : that.encryptionCertificates != null) {
+                : that.encryptionCertificates != null) {
             return false;
         }
         if (dataEncryptionAlgorithm != null ? !dataEncryptionAlgorithm.equals(that.dataEncryptionAlgorithm)
-                                            : that.dataEncryptionAlgorithm != null) {
+                : that.dataEncryptionAlgorithm != null) {
             return false;
         }
         if (keyEncryptionAlgorithm != null ? !keyEncryptionAlgorithm.equals(that.keyEncryptionAlgorithm)
-                                           : that.keyEncryptionAlgorithm != null) {
+                : that.keyEncryptionAlgorithm != null) {
             return false;
         }
         if (jcaProviderName != null ? !jcaProviderName.equals(that.jcaProviderName) : that.jcaProviderName != null) {

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -32,7 +32,9 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class EvidenceSchemaTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public EvidenceSchemaTest() {
         targetQName = new QName(SAMLConstants.SAML20_NS, Evidence.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         validator = new EvidenceSchemaValidator();
@@ -41,25 +43,25 @@ public class EvidenceSchemaTest extends BaseSAMLObjectValidatorTestCase {
     protected void populateRequiredData() {
         super.populateRequiredData();
         Evidence evidence = (Evidence) target;
-        
+
         Assertion assertion = (Assertion) buildXMLObject(new QName(SAMLConstants.SAML20_NS, Assertion.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX));
         evidence.getAssertions().add(assertion);
-        
+
         AssertionIDRef assertionIDRef = (AssertionIDRef) buildXMLObject(new QName(SAMLConstants.SAML20_NS, AssertionIDRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX));
         evidence.getAssertionIDReferences().add(assertionIDRef);
-        
+
         AssertionURIRef assertionURIRef = (AssertionURIRef) buildXMLObject(new QName(SAMLConstants.SAML20_NS, AssertionURIRef.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX));
         evidence.getAssertionURIReferences().add(assertionURIRef);
     }
 
     /**
      * Tests Assertion failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testAssertion() throws ValidationException {
         Evidence evidence = (Evidence) target;
-        
+
         evidence.getEvidence().clear();
         assertValidationFail("No assertions present, should raise a Validation Exception");
     }

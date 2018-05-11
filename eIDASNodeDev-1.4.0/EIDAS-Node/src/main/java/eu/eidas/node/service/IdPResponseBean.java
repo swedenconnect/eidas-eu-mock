@@ -22,35 +22,35 @@
 
 package eu.eidas.node.service;
 
-public class IdPResponseBean extends ServiceControllerService{
+public class IdPResponseBean extends ServiceControllerService {
 
-  private boolean askConsentValue;
+    private boolean askConsentValue;
 
-  private boolean askConsentAllAttributes;
+    private boolean askConsentAllAttributes;
 
-  private boolean askConsentAttributeNamesOnly;
+    private boolean askConsentAttributeNamesOnly;
 
-  public void setAskConsentValue(boolean askConsentValue) {
-    this.askConsentValue = askConsentValue;
-  }
+    public void setAskConsentValue(boolean askConsentValue) {
+        this.askConsentValue = askConsentValue;
+    }
 
-  public boolean isAskConsentValue() {
-    return askConsentValue;
-  }
+    public boolean isAskConsentValue() {
+        return askConsentValue;
+    }
 
-  public boolean isAskConsentAllAttributes() {
-    return askConsentAllAttributes;
-  }
+    public boolean isAskConsentAllAttributes() {
+        return askConsentAllAttributes;
+    }
 
-  public void setAskConsentAllAttributes(boolean askConsentAllAttributes) {
-    this.askConsentAllAttributes = askConsentAllAttributes;
-  }
+    public void setAskConsentAllAttributes(boolean askConsentAllAttributes) {
+        this.askConsentAllAttributes = askConsentAllAttributes;
+    }
 
-  public boolean isAskConsentAttributeNamesOnly() {
-    return askConsentAttributeNamesOnly;
-  }
+    public boolean isAskConsentAttributeNamesOnly() {
+        return askConsentAttributeNamesOnly;
+    }
 
-  public void setAskConsentAttributeNamesOnly(boolean askConsentAttributeNamesOnly) {
-    this.askConsentAttributeNamesOnly = askConsentAttributeNamesOnly;
-  }
+    public void setAskConsentAttributeNamesOnly(boolean askConsentAttributeNamesOnly) {
+        this.askConsentAttributeNamesOnly = askConsentAttributeNamesOnly;
+    }
 }

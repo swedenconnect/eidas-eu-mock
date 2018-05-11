@@ -57,7 +57,7 @@ public final class SAMLEngineUtils {
      * Encode value with an specific algorithm.
      *
      * @param value the value
-     * @param alg the algorithm
+     * @param alg   the algorithm
      * @return the string
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      * @deprecated use {@link eu.eidas.auth.commons.EidasDigestUtil} instead.
@@ -87,7 +87,7 @@ public final class SAMLEngineUtils {
         } catch (NoSuchAlgorithmException e) {
             LOG.info("ERROR : NoSuchAlgorithmException: " + alg);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
 
         return hash.toString();
@@ -105,11 +105,10 @@ public final class SAMLEngineUtils {
     /**
      * Method that returns the current time.
      *
+     * @return the current time
      * @deprecated since 1.4.
      * The current time should be obtained as a parameter originated from {@link eu.eidas.auth.engine.ProtocolEngine}
      * and not instantiating it directly.
-     *
-     * @return the current time
      */
     @Deprecated
     public static DateTime getCurrentTime() {
@@ -140,9 +139,9 @@ public final class SAMLEngineUtils {
             }
         }
         LOG.error("CONFIGURATION ERROR - Issuer error, configuration entry " + value
-                          + " is not valid (HTTP and HTTPS are the only metadata scheme are supported)");
+                + " is not valid (HTTP and HTTPS are the only metadata scheme are supported)");
         throw new EIDASSAMLEngineException(EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorCode(),
-                                           EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorMessage());
+                EidasErrorKey.SAML_ENGINE_INVALID_METADATA.errorMessage());
     }
 
     /**

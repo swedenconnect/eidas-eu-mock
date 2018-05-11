@@ -21,7 +21,6 @@ import eu.eidas.auth.engine.core.eidas.SPCountry;
 
 /**
  * The Class SPCountryBuilder.
- *
  */
 public class SPCountryBuilder extends AbstractSAMLObjectBuilder<SPCountry> {
 
@@ -32,20 +31,20 @@ public class SPCountryBuilder extends AbstractSAMLObjectBuilder<SPCountry> {
      * @return the service provider country
      */
     public final SPCountry buildObject() {
-	return buildObject(SPCountry.DEF_ELEMENT_NAME);
+        return buildObject(SPCountry.DEF_ELEMENT_NAME);
     }
 
 
     /**
      * Builds the object SPCountry.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the service provider country
      */
     public final SPCountry buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new SPCountryImpl(namespaceURI, localName, namespacePrefix);
+                                       final String localName, final String namespacePrefix) {
+        return new SPCountryImpl(namespaceURI, localName, namespacePrefix);
     }
 }

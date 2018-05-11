@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -31,7 +31,9 @@ import org.opensaml.xml.validation.ValidationException;
  */
 public class ConditionsSpecTest extends BaseSAMLObjectValidatorTestCase {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public ConditionsSpecTest() {
         targetQName = new QName(SAMLConstants.SAML20_NS, Conditions.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20_PREFIX);
         validator = new ConditionsSpecValidator();
@@ -43,7 +45,7 @@ public class ConditionsSpecTest extends BaseSAMLObjectValidatorTestCase {
 
     /**
      * Tests OneTimeUse failure.
-     * 
+     *
      * @throws ValidationException
      */
     public void testOneTimeUseFailure() throws ValidationException {
@@ -54,21 +56,21 @@ public class ConditionsSpecTest extends BaseSAMLObjectValidatorTestCase {
 
         OneTimeUse oneTimeUse2 = (OneTimeUse) buildXMLObject(new QName(SAMLConstants.SAML20_NS, OneTimeUse.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX));
-        
+
         conditions.getConditions().add(oneTimeUse1);
         conditions.getConditions().add(oneTimeUse2);
         assertValidationFail("Multiple OneTimeUse conditions present, should raise a Validation Exception");
     }
-    
+
     public void testProxyRestrictionFailure() throws ValidationException {
         Conditions conditions = (Conditions) target;
-        
+
         ProxyRestriction proxyRestriction1 = (ProxyRestriction) buildXMLObject(new QName(SAMLConstants.SAML20_NS, ProxyRestriction.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX));
 
         ProxyRestriction proxyRestriction2 = (ProxyRestriction) buildXMLObject(new QName(SAMLConstants.SAML20_NS, ProxyRestriction.DEFAULT_ELEMENT_LOCAL_NAME,
                 SAMLConstants.SAML20_PREFIX));
-        
+
         conditions.getConditions().add(proxyRestriction1);
         conditions.getConditions().add(proxyRestriction2);
 

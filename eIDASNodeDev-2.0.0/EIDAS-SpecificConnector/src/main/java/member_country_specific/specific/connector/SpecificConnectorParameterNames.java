@@ -32,9 +32,7 @@ public enum SpecificConnectorParameterNames {
 
     SP_URL("spUrl"),
 
-    REDIRECT_URL("redirectUrl"),
-
-    ;
+    REDIRECT_URL("redirectUrl"),;
 
     /**
      * constant name.
@@ -45,7 +43,7 @@ public enum SpecificConnectorParameterNames {
     /**
      * Constructor
      *
-     * @param nameValue    the constant name
+     * @param nameValue the constant name
      */
     SpecificConnectorParameterNames(@Nonnull String nameValue) {
         name = nameValue;

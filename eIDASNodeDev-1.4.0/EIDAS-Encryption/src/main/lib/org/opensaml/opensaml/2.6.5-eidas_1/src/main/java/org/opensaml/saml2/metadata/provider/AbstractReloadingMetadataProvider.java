@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -36,7 +36,7 @@ import org.w3c.dom.Document;
 
 /**
  * Base class for metadata providers that cache and periodically refresh their metadata.
- * 
+ * <p>
  * This metadata provider periodically checks to see if the read metadata file has changed. The delay between each
  * refresh interval is calculated as follows. If no validUntil or cacheDuration is present then the
  * {@link #getMaxRefreshDelay()} value is used. Otherwise, the earliest refresh interval of the metadata file is checked
@@ -50,19 +50,29 @@ import org.w3c.dom.Document;
  */
 public abstract class AbstractReloadingMetadataProvider extends AbstractObservableMetadataProvider {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(AbstractReloadingMetadataProvider.class);
 
-    /** Timer used to schedule background metadata update tasks. */
+    /**
+     * Timer used to schedule background metadata update tasks.
+     */
     private Timer taskTimer;
 
-    /** Whether we created our own task timer during object construction. */
+    /**
+     * Whether we created our own task timer during object construction.
+     */
     private boolean createdOwnTaskTimer;
 
-    /** Current task to refresh metadata. */
+    /**
+     * Current task to refresh metadata.
+     */
     private RefreshMetadataTask refresMetadataTask;
 
-    /** Factor used to compute when the next refresh interval will occur. Default value: 0.75 */
+    /**
+     * Factor used to compute when the next refresh interval will occur. Default value: 0.75
+     */
     private float refreshDelayFactor = 0.75f;
 
     /**
@@ -71,32 +81,46 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
      */
     private long maxRefreshDelay = 14400000;
 
-    /** Floor, in milliseconds, for the refresh interval. Default value: 300000ms */
+    /**
+     * Floor, in milliseconds, for the refresh interval. Default value: 300000ms
+     */
     private int minRefreshDelay = 300000;
 
-    /** Time when the currently cached metadata file expires. */
+    /**
+     * Time when the currently cached metadata file expires.
+     */
     private DateTime expirationTime;
 
-    /** Last time the metadata was updated. */
+    /**
+     * Last time the metadata was updated.
+     */
     private DateTime lastUpdate;
 
-    /** Last time a refresh cycle occurred. */
+    /**
+     * Last time a refresh cycle occurred.
+     */
     private DateTime lastRefresh;
 
-    /** Next time a refresh cycle will occur. */
+    /**
+     * Next time a refresh cycle will occur.
+     */
     private DateTime nextRefresh;
 
-    /** Last successfully read in metadata. */
+    /**
+     * Last successfully read in metadata.
+     */
     private XMLObject cachedMetadata;
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     protected AbstractReloadingMetadataProvider() {
         this(null);
     }
 
     /**
      * Constructor.
-     * 
+     *
      * @param backgroundTaskTimer time used to schedule background refresh tasks
      */
     protected AbstractReloadingMetadataProvider(Timer backgroundTaskTimer) {
@@ -112,7 +136,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Gets the time when the currently cached metadata expires.
-     * 
+     *
      * @return time when the currently cached metadata expires, or null if no metadata is cached
      */
     public DateTime getExpirationTime() {
@@ -123,7 +147,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
      * Gets the time that the currently available metadata was last updated. Note, this may be different than the time
      * retrieved by {@link #getLastRefresh()} if the metadata was known not to have changed during the last refresh
      * cycle.
-     * 
+     *
      * @return time when the currently metadata was last update, null if metadata has never successfully been read in
      */
     public DateTime getLastUpdate() {
@@ -132,7 +156,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Gets the time the last refresh cycle occurred.
-     * 
+     *
      * @return time the last refresh cycle occurred
      */
     public DateTime getLastRefresh() {
@@ -141,7 +165,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Gets the time when the next refresh cycle will occur.
-     * 
+     *
      * @return time when the next refresh cycle will occur
      */
     public DateTime getNextRefresh() {
@@ -150,7 +174,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Gets the maximum amount of time, in milliseconds, between refresh intervals.
-     * 
+     *
      * @return maximum amount of time between refresh intervals
      */
     public long getMaxRefreshDelay() {
@@ -159,7 +183,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Sets the maximum amount of time, in milliseconds, between refresh intervals.
-     * 
+     *
      * @param delay maximum amount of time, in milliseconds, between refresh intervals
      */
     public void setMaxRefreshDelay(long delay) {
@@ -171,7 +195,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Gets the delay factor used to compute the next refresh time.
-     * 
+     *
      * @return delay factor used to compute the next refresh time
      */
     public float getRefreshDelayFactor() {
@@ -180,7 +204,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Sets the delay factor used to compute the next refresh time. The delay must be between 0.0 and 1.0, exclusive.
-     * 
+     *
      * @param factor delay factor used to compute the next refresh time
      */
     public void setRefreshDelayFactor(float factor) {
@@ -193,7 +217,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Gets the minimum amount of time, in milliseconds, between refreshes.
-     * 
+     *
      * @return minimum amount of time, in milliseconds, between refreshes
      */
     public int getMinRefreshDelay() {
@@ -202,7 +226,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Sets the minimum amount of time, in milliseconds, between refreshes.
-     * 
+     *
      * @param delay minimum amount of time, in milliseconds, between refreshes
      */
     public void setMinRefreshDelay(int delay) {
@@ -212,7 +236,9 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
         minRefreshDelay = delay;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public synchronized void destroy() {
         refresMetadataTask.cancel();
 
@@ -229,12 +255,16 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
         super.destroy();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected XMLObject doGetMetadata() throws MetadataProviderException {
         return cachedMetadata;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doInitialization() throws MetadataProviderException {
         refresh();
 
@@ -246,7 +276,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Refreshes the metadata from its source.
-     * 
+     *
      * @throws MetadataProviderException thrown is there is a problem retrieving and processing the metadata
      */
     public synchronized void refresh() throws MetadataProviderException {
@@ -269,7 +299,7 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
             if (t instanceof Exception) {
                 throw new MetadataProviderException((Exception) t);
             } else {
-                throw new MetadataProviderException(String.format("Saw an error of type '%s' with message '%s'", 
+                throw new MetadataProviderException(String.format("Saw an error of type '%s' with message '%s'",
                         t.getClass().getName(), t.getMessage()));
             }
         } finally {
@@ -277,34 +307,31 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
             long nextRefreshDelay = nextRefresh.getMillis() - System.currentTimeMillis();
             taskTimer.schedule(refresMetadataTask, nextRefreshDelay);
             log.info("Next refresh cycle for metadata provider '{}' will occur on '{}' ('{}' local time)",
-                    new Object[] {mdId, nextRefresh, nextRefresh.toDateTime(DateTimeZone.getDefault()),});
+                    new Object[]{mdId, nextRefresh, nextRefresh.toDateTime(DateTimeZone.getDefault()),});
             lastRefresh = now;
         }
     }
 
     /**
      * Gets an identifier which may be used to distinguish this metadata in logging statements.
-     * 
+     *
      * @return identifier which may be used to distinguish this metadata in logging statements
      */
     protected abstract String getMetadataIdentifier();
 
     /**
      * Fetches metadata from a source.
-     * 
+     *
      * @return the fetched metadata, or null if the metadata is known not to have changed since the last retrieval
-     * 
      * @throws MetadataProviderException thrown if there is a problem fetching the metadata
      */
     protected abstract byte[] fetchMetadata() throws MetadataProviderException;
 
     /**
      * Unmarshalls the given metadata bytes.
-     * 
+     *
      * @param metadataBytes raw metadata bytes
-     * 
      * @return the metadata
-     * 
      * @throws MetadataProviderException thrown if the metadata can not be unmarshalled
      */
     protected XMLObject unmarshallMetadata(byte[] metadataBytes) throws MetadataProviderException {
@@ -319,10 +346,9 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Processes a cached metadata document in order to determine, and schedule, the next time it should be refreshed.
-     * 
+     *
      * @param metadataIdentifier identifier of the metadata source
-     * @param refreshStart when the current refresh cycle started
-     * 
+     * @param refreshStart       when the current refresh cycle started
      * @throws MetadataProviderException throw is there is a problem process the cached metadata
      */
     protected void processCachedMetadata(String metadataIdentifier, DateTime refreshStart)
@@ -340,11 +366,10 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
     /**
      * Process a new metadata document. Processing include unmarshalling and filtering metadata, determining the next
      * time is should be refreshed and scheduling the next refresh cycle.
-     * 
+     *
      * @param metadataIdentifier identifier of the metadata source
-     * @param refreshStart when the current refresh cycle started
-     * @param metadataBytes raw bytes of the new metadata document
-     * 
+     * @param refreshStart       when the current refresh cycle started
+     * @param metadataBytes      raw bytes of the new metadata document
      * @throws MetadataProviderException thrown if there is a problem unmarshalling or filtering the new metadata
      */
     protected void processNewMetadata(String metadataIdentifier, DateTime refreshStart, byte[] metadataBytes)
@@ -363,14 +388,14 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
      * Processes metadata that has been determined to be invalid (usually because it's already expired) at the time it
      * was fetched. A metadata document is considered be invalid if its root element returns false when passed to the
      * {@link #isValid(XMLObject)} method.
-     * 
+     *
      * @param metadataIdentifier identifier of the metadata source
-     * @param refreshStart when the current refresh cycle started
-     * @param metadataBytes raw bytes of the new metadata document
-     * @param metadata new metadata document unmarshalled
+     * @param refreshStart       when the current refresh cycle started
+     * @param metadataBytes      raw bytes of the new metadata document
+     * @param metadata           new metadata document unmarshalled
      */
     protected void processPreExpiredMetadata(String metadataIdentifier, DateTime refreshStart, byte[] metadataBytes,
-            XMLObject metadata) {
+                                             XMLObject metadata) {
         log.warn("Entire metadata document from '{}' was expired at time of loading, existing metadata retained",
                 metadataIdentifier);
 
@@ -381,16 +406,15 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
     /**
      * Processes metadata that has been determined to be valid at the time it was fetched. A metadata document is
      * considered be valid if its root element returns true when passed to the {@link #isValid(XMLObject)} method.
-     * 
+     *
      * @param metadataIdentifier identifier of the metadata source
-     * @param refreshStart when the current refresh cycle started
-     * @param metadataBytes raw bytes of the new metadata document
-     * @param metadata new metadata document unmarshalled
-     * 
+     * @param refreshStart       when the current refresh cycle started
+     * @param metadataBytes      raw bytes of the new metadata document
+     * @param metadata           new metadata document unmarshalled
      * @throws MetadataProviderException thrown if there s a problem processing the metadata
      */
     protected void processNonExpiredMetadata(String metadataIdentifier, DateTime refreshStart, byte[] metadataBytes,
-            XMLObject metadata) throws MetadataProviderException {
+                                             XMLObject metadata) throws MetadataProviderException {
         Document metadataDom = metadata.getDOM().getOwnerDocument();
 
         log.debug("Filtering metadata from '{}'", metadataIdentifier);
@@ -435,13 +459,12 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
      * Post-processing hook called after new metadata has been unmarshalled, filtered, and the DOM released (from the
      * {@link XMLObject}) but before the metadata is saved off. Any exception thrown by this hook will cause the
      * retrieved metadata to be discarded.
-     * 
+     * <p>
      * The default implementation of this method is a no-op
-     * 
+     *
      * @param metadataBytes raw metadata bytes retrieved via {@link #fetchMetadata}
-     * @param metadataDom metadata after it has been parsed in to a DOM document
-     * @param metadata metadata after it has been run through all registered filters and its DOM released
-     * 
+     * @param metadataDom   metadata after it has been parsed in to a DOM document
+     * @param metadata      metadata after it has been run through all registered filters and its DOM released
      * @throws MetadataProviderException thrown if there is a problem with the provided data
      */
     protected void postProcessMetadata(byte[] metadataBytes, Document metadataDom, XMLObject metadata)
@@ -452,9 +475,8 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
     /**
      * Computes the delay until the next refresh time based on the current metadata's expiration time and the refresh
      * interval floor.
-     * 
+     *
      * @param expectedExpiration the time when the metadata is expected to expire and need refreshing
-     * 
      * @return delay, in milliseconds, until the next refresh time
      */
     protected long computeNextRefreshDelay(DateTime expectedExpiration) {
@@ -477,11 +499,9 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
 
     /**
      * Converts an InputStream into a byte array.
-     * 
+     *
      * @param ins input stream to convert
-     * 
      * @return resultant byte array
-     * 
      * @throws MetadataProviderException thrown if there is a problem reading the resultant byte array
      */
     protected byte[] inputstreamToByteArray(InputStream ins) throws MetadataProviderException {
@@ -502,10 +522,14 @@ public abstract class AbstractReloadingMetadataProvider extends AbstractObservab
         }
     }
 
-    /** Background task that refreshes metadata. */
+    /**
+     * Background task that refreshes metadata.
+     */
     private class RefreshMetadataTask extends TimerTask {
 
-        /** {@inheritDoc} */
+        /**
+         * {@inheritDoc}
+         */
         public void run() {
             try {
                 if (!isInitialized()) {

@@ -25,7 +25,7 @@ import eu.eidas.auth.engine.core.stork.SPApplication;
  * @author fjquevedo
  */
 public class SPApplicationBuilder extends
-	AbstractSAMLObjectBuilder<SPApplication> {
+        AbstractSAMLObjectBuilder<SPApplication> {
 
     /**
      * Builds the object.
@@ -33,19 +33,19 @@ public class SPApplicationBuilder extends
      * @return the service provider application
      */
     public final SPApplication buildObject() {
-	return buildObject(SPApplication.DEF_ELEMENT_NAME);
+        return buildObject(SPApplication.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the service provider application
      */
     public final SPApplication buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new SPApplicationImpl(namespaceURI, localName, namespacePrefix);
+                                           final String localName, final String namespacePrefix) {
+        return new SPApplicationImpl(namespaceURI, localName, namespacePrefix);
     }
 }

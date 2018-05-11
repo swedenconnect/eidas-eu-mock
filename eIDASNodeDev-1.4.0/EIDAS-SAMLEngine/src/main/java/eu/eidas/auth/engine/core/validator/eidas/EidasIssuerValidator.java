@@ -19,7 +19,6 @@ import org.opensaml.saml2.core.validator.IssuerSchemaValidator;
 import org.opensaml.xml.validation.ValidationException;
 
 
-
 public class EidasIssuerValidator extends IssuerSchemaValidator {
 
     private static final String FORMAT_ALLOWED_VALUE = "urn:oasis:names:tc:SAML:2.0:nameid-format:entity";
@@ -39,7 +38,7 @@ public class EidasIssuerValidator extends IssuerSchemaValidator {
 
         // format is optional
         if (issuer.getFormat() != null && !issuer.getFormat().equals(FORMAT_ALLOWED_VALUE)) {
-                throw new ValidationException("Format has an invalid value.");
+            throw new ValidationException("Format has an invalid value.");
         }
 
     }

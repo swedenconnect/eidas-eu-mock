@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -20,20 +20,28 @@ package org.opensaml.xacml.profile.saml.impl;
 import org.opensaml.common.impl.AbstractSAMLObjectBuilder;
 import org.opensaml.xacml.profile.saml.XACMLPolicyQueryType;
 
-/** Builder for {@link org.opensaml.xacml.profile.saml.XACMLPolicyQueryType} objects. */
+/**
+ * Builder for {@link org.opensaml.xacml.profile.saml.XACMLPolicyQueryType} objects.
+ */
 public class XACMLPolicyQueryTypeImplBuilder extends AbstractSAMLObjectBuilder<XACMLPolicyQueryType> {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public XACMLPolicyQueryTypeImplBuilder() {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XACMLPolicyQueryType buildObject() {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public XACMLPolicyQueryType buildObject(String namespaceURI, String localName, String namespacePrefix) {
         return new XACMLPolicyQueryTypeImpl(namespaceURI, localName, namespacePrefix);
     }

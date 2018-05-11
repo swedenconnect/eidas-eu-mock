@@ -92,7 +92,7 @@ public class SpecificConnectorImplTest {
                     .personType(PersonType.NATURAL_PERSON)
                     .required(true)
                     .xmlType("http://eidas.europa.eu/attributes/naturalperson", "CurrentFamilyNameType",
-                             "eidas-natural")
+                            "eidas-natural")
                     .attributeValueMarshaller(new StringAttributeValueMarshaller())
                     .transliterationMandatory(true)
                     .build();
@@ -131,7 +131,7 @@ public class SpecificConnectorImplTest {
         Map<String, String[]> params = newHashMap();
         byte[] bytes = "<SAMLRequest>".getBytes("UTF-8");
         byte[] encodedSAMLRequest = Base64.encode(bytes);
-        params.put("SAMLRequest", new String[] { new String(encodedSAMLRequest) });
+        params.put("SAMLRequest", new String[]{new String(encodedSAMLRequest)});
         HttpServletRequest httpServletRequest = httpServletRequest(params);
         //expectation
         when(specificConnectorBean.getSpecificConnectorNode()).thenReturn(specificNode);
@@ -180,7 +180,7 @@ public class SpecificConnectorImplTest {
         verify(specificNode).getConnectorRequestCorrelationMap();
         verifyZeroInteractions(specificConnectorBean, specificNode);
         //assert
-        assertEquals(new String(Base64.encode("<Response>".getBytes())),httpServletRequest.getAttribute("SAMLResponse"));
+        assertEquals(new String(Base64.encode("<Response>".getBytes())), httpServletRequest.getAttribute("SAMLResponse"));
         assertEquals(SP_URL, httpServletRequest.getAttribute(EidasParameterKeys.SP_URL.toString()));
         assertNull(httpServletRequest.getAttribute(SpecificParameterNames.RELAY_STATE.toString()));
     }

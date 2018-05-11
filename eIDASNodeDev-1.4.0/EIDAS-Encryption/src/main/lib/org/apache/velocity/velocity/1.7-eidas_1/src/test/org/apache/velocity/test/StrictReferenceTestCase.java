@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.exception.MethodInvocationException;
@@ -28,28 +28,24 @@ import org.apache.velocity.runtime.RuntimeConstants;
  * Test strict reference mode turned on by the velocity property
  * runtime.references.strict
  */
-public class StrictReferenceTestCase extends BaseTestCase
-{
-    public StrictReferenceTestCase(String name)
-    {
+public class StrictReferenceTestCase extends BaseTestCase {
+    public StrictReferenceTestCase(String name) {
         super(name);
     }
 
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         super.setUp();
         engine.setProperty(RuntimeConstants.RUNTIME_REFERENCES_STRICT, Boolean.TRUE);
         context.put("NULL", null);
         context.put("bar", null);
         context.put("TRUE", Boolean.TRUE);
     }
-    
+
     /**
      * Test the modified behavior of #if in strict mode.  Mainly, that
      * single variables references in #if statements use non strict rules
      */
-    public void testIfStatement()
-    {
+    public void testIfStatement() {
         Fargo fargo = new Fargo();
         fargo.next = new Fargo();
         context.put("fargo", fargo);
@@ -67,27 +63,25 @@ public class StrictReferenceTestCase extends BaseTestCase
         assertMethodEx("#if($bogus.foo)#end");
         assertMethodEx("#if(!$bogus.foo)#end");
     }
-    
-    
-    /**       
+
+
+    /**
      * We make sure that variables can actuall hold null
      * values.
      */
     public void testAllowNullValues()
-        throws Exception
-    {
+            throws Exception {
         evaluate("$!bar");
         assertEvalEquals("true", "#if($bar == $NULL)true#end");
         assertEvalEquals("true", "#set($foobar = $NULL)#if($foobar == $NULL)true#end");
         assertEvalEquals("13", "#set($list = [1, $NULL, 3])#foreach($item in $list)#if($item != $NULL)$item#end#end");
     }
-    
+
     /**
-     * Test that variables references that have not been defined throw exceptions 
+     * Test that variables references that have not been defined throw exceptions
      */
     public void testStrictVariableRef()
-        throws Exception
-    {
+            throws Exception {
         // We expect a Method exception on the following
         assertMethodEx("$bogus");
         assertMethodEx("#macro(test)$bogus#end #test()");
@@ -101,21 +95,20 @@ public class StrictReferenceTestCase extends BaseTestCase
         assertMethodEx("#foreach($item in $bogus)#end");
 
         // make sure no exceptions are thrown here    
-        evaluate("#set($foo = \"bar\") $foo");     
+        evaluate("#set($foo = \"bar\") $foo");
         evaluate("#macro(test1 $foo1) $foo1 #end #test1(\"junk\")");
         evaluate("#macro(test2) #set($foo2 = \"bar\") $foo2 #end #test2()");
     }
-    
+
     /**
      * Test that exceptions are thrown when methods are called on
      * references that contains objects that do not contains those
      * methods.
      */
-    public void testStrictMethodRef()
-    {
+    public void testStrictMethodRef() {
         Fargo fargo = new Fargo();
         fargo.next = new Fargo();
-        context.put("fargo", fargo);        
+        context.put("fargo", fargo);
 
         // Mainly want to make sure no exceptions are thrown here
         assertEvalEquals("propiness", "$fargo.prop");
@@ -128,13 +121,12 @@ public class StrictReferenceTestCase extends BaseTestCase
         assertMethodEx("#set($fargo.next.prop = $TRUE)");
         assertMethodEx("$fargo.next.setProp($TRUE)");
     }
-  
+
     /**
      * Make sure exceptions are thrown when when we attempt to call
      * methods on null values.
      */
-    public void testStrictMethodOnNull()
-    {
+    public void testStrictMethodOnNull() {
         Fargo fargo = new Fargo();
         fargo.next = new Fargo();
         context.put("fargo", fargo);
@@ -160,11 +152,10 @@ public class StrictReferenceTestCase extends BaseTestCase
     /**
      * Make sure undefined macros throw exceptions
      */
-    public void testMacros()
-    {
+    public void testMacros() {
         assertVelocityEx("#bogus()");
         assertVelocityEx("#bogus (  )");
-        assertVelocityEx("#bogus( $a )");        
+        assertVelocityEx("#bogus( $a )");
         assertVelocityEx("abc#bogus ( $a )a ");
 
         assertEvalEquals(" true ", "#macro(test1) true #end#test1()");
@@ -173,14 +164,13 @@ public class StrictReferenceTestCase extends BaseTestCase
         assertEvalEquals("#F - ()", "#F - ()");
         assertEvalEquals("#F{}", "#F{}");
     }
-    
-    
-    public void testRenderingNull()
-    {
+
+
+    public void testRenderingNull() {
         Fargo fargo = new Fargo();
         fargo.next = new Fargo();
-        context.put("fargo", fargo);      
-      
+        context.put("fargo", fargo);
+
         assertVelocityEx("#set($foo = $NULL)$foo");
         assertEvalEquals("", "#set($foo = $NULL)$!foo");
         assertVelocityEx("$fargo.nullVal");
@@ -190,55 +180,47 @@ public class StrictReferenceTestCase extends BaseTestCase
         assertVelocityEx("$fargo.next.nullVal");
         assertEvalEquals("", "$!fargo.next.nullVal");
     }
-    
+
     /**
      * Assert that we get a MethodInvocationException when calling evaluate
      */
-    public void assertMethodEx(String template)
-    {
+    public void assertMethodEx(String template) {
         assertEvalException(template, MethodInvocationException.class);
     }
 
     /**
      * Assert that we get a VelocityException when calling evaluate
      */
-    public void assertVelocityEx(String template)
-    {
+    public void assertVelocityEx(String template) {
         assertEvalException(template, VelocityException.class);
     }
 
     /**
      * Assert that we get a MethodInvocationException when calling evaluate
      */
-    public void assertParseEx(String template)
-    {
+    public void assertParseEx(String template) {
         assertEvalException(template, ParseErrorException.class);
     }
 
 
-    public static class Fargo
-    {
+    public static class Fargo {
         String prop = "propiness";
         Fargo next = null;
-      
-        public String getProp()
-        {
+
+        public String getProp() {
             return prop;
         }
 
-        public void setProp(String val)
-        {
+        public void setProp(String val) {
             this.prop = val;
         }
 
-        public String getNullVal()
-        {
+        public String getNullVal() {
             return null;
         }
 
-        public Fargo getNext()
-        {
+        public Fargo getNext() {
             return next;
-        }      
-    }  
+        }
+    }
 }

@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -44,18 +44,24 @@ import org.slf4j.LoggerFactory;
  */
 public class HTTPArtifactEncoder extends BaseSAML1MessageEncoder {
 
-    /** Class logger. */
+    /**
+     * Class logger.
+     */
     private final Logger log = LoggerFactory.getLogger(HTTPArtifactEncoder.class);
 
-    /** SAML artifact map used to store created artifacts for later retrival. */
+    /**
+     * SAML artifact map used to store created artifacts for later retrival.
+     */
     private SAMLArtifactMap artifactMap;
 
-    /** Default artifact type to use when encoding messages. */
+    /**
+     * Default artifact type to use when encoding messages.
+     */
     private byte[] defaultArtifactType;
 
     /**
      * Constructor.
-     * 
+     *
      * @param map SAML artifact map used to store created artifacts for later retrival
      */
     public HTTPArtifactEncoder(SAMLArtifactMap map) {
@@ -63,22 +69,30 @@ public class HTTPArtifactEncoder extends BaseSAML1MessageEncoder {
         defaultArtifactType = SAML1ArtifactType0001.TYPE_CODE;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getBindingURI() {
         return SAMLConstants.SAML1_ARTIFACT_BINDING_URI;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageConfidentiality(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean providesMessageIntegrity(MessageContext messageContext) throws MessageEncodingException {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void doEncode(MessageContext messageContext) throws MessageEncodingException {
         if (!(messageContext instanceof SAMLMessageContext)) {
             log.error("Invalid message context type, this encoder only support SAMLMessageContext");
@@ -114,7 +128,7 @@ public class HTTPArtifactEncoder extends BaseSAML1MessageEncoder {
         String artifactString;
         for (Assertion assertion : artifactContext.getOutboundSAMLMessage().getAssertions()) {
             artifact = artifactBuilder.buildArtifact(artifactContext, assertion);
-            if(artifact == null){
+            if (artifact == null) {
                 log.error("Unable to build artifact for message to relying party");
                 throw new MessageEncodingException("Unable to builder artifact for message to relying party");
             }

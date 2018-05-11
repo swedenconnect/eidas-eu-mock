@@ -5,39 +5,39 @@ import java.io.Serializable;
 
 public class ResponseStatus implements Serializable {
 
-	private static final long serialVersionUID = -7295082457165791645L;
-	
-	protected String statusCode;
+    private static final long serialVersionUID = -7295082457165791645L;
 
-	protected String subStatusCode;
+    protected String statusCode;
 
-	protected String statusMessage;
+    protected String subStatusCode;
 
-	@XmlElement(name="status_code", required=true, nillable=false)
-	public String getStatusCode() {
-		return statusCode;
-	}
+    protected String statusMessage;
 
-	public void setStatusCode(String statusCode) {
-		this.statusCode = statusCode;
-	}
+    @XmlElement(name = "status_code", required = true, nillable = false)
+    public String getStatusCode() {
+        return statusCode;
+    }
 
-	@XmlElement(name="sub_status_code")
-	public String getSubStatusCode() {
-		return subStatusCode;
-	}
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
 
-	public void setSubStatusCode(String subStatusCode) {
-		this.subStatusCode = subStatusCode;
-	}
+    @XmlElement(name = "sub_status_code")
+    public String getSubStatusCode() {
+        return subStatusCode;
+    }
 
-	@XmlElement(name="status_message")
-	public String getStatusMessage() {
-		return statusMessage;
-	}
+    public void setSubStatusCode(String subStatusCode) {
+        this.subStatusCode = subStatusCode;
+    }
 
-	public void setStatusMessage(String statusMessage) {
-		this.statusMessage = statusMessage;
-	}
-	
+    @XmlElement(name = "status_message")
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
+    }
+
 }

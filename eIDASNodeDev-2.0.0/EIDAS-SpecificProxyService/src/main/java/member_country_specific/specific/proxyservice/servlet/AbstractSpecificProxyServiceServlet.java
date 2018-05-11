@@ -34,12 +34,14 @@ public abstract class AbstractSpecificProxyServiceServlet extends HttpServlet {
 
     /**
      * Abstract logging impl.
+     *
      * @return the concrete logger of implementing servlet
      */
-	protected abstract Logger getLogger();
+    protected abstract Logger getLogger();
 
     /**
      * Obtaining the application context
+     *
      * @return Node applicationContext
      */
     protected final ApplicationContext getApplicationContext() {

@@ -16,13 +16,13 @@
             <xsd:enumeration value="private"/>
         </xsd:restriction>
     </xsd:simpleType>
-    <xsd:element name="RequestedAttributes" type="eidas:RequestedAttributesType" />
+    <xsd:element name="RequestedAttributes" type="eidas:RequestedAttributesType"/>
     <xsd:complexType name="RequestedAttributesType">
         <xsd:sequence>
             <xsd:element minOccurs="0" maxOccurs="unbounded" ref="eidas:RequestedAttribute"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="RequestedAttribute" type="eidas:RequestedAttributeType" />
+    <xsd:element name="RequestedAttribute" type="eidas:RequestedAttributeType"/>
     <xsd:complexType name="RequestedAttributeType">
         <xsd:sequence>
             <xsd:element minOccurs="0" maxOccurs="unbounded" ref="eidas:AttributeValue"/>
@@ -33,6 +33,6 @@
         <xsd:attribute name="isRequired" use="optional" type="xsd:boolean"/>
         <xsd:anyAttribute namespace="##other" processContents="lax"/>
     </xsd:complexType>
-    <xsd:element name="AttributeValue" type="xsd:anyType" />
+    <xsd:element name="AttributeValue" type="xsd:anyType"/>
 
 </xsd:schema>

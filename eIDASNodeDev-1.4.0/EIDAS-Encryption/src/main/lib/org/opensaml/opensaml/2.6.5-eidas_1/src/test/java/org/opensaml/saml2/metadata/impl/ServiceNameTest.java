@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.metadata.impl;
 
@@ -32,36 +32,44 @@ import org.opensaml.saml2.metadata.ServiceName;
  * {@link org.opensaml.saml2.metadata.ServiceDescription}.
  */
 public class ServiceNameTest extends BaseSAMLObjectProviderTestCase {
-    
-    /** Expected description */
+
+    /**
+     * Expected description
+     */
     protected LocalizedString expectedName;
-    
+
     /**
      * Constructor
      */
     public ServiceNameTest() {
         singleElementFile = "/data/org/opensaml/saml2/metadata/impl/ServiceName.xml";
     }
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         expectedName = new LocalizedString("Name", "Language");
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         ServiceName name = (ServiceName) unmarshallElement(singleElementFile);
-        
+
         assertEquals("Name was not expected value", expectedName, name.getName());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         QName qname = new QName(SAMLConstants.SAML20MD_NS, ServiceName.DEFAULT_ELEMENT_LOCAL_NAME, SAMLConstants.SAML20MD_PREFIX);
         ServiceName name = (ServiceName) buildXMLObject(qname);
-        
+
         name.setName(expectedName);
 
         assertEquals(expectedDOM, name);

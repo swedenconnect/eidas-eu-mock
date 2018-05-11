@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -29,38 +29,54 @@ import org.opensaml.saml2.core.Evidence;
  */
 public class EvidenceTest extends BaseSAMLObjectProviderTestCase {
 
-    /** Count of AssertionIDRef subelements. */
+    /**
+     * Count of AssertionIDRef subelements.
+     */
     private int assertionIDRefCount = 3;
 
-    /** Count of AssertionURIRef subelements. */
+    /**
+     * Count of AssertionURIRef subelements.
+     */
     private int assertionURIRefCount = 4;
 
-    /** Count of Assertion subelements. */
+    /**
+     * Count of Assertion subelements.
+     */
     private int assertionCount = 2;
-    
-    /** Count of EncryptedAssertion subelements. */
+
+    /**
+     * Count of EncryptedAssertion subelements.
+     */
     private int encryptedAssertionCount = 2;
 
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     public EvidenceTest() {
         singleElementFile = "/data/org/opensaml/saml2/core/impl/Evidence.xml";
         childElementsFile = "/data/org/opensaml/saml2/core/impl/EvidenceChildElements.xml";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementUnmarshall() {
         Evidence evidence = (Evidence) unmarshallElement(singleElementFile);
 
         assertNotNull(evidence);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsUnmarshall() {
         Evidence evidence = (Evidence) unmarshallElement(childElementsFile);
 
@@ -69,44 +85,48 @@ public class EvidenceTest extends BaseSAMLObjectProviderTestCase {
         assertEquals("AssertionURIRef count not as expected", assertionURIRefCount, evidence
                 .getAssertionURIReferences().size());
         assertEquals("Assertion count not as expected", assertionCount, evidence.getAssertions().size());
-        assertEquals("EncryptedAssertion count not as expected", 
+        assertEquals("EncryptedAssertion count not as expected",
                 encryptedAssertionCount, evidence.getEncryptedAssertions().size());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testSingleElementMarshall() {
         Evidence evidence = (Evidence) buildXMLObject(Evidence.DEFAULT_ELEMENT_NAME);
 
         assertEquals(expectedDOM, evidence);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void testChildElementsMarshall() {
         Evidence evidence = (Evidence) buildXMLObject(Evidence.DEFAULT_ELEMENT_NAME);
-        
+
         evidence.getAssertionIDReferences()
-            .add((AssertionIDRef) buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));
+                .add((AssertionIDRef) buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));
         evidence.getAssertionIDReferences()
-            .add((AssertionIDRef) buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));
+                .add((AssertionIDRef) buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));
         evidence.getAssertionURIReferences()
-            .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
+                .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
         evidence.getAssertionIDReferences()
-            .add((AssertionIDRef) buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));
+                .add((AssertionIDRef) buildXMLObject(AssertionIDRef.DEFAULT_ELEMENT_NAME));
         evidence.getAssertionURIReferences()
-            .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
+                .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
         evidence.getAssertionURIReferences()
-            .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
+                .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
         evidence.getAssertionURIReferences()
-            .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
+                .add((AssertionURIRef) buildXMLObject(AssertionURIRef.DEFAULT_ELEMENT_NAME));
         evidence.getAssertions()
-            .add((Assertion) buildXMLObject(Assertion.DEFAULT_ELEMENT_NAME));
+                .add((Assertion) buildXMLObject(Assertion.DEFAULT_ELEMENT_NAME));
         evidence.getEncryptedAssertions()
-            .add((EncryptedAssertion) buildXMLObject(EncryptedAssertion.DEFAULT_ELEMENT_NAME));
+                .add((EncryptedAssertion) buildXMLObject(EncryptedAssertion.DEFAULT_ELEMENT_NAME));
         evidence.getEncryptedAssertions()
-            .add((EncryptedAssertion) buildXMLObject(EncryptedAssertion.DEFAULT_ELEMENT_NAME));
+                .add((EncryptedAssertion) buildXMLObject(EncryptedAssertion.DEFAULT_ELEMENT_NAME));
         evidence.getAssertions()
-            .add((Assertion) buildXMLObject(Assertion.DEFAULT_ELEMENT_NAME));
-        
+                .add((Assertion) buildXMLObject(Assertion.DEFAULT_ELEMENT_NAME));
+
         assertEquals(expectedChildElementsDOM, evidence);
     }
 }

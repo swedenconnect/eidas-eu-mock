@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" IssueInstant="1970-01-02T01:01:02.100Z" MajorVersion="1" MinorVersion="1" ResponseID="ident">
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" IssueInstant="1970-01-02T01:01:02.100Z"
+                MajorVersion="1" MinorVersion="1" ResponseID="ident">
     <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
         <ds:SignedInfo>
             <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>

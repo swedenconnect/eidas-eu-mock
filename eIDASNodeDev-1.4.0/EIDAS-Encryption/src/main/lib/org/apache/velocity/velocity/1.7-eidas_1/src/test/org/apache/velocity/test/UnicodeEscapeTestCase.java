@@ -25,31 +25,25 @@ import org.apache.velocity.runtime.parser.node.ASTStringLiteral;
 /**
  * Test Case for <a href="https://issues.apache.org/jira/browse/VELTOOLS-520">Velocity Tools Issue 520</a>.
  */
-public class UnicodeEscapeTestCase extends BaseTestCase
-{
-    public UnicodeEscapeTestCase(final String name) throws Exception
-    {
+public class UnicodeEscapeTestCase extends BaseTestCase {
+    public UnicodeEscapeTestCase(final String name) throws Exception {
         super(name);
     }
 
-    public void testUnicodeEscape() throws Exception
-    {
+    public void testUnicodeEscape() throws Exception {
         assertEvalEquals("a", "#set($v = \"\\u0061\")$v");
     }
 
-    private void assertUnescape(String expected, String escaped)
-    {
+    private void assertUnescape(String expected, String escaped) {
         String unescaped = ASTStringLiteral.unescape(escaped);
         assertEquals(expected, unescaped);
-        if (escaped.equals(expected))
-        {
+        if (escaped.equals(expected)) {
             // checking that no new string allocated, for perfomance
             assertSame(unescaped, escaped);
         }
     }
 
-    public void testASTStringLiteralUnescape()
-    {
+    public void testASTStringLiteralUnescape() {
         assertUnescape("", "");
         assertUnescape("bebe", "bebe");
         assertUnescape("as\\nsd", "as\\nsd");

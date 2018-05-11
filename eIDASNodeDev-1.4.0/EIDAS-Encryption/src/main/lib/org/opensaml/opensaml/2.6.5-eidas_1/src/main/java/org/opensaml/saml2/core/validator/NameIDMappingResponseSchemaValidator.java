@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -30,13 +30,14 @@ public class NameIDMappingResponseSchemaValidator extends StatusResponseTypeSche
 
     /**
      * Constructor
-     *
      */
     public NameIDMappingResponseSchemaValidator() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(NameIDMappingResponse response) throws ValidationException {
         super.validate(response);
         validateIdentifiers(response);
@@ -44,20 +45,20 @@ public class NameIDMappingResponseSchemaValidator extends StatusResponseTypeSche
 
     /**
      * Validate the identifier child elements (NameID, EncryptedID).
-     * 
+     *
      * @param resp
-     * @throws ValidationException 
+     * @throws ValidationException
      */
     protected void validateIdentifiers(NameIDMappingResponse resp) throws ValidationException {
         int idCount = 0;
-        
+
         if (resp.getNameID() != null) {
             idCount++;
         }
         if (resp.getEncryptedID() != null) {
             idCount++;
         }
-        
+
         if (idCount != 1) {
             throw new ValidationException("NameIDMappingResponse must contain exactly one of: NameID, EncryptedID");
         }

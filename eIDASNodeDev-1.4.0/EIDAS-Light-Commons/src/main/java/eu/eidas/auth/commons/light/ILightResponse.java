@@ -36,7 +36,7 @@ import java.io.Serializable;
  *
  * @since 1.1
  */
-public interface ILightResponse extends Serializable{
+public interface ILightResponse extends Serializable {
 
     /**
      * Returns the response attributes if the response is a success response , or an empty map if the response is a

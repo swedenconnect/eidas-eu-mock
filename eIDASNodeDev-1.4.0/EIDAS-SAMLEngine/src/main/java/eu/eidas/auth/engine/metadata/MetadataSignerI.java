@@ -36,7 +36,7 @@ public interface MetadataSignerI {
      * To sign an Assertion, a Request or a Response, use {@link #sign(SignableXMLObject)} instead.
      *
      * @param signableObject the metadata object to sign.
-     * @param <T> the type of the XML object to sign
+     * @param <T>            the type of the XML object to sign
      * @return the signed metadata
      * @throws EIDASSAMLEngineException in case of signature errors
      */
@@ -47,7 +47,7 @@ public interface MetadataSignerI {
      * Validates the digital signature present in the given signed metadata.
      *
      * @param signedMetadata the signed metadata to verify
-     * @param <T> the type of the signed XML object of which the signature must be verified
+     * @param <T>            the type of the signed XML object of which the signature must be verified
      * @return the signed SAML object
      * @throws EIDASSAMLEngineException in case of an invalid signature
      */

@@ -21,7 +21,8 @@ public class SpecificServletHelper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpecificServletHelper.class);
 
-    private SpecificServletHelper() {}
+    private SpecificServletHelper() {
+    }
 
     /**
      * Creates a {@link java.util.Map} with all the parameters from the servletRequest, plus

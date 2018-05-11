@@ -29,9 +29,9 @@ public abstract class AbstractMetadataCaching implements IMetadataCachingService
 
     @Override
     public final EidasMetadataParametersI getEidasMetadataParameters(String url) throws EIDASMetadataProviderException {
-        if(getMap()!=null){
+        if (getMap() != null) {
             EidasMetadataParametersI content = getMap().get(url);
-            if(content != null) {
+            if (content != null) {
                 return content;
             }
         }
@@ -40,8 +40,8 @@ public abstract class AbstractMetadataCaching implements IMetadataCachingService
 
     @Override
     public final void putEidasMetadataParameters(String url, EidasMetadataParametersI eidasMetadataParameters) {
-        if( getMap() != null){
-            if(eidasMetadataParameters == null) {
+        if (getMap() != null) {
+            if (eidasMetadataParameters == null) {
                 getMap().remove(url);
             } else {
                 getMap().put(url, eidasMetadataParameters);

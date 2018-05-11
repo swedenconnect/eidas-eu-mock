@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -41,10 +41,14 @@ import org.springframework.mock.web.MockHttpServletResponse;
  */
 public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
 
-    /** Velocity template engine. */
+    /**
+     * Velocity template engine.
+     */
     private VelocityEngine velocityEngine;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public void setUp() throws Exception {
         super.setUp();
@@ -60,7 +64,7 @@ public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
 
     /**
      * Tests encoding a SAML message to an servlet response.
-     * 
+     *
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -91,7 +95,7 @@ public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
@@ -99,7 +103,7 @@ public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
         messageContext.setRelayState("relay");
 
         HTTPPostSimpleSignEncoder encoder = new HTTPPostSimpleSignEncoder(velocityEngine,
-        "/templates/saml2-post-simplesign-binding.vm");
+                "/templates/saml2-post-simplesign-binding.vm");
         encoder.encode(messageContext);
 
         assertEquals("Unexpected content type", "text/html", response.getContentType());
@@ -125,7 +129,7 @@ public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
@@ -133,7 +137,7 @@ public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
         messageContext.setRelayState("relay");
 
         HTTPPostSimpleSignEncoder encoder = new HTTPPostSimpleSignEncoder(velocityEngine,
-        "/templates/saml2-post-simplesign-binding.vm");
+                "/templates/saml2-post-simplesign-binding.vm");
         encoder.encode(messageContext);
 
         assertEquals("Unexpected content type", "text/html", response.getContentType());
@@ -141,7 +145,7 @@ public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
         assertEquals("Unexpected cache controls", "no-cache, no-store", response.getHeader("Cache-control"));
         assertEquals(-198852454, response.getContentAsString().hashCode());
     }
-    
+
     @SuppressWarnings("unchecked")
     public void testRequestEncodingWithSimpleSign() throws Exception {
         SAMLObjectBuilder<AuthnRequest> responseBuilder = (SAMLObjectBuilder<AuthnRequest>) builderFactory
@@ -159,34 +163,34 @@ public class HTTPPostSimpleSignEncoderTest extends BaseTestCase {
 
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpServletResponseAdapter outTransport = new HttpServletResponseAdapter(response, false);
-        
+
         BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
         messageContext.setOutboundMessageTransport(outTransport);
         messageContext.setPeerEntityEndpoint(samlEndpoint);
         messageContext.setOutboundSAMLMessage(samlMessage);
         messageContext.setRelayState("relay");
-        
+
         KeyPair kp = SecurityHelper.generateKeyPair("RSA", 1024, null);
         messageContext.setOutboundSAMLMessageSigningCredential(
                 SecurityHelper.getSimpleCredential(kp.getPublic(), kp.getPrivate()));
 
         HTTPPostSimpleSignEncoder encoder = new HTTPPostSimpleSignEncoder(velocityEngine,
-        "/templates/saml2-post-simplesign-binding.vm");
+                "/templates/saml2-post-simplesign-binding.vm");
         encoder.encode(messageContext);
-        
+
         // Not elegant, but works ok for basic sanity check.
         String form = response.getContentAsString();
         int start;
-        
+
         start = form.indexOf("name=\"Signature\"");
         assertTrue("Signature parameter not found in form control data", start != -1);
-        
+
         start = form.indexOf("name=\"SigAlg\"");
         assertTrue("SigAlg parameter not found in form control data", start != -1);
-        
+
         start = form.indexOf("name=\"KeyInfo\"");
         assertTrue("KeyInfo parameter not found in form control data", start != -1);
-        
+
         // Note: to test that actual signature is cryptographically correct, really need a known good test vector.
         // Need to verify that we're signing over the right data in the right byte[] encoded form.
     }

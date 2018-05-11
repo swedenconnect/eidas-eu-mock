@@ -25,7 +25,6 @@ import org.opensaml.saml.saml2.core.Assertion;
 
 /**
  * The Class ExtensionsSchemaValidator for eIDAS format.
- *
  */
 public class EidasAssertionValidator extends AssertionSchemaValidator {
     /**
@@ -59,7 +58,7 @@ public class EidasAssertionValidator extends AssertionSchemaValidator {
         if (assertion.getSubject() == null) {
 
             throw new ValidationException("Subject is required.");
-        }else if(assertion.getSubject().getNameID()==null){
+        } else if (assertion.getSubject().getNameID() == null) {
             throw new ValidationException("Subject/NameID is required.");
         }
 
@@ -77,7 +76,7 @@ public class EidasAssertionValidator extends AssertionSchemaValidator {
         if (assertion.getAttributeStatements() != null &&
                 !assertion.getAttributeStatements().isEmpty() &&
                 assertion.getAttributeStatements().size() != 1) {
-                throw new ValidationException("Incorrect number of AttributeStatements.");
+            throw new ValidationException("Incorrect number of AttributeStatements.");
         }
 
     }

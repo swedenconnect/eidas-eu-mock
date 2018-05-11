@@ -28,6 +28,7 @@ public final class Constants {
     public static final String SPECIFIC_CONNECTOR_JAR = "specificConnectorJar";
     public static final String EIDAS_NODE = "EidasNode";
     public static final String SPECIFIC_CONNECTOR = "SpecificConnector";
+
     private Constants() {
         // Empty default constructor
     }

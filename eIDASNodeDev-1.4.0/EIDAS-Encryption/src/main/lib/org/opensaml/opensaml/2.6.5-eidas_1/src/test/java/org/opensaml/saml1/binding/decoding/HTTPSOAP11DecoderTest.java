@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -44,25 +44,27 @@ import org.springframework.mock.web.MockHttpServletRequest;
  * Test case for SAML 1.X HTTP SOAP 1.1 message decoder.
  */
 public class HTTPSOAP11DecoderTest extends BaseTestCase {
-    
+
     private String responseRecipient = "https://sp.example.org/sso/acs";
-    
+
     private SAMLMessageDecoder decoder;
-    
+
     private BasicSAMLMessageContext messageContext;
-    
+
     private MockHttpServletRequest httpRequest;
-    
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         httpRequest = new MockHttpServletRequest();
         httpRequest.setMethod("POST");
-        
+
         messageContext = new BasicSAMLMessageContext();
         messageContext.setInboundMessageTransport(new HttpServletRequestAdapter(httpRequest));
-        
+
         decoder = new HTTPSOAP11Decoder();
     }
 
@@ -75,23 +77,23 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
                 + "MinorVersion=\"1\" RequestID=\"foo\" xmlns:saml=\"urn:oasis:names:tc:SAML:1.0:protocol\"/>"
                 + "</soap11:Body></soap11:Envelope>";
         httpRequest.setContent(requestContent.getBytes());
-        
+
         decoder.decode(messageContext);
 
         assertTrue(messageContext.getInboundMessage() instanceof Envelope);
         assertTrue(messageContext.getInboundSAMLMessage() instanceof Request);
     }
-    
+
     public void testMessageEndpointGood() throws Exception {
         Envelope soapEnvelope = (Envelope) unmarshallElement("/data/org/opensaml/saml1/binding/ResponseSOAP.xml");
-        
+
         Response samlResponse = (Response) soapEnvelope.getBody().getUnknownXMLObjects().get(0);
         String deliveredEndpointURL = samlResponse.getRecipient();
-        
+
         httpRequest.setContent(encodeMessage(soapEnvelope).getBytes());
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
-        
+
         try {
             decoder.decode(messageContext);
         } catch (SecurityException e) {
@@ -100,15 +102,15 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointGoodWithQueryParams() throws Exception {
         Envelope soapEnvelope = (Envelope) unmarshallElement("/data/org/opensaml/saml1/binding/ResponseSOAP.xml");
-        
+
         Response samlResponse = (Response) soapEnvelope.getBody().getUnknownXMLObjects().get(0);
         String deliveredEndpointURL = samlResponse.getRecipient() + "?paramFoo=bar&paramBar=baz";
-        
+
         httpRequest.setContent(encodeMessage(soapEnvelope).getBytes());
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -119,15 +121,15 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointInvalidURI() throws Exception {
         Envelope soapEnvelope = (Envelope) unmarshallElement("/data/org/opensaml/saml1/binding/ResponseSOAP.xml");
-        
+
         Response samlResponse = (Response) soapEnvelope.getBody().getUnknownXMLObjects().get(0);
         String deliveredEndpointURL = samlResponse.getRecipient() + "/some/other/endpointURI";
-        
+
         httpRequest.setContent(encodeMessage(soapEnvelope).getBytes());
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -139,14 +141,14 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointInvalidHost() throws Exception {
         Envelope soapEnvelope = (Envelope) unmarshallElement("/data/org/opensaml/saml1/binding/ResponseSOAP.xml");
-        
+
         String deliveredEndpointURL = "https://bogus-sp.example.org/sso/acs";
-        
+
         httpRequest.setContent(encodeMessage(soapEnvelope).getBytes());
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -158,17 +160,17 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointMissingDestinationNotSigned() throws Exception {
         Envelope soapEnvelope = (Envelope) unmarshallElement("/data/org/opensaml/saml1/binding/ResponseSOAP.xml");
-        
+
         Response samlResponse = (Response) soapEnvelope.getBody().getUnknownXMLObjects().get(0);
         samlResponse.setRecipient(null);
-        
+
         String deliveredEndpointURL = responseRecipient;
-        
+
         httpRequest.setContent(encodeMessage(soapEnvelope).getBytes());
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -179,13 +181,13 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     public void testMessageEndpointMissingDestinationSigned() throws Exception {
         Envelope soapEnvelope = (Envelope) unmarshallElement("/data/org/opensaml/saml1/binding/ResponseSOAP.xml");
-        
+
         Response samlResponse = (Response) soapEnvelope.getBody().getUnknownXMLObjects().get(0);
         samlResponse.setRecipient(null);
-        
+
         Signature signature = (Signature) buildXMLObject(Signature.DEFAULT_ELEMENT_NAME);
         KeyPair kp = SecurityHelper.generateKeyPair("RSA", 1024, null);
         Credential signingCred = SecurityHelper.getSimpleCredential(kp.getPublic(), kp.getPrivate());
@@ -194,11 +196,11 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
         SecurityHelper.prepareSignatureParams(signature, signingCred, null, null);
         marshallerFactory.getMarshaller(soapEnvelope).marshall(soapEnvelope);
         Signer.signObject(signature);
-        
+
         String deliveredEndpointURL = responseRecipient;
-        
+
         httpRequest.setContent(encodeMessage(soapEnvelope).getBytes());
-        
+
         populateRequestURL(httpRequest, deliveredEndpointURL);
 
         try {
@@ -210,7 +212,7 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
             fail("Caught MessageDecodingException: " + e.getMessage());
         }
     }
-    
+
     private void populateRequestURL(MockHttpServletRequest request, String requestURL) {
         URL url = null;
         try {
@@ -232,7 +234,7 @@ public class HTTPSOAP11DecoderTest extends BaseTestCase {
         request.setRequestURI(url.getPath());
         request.setQueryString(url.getQuery());
     }
-    
+
     protected String encodeMessage(XMLObject message) throws MessageEncodingException, MarshallingException {
         marshallerFactory.getMarshaller(message).marshall(message);
         return XMLHelper.nodeToString(message.getDOM());

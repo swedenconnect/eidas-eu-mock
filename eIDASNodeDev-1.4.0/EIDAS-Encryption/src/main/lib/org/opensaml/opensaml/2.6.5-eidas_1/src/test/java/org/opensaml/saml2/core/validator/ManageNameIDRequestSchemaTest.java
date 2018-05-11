@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
  */
 
 /**
- * 
+ *
  */
 package org.opensaml.saml2.core.validator;
 
@@ -31,17 +31,16 @@ import org.opensaml.saml2.core.Terminate;
  *
  */
 public class ManageNameIDRequestSchemaTest extends RequestSchemaTestBase {
-    
+
     private NameID nameID;
     private EncryptedID encryptedID;
-    
+
     private NewID newID;
     private NewEncryptedID newEncryptedID;
     private Terminate terminate;
 
     /**
      * Constructor
-     *
      */
     public ManageNameIDRequestSchemaTest() {
         super();
@@ -49,59 +48,63 @@ public class ManageNameIDRequestSchemaTest extends RequestSchemaTestBase {
         validator = new ManageNameIDRequestSchemaValidator();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void setUp() throws Exception {
         super.setUp();
-        
+
         terminate = (Terminate) buildXMLObject(Terminate.DEFAULT_ELEMENT_NAME);
         encryptedID = (EncryptedID) buildXMLObject(EncryptedID.DEFAULT_ELEMENT_NAME);
         newEncryptedID = (NewEncryptedID) buildXMLObject(NewEncryptedID.DEFAULT_ELEMENT_NAME);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected void populateRequiredData() {
         super.populateRequiredData();
         ManageNameIDRequest request = (ManageNameIDRequest) target;
-        
-        nameID  = (NameID) buildXMLObject(NameID.DEFAULT_ELEMENT_NAME);
+
+        nameID = (NameID) buildXMLObject(NameID.DEFAULT_ELEMENT_NAME);
         newID = (NewID) buildXMLObject(NewID.DEFAULT_ELEMENT_NAME);
-        
+
         request.setNameID(nameID);
         request.setNewID(newID);
     }
-    
+
     public void testNoIdentifiersFailure() {
         ManageNameIDRequest request = (ManageNameIDRequest) target;
-        
+
         request.setNameID(null);
         assertValidationFail("No name identifier was present");
     }
-    
+
     public void testOtherValidIdentifiers() {
         ManageNameIDRequest request = (ManageNameIDRequest) target;
-        
+
         request.setNameID(null);
         request.setEncryptedID(encryptedID);
         assertValidationPass("EncryptedID was present");
     }
-    
+
     public void testTooManyIdentifiersFailure() {
         ManageNameIDRequest request = (ManageNameIDRequest) target;
-        
+
         request.setEncryptedID(encryptedID);
         assertValidationFail("Both NameID and EncryptedID were present");
     }
-   
+
     public void testNewIDandTerminateFailure() {
         ManageNameIDRequest request = (ManageNameIDRequest) target;
-        
+
         request.setTerminate(terminate);
         assertValidationFail("Both NewID and Terminate were present");
-        
+
         request.setNewID(null);
         request.setTerminate(null);
         assertValidationFail("Both NewID and Terminate were null");
-        
+
         request.setNewID(newID);
         request.setNewEncryptedID(newEncryptedID);
         assertValidationFail("Both NewID and NewEncryptedID were present");

@@ -16,7 +16,7 @@ package org.apache.velocity.test;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import java.io.BufferedWriter;
@@ -40,19 +40,17 @@ import org.apache.velocity.test.misc.TestLogChute;
  * @author <a href="mailto:dlr@collab.net">Daniel Rall</a>
  * @version $Id: InlineScopeVMTestCase.java 832247 2009-11-03 01:29:30Z wglass $
  */
-public class InlineScopeVMTestCase extends BaseTestCase implements TemplateTestBase
-{
+public class InlineScopeVMTestCase extends BaseTestCase implements TemplateTestBase {
     VelocityEngine engine;
-    public InlineScopeVMTestCase(String name)
-    {
+
+    public InlineScopeVMTestCase(String name) {
         super(name);
     }
 
     public void setUp()
-            throws Exception
-    {
+            throws Exception {
         engine = new VelocityEngine();
-        
+
         engine.setProperty(
                 RuntimeConstants.VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL, "true");
 
@@ -61,24 +59,22 @@ public class InlineScopeVMTestCase extends BaseTestCase implements TemplateTestB
 
         engine.setProperty(
                 RuntimeConstants.FILE_RESOURCE_LOADER_PATH, FILE_RESOURCE_LOADER_PATH);
-        
+
         engine.setProperty(
                 RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, TestLogChute.class.getName());
 
         engine.init();
     }
 
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(InlineScopeVMTestCase.class);
     }
 
     /**
      * Runs the test.
      */
-    public void testInlineScopeVM ()
-            throws Exception
-    {
+    public void testInlineScopeVM()
+            throws Exception {
         assureResultsDirectoryExists(RESULT_DIR);
 
         /*
@@ -87,18 +83,18 @@ public class InlineScopeVMTestCase extends BaseTestCase implements TemplateTestB
          */
 
         Template template2 = engine.getTemplate(
-            getFileName(null, "vm_test2", TMPL_FILE_EXT));
+                getFileName(null, "vm_test2", TMPL_FILE_EXT));
 
         Template template1 = engine.getTemplate(
-            getFileName(null, "vm_test1", TMPL_FILE_EXT));
+                getFileName(null, "vm_test1", TMPL_FILE_EXT));
 
         FileOutputStream fos1 =
-            new FileOutputStream (
-                getFileName(RESULT_DIR, "vm_test1", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULT_DIR, "vm_test1", RESULT_FILE_EXT));
 
         FileOutputStream fos2 =
-            new FileOutputStream (
-                getFileName(RESULT_DIR, "vm_test2", RESULT_FILE_EXT));
+                new FileOutputStream(
+                        getFileName(RESULT_DIR, "vm_test2", RESULT_FILE_EXT));
 
         Writer writer1 = new BufferedWriter(new OutputStreamWriter(fos1));
         Writer writer2 = new BufferedWriter(new OutputStreamWriter(fos2));
@@ -117,11 +113,10 @@ public class InlineScopeVMTestCase extends BaseTestCase implements TemplateTestB
         writer2.flush();
         writer2.close();
 
-        if (!isMatch(RESULT_DIR,COMPARE_DIR,"vm_test1",
-                RESULT_FILE_EXT,CMP_FILE_EXT) ||
-            !isMatch(RESULT_DIR,COMPARE_DIR,"vm_test2",
-                RESULT_FILE_EXT,CMP_FILE_EXT))
-        {
+        if (!isMatch(RESULT_DIR, COMPARE_DIR, "vm_test1",
+                RESULT_FILE_EXT, CMP_FILE_EXT) ||
+                !isMatch(RESULT_DIR, COMPARE_DIR, "vm_test2",
+                        RESULT_FILE_EXT, CMP_FILE_EXT)) {
             fail("Output incorrect.");
         }
     }

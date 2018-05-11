@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.parser.node;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 import org.apache.velocity.runtime.parser.Parser;
@@ -24,13 +24,11 @@ import org.apache.velocity.runtime.parser.Parser;
 /**
  *
  */
-public class ASTIncludeStatement extends SimpleNode
-{
+public class ASTIncludeStatement extends SimpleNode {
     /**
      * @param id
      */
-    public ASTIncludeStatement(int id)
-    {
+    public ASTIncludeStatement(int id) {
         super(id);
     }
 
@@ -38,8 +36,7 @@ public class ASTIncludeStatement extends SimpleNode
      * @param p
      * @param id
      */
-    public ASTIncludeStatement(Parser p, int id)
-    {
+    public ASTIncludeStatement(Parser p, int id) {
         super(p, id);
     }
 
@@ -47,8 +44,7 @@ public class ASTIncludeStatement extends SimpleNode
     /**
      * @see org.apache.velocity.runtime.parser.node.SimpleNode#jjtAccept(org.apache.velocity.runtime.parser.node.ParserVisitor, java.lang.Object)
      */
-    public Object jjtAccept(ParserVisitor visitor, Object data)
-    {
+    public Object jjtAccept(ParserVisitor visitor, Object data) {
         return visitor.visit(this, data);
     }
 }

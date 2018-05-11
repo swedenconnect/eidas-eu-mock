@@ -79,7 +79,7 @@ public enum NodeParameterNames {
      *
      * @param name name of the attribute
      */
-    NodeParameterNames(@Nonnull String name){
+    NodeParameterNames(@Nonnull String name) {
         this.name = name;
     }
 

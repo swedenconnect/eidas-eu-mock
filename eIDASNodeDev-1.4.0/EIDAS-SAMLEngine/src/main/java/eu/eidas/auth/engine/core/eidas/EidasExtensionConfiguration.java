@@ -60,23 +60,23 @@ public final class EidasExtensionConfiguration {
     public static void configureExtension(@Nonnull EidasExtensionProcessor extensionProcessor) {
 
         Configuration.registerObjectProvider(RequestedAttribute.DEF_ELEMENT_NAME, new RequestedAttributeBuilder(),
-                                             new RequestedAttributeMarshaller(), new RequestedAttributeUnmarshaller());
+                new RequestedAttributeMarshaller(), new RequestedAttributeUnmarshaller());
 
         Configuration.registerObjectProvider(RequestedAttributes.DEF_ELEMENT_NAME, new RequestedAttributesBuilder(),
-                                             new RequestedAttributesMarshaller(),
-                                             new RequestedAttributesUnmarshaller());
+                new RequestedAttributesMarshaller(),
+                new RequestedAttributesUnmarshaller());
 
         Configuration.registerObjectProvider(SigningMethod.DEF_ELEMENT_NAME, new SigningMethodBuilder(),
-                                             new SigningMethodMarshaller(), new SigningMethodUnmarshaller());
+                new SigningMethodMarshaller(), new SigningMethodUnmarshaller());
 
         Configuration.registerObjectProvider(DigestMethod.DEF_ELEMENT_NAME, new DigestMethodBuilder(),
-                                             new DigestMethodMarshaller(), new DigestMethodUnmarshaller());
+                new DigestMethodMarshaller(), new DigestMethodUnmarshaller());
 
         Configuration.registerObjectProvider(SPType.DEF_ELEMENT_NAME, new SPTypeBuilder(), new SPTypeMarshaller(),
-                                             new SPTypeUnmarshaller());
+                new SPTypeUnmarshaller());
 
         Configuration.registerObjectProvider(SPCountry.DEF_ELEMENT_NAME, new SPCountryBuilder(),
-                                             new SPCountryMarshaller(), new SPCountryUnmarshaller());
+                new SPCountryMarshaller(), new SPCountryUnmarshaller());
 
         XSAnyBuilder xsAnyBuilder = new XSAnyBuilder();
         XSAnyMarshaller xsAnyMarshaller = new XSAnyMarshaller();
@@ -110,23 +110,23 @@ public final class EidasExtensionConfiguration {
     public static void configureExtension(@Nonnull ProtocolProcessorI protocolProcessor) {
 
         Configuration.registerObjectProvider(RequestedAttribute.DEF_ELEMENT_NAME, new RequestedAttributeBuilder(),
-                                             new RequestedAttributeMarshaller(), new RequestedAttributeUnmarshaller());
+                new RequestedAttributeMarshaller(), new RequestedAttributeUnmarshaller());
 
         Configuration.registerObjectProvider(RequestedAttributes.DEF_ELEMENT_NAME, new RequestedAttributesBuilder(),
-                                             new RequestedAttributesMarshaller(),
-                                             new RequestedAttributesUnmarshaller());
+                new RequestedAttributesMarshaller(),
+                new RequestedAttributesUnmarshaller());
 
         Configuration.registerObjectProvider(SigningMethod.DEF_ELEMENT_NAME, new SigningMethodBuilder(),
-                                             new SigningMethodMarshaller(), new SigningMethodUnmarshaller());
+                new SigningMethodMarshaller(), new SigningMethodUnmarshaller());
 
         Configuration.registerObjectProvider(DigestMethod.DEF_ELEMENT_NAME, new DigestMethodBuilder(),
-                                             new DigestMethodMarshaller(), new DigestMethodUnmarshaller());
+                new DigestMethodMarshaller(), new DigestMethodUnmarshaller());
 
         Configuration.registerObjectProvider(SPType.DEF_ELEMENT_NAME, new SPTypeBuilder(), new SPTypeMarshaller(),
-                                             new SPTypeUnmarshaller());
+                new SPTypeUnmarshaller());
 
         Configuration.registerObjectProvider(SPCountry.DEF_ELEMENT_NAME, new SPCountryBuilder(),
-                                             new SPCountryMarshaller(), new SPCountryUnmarshaller());
+                new SPCountryMarshaller(), new SPCountryUnmarshaller());
 
         XSAnyBuilder xsAnyBuilder = new XSAnyBuilder();
         XSAnyMarshaller xsAnyMarshaller = new XSAnyMarshaller();

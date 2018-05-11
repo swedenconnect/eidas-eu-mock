@@ -193,9 +193,9 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
     /**
      * Generate authentication response base.
      *
-     * @param status the status
+     * @param status            the status
      * @param assertConsumerURL the assert consumer URL.
-     * @param inResponseTo the in response to
+     * @param inResponseTo      the in response to
      * @return the response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -204,7 +204,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         LOG.debug("Generate Authentication Response base.");
         Response response =
                 BuilderFactoryUtil.generateResponse(SAMLEngineUtils.generateNCName(), SAMLEngineUtils.getCurrentTime(),
-                                                    status);
+                        status);
 
         // Set name Spaces
         registerResponseNamespace(response);
@@ -239,8 +239,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (null == attributeDefinition) {
             LOG.info("BUSINESS EXCEPTION : Attribute name: {} is not known.", name);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               "Attribute name: " + name + " is not known.");
+                    EidasErrorKey.INTERNAL_ERROR.errorCode(),
+                    "Attribute name: " + name + " is not known.");
         }
         return attributeDefinition;
     }
@@ -287,7 +287,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             } catch (AttributeValueMarshallingException e) {
                 LOG.error("Illegal attribute value: " + e, e);
                 throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
+                        EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(), e);
             }
         }
 
@@ -320,7 +320,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
 
         LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : AttributeStatement not present.");
         throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                           EidasErrorKey.INTERNAL_ERROR.errorCode(), "AttributeStatement not present.");
+                EidasErrorKey.INTERNAL_ERROR.errorCode(), "AttributeStatement not present.");
     }
 
     private String computeSimpleValue(XSAnyImpl xsAny) {
@@ -333,7 +333,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
                     transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
                     StringWriter stringWriter = new StringWriter();
                     transformer.transform(new DOMSource(unknownXMLObjects.get(0).getDOM()),
-                                          new StreamResult(stringWriter));
+                            new StreamResult(stringWriter));
                     return stringWriter.toString();
                 } catch (TransformerConfigurationException e) {
                     LOG.warn(SAML_EXCHANGE, "ERROR : transformer configuration exception", e);
@@ -429,7 +429,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
 
                             // Process simple value.
                             setBuilder.add(attributeValueMarshaller.unmarshal(xsAny.getTextContent(),
-                                                                              isNonLatinScriptAlternateVersion));
+                                    isNonLatinScriptAlternateVersion));
                         }
 
                         // TODO: remove
@@ -438,20 +438,20 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
                         // Process simple value.
                         setBuilder.add(
                                 attributeValueMarshaller.unmarshal(((GenericEidasAttributeType) xmlObject).getValue(),
-                                                                   false));
+                                        false));
 
                     } else {
                         LOG.info("BUSINESS EXCEPTION : attribute value is unknown in generatePersonalAttributeList.");
                         throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                           EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                           "Attribute value is unknown for \""
-                                                                   + attributeDefinition.getNameUri().toASCIIString()
-                                                                   + "\" - value: \"" + xmlObject + "\"");
+                                EidasErrorKey.INTERNAL_ERROR.errorCode(),
+                                "Attribute value is unknown for \""
+                                        + attributeDefinition.getNameUri().toASCIIString()
+                                        + "\" - value: \"" + xmlObject + "\"");
                     }
                 } catch (AttributeValueMarshallingException e) {
                     LOG.error("BUSINESS EXCEPTION : Illegal Attribute Value: " + e, e);
                     throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                                       EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
+                            EidasErrorKey.INTERNAL_ERROR.errorCode(), e);
                 }
             }
 
@@ -491,7 +491,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             LOG.debug(SAML_EXCHANGE, "Sign and Marshall - null input");
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Sign and Marshall -null input");
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage());
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage());
         }
 
         if (validate) {
@@ -567,7 +567,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             LOG.debug(SAML_EXCHANGE, "Sign and Marshall.", e);
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Sign and Marshall.", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
 
         return new BinaryRequestMessage(authRequestFromExtensionProcessor, bytes);
@@ -586,8 +586,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
     /**
      * Generate authentication response in one of the supported formats.
      *
-     * @param request the request
-     * @param response the response authentication request
+     * @param request   the request
+     * @param response  the response authentication request
      * @param ipAddress the IP address
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
@@ -605,9 +605,9 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
     /**
      * Generate authentication response in one of the supported formats.
      *
-     * @param request the request
+     * @param request       the request
      * @param authnResponse the authentication response from the IdP
-     * @param ipAddress the IP address
+     * @param ipAddress     the IP address
      * @param signAssertion whether to sign the attribute assertion
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
@@ -624,8 +624,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         // At this point the assertion consumer service URL is mandatory (and must have been replaced by the value from the metadata if needed)
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Request AssertionConsumerServiceURL must not be blank.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Request AssertionConsumerServiceURL must not be blank.");
         }
 
         // Mandatory SAML
@@ -653,11 +653,11 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         notOnOrAfter = notOnOrAfter.plusSeconds(getCoreProperties().getTimeNotOnOrAfter());
 
         Assertion assertion = AssertionUtil.generateResponseAssertion(false, ipAddress, request, response.getIssuer(),
-                                                                      authnResponse.getAttributes(), notOnOrAfter,
-                                                                      getCoreProperties().getFormatEntity(),
-                                                                      getCoreProperties().getResponder(),
-                                                                      getExtensionProcessor().getFormat(),
-                                                                      getCoreProperties().isOneTimeUse());
+                authnResponse.getAttributes(), notOnOrAfter,
+                getCoreProperties().getFormatEntity(),
+                getCoreProperties().getResponder(),
+                getExtensionProcessor().getFormat(),
+                getCoreProperties().isOneTimeUse());
 
         AttributeStatement attrStatement = generateResponseAttributeStatement(authnResponse.getAttributes());
 
@@ -683,7 +683,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Sign and Marshall.", e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : Sign and Marshall.", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -705,8 +705,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
     /**
      * Generate authentication response fail.
      *
-     * @param request the request
-     * @param response the response
+     * @param request   the request
+     * @param response  the response
      * @param ipAddress the IP address
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
@@ -758,11 +758,11 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
 
         Assertion assertion =
                 AssertionUtil.generateResponseAssertion(true, ipAddress, request, responseFail.getIssuer(),
-                                                        ImmutableAttributeMap.of(), notOnOrAfter,
-                                                        getCoreProperties().getFormatEntity(),
-                                                        getCoreProperties().getResponder(),
-                                                        getExtensionProcessor().getFormat(),
-                                                        getCoreProperties().isOneTimeUse());
+                        ImmutableAttributeMap.of(), notOnOrAfter,
+                        getCoreProperties().getFormatEntity(),
+                        getCoreProperties().getResponder(),
+                        getExtensionProcessor().getFormat(),
+                        getCoreProperties().isOneTimeUse());
         addResponseAuthnContextClassRef(response, assertion);
         responseFail.getAssertions().add(assertion);
 
@@ -782,7 +782,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException.", e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException.", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -884,15 +884,15 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (response.getAttributes() == null || response.getAttributes().isEmpty()) {
             LOG.error(SAML_EXCHANGE, "No attribute values in response.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "No attribute values in response.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "No attribute values in response.");
         }
     }
 
     /**
      * Validate parameters from response.
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response authentication request
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -906,7 +906,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
     /**
      * Validate parameter from response fail.
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -915,20 +915,20 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         LOG.trace("Validate parameters response fail.");
         if (StringUtils.isBlank(response.getStatusCode())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Error Status Code is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Error Status Code is null or empty.");
         }
 
         if (StringUtils.isBlank(request.getAssertionConsumerServiceURL())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "assertionConsumerServiceURL is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "assertionConsumerServiceURL is null or empty.");
         }
 
         if (StringUtils.isBlank(request.getId())) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "request ID is null or empty.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "request ID is null or empty.");
         }
     }
 
@@ -947,8 +947,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (tokenSaml == null) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Saml authentication request is null.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Saml authentication request is null.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Saml authentication request is null.");
         }
         XmlSchemaUtil.validateSamlSchema(EidasStringUtil.toString(tokenSaml));
 
@@ -973,12 +973,12 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             samlRequest = validateRequestWithSuite(tokenSaml);
         } catch (ValidationException e) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
 
         if (samlRequest == null) {
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage());
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage());
         }
         return samlRequest;
     }
@@ -995,7 +995,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
                 LOG.debug("validation with " + extensionProcessor.getClass().getName() + " succeeded !!!");
             } else {
                 LOG.debug("validation with " + extensionProcessor.getClass().getName()
-                                  + " tryProcessExtensions() returned false");
+                        + " tryProcessExtensions() returned false");
                 samlRequest = null;
             }
         } catch (ValidationException e) {
@@ -1035,12 +1035,12 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException: validate AuthResponse.", e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException: validate AuthResponse.", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         } catch (Exception e) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException: validate AuthResponse.", e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException: validate AuthResponse.", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
 
     }
@@ -1106,8 +1106,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (null == tokenSaml) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Saml authentication response is null.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Saml authentication response is null.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Saml authentication response is null.");
         }
 
         XmlSchemaUtil.validateSamlSchema(EidasStringUtil.toString(tokenSaml));
@@ -1123,7 +1123,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
      * Process and validates the authentication response.
      *
      * @param responseBytes the token SAML
-     * @param userIP the user IP
+     * @param userIP        the user IP
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -1140,8 +1140,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
     /**
      * Validate authentication response.
      *
-     * @param samlResponse the token SAML
-     * @param userIP the user IP
+     * @param samlResponse     the token SAML
+     * @param userIP           the user IP
      * @param skewTimeInMillis the skew time
      * @return the authentication response
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
@@ -1175,10 +1175,10 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
                     && assertion.getAuthnStatements().get(0).getAuthnContext() != null &&
                     assertion.getAuthnStatements().get(0).getAuthnContext().getAuthnContextClassRef() != null) {
                 authnResponse.levelOfAssurance(assertion.getAuthnStatements()
-                                                       .get(0)
-                                                       .getAuthnContext()
-                                                       .getAuthnContextClassRef()
-                                                       .getAuthnContextClassRef());
+                        .get(0)
+                        .getAuthnContext()
+                        .getAuthnContextClassRef()
+                        .getAuthnContextClassRef());
             }
         }
 
@@ -1202,7 +1202,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
      * Validate response.
      *
      * @param samlResponse the SAML response
-     * @param userIP the user IP
+     * @param userIP       the user IP
      * @return the assertion
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      */
@@ -1212,7 +1212,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (samlResponse.getAssertions() == null || samlResponse.getAssertions().isEmpty()) {
             //in replace of throwing  EIDASSAMLEngineException("Assertion is null or empty.")
             LOG.info(SAML_EXCHANGE,
-                     "BUSINESS EXCEPTION : Assertion is null, empty or the response is encrypted and the decryption is not active.");
+                    "BUSINESS EXCEPTION : Assertion is null, empty or the response is encrypted and the decryption is not active.");
             return null;
         }
 
@@ -1225,7 +1225,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
                 new DateTime(assertion.getConditions().getNotBefore().getMillis() - skewTimeInMillis, DateTimeZone.UTC);
         DateTime skewedNotOnOrAfter =
                 new DateTime(assertion.getConditions().getNotOnOrAfter().getMillis() + skewTimeInMillis,
-                             DateTimeZone.UTC);
+                        DateTimeZone.UTC);
         LOG.debug(SAML_EXCHANGE, "skewTimeInMillis : {}", skewTimeInMillis);
         LOG.debug(SAML_EXCHANGE, "skewedNotBefore       : {}", skewedNotBefore);
         LOG.debug(SAML_EXCHANGE, "skewedNotOnOrAfter    : {}", skewedNotOnOrAfter);
@@ -1245,47 +1245,47 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (conditions.getAudienceRestrictions() == null || conditions.getAudienceRestrictions().isEmpty()) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : AudienceRestriction must be present");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "AudienceRestriction must be present");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "AudienceRestriction must be present");
         }
         if (conditions.getOneTimeUse() == null) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : OneTimeUse must be present");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "OneTimeUse must be present");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "OneTimeUse must be present");
         }
         if (conditions.getNotBefore() == null) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : NotBefore must be present");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "NotBefore must be present");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "NotBefore must be present");
         }
         if (conditions.getNotBefore().isAfter(serverDate)) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Current time is before NotBefore condition");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Current time is before NotBefore condition");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Current time is before NotBefore condition");
         }
         if (conditions.getNotOnOrAfter() == null) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : NotOnOrAfter must be present");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "NotOnOrAfter must be present");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "NotOnOrAfter must be present");
         }
         if (conditions.getNotOnOrAfter().isBeforeNow()) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Current time is after NotOnOrAfter condition");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Current time is after NotOnOrAfter condition");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Current time is after NotOnOrAfter condition");
         }
         if (assertion.getConditions().getNotOnOrAfter().isBefore(serverDate)) {
             LOG.info(SAML_EXCHANGE,
-                     "BUSINESS EXCEPTION : Token date expired (getNotOnOrAfter =  " + assertion.getConditions()
-                             .getNotOnOrAfter() + ", server_date: " + serverDate + ")");
+                    "BUSINESS EXCEPTION : Token date expired (getNotOnOrAfter =  " + assertion.getConditions()
+                            .getNotOnOrAfter() + ", server_date: " + serverDate + ")");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Token date expired (getNotOnOrAfter =  " + assertion.getConditions()
-                                                       .getNotOnOrAfter() + " ), server_date: " + serverDate);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Token date expired (getNotOnOrAfter =  " + assertion.getConditions()
+                            .getNotOnOrAfter() + " ), server_date: " + serverDate);
         }
     }
 
@@ -1297,15 +1297,15 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             if (null == subject) {
                 LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : subject is null.");
                 throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   "subject is null.");
+                        EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                        "subject is null.");
             }
             List<SubjectConfirmation> subjectConfirmations = subject.getSubjectConfirmations();
             if (null == subjectConfirmations || subjectConfirmations.isEmpty()) {
                 LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : SubjectConfirmations are null or empty.");
                 throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                   "SubjectConfirmations are null or empty.");
+                        EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                        "SubjectConfirmations are null or empty.");
             }
             for (final SubjectConfirmation element : subjectConfirmations) {
                 boolean isBearer = SubjectConfirmation.METHOD_BEARER.equals(element.getMethod());
@@ -1313,33 +1313,33 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
                 if (null == subjectConfirmationData) {
                     LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : subjectConfirmationData is null.");
                     throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                       EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                       "subjectConfirmationData is null.");
+                            EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                            "subjectConfirmationData is null.");
                 }
                 String address = subjectConfirmationData.getAddress();
                 if (isBearer) {
                     if (StringUtils.isBlank(userIP)) {
                         LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : browser_ip is null or empty.");
                         throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                           EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                           "browser_ip is null or empty.");
+                                EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                                "browser_ip is null or empty.");
                     } else if (StringUtils.isBlank(address)) {
                         LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : token_ip attribute is null or empty.");
                         throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                           EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                           "token_ip attribute is null or empty.");
+                                EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                                "token_ip attribute is null or empty.");
                     }
                 }
                 boolean ipEqual = address.equals(userIP);
                 // Validation ipUser
                 if (!ipEqual) {
                     LOG.info(SAML_EXCHANGE,
-                             "BUSINESS EXCEPTION : SubjectConfirmation BEARER: IPs doesn't match : token_ip [{}] browser_ip [{}]",
-                             address, userIP);
+                            "BUSINESS EXCEPTION : SubjectConfirmation BEARER: IPs doesn't match : token_ip [{}] browser_ip [{}]",
+                            address, userIP);
                     throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                       EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                                       "IPs doesn't match : token_ip (" + address + ") browser_ip ("
-                                                               + userIP + ")");
+                            EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                            "IPs doesn't match : token_ip (" + address + ") browser_ip ("
+                                    + userIP + ")");
                 }
             }
 
@@ -1362,7 +1362,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         } catch (EIDASSAMLEngineException e) {
             EIDASSAMLEngineException exc =
                     new EIDASSAMLEngineException(EidasErrorKey.INVALID_ASSERTION_SIGNATURE.errorCode(),
-                                                 EidasErrorKey.INVALID_ASSERTION_SIGNATURE.errorMessage(), e);
+                            EidasErrorKey.INVALID_ASSERTION_SIGNATURE.errorMessage(), e);
             throw exc;
         }
 
@@ -1379,11 +1379,11 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
                 X509Certificate signatureCertificate =
                         getExtensionProcessor().getResponseSignatureCertificate(request.getIssuer().getValue());
                 return (AuthnRequest) getSigner().validateSignature(request, null == signatureCertificate ? null
-                                                                                                          : ImmutableSet
-                                                                                     .of(signatureCertificate));
+                        : ImmutableSet
+                        .of(signatureCertificate));
             } catch (EIDASSAMLEngineException e) {
                 LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException validateSignature: " + e,
-                          e.getMessage(), e);
+                        e.getMessage(), e);
                 throw e;
             }
         }
@@ -1408,7 +1408,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
 
             } catch (EIDASSAMLEngineException e) {
                 LOG.error(SAML_EXCHANGE, "BUSINESS EXCEPTION : SAMLEngineException validateSignature: " + e,
-                          e.getMessage(), e);
+                        e.getMessage(), e);
                 throw e;
             }
         }
@@ -1428,8 +1428,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (null == requestBytes) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Saml request bytes are null.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Saml request bytes are null.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Saml request bytes are null.");
         }
 
         LOG.trace("Generate SAML Request.");
@@ -1450,8 +1450,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (null == responseBytes) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : Saml response bytes are null.");
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               "Saml response bytes are null.");
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
+                    "Saml response bytes are null.");
         }
 
         LOG.trace("Generate SAML Response.");
@@ -1473,7 +1473,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException.", e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : ValidationException.", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorCode(),
-                                               EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
+                    EidasErrorKey.MESSAGE_VALIDATION_ERROR.errorMessage(), e);
         }
     }
 
@@ -1505,10 +1505,10 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
      * Resign authentication request ( for validation purpose).
      *
      * @param originalRequest
-     * @param changeProtocol If true will update the protocol of the resigned request with the one within {@code
-     * request}
+     * @param changeProtocol    If true will update the protocol of the resigned request with the one within {@code
+     *                          request}
      * @param changeDestination If true will update the destination of the resigned request with the one within {@code
-     * request}
+     *                          request}
      * @return the resigned request
      * @throws EIDASSAMLEngineException the EIDASSAML engine exception
      * @// TODO: 13/05/2016 move this to a specific extend of the SAMLengine dedicated to validator
@@ -1536,10 +1536,10 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             return resignedAuthnRequest;
         } catch (EIDASSAMLEngineException e) {
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASAuthnRequest : Sign and Marshall.{}",
-                     e.getMessage());
+                    e.getMessage());
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASAuthnRequest : Sign and Marshall.{}", e);
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -1561,7 +1561,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         releaseExtensionsDom(authnRequest);
         if (null == authnRequest) {
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorCode(), "invalid AuthnRequest");
+                    EidasErrorKey.INTERNAL_ERROR.errorCode(), "invalid AuthnRequest");
         }
 
         try {
@@ -1570,7 +1570,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASTokenSAML : Sign and Marshall.", e);
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : resignEIDASTokenSAML : Sign and Marshall.", e.getMessage());
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -1598,8 +1598,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         request = validateSignature(request);
         if (null == request) {
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(),
-                                               "BUSINESS EXCEPTION : invalid SAML Request");
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(),
+                    "BUSINESS EXCEPTION : invalid SAML Request");
         }
 
         try {
@@ -1626,8 +1626,8 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         response = validateSignatureAndAssertionSignatures(response);
         if (null == response) {
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(),
-                                               "BUSINESS EXCEPTION : invalid SAML Response");
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(),
+                    "BUSINESS EXCEPTION : invalid SAML Response");
         }
 
         try {
@@ -1635,9 +1635,9 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         } catch (EIDASSAMLEngineException e) {
             LOG.debug(SAML_EXCHANGE, "BUSINESS EXCEPTION : checkAndResignEIDASTokenSAML : Sign and Marshall.", e);
             LOG.info(SAML_EXCHANGE, "BUSINESS EXCEPTION : checkAndResignEIDASTokenSAML : Sign and Marshall.",
-                     e.getMessage());
+                    e.getMessage());
             throw new EIDASSAMLEngineException(EidasErrorKey.INTERNAL_ERROR.errorCode(),
-                                               EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
+                    EidasErrorKey.INTERNAL_ERROR.errorMessage(), e);
         }
     }
 
@@ -1668,7 +1668,7 @@ public final class SamlEngine extends AbstractSamlEngine implements SamlEngineI 
         if (request != null) {
             boolean validRequest = extensionProcessor.isValidRequest(samlRequest);
             LOG.debug("tryProcessExtensions with " + extensionProcessor.getClass().getName() + " returns: "
-                              + validRequest);
+                    + validRequest);
             return validRequest;
         }
         return false;

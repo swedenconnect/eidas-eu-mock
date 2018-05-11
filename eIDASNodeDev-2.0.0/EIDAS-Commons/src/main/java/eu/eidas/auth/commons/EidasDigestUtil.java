@@ -40,10 +40,10 @@ public final class EidasDigestUtil {
      * <p/>
      * The default JVM security providers are queried to perform the requested algorithm.
      *
-     * @param bytes the bytes to digest (hash)
+     * @param bytes     the bytes to digest (hash)
      * @param algorithm the algorithm name e.g. {@code "SHA-512"}. If {@code null}, the default value {@code "SHA-512"}
-     * is used.
-     * @param provider the provider name (can be {@code null}).
+     *                  is used.
+     * @param provider  the provider name (can be {@code null}).
      * @return the result of the hashing computation
      */
     @Nonnull
@@ -59,10 +59,10 @@ public final class EidasDigestUtil {
      * If a {@code null} provider name is given, the default JVM security providers are queried to perform the requested
      * algorithm.
      *
-     * @param bytes the bytes to digest (hash)
+     * @param bytes     the bytes to digest (hash)
      * @param algorithm the algorithm name e.g. {@code "SHA-512"}. If {@code null}, the default value {@code "SHA-512"}
-     * is used.
-     * @param provider the provider name (can be {@code null}).
+     *                  is used.
+     * @param provider  the provider name (can be {@code null}).
      * @return the result of the hashing computation
      */
     @Nonnull
@@ -88,13 +88,13 @@ public final class EidasDigestUtil {
             // thrown an InternalErrorEIDASException.
             LOG.info(EidasErrorKey.HASH_ERROR.errorMessage() + ": " + nsae, nsae);
             throw new InternalErrorEIDASException(EidasErrors.get(EidasErrorKey.HASH_ERROR.errorCode()),
-                                                  EidasErrors.get(EidasErrorKey.HASH_ERROR.errorMessage()), nsae);
+                    EidasErrors.get(EidasErrorKey.HASH_ERROR.errorMessage()), nsae);
         } catch (NoSuchProviderException nspe) {
             // For all those exceptions that could be thrown, we always log it and
             // thrown an InternalErrorEIDASException.
             LOG.info(EidasErrorKey.HASH_ERROR.errorMessage() + ": " + nspe, nspe);
             throw new InternalErrorEIDASException(EidasErrors.get(EidasErrorKey.HASH_ERROR.errorCode()),
-                                                  EidasErrors.get(EidasErrorKey.HASH_ERROR.errorMessage()), nspe);
+                    EidasErrors.get(EidasErrorKey.HASH_ERROR.errorMessage()), nspe);
         }
     }
 
@@ -136,7 +136,7 @@ public final class EidasDigestUtil {
             // thrown an InternalErrorEIDASException.
             LOG.info(EidasErrorKey.HASH_ERROR.errorMessage(), e);
             throw new InternalErrorEIDASException(EidasErrors.get(EidasErrorKey.HASH_ERROR.errorCode()),
-                                                  EidasErrors.get(EidasErrorKey.HASH_ERROR.errorMessage()), e);
+                    EidasErrors.get(EidasErrorKey.HASH_ERROR.errorMessage()), e);
         }
     }
 }

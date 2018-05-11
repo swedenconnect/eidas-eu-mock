@@ -20,10 +20,11 @@ public class CertificateAliasPair {
     private X509Certificate certificate;
     private String alias;
 
-    public CertificateAliasPair(X509Certificate certificate, String alias){
+    public CertificateAliasPair(X509Certificate certificate, String alias) {
         setCertificate(certificate);
         setAlias(alias);
     }
+
     public X509Certificate getCertificate() {
         return certificate;
     }

@@ -5,7 +5,8 @@
     <artifactId>eidas-specific-communication-definition</artifactId>
     <packaging>jar</packaging>
     <name>eIDAS Specific Communication Definition</name>
-    <description>Defines and implements the communication protocol to be used between specific and node modules.</description>
+    <description>Defines and implements the communication protocol to be used between specific and node modules.
+    </description>
     <parent>
         <groupId>eu.eidas</groupId>
         <artifactId>eidas-parent</artifactId>
@@ -113,7 +114,8 @@
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}/${proj.name}/WEB-INF/classes</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/${proj.name}/WEB-INF/classes
+                                    </outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>${project.basedir}/src/main/config/jarPackaging</directory>

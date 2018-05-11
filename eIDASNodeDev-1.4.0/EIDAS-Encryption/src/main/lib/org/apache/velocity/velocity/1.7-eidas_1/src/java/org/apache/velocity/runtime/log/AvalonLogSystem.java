@@ -16,7 +16,7 @@ package org.apache.velocity.runtime.log;
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.    
+ * under the License.
  */
 
 /**
@@ -26,15 +26,13 @@ package org.apache.velocity.runtime.log;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: AvalonLogSystem.java 463298 2006-10-12 16:10:32Z henning $
  */
-public class AvalonLogSystem extends AvalonLogChute implements LogSystem
-{
+public class AvalonLogSystem extends AvalonLogChute implements LogSystem {
     /**
-     *  @param level
+     * @param level
      * @param message
      * @deprecated Use log(level, message).
      */
-    public void logVelocityMessage(int level, String message)
-    {
+    public void logVelocityMessage(int level, String message) {
         log(level, message);
     }
 }

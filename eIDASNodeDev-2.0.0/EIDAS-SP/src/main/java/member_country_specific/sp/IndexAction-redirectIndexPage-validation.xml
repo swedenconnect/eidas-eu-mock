@@ -3,12 +3,12 @@
         "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
 
 <validators>
-	<field name="nodeUrl2">
+    <field name="nodeUrl2">
         <field-validator type="requiredstring">
             <message key="requiredstring"/>
         </field-validator>
     </field>
-	<field name="returnUrl">
+    <field name="returnUrl">
         <field-validator type="requiredstring">
             <message key="requiredstring"/>
         </field-validator>

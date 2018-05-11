@@ -27,13 +27,12 @@ import eu.eidas.auth.engine.metadata.EntityDescriptorContainer;
  */
 public interface IMetadataCachingService {
     /**
-     *
      * @param url
      * @return the descriptor (stored in the cache) associated with url
      */
     EntityDescriptor getDescriptor(String url) throws EIDASMetadataProviderException;
+
     /**
-     *
      * @param url
      * @return the descriptor type of the descriptor (stored in the cache) associated with url
      */
@@ -41,27 +40,28 @@ public interface IMetadataCachingService {
 
     /**
      * add a descriptor in the cache
+     *
      * @param url
      * @param ed
      * @param type - the type (origin) of the descriptor
      */
     void putDescriptor(String url, EntityDescriptor ed, EntityDescriptorType type);
     /**
-    *
-    * @param url
-    * @return either the descriptor (stored in the cache) associated with url or its container (holding the signature)
-    *//*
+     *
+     * @param url
+     * @return either the descriptor (stored in the cache) associated with url or its container (holding the signature)
+     *//*
    SignableXMLObject getDescriptorSignatureHolder(@Nonnull String url);*/
-   /**
-   *
-   * @param url
-   * @param signableObject - the object holding the signature for the entity identified by the @url
-   */
-  void putDescriptorSignatureHolder(String url, SignableXMLObject signableObject);
-  /**
-  *
-  * @param url
-  * @param container - the object holding the signature for the entity identified by the @url
-  */
- void putDescriptorSignatureHolder(String url, EntityDescriptorContainer container);
+
+    /**
+     * @param url
+     * @param signableObject - the object holding the signature for the entity identified by the @url
+     */
+    void putDescriptorSignatureHolder(String url, SignableXMLObject signableObject);
+
+    /**
+     * @param url
+     * @param container - the object holding the signature for the entity identified by the @url
+     */
+    void putDescriptorSignatureHolder(String url, EntityDescriptorContainer container);
 }

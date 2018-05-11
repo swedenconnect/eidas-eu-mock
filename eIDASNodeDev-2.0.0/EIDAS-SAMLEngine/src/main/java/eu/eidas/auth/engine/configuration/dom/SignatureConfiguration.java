@@ -118,19 +118,19 @@ public final class SignatureConfiguration {
             return false;
         }
         if (signatureKeyAndCertificate != null ? !signatureKeyAndCertificate.equals(that.signatureKeyAndCertificate)
-                                               : that.signatureKeyAndCertificate != null) {
+                : that.signatureKeyAndCertificate != null) {
             return false;
         }
         if (trustedCertificates != null ? !trustedCertificates.equals(that.trustedCertificates)
-                                        : that.trustedCertificates != null) {
+                : that.trustedCertificates != null) {
             return false;
         }
         if (signatureAlgorithm != null ? !signatureAlgorithm.equals(that.signatureAlgorithm)
-                                       : that.signatureAlgorithm != null) {
+                : that.signatureAlgorithm != null) {
             return false;
         }
         if (signatureAlgorithmWhiteList != null ? !signatureAlgorithmWhiteList.equals(that.signatureAlgorithmWhiteList)
-                                                : that.signatureAlgorithmWhiteList != null) {
+                : that.signatureAlgorithmWhiteList != null) {
             return false;
         }
         return metadataSigningKeyAndCertificate != null ? metadataSigningKeyAndCertificate.equals(
@@ -147,7 +147,7 @@ public final class SignatureConfiguration {
         result = 31 * result + (signatureAlgorithm != null ? signatureAlgorithm.hashCode() : 0);
         result = 31 * result + (signatureAlgorithmWhiteList != null ? signatureAlgorithmWhiteList.hashCode() : 0);
         result = 31 * result + (metadataSigningKeyAndCertificate != null ? metadataSigningKeyAndCertificate.hashCode()
-                                                                         : 0);
+                : 0);
         return result;
     }
 

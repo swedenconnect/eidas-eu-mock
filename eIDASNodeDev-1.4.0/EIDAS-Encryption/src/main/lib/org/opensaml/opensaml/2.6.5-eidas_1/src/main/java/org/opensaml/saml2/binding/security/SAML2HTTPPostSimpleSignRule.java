@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -50,36 +50,46 @@ import org.w3c.dom.Document;
  */
 public class SAML2HTTPPostSimpleSignRule extends BaseSAMLSimpleSignatureSecurityPolicyRule {
 
-    /** Logger. */
+    /**
+     * Logger.
+     */
     private Logger log = LoggerFactory.getLogger(SAML2HTTPPostSimpleSignRule.class);
 
-    /** Parser pool to use to process KeyInfo request parameter. */
+    /**
+     * Parser pool to use to process KeyInfo request parameter.
+     */
     private ParserPool parser;
 
-    /** KeyInfo resolver to use to process KeyInfo request parameter. */
+    /**
+     * KeyInfo resolver to use to process KeyInfo request parameter.
+     */
     private KeyInfoCredentialResolver keyInfoResolver;
 
     /**
      * Constructor.
-     * 
-     * @param engine the trust engine to use
-     * @param parserPool the parser pool used to parse the KeyInfo request parameter
+     *
+     * @param engine              the trust engine to use
+     * @param parserPool          the parser pool used to parse the KeyInfo request parameter
      * @param keyInfoCredResolver the KeyInfo credential resovler to use to extract credentials from the KeyInfo request
-     *            parameter
+     *                            parameter
      */
     public SAML2HTTPPostSimpleSignRule(SignatureTrustEngine engine, ParserPool parserPool,
-            KeyInfoCredentialResolver keyInfoCredResolver) {
+                                       KeyInfoCredentialResolver keyInfoCredResolver) {
         super(engine);
         parser = parserPool;
         keyInfoResolver = keyInfoCredResolver;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected boolean ruleHandles(HttpServletRequest request, SAMLMessageContext samlMsgCtx) {
         return "POST".equals(request.getMethod());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected byte[] getSignedContent(HttpServletRequest request) throws SecurityPolicyException {
         StringBuilder builder = new StringBuilder();
         String samlMsg;
@@ -119,7 +129,9 @@ public class SAML2HTTPPostSimpleSignRule extends BaseSAMLSimpleSignatureSecurity
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected List<Credential> getRequestCredentials(HttpServletRequest request, SAMLMessageContext samlContext)
             throws SecurityPolicyException {
 

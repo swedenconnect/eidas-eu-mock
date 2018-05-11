@@ -1,9 +1,9 @@
 /*
- * Licensed to the University Corporation for Advanced Internet Development, 
- * Inc. (UCAID) under one or more contributor license agreements.  See the 
+ * Licensed to the University Corporation for Advanced Internet Development,
+ * Inc. (UCAID) under one or more contributor license agreements.  See the
  * NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The UCAID licenses this file to You under the Apache 
- * License, Version 2.0 (the "License"); you may not use this file except in 
+ * copyright ownership. The UCAID licenses this file to You under the Apache
+ * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
@@ -27,13 +27,14 @@ public class ManageNameIDRequestSchemaValidator extends RequestAbstractTypeSchem
 
     /**
      * Constructor
-     *
      */
     public ManageNameIDRequestSchemaValidator() {
         super();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void validate(ManageNameIDRequest request) throws ValidationException {
         super.validate(request);
         validateNameID(request);
@@ -42,34 +43,34 @@ public class ManageNameIDRequestSchemaValidator extends RequestAbstractTypeSchem
 
     /**
      * Validates NameID/EncryptedID child element
-     * 
+     *
      * @param request
-     * @throws ValidationException 
+     * @throws ValidationException
      */
     protected void validateNameID(ManageNameIDRequest request) throws ValidationException {
         int idCount = 0;
-        
+
         if (request.getNameID() != null) {
             idCount++;
         }
         if (request.getEncryptedID() != null) {
             idCount++;
         }
-        
+
         if (idCount != 1) {
             throw new ValidationException("ManageNameIDRequest must contain exactly one of: NameID, EncryptedID");
         }
     }
-    
+
     /**
      * Validates NewID/NewEncryptedID child element
-     * 
+     *
      * @param request
-     * @throws ValidationException 
+     * @throws ValidationException
      */
     protected void validateNewIDAndTerminate(ManageNameIDRequest request) throws ValidationException {
         int count = 0;
-        
+
         if (request.getNewID() != null) {
             count++;
         }
@@ -79,10 +80,10 @@ public class ManageNameIDRequestSchemaValidator extends RequestAbstractTypeSchem
         if (request.getTerminate() != null) {
             count++;
         }
-        
+
         if (count != 1) {
             throw new ValidationException("ManageNameIDRequest must contain exactly one of: NewID, NewEncryptedID, Terminate");
         }
     }
-    
+
 }

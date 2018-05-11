@@ -25,7 +25,7 @@ import eu.eidas.auth.engine.core.stork.QAAAttribute;
  * @author fjquevedo
  */
 public class QAAAttributeBuilder extends
-	AbstractSAMLObjectBuilder<QAAAttribute> {
+        AbstractSAMLObjectBuilder<QAAAttribute> {
 
     /**
      * Builds the object.
@@ -33,20 +33,19 @@ public class QAAAttributeBuilder extends
      * @return the quality authentication assurance object
      */
     public final QAAAttribute buildObject() {
-	return buildObject(QAAAttribute.DEF_ELEMENT_NAME);
+        return buildObject(QAAAttribute.DEF_ELEMENT_NAME);
     }
 
     /**
      * Builds the object.
      *
-     * @param namespaceURI the namespace uri
-     * @param localName the local name
+     * @param namespaceURI    the namespace uri
+     * @param localName       the local name
      * @param namespacePrefix the namespace prefix
      * @return the quality authentication assurance object
-
      */
     public final QAAAttribute buildObject(final String namespaceURI,
-	    final String localName, final String namespacePrefix) {
-	return new QAAAttributeImpl(namespaceURI, localName, namespacePrefix);
+                                          final String localName, final String namespacePrefix) {
+        return new QAAAttributeImpl(namespaceURI, localName, namespacePrefix);
     }
 }

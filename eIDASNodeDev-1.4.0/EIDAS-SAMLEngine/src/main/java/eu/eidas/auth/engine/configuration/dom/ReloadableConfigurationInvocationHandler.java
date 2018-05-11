@@ -50,8 +50,7 @@ public final class ReloadableConfigurationInvocationHandler<T> implements Invoca
     }
 
     ReloadableConfigurationInvocationHandler(@Nonnull final String nameVal,
-                                             @Nonnull
-                                             final SingletonAccessor<ImmutableMap<String, SamlEngineConfiguration>> fileAccessorVal,
+                                             @Nonnull final SingletonAccessor<ImmutableMap<String, SamlEngineConfiguration>> fileAccessorVal,
                                              @Nonnull final ConfigurationGetter<T> getterVal) {
         name = nameVal;
         fileAccessor = fileAccessorVal;
@@ -81,14 +80,14 @@ public final class ReloadableConfigurationInvocationHandler<T> implements Invoca
                                                                  SingletonAccessor<ImmutableMap<String, SamlEngineConfiguration>> accessor) {
         SamlEngineCoreProperties samlEngineCoreProperties =
                 newProxyInstance(SamlEngineCoreProperties.class, name, accessor,
-                                 new ConfigurationGetter<SamlEngineCoreProperties>() {
+                        new ConfigurationGetter<SamlEngineCoreProperties>() {
 
-                                     @Override
-                                     public SamlEngineCoreProperties get(
-                                             @Nonnull SamlEngineConfiguration configuration) {
-                                         return configuration.getCoreProperties();
-                                     }
-                                 });
+                            @Override
+                            public SamlEngineCoreProperties get(
+                                    @Nonnull SamlEngineConfiguration configuration) {
+                                return configuration.getCoreProperties();
+                            }
+                        });
         ProtocolSignerI signer =
                 newProxyInstance(ProtocolSignerI.class, name, accessor, new ConfigurationGetter<ProtocolSignerI>() {
 
@@ -98,23 +97,23 @@ public final class ReloadableConfigurationInvocationHandler<T> implements Invoca
                     }
                 });
         SamlEngineEncryptionI cipher = newProxyInstance(SamlEngineEncryptionI.class, name, accessor,
-                                                        new ConfigurationGetter<SamlEngineEncryptionI>() {
+                new ConfigurationGetter<SamlEngineEncryptionI>() {
 
-                                                            @Override
-                                                            public SamlEngineEncryptionI get(
-                                                                    @Nonnull SamlEngineConfiguration configuration) {
-                                                                return configuration.getCipher();
-                                                            }
-                                                        });
+                    @Override
+                    public SamlEngineEncryptionI get(
+                            @Nonnull SamlEngineConfiguration configuration) {
+                        return configuration.getCipher();
+                    }
+                });
         ExtensionProcessorI extensionProcessor = newProxyInstance(ExtensionProcessorI.class, name, accessor,
-                                                                  new ConfigurationGetter<ExtensionProcessorI>() {
+                new ConfigurationGetter<ExtensionProcessorI>() {
 
-                                                                      @Override
-                                                                      public ExtensionProcessorI get(@Nonnull
-                                                                                                             SamlEngineConfiguration configuration) {
-                                                                          return configuration.getExtensionProcessor();
-                                                                      }
-                                                                  });
+                    @Override
+                    public ExtensionProcessorI get(@Nonnull
+                                                           SamlEngineConfiguration configuration) {
+                        return configuration.getExtensionProcessor();
+                    }
+                });
         SamlEngineClock clock =
                 newProxyInstance(SamlEngineClock.class, name, accessor, new ConfigurationGetter<SamlEngineClock>() {
 
@@ -150,7 +149,7 @@ public final class ReloadableConfigurationInvocationHandler<T> implements Invoca
                 new ReloadableConfigurationInvocationHandler<>(name, accessor, getter);
 
         return ReflectionUtil.newProxyInstance(ReloadableConfigurationMap.class.getClassLoader(), type,
-                                               (Class<? extends T>) proxiedObject.getClass(), invocationHandler);
+                (Class<? extends T>) proxiedObject.getClass(), invocationHandler);
     }
 
     public T getProxiedObject() {

@@ -26,40 +26,42 @@ import static org.junit.Assert.fail;
 
 public class TestValidationSchema {
     private static final Logger LOG = LoggerFactory.getLogger(TestValidationSchema.class.getName());
+
     @Test
-    public void testDummy(){
+    public void testDummy() {
 
     }
+
     //@Test
     private void testSchemaValidation() {
         try {
-        // parse an XML document into a DOM tree
-        DocumentBuilder parser = DocumentBuilderFactoryUtil.newSecureDocumentBuilderFactory().newDocumentBuilder();
-            File f=new File("EncryptModule_Metadata.xml");
-            if(!f.exists()){
+            // parse an XML document into a DOM tree
+            DocumentBuilder parser = DocumentBuilderFactoryUtil.newSecureDocumentBuilderFactory().newDocumentBuilder();
+            File f = new File("EncryptModule_Metadata.xml");
+            if (!f.exists()) {
                 throw new IOException();
             }
-        Document document = parser.parse(f);
+            Document document = parser.parse(f);
 
-        // create a SchemaFactory capable of understanding WXS schemas
-        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            // create a SchemaFactory capable of understanding WXS schemas
+            SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
-        // load a WXS schema, represented by a Schema instance
-        Source schemaFile = new StreamSource(new File("./target/classes/test/saml_eidas_natural_person.xsd"));
-        Schema schema = factory.newSchema(schemaFile);
+            // load a WXS schema, represented by a Schema instance
+            Source schemaFile = new StreamSource(new File("./target/classes/test/saml_eidas_natural_person.xsd"));
+            Schema schema = factory.newSchema(schemaFile);
 
-        // create a Validator instance, which can be used to validate an instance document
-        Validator validator = schema.newValidator();
+            // create a Validator instance, which can be used to validate an instance document
+            Validator validator = schema.newValidator();
 
-        // validate the DOM tree
+            // validate the DOM tree
             validator.validate(new DOMSource(document));
         } catch (ParserConfigurationException e) {
             LOG.error("ParserConfigurationException {}", e);
             fail("ParserConfigurationException");
-        }catch (SAXException e) {
+        } catch (SAXException e) {
             LOG.error("SAXException {}", e);
             fail("SAXException");
-        }catch (IOException e) {
+        } catch (IOException e) {
             LOG.error("IoException {}", e);
             fail("IoException");
         }
