@@ -61,7 +61,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexAction.class);
     private static final String ATTRIBUTES_FILENAME = "eidasAttributes.xml";
     private static final String ADDITIONAL_ATTRIBUTES_FILENAME = "additional-attributes.xml";
-    private static final AttributeRegistry coreAttributeRegistry = AttributeRegistries.fromFile(ATTRIBUTES_FILENAME, null);
+    private static final AttributeRegistry coreAttributeRegistry = AttributeRegistries.fromFile(ATTRIBUTES_FILENAME, SPUtil.getConfigFilePath());
     private static final AttributeRegistry coreAdditionalAttributeRegistry = AttributeRegistries.fromFile(ADDITIONAL_ATTRIBUTES_FILENAME, SPUtil.getConfigFilePath());
     private static Properties configs;
     private static List<Country> countries;

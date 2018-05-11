@@ -91,7 +91,7 @@ export CATALINA_OPTS="-Xms512m -Xmx1536m"
 #
 # Debug
 #
-export JPDA_ADDRESS=8000
+export JPDA_ADDRESS=8920
 export JPDA_TRANSPORT=dt_socket
 
 if [ $DEBUG_MODE == true ]; then
