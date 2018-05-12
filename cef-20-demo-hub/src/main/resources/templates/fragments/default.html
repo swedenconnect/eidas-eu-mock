@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:fragment="scripts">
+        <script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+        <script src="js/popper-1.12.5.min.js"></script>
+        <script src="webjars/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    </div>
+    <title>Title</title>
+</head>
+<body>
+<!--START HEADER-->
+<div class="container">
+    <div class="card" style="margin-top: 20px">
+        <div th:fragment="header">
+            <div class="card-header" style="padding-top: 0px;padding-bottom: 0px">
+                <table style="width: 100%">
+                    <tr style="padding: 0px; margin: 0px">
+                        <td>
+                            <a href="http://www.elegnamnden.se/globalalankar/inenglish.4.5a85666214dbad743ffe971.html"><img
+                                    src="img/logo_full.png" height="100"
+                                    style="margin-bottom: 0px; margin-right: 10px; margin-top: 5px"/></a>
+                        </td>
+                        <td style="padding: 0px; margin: 0px; text-align: center">
+                            <h1 id="uiTextTitle" style="margin-top: 0; padding-top: 0">The Swedish eIDAS Pilot</h1>
+                            <h4 id="uiTextSubtitle">International authentication with foreign eID</h4>
+                        </td>
+                        <td style="text-align: right"><img src="img/se-eu4.png" height="120"
+                                                           style="margin-bottom: 5px"/>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="card-body">
+        </div>
+    </div>
+    <div th:fragment="footer">
+        <div class='card card-footer'>
+            <table style="width: 100%">
+                <tr>
+                    <td><!--/*@thymesVar id="homePage" type="java.lang.String"*/-->
+                    <a class="btn btn-dark" th:href="${homePage}">Home</a>
+                    </td>
+                    <td style="text-align: center">
+                    </td>
+                    <td style="text-align: right">
+                        <span style="color: #7f0927">The Swedish E-Identification Board</span><br/>
+                        <a href="https://www.elegnamnden.se">https://www.elegnamnden.se</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:fragment="footer-main">
+        <div class='card card-footer'>
+            <table style="width: 100%">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td style="text-align: center">
+                    </td>
+                    <td style="text-align: right">
+                        <span style="color: #7f0927">The Swedish E-Identification Board</span><br/>
+                        <a href="https://www.elegnamnden.se">https://www.elegnamnden.se</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

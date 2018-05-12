@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>CEF eIDAS 2.0.0 - Demo application hub</title>
+</head>
+<body>
+<div class="container-fluid" style="width: 80%">
+    <div class="card" style="margin-top: 15px">
+        <div th:include="fragments/default :: header"></div>
+        <div class="card-body">
+            <h3>CEF 2.0 Connector Demo SP Service</h3>
+            <p>This is a demo SP service for the Swedish eIDAS connector.</p>
+        </div>
+    </div>
+    <div th:include="fragments/default :: footer-main"/>
+</div>
+
+</body>
+</html>
