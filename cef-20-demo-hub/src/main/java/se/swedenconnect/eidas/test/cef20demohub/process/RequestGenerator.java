@@ -1,17 +1,18 @@
 package se.swedenconnect.eidas.test.cef20demohub.process;
 
+import eu.eidas.SimpleProtocol.Attribute;
 import eu.eidas.SimpleProtocol.AuthenticationRequest;
 import eu.eidas.SimpleProtocol.RequestedAuthenticationContext;
 import eu.eidas.SimpleProtocol.utils.SimpleProtocolProcess;
 import org.springframework.stereotype.Component;
+import se.swedenconnect.eidas.test.cef20demohub.data.EidasLegalAttributeFriendlyName;
+import se.swedenconnect.eidas.test.cef20demohub.data.EidasNaturalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.RequestData;
 import se.swedenconnect.eidas.test.cef20demohub.data.RequestModel;
 
 import javax.xml.bind.JAXBException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public class RequestGenerator {
@@ -48,5 +49,37 @@ public class RequestGenerator {
         requestData.setBase64Request(b64Request);
         return requestData;
     }
+
+
+    public List<Attribute> getAttributeList(Map<String, String[]> parameterMap){
+        List<Attribute> attributeList = new ArrayList<>();
+
+        EidasNaturalAttributeFriendlyName[] natAttrArray = EidasNaturalAttributeFriendlyName.values();
+        for (EidasNaturalAttributeFriendlyName natAttr:natAttrArray){
+            if (parameterMap.containsKey(natAttr.name())) {
+                attributeList.add(getAttribute(natAttr.getFrendlyName(), parameterMap.containsKey("req_"+natAttr.name())));
+            }
+        }
+        EidasLegalAttributeFriendlyName[] legalAttrArray = EidasLegalAttributeFriendlyName.values();
+        for (EidasLegalAttributeFriendlyName legalAttr:legalAttrArray){
+            if (parameterMap.containsKey(legalAttr.name())) {
+                attributeList.add(getAttribute(legalAttr.getFrendlyName(), parameterMap.containsKey("req_"+legalAttr.name())));
+            }
+        }
+        return attributeList;
+    }
+
+
+    private Attribute getAttribute(String attributeFriendlyName) {
+        return getAttribute(attributeFriendlyName, false);
+    }
+
+    private Attribute getAttribute(String attributeFriendlyName, boolean required) {
+        Attribute attribute = new Attribute();
+        attribute.setName(attributeFriendlyName);
+        attribute.setRequired(required);
+        return attribute;
+    }
+
 
 }

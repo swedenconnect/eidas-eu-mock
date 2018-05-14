@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>CEF eIDAS 2.0.0 - Demo application hub</title>
+</head>
+<body>
+<div class="container-fluid" style="width: 80%">
+    <div class="card" style="margin-top: 15px">
+        <div th:include="fragments/default :: header"></div>
+        <div class="card-body">
+            <h3>CEF 2.0 Connector Demo SP Service</h3>
+            <a class="btn btn-primary" href="sp">Home</a><br>
+            <h4>Authentication Context</h4>
+            <table class="table">
+                <tr>
+                    <td>Isssuer</td>
+                    <td th:text="${response.getIssuer()}"></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td th:text="${response.getStatus()}"></td>
+                </tr>
+                <tr>
+                    <td>Time</td>
+                    <td th:text="${response.getCreatedOn()}"></td>
+                </tr>
+                <tr>
+                    <td>Level of Assurance</td>
+                    <td th:text="${loa}"></td>
+                </tr>
+            </table>
+            <br>
+            <h4>Attributes</h4>
+            <table class="table table-striped">
+                <tr th:each="attr,attrMeta:${attrList}">
+                    <td th:text="${attr.getName()}"></td>
+                    <td th:text="${attr.getValue()}"></td>
+                </tr>
+
+            </table>
+            <!--<textarea style="width: 100%" rows="40" th:text="${jsonResponse}"></textarea>-->
+        </div>
+    </div>
+    <div th:include="fragments/default :: footer-main"/>
+</div>
+
+</body>
+</html>
