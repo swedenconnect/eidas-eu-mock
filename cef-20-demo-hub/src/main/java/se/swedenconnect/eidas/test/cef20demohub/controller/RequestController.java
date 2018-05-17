@@ -36,7 +36,11 @@ public class RequestController {
     public String getRequestPage(Model model) {
         model.addAttribute("naturalAttr", Arrays.asList(EidasNaturalAttributeFriendlyName.values()));
         model.addAttribute("legalAttr", Arrays.asList(EidasLegalAttributeFriendlyName.values()));
-
+        model.addAttribute("countryList", getCountryList());
+        model.addAttribute("loaList", DemoLevelOfAssurance.getList());
+        model.addAttribute("loaComparisonList", Arrays.asList(LevelOfAssuranceComparison.values()));
+        model.addAttribute("spTypeList", Arrays.asList(SpType.values()));
+        model.addAttribute("nameIdTypeList", Arrays.asList(RequestModel.UNSPECIFIED, RequestModel.PERSISTENT, RequestModel.TRANSIENT));
         return "request";
     }
 
@@ -70,7 +74,7 @@ public class RequestController {
 
         return response.getAttributes().stream()
                 .map(attribute -> {
-                    if (attribute instanceof StringListAttribute){
+                    if (attribute instanceof StringListAttribute) {
                         StringListAttribute strlAttr = (StringListAttribute) attribute;
                         return new ValueAttribute(strlAttr.getName(), strlAttr.getValues().get(0).getValue());
                     }
@@ -78,7 +82,7 @@ public class RequestController {
                         DateAttribute dateAttr = (DateAttribute) attribute;
                         return new ValueAttribute(dateAttr.getName(), dateAttr.getValue().toString());
                     }
-                    return new ValueAttribute(attribute.getName(),"#null");
+                    return new ValueAttribute(attribute.getName(), "#null");
                 }).collect(Collectors.toList());
     }
 
@@ -96,6 +100,19 @@ public class RequestController {
                 return response.getAuthContextClass();
         }
 
+    }
+
+    private List<CitizenCountry> getCountryList() {
+        List<CitizenCountry> countryList = new ArrayList<>();
+        countryList.add(new CitizenCountry("SE", getCountryImage("img/flags/SE.png"), "Sweden"));
+        countryList.add(new CitizenCountry("XX", getCountryImage("img/flags/EU.png"), "Test Country CEF node Version 2.0"));
+        countryList.add(new CitizenCountry("XY", getCountryImage("img/flags/EU.png"), "Test Country CEF node Version 2.0"));
+        return countryList;
+    }
+
+    private String getCountryImage(String imgUrl) {
+        String imgStr = "<img src='" + imgUrl + "'>";
+        return imgStr;
     }
 
     private String getJsonRequest(Map<String, String[]> parameterMap) throws JAXBException {

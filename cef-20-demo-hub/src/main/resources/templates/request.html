@@ -3,52 +3,181 @@
 <head>
     <meta charset="UTF-8"/>
     <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <script src="webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+    <script src="js/bootstrap-select-1.13.0-beta/js/bootstrap-select.min.js"></script>
     <link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="js/bootstrap-select-1.13.0-beta/css/bootstrap-select.min.css">
     <title>CEF eIDAS 2.0.0 - Demo application hub</title>
+    <script>
+        var countrySelectCookie = "selectedCountry";
+        $(document).ready(function () {
+            getPreselected();
+            storeCountry();
+        });
+
+        function storeCountry() {
+            $.cookie(countrySelectCookie, $("#selectCountryInp").val(), {expires: 200});
+        }
+        function getPreselected() {
+            var storedSelection = $.cookie(countrySelectCookie);
+            if (storedSelection !== null) {
+                $("#selectCountryInp").val(storedSelection);
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container-fluid" style="width: 80%">
     <div class="card" style="margin-top: 15px">
-        <div th:include="fragments/default :: header"></div>
+        <div th:include="fragments/default :: sp-header"></div>
         <div class="card-body">
-            <h3>CEF 2.0 Connector Demo SP Service</h3>
-            <p>This is a demo SP service for the Swedish eIDAS connector.</p>
-            <!--<a class="btn btn-primary" href="request">Send request</a>-->
+            <h3>Country XX SP</h3>
 
             <form action="request" id="requestForm">
-                <input type="submit" class="btn btn-primary" value="Send Request">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h4>Natural Person Attributes</h4>
-                        <table class="table">
-                            <tr th:each="attr,attrData:${naturalAttr}">
-                                <td>
-                                    <input type="checkbox" th:name="${attr.name()}" th:checked="${attr.isDefRequested()}">&nbsp;
-                                    <span th:text="${attr.getFrendlyName()}"></span>
-                                </td>
-                                <td>
-                                    <input type="checkbox" th:name="'req_'+${attr.name()}" th:checked="${attr.isDefRequired()}">&nbsp;
-                                    <span> Required </span>
-                                </td>
-                            </tr>
-                        </table>
+
+                <!--
+                    private String citizenCountry;
+                    private String spType;
+                    private String requestedLoa;
+                    private String loaComparison;
+                    private String nameIdentifier;
+                -->
+
+                <!-- Country selector -->
+                <div class="form-group">
+                    <label for="citizenCountry"><b>Citizen country</b></label>
+                    <select class="form-control selectpicker" name="citizenCountry" id="citizenCountry" data-native-menu="false" onchange="storeCountry()">
+                        <th:block th:each="country : ${countryList}">
+                            <option th:value="${country.getCountryCode()}" th:data-content="${country.getCountryImage()}+'&nbsp;&nbsp;'+${country.getCountryName()}"/>
+                        </th:block>
+                    </select>
+                </div>
+
+                <!-- SP Type selector -->
+                <div class="form-group">
+                    <label for="spType"><b>Service provider type</b></label>
+                    <select class="form-control selectpicker" name="spType" id="spType" data-native-menu="false">
+                        <th:block th:each="spType : ${spTypeList}">
+                            <option th:value="${spType.getValue()}" th:text="${spType.getValue()}"/>
+                        </th:block>
+                    </select>
+                </div>
+
+                <!-- LoA selector -->
+                <div class="form-group">
+                    <label for="requestLoa"><b>Service provider type</b></label>
+                    <select class="form-control selectpicker" name="requestLoa" id="requestLoa" data-native-menu="false">
+                        <th:block th:each="loa : ${loaList}">
+                            <option th:value="${loa.getKey()}" th:text="${loa.getUri()}"/>
+                        </th:block>
+                    </select>
+                </div>
+
+                <!-- LoA comparison selector -->
+                <div class="form-group">
+                    <label for="loaComparison"><b>Service provider type</b></label>
+                    <select class="form-control selectpicker" name="loaComparison" id="loaComparison" data-native-menu="false">
+                        <th:block th:each="loaComp : ${loaComparisonList}">
+                            <option th:value="${loaComp.getValue()}" th:text="${loaComp.getValue()}"/>
+                        </th:block>
+                    </select>
+                </div>
+
+                <!-- NameID Type selector -->
+                <div class="form-group">
+                    <label for="nameIdType"><b>Service provider type</b></label>
+                    <select class="form-control selectpicker" name="nameIdType" id="nameIdType" data-native-menu="false">
+                        <th:block th:each="nameIdType : ${nameIdTypeList}">
+                            <option th:value="${nameIdType}" th:text="${nameIdType}"/>
+                        </th:block>
+                    </select>
+                </div>
+
+                <!-- Attribute accordion -->
+                <div id="attribute-accordion">
+                    <!-- Normal Attributes -->
+                    <div class="card">
+                        <a class="btn btn-sm btn-light" style="text-align: left" data-toggle="collapse" href="#reqAttributes"><h5>Requested Attributes</h5></a>
+                        <div id="reqAttributes" class="collapse show" data-parent="#attribute-accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h6>Natural Person Attributes</h6>
+                                        <table class="table">
+                                            <tr th:each="attr,attrData:${naturalAttr}">
+                                                <td>
+                                                    <input type="checkbox" th:name="${attr.name()}" th:checked="${attr.isDefRequested()}">&nbsp;
+                                                    <span th:text="${attr.getFrendlyName()}"></span>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" th:name="'req_'+${attr.name()}" th:checked="${attr.isDefRequired()}">&nbsp;
+                                                    <span> Required </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h6>Legal Person Attributes</h6>
+                                        <table class="table">
+                                            <tr th:each="attr,attrData:${legalAttr}">
+                                                <td>
+                                                    <input type="checkbox" th:name="${attr.name()}" th:checked="${attr.isDefRequested()}">&nbsp;
+                                                    <span th:text="${attr.getFrendlyName()}"></span>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" th:name="'req_'+${attr.name()}" th:checked="${attr.isDefRequired()}">&nbsp;
+                                                    <span> Required </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <h4>Legal Person Attributes</h4>
-                        <table class="table">
-                            <tr th:each="attr,attrData:${legalAttr}">
-                                <td>
-                                    <input type="checkbox" th:name="${attr.name()}" th:checked="${attr.isDefRequested()}">&nbsp;
-                                    <span th:text="${attr.getFrendlyName()}"></span>
-                                </td>
-                                <td>
-                                    <input type="checkbox" th:name="'req_'+${attr.name()}" th:checked="${attr.isDefRequired()}">&nbsp;
-                                    <span> Required </span>
-                                </td>
-                            </tr>
-                        </table>
+                    <!-- Representation Attributes -->
+                    <div class="card">
+                        <a class="collapsed btn btn-sm btn-light" data-toggle="collapse" style="text-align: left" href="#reprAttributes"><h5>Requested Representation Attributes</h5></a>
+                        <div id="reprAttributes" class="collapse" data-parent="#attribute-accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h6>Natural Person Attributes</h6>
+                                        <table class="table">
+                                            <tr th:each="attr,attrData:${naturalAttr}">
+                                                <td>
+                                                    <input type="checkbox" th:name="${'repr_'+attr.name()}">&nbsp;
+                                                    <span th:text="${attr.getFrendlyName(true)}"></span>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" th:name="'req_repr_'+${attr.name()}">&nbsp;
+                                                    <span> Required </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h6>Legal Person Attributes</h6>
+                                        <table class="table">
+                                            <tr th:each="attr,attrData:${legalAttr}">
+                                                <td>
+                                                    <input type="checkbox" th:name="${'repr_'+attr.name()}">&nbsp;
+                                                    <span th:text="${attr.getFrendlyName(true)}"></span>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" th:name="'req_repr_'+${attr.name()}">&nbsp;
+                                                    <span> Required </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- Submit button -->
+                <input type="submit" class="btn btn-primary" value="Send Request" style="margin-top: 10px"/>
             </form>
 
         </div>
