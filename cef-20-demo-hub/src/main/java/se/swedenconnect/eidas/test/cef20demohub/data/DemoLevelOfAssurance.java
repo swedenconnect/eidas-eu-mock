@@ -1,13 +1,14 @@
 package se.swedenconnect.eidas.test.cef20demohub.data;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 public enum DemoLevelOfAssurance {
     low("http://eidas.europa.eu/LoA/low", Arrays.asList("A", "B"), "A"),
     substantial("http://eidas.europa.eu/LoA/substantial", Arrays.asList("C", "D"), "C"),
-    high("http://eidas.europa.eu/LoA/high", Arrays.asList("E"),"E");
+    high("http://eidas.europa.eu/LoA/high", Arrays.asList("E"), "E");
 
     String uri;
     List<String> matchList;
@@ -31,11 +32,23 @@ public enum DemoLevelOfAssurance {
         return key;
     }
 
-    public static List<DemoLevelOfAssurance> getList(){
+    public static List<DemoLevelOfAssurance> getList() {
         return Arrays.asList(values());
     }
 
-    public static Optional<DemoLevelOfAssurance> getLoaFromDemoLevel(String demoLevel){
+    public static Optional<DemoLevelOfAssurance> getLoaFromDemoLevel(String demoLevel) {
         return Arrays.stream(values()).filter(dloa -> dloa.getMatchList().contains(demoLevel)).findFirst();
+    }
+
+    public static String getRegexp() {
+        StringBuilder b = new StringBuilder();
+        b.append("^(");
+        Iterator<DemoLevelOfAssurance> iterator = Arrays.asList(values()).iterator();
+        while (iterator.hasNext()) {
+            b.append(iterator.next().getKey());
+            b.append(iterator.hasNext() ? "|" : "");
+        }
+        b.append(")$");
+        return b.toString();
     }
 }

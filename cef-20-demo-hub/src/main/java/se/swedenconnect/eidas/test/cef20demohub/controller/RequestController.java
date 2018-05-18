@@ -1,9 +1,6 @@
 package se.swedenconnect.eidas.test.cef20demohub.controller;
 
-import eu.eidas.SimpleProtocol.Attribute;
-import eu.eidas.SimpleProtocol.DateAttribute;
-import eu.eidas.SimpleProtocol.Response;
-import eu.eidas.SimpleProtocol.StringListAttribute;
+import eu.eidas.SimpleProtocol.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +44,7 @@ public class RequestController {
     @RequestMapping("/request")
     public String getRequest(Model model, HttpServletRequest httpRequest) throws JAXBException {
         Map<String, String[]> parameterMap = httpRequest.getParameterMap();
-        String request = getJsonRequest(parameterMap);
+        String request = requestGenerator.getRequest(parameterMap, "http://localhost:8080/cef20-apps/return", "Demo SP for country XA").getBase64Request();
         List<FormPostData> formData = new ArrayList<>();
         formData.add(new FormPostData("SMSSPRequest", request, FormPostDataType.textArea));
         formData.add(new FormPostData("sendmethods", "POST", FormPostDataType.input));
@@ -62,12 +59,18 @@ public class RequestController {
     public String getReturn(Model model, @RequestParam("SMSSPResponse") String b64Response) throws JAXBException {
         String jsonResponse = new String(Base64.getDecoder().decode(b64Response), StandardCharsets.UTF_8);
         Response response = responseParser.parseResponse(jsonResponse);
-        List<ValueAttribute> attributeList = getAttributeList(response);
-        model.addAttribute("jsonResponse", jsonResponse);
-        model.addAttribute("response", response);
-        model.addAttribute("loa", getLoa(response));
-        model.addAttribute("attrList", attributeList);
-        return "result";
+        ResponseStatus status = response.getStatus();
+        if (status.getStatusCode().equalsIgnoreCase("success")){
+            List<ValueAttribute> attributeList = getAttributeList(response);
+            model.addAttribute("jsonResponse", jsonResponse);
+            model.addAttribute("response", response);
+            model.addAttribute("loa", getLoa(response));
+            model.addAttribute("attrList", attributeList);
+            return "result";
+        } else {
+            model.addAttribute("errorMessage", status.getStatusMessage());
+            return "errorResponse";
+        }
     }
 
     private List<ValueAttribute> getAttributeList(Response response) {
@@ -87,35 +90,23 @@ public class RequestController {
     }
 
     private String getLoa(Response response) {
-        switch (response.getAuthContextClass()) {
-            case "A":
-            case "B":
-                return "http://eidas.europa.eu/LoA/low";
-            case "C":
-            case "D":
-                return "http://eidas.europa.eu/LoA/substantial";
-            case "E":
-                return "http://eidas.europa.eu/LoA/high";
-            default:
-                return response.getAuthContextClass();
-        }
-
+        Optional<DemoLevelOfAssurance> loaFromDemoLevel = DemoLevelOfAssurance.getLoaFromDemoLevel(response.getAuthContextClass());
+        return loaFromDemoLevel.isPresent() ? loaFromDemoLevel.get().getUri() : response.getAuthContextClass();
     }
 
     private List<CitizenCountry> getCountryList() {
         List<CitizenCountry> countryList = new ArrayList<>();
         countryList.add(new CitizenCountry("SE", getCountryImage("img/flags/SE.png"), "Sweden"));
-        countryList.add(new CitizenCountry("XX", getCountryImage("img/flags/EU.png"), "Test Country CEF node Version 2.0"));
-        countryList.add(new CitizenCountry("XY", getCountryImage("img/flags/EU.png"), "Test Country CEF node Version 2.0"));
+        countryList.add(new CitizenCountry("XA", getCountryImage("img/flags/EU.png"), "Test Country XA - CEF node Version 2.0"));
+        countryList.add(new CitizenCountry("XB", getCountryImage("img/flags/EU.png"), "Test Country XB - CEF node Version 2.0"));
         return countryList;
     }
 
     private String getCountryImage(String imgUrl) {
-        String imgStr = "<img src='" + imgUrl + "'>";
-        return imgStr;
+        return "<img src='" + imgUrl + "'>";
     }
 
-    private String getJsonRequest(Map<String, String[]> parameterMap) throws JAXBException {
+/*    private String getJsonRequest(Map<String, String[]> parameterMap) throws JAXBException {
         RequestModel rm = new RequestModel();
         //rm.setReturnUrl("http://localhost:8900/SP/ReturnPage");
         rm.setReturnUrl("http://localhost:8080/cef20-apps/return");
@@ -146,5 +137,5 @@ public class RequestController {
         attribute.setName(attributeFriendlyName.getFrendlyName(representative));
         attribute.setRequired(required);
         return attribute;
-    }
+    }*/
 }
