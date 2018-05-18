@@ -5,10 +5,10 @@ $(document).ready(function() {
 });
 
 
-function navSelect(idx, units) {
+function pageConfNav(idx, units) {
     for (i = 0; i < units; i++) {
-        var contentDiv = "#nav-containter-" + i;
-        var navTab = "#navItem-" + i;
+        var contentDiv = "#pageConfNavDiv-" + i;
+        var navTab = "#pageConfNavTab-" + i;
         if (i === idx) {
             $(navTab).attr('class', 'nav-link result-menu-selected active');
             $(contentDiv).show();

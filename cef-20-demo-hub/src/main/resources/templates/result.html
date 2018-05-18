@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <div th:include="fragments/default :: scripts" th:remove="tag"></div>
-    <link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="webjars/highlightjs/9.8.0/highlight.min.js"></script>
+    <script src="js/result.js"></script>
+    <link href="css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="webjars/highlightjs/9.8.0/styles/atom-one-light.css">
     <title>CEF eIDAS 2.0.0 - Demo application hub</title>
 </head>
 <body>
@@ -11,37 +15,59 @@
     <div class="card" style="margin-top: 15px">
         <div th:include="fragments/default :: sp-header"></div>
         <div class="card-body">
-            <h3>CEF 2.0 Connector Demo SP Service</h3>
-            <a class="btn btn-primary" href="sp">Home</a><br>
-            <h4>Authentication Context</h4>
-            <table class="table">
-                <tr>
-                    <td>Isssuer</td>
-                    <td th:text="${response.getIssuer()}"></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td th:text="${response.getStatus()}"></td>
-                </tr>
-                <tr>
-                    <td>Time</td>
-                    <td th:text="${response.getCreatedOn()}"></td>
-                </tr>
-                <tr>
-                    <td>Level of Assurance</td>
-                    <td th:text="${loa}"></td>
-                </tr>
-            </table>
-            <br>
-            <h4>Attributes</h4>
-            <table class="table table-striped">
-                <tr th:each="attr,attrMeta:${attrList}">
-                    <td th:text="${attr.getName()}"></td>
-                    <td th:text="${attr.getValue()}"></td>
-                </tr>
+            <a style="float: right" class="btn btn-primary" href="sp">Home</a><br>
 
-            </table>
-            <!--<textarea style="width: 100%" rows="40" th:text="${jsonResponse}"></textarea>-->
+            <ul class="nav nav-tabs" style="margin-top: 10px;margin-left: 2px; margin-right: 2px;">
+                <li class="nav-item"><a id="pageConfNavTab-0" class="nav-link active result-menu-selected" href="#" onclick="pageConfNav(0,3);"><h4>Authentication Result</h4></a></li>
+                <li class="nav-item"><a id="pageConfNavTab-1" class="nav-link result-menu-item" href="#" onclick="pageConfNav(1,3);"><h4>Request</h4></a></li>
+                <li class="nav-item"><a id="pageConfNavTab-2" class="nav-link result-menu-item" href="#" onclick="pageConfNav(2,3);"><h4>Response</h4></a></li>
+            </ul>
+
+            <!-- General Info -->
+            <div id="pageConfNavDiv-0" style="margin-top: 10px">
+                <h5 style="color: #7f0927">Authentication Context</h5>
+                <table class="table">
+                    <tr>
+                        <td style="width: 250px">Isssuer</td>
+                        <td th:text="${response.getIssuer()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Time</td>
+                        <td th:text="${response.getCreatedOn()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Level of Assurance</td>
+                        <td th:text="${loa}"></td>
+                    </tr>
+                    <tr>
+                        <td>Response ID</td>
+                        <td th:text="${response.getId()}"></td>
+                    </tr>
+                    <tr>
+                        <td>In response to</td>
+                        <td th:text="${response.getInResponseTo()}"></td>
+                    </tr>
+
+                </table>
+                <br>
+                <h5 style="color: #7f0927">Attributes</h5>
+                <table class="table table-striped">
+                    <tr th:each="attr,attrMeta:${attrList}">
+                        <td style="width: 250px" th:text="${attr.getName()}"></td>
+                        <td th:utext="${attr.getValue()}"></td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div id="pageConfNavDiv-1" style="margin-top: 10px;display: none">
+                <pre><code class="json" th:utext="${jsonRequest}"></code></pre>
+            </div>
+
+            <div id="pageConfNavDiv-2" style="margin-top: 10px;display: none">
+                <pre><code class="json" th:utext="${jsonResponse}"></code></pre>
+            </div>
+
         </div>
     </div>
     <div th:include="fragments/default :: footer-main"/>

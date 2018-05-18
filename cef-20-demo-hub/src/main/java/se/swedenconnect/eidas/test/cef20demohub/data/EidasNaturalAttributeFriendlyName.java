@@ -1,23 +1,25 @@
 package se.swedenconnect.eidas.test.cef20demohub.data;
 
 public enum EidasNaturalAttributeFriendlyName {
-    personIdentifier("PersonIdentifier", true, true),
-    familyName("FamilyName", true, true),
-    firstName("FirstName", true, true),
-    dateOfBirth("DateOfBirth", true, true),
-    birthName("BirthName", true, false),
-    placeOfBirth("PlaceOfBirth", true, false),
-    currentAddress("CurrentAddress", false, false),
-    gender("Gender", true, false);
+    personIdentifier("PersonIdentifier", true, true, true),
+    familyName("FamilyName", true, true, true),
+    firstName("FirstName", true, true, true),
+    dateOfBirth("DateOfBirth", true, true, true),
+    birthName("BirthName", true, false, false),
+    placeOfBirth("PlaceOfBirth", true, false, false),
+    currentAddress("CurrentAddress", false, false, false),
+    gender("Gender", true, false, false);
 
     private String frendlyName;
     private boolean defRequested;
     private boolean defRequired;
+    private boolean mandatory;
 
-    EidasNaturalAttributeFriendlyName(String frendlyName, boolean defRequested, boolean defRequired) {
+    EidasNaturalAttributeFriendlyName(String frendlyName, boolean defRequested, boolean defRequired, boolean mandatory) {
         this.frendlyName = frendlyName;
         this.defRequested = defRequested;
         this.defRequired = defRequired;
+        this.mandatory = mandatory;
     }
 
     public String getFrendlyName() {
@@ -34,5 +36,9 @@ public enum EidasNaturalAttributeFriendlyName {
 
     public boolean isDefRequired() {
         return defRequired;
+    }
+
+    public boolean isMandatory() {
+        return mandatory;
     }
 }
