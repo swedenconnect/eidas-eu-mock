@@ -9,21 +9,28 @@ import java.util.stream.Collectors;
 
 public class DemoUserFactory {
 
-    public static final List<User> testUsers;
+    public static final Map<String, User> testUserMap;
+    public static final List<User> naturalUsers;
+    public static final List<User> legalUsers;
 
     static {
-        testUsers = new ArrayList<>();
-        testUsers.add(new User(TestPersonNatural.xavi));
-        testUsers.add(new User(TestPersonNatural.fridaKranstege));
-        testUsers.add(new User(TestPersonLegal.testOrg01));
-        testUsers.add(new User(TestPersonLegal.testOrg02));
+        testUserMap = new HashMap<>();
+        putUserOnMap(TestPersonNatural.xavi);
+        putUserOnMap(TestPersonNatural.fridaKranstege);
+        putUserOnMap(TestPersonLegal.testOrg01);
+        putUserOnMap(TestPersonLegal.testOrg02);
+
+        naturalUsers = getSortedFilteredUserList(User.PersonType.natural);
+        naturalUsers.add(0,new User("--- Select User Identity ---"));
+        legalUsers = getSortedFilteredUserList(User.PersonType.legal);
+        legalUsers.add(0, new User("--- Select Legal User Identity ---"));
     }
 
     private DemoUserFactory() {
     }
 
-    public static List<User> getSortedFilteredUserList(List<User> userList, User.PersonType type){
-        List<User> users = userList.stream()
+    public static List<User> getSortedFilteredUserList(User.PersonType type){
+        List<User> users = testUserMap.keySet().stream().map(s -> testUserMap.get(s))
                 .filter(user -> user.getPersonType().equals(type))
                 .collect(Collectors.toList());
 
@@ -35,6 +42,22 @@ public class DemoUserFactory {
         });
         return users;
     }
+
+    private static void putUserOnMap(Object person){
+        User user = null;
+        if (person instanceof TestPersonNatural){
+            user = new User((TestPersonNatural) person);
+        }
+        if (person instanceof TestPersonLegal){
+            user = new User((TestPersonLegal) person);
+        }
+        if (user==null){
+            return;
+        }
+        testUserMap.put(user.getId(), user);
+    }
+
+
 
     public static ComplexAddressAttribute getTestAddress (TestAddress testAddress){
         ComplexAddressAttribute address = new ComplexAddressAttribute();

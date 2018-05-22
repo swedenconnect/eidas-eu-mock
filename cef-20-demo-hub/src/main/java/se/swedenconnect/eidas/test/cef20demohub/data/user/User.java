@@ -10,22 +10,26 @@ import java.util.Map;
 @Data
 public class User {
 
+    private String id;
     private String name;
     private PersonType personType;
     private Map<EidasNaturalAttributeFriendlyName, AttributeData> naturalPersonAttributes;
     private Map<EidasLegalAttributeFriendlyName, AttributeData> legalPersonAttributes;
 
     public User(String name) {
+        this.id = "{empty}";
         this.name = name;
     }
 
     public User(TestPersonNatural person) {
+        this.id = person.getPersonIdentifier();
         this.name = person.getGivenName()+ " " + person.getSurname()+ " ("+person.getPersonIdentifier()+")";
         this.naturalPersonAttributes = DemoUserFactory.getNaturalPersonAttributes(person);
         this.personType = PersonType.natural;
     }
 
     public User(TestPersonLegal org) {
+        this.id=org.getLegalPersonIdentifier();
         this.name = org.getLegalName() + " ("+org.getLegalPersonIdentifier()+")";
         this.legalPersonAttributes = DemoUserFactory.getLegalPersonAttributes(org);
         this.personType = PersonType.legal;
