@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <script src="../webjars/highlightjs/9.8.0/highlight.min.js"></script>
+    <script src="../js/result.js"></script>
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="../webjars/highlightjs/9.8.0/styles/atom-one-light.css">
+    <title>CEF eIDAS 2.0.0 - Demo application hub</title>
+</head>
+<body>
+<div class="container-fluid" style="width: 80%">
+    <div class="card" style="margin-top: 15px">
+        <div th:include="fragments/default :: sp-header"></div>
+        <div class="card-body">
+
+            <h4>Authenticate Citizen</h4>
+            <form th:action="'userSelect/' +  ${}" method="post">
+                <input type="submit" value="Authenticate">
+            </form>
+
+        </div>
+    </div>
+    <div th:include="fragments/default :: footer-main"/>
+</div>
+
+</body>
+</html>

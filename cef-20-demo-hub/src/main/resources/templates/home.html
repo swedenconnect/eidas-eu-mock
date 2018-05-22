@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/direct :: scripts" th:remove="tag"></div>
+    <script src="webjars/highlightjs/9.8.0/highlight.min.js"></script>
+    <script src="js/result.js"></script>
+    <link href="css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="webjars/highlightjs/9.8.0/styles/atom-one-light.css">
+    <title>CEF eIDAS 2.0.0 - Demo application hub</title>
+</head>
+<body>
+<div class="container-fluid" style="width: 80%">
+    <div class="card" style="margin-top: 15px">
+        <div th:include="fragments/direct :: sp-header"></div>
+        <div class="card-body">
+            <h5>CEF Reference implementation version 2.0.0 - Test SP instances</h5>
+            <p>This service provides instances of Service Providers and Identity Providers for test countries running the CEF reference code version 2.0.0</p>
+            <p>The following Service Provider instances are available:</p>
+            <table class="table table-striped">
+                <tr>
+                    <td><b>Name</b></td>
+                    <td><b>Country code</b></td>
+                    <td><b>Service URL</b></td>
+                </tr>
+                <th:block th:each="country:${countryList}">
+                    <tr>
+                        <td th:text="${spConfigMap.get(country).getName()}"></td>
+                        <td style="font-weight: bolder" th:text="${country}"></td>
+                        <td><a th:href="${serviceUrl + country}" th:text="${serviceUrl + country}"></a></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+    <div th:include="fragments/direct :: footer-main"/>
+</div>
+
+</body>
+</html>

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <div th:include="fragments/default :: scripts" th:remove="tag"></div>
-    <script src="webjars/highlightjs/9.8.0/highlight.min.js"></script>
-    <script src="js/result.js"></script>
-    <link href="css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <script src="../webjars/highlightjs/9.8.0/highlight.min.js"></script>
+    <script src="../js/result.js"></script>
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
     <!--<link href="webjars/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link rel="stylesheet" href="webjars/highlightjs/9.8.0/styles/atom-one-light.css">
+    <link rel="stylesheet" href="../webjars/highlightjs/9.8.0/styles/atom-one-light.css">
     <title>CEF eIDAS 2.0.0 - Demo application hub</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
     <div class="card" style="margin-top: 15px">
         <div th:include="fragments/default :: sp-header"></div>
         <div class="card-body">
-            <a style="float: right" class="btn btn-primary" href="sp">Home</a><br>
+            <a style="float: right" class="btn btn-primary" th:href="'../sp/'+${spCountry}">Home</a><br>
 
             <ul class="nav nav-tabs" style="margin-top: 10px;margin-left: 2px; margin-right: 2px;">
                 <li class="nav-item"><a id="pageConfNavTab-0" class="nav-link active result-menu-selected" href="#" onclick="pageConfNav(0,3);"><h4>Authentication Result</h4></a></li>

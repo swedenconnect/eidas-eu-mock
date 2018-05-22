@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <div th:include="fragments/default :: scripts" th:remove="tag"></div>
-    <script src="webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
-    <script src="bootstrap-select-1.13.0-beta/js/bootstrap-select.min.js"></script>
-    <link href="css/flatly-bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="bootstrap-select-1.13.0-beta/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="css/cefclient.css">
+    <script src="../webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+    <script src="../bootstrap-select-1.13.0-beta/js/bootstrap-select.min.js"></script>
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../bootstrap-select-1.13.0-beta/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../css/cefclient.css">
     <title>CEF eIDAS 2.0.0 - Demo application hub</title>
     <script>
         var countrySelectCookie = "selectedCountry";
@@ -37,8 +37,7 @@
         <div class="card-body">
             <!-- Submit button -->
             <button class="btn btn-primary" style="float:right" onclick="submitForm()">Send Request</button>
-            <h3>Country XX SP</h3>
-            <form action="request" id="requestForm">
+            <form th:action="'../request/'+${spCountry}" id="requestForm" method="post">
                 <!--
                     private String citizenCountry;
                     private String spType;
