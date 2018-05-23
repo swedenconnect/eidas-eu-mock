@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <div th:include="fragments/default :: scripts" th:remove="tag"></div>
-    <link href="css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
     <title>CEF eIDAS 2.0.0 - Demo application hub</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
         <div th:include="fragments/default :: sp-header"></div>
         <div class="card-body">
             <h3 style="color: #7f0927">Authentication failure</h3>
-            <a class="btn btn-primary" href="sp" style="float: right;">Home</a><br>
+            <a style="float: right" class="btn btn-primary" th:href="'../sp/'+${spCountry}">Home</a><br>
             <h4>Response message</h4>
             <p th:text="${errorMessage}" style="color: #333333"></p>
         </div>

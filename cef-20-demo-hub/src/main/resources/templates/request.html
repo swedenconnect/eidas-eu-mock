@@ -126,7 +126,7 @@
                                             <tr th:each="attr,attrData:${naturalAttr}">
                                                 <td>
                                                     <input type="checkbox" th:name="${attr.name()}" th:checked="${attr.isDefRequested()}">&nbsp;
-                                                    <span th:class="${attr.isMandatory()} ? 'minimum-dataset':'regular-attr'" th:text="${attr.getFrendlyName()}"></span>
+                                                    <span th:class="${attr.isMandatory()} ? 'minimum-dataset':'regular-attr'" th:text="${attr.getFriendlyName()}"></span>
                                                 </td>
                                                 <td>
                                                     <input type="checkbox" th:name="'req_'+${attr.name()}" th:checked="${attr.isDefRequired()}">&nbsp;
@@ -141,7 +141,7 @@
                                             <tr th:each="attr,attrData:${legalAttr}">
                                                 <td>
                                                     <input type="checkbox" th:name="${attr.name()}" th:checked="${attr.isDefRequested()}">&nbsp;
-                                                    <span th:class="${attr.isMandatory()} ? 'minimum-dataset':'regular-attr'"  th:text="${attr.getFrendlyName()}"></span>
+                                                    <span th:class="${attr.isMandatory()} ? 'minimum-dataset':'regular-attr'"  th:text="${attr.getFriendlyName()}"></span>
                                                 </td>
                                                 <td>
                                                     <input type="checkbox" th:name="'req_'+${attr.name()}" th:checked="${attr.isDefRequired()}">&nbsp;
@@ -166,7 +166,7 @@
                                             <tr th:each="attr,attrData:${naturalAttr}">
                                                 <td>
                                                     <input type="checkbox" th:name="${'repr_'+attr.name()}">&nbsp;
-                                                    <span th:text="${attr.getFrendlyName(true)}"></span>
+                                                    <span th:text="${attr.getFriendlyName(true)}"></span>
                                                 </td>
                                                 <td>
                                                     <input type="checkbox" th:name="'req_repr_'+${attr.name()}">&nbsp;

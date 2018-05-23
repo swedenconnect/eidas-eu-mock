@@ -12,24 +12,24 @@ public enum EidasLegalAttributeFriendlyName {
     seed("SEED", false, false, false),
     sic("SIC", false, false, false);
 
-    private String frendlyName;
+    private String friendlyName;
     private boolean defRequested;
     private boolean defRequired;
     private boolean mandatory;
 
-    EidasLegalAttributeFriendlyName(String frendlyName, boolean defRequested, boolean defRequired, boolean mandatory) {
-        this.frendlyName = frendlyName;
+    EidasLegalAttributeFriendlyName(String friendlyName, boolean defRequested, boolean defRequired, boolean mandatory) {
+        this.friendlyName = friendlyName;
         this.defRequested = defRequested;
         this.defRequired = defRequired;
         this.mandatory = mandatory;
     }
 
-    public String getFrendlyName() {
-        return frendlyName;
+    public String getFriendlyName() {
+        return friendlyName;
     }
 
     public String getFrendlyName(boolean representative) {
-        return representative ? "Representative" + frendlyName : frendlyName;
+        return representative ? "Representative" + friendlyName : friendlyName;
     }
 
     public boolean isDefRequested() {

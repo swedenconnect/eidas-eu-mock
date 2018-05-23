@@ -20,6 +20,7 @@ public class SPConfigurationProperties {
     @Data
     public static class SpConfig {
         private String name;
+        private String idpName;
         private String requestUrl;
         private Map<String, PsCountry> country;
     }

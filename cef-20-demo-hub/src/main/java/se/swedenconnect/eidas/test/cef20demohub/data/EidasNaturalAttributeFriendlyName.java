@@ -22,11 +22,11 @@ public enum EidasNaturalAttributeFriendlyName {
         this.mandatory = mandatory;
     }
 
-    public String getFrendlyName() {
+    public String getFriendlyName() {
         return frendlyName;
     }
 
-    public String getFrendlyName(boolean representative) {
+    public String getFriendlyName(boolean representative) {
         return representative ? "Representative" + frendlyName : frendlyName;
     }
 

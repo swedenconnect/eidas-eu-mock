@@ -8,6 +8,11 @@
     <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../bootstrap-select-1.13.0-beta/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../css/cefclient.css">
+    <script>
+        function submitForm(){
+            $("#authnForm").submit();
+        }
+    </script>
     <title>CEF eIDAS 2.0.0 - Demo application hub - IdP</title>
 </head>
 <body>
@@ -15,32 +20,70 @@
     <div class="card" style="margin-top: 15px">
         <div th:include="fragments/default :: sp-header"></div>
         <div class="card-body">
-
             <h4>Authenticate Citizen</h4>
-            <form th:action="'userSelect/' +  ${country}" method="post">
-                <input type="submit" value="Authenticate">
+            <p>Select the identity to be included in the identity assertion</p>
+            <form th:action="'../authn/'+${spCountry}" id="authnForm" method="post">
+                <!-- Select user and legal user identity -->
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="nationalUserSelect"><b>Natural Person Ideneity</b></label>
-                            <select class="form-control selectpicker" name="natUser" id="nationalUserSelect" data-native-menu="false" onchange="storeCountry()">
+                            <label for="userSelect"><b>Natural Person Identity</b></label>
+                            <select class="form-control selectpicker" name="natPerson" id="userSelect" data-native-menu="false">
                                 <th:block th:each="natUser : ${natUsers}">
-                                    <option th:value="${natUser.getId()}" th:data-content="${natUser.getName()}"/>
+                                    <option th:value="${natUser.getId()}" th:data-content="${natUser.getName()}"></option>
                                 </th:block>
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="nationalUserSelect"><b>Legal Person Identity</b></label>
-                            <select class="form-control selectpicker" name="natUser" id="nationalUserSelect" data-native-menu="false" onchange="storeCountry()">
+                            <label for="orgSelect"><b>Legal Person Identity</b></label>
+                            <select class="form-control selectpicker" name="legalPerson" id="orgSelect" data-native-menu="false">
                                 <th:block th:each="legalUser : ${legalUsers}">
-                                    <option th:value="${legalUser.getId()}" th:data-content="${legalUser.getName()}"/>
+                                    <option th:value="${legalUser.getId()}" th:data-content="${legalUser.getName()}"></option>
                                 </th:block>
                             </select>
                         </div>
                     </div>
                 </div>
+                <!-- Select representative user and legal user identity -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="reprUserSelect"><b>Representative Natural Person</b></label>
+                            <select class="form-control selectpicker" name="reprNatPerson" id="reprUserSelect" data-native-menu="false">
+                                <th:block th:each="natUser : ${natUsers}">
+                                    <option th:value="${natUser.getId()}" th:data-content="${natUser.getName()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="reprOrgSelect"><b>Representative Legal Person Identity</b></label>
+                            <select class="form-control selectpicker" name="reprLegalPerson" id="reprOrgSelect" data-native-menu="false">
+                                <th:block th:each="legalUser : ${legalUsers}">
+                                    <option th:value="${legalUser.getId()}" th:data-content="${legalUser.getName()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Select Level of assurance -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="loaSelect"><b>Level of assurance</b></label>
+                            <select class="form-control selectpicker" name="loaSelect" id="loaSelect" data-native-menu="false">
+                                <th:block th:each="loa : ${loaList}">
+                                    <option th:value="${loa.getKey()}" th:data-content="${loa.getUri()}"  th:selected="${loa.getKey() == reqLoa}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+                <button class="btn btn-primary" onclick="submitForm()">Authenticate</button>
             </form>
 
         </div>

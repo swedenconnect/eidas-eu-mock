@@ -122,17 +122,17 @@ public class RequestGenerator {
         for (EidasNaturalAttributeFriendlyName natAttr : natAttrArray) {
             //Target Attributes
             if (parameterMap.containsKey(natAttr.name())) {
-                attributeList.add(getAttribute(natAttr.getFrendlyName(), parameterMap.containsKey("req_" + natAttr.name())));
+                attributeList.add(getAttribute(natAttr.getFriendlyName(), parameterMap.containsKey("req_" + natAttr.name())));
             }
             //Representative Attributes
             if (parameterMap.containsKey("repr_"+natAttr.name())) {
-                attributeList.add(getAttribute(natAttr.getFrendlyName(true), parameterMap.containsKey("req_repr_" + natAttr.name())));
+                attributeList.add(getAttribute(natAttr.getFriendlyName(true), parameterMap.containsKey("req_repr_" + natAttr.name())));
             }
         }
         EidasLegalAttributeFriendlyName[] legalAttrArray = EidasLegalAttributeFriendlyName.values();
         for (EidasLegalAttributeFriendlyName legalAttr : legalAttrArray) {
             if (parameterMap.containsKey(legalAttr.name())) {
-                attributeList.add(getAttribute(legalAttr.getFrendlyName(), parameterMap.containsKey("req_" + legalAttr.name())));
+                attributeList.add(getAttribute(legalAttr.getFriendlyName(), parameterMap.containsKey("req_" + legalAttr.name())));
             }
             //Representative Attributes
             if (parameterMap.containsKey("repr_"+legalAttr.name())) {

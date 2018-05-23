@@ -2,6 +2,7 @@ package se.swedenconnect.eidas.test.cef20demohub.data.user;
 
 import eu.eidas.SimpleProtocol.ComplexAddressAttribute;
 import lombok.Data;
+import lombok.Getter;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasLegalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasNaturalAttributeFriendlyName;
 
@@ -43,8 +44,18 @@ public class User {
         private String dateValue;
     }
 
+    @Getter
     public enum AttributeDataType {
-        dateType, stringType, addressType
+        dateType ("date"),
+        stringType ("string_list"),
+        stringListType("string_list"),
+        addressType("addressId");
+
+        private String exportType;
+
+        AttributeDataType(String exportType) {
+            this.exportType = exportType;
+        }
     }
 
     public enum PersonType {

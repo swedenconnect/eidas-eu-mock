@@ -84,8 +84,9 @@ public class GeneralUtils {
     }
 
     public String getCountry(HttpServletRequest request) throws IllegalArgumentException {
+        String servletPath = "null";
         try {
-            String servletPath = request.getServletPath();
+            servletPath = request.getServletPath();
             String spCountry = servletPath.substring(servletPath.lastIndexOf("/") + 1).toUpperCase();
             SPConfigurationProperties.SpConfig spConfig = spConfigurationProperties.getSp().get(spCountry);
             if (spConfig != null) {
@@ -95,7 +96,7 @@ public class GeneralUtils {
             log.error("Illegal service url: {}", ex.getMessage());
         }
         log.error("URL path provided for unsupported country");
-        throw new IllegalArgumentException("Bad service URL");
+        throw new IllegalArgumentException("Bad service URL: " + servletPath);
     }
 
 }
