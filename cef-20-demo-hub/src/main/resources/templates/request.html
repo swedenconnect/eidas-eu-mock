@@ -37,6 +37,7 @@
         <div class="card-body">
             <!-- Submit button -->
             <button class="btn btn-primary" style="float:right" onclick="submitForm()">Send Request</button>
+            <h4>Select Authentication Requirements</h4>
             <form th:action="'../request/'+${spCountry}" id="requestForm" method="post">
                 <!--
                     private String citizenCountry;

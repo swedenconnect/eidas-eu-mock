@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 public class DemoUserFactory {
 
     public static final Map<String, User> testUserMap;
-    public static final List<User> naturalUsers;
-    public static final List<User> legalUsers;
 
     static {
         testUserMap = new HashMap<>();
@@ -19,18 +17,13 @@ public class DemoUserFactory {
         putUserOnMap(TestPersonNatural.fridaKranstege);
         putUserOnMap(TestPersonLegal.testOrg01);
         putUserOnMap(TestPersonLegal.testOrg02);
-
-        naturalUsers = getSortedFilteredUserList(User.PersonType.natural);
-        naturalUsers.add(0,new User("--- Select User Identity ---"));
-        legalUsers = getSortedFilteredUserList(User.PersonType.legal);
-        legalUsers.add(0, new User("--- Select Legal User Identity ---"));
     }
 
     private DemoUserFactory() {
     }
 
-    public static List<User> getSortedFilteredUserList(User.PersonType type){
-        List<User> users = testUserMap.keySet().stream().map(s -> testUserMap.get(s))
+    public static List<User> getSortedFilteredUserList(Map<String, User> userMap, User.PersonType type, boolean addEmpty){
+        List<User> users = userMap.keySet().stream().map(s -> userMap.get(s))
                 .filter(user -> user.getPersonType().equals(type))
                 .collect(Collectors.toList());
 
@@ -40,6 +33,11 @@ public class DemoUserFactory {
                 return o1.getName().compareTo(o2.getName());
             }
         });
+
+        if (addEmpty) {
+            users.add(0,new User("--- Select User Identity ---"));
+        }
+
         return users;
     }
 

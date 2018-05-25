@@ -5,6 +5,7 @@ import eu.eidas.SimpleProtocol.utils.SimpleProtocolProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.swedenconnect.eidas.test.cef20demohub.configuration.SPConfigurationProperties;
+import se.swedenconnect.eidas.test.cef20demohub.configuration.UserConfiguration;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasLegalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasNaturalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.ResponseData;
@@ -26,10 +27,12 @@ public class AuthnResponseGenerator {
     private static final String EMPTY_SELECT = "{empty}";
 
     private final SPConfigurationProperties configurationProperties;
+    private final UserConfiguration userConfiguration;
 
     @Autowired
-    public AuthnResponseGenerator(SPConfigurationProperties configurationProperties) {
+    public AuthnResponseGenerator(SPConfigurationProperties configurationProperties, UserConfiguration userConfiguration) {
         this.configurationProperties = configurationProperties;
+        this.userConfiguration = userConfiguration;
     }
 
     public ResponseData getAuthnResponse(Map<String, String[]> parameterMap, AuthenticationRequest authenticationRequest, String clientIp, String spCountry) throws JAXBException {
@@ -48,7 +51,7 @@ public class AuthnResponseGenerator {
         response.setVersion("1");
         response.setCreatedOn((new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")).format(Calendar.getInstance().getTime()));
 
-        setUserAttributes(parameterMap, authenticationRequest, responseData);
+        setUserAttributes(parameterMap, authenticationRequest, responseData, spCountry);
         setNameIdAndSubject(responseData, authenticationRequest);
 
         //Finally set status
@@ -111,12 +114,13 @@ public class AuthnResponseGenerator {
      * @param authenticationRequest The Authentication request
      * @param responseData          The response object
      */
-    private void setUserAttributes(Map<String, String[]> parameterMap, AuthenticationRequest authenticationRequest, ResponseData responseData) {
+    private void setUserAttributes(Map<String, String[]> parameterMap, AuthenticationRequest authenticationRequest, ResponseData responseData, String country) {
         List<Attribute> attributeList = new ArrayList<>();
         responseData.getResponse().setAttributes(attributeList);
 
-        //TODO provide a bean to get the user map for the selected country
-        Map<String, User> userMap = DemoUserFactory.testUserMap;
+        Map<String, User> userMap = userConfiguration.getCountryUserMap().get(country);
+        Map<String, Boolean> requestedAttrMap = getRequestedAttributesMap(authenticationRequest);
+        responseData.setRequestedAttributesMap(requestedAttrMap);
 
         final String natPersonId = getParameterString(parameterMap.get(NATURAL_PERSON_PARAMETER));
         final String legalPersonId = getParameterString(parameterMap.get(LEGAL_PERSON_PARAMETER));
@@ -153,19 +157,30 @@ public class AuthnResponseGenerator {
 
     }
 
+    private Map<String,Boolean> getRequestedAttributesMap(AuthenticationRequest authenticationRequest) {
+        Map<String,Boolean> reqAttrMap = new HashMap<>();
+        List<Attribute> attributeList = authenticationRequest.getAttributes();
+        attributeList.stream().forEach(attribute -> {
+            reqAttrMap.put(attribute.getName(), attribute.getRequired());
+        });
+        return reqAttrMap;
+    }
+
     private void addAttributes(String id, Map<String, User> userMap, ResponseData responseData, boolean legal, boolean representative) {
         if (id.equalsIgnoreCase(EMPTY_SELECT)) {
             return;
         }
         User user = userMap.get(id);
         List<Attribute> attributes = responseData.getResponse().getAttributes();
+        Map<String, Boolean> reqAttrMap = responseData.getRequestedAttributesMap();
 
         if (legal) {
             Map<EidasLegalAttributeFriendlyName, User.AttributeData> legalPersonAttributes = user.getLegalPersonAttributes();
             legalPersonAttributes.keySet().stream()
-                    .forEach(eidasLegalAttributeFriendlyName -> {
-                        String friendlyName = eidasLegalAttributeFriendlyName.getFrendlyName(representative);
-                        User.AttributeData attributeData = legalPersonAttributes.get(eidasLegalAttributeFriendlyName);
+                    .filter(legalFriendlyName -> representative || reqAttrMap.containsKey(legalFriendlyName.getFriendlyName()))
+                    .forEach(legalFriendlyName -> {
+                        String friendlyName = legalFriendlyName.getFrendlyName(representative);
+                        User.AttributeData attributeData = legalPersonAttributes.get(legalFriendlyName);
                         Attribute attribute = getAttribute(friendlyName, attributeData);
                         if (attribute!=null){
                             attributes.add(attribute);
@@ -174,6 +189,7 @@ public class AuthnResponseGenerator {
         } else {
             Map<EidasNaturalAttributeFriendlyName, User.AttributeData> naturalPersonAttributes = user.getNaturalPersonAttributes();
             naturalPersonAttributes.keySet().stream()
+                    .filter(natFriendlyName -> representative || reqAttrMap.containsKey(natFriendlyName.getFriendlyName()))
                     .forEach(eidasNaturalAttributeFriendlyName -> {
                         String friendlyName = eidasNaturalAttributeFriendlyName.getFriendlyName(representative);
                         User.AttributeData attributeData = naturalPersonAttributes.get(eidasNaturalAttributeFriendlyName);
@@ -215,7 +231,7 @@ public class AuthnResponseGenerator {
     private Date getDate(String dateValue) {
         String[] dateSplit = dateValue.split("\\-");
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("CET"));
-        calendar.set(Integer.valueOf(dateSplit[0]), Integer.valueOf(dateSplit[1]), Integer.valueOf(dateSplit[2]));
+        calendar.set(Integer.valueOf(dateSplit[0]), Integer.valueOf(dateSplit[1])-1, Integer.valueOf(dateSplit[2])+1);
         return calendar.getTime();
     }
 

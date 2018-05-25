@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import se.swedenconnect.eidas.test.cef20demohub.configuration.SPConfigurationProperties;
+import se.swedenconnect.eidas.test.cef20demohub.configuration.UserConfiguration;
 import se.swedenconnect.eidas.test.cef20demohub.data.DemoLevelOfAssurance;
 import se.swedenconnect.eidas.test.cef20demohub.data.FormPostData;
 import se.swedenconnect.eidas.test.cef20demohub.data.FormPostDataType;
@@ -38,14 +39,16 @@ public class IdpController {
     private final AuthnRequestParser authnRequestParser;
     private final HttpSession httpSession;
     private final AuthnResponseGenerator responseGenerator;
+    private final UserConfiguration userConfiguration;
 
     @Autowired
-    public IdpController(GeneralUtils generalUtils, SPConfigurationProperties spConfigurationProperties, AuthnRequestParser authnRequestParser, HttpSession httpSession, AuthnResponseGenerator responseGenerator) {
+    public IdpController(GeneralUtils generalUtils, SPConfigurationProperties spConfigurationProperties, AuthnRequestParser authnRequestParser, HttpSession httpSession, AuthnResponseGenerator responseGenerator, UserConfiguration userConfiguration) {
         this.generalUtils = generalUtils;
         this.spConfigurationProperties = spConfigurationProperties;
         this.authnRequestParser = authnRequestParser;
         this.httpSession = httpSession;
         this.responseGenerator = responseGenerator;
+        this.userConfiguration = userConfiguration;
     }
 
     @RequestMapping ("/idp/**")
@@ -61,9 +64,9 @@ public class IdpController {
             log.warn("Received Authn request contains no requested level of assurance");
         }
 
-        Map<String, User> testUsers = DemoUserFactory.testUserMap;
-        List<User> natUsers = DemoUserFactory.naturalUsers;
-        List<User> legalUsers = DemoUserFactory.legalUsers;
+        Map<String, User> testUsers = userConfiguration.getCountryUserMap().get(spCountry);
+        List<User> natUsers = userConfiguration.getCountryNatUserListMap().get(spCountry);
+        List<User> legalUsers = userConfiguration.getCountryLegalUserListMap().get(spCountry);
 
         String jsonUsers = GSON.toJson(testUsers.keySet().stream().map(s -> testUsers.get(s)).collect(Collectors.toList()));
         final SPConfigurationProperties.SpConfig spConfig = spConfigurationProperties.getSp().get(spCountry);
