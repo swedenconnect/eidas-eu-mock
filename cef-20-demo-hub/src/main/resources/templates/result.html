@@ -54,7 +54,7 @@
                 <table class="table table-striped">
                     <tr th:each="attr,attrMeta:${attrList}">
                         <td style="width: 250px" th:text="${attr.getName()}"></td>
-                        <td th:utext="${attr.getValue()}"></td>
+                        <td th:id="${attr.getName()}"  th:utext="${attr.getValue()}"></td>
                     </tr>
 
                 </table>

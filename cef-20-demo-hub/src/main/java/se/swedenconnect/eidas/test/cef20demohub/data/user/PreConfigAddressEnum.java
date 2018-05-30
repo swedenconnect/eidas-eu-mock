@@ -3,7 +3,7 @@ package se.swedenconnect.eidas.test.cef20demohub.data.user;
 import lombok.Getter;
 
 @Getter
-public enum TestAddress {
+public enum PreConfigAddressEnum {
     address01("Street 01, EU-1050 Overtown",
             "Street","01","EU","1050","Overtown","12345","Admin Building",
             "http://example.com/address/id/1234567890"),
@@ -21,7 +21,7 @@ public enum TestAddress {
     private String location;
     private String id;
 
-    TestAddress(String fullAddress, String street, String streetNumber, String country, String postalCode, String city, String poBox, String location, String id) {
+    PreConfigAddressEnum(String fullAddress, String street, String streetNumber, String country, String postalCode, String city, String poBox, String location, String id) {
         this.fullAddress = fullAddress;
         this.street = street;
         this.streetNumber = streetNumber;

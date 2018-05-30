@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasLegalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasNaturalAttributeFriendlyName;
+import se.swedenconnect.eidas.test.cef20demohub.data.user.yaml.TestLegalYaml;
+import se.swedenconnect.eidas.test.cef20demohub.data.user.yaml.TestUserYaml;
 
 import java.util.Map;
 
@@ -22,17 +24,15 @@ public class User {
         this.name = name;
     }
 
-    public User(TestPersonNatural person) {
+    public User(TestUserYaml person) {
         this.id = person.getPersonIdentifier();
         this.name = person.getGivenName()+ " " + person.getSurname()+ " ("+person.getPersonIdentifier()+")";
-        this.naturalPersonAttributes = DemoUserFactory.getNaturalPersonAttributes(person);
         this.personType = PersonType.natural;
     }
 
-    public User(TestPersonLegal org) {
+    public User(TestLegalYaml org) {
         this.id=org.getLegalPersonIdentifier();
         this.name = org.getLegalName() + " ("+org.getLegalPersonIdentifier()+")";
-        this.legalPersonAttributes = DemoUserFactory.getLegalPersonAttributes(org);
         this.personType = PersonType.legal;
     }
 

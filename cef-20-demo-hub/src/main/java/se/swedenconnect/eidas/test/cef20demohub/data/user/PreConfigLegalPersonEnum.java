@@ -3,7 +3,7 @@ package se.swedenconnect.eidas.test.cef20demohub.data.user;
 import lombok.Getter;
 
 @Getter
-public enum TestPersonLegal {
+public enum PreConfigLegalPersonEnum {
 
     testOrg01("125457487Company",
             "Organization Name",
@@ -14,7 +14,7 @@ public enum TestPersonLegal {
             "Economic Operator Registration and Identification (EORI)",
             "System for Exchange of Excise Data(SEED)",
             "Standard Industrial Classification (SIC)",
-            TestAddress.address01),
+            PreConfigAddressEnum.address01),
     testOrg02("98765432-234234",
             "Example Inc",
             "EU554323234234301",
@@ -24,7 +24,7 @@ public enum TestPersonLegal {
             "EORI-124989872349",
             "SEED-32424234",
             "SIC-3423423",
-            TestAddress.address02);
+            PreConfigAddressEnum.address02);
 
     private String legalPersonIdentifier;
     private String legalName;
@@ -35,9 +35,9 @@ public enum TestPersonLegal {
     private String eori;
     private String seed;
     private String sic;
-    private TestAddress address;
+    private PreConfigAddressEnum address;
 
-    TestPersonLegal(String legalPersonIdentifier, String legalName, String vatRegistration, String taxReference, String d2012_17_EUIdentifier, String lei, String eori, String seed, String sic, TestAddress address) {
+    PreConfigLegalPersonEnum(String legalPersonIdentifier, String legalName, String vatRegistration, String taxReference, String d2012_17_EUIdentifier, String lei, String eori, String seed, String sic, PreConfigAddressEnum address) {
         this.legalPersonIdentifier = legalPersonIdentifier;
         this.legalName = legalName;
         this.vatRegistration = vatRegistration;

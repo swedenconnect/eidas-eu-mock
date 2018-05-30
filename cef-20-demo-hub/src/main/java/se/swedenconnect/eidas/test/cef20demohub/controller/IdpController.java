@@ -15,7 +15,6 @@ import se.swedenconnect.eidas.test.cef20demohub.data.DemoLevelOfAssurance;
 import se.swedenconnect.eidas.test.cef20demohub.data.FormPostData;
 import se.swedenconnect.eidas.test.cef20demohub.data.FormPostDataType;
 import se.swedenconnect.eidas.test.cef20demohub.data.ResponseData;
-import se.swedenconnect.eidas.test.cef20demohub.data.user.DemoUserFactory;
 import se.swedenconnect.eidas.test.cef20demohub.data.user.User;
 import se.swedenconnect.eidas.test.cef20demohub.process.AuthnRequestParser;
 import se.swedenconnect.eidas.test.cef20demohub.process.AuthnResponseGenerator;
@@ -28,7 +27,6 @@ import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @Log4j2
@@ -51,7 +49,7 @@ public class IdpController {
         this.userConfiguration = userConfiguration;
     }
 
-    @RequestMapping ("/idp/**")
+    @RequestMapping("/idp/**")
     public String authenticateUser(Model model, HttpServletRequest request, @RequestParam("SMSSPRequest") String b64request) throws JAXBException {
         String spCountry = generalUtils.getCountry(request);
         AuthenticationRequest authenticationRequest = authnRequestParser.parseAuthnRequest(b64request);
@@ -60,15 +58,15 @@ public class IdpController {
         String reqLoa = "C";
         try {
             reqLoa = authenticationRequest.getAuthContext().getContextClass().get(0);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             log.warn("Received Authn request contains no requested level of assurance");
         }
 
-        Map<String, User> testUsers = userConfiguration.getCountryUserMap().get(spCountry);
+        //Map<String, User> testUsers = userConfiguration.getCountryUserMap().get(spCountry);
         List<User> natUsers = userConfiguration.getCountryNatUserListMap().get(spCountry);
         List<User> legalUsers = userConfiguration.getCountryLegalUserListMap().get(spCountry);
 
-        String jsonUsers = GSON.toJson(testUsers.keySet().stream().map(s -> testUsers.get(s)).collect(Collectors.toList()));
+        //String jsonUsers = GSON.toJson(testUsers.keySet().stream().map(s -> testUsers.get(s)).collect(Collectors.toList()));
         final SPConfigurationProperties.SpConfig spConfig = spConfigurationProperties.getSp().get(spCountry);
         model.addAttribute("spCountry", spCountry);
         model.addAttribute("spName", spConfig.getIdpName());
@@ -99,10 +97,10 @@ public class IdpController {
             authnResponse.setError(true);
             authnResponse.setErrorMessageTitle("Authentication failed");
             authnResponse.setErrorMessage(e.getMessage());
-            log.warn("Authentication request failed: {}" , e.getMessage());
+            log.warn("Authentication request failed: {}", e.getMessage());
         }
 
-        if (authenticationRequestServiceUrl==null){
+        if (authenticationRequestServiceUrl == null) {
             throw new IllegalArgumentException("Authentication response url not specified in request");
         }
 

@@ -9,7 +9,6 @@ import se.swedenconnect.eidas.test.cef20demohub.configuration.UserConfiguration;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasLegalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasNaturalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.ResponseData;
-import se.swedenconnect.eidas.test.cef20demohub.data.user.DemoUserFactory;
 import se.swedenconnect.eidas.test.cef20demohub.data.user.User;
 
 import javax.xml.bind.JAXBException;
@@ -55,8 +54,8 @@ public class AuthnResponseGenerator {
         setNameIdAndSubject(responseData, authenticationRequest);
 
         //Finally set status
-        status.setStatusCode(responseData.isError()? "error":"success");
-        if (responseData.isError()){
+        status.setStatusCode(responseData.isError() ? "error" : "success");
+        if (responseData.isError()) {
             status.setStatusMessage(responseData.getErrorMessage());
         }
 
@@ -75,14 +74,14 @@ public class AuthnResponseGenerator {
         Optional<Attribute> legalId = attributeList.stream().filter(attribute -> attribute.getName().equalsIgnoreCase(EidasLegalAttributeFriendlyName.legalPersonIdentifier.getFriendlyName())).findFirst();
 
         String subjectId = null;
-        if (natId.isPresent()){
+        if (natId.isPresent()) {
             subjectId = getSimpleAttrVal(natId.get());
         } else {
             if (legalId.isPresent()) {
-                subjectId= getSimpleAttrVal(legalId.get());
+                subjectId = getSimpleAttrVal(legalId.get());
             }
         }
-        if (subjectId!=null){
+        if (subjectId != null) {
             responseData.getResponse().setSubject(subjectId);
         } else {
             responseData.setError(true);
@@ -93,14 +92,14 @@ public class AuthnResponseGenerator {
     }
 
     private String getSimpleAttrVal(Attribute attribute) {
-        if (attribute instanceof StringListAttribute){
+        if (attribute instanceof StringListAttribute) {
             StringListAttribute slattr = (StringListAttribute) attribute;
             List<StringListValue> values = slattr.getValues();
-            if (!values.isEmpty()){
+            if (!values.isEmpty()) {
                 return values.get(0).getValue();
             }
         }
-        if (attribute instanceof StringAttribute){
+        if (attribute instanceof StringAttribute) {
             StringAttribute stringAttribute = (StringAttribute) attribute;
             return stringAttribute.getValue();
         }
@@ -157,8 +156,8 @@ public class AuthnResponseGenerator {
 
     }
 
-    private Map<String,Boolean> getRequestedAttributesMap(AuthenticationRequest authenticationRequest) {
-        Map<String,Boolean> reqAttrMap = new HashMap<>();
+    private Map<String, Boolean> getRequestedAttributesMap(AuthenticationRequest authenticationRequest) {
+        Map<String, Boolean> reqAttrMap = new HashMap<>();
         List<Attribute> attributeList = authenticationRequest.getAttributes();
         attributeList.stream().forEach(attribute -> {
             reqAttrMap.put(attribute.getName(), attribute.getRequired());
@@ -182,7 +181,7 @@ public class AuthnResponseGenerator {
                         String friendlyName = legalFriendlyName.getFrendlyName(representative);
                         User.AttributeData attributeData = legalPersonAttributes.get(legalFriendlyName);
                         Attribute attribute = getAttribute(friendlyName, attributeData);
-                        if (attribute!=null){
+                        if (attribute != null) {
                             attributes.add(attribute);
                         }
                     });
@@ -194,7 +193,7 @@ public class AuthnResponseGenerator {
                         String friendlyName = eidasNaturalAttributeFriendlyName.getFriendlyName(representative);
                         User.AttributeData attributeData = naturalPersonAttributes.get(eidasNaturalAttributeFriendlyName);
                         Attribute attribute = getAttribute(friendlyName, attributeData);
-                        if (attribute!=null){
+                        if (attribute != null) {
                             attributes.add(attribute);
                         }
                     });
@@ -231,7 +230,7 @@ public class AuthnResponseGenerator {
     private Date getDate(String dateValue) {
         String[] dateSplit = dateValue.split("\\-");
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("CET"));
-        calendar.set(Integer.valueOf(dateSplit[0]), Integer.valueOf(dateSplit[1])-1, Integer.valueOf(dateSplit[2])+1);
+        calendar.set(Integer.valueOf(dateSplit[0]), Integer.valueOf(dateSplit[1]) - 1, Integer.valueOf(dateSplit[2])+1);
         return calendar.getTime();
     }
 

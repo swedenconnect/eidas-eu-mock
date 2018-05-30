@@ -10,6 +10,7 @@ import se.swedenconnect.eidas.test.cef20demohub.configuration.SPConfigurationPro
 import se.swedenconnect.eidas.test.cef20demohub.data.CitizenCountry;
 import se.swedenconnect.eidas.test.cef20demohub.data.DemoLevelOfAssurance;
 import se.swedenconnect.eidas.test.cef20demohub.data.ValueAttribute;
+import sun.util.resources.cldr.bas.CalendarData_bas_CM;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -36,7 +37,14 @@ public class GeneralUtils {
                     }
                     if (attribute instanceof DateAttribute) {
                         DateAttribute dateAttr = (DateAttribute) attribute;
-                        return new ValueAttribute(dateAttr.getName(), dateAttr.getValue().toString());
+                        dateAttr.getValue();
+                        Calendar calVal = Calendar.getInstance();
+                        calVal.setTime(dateAttr.getValue());
+                        String year = String.valueOf(calVal.get(Calendar.YEAR));
+                        String month = getTwoDigitString(calVal.get(Calendar.MONTH)+1);
+                        String day = getTwoDigitString(calVal.get(Calendar.DAY_OF_MONTH));
+
+                        return new ValueAttribute(dateAttr.getName(), year+"-"+month+"-"+day);
                     }
                     if (attribute instanceof AddressAttribute) {
                         AddressAttribute addressAttr = (AddressAttribute) attribute;
@@ -45,6 +53,11 @@ public class GeneralUtils {
                     }
                     return new ValueAttribute(attribute.getName(), "#null");
                 }).collect(Collectors.toList());
+    }
+
+    private String getTwoDigitString(int intVal) {
+        String strVal = String.valueOf(intVal);
+        return (strVal.length()==1) ? "0"+strVal : strVal;
     }
 
     private String preCode(String jsonString) {
