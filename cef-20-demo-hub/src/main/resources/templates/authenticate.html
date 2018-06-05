@@ -76,7 +76,7 @@
                             <label for="loaSelect"><b>Level of assurance</b></label>
                             <select class="form-control selectpicker" name="loaSelect" id="loaSelect" data-native-menu="false">
                                 <th:block th:each="loa : ${loaList}">
-                                    <option th:value="${loa.getKey()}" th:data-content="${loa.getUri()}"  th:selected="${loa.getKey() == reqLoa}"></option>
+                                    <option th:value="${loa.getKey()}" th:data-content="${loa.getUri()}"  th:selected="${loa.getKey().equalsIgnoreCase(reqLoa)}"></option>
                                 </th:block>
                             </select>
                         </div>

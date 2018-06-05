@@ -230,7 +230,7 @@ public class AuthnResponseGenerator {
     private Date getDate(String dateValue) {
         String[] dateSplit = dateValue.split("\\-");
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("CET"));
-        calendar.set(Integer.valueOf(dateSplit[0]), Integer.valueOf(dateSplit[1]) - 1, Integer.valueOf(dateSplit[2])+1);
+        calendar.set(Integer.valueOf(dateSplit[0]), Integer.valueOf(dateSplit[1]) - 1, Integer.valueOf(dateSplit[2]));
         return calendar.getTime();
     }
 
