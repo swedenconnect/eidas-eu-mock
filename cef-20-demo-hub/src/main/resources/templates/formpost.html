@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<meta charset="UTF-8"/>
-<title>SAML Form</title>
-<script src="../webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8"/>
+    <title>SAML Form</title>
+    <script src="../webjars/jquery/3.3.1-1/jquery.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $("#samlForm").submit();
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            $("#samlForm").submit();
+        });
+    </script>
 
 </head>
 <body>
@@ -16,8 +17,9 @@
 <form id="samlForm" th:action="${targetUrl}" method="POST">
     <!--/*@thymesVar id="fpDataList" type="java.util.List<se.swedenconnect.eidas.test.cef20demohub.data.FormPostData>"*/-->
     <th:block th:each="fpData, fpDataProp:${fpDataList}">
-        <textarea th:if="${fpData.getType() == T(se.swedenconnect.eidas.test.cef20demohub.data.FormPostDataType).textArea}"
-                  style="display: none" th:name="${fpData.getName()}" th:text="${fpData.getValue()}"></textarea>
+        <textarea
+                th:if="${fpData.getType() == T(se.swedenconnect.eidas.test.cef20demohub.data.FormPostDataType).textArea}"
+                style="display: none" th:name="${fpData.getName()}" th:text="${fpData.getValue()}"></textarea>
         <input th:if="${fpData.getType() == T(se.swedenconnect.eidas.test.cef20demohub.data.FormPostDataType).input}"
                type="hidden" th:name="${fpData.getName()}" th:value="${fpData.getValue()}">
     </th:block>
