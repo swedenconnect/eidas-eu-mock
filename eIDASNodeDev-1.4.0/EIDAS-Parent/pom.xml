@@ -25,7 +25,7 @@
         <samlspecacept.version>0.5.1</samlspecacept.version>
 
         <!-- 2) Library dependency versions -->
-        <spring.version>4.1.0.RELEASE</spring.version>
+        <spring.version>4.1.7.RELEASE</spring.version>
         <opensaml.not-yet-commons-ssl.version>0.3.9</opensaml.not-yet-commons-ssl.version>
         <opensaml.xmltooling.version>1.4.5</opensaml.xmltooling.version>
         <opensaml.openws.version>1.5.5</opensaml.openws.version>
@@ -36,7 +36,7 @@
         <apache.taglibs>1.2.5</apache.taglibs>
         <jersey.version>1.18</jersey.version>
         <slf4j.version>1.7.10</slf4j.version>
-        <logback.version>1.1.2</logback.version>
+        <logback.version>1.2.0</logback.version>
         <mockito.version>1.10.19</mockito.version>
         <junit.version>4.12</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
@@ -61,7 +61,7 @@
         <log4j.api>2.3</log4j.api>
         <xmlunit.version>1.5</xmlunit.version>
         <bdr.econnector.version>1.2.2</bdr.econnector.version>
-        <struts.version>2.3.32</struts.version>
+        <struts.version>2.5.12</struts.version>
         <icu4j.version>55.1</icu4j.version>
         <vaadin.version>7.4.2</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
