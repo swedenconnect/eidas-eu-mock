@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>eidas-specific</artifactId>
+    <packaging>jar</packaging>
+    <name>eIDAS Specific</name>
+    <description>
+        The EIDAS Specifc library provides a reference code to let each member state developer to fulfil it's own
+        requirenments on the EIDAS Authentications (communication with IdP/AP).
+    </description>
+    <parent>
+        <groupId>eu.eidas</groupId>
+        <artifactId>eidas-parent</artifactId>
+        <version>1.4.3</version>
+        <relativePath>../EIDAS-Parent/pom.xml</relativePath>
+    </parent>
+    <dependencies>
+        <!-- 1) Dependencies on other modules: -->
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-commons</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-saml-engine</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-updater</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-specific-communication-definition</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 2) Dependencies on libraries: -->
+        <!-- Joda -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <!-- SLF4J logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+        </dependency>
+        <!-- Test -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>eidas-specific</finalName>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/config/embedded</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>metrics</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>cobertura-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

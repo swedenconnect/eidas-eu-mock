@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>eidas-updater</artifactId>
+    <name>eIDAS Updater</name>
+    <description>
+        The EIDASUpdater library provides tools to automatically update every change made on the EIDAS Node
+        configuration files (eidas.xml, specific.properties, eidasUtils.properties).
+    </description>
+    <parent>
+        <groupId>eu.eidas</groupId>
+        <artifactId>eidas-parent</artifactId>
+        <version>1.4.3</version>
+        <relativePath>../EIDAS-Parent/pom.xml</relativePath>
+    </parent>
+    <dependencies>
+        <!-- 1) Dependencies on other modules: -->
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-saml-engine</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 2) Dependencies on libraries: -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+
+        <!-- WebService -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+        </dependency>
+
+        <!-- Application Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+    </dependencies>
+</project>

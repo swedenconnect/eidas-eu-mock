@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>eidas.xml</comment>
+<entry key="sp.default.parameters">all</entry>
+<entry key="service1.id">CA</entry>
+<entry key="service2.skew">1000</entry>
+<entry key="service2.name">LOCAL-NODE-CB</entry>
+<entry key="connector.id">CB</entry>
+<entry key="node.engine.repo">samlengine</entry>
+<entry key="DEMO-SP.qaalevel">3</entry>
+<entry key="service2.url">https://local.ausweisapp.cec.eu.int:7002/EidasNode/ColleagueRequest</entry>
+<entry key="service2.metadata.url">https://local.ausweisapp.cec.eu.int:7002/EidasNode/ServiceMetadata</entry>
+<entry key="service2.id">CB</entry>
+<entry key="service1.url">http://localhost:9080/EidasNode/ColleagueRequest</entry>
+<entry key="service1.metadata.url">http://localhost:9080/EidasNode/ServiceMetadata</entry>
+<entry key="service1.skew">1000</entry>
+<entry key="service.number">2</entry>
+<entry key="service1.name">LOCAL-NODE-CA</entry>
+</properties>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samlp:NewEncryptedID xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">
+    <xenc:EncryptedData/>
+    <xenc:EncryptedKey/>
+    <xenc:EncryptedKey/>
+    <xenc:EncryptedKey/>
+</samlp:NewEncryptedID>

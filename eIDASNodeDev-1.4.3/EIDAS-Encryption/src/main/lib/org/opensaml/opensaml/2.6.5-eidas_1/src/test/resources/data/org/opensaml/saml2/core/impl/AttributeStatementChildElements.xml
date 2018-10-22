@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+    <saml2:Attribute/>
+    <saml2:EncryptedAttribute/>
+    <saml2:Attribute/>
+    <saml2:EncryptedAttribute/>
+    <saml2:EncryptedAttribute/>
+    <saml2:Attribute/>
+</saml2:AttributeStatement>

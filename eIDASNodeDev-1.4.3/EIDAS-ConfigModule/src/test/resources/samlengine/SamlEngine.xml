@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instances>
+
+	<!-- ******************** Service ******************** -->
+	<!-- Configuration name -->
+	<instance name="EIDASSErvice">
+
+		<!-- Settings module signature -->
+		<configuration name="SignatureConf">
+			<!-- Specific signature module -->
+			<parameter name="class"
+				value="eu.eidas.auth.engine.core.impl.SignSW" />
+			<!-- Settings specific module -->
+			<parameter name="fileConfiguration" value="SignModule_EIDASService.xml" />
+		</configuration>
+
+	</instance>
+
+	<!-- ******************** SP-Conneector ******************** -->
+
+	<instance name="SP-EIDASConnector">
+		<configuration name="SamlEngineConf">
+			<parameter name="fileConfiguration" value="SamlEngine_SP-EIDASConnector.xml" />
+		</configuration>
+
+	</instance>
+
+</instances>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="EncryptTo.CA">true</entry>
+
+	<entry key="EncryptTo.CB">true</entry>
+
+	<entry key="EncryptTo.CC">true</entry>
+
+	<entry key="EncryptTo.CD">true</entry>
+
+	<entry key="EncryptTo.CF">true</entry>
+
+	<entry key="EncryptTo.BE">true</entry>
+</properties>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lreq="http://cef.eidas.eu/LightResponse" targetNamespace="http://cef.eidas.eu/LightResponse" elementFormDefault="qualified">
+	<xs:element name="lightResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Internal unique ID</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="inResponseToId" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">The original unique ID of the Request this Response is issued for</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="issuer" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Issuer of the LightRequest or originating SP - not used</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ipAddress" type="xs:string" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional IP address of the user agent as seen on IdP</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="relayState" type="xs:string" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional state information to return to the Consumer.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="subject" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Subject of the Assertion for the eIDAS SAML Response.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="subjectNameIdFormat" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Format of the identifier attribute.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="levelOfAssurance" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Level of assurance required to fulfill the request</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="http://eidas.europa.eu/LoA/low"/>
+							<xs:enumeration value="http://eidas.europa.eu/LoA/substantial"/>
+							<xs:enumeration value="http://eidas.europa.eu/LoA/high"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="status" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Complex element to provide status information from IdP</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="failure" type="xs:boolean" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Value "true" represents that the authentication request is failed</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="statusCode" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>SAML2 defined status code</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:Success">
+											<xs:annotation>
+												<xs:documentation>Autentication success</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:Requester">
+											<xs:annotation>
+												<xs:documentation>Autentication failure: the requester did something wrong</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:Responder">
+											<xs:annotation>
+												<xs:documentation>Autentication failure: error at the the responeder side</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="subStatusCode" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Optional SAML2 defined sub status code used in case of failure</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:AuthnFailed"/>
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:InvalidAttrNameOrValue"/>
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:InvalidNameIDPolicy"/>
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:VersionMismatch"/>
+										<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:status:RequestDenied"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="statusMessage" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>An optional status message</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="attributes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="definition" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="value" type="xs:string" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

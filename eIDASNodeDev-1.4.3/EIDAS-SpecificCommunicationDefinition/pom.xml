@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>eidas-specific-communication-definition</artifactId>
+    <packaging>jar</packaging>
+    <name>eIDAS Specific Communication Definition</name>
+    <description>
+        Separated specific modules used to define the communication protocol used in the communications.
+        Provides Java Interfaces to plug specific integration on SP and IdP sides.
+    </description>
+    <parent>
+        <groupId>eu.eidas</groupId>
+        <artifactId>eidas-parent</artifactId>
+        <version>1.4.3</version>
+        <relativePath>../EIDAS-Parent/pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-light-commons</artifactId>
+        </dependency>
+        <!-- Servlet & JSP -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

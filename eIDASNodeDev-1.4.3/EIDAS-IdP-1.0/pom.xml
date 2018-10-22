@@ -1,0 +1,252 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>eidas-idp</artifactId>
+    <packaging>war</packaging>
+    <name>eIDAS IdP</name>
+    <description>eIDAS Identity Provider</description>
+    <parent>
+        <groupId>eu.eidas</groupId>
+        <artifactId>eidas-parent</artifactId>
+        <version>1.4.3</version>
+        <relativePath>../EIDAS-Parent/pom.xml</relativePath>
+    </parent>
+    <properties>
+        <proj.name>IdP</proj.name>
+    </properties>
+    <dependencies>
+        <!-- 1) Dependencies on other modules: -->
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-saml-engine</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>xalan</groupId>
+                    <artifactId>serializer</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xalan</groupId>
+                    <artifactId>xalan</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xerces</groupId>
+                    <artifactId>xercesImpl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xml-resolver</groupId>
+                    <artifactId>xml-resolver</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 2) Dependencies on libraries: -->
+        <!-- Servlet & JSP-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
+
+        <!-- Struts2 -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder-jsp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>57.1</version>
+        </dependency>
+        <!-- START LOGS -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+        <!-- logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <!-- END LOGS -->
+    </dependencies>
+    <build>
+        <finalName>${proj.name}</finalName>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/config/embedded</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <tasks>
+                                <replace replacefilterfile="../EIDAS-Parent/dev.properties" dir="target/classes">
+                                    <include name="**/idp.properties"/>
+                                </replace>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <!-- tomcat & glassfish profile -->
+        <profile>
+            <id>tomcat</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcprov-jdk15on</artifactId>
+                    <!-- overrides the parent's scope which is provided -->
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <!-- weblogic profile -->
+        <profile>
+            <id>weblogic</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcprov-jdk15on</artifactId>
+                    <!-- overrides the parent's scope which is provided -->
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-weblogic-resources</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>
+                                        ${project.build.directory}/${proj.name}/WEB-INF
+                                    </outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}/src/main/config/weblogic</directory>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- jboss7 profile -->
+        <profile>
+            <id>jBoss7</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-jboss-resources</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>
+                                        ${project.build.directory}/${proj.name}/WEB-INF
+                                    </outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}/src/main/config/jBoss7</directory>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- websphere profile -->
+        <profile>
+            <id>websphere</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcprov-jdk15on</artifactId>
+                    <!-- overrides the parent's scope which is provided -->
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+</project>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:SPSSODescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" protocolSupportEnumeration="urn:foo:bar urn:fooz:baz" cacheDuration="P0Y0M0DT0H1M30.000S" validUntil="2005-12-07T10:21:00.000Z" AuthnRequestsSigned="true" WantAssertionsSigned="true"/>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+	<comment>HWModule sign with interface PKCS11.</comment>
+	<entry key="configurationFile">p11Config.cfg</entry>
+	<entry key="keyPassword">*******</entry>
+	<entry key="issuer">CN=XXXXXXXXX</entry>
+	<entry key="serialNumber">xxxxxxxxxxxxxx</entry>
+	<entry key="keyStoreType">PKCS11</entry>
+</properties>

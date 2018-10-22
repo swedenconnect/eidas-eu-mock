@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EncryptionMethod xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Algorithm="urn:string:foo">
+    <xenc:KeySize/>    
+    <xenc:OAEPparams/>
+    <ds:DigestMethod xmlns:ds="http://www.w3.org/2000/09/xmldsig#"/>
+    <ds:DigestMethod xmlns:ds="http://www.w3.org/2000/09/xmldsig#"/>
+</md:EncryptionMethod>

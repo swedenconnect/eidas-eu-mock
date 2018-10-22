@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2:Attribute xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" Name="attribName" NameFormat="urn:string" FriendlyName="Attribute Name"/>
