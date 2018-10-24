@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>se.elegnamnden.eidas</groupId>
-    <artifactId>cef-node-docker-20</artifactId>
+    <artifactId>cef-node-docker-220</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <developers>
@@ -27,7 +27,7 @@
         <tomcat.version>9.0.12</tomcat.version>
         <docker.image.prefix>docker.eidastest.se:5000</docker.image.prefix>
         <mockito.version>1.9.5</mockito.version>
-        <eidas.node.version>2.0.0</eidas.node.version>
+        <eidas.node.version>2.2.0</eidas.node.version>
         <eidas.node.serializer.version>2.7.2</eidas.node.serializer.version>
     </properties>
 

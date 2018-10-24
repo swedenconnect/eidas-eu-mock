@@ -7,6 +7,28 @@
         <script src="../js/popper-1.12.5.min.js"></script>
         <script src="../webjars/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
     </div>
+    <div th:fragment="favicon">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="favicon/site.webmanifest"/>
+        <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5"/>
+        <link rel="shortcut icon" href="favicon/favicon.ico"/>
+        <meta name="msapplication-TileColor" content="#da532c"/>
+        <meta name="msapplication-config" content="favicon/browserconfig.xml"/>
+        <meta name="theme-color" content="#ffffff"/>
+    </div>
+    <div th:fragment="favicon-sp">
+        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="../favicon/site.webmanifest"/>
+        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#5bbad5"/>
+        <link rel="shortcut icon" href="../favicon/favicon.ico"/>
+        <meta name="msapplication-TileColor" content="#da532c"/>
+        <meta name="msapplication-config" content="../favicon/browserconfig.xml"/>
+        <meta name="theme-color" content="#ffffff"/>
+    </div>
     <title>Title</title>
 </head>
 <body>
@@ -19,11 +41,11 @@
                     <tr style="padding: 0px; margin: 0px">
                         <td>
                             <a href="http://www.elegnamnden.se/globalalankar/inenglish.4.5a85666214dbad743ffe971.html"><img
-                                    src="../img/logo_full.png" height="100"
+                                    src="../img/sweden-connect-color-yellow-on-blue.svg" height="100"
                                     style="margin-bottom: 0px; margin-right: 10px; margin-top: 5px"/></a>
                         </td>
                         <td style="padding: 0px; margin: 0px; text-align: center">
-                            <h1 id="uiTextTitle" style="margin-top: 0; padding-top: 0">The Swedish eIDAS Pilot</h1>
+                            <h1 id="uiTextTitle" style="margin-top: 0; padding-top: 0">Sweden Connect Test</h1>
                             <!--/*@thymesVar id="spName" type="java.lang.String"*/-->
                             <h4 id="uiTextSubtitle" th:text="${spName}"></h4>
                         </td>
@@ -48,8 +70,8 @@
                     <td style="text-align: center">
                     </td>
                     <td style="text-align: right">
-                        <span style="color: #7f0927">The Swedish E-Identification Board</span><br/>
-                        <a href="https://www.elegnamnden.se">https://www.elegnamnden.se</a>
+                        <span style="color: #7f0927">Sweden Connect</span><br/>
+                        <a href="https://www.elegnamnden.se">https://swedenconnect.se</a>
                     </td>
                 </tr>
             </table>
