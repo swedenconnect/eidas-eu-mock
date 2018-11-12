@@ -144,6 +144,12 @@
                                     <version>1.4.01</version>
                                     <type>jar</type>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>javax.xml.bind</groupId>
+                                    <artifactId>jaxb-api</artifactId>
+                                    <version>2.3.0</version>
+                                    <type>jar</type>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>
                                 ${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib
