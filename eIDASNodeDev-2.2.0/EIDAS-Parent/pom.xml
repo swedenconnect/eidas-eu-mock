@@ -50,7 +50,8 @@
         <commons.httpclient>4.5.5</commons.httpclient>
         <commons.httpcore>4.4.9</commons.httpcore>
         <commons.lang3>3.1</commons.lang3>
-        <hazelcast.version>3.2</hazelcast.version>
+        <hazelcast.version>3.11</hazelcast.version>
+        <hazelcast.wm.version>3.8.3</hazelcast.wm.version>
         <bouncycastle.version>1.52</bouncycastle.version>
         <owasp.version>1.1.1</owasp.version>
         <owasp.dependency-check.version>1.4.0</owasp.dependency-check.version>
@@ -496,7 +497,7 @@
             <dependency>
                 <groupId>com.hazelcast</groupId>
                 <artifactId>hazelcast-wm</artifactId>
-                <version>${hazelcast.version}</version>
+                <version>${hazelcast.wm.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
