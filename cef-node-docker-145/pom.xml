@@ -283,6 +283,57 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>sedemo</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- https://maven.apache.org/plugins/maven-dependency-plugin/unpack-mojo.html -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.8</version>
+                        <executions>
+
+                            <execution>
+                                <id>warcopy</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>eu.eidas</groupId>
+                                            <artifactId>eidas-node</artifactId>
+                                            <version>${eidas.node.version}</version>
+                                            <type>war</type>
+                                            <destFileName>EidasNode.war</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>eu.eidas</groupId>
+                                            <artifactId>eidas-idp-sedemo</artifactId>
+                                            <version>${eidas.node.version}</version>
+                                            <type>war</type>
+                                            <destFileName>IdP.war</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>eu.eidas</groupId>
+                                            <artifactId>eidas-sp-sedemo</artifactId>
+                                            <version>${eidas.node.version}</version>
+                                            <type>war</type>
+                                            <destFileName>SP.war</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <outputDirectory>
+                                        ${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/webapps
+                                    </outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 

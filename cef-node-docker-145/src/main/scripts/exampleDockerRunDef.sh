@@ -5,4 +5,4 @@
 # Before running this script. run: mvn clean install dockerfile:build
 #
 
-docker run -d --name cefnode20 --restart=always -p 8900:8900 cef-node-docker-20
+docker run -d --name cefnode145 --restart=always -p 8900:8900 cef-node-docker-145
