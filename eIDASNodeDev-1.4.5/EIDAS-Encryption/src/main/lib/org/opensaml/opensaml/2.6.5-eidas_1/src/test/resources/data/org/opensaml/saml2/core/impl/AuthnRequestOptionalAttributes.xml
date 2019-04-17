@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="abc123" Version="2.0" IssueInstant="2006-02-21T16:40:00.000Z" Consent="urn:string:consent" Destination="http://idp.example.org/endpoint" ForceAuthn="true" IsPassive="true" ProtocolBinding="urn:string:protocol-binding" AssertionConsumerServiceIndex="3" AssertionConsumerServiceURL="http://sp.example.org/acs" AttributeConsumingServiceIndex="2" ProviderName="Example Org"/>

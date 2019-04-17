@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EncryptionMethod xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" Algorithm="urn:string:foo"/>

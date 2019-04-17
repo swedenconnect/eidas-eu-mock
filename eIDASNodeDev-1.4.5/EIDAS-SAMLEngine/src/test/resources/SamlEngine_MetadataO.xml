@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+	<comment>SAML constants for AuthnRequests and Responses.</comment>
+
+	<!--
+		Types of consent obtained from the user for this authentication and
+		data transfer.
+		Allow values: 'unspecified'.
+	-->
+	<entry key="consentAuthnRequest">unspecified</entry>
+	
+	<!--
+	Allow values: 'obtained', 'prior', 'current-implicit', 'current-explicit', 'unspecified'.
+	-->
+	<entry key="consentAuthnResponse">obtained</entry>
+
+	<!--URI representing the classification of the identifier
+		Allow values: 'entity'.
+	-->
+	<entry key="formatEntity">entity</entry>
+
+	<!--Only HTTP-POST binding is only supported for inter PEPS-->
+	<!--The SOAP binding is only supported for direct communication between SP-MW and VIdP-->
+	<entry key="protocolBinding">HTTP-POST</entry>
+	
+	
+	
+	
+	<!--URI representing the classification of the identifier
+		Allow values: 'entity'.
+		<entry key="eIDSectorShare">true</entry>
+		<entry key="eIDCrossSectorShare">true</entry>
+		<entry key="eIDCrossBorderShare">true</entry>
+	-->
+	
+	
+	
+	<!-- A friendly name for the attribute that can be displayed to a user -->
+	<entry key="friendlyName">false</entry>
+	
+	<!-- A friendly name for the attribute that can be displayed to a user -->
+	<entry key="isRequired">true</entry>
+	
+	<!--PEPS in the Service Provider's country-->
+	<entry key="requester">http://S-PEPS.gov.xx</entry>
+
+	<!--PEPS in the citizen's origin country-->
+	<entry key="responder">http://C-PEPS.gov.xx</entry>
+
+	<!--Subject cannot be confirmed on or after this seconds time (positive number)-->
+	<entry key="timeNotOnOrAfter">300</entry>
+	
+	<!--Validation IP of the response-->
+	<entry key="ipAddrValidation">false</entry>
+	<!--allow unencrypted responses-->
+	<entry key="allowUnencryptedResponse">true</entry>
+
+	
+	<!--Subject Attribute Definitions-->
+	<entry key="eIdentifier">http://www.stork.gov.eu/1.0/eIdentifier</entry>
+	<entry key="givenName">http://www.stork.gov.eu/1.0/givenName</entry>
+	<entry key="surname">http://www.stork.gov.eu/1.0/surname</entry>
+	<entry key="inheritedFamilyName">http://www.stork.gov.eu/1.0/inheritedFamilyName</entry>
+	<entry key="adoptedFamilyName">http://www.stork.gov.eu/1.0/adoptedFamilyName</entry>
+	<entry key="gender">http://www.stork.gov.eu/1.0/gender</entry>
+	<entry key="dateOfBirth">http://www.stork.gov.eu/1.0/dateOfBirth</entry>
+	<entry key="countryCodeOfBirth">http://www.stork.gov.eu/1.0/countryCodeOfBirth</entry>
+	<entry key="nationalityCode">http://www.stork.gov.eu/1.0/nationalityCode</entry>
+	<entry key="maritalStatus">http://www.stork.gov.eu/1.0/maritalStatus</entry>
+	<entry key="residenceAddress">http://www.stork.gov.eu/1.0/residenceAddress</entry>
+	<entry key="eMail">http://www.stork.gov.eu/1.0/eMail</entry>
+	<entry key="academicTitle">http://www.stork.gov.eu/1.0/academicTitle</entry>
+	<entry key="pseudonym">http://www.stork.gov.eu/1.0/pseudonym</entry>
+	<entry key="age">http://www.stork.gov.eu/1.0/age</entry>
+	<entry key="isAgeOver">http://www.stork.gov.eu/1.0/isAgeOver</entry>
+
+	<entry key="textResidenceAddress">http://www.stork.gov.eu/1.0/textResidenceAddress</entry>
+	<entry key="canonicalResidenceAddress">http://www.stork.gov.eu/1.0/canonicalResidenceAddress</entry>
+
+	<entry key="title">http://www.stork.gov.eu/1.0/title</entry>
+	<entry key="residencePermit">http://www.stork.gov.eu/1.0/residencePermit</entry>
+
+	<entry key="signedDoc">http://www.stork.gov.eu/1.0/signedDoc</entry>
+	<entry key="citizen509Certificate">http://www.stork.gov.eu/1.0/citizen509Certificate</entry>
+	
+</properties>

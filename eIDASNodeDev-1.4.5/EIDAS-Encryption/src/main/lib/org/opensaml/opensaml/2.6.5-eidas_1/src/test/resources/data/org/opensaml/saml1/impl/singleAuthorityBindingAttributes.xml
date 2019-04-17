@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml:AuthorityBinding xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:saml1p="urn:oasis:names:tc:SAML:1.0:protocol" AuthorityKind="saml1p:AttributeQuery" Location="here" Binding="binding"/>

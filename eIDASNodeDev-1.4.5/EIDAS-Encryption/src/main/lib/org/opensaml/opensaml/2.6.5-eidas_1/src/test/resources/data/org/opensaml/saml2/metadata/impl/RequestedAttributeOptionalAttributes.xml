@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:RequestedAttribute xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" Name="attribName" NameFormat="urn:string" FriendlyName="Attribute Name" isRequired="true"/>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <saml:AttributeValue Name="urn:string:attribName" xsi:type="xs:string">SomeValue</saml:AttributeValue>
+</saml:Attribute>

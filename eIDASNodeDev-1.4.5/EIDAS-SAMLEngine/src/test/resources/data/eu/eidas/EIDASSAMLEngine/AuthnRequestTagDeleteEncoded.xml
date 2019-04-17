@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><saml2p:AuthnRequest xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:stork="urn:eu:stork:names:tc:STORK:1.0:stork" xmlns:storkp="urn:eu:stork:names:tc:STORK:1.0:protocol" AssertionConsumerServiceURL="http://sp:8888/SP/ReturnPage" Consent="urn:oasis:names:tc:SAML:2.0:consent:unspecified" Destination="http://peps:8888/PEPS/ServiceProvider" ForceAuthn="true" ID="_0c64ff85-1323-4618-847b-12d1983b86e4" IsPassive="false" IssueInstant="2010-04-07T16:45:03.593Z" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" ProviderName="PT-SP" Version="2.0"><saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://S-PEPS.gov.xx</saml2:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignatureValue>
+S6nY97RSCUJXq3HZ5obSLCI341LvtAA3vHjR1FWxrIMDPACQMqlNWBYNnRP1RiZiJV6x0RieH+SR
+Vkiy03jYyhr0XkwAE5Wd6Huf+zIbeTXjZkdQj7JpAXoB+ky4G/+L0deamvsP3eO7ZJ4grady4gmC
+Xt8p8tK3EoMocZse2hw=
+</ds:SignatureValue>
+<ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIBkTCB+wIESpT8bTANBgkqhkiG9w0BAQUFADAQMQ4wDAYDVQQDEwVzdG9yazAeFw0wOTA4MjYw
+OTEyMTNaFw0wOTExMjQwOTEyMTNaMBAxDjAMBgNVBAMTBXN0b3JrMIGfMA0GCSqGSIb3DQEBAQUA
+A4GNADCBiQKBgQDK/QL8NuMd41I1lObObeRA6DaM8bjeYqIz5mg5WnnZv4jlcK7Gq89Lk6htXRFl
+lAXpDYhI3zolMIMHEMZ3zQQPc7lgTV6Bbz9uD2YTJ9Kx55e8Y6Y49DO+TiiejGJxTzTFUcuBJHaK
+ipuvLVd1a8N3RAnaGSUOozhrTqxba82mEwIDAQABMA0GCSqGSIb3DQEBBQUAA4GBAFJgeS18nhUl
+r7WnvSn9FlkI94U//Hk3iZLc3/cScTu7D7Y/J0eUq4TF8PsSzWX5khGuqrTkswNgfEtl2IpACQ2w
+kB8+RxeRNdddQlGHlO4ZqnpvxXBwSouiy2yUeAo0y++vMFm6DO4sxfk8eTtimPDo5SzBtjtGtbqS
+3cyl/wz8</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature><saml2p:Extensions><stork:QualityAuthenticationAssuranceLevel>3</stork:QualityAuthenticationAssuranceLevel><storkp:eIDSectorShare>false</storkp:eIDSectorShare><storkp:eIDCrossSectorShare>false</storkp:eIDCrossSectorShare><storkp:eIDCrossBorderShare>false</storkp:eIDCrossBorderShare><storkp:RequestedAttributes><stork:RequestedAttribute Name="http://www.stork.gov.eu/1.0/nationalityCode" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="true"/><stork:RequestedAttribute Name="http://www.stork.gov.eu/1.0/dateOfBirth" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="true"/><stork:RequestedAttribute Name="http://www.stork.gov.eu/1.0/givenName" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="true"/></storkp:RequestedAttributes></saml2p:Extensions></saml2p:AuthnRequest>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2:Conditions xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:OneTimeUse/><saml2:AudienceRestriction/><saml2:AudienceRestriction/><saml2:AudienceRestriction/><saml2:OneTimeUse/><saml2:ProxyRestriction/></saml2:Conditions>

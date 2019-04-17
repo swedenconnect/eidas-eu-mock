@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:SPSSODescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"><md:Extensions/><md:Organization/><md:ContactPerson/><md:ContactPerson/><md:ArtifactResolutionService/><md:SingleLogoutService/><md:SingleLogoutService/><md:ManageNameIDService/><md:ManageNameIDService/><md:ManageNameIDService/><md:ManageNameIDService/><md:NameIDFormat/><md:AssertionConsumerService/><md:AssertionConsumerService/><md:AttributeConsumingService index="0"/></md:SPSSODescriptor>

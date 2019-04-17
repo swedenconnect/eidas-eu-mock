@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samlp:AuthnRequest xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ForceAuthn="true" AssertionConsumerServiceURL="http://www.example.com/" AttributeConsumingServiceIndex="0" ProviderName="SomeProvider" ID="abe567de6" Version="2.0" IssueInstant="2005-01-31T12:00:00.000Z" Destination="http://www.example.com/" Consent="urn:oasis:names:tc:SAML:2.0:consent:obtained">
+	<saml:Subject>
+		<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+			j.doe@company.com
+		</saml:NameID>
+	</saml:Subject>
+	<saml:Conditions>
+		<saml:AudienceRestriction>
+			<saml:Audience>urn:foo:sp.example.org</saml:Audience>
+		</saml:AudienceRestriction>
+	</saml:Conditions>
+	<samlp:RequestedAuthnContext>
+		<saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
+	</samlp:RequestedAuthnContext>
+</samlp:AuthnRequest>

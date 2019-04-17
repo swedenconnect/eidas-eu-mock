@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:AuthnAuthorityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"><md:Extensions/><md:Organization/><md:ContactPerson/><md:ContactPerson/><md:AuthnQueryService/><md:AuthnQueryService/><md:AuthnQueryService/><md:AssertionIDRequestService/><md:AssertionIDRequestService/><md:NameIDFormat/></md:AuthnAuthorityDescriptor>
