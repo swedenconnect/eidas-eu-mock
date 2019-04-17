@@ -13,6 +13,6 @@ docker run -d --name cefnode20 --restart=always --net="host" \
   -e SP_CONFIG_REPOSITORY=/opt/webapp/configEidas-XA/XA/sp/ \
   -e IDP_CONFIG_REPOSITORY=/opt/webapp/configEidas-XA/XA/idp/ \
   -e EIDAS_TRUSTED_CERTS_FILE=/opt/webapp/configEidas-XA/trusted/trustedCerts.pem \
-  -e EIDAS_TRUSTED_CERTS_CONSTRAINTS=eidasKeyStore_Connector_CA.jks,eidasKeyStore_Service_CA.jks \
+  -e EIDAS_TRUSTED_CERTS_CONSTRAINTS=eidasKeyStore_Connector_XC.jks \
   -v /opt/webapp/eidas-local/configEidas20:/opt/webapp/configEidas-XA \
   cef-node-docker-20
