@@ -98,6 +98,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
     private String eidasloaCompareType;
     private String eidasNameIdentifier;
     private String eidasSPType;
+    private String selectedCountry;
 
     private static boolean eidasNodeOnly = true;
 
@@ -147,6 +148,8 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
 
     @Override
     public String execute() {
+
+        selectedCountry = request.getParameter("selectedCountry");
 
         final ImmutableSortedSet<AttributeDefinition<?>> allSupportedAttributesSet =
                 protocolEngine.getProtocolProcessor().getAllSupportedAttributes();

@@ -5,42 +5,102 @@
 <html lang="en">
 
 <head>
-	<jsp:include page="sc-htmlHead.jsp"/>
-	<title><s:property value="%{getText('tituloId')}" /></title>
+    <jsp:include page="sc-htmlHead.jsp"/>
+    <title><s:property value="%{getText('tituloId')}"/></title>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg fixed-top navbar-light">
-	<a class="navbar-brand" style="margin-right: 50px" href="https://swedenconnect.se/">
-		<img class="logo" src="sc-img/sc-logo.svg" alt="sc_logo">
-	</a>
+<jsp:include page="sc-htmlTitle.jsp"/>
 
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+<div class="container main">
+    <jsp:include page="sc-langMock.jsp"/>
 
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="https://swedenconnect.se">Sweden Connect</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="https://sandbox.swedenconnect.se/home/index.html">Sandbox</a>
-			</li>
-		</ul>
-	</div>
+    <div class="row">
+        <div class="col-sm-12 content-container">
 
-</nav>
-<div class="content-push"></div>
+            <div class="row">
+                <div class="col-sm-12 content-heading">
+                    <h2 class="article-header">Demo SP - CEF eIDAS node version 1.4.5</h2>
+                    <h5><%=request.getAttribute("spId")%>
+                    </h5>
+                </div>
+            </div>
 
-<div class="container">
-	<div class="row">
-		<br />
-		<h1>This is the SP application - Select Attribute</h1>
-	</div>
+            <hr class="full-width"/>
+            <br>
+            <s:form action="IndexPage" id="formTab1">
+
+                <strong>Select authentication options:</strong>
+                <table class="table">
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="selectedCountry">Citizen Country:</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="selectedCountry" id="selectedCountry">
+                                        <option data-content="<img src='sc-img/flags/EU.png'> XC" value="XC" selected></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="spType">Sector type</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="spType" id="spType">
+                                        <option value="public" selected>public</option>
+                                        <option value="private">private</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="reqLoa">Requested LoA</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="reqLoa" id="reqLoa">
+                                        <option value="http://eidas.europa.eu/LoA/low">low</option>
+                                        <option value="http://eidas.europa.eu/LoA/substantial" selected>substantial</option>
+                                        <option value="http://eidas.europa.eu/LoA/high">high</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Requested attributes -->
+                <div class="drop-down-container">
+                    <div class="col-sm-12 drop-down">
+                        <p id="uiTextWhyEidNotSupported">Requested attributes</p>
+
+                        <div class="drop-down-info">
+                            <p>Select requested attributes</p>
+                        </div>
+                    </div> <!-- /.drop-down -->
+
+                </div>
+
+                <div style="min-height: 20px"></div>
+                <input type="submit" id="submit_tab1" type="button" class="btn btn-primary" value="Authenticate"/>
+            </s:form>
+        </div>
+    </div>
+    <jsp:include page="sc-footer.jsp"/>
+
 </div>
+
 
 </body>
 </html>

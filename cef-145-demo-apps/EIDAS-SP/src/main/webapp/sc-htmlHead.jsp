@@ -32,9 +32,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 <script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
-<script src="webjars/popper.js/dist/umd/popper.min.js"></script>
+<script src="webjars/popper.js/1.14.6/dist/umd/popper.min.js"></script>
 <script src="webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="webjars/bootstrap/4.2.1/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="sc-css/sc-style.css"/>
-<link rel="stylesheet" href="sc-css/statusio_widget.css"/>
+<script src="webjars/bootstrap-select/1.13.8/js/bootstrap-select.min.js"></script>
+<script src="webjars/bootstrap-select/1.13.8/js/i18n/defaults-sv_SE.min.js"></script>
+<script src="sc-js/sc-main.js"></script>
+
+<link rel="stylesheet" href="sc-css/bootstrap.min.css"/>
+<link rel="stylesheet" href="webjars/bootstrap-select/1.13.8/css/bootstrap-select.min.css"/>
+<link rel="stylesheet" href="sc-css/sc-main.css"/>
 <link rel="stylesheet" href="sc-css/sc-cef-sp.css"/>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
