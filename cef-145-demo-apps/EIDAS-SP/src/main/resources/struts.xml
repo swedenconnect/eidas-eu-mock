@@ -11,14 +11,14 @@
             <exception-mapping result="error" exception="java.lang.RuntimeException"/>
         </global-exception-mappings>
 		
-		<action name="populateIndexPage" method="populate" class="eu.eidas.sp.IndexAction">
+		<action name="populateIndexPage" method="populate" class="eu.eidas.sp.custom.ScIndexAction">
 			<result name="redirect">/sc-countrySelector.jsp</result>
 			<result name="populate">/sc-selectAttributes.jsp</result>
 			<result name="input">/selectAttributes.jsp</result>
 			<result name="success">/samlRequest.jsp</result>
 			<result name="error">/errorPage.jsp</result>
 		</action>
-		<action name="*IndexPage" method="{1}" class="eu.eidas.sp.IndexAction">
+		<action name="*IndexPage" method="{1}" class="eu.eidas.sp.custom.ScIndexAction">
 			<result name="redirect">/sc-countrySelector.jsp</result>
 			<result name="populate">/sc-selectAttributes.jsp</result>
 			<result name="input">/sc-selectAttributes.jsp</result>

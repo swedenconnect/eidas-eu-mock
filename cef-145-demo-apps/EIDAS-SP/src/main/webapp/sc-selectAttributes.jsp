@@ -7,6 +7,10 @@
 <head>
     <jsp:include page="sc-htmlHead.jsp"/>
     <title><s:property value="%{getText('tituloId')}"/></title>
+
+    <script>
+    </script>
+
 </head>
 
 <body>
@@ -33,24 +37,38 @@
 
                 <strong>Select authentication options:</strong>
                 <table class="table">
+                    <!-- Selector for selecting eID country -->
                     <tr>
                         <td style="width: 100%">
                             <div class="row">
-                                <div class="col-lg-4 col-sm-12">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
                                     <label for="selectedCountry">Citizen Country:</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-12">
-                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="selectedCountry" id="selectedCountry">
-                                        <option data-content="<img src='sc-img/flags/EU.png'> XC" value="XC" selected></option>
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="selectedCountry"
+                                            id="selectedCountry">
+                                        <s:iterator value="displayCountries" status="dispCountryStatus">
+                                            <s:if test="#dispCountryStatus.count == 1">
+                                                <%--<option value="<s:property value="langCode"/>" data-content="<img src='<s:property value="flag"/>'> <s:property value="displayName"/>" selected></option>--%>
+                                                <option value="<s:property value="langCode"/>"
+                                                        data-content="<s:property value="dataContent"/>" selected></option>
+                                            </s:if>
+                                            <s:else>
+                                                <option value="<s:property value="langCode"/>"
+                                                        data-content="<s:property value="dataContent"/>"></option>
+                                                <%--<option value="<s:property value="langCode"/>" data-content="<img src='<s:property value="flag"/>'> <s:property value="displayName"/>"></option>--%>
+                                            </s:else>
+                                        </s:iterator>
                                     </select>
                                 </div>
                             </div>
                         </td>
                     </tr>
+                    <!-- Selector for selecting sector type -->
                     <tr>
                         <td style="width: 100%">
                             <div class="row">
-                                <div class="col-lg-4 col-sm-12">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
                                     <label for="spType">Sector type</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-12">
@@ -62,10 +80,11 @@
                             </div>
                         </td>
                     </tr>
+                    <!-- Selector for selecting requested LoA -->
                     <tr>
                         <td style="width: 100%">
                             <div class="row">
-                                <div class="col-lg-4 col-sm-12">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
                                     <label for="reqLoa">Requested LoA</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-12">
@@ -85,8 +104,80 @@
                     <div class="col-sm-12 drop-down">
                         <p id="uiTextWhyEidNotSupported">Requested attributes</p>
 
-                        <div class="drop-down-info">
-                            <p>Select requested attributes</p>
+                        <div class="drop-down-info" style="padding: 10px">
+                            <!-- Natural Person requested attribute table -->
+                            <strong>Natural Person Attributes:</strong>
+                            <table class="table table-sm">
+                                <tr>
+                                    <td style="width: 100%" class="attribute-heading">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-12">Attribute</div>
+                                            <div class="col-lg-4 col-sm-12">Requested</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <s:iterator value="npEidasAttributeList" status="npAttrStatus">
+                                    <tr>
+                                        <td style="width: 100%">
+                                            <div class="row">
+                                                <div class="col-lg-8 col-sm-12" style="padding-top: 7px"><s:property
+                                                        value="friendlyName"/></div>
+                                                <div class="col-lg-4 col-sm-12">
+                                                    <select class="selectpicker small show-menu-arrow" data-width="95%"
+                                                            name="reqNpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                            id="reqNpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                            onchange="processAttrs('reqNpAttr');">
+                                                        <option value="http://eidas.europa.eu/LoA/low">Not requested</option>
+                                                        <s:if test="%{isRequired()}">
+                                                            <option value="http://eidas.europa.eu/LoA/substantial">Requested</option>
+                                                            <option value="http://eidas.europa.eu/LoA/high" selected>Required</option>
+                                                        </s:if>
+                                                        <s:else>
+                                                            <option value="http://eidas.europa.eu/LoA/substantial" selected>Requested
+                                                            </option>
+                                                            <option value="http://eidas.europa.eu/LoA/high">Required</option>
+                                                        </s:else>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </s:iterator>
+                            </table>
+
+                            <!-- Legal Person requested attribute table -->
+                            <strong>Legal Person Attributes:</strong>
+                            <table class="table table-sm">
+                                <tr>
+                                    <td style="width: 100%" class="attribute-heading">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-12">Attribute</div>
+                                            <div class="col-lg-4 col-sm-12">Requested</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <s:iterator value="lpEidasAttributeList" status="npAttrStatus">
+                                    <tr>
+                                        <td style="width: 100%">
+                                            <div class="row">
+                                                <div class="col-lg-8 col-sm-12" style="padding-top: 7px"><s:property
+                                                        value="friendlyName"/></div>
+                                                <div class="col-lg-4 col-sm-12">
+                                                    <select class="selectpicker small show-menu-arrow" data-width="95%"
+                                                            name="reqLpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                            id="reqLpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                            onchange="processAttrs('reqLpAttr');">
+                                                        <option value="http://eidas.europa.eu/LoA/low" selected>Not requested</option>
+                                                        <option value="http://eidas.europa.eu/LoA/substantial">Requested</option>
+                                                        <option value="http://eidas.europa.eu/LoA/high">Required</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </s:iterator>
+                            </table>
+
                         </div>
                     </div> <!-- /.drop-down -->
 

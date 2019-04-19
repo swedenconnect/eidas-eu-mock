@@ -38,7 +38,7 @@ public class ReturnAction extends ActionSupport implements ServletRequestAware, 
 
     private static final String SAML_VALIDATION_ERROR = "Could not validate token for Saml Response";
 
-    static final Logger logger = LoggerFactory.getLogger(IndexAction.class.getName());
+    static final Logger logger = LoggerFactory.getLogger(ReturnAction.class.getName());
 
     @SuppressWarnings("squid:S00116") //parameter as-is
     private String SAMLResponse;

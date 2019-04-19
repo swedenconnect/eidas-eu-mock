@@ -20,7 +20,7 @@
  *
  */
 
-package eu.eidas.sp;
+package eu.eidas.sp.custom;
 
 import com.google.common.collect.ImmutableSortedSet;
 import com.opensymphony.xwork2.Action;
@@ -28,6 +28,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import eu.eidas.auth.commons.EidasStringUtil;
 import eu.eidas.auth.commons.attribute.AttributeDefinition;
 import eu.eidas.auth.commons.attribute.ImmutableAttributeMap;
+import eu.eidas.auth.commons.attribute.PersonType;
 import eu.eidas.auth.commons.protocol.IRequestMessage;
 import eu.eidas.auth.commons.protocol.eidas.LevelOfAssurance;
 import eu.eidas.auth.commons.protocol.eidas.LevelOfAssuranceComparison;
@@ -35,12 +36,12 @@ import eu.eidas.auth.commons.protocol.eidas.SpType;
 import eu.eidas.auth.commons.protocol.eidas.impl.EidasAuthenticationRequest;
 import eu.eidas.auth.commons.protocol.impl.EidasSamlBinding;
 import eu.eidas.auth.commons.protocol.impl.SamlBindingUri;
-import eu.eidas.auth.engine.ProtocolEngineFactory;
 import eu.eidas.auth.engine.ProtocolEngineI;
 import eu.eidas.auth.engine.metadata.MetadataSignerI;
 import eu.eidas.auth.engine.metadata.MetadataUtil;
 import eu.eidas.auth.engine.xml.opensaml.SAMLEngineUtils;
 import eu.eidas.engine.exceptions.EIDASSAMLEngineException;
+import eu.eidas.sp.*;
 import eu.eidas.sp.metadata.SPCachingMetadataFetcher;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
@@ -52,21 +53,19 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author iinigo
  *         This Action Generates a SAML Request with the data given by the user, then sends it to the selected node
  */
 @SuppressWarnings("squid:S1948") //TODO get rid of Struts
-public class IndexAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+public class ScIndexAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 
     private static final long serialVersionUID = 3660074009157921579L;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IndexAction.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ScIndexAction.class);
     public static final String ACTION_POPULATE = "populate";
 
     private final ProtocolEngineI protocolEngine = SpProtocolEngineFactory.getSpProtocolEngine(Constants.SP_CONF);
@@ -79,6 +78,9 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
     private static List<Country> countries;
     private static List<AttributeDefinition> storkAttributeList;
     private static List<AttributeDefinition> eidasAttributeList;
+    private static List<AttributeDefinition> lpEidasAttributeList;
+    private static List<AttributeDefinition> npEidasAttributeList;
+    private static List<DisplayCountry> displayCountries;
 
     private static String spId;
     private static String providerName;
@@ -121,7 +123,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
      */
     public String populate() throws EIDASSAMLEngineException {
 
-        IndexAction.loadGlobalConfig();
+        ScIndexAction.loadGlobalConfig();
 
         returnUrl = configs.getProperty(Constants.SP_RETURN);
         qaa = configs.getProperty(Constants.SP_QAALEVEL);
@@ -134,10 +136,36 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
             LOGGER.info(country.toString());
         }
 
+        displayCountries = countries.stream()
+          .map(country -> new DisplayCountry(country.getName()))
+          .sorted(Comparator.comparing(DisplayCountry::getDisplayName))
+          .collect(Collectors.toList());
+
         ImmutableSortedSet<AttributeDefinition<?>> eidasAttributeDefinitions = protocolEngine.getProtocolProcessor().getAllSupportedAttributes();
         eidasAttributeList.addAll(eidasAttributeDefinitions);
 
+        npEidasAttributeList = eidasAttributeList.stream()
+          .filter(attributeDefinition -> attributeDefinition.getPersonType().equals(PersonType.NATURAL_PERSON))
+          .collect(Collectors.toList());
+        sortAttributes(npEidasAttributeList);
+
+        lpEidasAttributeList = eidasAttributeList.stream()
+          .filter(attributeDefinition -> attributeDefinition.getPersonType().equals(PersonType.LEGAL_PERSON))
+          .collect(Collectors.toList());
+        sortAttributes(lpEidasAttributeList);
+
         return ACTION_POPULATE;
+    }
+
+    private void sortAttributes(List<AttributeDefinition> attributeList) {
+        Collections.sort(attributeList, new Comparator<AttributeDefinition>() {
+            @Override public int compare(AttributeDefinition o1, AttributeDefinition o2) {
+                if (o1.isRequired() != o2.isRequired()){
+                    return o1.isRequired() ? -1 : 1;
+                }
+                return o1.getFriendlyName().compareTo(o2.getFriendlyName());
+            }
+        });
     }
 
     /**
@@ -252,6 +280,14 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
         return eidasAttributeList;
     }
 
+    public List<AttributeDefinition> getLpEidasAttributeList() {
+        return lpEidasAttributeList;
+    }
+
+    public List<AttributeDefinition> getNpEidasAttributeList() {
+        return npEidasAttributeList;
+    }
+
     public void setSamlRequest(String samlToken) {
         this.samlRequest = samlToken;
     }
@@ -364,6 +400,10 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
         return countries;
     }
 
+    public List<DisplayCountry> getDisplayCountries() {
+        return displayCountries;
+    }
+
     @Override
     public void setServletRequest(HttpServletRequest request) {
         this.request = request;
@@ -419,10 +459,10 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
     }
 
     public void setEidasNodeOnly(boolean eidasNodeOnly) {
-        IndexAction.setGlobalEidasNodeOnly(eidasNodeOnly);
+        ScIndexAction.setGlobalEidasNodeOnly(eidasNodeOnly);
     }
 
     public static void setGlobalEidasNodeOnly(boolean eidasNodeOnly) {
-        IndexAction.eidasNodeOnly = eidasNodeOnly;
+        ScIndexAction.eidasNodeOnly = eidasNodeOnly;
     }
 }

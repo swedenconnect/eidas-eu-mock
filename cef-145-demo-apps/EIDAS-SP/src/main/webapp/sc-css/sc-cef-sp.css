@@ -1,0 +1,25 @@
+img.list-flag-img {
+    height: 16px;
+    margin-bottom: 3px;
+}
+
+td.attribute-heading {
+    background-color: #1a252f;
+    color: #ffffff;
+    font-weight: bolder;
+}
+
+td.attr-no-req {
+    color: #a0a0a0;
+}
+
+td.attr-request {
+    color: #985f0d;
+}
+td.attr-require {
+    color: #721c24;
+    font-weight: bold;
+}
+td.attr-require-dk {
+    color: #6e001d;
+}

@@ -30,7 +30,7 @@ public class Country {
 	private String metadataUrl;
 	private String countrySelector;
 	
-	Country(int id, String name, String url, String countrySelector, String metadataUrl){
+	public Country(int id, String name, String url, String countrySelector, String metadataUrl){
 		this.id=id;
 		this.name=name;
 		this.url=url;
