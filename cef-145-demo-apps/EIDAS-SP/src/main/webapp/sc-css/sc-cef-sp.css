@@ -9,17 +9,24 @@ td.attribute-heading {
     font-weight: bolder;
 }
 
-td.attr-no-req {
+.attr-no-req {
     color: #a0a0a0;
+    text-decoration: line-through;
+    font-weight: normal;
 }
 
-td.attr-request {
+.attr-request {
     color: #985f0d;
+    text-decoration: none;
+    font-weight: normal;
 }
-td.attr-require {
+.attr-require-rd {
     color: #721c24;
     font-weight: bold;
+    text-decoration: none;
 }
-td.attr-require-dk {
+.attr-require {
     color: #6e001d;
+    font-weight: bold;
+    text-decoration: none;
 }
