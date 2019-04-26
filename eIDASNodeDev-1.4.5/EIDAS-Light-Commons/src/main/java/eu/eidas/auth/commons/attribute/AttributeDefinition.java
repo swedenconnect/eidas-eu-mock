@@ -339,7 +339,7 @@ public final class AttributeDefinition<T> implements Comparable<AttributeDefinit
     @Nonnull
     private final transient PersonType personType;
 
-    private final transient boolean required;
+    private transient boolean required;
 
     private final transient boolean transliterationMandatory;
 
@@ -381,6 +381,10 @@ public final class AttributeDefinition<T> implements Comparable<AttributeDefinit
         xmlType = builder.xmlType;
         attributeValueMarshaller = builder.attributeValueMarshaller;
         parameterizedType = AttributeValueMarshallerFactory.getParameterizedType(attributeValueMarshaller);
+    }
+
+    public void setRequired(boolean required) {
+        this.required = required;
     }
 
     @Nonnull

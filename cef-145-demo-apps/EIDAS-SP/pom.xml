@@ -161,7 +161,12 @@
             <artifactId>webjars-locator</artifactId>
             <version>0.34</version>
         </dependency>
-
+        <!-- OWASP -->
+        <dependency>
+            <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+            <artifactId>owasp-java-html-sanitizer</artifactId>
+            <version>20181114.1</version>
+        </dependency>
 
         <!-- UNIT TEST Dependencies -->
         <dependency>

@@ -111,8 +111,14 @@
                                 <tr>
                                     <td style="width: 100%" class="attribute-heading">
                                         <div class="row">
-                                            <div class="col-lg-8 col-sm-12">Attribute</div>
-                                            <div class="col-lg-4 col-sm-12">Requested</div>
+                                            <div class="col-lg-8 col-sm-12" style="padding-top: 3px">Attribute</div>
+                                            <div class="col-lg-4 col-sm-12">
+                                                <div style="float: right">
+                                                    <span class="btn btn-sm btn-light attr-no-req" style="cursor: pointer" onclick="selectAllAttr('reqNpAttr','n')">No</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-request" style="cursor: pointer" onclick="selectAllAttr('reqNpAttr','o')">Opt</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-require" style="cursor: pointer" onclick="selectAllAttr('reqNpAttr','r')">Req</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -120,24 +126,35 @@
                                     <tr>
                                         <td style="width: 100%">
                                             <div class="row">
-                                                <div class="col-lg-8 col-sm-12" style="padding-top: 7px"><s:property
+                                                <div class="col-lg-8 col-sm-12"><s:property
                                                         value="friendlyName"/></div>
                                                 <div class="col-lg-4 col-sm-12">
-                                                    <select class="selectpicker small show-menu-arrow" data-width="95%"
-                                                            name="reqNpAttr-<s:property value="#npAttrStatus.count"/>"
-                                                            id="reqNpAttr-<s:property value="#npAttrStatus.count"/>"
-                                                            onchange="processAttrs('reqNpAttr');">
-                                                        <option value="http://eidas.europa.eu/LoA/low">Not requested</option>
-                                                        <s:if test="%{isRequired()}">
-                                                            <option value="http://eidas.europa.eu/LoA/substantial">Requested</option>
-                                                            <option value="http://eidas.europa.eu/LoA/high" selected>Required</option>
-                                                        </s:if>
-                                                        <s:else>
-                                                            <option value="http://eidas.europa.eu/LoA/substantial" selected>Requested
-                                                            </option>
-                                                            <option value="http://eidas.europa.eu/LoA/high">Required</option>
-                                                        </s:else>
-                                                    </select>
+                                                    <div style="float: right">
+                                                        <label class="radio-inline attr-no-req">
+                                                            <input type="radio" name="reqNpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                                   onclick="processAttrs('reqNpAttr');"
+                                                                   value="n:<s:property value="nameUri"/>"
+                                                            >&nbsp;N&nbsp;
+                                                        </label>
+                                                        <label class="radio-inline attr-request">
+                                                            <input type="radio" name="reqNpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                                   onclick="processAttrs('reqNpAttr');"
+                                                                   value="o:<s:property value="nameUri"/>"
+                                                            <s:if test="%{isRequired()==false}">
+                                                                    checked
+                                                            </s:if>
+                                                            >&nbsp;O&nbsp;
+                                                        </label>
+                                                        <label class="radio-inline attr-require">
+                                                            <input type="radio" name="reqNpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                                   onclick="processAttrs('reqNpAttr');"
+                                                                   value="r:<s:property value="nameUri"/>"
+                                                            <s:if test="%{isRequired()}">
+                                                                   checked
+                                                            </s:if>
+                                                            >&nbsp;R&nbsp;
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -151,8 +168,14 @@
                                 <tr>
                                     <td style="width: 100%" class="attribute-heading">
                                         <div class="row">
-                                            <div class="col-lg-8 col-sm-12">Attribute</div>
-                                            <div class="col-lg-4 col-sm-12">Requested</div>
+                                            <div class="col-lg-8 col-sm-12" style="padding-top: 3px">Attribute</div>
+                                            <div class="col-lg-4 col-sm-12">
+                                                <div style="float: right">
+                                                    <span class="btn btn-sm btn-light attr-no-req" style="cursor: pointer" onclick="selectAllAttr('reqLpAttr','n')">No</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-request" style="cursor: pointer" onclick="selectAllAttr('reqLpAttr','o')">Opt</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-require" style="cursor: pointer" onclick="selectAllAttr('reqLpAttr','r')">Req</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -160,17 +183,30 @@
                                     <tr>
                                         <td style="width: 100%">
                                             <div class="row">
-                                                <div class="col-lg-8 col-sm-12" style="padding-top: 7px"><s:property
+                                                <div class="col-lg-8 col-sm-12"><s:property
                                                         value="friendlyName"/></div>
                                                 <div class="col-lg-4 col-sm-12">
-                                                    <select class="selectpicker small show-menu-arrow" data-width="95%"
-                                                            name="reqLpAttr-<s:property value="#npAttrStatus.count"/>"
-                                                            id="reqLpAttr-<s:property value="#npAttrStatus.count"/>"
-                                                            onchange="processAttrs('reqLpAttr');">
-                                                        <option value="http://eidas.europa.eu/LoA/low" selected>Not requested</option>
-                                                        <option value="http://eidas.europa.eu/LoA/substantial">Requested</option>
-                                                        <option value="http://eidas.europa.eu/LoA/high">Required</option>
-                                                    </select>
+                                                    <div style="float: right">
+                                                        <label class="radio-inline attr-no-req">
+                                                            <input type="radio" name="reqLpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                                   onclick="processAttrs('reqLpAttr');"
+                                                                   value="n:<s:property value="nameUri"/>"
+                                                                   checked
+                                                            >&nbsp;N&nbsp;
+                                                        </label>
+                                                        <label class="radio-inline attr-request">
+                                                            <input type="radio" name="reqLpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                                   onclick="processAttrs('reqLpAttr');"
+                                                                   value="o:<s:property value="nameUri"/>"
+                                                            >&nbsp;O&nbsp;
+                                                        </label>
+                                                        <label class="radio-inline attr-require">
+                                                            <input type="radio" name="reqLpAttr-<s:property value="#npAttrStatus.count"/>"
+                                                                   onclick="processAttrs('reqLpAttr');"
+                                                                   value="r:<s:property value="nameUri"/>"
+                                                            >&nbsp;R&nbsp;
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
