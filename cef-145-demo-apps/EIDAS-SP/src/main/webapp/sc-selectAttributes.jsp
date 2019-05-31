@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-lg-8 col-sm-12">
                                     <select class="selectpicker show-menu-arrow" data-width="90%" name="selectedCountry"
-                                            id="selectedCountry">
+                                            id="selectedCountry" data-style="btn-outline-secondary" onchange="saveSelectedCountry()">
                                         <s:iterator value="displayCountries" status="dispCountryStatus">
                                             <s:if test="#dispCountryStatus.count == 1">
                                                 <%--<option value="<s:property value="langCode"/>" data-content="<img src='<s:property value="flag"/>'> <s:property value="displayName"/>" selected></option>--%>
@@ -72,7 +72,7 @@
                                     <label for="spType">Sector type</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-12">
-                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="spType" id="spType">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="spType" id="spType" data-style="btn-outline-secondary" onchange="saveSelectedSector()">
                                         <option value="public" selected>public</option>
                                         <option value="private">private</option>
                                     </select>
@@ -88,7 +88,7 @@
                                     <label for="reqLoa">Requested LoA</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-12">
-                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="reqLoa" id="reqLoa">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="reqLoa" id="reqLoa" data-style="btn-outline-secondary" onchange="saveSelectedLoa()">
                                         <option value="http://eidas.europa.eu/LoA/low">low</option>
                                         <option value="http://eidas.europa.eu/LoA/substantial" selected>substantial</option>
                                         <option value="http://eidas.europa.eu/LoA/high">high</option>

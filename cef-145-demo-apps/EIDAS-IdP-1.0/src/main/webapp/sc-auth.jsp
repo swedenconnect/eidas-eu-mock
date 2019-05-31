@@ -48,7 +48,7 @@
 						<div class="form-group">
 
 							<label for="username">Selected user</label>
-							<select class="selectpicker show-menu-arrow" data-width="100%" id="username" name="username" onchange="saveSelectedUser();">
+							<select class="selectpicker show-menu-arrow" data-width="100%" id="username" name="username" onchange="saveSelectedUser();" data-style="btn-outline-secondary">
 								<s:iterator value="userInfoList" status="userListStatus">
 									<option value="<s:property value="id"/>" data-content="<b><s:property value="displayName"/></b><br/><s:property value="description"/>"></option>
 								</s:iterator>
@@ -60,7 +60,7 @@
 					<tr><td>
 						<div class="form-group" id="eidasDiv">
 							<label for="eidasloa">Level of Assurance</label>
-							<select class="selectpicker show-menu-arrow" data-width="100%" name="eidasloa" id="eidasloa" onchange="saveSelectedLoa()">
+							<select class="selectpicker show-menu-arrow" data-width="100%" name="eidasloa" id="eidasloa" onchange="saveSelectedLoa()" data-style="btn-outline-secondary">
 								<option value="http://eidas.europa.eu/LoA/low">http://eidas.europa.eu/LoA/low</option>
 								<option value="http://eidas.europa.eu/LoA/substantial" selected>http://eidas.europa.eu/LoA/substantial</option>
 								<option value="http://eidas.europa.eu/LoA/high">http://eidas.europa.eu/LoA/high</option>

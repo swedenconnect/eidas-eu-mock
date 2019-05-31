@@ -1,3 +1,8 @@
+var selectCountryCookie="selectedCountry";
+var selectSectorCookie="selectedSector";
+var selectLoaCookie="selectedLoa";
+
+
 $(document).ready(function(){
 	$('.drop-down > p').click(function(){
 		$(this).parent('.drop-down').toggleClass('open');
@@ -16,6 +21,19 @@ $(document).ready(function(){
 	processAttrs("reqNpAttr");
 	processAttrs("reqLpAttr");
 
+	var selectedCountry = $.cookie(selectCountryCookie);
+	if (selectedCountry != undefined){
+		$('#selectedCountry').val(selectedCountry);
+	}
+	var selectedSector = $.cookie(selectSectorCookie);
+	if (selectedSector != undefined){
+		$('#spType').val(selectedSector);
+	}
+	var selectedLoa = $.cookie(selectLoaCookie);
+	if (selectedLoa != undefined){
+		$('#reqLoa').val(selectedLoa);
+	}
+	$('.selectpicker').selectpicker('refresh');
 });
 
 function processAttrs(prefix){
@@ -47,5 +65,21 @@ function selectAllAttr(prefix, opt) {
 	});
 	processAttrs(prefix);
 }
+
+function saveSelectedCountry(){
+	var selectedCountry =  $("#selectedCountry").val();
+	$.cookie(selectCountryCookie, selectedCountry, {expires : 200} );
+}
+
+function saveSelectedSector(){
+	var selectedSector =  $("#spType").val();
+	$.cookie(selectSectorCookie, selectedSector, {expires : 200} );
+}
+
+function saveSelectedLoa(){
+	var selectedLoa =  $("#reqLoa").val();
+	$.cookie(selectLoaCookie, selectedLoa, {expires : 200} );
+}
+
 
 
