@@ -33,8 +33,8 @@
 
 			<div class="row">
 				<div class="col-sm-12 content-heading">
-					<h2 class="article-header">Demo SP - CEF eIDAS node version 1.4.5</h2>
-					<h5>Identity Provider</h5>
+					<h2>Country <s:property value="idpCountry"/> Demo Identity Provider</h2>
+					<p class="article-header">CEF eIDAS node version 1.4.5</p>
 				</div>
 			</div>
 
@@ -42,10 +42,46 @@
 			<br>
 
 			<form id="authenticationForm" name="authentication" method="post" action="Login">
+				<b>Select user and parameters:</b>
+				<table class="table">
+					<tr><td>
+						<div class="form-group">
+
+							<label for="username">Selected user</label>
+							<select class="selectpicker show-menu-arrow" data-width="100%" id="username" name="username" onchange="saveSelectedUser();">
+								<s:iterator value="userInfoList" status="userListStatus">
+									<option value="<s:property value="id"/>" data-content="<b><s:property value="displayName"/></b><br/><s:property value="description"/>"></option>
+								</s:iterator>
+							</select>
+
+						</div>
+					</td></tr>
+					<c:if test="${param.messageFormat=='eidas'}">
+					<tr><td>
+						<div class="form-group" id="eidasDiv">
+							<label for="eidasloa">Level of Assurance</label>
+							<select class="selectpicker show-menu-arrow" data-width="100%" name="eidasloa" id="eidasloa" onchange="saveSelectedLoa()">
+								<option value="http://eidas.europa.eu/LoA/low">http://eidas.europa.eu/LoA/low</option>
+								<option value="http://eidas.europa.eu/LoA/substantial" selected>http://eidas.europa.eu/LoA/substantial</option>
+								<option value="http://eidas.europa.eu/LoA/high">http://eidas.europa.eu/LoA/high</option>
+							</select>
+						</div>
+					</td></tr>
+					</c:if>
+					<tr><td>
+						<div class="form-group">
+							<span>
+								<input class="form-horizontal" id="addIPAddress" type="checkbox" name="ipAddress" checked/>&nbsp;
+								<label for="addIPAddress">IP Address for SubjectConfirmationData</label>
+							</span>
+						</div>
+					</td></tr>
+				</table>
+<%--
 				<div class="form-group">
 
-					<label for="username">Username</label>
-					<select class="selectpicker show-menu-arrow" data-width="100%" id="username" name="username">
+					<label for="username"><b>User:</b></label>
+					<select class="selectpicker show-menu-arrow" data-width="100%" id="username" name="username" onchange="saveSelectedUser();">
 						<s:iterator value="userInfoList" status="userListStatus">
 							<option value="<s:property value="id"/>" data-content="<b><s:property value="displayName"/></b><br/><s:property value="description"/>"></option>
 						</s:iterator>
@@ -54,10 +90,10 @@
 				</div>
 				<c:if test="${param.messageFormat=='eidas'}">
 					<div class="form-group" id="eidasDiv">
-						<label for="eidasloa">Level of Assurance</label>
-						<select class="selectpicker show-menu-arrow" data-width="100%" name="eidasloa" id="eidasloa" >
+						<label for="eidasloa"><b>Level of Assurance:</b></label>
+						<select class="selectpicker show-menu-arrow" data-width="100%" name="eidasloa" id="eidasloa" onchange="saveSelectedLoa()">
 							<option value="http://eidas.europa.eu/LoA/low">http://eidas.europa.eu/LoA/low</option>
-							<option value="http://eidas.europa.eu/LoA/substantial">http://eidas.europa.eu/LoA/substantial</option>
+							<option value="http://eidas.europa.eu/LoA/substantial" selected>http://eidas.europa.eu/LoA/substantial</option>
 							<option value="http://eidas.europa.eu/LoA/high">http://eidas.europa.eu/LoA/high</option>
 						</select>
 					</div>
@@ -68,10 +104,13 @@
 								<label for="addIPAddress">IP Address for SubjectConfirmationData</label>
 							</span>
 				</div>
+--%>
 				<input type="hidden" name="samlToken" value="<%=samlToken%>"/>
 				<input type="hidden" name="signAssertion" value="<%=signAssertion%>"/>
 				<input type="hidden" name="encryptAssertion" value="<%=encryptAssertion%>"/>
-				<button type="submit" id="idpSubmitbutton" class="btn btn-default btn-lg btn-block">Submit</button>
+				<input type="hidden" name="cancel" value="false" id="cancelOption"/>&nbsp;
+				<button type="submit" id="idpSubmitbutton" class="btn btn-primary">Authenticate</button>
+				<span class="btn btn-secondary" style="cursor: pointer; float: right" onclick="cancelAuthn()">Cancel</span>
 			</form>
 
 		</div>

@@ -25,9 +25,8 @@
 
 			<div class="row">
 				<div class="col-sm-12 content-heading">
-					<h2 class="article-header">Demo SP - CEF eIDAS node version 1.4.5</h2>
-					<h5><%=request.getAttribute("spId")%>
-					</h5>
+                    <h2 class="article-header"><%=request.getAttribute("spId")%></h2>
+                    <p>CEF eIDAS node version 1.4.5</p>
 				</div>
 			</div>
 

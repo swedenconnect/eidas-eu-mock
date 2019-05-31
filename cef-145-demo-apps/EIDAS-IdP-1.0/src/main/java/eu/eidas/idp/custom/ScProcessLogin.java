@@ -119,13 +119,14 @@ public class ScProcessLogin {
 
         String username = request.getParameter("username");
         String samlToken = request.getParameter("samlToken");
+        String cancel = request.getParameter("cancel");
         ipAddress = "on".equalsIgnoreCase(request.getParameter("ipAddress"));
         eidasLoa = request.getParameter("eidasloa");
 
         IAuthenticationRequest authnRequest = validateRequest(samlToken);
         this.callback = authnRequest.getAssertionConsumerServiceURL();
 
-        if (username == null) {
+        if (username == null || cancel.equalsIgnoreCase("true")) {
             sendErrorRedirect(authnRequest, request, EIDASSubStatusCode.AUTHN_FAILED_URI,
                               EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
             return false;

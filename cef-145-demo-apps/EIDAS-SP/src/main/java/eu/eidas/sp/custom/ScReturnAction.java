@@ -170,8 +170,7 @@ public class ScReturnAction extends ActionSupport implements ServletRequestAware
       XmlObject xmlObject = XmlObject.Factory.parse(new ByteArrayInputStream(rawXml.getBytes(StandardCharsets.UTF_8)));
       return new String(XmlBeansUtil.getStyledBytes(xmlObject), StandardCharsets.UTF_8);
     } catch (Exception ex){
-      ex.printStackTrace();
-      return "Bad xml: " +ex.getMessage();
+      return "Bad or null xml: " +ex.getMessage();
     }
   }
 

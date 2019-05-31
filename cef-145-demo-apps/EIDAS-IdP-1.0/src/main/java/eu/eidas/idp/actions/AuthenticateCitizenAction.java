@@ -16,6 +16,7 @@ public class AuthenticateCitizenAction extends ActionSupport {
 
   private String SAMLRequest;
   private List<BasicUserInfo> userInfoList;
+  private String idpCountry;
 
   public String execute() {
 
@@ -30,6 +31,10 @@ public class AuthenticateCitizenAction extends ActionSupport {
       .filter(basicUserInfo -> basicUserInfo != null)
       .sorted((o1, o2) -> o1.getDisplayName().toLowerCase().compareTo(o2.getDisplayName().toLowerCase()))
       .collect(Collectors.toList());
+
+    Properties idpProp = ScProcessLogin.loadConfigs("idp.properties");
+    idpCountry = idpProp.getProperty("idp.country");
+
 
     return Action.SUCCESS;
   }
@@ -75,4 +80,7 @@ public class AuthenticateCitizenAction extends ActionSupport {
     return userInfoList;
   }
 
+  public String getIdpCountry() {
+    return idpCountry;
+  }
 }
