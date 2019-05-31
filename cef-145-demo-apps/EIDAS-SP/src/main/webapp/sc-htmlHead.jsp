@@ -36,7 +36,6 @@
 <script src="webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <script src="webjars/bootstrap-select/1.13.8/js/bootstrap-select.min.js"></script>
 <script src="webjars/bootstrap-select/1.13.8/js/i18n/defaults-sv_SE.min.js"></script>
-<script src="sc-js/sc-main.js"></script>
 
 <link rel="stylesheet" href="sc-css/bootstrap.min.css"/>
 <link rel="stylesheet" href="webjars/bootstrap-select/1.13.8/css/bootstrap-select.min.css"/>

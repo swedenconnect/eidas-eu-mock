@@ -319,3 +319,33 @@ a {
 .hide {
   display: none;
 }
+
+.link-button {
+  text-decoration: none;
+}
+
+.wrap-div {
+  word-wrap: break-word;         /* All browsers since IE 5.5+ */
+  overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
+  width: 100%;
+}
+
+.xml-data-panel{
+  float: left;
+  left: 10%;
+  position: absolute;
+  top: 3%;
+  width: 80%;
+}
+
+.xml-data-bgr{
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  display: none;
+
+}

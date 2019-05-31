@@ -16,20 +16,20 @@
 			<result name="populate">/sc-selectAttributes.jsp</result>
 			<result name="input">/sc-selectAttributes.jsp</result>
 			<result name="success">/sc-samlRequest.jsp</result>
-			<result name="error">/errorPage.jsp</result>
+			<result name="error">/sc-errorPage.jsp</result>
 		</action>
 		<action name="*IndexPage" method="{1}" class="eu.eidas.sp.custom.ScIndexAction">
 			<result name="redirect">/sc-countrySelector.jsp</result>
 			<result name="populate">/sc-selectAttributes.jsp</result>
 			<result name="input">/sc-selectAttributes.jsp</result>
 			<result name="success">/sc-samlRequest.jsp</result>
-			<result name="error">/errorPage.jsp</result>
+			<result name="error">/sc-errorPage.jsp</result>
 		</action>
-		<action name="*ReturnPage" method="{1}" class="eu.eidas.sp.ReturnAction">
-			<result name="populate">/returnPage.jsp</result>
-			<result name="input">/samlResponse.jsp</result>
-			<result name="success">/samlResponse.jsp</result>
-			<result name="error">/errorPage.jsp</result>
+		<action name="*ReturnPage" method="{1}" class="eu.eidas.sp.custom.ScReturnAction">
+			<result name="populate">/sc-returnPage.jsp</result>
+			<result name="input">/sc-samlResponse.jsp</result>
+			<result name="success">/sc-samlResponse.jsp</result>
+			<result name="error">/sc-errorPage.jsp</result>
 		</action>
         <action name="reSign" method="reSign" class="eu.eidas.sp.ResignAction">
             <result type="stream">

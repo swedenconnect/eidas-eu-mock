@@ -7,6 +7,7 @@
 <head>
     <jsp:include page="sc-htmlHead.jsp"/>
     <title><s:property value="%{getText('tituloId')}"/></title>
+    <script src="sc-js/sc-main.js"></script>
 
     <script>
     </script>

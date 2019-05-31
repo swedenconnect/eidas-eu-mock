@@ -207,8 +207,6 @@ public class ScIndexAction extends ActionSupport implements ServletRequestAware,
     byte[] token;
 
 /*
-
-
     //remove attributes the SP decides not to send (for testing purpose)
     for (AttributeDefinition<?> attributeDefinition : allSupportedAttributesSet) {
 

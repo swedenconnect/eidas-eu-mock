@@ -167,6 +167,13 @@
             <artifactId>owasp-java-html-sanitizer</artifactId>
             <version>20181114.1</version>
         </dependency>
+        <!-- XML Beans -->
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>3.0.2</version>
+            <type>jar</type>
+        </dependency>
 
         <!-- UNIT TEST Dependencies -->
         <dependency>
