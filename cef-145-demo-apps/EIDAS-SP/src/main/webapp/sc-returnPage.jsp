@@ -78,7 +78,7 @@
                 <br/>
                 <table class="table table-sm table-striped"  style="table-layout: fixed">
                     <tr>
-                        <td style="width: 100%">
+                        <td class="attribute-heading" style="width: 100%">
                             <div class="row">
                                 <div class="col-lg-5 col-sm-12">
                                     <b>Attribute</b>

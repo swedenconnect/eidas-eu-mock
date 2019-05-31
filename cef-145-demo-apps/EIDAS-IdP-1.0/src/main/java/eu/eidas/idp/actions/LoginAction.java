@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import eu.eidas.idp.ProcessLogin;
+import eu.eidas.idp.custom.ScProcessLogin;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
 	private String ipAddress;
 
 	public String execute() throws IOException {
-		ProcessLogin pl = new ProcessLogin();
+		ScProcessLogin pl = new ScProcessLogin();
 		pl.processAuthentication(request, response);
 		this.samlToken = pl.getSamlToken();
 		this.username = pl.getUsername();

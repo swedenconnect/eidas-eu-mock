@@ -1,4 +1,4 @@
-package eu.eidas.idp;
+package eu.eidas.idp.custom;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +14,9 @@ import eu.eidas.auth.commons.*;
 import eu.eidas.auth.commons.attribute.*;
 import eu.eidas.auth.engine.core.eidas.spec.RepresentativeLegalPersonSpec;
 import eu.eidas.auth.engine.core.eidas.spec.RepresentativeNaturalPersonSpec;
+import eu.eidas.idp.ApplicationSpecificIDPException;
+import eu.eidas.idp.Constants;
+import eu.eidas.idp.IDPUtil;
 import org.apache.log4j.Logger;
 
 import eu.eidas.auth.commons.exceptions.InternalErrorEIDASException;
@@ -24,7 +27,6 @@ import eu.eidas.auth.commons.protocol.IResponseMessage;
 import eu.eidas.auth.commons.protocol.eidas.IEidasAuthenticationRequest;
 import eu.eidas.auth.commons.protocol.eidas.impl.EidasAuthenticationRequest;
 import eu.eidas.auth.commons.protocol.impl.AuthenticationResponse;
-import eu.eidas.auth.engine.ProtocolEngineFactory;
 import eu.eidas.auth.engine.ProtocolEngineI;
 import eu.eidas.auth.engine.metadata.MetadataSignerI;
 import eu.eidas.auth.engine.metadata.MetadataUtil;
@@ -32,9 +34,9 @@ import eu.eidas.auth.engine.xml.opensaml.SAMLEngineUtils;
 import eu.eidas.engine.exceptions.EIDASSAMLEngineException;
 import eu.eidas.idp.metadata.IDPCachingMetadataFetcher;
 
-public class ProcessLogin {
+public class ScProcessLogin {
 
-    private static final Logger logger = Logger.getLogger(ProcessLogin.class.getName());
+    private static final Logger logger = Logger.getLogger(ScProcessLogin.class.getName());
 
     private String samlToken;
 
@@ -50,11 +52,11 @@ public class ProcessLogin {
 
     private static final IDPCachingMetadataFetcher idpMetadataFetcher = new IDPCachingMetadataFetcher();
 
-    public ProcessLogin() throws IOException {
-        idpProperties = IDPUtil.loadConfigs(Constants.IDP_PROPERTIES);
+    public ScProcessLogin() throws IOException {
+        idpProperties = IDPUtil.loadConfigs(eu.eidas.idp.Constants.IDP_PROPERTIES);
     }
 
-    private Properties loadConfigs(String path) {
+    public static Properties loadConfigs(String path) {
         try {
             return IDPUtil.loadConfigs(path);
         } catch (IOException e) {
@@ -114,10 +116,8 @@ public class ProcessLogin {
 
     public boolean processAuthentication(HttpServletRequest request, HttpServletResponse response) {
 
-        //TODO vargata : check if parameters or error to be loaded here
 
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
         String samlToken = request.getParameter("samlToken");
         ipAddress = "on".equalsIgnoreCase(request.getParameter("ipAddress"));
         eidasLoa = request.getParameter("eidasloa");
@@ -125,27 +125,19 @@ public class ProcessLogin {
         IAuthenticationRequest authnRequest = validateRequest(samlToken);
         this.callback = authnRequest.getAssertionConsumerServiceURL();
 
-        if (username == null || password == null) {
+        if (username == null) {
             sendErrorRedirect(authnRequest, request, EIDASSubStatusCode.AUTHN_FAILED_URI,
                               EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
             return false;
         }
 
         Properties users = null;
-        String pass = null;
         try {
             users = loadConfigs("user.properties");
-            pass = users.getProperty(username);
         } catch (SecurityEIDASException e) {
             logger.error(e);
             sendErrorRedirect(authnRequest, request, EIDASSubStatusCode.AUTHN_FAILED_URI,
                     EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
-        }
-
-        if (pass == null || (!pass.equals(password))) {
-            sendErrorRedirect(authnRequest, request, EIDASSubStatusCode.AUTHN_FAILED_URI,
-                              EidasErrorKey.AUTHENTICATION_FAILED_ERROR.toString());
-            return false;
         }
 
         this.username = username;
@@ -187,7 +179,7 @@ public class ProcessLogin {
     }
 
     private String getCountry() {
-        return idpProperties == null ? null : idpProperties.getProperty(Constants.IDP_COUNTRY);
+        return idpProperties == null ? null : idpProperties.getProperty(eu.eidas.idp.Constants.IDP_COUNTRY);
     }
 
     private void sendRedirect(IAuthenticationRequest authnRequest,
@@ -209,7 +201,7 @@ public class ProcessLogin {
             responseAuthReq.attributes(attrMap);
             responseAuthReq.inResponseTo(authnRequest.getId());
             IAuthenticationRequest processedAuthnRequest = processRequestCallback(authnRequest, engine);
-            String metadataUrl = idpProperties == null ? null : idpProperties.getProperty(Constants.IDP_METADATA_URL);
+            String metadataUrl = idpProperties == null ? null : idpProperties.getProperty(eu.eidas.idp.Constants.IDP_METADATA_URL);
             if (metadataUrl != null && !metadataUrl.isEmpty()) {
                 responseAuthReq.issuer(metadataUrl);
             }

@@ -5,7 +5,7 @@
 <struts>
 	<package name="eu.eidas.idp" extends="struts-default">
 		<action name="AuthenticateCitizen" class="eu.eidas.idp.actions.AuthenticateCitizenAction">
-			<result>/auth.jsp</result>
+			<result>/sc-auth.jsp</result>
 		</action>
 		<action name="Login"  class="eu.eidas.idp.actions.LoginAction">
 			<result>/callback.jsp</result>
