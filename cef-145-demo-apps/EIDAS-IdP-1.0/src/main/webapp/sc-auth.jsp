@@ -43,7 +43,7 @@
 
 			<form id="authenticationForm" name="authentication" method="post" action="Login">
 				<b>Select user and parameters:</b>
-				<table class="table">
+				<table class="table" style="table-layout: fixed">
 					<tr><td>
 						<div class="form-group">
 
