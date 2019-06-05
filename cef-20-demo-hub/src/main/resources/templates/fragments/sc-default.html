@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:fragment="scripts">
+        <script src="../webjars/jquery/3.3.1-1/jquery.min.js"></script>
+        <script src="../webjars/popper.js/1.14.6/dist/umd/popper.min.js"></script>
+        <script src="../webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    </div>
+    <div th:fragment="favicon">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="../../favicon/site.webmanifest"/>
+        <link rel="mask-icon" href="../../favicon/safari-pinned-tab.svg" color="#5bbad5"/>
+        <link rel="shortcut icon" href="../../favicon/favicon.ico"/>
+        <meta name="msapplication-TileColor" content="#da532c"/>
+        <meta name="msapplication-config" content="../../favicon/browserconfig.xml"/>
+        <meta name="theme-color" content="#ffffff"/>
+    </div>
+    <title>Title</title>
+</head>
+<body>
+<!--START HEADER-->
+
+<div th:fragment="sp-header" class="container-fluid header">
+    <div class="container">
+        <div class="row no-gutter">
+            <div class="top-logo">
+                <img class="top-logo-dim" height="60" src="../sc-img/sc-logo.svg"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container main">
+
+    <!-- Show language select for script and hide it for noscript -->
+    <div th:fragment="sp-lang-mock" class="row">
+        <div class="col-sm-12">
+            <div class="row float-right">
+                <table><tr>
+                    <row>
+                        <td>&nbsp;</td>
+                    </row>
+                </tr></table>
+            </div>
+        </div>
+    </div>
+
+    <!--START FOOTER-->
+    <div th:fragment="footer" class="col-sm-12 copyright">
+        <img class="float-right" height="16" src="../sc-img/sc-logo-no-text.svg"/><p class="float-right">Copyright (c) Service provided by SwedenConnect</p>
+    </div>
+    <!--END FOOTER-->
+</div>
+
+</body>
+</html>

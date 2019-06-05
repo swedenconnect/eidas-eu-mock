@@ -115,6 +115,7 @@
 
 		</div>
 	</div>
+	<jsp:include page="sc-footer.jsp"/>
 </div>
 
 </body>
