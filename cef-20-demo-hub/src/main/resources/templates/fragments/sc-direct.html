@@ -21,66 +21,46 @@
     <title>Title</title>
 </head>
 <body>
-<!--START HEADER-->
-<div class="container">
-    <div class="card" style="margin-top: 20px">
-        <div th:fragment="sp-header">
-            <div class="card-header" style="padding-top: 0px;padding-bottom: 0px">
-                <table style="width: 100%">
-                    <tr style="padding: 0px; margin: 0px">
-                        <td>
-                            <a href="http://www.elegnamnden.se/globalalankar/inenglish.4.5a85666214dbad743ffe971.html"><img
-                                    src="img/sweden-connect-color-yellow-on-blue.svg" height="60"
-                                    style="margin-bottom: 0px; margin-right: 10px; margin-top: 5px"/></a>
-                        </td>
-                        <td style="padding: 0px; margin: 0px; text-align: center">
-                            <h1 id="uiTextTitle" style="margin-top: 0; padding-top: 0">Sweden Connect Test</h1>
-                            <!--/*@thymesVar id="spName" type="java.lang.String"*/-->
-                            <h4 id="uiTextSubtitle" th:text="${spName}"></h4>
-                        </td>
-                        <td style="text-align: right"><img src="img/se-eu4.png" height="120"
-                                                           style="margin-bottom: 5px"/>
-                        </td>
-                    </tr>
-                </table>
 
+<!--START HEADER-->
+
+<div th:fragment="sp-header">
+    <div class="container-fluid header">
+        <div class="container">
+            <div class="row no-gutter">
+                <div class="top-logo">
+                    <img class="top-logo-dim" height="60" src="sc-img/sc-logo.svg"/>
+                </div>
             </div>
-        </div>
-        <div class="card-body">
-        </div>
-    </div>
-    <div th:fragment="footer">
-        <div class='card card-footer'>
-            <table style="width: 100%">
-                <tr>
-                    <td><!--/*@thymesVar id="homePage" type="java.lang.String"*/-->
-                    <a class="btn btn-dark" th:href="${homePage}">Home</a>
-                    </td>
-                    <td style="text-align: center">
-                    </td>
-                    <td style="text-align: right">
-                        <span style="color: #7f0927">Sweden Connect</span><br/>
-                        <a href="https://www.swedenconnect.se">https://www.swedenconnect.se</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div th:fragment="footer-main">
-        <div class='card card-footer'>
-            <table style="width: 100%">
-                <tr>
-                    <td>&nbsp;</td>
-                    <td style="text-align: center">
-                    </td>
-                    <td style="text-align: right">
-                        <span style="color: #7f0927">Sweden Connect</span><br/>
-                        <a href="https://www.swedenconnect.se">https://swedenconnect.se</a>
-                    </td>
-                </tr>
-            </table>
         </div>
     </div>
 </div>
+
+<div class="container main">
+
+    <!-- Show language select for script and hide it for noscript -->
+    <div th:fragment="sp-lang-mock">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row float-right">
+                    <table><tr>
+                        <row>
+                            <td>&nbsp;</td>
+                        </row>
+                    </tr></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--START FOOTER-->
+    <div th:fragment="footer">
+        <div class="col-sm-12 copyright">
+            <img class="float-right" height="16" src="sc-img/sc-logo-no-text.svg"/><p class="float-right">Copyright (c) Service provided by SwedenConnect</p>
+        </div>
+    </div>
+    <!--END FOOTER-->
+</div>
+
 </body>
 </html>

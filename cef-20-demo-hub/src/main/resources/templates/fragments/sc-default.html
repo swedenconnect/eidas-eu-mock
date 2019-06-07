@@ -23,11 +23,13 @@
 <body>
 <!--START HEADER-->
 
-<div th:fragment="sp-header" class="container-fluid header">
-    <div class="container">
-        <div class="row no-gutter">
-            <div class="top-logo">
-                <img class="top-logo-dim" height="60" src="../sc-img/sc-logo.svg"/>
+<div th:fragment="sp-header">
+    <div class="container-fluid header">
+        <div class="container">
+            <div class="row no-gutter">
+                <div class="top-logo">
+                    <img class="top-logo-dim" height="60" src="../sc-img/sc-logo.svg"/>
+                </div>
             </div>
         </div>
     </div>
@@ -36,21 +38,25 @@
 <div class="container main">
 
     <!-- Show language select for script and hide it for noscript -->
-    <div th:fragment="sp-lang-mock" class="row">
-        <div class="col-sm-12">
-            <div class="row float-right">
-                <table><tr>
-                    <row>
-                        <td>&nbsp;</td>
-                    </row>
-                </tr></table>
+    <div th:fragment="sp-lang-mock">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row float-right">
+                    <table><tr>
+                        <row>
+                            <td>&nbsp;</td>
+                        </row>
+                    </tr></table>
+                </div>
             </div>
         </div>
     </div>
 
     <!--START FOOTER-->
-    <div th:fragment="footer" class="col-sm-12 copyright">
-        <img class="float-right" height="16" src="../sc-img/sc-logo-no-text.svg"/><p class="float-right">Copyright (c) Service provided by SwedenConnect</p>
+    <div th:fragment="footer">
+        <div class="col-sm-12 copyright">
+            <img class="float-right" height="16" src="../sc-img/sc-logo-no-text.svg"/><p class="float-right">Copyright (c) Service provided by SwedenConnect</p>
+        </div>
     </div>
     <!--END FOOTER-->
 </div>

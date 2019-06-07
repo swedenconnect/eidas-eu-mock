@@ -52,7 +52,7 @@ public class RequestController {
         model.addAttribute("loaComparisonList", Arrays.asList(LevelOfAssuranceComparison.values()));
         model.addAttribute("spTypeList", Arrays.asList(SpType.values()));
         model.addAttribute("nameIdTypeList", Arrays.asList(RequestModel.UNSPECIFIED, RequestModel.PERSISTENT, RequestModel.TRANSIENT));
-        return "request";
+        return "sc-request";
     }
 
     @RequestMapping("/request/**")
