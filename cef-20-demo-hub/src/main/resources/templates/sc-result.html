@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <script src="../webjars/highlightjs/9.8.0/highlight.min.js"></script>
+    <script src="../js/sp-result.js"></script>
+
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../webjars/highlightjs/9.8.0/styles/atom-one-light.css">
+    <link rel="stylesheet" href="../css/sc-main.css">
+    <link rel="stylesheet" href="../css/sc-cef-sp.css">
+
+    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <title>CEF eIDAS 2.2.0 - Test - Result page</title>
+</head>
+<body>
+
+<div th:include="fragments/sc-default :: sp-header"/>
+
+<div class="container main">
+    <div th:include="fragments/sc-default :: sp-lang-mock"/>
+
+    <div class="row">
+        <div class="col-sm-12 content-container">
+
+            <div class="row">
+                <div class="col-sm-12 content-heading">
+                    <h2 class="article-header">Country <span th:text="${spCountry}"></span> Demo SP</h2>
+                    <p>CEF eIDAS node version 2.2.0</p>
+                </div>
+            </div>
+
+            <hr class="full-width"/>
+            <div style="margin-top: 10px">
+                <div style="float: right">
+                    <span class="btn btn-sm btn-light" style="cursor: pointer" onclick="$('#requestViewDiv').fadeIn(700);">Request</span>&nbsp;
+                    <span class="btn btn-sm btn-light" style="cursor: pointer" onclick="$('#responseViewDiv').fadeIn(700);">Response</span>
+                </div>
+
+                <div style="height: 10px"></div>
+                <h5>Authentication result</h5>
+                <table class="table table-sm" style="table-layout: fixed">
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-5 col-sm-12">Level of Assurance</div>
+                                <div class="col-lg-7 col-sm-12 wrap-div">
+                                    <b th:text="${loa}"></b>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-5 col-sm-12">Issuer</div>
+                                <div class="col-lg-7 col-sm-12 wrap-div">
+                                    <b><s:property value="authnContext.getIdp()"></s:property></b>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    -->
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-5 col-sm-12">Time</div>
+                                <div class="col-lg-7 col-sm-12 wrap-div">
+                                    <b th:text="${response.getCreatedOn()}"></b>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+                <br/>
+                <table class="table table-sm table-striped"  style="table-layout: fixed">
+                    <tr>
+                        <td class="attribute-heading" style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-5 col-sm-12">
+                                    <b>Attribute</b>
+                                </div>
+                                <div class="col-lg-7 col-sm-12">
+                                    <b>Value</b>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:each="attr,attrMeta:${attrList}">
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-5 col-sm-12" th:text="${attr.getName()}"></div>
+                                <div class="col-lg-7 col-sm-12 wrap-div" th:id="${attr.getName()}" th:utext="${attr.getValue()}"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <a th:href="'../sp/'+${spCountry}" class="btn btn-primary link-button">Return</a>
+            </div>
+        </div>
+    </div>
+    <div th:include="fragments/sc-default :: footer"/>
+
+</div>
+
+
+<!--  display box -->
+<div id="responseViewDiv" class="xml-data-bgr">
+    <div class="card xml-data-panel">
+        <div id="responseTitleDiv" class="card-header">
+            <table style="width: 100%">
+                <tr>
+                    <td id="responseTitleCell">
+                        <h5>JSON Response</h5>
+                    </td>
+                    <td style="text-align: right">
+                        <button class="btn btn-primary" style="margin-top: 10px" onclick="$('#responseViewDiv').fadeOut(700);">Close</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="responseBodyDiv" class="card-body">
+            <div id="responseDisplayDiv">
+                <pre><code class="json full-box-view" th:utext="${jsonResponse}"></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Request display box -->
+<div id="requestViewDiv" class="xml-data-bgr">
+    <div class="card xml-data-panel">
+        <div id="requestTitleDiv" class="card-header">
+            <table style="width: 100%">
+                <tr>
+                    <td id="requestTitleCell">
+                        <h5>JSON Request</h5>
+                    </td>
+                    <td style="text-align: right">
+                        <button class="btn btn-primary" style="margin-top: 10px" onclick="$('#requestViewDiv').fadeOut(700);">Close</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="requestBodyDiv" class="card-body">
+            <div id="requestDisplayDiv">
+                <pre><code class="json full-box-view" th:utext="${jsonRequest}"></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

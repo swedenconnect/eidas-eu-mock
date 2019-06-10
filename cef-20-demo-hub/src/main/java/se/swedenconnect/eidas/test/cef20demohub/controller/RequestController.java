@@ -93,10 +93,10 @@ public class RequestController {
             model.addAttribute("response", response);
             model.addAttribute("loa", utils.getLoa(response));
             model.addAttribute("attrList", attributeList);
-            return "result";
+            return "sc-result";
         } else {
             model.addAttribute("errorMessage", status.getStatusMessage());
-            return "errorResponse";
+            return "sc-errorResponse";
         }
     }
 
