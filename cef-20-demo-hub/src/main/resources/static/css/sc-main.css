@@ -349,3 +349,7 @@ a {
   display: none;
 
 }
+
+a.neutral-link {
+  text-decoration: none;
+}

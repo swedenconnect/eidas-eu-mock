@@ -1,6 +1,6 @@
-var selectCountryCookie="citizenCountry";
-var selectSectorCookie="selectedSector";
-var selectLoaCookie="selectedLoa";
+var selectCountryCookie="citizenCountry-"+spCountry;
+var selectSectorCookie="selectedSector-"+spCountry;
+var selectLoaCookie="selectedLoa-"+spCountry;
 
 
 $(document).ready(function(){

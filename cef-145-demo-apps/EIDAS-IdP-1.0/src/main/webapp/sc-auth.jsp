@@ -77,34 +77,6 @@
 						</div>
 					</td></tr>
 				</table>
-<%--
-				<div class="form-group">
-
-					<label for="username"><b>User:</b></label>
-					<select class="selectpicker show-menu-arrow" data-width="100%" id="username" name="username" onchange="saveSelectedUser();">
-						<s:iterator value="userInfoList" status="userListStatus">
-							<option value="<s:property value="id"/>" data-content="<b><s:property value="displayName"/></b><br/><s:property value="description"/>"></option>
-						</s:iterator>
-					</select>
-
-				</div>
-				<c:if test="${param.messageFormat=='eidas'}">
-					<div class="form-group" id="eidasDiv">
-						<label for="eidasloa"><b>Level of Assurance:</b></label>
-						<select class="selectpicker show-menu-arrow" data-width="100%" name="eidasloa" id="eidasloa" onchange="saveSelectedLoa()">
-							<option value="http://eidas.europa.eu/LoA/low">http://eidas.europa.eu/LoA/low</option>
-							<option value="http://eidas.europa.eu/LoA/substantial" selected>http://eidas.europa.eu/LoA/substantial</option>
-							<option value="http://eidas.europa.eu/LoA/high">http://eidas.europa.eu/LoA/high</option>
-						</select>
-					</div>
-				</c:if>
-				<div class="form-group">
-							<span>
-								<input class="form-horizontal" id="addIPAddress" type="checkbox" name="ipAddress" checked/>&nbsp;
-								<label for="addIPAddress">IP Address for SubjectConfirmationData</label>
-							</span>
-				</div>
---%>
 				<input type="hidden" name="samlToken" value="<%=samlToken%>"/>
 				<input type="hidden" name="signAssertion" value="<%=signAssertion%>"/>
 				<input type="hidden" name="encryptAssertion" value="<%=encryptAssertion%>"/>

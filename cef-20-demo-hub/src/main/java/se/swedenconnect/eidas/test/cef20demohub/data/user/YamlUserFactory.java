@@ -22,7 +22,7 @@ public class YamlUserFactory {
         });
 
         if (addEmpty) {
-            userList.add(0,new User("--- Select Natural Person ---"));
+            userList.add(0,new User("--- No Natural Person Identity ---"));
         }
 
         return userList;
@@ -38,7 +38,7 @@ public class YamlUserFactory {
         });
 
         if (addEmpty) {
-            userList.add(0,new User("--- Select Legal Person ---"));
+            userList.add(0,new User("--- No Legal Person Identity ---"));
         }
 
         return userList;

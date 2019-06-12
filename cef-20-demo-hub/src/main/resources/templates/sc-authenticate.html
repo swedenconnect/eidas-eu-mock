@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <script src="../webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+    <script src="../webjars/bootstrap-select/1.13.8/js/bootstrap-select.min.js"></script>
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../webjars/bootstrap-select/1.13.8/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../css/sc-main.css">
+    <link rel="stylesheet" href="../css/sc-cef-sp.css">
+    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <script th:inline="javascript">
+        var spCountry = /*[[${spCountry}]]*/'xx';
+    </script>
+    <script src="../js/idp-auth.js"></script>
+
+    <title>CEF eIDAS 2.0.0 - Demo application hub - IdP</title>
+</head>
+<body>
+
+
+<div th:include="fragments/sc-default :: sp-header"/>
+
+<div class="container main">
+    <div th:include="fragments/sc-default :: sp-lang-mock"/>
+
+    <div class="row">
+        <div class="col-sm-12 content-container">
+
+            <div class="row">
+                <div class="col-sm-12 content-heading">
+                    <h2 class="article-header">Country <span th:text="${spCountry}"></span> Demo Identity Provider</h2>
+                    <p>CEF eIDAS node version 2.2.0</p>
+                </div>
+            </div>
+
+            <hr class="full-width"/>
+            <br>
+
+            <form th:action="'../authn/'+${spCountry}" id="authnForm" method="post">
+                <b>Select asserted identities:</b>
+                <table class="table" style="table-layout: fixed; margin-bottom: 0px">
+                    <!-- Natural person select -->
+                    <tr><td>
+                        <div class="form-group">
+                            <label for="userSelect">Natural person identity</label>
+                            <select class="selectpicker show-menu-arrow" data-width="100%" name="natPerson" id="userSelect" onchange="saveSelectedUser('nat');" data-style="btn-outline-secondary">
+                                <th:block th:each="natUser, natUserData : ${natUsers}">
+                                    <option th:value="${natUser.getId()}" th:data-content="${natUser.getName()}"
+                                            th:selected="${natUserData.index == 1} ? 'selected'"
+                                    ></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </td></tr>
+
+                    <!-- Legal person select -->
+                    <tr><td>
+                        <div class="form-group">
+                            <label for="orgSelect">Legal person identity</label>
+                            <select class="selectpicker show-menu-arrow" data-width="100%" name="legalPerson" id="orgSelect" onchange="saveSelectedUser('leg');" data-style="btn-outline-secondary">
+                                <th:block th:each="legalUser : ${legalUsers}">
+                                    <option th:value="${legalUser.getId()}" th:data-content="${legalUser.getName()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </td></tr>
+
+                    <tr><td>
+                        <div class="form-group" id="eidasDiv">
+                            <label for="loaSelect">Level of Assurance</label>
+                            <select class="selectpicker show-menu-arrow" data-width="100%" name="loaSelect" id="loaSelect" onchange="saveSelectedLoa()" data-style="btn-outline-secondary">
+                                <th:block th:each="loa : ${loaList}">
+                                    <option th:value="${loa.getKey()}" th:data-content="${loa.getUri()}"  th:selected="${loa.getKey().equalsIgnoreCase(reqLoa)}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </td></tr>
+                    <tr><td>
+                        <div class="form-group">
+							<span>
+								<input class="form-horizontal" id="addIPAddress" type="checkbox" name="ipAddress" checked/>&nbsp;
+								<label for="addIPAddress">IP Address for SubjectConfirmationData</label>
+							</span>
+                        </div>
+                    </td></tr>
+                </table>
+
+
+
+                <!-- Unfold to select representative identities -->
+                <div class="drop-down-container">
+                    <div class="col-sm-12 drop-down" style="margin-top: 0px; margin-bottom: 55px">
+                        <p>Representative identities</p>
+
+                        <div class="drop-down-info" style="padding: 10px">
+                            <table class="table" style="table-layout: fixed">
+                                <!-- Representative Natural person select -->
+                                <tr><td>
+                                    <div class="form-group">
+                                        <label for="reprUserSelect">Representative natural person identity</label>
+                                        <select class="selectpicker show-menu-arrow" data-width="100%" name="reprNatPerson" id="reprUserSelect" data-style="btn-outline-secondary">
+                                            <th:block th:each="natUser : ${natUsers}">
+                                                <option th:value="${natUser.getId()}" th:data-content="${natUser.getName()}"></option>
+                                            </th:block>
+                                        </select>
+                                    </div>
+                                </td></tr>
+
+                                <!-- Representative legal person select -->
+                                <tr><td>
+                                    <div class="form-group">
+                                        <label for="reprOrgSelect">Representative legal person identity</label>
+                                        <select class="selectpicker show-menu-arrow" data-width="100%" name="reprLegalPerson" id="reprOrgSelect" data-style="btn-outline-secondary">
+                                            <th:block th:each="legalUser : ${legalUsers}">
+                                                <option th:value="${legalUser.getId()}" th:data-content="${legalUser.getName()}"></option>
+                                            </th:block>
+                                        </select>
+                                    </div>
+                                </td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <input type="hidden" name="samlToken" value="<%=samlToken%>"/>
+                <input type="hidden" name="signAssertion" value="<%=signAssertion%>"/>
+                <input type="hidden" name="encryptAssertion" value="<%=encryptAssertion%>"/>
+                <input type="hidden" name="cancel" value="false" id="cancelOption"/>&nbsp;
+                <button type="submit" id="idpSubmitbutton" class="btn btn-primary">Authenticate</button>
+                <!--<span class="btn btn-secondary" style="cursor: pointer; float: right" onclick="cancelAuthn()">Cancel</span>-->
+            </form>
+
+        </div>
+    </div>
+    <div th:include="fragments/sc-default :: footer"/>
+</div>
+
+</body>
+</html>
