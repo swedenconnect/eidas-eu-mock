@@ -6,8 +6,25 @@
     <script src="webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
     <link href="css/flatly-bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="css/sc-main.css">
-    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <div th:include="fragments/direct :: favicon" th:remove="tag"></div>
     <title>CEF eIDAS nodes for test - Home</title>
+
+    <style>
+        .word-wrap-div {
+            -ms-word-break: break-all;
+            word-break: break-all;
+
+            /* Non standard for webkit */
+            word-break: break-word;
+
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+
+            white-space: normal;
+        }
+    </style>
 </head>
 <body>
 
@@ -32,7 +49,6 @@
             <hr class="full-width"/>
             <br>
 
-
             <div class="providers">
                 <div class="row">
                     <div class="col-12">
@@ -42,16 +58,28 @@
                             <th:block th:each="country:${countryList}">
                                 <a th:href="${serviceUrl + country}" class="btn provider-button neutral-link">
                                     <div class="provider">
-                                        <img th:src="${spConfigMap.get(country).getFlagUrl()}"/>
-                                        <p th:text="${spConfigMap.get(country).getName()}"></p>
+                                        <div class="row">
+                                            <div class="col-sm-2"><img th:src="${spConfigMap.get(country).getFlagUrl()}"/></div>
+                                            <div class="col-sm-10" style="overflow: hidden">
+                                                <strong th:text="'Country ' + ${country} + ' - CEF version '+ ${spConfigMap.get(country).getCefVersion()}"></strong>
+                                                <hr class="full-width" />
+                                                <div class="word-wrap-div" th:utext="${spConfigMap.get(country).getDescription()}"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </a>
                             </th:block>
                             <th:block th:each="extCountry:${extCountryList}">
                                 <a th:href="${extSpConfigMap.get(extCountry).getSpUrl()}" class="btn provider-button neutral-link">
                                     <div class="provider">
-                                        <img th:src="${extSpConfigMap.get(extCountry).getFlagUrl()}"/>
-                                        <p th:text="${extSpConfigMap.get(extCountry).getName()}"></p>
+                                        <div class="row">
+                                            <div class="col-sm-2"><img th:src="${extSpConfigMap.get(extCountry).getFlagUrl()}"/></div>
+                                            <div class="col-sm-10" style="overflow: hidden">
+                                                <strong th:text="'Country ' + ${extCountry} + ' - CEF version '+ ${extSpConfigMap.get(extCountry).getCefVersion()}"></strong>
+                                                <hr class="full-width" />
+                                                <div class="word-wrap-div" th:utext="${extSpConfigMap.get(extCountry).getDescription()}"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </a>
                             </th:block>

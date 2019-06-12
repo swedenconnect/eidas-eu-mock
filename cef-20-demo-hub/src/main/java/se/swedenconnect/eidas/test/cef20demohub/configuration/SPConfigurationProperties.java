@@ -20,7 +20,9 @@ public class SPConfigurationProperties {
 
     @Data
     public static class SpConfig {
+        private String cefVersion;
         private String name;
+        private String description;
         private String idpName;
         private String requestUrl;
         private String flagUrl;
@@ -36,7 +38,8 @@ public class SPConfigurationProperties {
 
     @Data
     public static class ExtSPConfig {
-        private String name;
+        private String cefVersion;
+        private String description;
         private String flagUrl;
         private String spUrl;
     }
