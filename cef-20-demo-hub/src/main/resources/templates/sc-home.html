@@ -10,7 +10,7 @@
     <title>CEF eIDAS nodes for test - Home</title>
 
     <style>
-        .word-wrap-div {
+        .button-word-wrap-div {
             -ms-word-break: break-all;
             word-break: break-all;
 
@@ -22,6 +22,7 @@
             -ms-hyphens: auto;
             hyphens: auto;
 
+            /* This is required since the div is located inside a btn class wrapper which alters this value and prevents word-wrapping */
             white-space: normal;
         }
     </style>
@@ -63,7 +64,7 @@
                                             <div class="col-sm-10" style="overflow: hidden">
                                                 <strong th:text="'Country ' + ${country} + ' - CEF version '+ ${spConfigMap.get(country).getCefVersion()}"></strong>
                                                 <hr class="full-width" />
-                                                <div class="word-wrap-div" th:utext="${spConfigMap.get(country).getDescription()}"></div>
+                                                <div class="button-word-wrap-div" th:utext="${spConfigMap.get(country).getDescription()}"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +78,7 @@
                                             <div class="col-sm-10" style="overflow: hidden">
                                                 <strong th:text="'Country ' + ${extCountry} + ' - CEF version '+ ${extSpConfigMap.get(extCountry).getCefVersion()}"></strong>
                                                 <hr class="full-width" />
-                                                <div class="word-wrap-div" th:utext="${extSpConfigMap.get(extCountry).getDescription()}"></div>
+                                                <div class="button-word-wrap-div" th:utext="${extSpConfigMap.get(extCountry).getDescription()}"></div>
                                             </div>
                                         </div>
                                     </div>
