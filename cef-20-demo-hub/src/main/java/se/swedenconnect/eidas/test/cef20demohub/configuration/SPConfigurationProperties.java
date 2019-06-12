@@ -16,12 +16,16 @@ import java.util.Map;
 public class SPConfigurationProperties {
     private String baseReturnUrl;
     private Map<String, SpConfig> sp;
+    private Map<String, ExtSPConfig> extSp;
 
     @Data
     public static class SpConfig {
+        private String cefVersion;
         private String name;
+        private String description;
         private String idpName;
         private String requestUrl;
+        private String flagUrl;
         private Map<String, PsCountry> country;
     }
 
@@ -30,5 +34,13 @@ public class SPConfigurationProperties {
         private String name;
         private String flag;
         private String countryCode;
+    }
+
+    @Data
+    public static class ExtSPConfig {
+        private String cefVersion;
+        private String description;
+        private String flagUrl;
+        private String spUrl;
     }
 }

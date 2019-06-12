@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <script src="../webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+    <script src="../webjars/bootstrap-select/1.13.8/js/bootstrap-select.min.js"></script>
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../webjars/bootstrap-select/1.13.8/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../css/sc-main.css">
+    <link rel="stylesheet" href="../css/sc-cef-sp.css">
+    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <script th:inline="javascript">
+        var spCountry = /*[[${spCountry}]]*/'xx';
+    </script>
+    <script src="../js/sp-request.js"></script>
+    <title>CEF eIDAS 2.2.0 - Test - SP</title>
+</head>
+<body>
+
+<div th:include="fragments/sc-default :: sp-header"/>
+
+<div class="container main">
+    <div th:include="fragments/sc-default :: sp-lang-mock"/>
+
+    <div class="row">
+        <div class="col-sm-12 content-container">
+
+            <div class="row">
+                <div class="col-sm-12 content-heading">
+                    <h2 class="article-header">Country <span th:text="${spCountry}"></span> Demo SP</h2>
+                    <p>CEF eIDAS node version 2.2.0</p>
+                </div>
+            </div>
+
+            <hr class="full-width"/>
+            <br>
+            <form th:action="'../request/'+${spCountry}" id="requestForm" method="post">
+
+                <strong>Select authentication options:</strong>
+                <table class="table">
+                    <!-- Selector for selecting eID country -->
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
+                                    <label for="citizenCountry">Citizen Country:</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="citizenCountry" id="citizenCountry" data-style="btn-outline-secondary" onchange="storeCountry()">
+                                        <th:block th:each="country : ${countryList}">
+                                            <option th:value="${country.getCountryCode()}" th:data-content="${country.getCountryImage()}+'&nbsp;&nbsp;'+${country.getCountryName()}"/>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Selector for selecting sector type -->
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
+                                    <label for="spType">Sector type</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="spType" id="spType" data-style="btn-outline-secondary" onchange="saveSelectedSector()">
+                                        <option value="public" selected>public</option>
+                                        <option value="private">private</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Selector for selecting requested LoA -->
+                    <tr>
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
+                                    <label for="reqLoa">Requested LoA</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="reqLoa" id="reqLoa" data-style="btn-outline-secondary" onchange="saveSelectedLoa()">
+                                        <option value="A">http://eidas.europa.eu/LoA/low</option>
+                                        <option value="C" selected>http://eidas.europa.eu/LoA/substantial</option>
+                                        <option value="E">http://eidas.europa.eu/LoA/high</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Requested attributes -->
+                <div class="drop-down-container">
+                    <div class="col-sm-12 drop-down">
+                        <p>Requested attributes</p>
+
+                        <div class="drop-down-info" style="padding: 10px">
+                            <!-- Natural Person requested attribute table -->
+                            <strong>Natural Person Attributes:</strong>
+                            <table class="table table-sm">
+                                <tr>
+                                    <td style="width: 100%" class="attribute-heading">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-12" style="padding-top: 3px">Attribute</div>
+                                            <div class="col-lg-4 col-sm-12">
+                                                <div style="float: right">
+                                                    <span class="btn btn-sm btn-light attr-no-req" style="cursor: pointer" onclick="selectAllAttr('reqNpAttr','n')">No</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-request" style="cursor: pointer" onclick="selectAllAttr('reqNpAttr','o')">Opt</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-require" style="cursor: pointer" onclick="selectAllAttr('reqNpAttr','r')">Req</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="attr,attrData:${naturalAttr}">
+                                    <td style="width: 100%">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-12" th:text="${attr.getFriendlyName()}"></div>
+                                            <div class="col-lg-4 col-sm-12">
+                                                <div style="float: right">
+                                                    <label class="radio-inline attr-no-req">
+                                                        <input type="radio" th:name="'reqNpAttr-' + ${attrData.count}"
+                                                               onclick="processAttrs('reqNpAttr');"
+                                                               th:value="'n:' + ${attr.getFriendlyName()}"
+                                                               th:checked="${!attr.isDefRequested() &&  !attr.isDefRequired()} ? 'checked'"
+                                                        >&nbsp;N&nbsp;</label>
+                                                    <label class="radio-inline attr-no-req">
+                                                        <input type="radio" th:name="'reqNpAttr-' + ${attrData.count}"
+                                                               onclick="processAttrs('reqNpAttr');"
+                                                               th:value="'o:' + ${attr.getFriendlyName()}"
+                                                               th:checked="${attr.isDefRequested()} ? 'checked'"
+                                                        >&nbsp;N&nbsp;</label>
+                                                    <label class="radio-inline attr-no-req">
+                                                        <input type="radio" th:name="'reqNpAttr-' + ${attrData.count}"
+                                                               onclick="processAttrs('reqNpAttr');"
+                                                               th:value="'r:' + ${attr.getFriendlyName()}"
+                                                               th:checked="${attr.isDefRequired()} ? 'checked'"
+                                                        >&nbsp;N&nbsp;</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Legal Person requested attribute table -->
+                            <strong>Legal Person Attributes:</strong>
+                            <table class="table table-sm">
+                                <tr>
+                                    <td style="width: 100%" class="attribute-heading">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-12" style="padding-top: 3px">Attribute</div>
+                                            <div class="col-lg-4 col-sm-12">
+                                                <div style="float: right">
+                                                    <span class="btn btn-sm btn-light attr-no-req" style="cursor: pointer" onclick="selectAllAttr('reqLpAttr','n')">No</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-request" style="cursor: pointer" onclick="selectAllAttr('reqLpAttr','o')">Opt</span>&nbsp;
+                                                    <span class="btn btn-sm btn-light attr-require" style="cursor: pointer" onclick="selectAllAttr('reqLpAttr','r')">Req</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="attr,attrData:${legalAttr}">
+                                    <td style="width: 100%">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-12" th:text="${attr.getFriendlyName()}"></div>
+                                            <div class="col-lg-4 col-sm-12">
+                                                <div style="float: right">
+                                                    <label class="radio-inline attr-no-req">
+                                                        <input type="radio" th:name="'reqLpAttr-' + ${attrData.count}"
+                                                               onclick="processAttrs('reqLpAttr');"
+                                                               th:value="'n:' + ${attr.getFriendlyName()}"
+                                                               th:checked="${!attr.isDefRequested() &&  !attr.isDefRequired()} ? 'checked'"
+                                                        >&nbsp;N&nbsp;</label>
+                                                    <label class="radio-inline attr-no-req">
+                                                        <input type="radio" th:name="'reqLpAttr-' + ${attrData.count}"
+                                                               onclick="processAttrs('reqLpAttr');"
+                                                               th:value="'o:' + ${attr.getFriendlyName()}"
+                                                               th:checked="${attr.isDefRequested()} ? 'checked'"
+                                                        >&nbsp;N&nbsp;</label>
+                                                    <label class="radio-inline attr-no-req">
+                                                        <input type="radio" th:name="'reqLpAttr-' + ${attrData.count}"
+                                                               onclick="processAttrs('reqLpAttr');"
+                                                               th:value="'r:' + ${attr.getFriendlyName()}"
+                                                               th:checked="${attr.isDefRequired()} ? 'checked'"
+                                                        >&nbsp;N&nbsp;</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div> <!-- /.drop-down -->
+
+                </div>
+
+                <div style="min-height: 20px"></div>
+                <input type="submit" id="submit_tab1" class="btn btn-primary" value="Authenticate"/>
+            </form>
+        </div>
+    </div>
+    <div th:include="fragments/sc-default :: footer"/>
+
+</div>
+
+</div>
+
+</body>
+</html>

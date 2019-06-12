@@ -44,6 +44,7 @@
 			<a href="populateIndexPage" class="btn btn-primary link-button">Return</a>
 		</div>
 	</div>
+	<jsp:include page="sc-footer.jsp"/>
 </div>
 
 </body>

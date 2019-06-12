@@ -20,12 +20,11 @@
   ~
   --%>
 
-<meta charset="utf-8">
+<% /** meta tags */%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="CEF eIDAS 1.4.5 demo SP">
 <meta name="author" content="stefan - Sweden Connect">
-<% /** meta tags */%>
 <meta http-equiv='pragma' content='no-cache'/>
 <meta http-equiv='cache-control' content='no-cache, no-store, must-revalidate'/>
 <meta http-equiv="Expires" content="-1"/>

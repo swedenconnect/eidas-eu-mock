@@ -52,7 +52,7 @@ public class RequestController {
         model.addAttribute("loaComparisonList", Arrays.asList(LevelOfAssuranceComparison.values()));
         model.addAttribute("spTypeList", Arrays.asList(SpType.values()));
         model.addAttribute("nameIdTypeList", Arrays.asList(RequestModel.UNSPECIFIED, RequestModel.PERSISTENT, RequestModel.TRANSIENT));
-        return "request";
+        return "sc-request";
     }
 
     @RequestMapping("/request/**")
@@ -93,10 +93,10 @@ public class RequestController {
             model.addAttribute("response", response);
             model.addAttribute("loa", utils.getLoa(response));
             model.addAttribute("attrList", attributeList);
-            return "result";
+            return "sc-result";
         } else {
             model.addAttribute("errorMessage", status.getStatusMessage());
-            return "errorResponse";
+            return "sc-errorResponse";
         }
     }
 

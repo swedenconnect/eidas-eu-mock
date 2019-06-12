@@ -75,7 +75,7 @@ public class IdpController {
         model.addAttribute("loaList", DemoLevelOfAssurance.getList());
         model.addAttribute("reqLoa", reqLoa);
 
-        return "authenticate";
+        return "sc-authenticate";
     }
 
     @RequestMapping("/authn/**")
@@ -83,7 +83,8 @@ public class IdpController {
         String country = generalUtils.getCountry(request);
         Map<String, String[]> parameterMap = request.getParameterMap();
         AuthenticationRequest authenticationRequest;
-        String remoteIpAdress = StaticUtils.getRemoteIpAdress(request);
+        String remoteIpAdress = parameterMap.containsKey("ipAddress") ? StaticUtils.getRemoteIpAdress(request) : null;
+        boolean cancel = request.getParameter("cancel").equalsIgnoreCase("true");
         ResponseData authnResponse;
         String authenticationRequestServiceUrl = null;
         boolean error = false;
@@ -91,7 +92,7 @@ public class IdpController {
         try {
             authenticationRequest = (AuthenticationRequest) httpSession.getAttribute("authnRequest");
             authenticationRequestServiceUrl = authenticationRequest.getServiceUrl();
-            authnResponse = responseGenerator.getAuthnResponse(parameterMap, authenticationRequest, remoteIpAdress, country);
+            authnResponse = responseGenerator.getAuthnResponse(parameterMap, authenticationRequest, remoteIpAdress, country, cancel);
         } catch (Exception e) {
             authnResponse = new ResponseData();
             authnResponse.setError(true);

@@ -10,12 +10,13 @@ import se.swedenconnect.eidas.test.cef20demohub.data.*;
 import javax.xml.bind.JAXBException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class RequestGenerator {
     public static final String CITIZEN_COUNTRY_PARAM = "citizenCountry";
     public static final String SP_TYPE_PARAM = "spType";
-    public static final String REQ_LOA_PARAM = "requestLoa";
+    public static final String REQ_LOA_PARAM = "reqLoa";
     public static final String LOA_MATCHING_PARAM = "loaComparison";
     public static final String NAME_ID_PARAM = "nameIdType";
 
@@ -32,8 +33,8 @@ public class RequestGenerator {
         rm.setReturnUrl(returnUrl);
         rm.setCitizenCountry(getParamValue(CITIZEN_COUNTRY_PARAM, parameterMap, COUNTRY_REGEXP));
         rm.setEidasloa(getParamValue(REQ_LOA_PARAM, parameterMap, REQUESTED_LOA_REGEXP));
-        rm.setEidasloaCompareType(LevelOfAssuranceComparison.getEnumFromValue(getParamValue(LOA_MATCHING_PARAM, parameterMap, LOA_MATCHING_REGEXP)).get());
-        rm.setEidasNameIdentifier(getParamValue(NAME_ID_PARAM, parameterMap, NAME_ID_REGEXP));
+        rm.setEidasloaCompareType(LevelOfAssuranceComparison.MINIMUM);
+        rm.setEidasNameIdentifier(RequestModel.UNSPECIFIED);
         rm.setEidasSPType(SpType.getEnumFromValue(getParamValue(SP_TYPE_PARAM, parameterMap, SP_TYPE_REGEXP)).get());
         rm.setProviderName(serviceName);
 
@@ -118,27 +119,17 @@ public class RequestGenerator {
     public List<Attribute> getAttributeList(Map<String, String[]> parameterMap) {
         List<Attribute> attributeList = new ArrayList<>();
 
-        EidasNaturalAttributeFriendlyName[] natAttrArray = EidasNaturalAttributeFriendlyName.values();
-        for (EidasNaturalAttributeFriendlyName natAttr : natAttrArray) {
-            //Target Attributes
-            if (parameterMap.containsKey(natAttr.name())) {
-                attributeList.add(getAttribute(natAttr.getFriendlyName(), parameterMap.containsKey("req_" + natAttr.name())));
-            }
-            //Representative Attributes
-            if (parameterMap.containsKey("repr_"+natAttr.name())) {
-                attributeList.add(getAttribute(natAttr.getFriendlyName(true), parameterMap.containsKey("req_repr_" + natAttr.name())));
-            }
-        }
-        EidasLegalAttributeFriendlyName[] legalAttrArray = EidasLegalAttributeFriendlyName.values();
-        for (EidasLegalAttributeFriendlyName legalAttr : legalAttrArray) {
-            if (parameterMap.containsKey(legalAttr.name())) {
-                attributeList.add(getAttribute(legalAttr.getFriendlyName(), parameterMap.containsKey("req_" + legalAttr.name())));
-            }
-            //Representative Attributes
-            if (parameterMap.containsKey("repr_"+legalAttr.name())) {
-                attributeList.add(getAttribute(legalAttr.getFrendlyName(true), parameterMap.containsKey("req_repr_" + legalAttr.name())));
-            }
-        }
+        // Map requested attributes in param map to an attribute list
+        parameterMap.keySet().stream()
+          .filter(paramName -> paramName.startsWith("reqNpAttr") || paramName.startsWith("reqLpAttr"))
+          .map(paramName -> parameterMap.get(paramName))
+          .filter(reqAttrValArray -> reqAttrValArray != null && reqAttrValArray.length == 1)
+          .map(reqAttrValArray -> reqAttrValArray[0])
+          .filter(reqAttrVal -> reqAttrVal.startsWith("o") || reqAttrVal.startsWith("r"))
+          .forEach(reqAttrVal -> {
+              attributeList.add(getAttribute(reqAttrVal.substring(2), reqAttrVal.startsWith("r")));
+          });
+
         return attributeList;
     }
 

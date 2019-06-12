@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/sc-main.css">
+
+    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <title>CEF eIDAS 2.0.0 - Demo application hub</title>
+</head>
+<body>
+
+
+<div th:include="fragments/sc-default :: sp-header"/>
+
+<div class="container main">
+    <div th:include="fragments/sc-default :: sp-lang-mock"/>
+
+    <div class="row">
+        <div class="col-sm-12 content-container">
+
+            <div class="row">
+                <div class="col-sm-12 content-heading">
+                    <h2 class="article-header">Country <span th:text="${spCountry}"></span> Demo SP</h2>
+                    <p>CEF eIDAS node version 2.2.0</p>
+                </div>
+            </div>
+
+            <hr class="full-width"/>
+            <br>
+
+
+            <h3>Authentication failure</h3>
+            <h5>Message</h5>
+            <p th:text="${errorMessage}" style="color: #333333"></p>
+            <br/>
+            <a th:href="'../sp/'+${spCountry}" class="btn btn-primary link-button">Return</a>
+        </div>
+    </div>
+    <div th:include="fragments/sc-default :: footer"/>
+</div>
+
+</body>
+</html>
