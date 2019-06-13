@@ -18,11 +18,11 @@
 <hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.1.xsd"
            xmlns="http://www.hazelcast.com/schema/config"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <properties>
-        <property name="hazelcast.version.check.enabled">false</property>
-    </properties>
-
+		   
+	<properties>
+		<property name="hazelcast.version.check.enabled">false</property>
+	</properties>
+	
     <group>
         <name>tomcat</name>
         <password>dev-pass</password>
@@ -61,8 +61,8 @@
         <interfaces enabled="false">
             <interface>10.10.1.*</interface>
         </interfaces>
-        <ssl enabled="false"/>
-        <socket-interceptor enabled="false"/>
+        <ssl enabled="false" />
+        <socket-interceptor enabled="false" />
         <symmetric-encryption enabled="false">
             <!--
                encryption algorithm such as
@@ -124,7 +124,7 @@
         <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
         <eviction-policy>LRU</eviction-policy>
     </map>
-
+ 
     <map name="connectorRequestCorrelationCacheService">
         <in-memory-format>BINARY</in-memory-format>
         <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
@@ -274,6 +274,6 @@
         <portable-version>0</portable-version>
     </serialization>
 
-    <services enable-defaults="true"/>
+    <services enable-defaults="true" />
 
 </hazelcast>

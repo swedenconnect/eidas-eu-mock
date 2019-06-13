@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright (c) 2017 by European Commission
-  ~
-  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
-  ~ approved by the European Commission - subsequent versions of the
-  ~ EUPL (the "Licence");
-  ~ You may not use this work except in compliance with the Licence.
-  ~ You may obtain a copy of the Licence at:
-  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the Licence is distributed on an "AS IS" basis,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-  ~ implied.
-  ~ See the Licence for the specific language governing permissions and
-  ~ limitations under the Licence.
-  -->
-
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>eIDAS attributes</comment>
@@ -39,7 +21,7 @@
     <entry key="2.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="2.XmlType.LocalPart">CurrentFamilyNameType</entry>
     <entry key="2.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="2.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="2.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="3.NameUri">http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName</entry>
     <entry key="3.FriendlyName">FirstName</entry>
@@ -49,7 +31,7 @@
     <entry key="3.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="3.XmlType.LocalPart">CurrentGivenNameType</entry>
     <entry key="3.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="3.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="3.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="4.NameUri">http://eidas.europa.eu/attributes/naturalperson/DateOfBirth</entry>
     <entry key="4.FriendlyName">DateOfBirth</entry>
@@ -68,7 +50,7 @@
     <entry key="5.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson</entry>
     <entry key="5.XmlType.LocalPart">BirthNameType</entry>
     <entry key="5.XmlType.NamespacePrefix">eidas-natural</entry>
-    <entry key="5.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="5.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="6.NameUri">http://eidas.europa.eu/attributes/naturalperson/PlaceOfBirth</entry>
     <entry key="6.FriendlyName">PlaceOfBirth</entry>
@@ -97,7 +79,7 @@
     <entry key="8.XmlType.NamespacePrefix">eidas-natural</entry>
     <entry key="8.AttributeValueMarshaller">eu.eidas.auth.commons.protocol.eidas.impl.GenderAttributeValueMarshaller</entry>
 
-    <entry key="9.NameUri">http://eidas.europa.eu/attributes/legalperson/LegalPersonIdentifier</entry>
+<!--    <entry key="9.NameUri">http://eidas.europa.eu/attributes/legalperson/LegalPersonIdentifier</entry>
     <entry key="9.FriendlyName">LegalPersonIdentifier</entry>
     <entry key="9.PersonType">LegalPerson</entry>
     <entry key="9.Required">false</entry>
@@ -115,7 +97,7 @@
     <entry key="10.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson</entry>
     <entry key="10.XmlType.LocalPart">LegalNameType</entry>
     <entry key="10.XmlType.NamespacePrefix">eidas-legal</entry>
-    <entry key="10.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="10.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="11.NameUri">http://eidas.europa.eu/attributes/legalperson/LegalPersonAddress</entry>
     <entry key="11.FriendlyName">LegalAddress</entry>
@@ -207,7 +189,7 @@
     <entry key="20.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson/representative</entry>
     <entry key="20.XmlType.LocalPart">CurrentFamilyNameType</entry>
     <entry key="20.XmlType.NamespacePrefix">eidas-reprentative-natural</entry>
-    <entry key="20.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="20.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="21.NameUri">http://eidas.europa.eu/attributes/naturalperson/representative/CurrentGivenName</entry>
     <entry key="21.FriendlyName">RepresentativeFirstName</entry>
@@ -217,7 +199,7 @@
     <entry key="21.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson/representative</entry>
     <entry key="21.XmlType.LocalPart">CurrentGivenNameType</entry>
     <entry key="21.XmlType.NamespacePrefix">eidas-reprentative-natural</entry>
-    <entry key="21.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="21.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="22.NameUri">http://eidas.europa.eu/attributes/naturalperson/representative/DateOfBirth</entry>
     <entry key="22.FriendlyName">RepresentativeDateOfBirth</entry>
@@ -236,7 +218,7 @@
     <entry key="23.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/naturalperson/representative</entry>
     <entry key="23.XmlType.LocalPart">BirthNameType</entry>
     <entry key="23.XmlType.NamespacePrefix">eidas-reprentative-natural</entry>
-    <entry key="23.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="23.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="24.NameUri">http://eidas.europa.eu/attributes/naturalperson/representative/PlaceOfBirth</entry>
     <entry key="24.FriendlyName">RepresentativePlaceOfBirth</entry>
@@ -283,7 +265,7 @@
     <entry key="28.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson/representative</entry>
     <entry key="28.XmlType.LocalPart">LegalNameType</entry>
     <entry key="28.XmlType.NamespacePrefix">eidas-reprentative-legal</entry>
-    <entry key="28.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+    <entry key="28.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.StringAttributeValueMarshaller</entry>
 
     <entry key="29.NameUri">http://eidas.europa.eu/attributes/legalperson/representative/LegalPersonAddress</entry>
     <entry key="29.FriendlyName">RepresentativeLegalAddress</entry>
@@ -355,25 +337,6 @@
     <entry key="36.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson/representative</entry>
     <entry key="36.XmlType.LocalPart">SICType</entry>
     <entry key="36.XmlType.NamespacePrefix">eidas-reprentative-legal</entry>
-    <entry key="36.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
-
-    <entry key="39.NameUri">http://eidas.europa.eu/attributes/legalperson/representative/LegalPersonAddress</entry>
-    <entry key="39.FriendlyName">RepresentativeLegalAddress</entry>
-    <entry key="39.PersonType">RepresentativeLegalPerson</entry>
-    <entry key="39.Required">false</entry>
-    <entry key="39.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson/representative</entry>
-    <entry key="39.XmlType.LocalPart">LegalPersonAddressType</entry>
-    <entry key="39.XmlType.NamespacePrefix">eidas-reprentative-legal</entry>
-    <entry key="39.AttributeValueMarshaller">eu.eidas.auth.commons.protocol.eidas.impl.RepvLegalAddressAttributeValueMarshaller</entry>
-
-    <entry key="40.NameUri">http://eidas.europa.eu/attributes/legalperson/representative/VATRegistrationNumber</entry>
-    <entry key="40.FriendlyName">RepresentativeVATRegistration</entry>
-    <entry key="40.PersonType">RepresentativeLegalPerson</entry>
-    <entry key="40.Required">false</entry>
-    <entry key="40.XmlType.NamespaceUri">http://eidas.europa.eu/attributes/legalperson/representative</entry>
-    <entry key="40.XmlType.LocalPart">VATRegistrationNumberType</entry>
-    <entry key="40.XmlType.NamespacePrefix">eidas-reprentative-legal</entry>
-    <entry key="40.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
-
+    <entry key="36.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>-->
 
 </properties>
