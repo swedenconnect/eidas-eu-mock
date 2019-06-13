@@ -6,10 +6,10 @@ TOMCAT_HOME=/opt/tomcat
 # This is the docker run script that is placed in the $CATALINA_HOME/bin folder to be executed inside a docker container
 #
 
-: ${EIDAS_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/}
-: ${SPECIFIC_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/specific/}
-: ${SP_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/sp/}
-: ${IDP_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XA/idp/}
+: ${EIDAS_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XC/}
+: ${SPECIFIC_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XC/specific/}
+: ${SP_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XC/sp/}
+: ${IDP_CONFIG_REPOSITORY:=/opt/tomcat/configEidas/XC/idp/}
 : ${EIDAS_TRUSTED_CERTS_FILE:=}
 : ${EIDAS_TRUSTED_CERTS_CONSTRAINTS:=}
 
