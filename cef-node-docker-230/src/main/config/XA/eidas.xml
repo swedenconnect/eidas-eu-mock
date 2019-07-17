@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright (c) 2017 by European Commission
-  ~
-  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
-  ~ approved by the European Commission - subsequent versions of the
-  ~ EUPL (the "Licence");
-  ~ You may not use this work except in compliance with the Licence.
-  ~ You may obtain a copy of the Licence at:
-  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the Licence is distributed on an "AS IS" basis,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-  ~ implied.
-  ~ See the Licence for the specific language governing permissions and
-  ~ limitations under the Licence.
-  -->
+<!-- 
+#   Copyright (c) 2017 European Commission  
+#   Licensed under the EUPL, Version 1.2 or – as soon they will be 
+#   approved by the European Commission - subsequent versions of the 
+#    EUPL (the "Licence"); 
+#    You may not use this work except in compliance with the Licence. 
+#    You may obtain a copy of the Licence at: 
+#    * https://joinup.ec.europa.eu/page/eupl-text-11-12  
+#    *
+#    Unless required by applicable law or agreed to in writing, software 
+#    distributed under the Licence is distributed on an "AS IS" basis, 
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+#    See the Licence for the specific language governing permissions and limitations under the Licence.
+ -->
 
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
@@ -25,14 +22,16 @@
 	<!-- Connector assertion URL -->
 	<entry key="connector.assertion.url">http://localhost:8900/EidasNode/ColleagueResponse</entry>
 	<!-- Locations Whitelist-->
-  <entry key="connector.metadata.location.whitelist">
-	  http://localhost:8900/EidasNode/ConnectorMetadata;
-  </entry>
-	<!-- Connector destination URL -->
-
+	<entry key="connector.url.redirect.location.whitelist">
+	</entry>
+	<entry key="connector.url.post.location.whitelist">
+	</entry>
         <!-- Protocol engines for the Nodes -->
         <entry key="saml.connector">Connector</entry>
-        <entry key="saml.service">Service</entry>
+        <entry key="saml.service">Service</entry>    
+		<!-- Logging incoming/outgoing messages in the Node -->
+	<entry key="saml.audit">true</entry>
+
 
 	<!-- Number of known Service -->
 	<entry key="service.number">2</entry>
@@ -41,7 +40,6 @@
 	<!-- Name of the first Service -->
 	<entry key="service1.name">LOCAL-EIDAS-XA</entry>
 	<!-- URL of the first Service -->
-	<entry key="service1.url">http://localhost:8900/EidasNode/ColleagueRequest</entry>
 	 <!-- Skew time for Service-->
 	<entry key="service1.skew.notbefore">0</entry>
 	<entry key="service1.skew.notonorafter">0</entry>
@@ -52,7 +50,6 @@
 	<!-- Name of the second Service -->
 	<entry key="service2.name">LOCAL-EIDAS-SE</entry>
 	<!-- URL of the first Service -->
-	<entry key="service2.url">http://localhost:8880/eidas-ps/ColleagueRequest</entry>
 	<entry key="service2.skew.notbefore">0</entry>
 	<entry key="service2.skew.notonorafter">0</entry>
 	<entry key="service2.metadata.url">http://localhost:8880/eidas-ps/ServiceMetadata</entry>
@@ -133,7 +130,10 @@
 		</entry>
 
        <!-- signing response assertion true/false (default false) -->
-        <entry key="response.sign.assertions">true</entry>
+        <entry key="response.sign.assertions">true</entry>	
+        <entry key="request.sign.with.key.value">false</entry>
+        <entry key="response.sign.with.key.value">false</entry>
+	<entry key="assertion.encrypt.with.key.value">false</entry>
 
        <!-- Encryption algorithm -->
         <entry key="data.encryption.algorithm"></entry>
@@ -179,6 +179,8 @@
     <!-- Feature selector for the security header added to the EidasNode-->
     <!-- This feature once disabled, switch off the content security policy-->
     <entry key="security.header.CSP.enabled">true</entry>
+    <!-- uri used for the CSP reporting feature-->
+    <entry key="security.header.CSP.report.uri">http://localhost:8080/EidasNode</entry>
     <!-- Header specific for mozilla browser backwards compatibility : xhr-src: 'self' -->
     <entry key="security.header.CSP.includeMozillaDirectives">true</entry>
     <!-- X-XSS-Protection:1; mode=block -->
@@ -192,14 +194,12 @@
 	<!-- Include CSP fallback debug mode in JSPs -->
 	<entry key="security.header.CSP.fallbackCheckMode">false</entry>
 
-	<!-- value of the SPType to be published in the metadata
-	<entry key="metadata.sector">public</entry>-->
+	<!-- value of the SPType to be published in the metadata-->
+	<entry key="metadata.sector">public</entry>
 
 	<entry key="hashDigest.className">org.bouncycastle.crypto.digests.SHA512Digest</entry>
 
-	<!-- sets the mapprovider for req-rep correlations, antireplay and metadata to distributed - hazelcast needs to be configured for this option -->
-	<entry key="distributedMaps">true</entry>
-	<!-- Retention period for simple metadata cache in seconds, for distributed environment, set in hazelcast.xml -->
+	<!-- Retention period for simple metadata cache in seconds, for distributed environment, set in hazelcastNode.xml -->
 	<entry key="nonDistributedMetadata.retention">86400</entry>
 
 	<!-- check signature of entitydescriptors in metadata -->
@@ -208,9 +208,46 @@
 	<entry key="metadata.restrict.http">false</entry>
 	<!-- SSL/TLS enabled protocols-->
 	<entry key="tls.enabled.protocols">TLSv1.1,TLSv1.2</entry>
-	<!-- SSL/TLS enabled supported ciphers
-	empty means no restriction-->
-	<entry key="tls.enabled.ciphers"></entry>
+		<!-- SSL/TLS enabled cipher suites-->
+
+	<!--java 7 supported ciphers. Please see https://ec.europa.eu/cefdigital/wiki/x/6MXuAw-->
+	<entry key="tls.enabled.ciphers">
+		TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
+		TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
+		TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,
+		TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,
+		TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+		TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+		TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,
+		TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,
+		TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+	</entry>
+
+	<!--java 8 supported ciphers. Please see https://ec.europa.eu/cefdigital/wiki/x/6MXuAw-->
+	<!--<entry key="tls.enabled.ciphers">-->
+		<!--TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,-->
+		<!--TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,-->
+		<!--TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,-->
+		<!--TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,-->
+		<!--TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,-->
+		<!--TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,-->
+		<!--TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,-->
+		<!--TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,-->
+		<!--TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,-->
+		<!--TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,-->
+		<!--TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,-->
+		<!--TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,-->
+		<!--TLS_DHE_RSA_WITH_AES_128_CBC_SHA,-->
+		<!--TLS_DHE_RSA_WITH_AES_256_CBC_SHA,-->
+		<!--TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,-->
+		<!--TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,-->
+		<!--TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,-->
+		<!--TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,-->
+		<!--TLS_EMPTY_RENEGOTIATION_INFO_SCSV-->
+	<!--</entry>-->
+
+    <!-- empty means no restriction-->
+	<!--<entry key="tls.enabled.ciphers"></entry>-->
 	<!-- enforce encryption of the SAML response -->
 	<entry key="response.encryption.mandatory">true</entry>
 
@@ -223,11 +260,16 @@
 	<!-- entry key="service.LoA">http://eidas.europa.eu/LoA/low</entry -->
 	<entry key="service.LoA">http://eidas.europa.eu/LoA/substantial</entry>
 	<!-- entry key="service.LoA">http://eidas.europa.eu/LoA/high</entry -->
-
-
+	
+	
 	<!-- duration of validity for dynamic metadata (in seconds) -->
 	<entry key="metadata.validity.duration">86400</entry>
-	<!-- list of urls corresponding to entity descriptors whose signatures have not to be checked
+	<!-- Remove xsi:type from LOA's metadata's attribute value
+	      This is a temporary configuration parameter-->
+	      
+	<entry key="metadata.hide.loatype">false</entry>
+
+	<!-- list of urls corresponding to entity descriptors whose signatures have not to be checked 
 		the format to use is
 		http://descriptorurl1;https://descriptorurl2;
 	-->
@@ -269,4 +311,11 @@
 	<!--URL for specific-connector response receiver -->
 	<entry key="specific.connector.response.receiver">http://localhost:8900/SpecificConnector/ConnectorResponse</entry>
 
-</properties>
+	<!--eidas protocol version value to be published in the node's metadata URLs-->
+	<entry key="eidas.protocol.version">1.1</entry>
+	<!--eidas application identifier value to be published in the node's metadata URLs-->
+	<entry key="eidas.application.identifier">CEF:eIDAS-ref:2.3</entry>
+
+	<!--eidas application identifier values which failure responses should contain assertion this is a transition property to be removed in the future when transition period ends-->
+	<entry key="include.assertion.fail.response.application.identifiers">CEF:eIDAS-ref:1.4.2;CEF:eIDAS-ref:2.1</entry>
+	</properties>

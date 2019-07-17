@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+#   Copyright (c) 2017 European Commission  
+#   Licensed under the EUPL, Version 1.2 or – as soon they will be 
+#   approved by the European Commission - subsequent versions of the 
+#    EUPL (the "Licence"); 
+#    You may not use this work except in compliance with the Licence. 
+#    You may obtain a copy of the Licence at: 
+#    * https://joinup.ec.europa.eu/page/eupl-text-11-12  
+#    *
+#    Unless required by applicable law or agreed to in writing, software 
+#    distributed under the Licence is distributed on an "AS IS" basis, 
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+#    See the Licence for the specific language governing permissions and limitations under the Licence.
+ -->
 <!--
   ~ Copyright (c) 2008-2013, Hazelcast, Inc. All Rights Reserved.
   ~
@@ -24,12 +38,12 @@
 	</properties>
 	
     <group>
-        <name>tomcat</name>
+        <name>specificCommunicationGL5</name>
         <password>dev-pass</password>
     </group>
-    <management-center enabled="false">http://localhost:8900/mancenter</management-center>
+    <management-center enabled="false">http://localhost:8080/mancenter</management-center>
     <network>
-        <port auto-increment="true" port-count="99">5501</port>
+        <port auto-increment="true" port-count="99">6501</port>
         <outbound-ports>
             <!--
             Allowed port range when connecting to other nodes.
@@ -109,52 +123,7 @@
 
         <empty-queue-ttl>-1</empty-queue-ttl>
     </queue>
-    <map name="antiReplayCacheService">
-        <time-to-live-seconds>300</time-to-live-seconds><!-- 5 minutes -->
-        <eviction-policy>LRU</eviction-policy>
-        <max-size policy="PER_NODE">500</max-size>
-    </map>
-    <map name="antiReplayCacheConnector">
-        <time-to-live-seconds>300</time-to-live-seconds><!-- 5 minutes -->
-        <eviction-policy>LRU</eviction-policy>
-        <max-size policy="PER_NODE">500</max-size>
-    </map>
-    <map name="eidasmetadata">
-        <in-memory-format>BINARY</in-memory-format>
-        <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
-        <eviction-policy>LRU</eviction-policy>
-    </map>
- 
-    <map name="connectorRequestCorrelationCacheService">
-        <in-memory-format>BINARY</in-memory-format>
-        <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
-        <eviction-policy>LRU</eviction-policy>
-    </map>
-    <map name="proxyServiceRequestCorrelationCacheService">
-        <in-memory-format>BINARY</in-memory-format>
-        <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
-        <eviction-policy>LRU</eviction-policy>
-    </map>
-    <map name="specificIdpRequestCorrelationCacheService">
-        <in-memory-format>BINARY</in-memory-format>
-        <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
-        <eviction-policy>LRU</eviction-policy>
-    </map>
-    <map name="specificConnectorLtRequestCorrelationCacheService">
-        <in-memory-format>BINARY</in-memory-format>
-        <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
-        <eviction-policy>LRU</eviction-policy>
-    </map>
-    <map name="specificConsentRequestTokenCorrelationCacheService">
-        <in-memory-format>BINARY</in-memory-format>
-        <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
-        <eviction-policy>LRU</eviction-policy>
-    </map>
-    <map name="specificConsentResponseTokenCorrelationCacheService">
-        <in-memory-format>BINARY</in-memory-format>
-        <time-to-live-seconds>86400</time-to-live-seconds><!-- 1 day -->
-        <eviction-policy>LRU</eviction-policy>
-    </map>
+
     <map name="specificNodeConnectorRequestProviderCacheService">
         <in-memory-format>BINARY</in-memory-format>
         <time-to-live-seconds>300</time-to-live-seconds><!-- 5 minutes -->

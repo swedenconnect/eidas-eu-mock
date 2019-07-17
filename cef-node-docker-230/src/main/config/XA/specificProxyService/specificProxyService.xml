@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright (c) 2017 by European Commission
-  ~
-  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
-  ~ approved by the European Commission - subsequent versions of the
-  ~ EUPL (the "Licence");
-  ~ You may not use this work except in compliance with the Licence.
-  ~ You may obtain a copy of the Licence at:
-  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the Licence is distributed on an "AS IS" basis,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-  ~ implied.
-  ~ See the Licence for the specific language governing permissions and
-  ~ limitations under the Licence.
-  -->
+<!-- 
+#   Copyright (c) 2017 European Commission  
+#   Licensed under the EUPL, Version 1.2 or – as soon they will be 
+#   approved by the European Commission - subsequent versions of the 
+#    EUPL (the "Licence"); 
+#    You may not use this work except in compliance with the Licence. 
+#    You may obtain a copy of the Licence at: 
+#    * https://joinup.ec.europa.eu/page/eupl-text-11-12  
+#    *
+#    Unless required by applicable law or agreed to in writing, software 
+#    distributed under the Licence is distributed on an "AS IS" basis, 
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+#    See the Licence for the specific language governing permissions and limitations under the Licence.
+ -->
 
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
@@ -26,7 +23,7 @@
 	<!-- the IdP's url to where the simple protocol request is send -->
     <!--<entry key="idp.url">http://localhost:8900/IdP/AuthenticateCitizen</entry>-->
 	<!--<entry key="idp.url">http://localhost:8080/cef20-apps/idp/XA</entry>-->
-	<entry key="idp.url">http://localhost:8080/cef20-apps/idp/XA</entry>
+	<entry key="idp.url">http://localhost:8900/IdP/AuthenticateCitizen</entry>
 	<!--specific service URL for processing IdP simple protocol responses-->
 	<entry key="specific.proxyservice.idp.response.service.url">http://localhost:8900/SpecificProxyService/IdpResponse</entry>
 	<!-- the specific service URL for processing IdP simple protocol responses: when specific modules are included in node as JAR-->
@@ -47,4 +44,7 @@
 	<!--secrets and algorithms for response consent token-->
 	<entry key="consent.Response.LightToken.Secret">mySecretResponse</entry>
 	<entry key="consent.Response.LightToken.Algorithm">SHA-256</entry>
+	
+	<entry key="relaystate.randomize.null">false</entry>
+	
 </properties>

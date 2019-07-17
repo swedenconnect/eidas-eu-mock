@@ -107,57 +107,6 @@
                     </execution>
 
                     <execution>
-                        <id>jarcopy</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>resolver</groupId>
-                                    <artifactId>resolver</artifactId>
-                                    <version>2.9.1</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>xalan</groupId>
-                                    <artifactId>serializer</artifactId>
-                                    <version>${eidas.node.serializer.version}</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>xalan</groupId>
-                                    <artifactId>xalan</artifactId>
-                                    <version>2.7.2</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>xerces</groupId>
-                                    <artifactId>xercesImpl</artifactId>
-                                    <version>2.11.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>xml-apis</groupId>
-                                    <artifactId>xml-apis</artifactId>
-                                    <version>1.4.01</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>javax.xml.bind</groupId>
-                                    <artifactId>jaxb-api</artifactId>
-                                    <version>2.3.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>
-                                ${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-
-                    <execution>
                         <id>copy</id>
                         <phase>prepare-package</phase>
                         <goals>
@@ -216,10 +165,6 @@
                                 <chmod perm="755"
                                        dir="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/bin"
                                        includes="**/*.sh"/>
-                                <echo>Rename serializer lib file</echo>
-                                <copy file="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer-${eidas.node.serializer.version}.jar"
-                                      tofile="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer.jar"/>
-                                <delete file="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer-${eidas.node.serializer.version}.jar"/>
                             </target>
                         </configuration>
                         <goals>
@@ -310,7 +255,28 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>buildwars</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <executions>
+                            <execution><!-- Run our version calculation script -->
+                                <id>Version Calculation</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${basedir}/buildwars.sh</executable>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
-
-
 </project>

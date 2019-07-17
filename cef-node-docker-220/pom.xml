@@ -106,7 +106,7 @@
                         </configuration>
                     </execution>
 
-                    <execution>
+<!--                    <execution>
                         <id>jarcopy</id>
                         <phase>generate-resources</phase>
                         <goals>
@@ -155,7 +155,7 @@
                                 ${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib
                             </outputDirectory>
                         </configuration>
-                    </execution>
+                    </execution>-->
 
                     <execution>
                         <id>copy</id>
@@ -216,10 +216,12 @@
                                 <chmod perm="755"
                                        dir="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/bin"
                                        includes="**/*.sh"/>
+<!--
                                 <echo>Rename serializer lib file</echo>
                                 <copy file="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer-${eidas.node.serializer.version}.jar"
                                       tofile="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer.jar"/>
                                 <delete file="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/lib/serializer-${eidas.node.serializer.version}.jar"/>
+-->
                             </target>
                         </configuration>
                         <goals>

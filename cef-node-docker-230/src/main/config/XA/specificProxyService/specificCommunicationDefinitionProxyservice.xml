@@ -22,13 +22,18 @@
 
 	<!-- issuer name -->
 	<entry key="lightToken.proxyservice.request.issuer.name">specificCommunicationDefinitionProxyserviceRequest</entry>
+	<entry key="lightToken.proxyservice.request.node.id">specificProxyService</entry>
 	<!--secrets and algorithms for request consent token-->
 	<entry key="lightToken.proxyservice.request.secret">mySecretProxyserviceRequest</entry>
 	<entry key="lightToken.proxyservice.request.algorithm">SHA-256</entry>
 
 	<!-- issuer name -->
 	<entry key="lightToken.proxyservice.response.issuer.name">specificCommunicationDefinitionProxyserviceResponse</entry>
+	<entry key="lightToken.proxyservice.response.node.id">specificProxyService</entry>
 	<!--secrets and algorithms for response consent token-->
 	<entry key="lightToken.proxyservice.response.secret">mySecretProxyserviceResponse</entry>
 	<entry key="lightToken.proxyservice.response.algorithm">SHA-256</entry>
+
+	<!--The value of incoming Light Response maximum number characters allowed-->
+	<entry key="incoming.lightResponse.max.number.characters">65535</entry>
 </properties>
