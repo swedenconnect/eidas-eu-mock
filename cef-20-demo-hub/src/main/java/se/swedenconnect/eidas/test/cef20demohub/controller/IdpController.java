@@ -69,6 +69,7 @@ public class IdpController {
         //String jsonUsers = GSON.toJson(testUsers.keySet().stream().map(s -> testUsers.get(s)).collect(Collectors.toList()));
         final SPConfigurationProperties.SpConfig spConfig = spConfigurationProperties.getSp().get(spCountry);
         model.addAttribute("spCountry", spCountry);
+        model.addAttribute("appVersion", spConfig.getCefVersion());
         model.addAttribute("spName", spConfig.getIdpName());
         model.addAttribute("natUsers", natUsers);
         model.addAttribute("legalUsers", legalUsers);

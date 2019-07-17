@@ -44,6 +44,7 @@ public class RequestController {
         String spCountry = utils.getCountry(request);
         final SPConfigurationProperties.SpConfig spConfig = spConfigurationProperties.getSp().get(spCountry);
         model.addAttribute("spCountry", spCountry);
+        model.addAttribute("appVersion", spConfig.getCefVersion());
         model.addAttribute("spName", spConfig.getName());
         model.addAttribute("naturalAttr", Arrays.asList(EidasNaturalAttributeFriendlyName.values()));
         model.addAttribute("legalAttr", Arrays.asList(EidasLegalAttributeFriendlyName.values()));
@@ -78,6 +79,7 @@ public class RequestController {
         String spCountry = utils.getCountry(request);
         final SPConfigurationProperties.SpConfig spConfig = spConfigurationProperties.getSp().get(spCountry);
         model.addAttribute("spCountry", spCountry);
+        model.addAttribute("appVersion", spConfig.getCefVersion());
         model.addAttribute("spName", spConfig.getName());
         String jsonResponse = new String(Base64.getDecoder().decode(b64Response), StandardCharsets.UTF_8);
         Response response = responseParser.parseResponse(jsonResponse);
