@@ -34,4 +34,16 @@ export CATALINA_OPTS="\
           -Xms${JVM_START_HEAP}\
 "
 
-${TOMCAT_HOME}/bin/catalina.sh run
+#
+# Debug
+#
+export JPDA_ADDRESS=8000
+export JPDA_TRANSPORT=dt_socket
+
+if [ $DEBUG_MODE == true ]; then
+    echo "Running in debug"
+    ${TOMCAT_HOME}/bin/catalina.sh jpda run
+else
+    echo "Running in normal mode"
+    ${TOMCAT_HOME}/bin/catalina.sh run
+fi

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2018 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- production environment ignite initializer bean - injected into cache providers -->
+    <bean id="eidasIgniteInstanceInitializerNode" class="eu.eidas.auth.cache.IgniteInstanceInitializerNode"
+          init-method="initializeInstance" lazy-init="true">
+        <property name="configFileName" value="#{eidasConfigRepository}igniteNode.xml"/>
+    </bean>
+
+    <!-- Cache provided by Hazelcast for distributed environment -->
+    <!-- Clustered and production ready implementation (use this in real world !) -->
+    <!-- AntiReplay cache -->
+    <bean id="springServiceCMapAntiReplayProviderImpl" class="eu.eidas.auth.cache.ConcurrentCacheServiceIgniteNodeImpl"
+          lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="antiReplayCacheService"/>
+    </bean>
+    <bean id="springConnectorCMapAntiReplayProviderImpl"
+          class="eu.eidas.auth.cache.ConcurrentCacheServiceIgniteNodeImpl" lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="antiReplayCacheConnector"/>
+    </bean>
+    <!-- Correlation maps provided by Ignite for distributed environment, use these in productions! -->
+    <bean id="springConnectorCMapCorProviderImpl" class="eu.eidas.auth.cache.ConcurrentCacheServiceIgniteNodeImpl"
+          lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="connectorRequestCorrelationCacheService"/>
+    </bean>
+    <bean id="springServiceCMapCorProviderImpl" class="eu.eidas.auth.cache.ConcurrentCacheServiceIgniteNodeImpl"
+          lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="proxyServiceRequestCorrelationCacheService"/>
+    </bean>
+    <bean id="springConnectorCMapspecificLightCorProviderImpl"
+          class="eu.eidas.auth.cache.ConcurrentCacheServiceIgniteNodeImpl" lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="specificConnectorLtRequestCorrelationCacheService"/>
+    </bean>
+    <bean id="connectorFlowIdCacheImpl" class="eu.eidas.auth.cache.ConcurrentCacheServiceIgniteNodeImpl" lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="connectorFlowIdCacheService"/>
+    </bean>
+    <bean id="proxyServiceFlowIdCacheImpl" class="eu.eidas.auth.cache.ConcurrentCacheServiceIgniteNodeImpl" lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="proxyServiceFlowIdCacheService"/>
+    </bean>
+    <!--production -->
+    <bean id="metadataCacheImpl" class="eu.eidas.auth.cache.metadata.DistributedMetadataCaching" lazy-init="true">
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+        <property name="cacheName" value="eidasmetadata"/>
+    </bean>
+
+</beans>
