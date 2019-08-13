@@ -27,7 +27,7 @@
         <tomcat.version>9.0.21</tomcat.version>
         <docker.image.prefix>docker.eidastest.se:5000</docker.image.prefix>
         <mockito.version>1.9.5</mockito.version>
-        <eidas.node.version>2.3.0</eidas.node.version>
+        <eidas.node.version>2.3.1</eidas.node.version>
         <eidas.node.serializer.version>2.7.2</eidas.node.serializer.version>
     </properties>
 
