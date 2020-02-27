@@ -1,0 +1,27 @@
+<!--
+  ~
+  ~  Copyright (c) 2019 by European Commission
+  ~
+  ~  Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~  approved by the European Commission - subsequent versions of the
+  ~  EUPL (the "Licence");
+  ~  You may not use this work except in compliance with the Licence.
+  ~  You may obtain a copy of the Licence at:
+  ~  https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the Licence is distributed on an "AS IS" basis,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~  implied.
+  ~  See the Licence for the specific language governing permissions and
+  ~  limitations under the Licence
+  ~
+  -->
+
+<saml2p:Response xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" Consent="urn:oasis:names:tc:SAML:2.0:consent:obtained" Destination="http://cef-eid-build-1:8080/EidasNode/ColleagueResponse" ID="_7POlm0XG6RUlrv67ArCVMe4cjc4IjIO5S2fe74-0yYbPRqbjJYl-v2hE4l6sqA2" InResponseTo="_BWujh-SYHdY7qT35CXZ8y.yk5tSK793zQoiavTqXe.i_AuVw0f9RTOEQOihenSv" IssueInstant="2019-05-24T10:00:32.405Z" Version="2.0">
+    <saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://cef-eid-build-1:8080/EidasNode/ServiceMetadata</saml2:Issuer>
+    <saml2p:Status>
+        <saml2p:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+        <saml2p:StatusMessage>urn:oasis:names:tc:SAML:2.0:status:Success</saml2p:StatusMessage>
+    </saml2p:Status>
+</saml2p:Response>

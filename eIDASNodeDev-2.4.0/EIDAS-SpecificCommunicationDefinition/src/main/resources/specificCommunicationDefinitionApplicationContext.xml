@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <import resource="classpath:specificCommunicationDefinitionEnvironmentContext.xml" />
+
+    <import resource="classpath:jCacheImplSpecificCommunicationBeans.xml" />
+
+    <bean id="specificCommunicationDefinitionConnectorConfigFile" class="java.lang.String">
+        <constructor-arg value="specificCommunicationDefinitionConnector.xml"/>
+    </bean>
+
+    <bean id="specificCommunicationDefinitionConnectorConfigWithPath" class="java.lang.String">
+        <constructor-arg value="file:#{specificConnectorConfigRepository}#{specificCommunicationDefinitionConnectorConfigFile}"/>
+    </bean>
+
+    <bean id="specificCommunicationDefinitionProxyserviceConfigFile" class="java.lang.String">
+        <constructor-arg value="specificCommunicationDefinitionProxyservice.xml"/>
+    </bean>
+
+    <bean id="specificCommunicationDefinitionProxyserviceConfigWithPath" class="java.lang.String">
+        <constructor-arg value="file:#{specificProxyServiceConfigRepository}#{specificCommunicationDefinitionProxyserviceConfigFile}"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="order" value="0"/>
+        <property name="locations">
+            <list>
+                <ref bean="specificCommunicationDefinitionConnectorConfigWithPath"/>
+                <ref bean="specificCommunicationDefinitionProxyserviceConfigWithPath"/>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8" />
+    </bean>
+
+    <bean id="springManagedSpecificConnectorCommunicationService" class="eu.eidas.specificcommunication.protocol.impl.SpecificConnectorCommunicationServiceImpl" scope="prototype">
+        <constructor-arg index="0" type="java.lang.String" value="${lightToken.connector.request.issuer.name}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${lightToken.connector.request.secret}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${lightToken.connector.request.algorithm}"/>
+        <constructor-arg index="3" type="java.lang.String" value="${lightToken.connector.response.issuer.name}"/>
+        <constructor-arg index="4" type="java.lang.String" value="${lightToken.connector.response.secret}"/>
+        <constructor-arg index="5" type="java.lang.String" value="${lightToken.connector.response.algorithm}"/>
+    </bean>
+
+    <bean id="springManagedSpecificProxyserviceCommunicationService" class="eu.eidas.specificcommunication.protocol.impl.SpecificProxyserviceCommunicationServiceImpl" scope="prototype">
+        <constructor-arg index="0" type="java.lang.String" value="${lightToken.proxyservice.request.issuer.name}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${lightToken.proxyservice.request.secret}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${lightToken.proxyservice.request.algorithm}"/>
+        <constructor-arg index="3" type="java.lang.String" value="${lightToken.proxyservice.response.issuer.name}"/>
+        <constructor-arg index="4" type="java.lang.String" value="${lightToken.proxyservice.response.secret}"/>
+        <constructor-arg index="5" type="java.lang.String" value="${lightToken.proxyservice.response.algorithm}"/>
+    </bean>
+
+    <bean id="springManagedSpecificConnectorCommunicationServiceExtension" class="eu.eidas.specificcommunication.protocol.impl.SpecificConnectorCommunicationServiceExtensionImpl" scope="prototype">
+        <constructor-arg index="0" type="java.lang.String" value="${lightToken.connector.request.node.id}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${lightToken.connector.request.secret}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${lightToken.connector.request.algorithm}"/>
+        <constructor-arg index="3" type="java.lang.String" value="${lightToken.connector.response.node.id}"/>
+        <constructor-arg index="4" type="java.lang.String" value="${lightToken.connector.response.secret}"/>
+        <constructor-arg index="5" type="java.lang.String" value="${lightToken.connector.response.algorithm}"/>
+    </bean>
+
+    <bean id="springManagedSpecificProxyserviceCommunicationServiceExtension" class="eu.eidas.specificcommunication.protocol.impl.SpecificProxyserviceCommunicationServiceExtensionImpl" scope="prototype">
+        <constructor-arg index="0" type="java.lang.String" value="${lightToken.proxyservice.request.node.id}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${lightToken.proxyservice.request.secret}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${lightToken.proxyservice.request.algorithm}"/>
+        <constructor-arg index="3" type="java.lang.String" value="${lightToken.proxyservice.response.node.id}"/>
+        <constructor-arg index="4" type="java.lang.String" value="${lightToken.proxyservice.response.secret}"/>
+        <constructor-arg index="5" type="java.lang.String" value="${lightToken.proxyservice.response.algorithm}"/>
+    </bean>
+
+    <bean id="specificNodeConnectorRequestCache" class="eu.eidas.specificcommunication.CommunicationCache">
+        <constructor-arg ref="specificNodeConnectorRequestCacheImpl"/>
+    </bean>
+    <bean id="nodeSpecificProxyserviceRequestCache" class="eu.eidas.specificcommunication.CommunicationCache">
+        <constructor-arg ref="nodeSpecificProxyserviceRequestCacheImpl"/>
+    </bean>
+    <bean id="specificNodeProxyserviceResponseCache" class="eu.eidas.specificcommunication.CommunicationCache">
+        <constructor-arg ref="specificNodeProxyserviceResponseCacheImpl"/>
+    </bean>
+    <bean id="nodeSpecificConnectorResponseCache" class="eu.eidas.specificcommunication.CommunicationCache">
+        <constructor-arg ref="nodeSpecificConnectorResponseCacheImpl"/>
+    </bean>
+
+    <bean id="incomingLightRequestValidator" class="eu.eidas.specificcommunication.protocol.validation.IncomingLightRequestValidator">
+        <constructor-arg index="0" value="${incoming.lightRequest.max.number.characters:65535}"/>
+    </bean>
+
+    <bean id="incomingLightResponseValidator" class="eu.eidas.specificcommunication.protocol.validation.IncomingLightResponseValidator">
+        <constructor-arg index="0" value="${incoming.lightResponse.max.number.characters:65535}"/>
+    </bean>
+</beans>

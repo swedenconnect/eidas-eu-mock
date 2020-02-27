@@ -1,0 +1,113 @@
+<!--
+  ~ Copyright (c) 2018 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>eidas-specific-communication-definition</artifactId>
+    <packaging>jar</packaging>
+    <name>eIDAS Specific Communication Definition</name>
+    <description>Defines and implements the communication protocol to be used between specific and node modules.
+    </description>
+    <parent>
+        <groupId>eu.eidas</groupId>
+        <artifactId>eidas-parent</artifactId>
+        <version>2.4.0</version>
+        <relativePath>../EIDAS-Parent/pom.xml</relativePath>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-jcache-dev</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>specificCommunicationJcacheIgnite</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>eu.eidas</groupId>
+                    <artifactId>eidas-jcache-ignite-specific-communication</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>specificCommunicationJcacheHazelcast</id>
+            <dependencies>
+                <dependency>
+                    <groupId>eu.eidas</groupId>
+                    <artifactId>eidas-jcache-hazelcast-specific-communication</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>specificCommunicationJcacheProvidedImpl</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>specificCommunicationJcacheDev</id>
+            <!-- <activation> -->
+                <!-- <property> -->
+                    <!-- <name>specificJar</name> -->
+                <!-- </property> -->
+            <!-- </activation> -->
+            <dependencies>
+                <dependency>
+                    <groupId>eu.eidas</groupId>
+                    <artifactId>eidas-jcache-dev-specific-communication</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+</project>
