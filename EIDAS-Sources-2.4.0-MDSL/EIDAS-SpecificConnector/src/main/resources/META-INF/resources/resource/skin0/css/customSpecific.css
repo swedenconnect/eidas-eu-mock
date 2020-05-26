@@ -1,0 +1,774 @@
+/*
+ * Copyright (c) 2017 by European Commission
+ *
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be
+ * approved by the European Commission - subsequent versions of the
+ * EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence.
+ * You may obtain a copy of the Licence at:
+ * https://joinup.ec.europa.eu/page/eupl-text-11-12
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+ */
+
+/*
+ _______  _______  _______             _______ _________ ______          
+(  ____ \(  ____ \(  ____ \           (  ____ \\__   __/(  __  \         
+| (    \/| (    \/| (    \/           | (    \/   ) (   | (  \  )        
+| |      | (__    | (__       _____   | (__       | |   | |   ) |   _____
+| |      |  __)   |  __)     (_____)  |  __)      | |   | |   | |  (_____)
+| |      | (      | (                 | (         | |   | |   ) |        
+| (____/\| (____/\| )                 | (____/\___) (___| (__/  )        
+(_______/(_______/|/                  (_______/\_______/(______/         
+                                                                         
+ _______ _________ ______   _______  _______
+(  ____ \\__   __/(  __  \ (  ___  )(  ____ \
+| (    \/   ) (   | (  \  )| (   ) || (    \/
+| (__       | |   | |   ) || (___) || (_____
+|  __)      | |   | |   | ||  ___  |(_____  )
+| (         | |   | |   ) || (   ) |      ) |
+| (____/\___) (___| (__/  )| )   ( |/\____) |
+(_______/\_______/(______/ |/     \|\_______)
+
+*/
+
+/*===================================STRUCTURE===================================*/
+/*===============================================================================*/
+ html, body {
+     width: 100%;
+}
+ @media (min-width: 769px) {
+     html, body {
+         height: 100%;
+         overflow: hidden;
+    }
+}
+ *, *:after, *:before {
+     box-sizing: border-box;
+     outline: none
+}
+ .rel, *, *:after, *:before {
+     position: relative
+}
+/*--MAIN--*/
+ main {
+     display: block;
+     width: 100%;
+     height: 100%;
+     padding: 1em;
+}
+ @media (min-width: 769px) {
+     main {
+         padding: 0
+    }
+}
+ @media (max-width: 769px) {
+     main {
+         padding: 0;
+         *zoom:1;
+         display: -webkit-box;
+         display: -webkit-flex;
+         display: -ms-flexbox;
+         display: flex;
+         -webkit-flex-wrap: wrap;
+         -ms-flex-wrap: wrap;
+         flex-wrap: wrap;
+         -webkit-box-pack: center;
+         -webkit-justify-content: center;
+         -ms-flex-pack: center;
+         justify-content: center
+    }
+     main:after, main:before {
+         content: ""
+    }
+     main:after {
+         clear: both
+    }
+}
+/*--COLUMNS--*/
+ .col-left, .col-right {
+     width: 100%
+}
+ @media (min-width: 769px) {
+     .col-left {
+         left: 0;
+    }
+     .col-right {
+         left: 50%;
+    }
+     .col-left, .col-right {
+         position: absolute;
+         top: 0;
+         right: auto;
+         bottom: auto;
+         width: 50%;
+         height: 100%;
+         overflow: hidden
+    }
+}
+ .wrapper, .col-left-inner, .col-right-inner {
+     top: 0;
+     bottom: 0;
+     width: 100%;
+     height: 100%
+}
+ .col-left-inner {
+     left: 0
+}
+ .col-right-inner {
+     right: 0
+}
+ @media (max-width: 769px) {
+     .wrapper {
+         top: auto;
+         right: auto;
+         bottom: auto;
+         left: auto;
+         float: left;
+         margin: 0;
+    }
+     .col-right-inner {
+         padding: 0 2em;
+    }
+}
+ @media (min-width: 769px) {
+     .wrapper {
+         position: absolute;
+         z-index: 1;
+    }
+     .col-right {
+         z-index: 1
+    }
+     .col-right-inner {
+         padding: 0 2em 0 3em;
+         width: 100%;
+         height: 100%;
+         overflow-y: scroll;
+         -webkit-overflow-scrolling: touch;
+    }
+}
+ @media (min-width: 1281px) {
+     .col-right-content {
+         margin: auto;
+         width: 90%;
+    }
+}
+ @media (max-width: 1281px) {
+     .col-right-content {
+         margin: auto;
+         width: 100%;
+    }
+}
+ .illustration {
+     width: 100%;
+     height: 0;
+     padding-top: 100%;
+     background-position: 50% 50%;
+     background-repeat: no-repeat;
+     background-size: cover;
+}
+ @media (min-width: 769px) {
+     .illustration {
+         height: 100%;
+         padding-top: 0;
+    }
+}
+ @media (max-width: 769px) {
+     .col-left-inner {
+         padding: 60px 0;
+         height: auto;
+         background-position: 50% 50%;
+         background-size: cover;
+    }
+     .illustration {
+         display: none;
+    }
+}
+/*----------------------------FONT---------------------------*/
+/*-----------------------------------------------------------*/
+ @font-face {
+     font-family: 'icomoon';
+     src: url('../fonts/icomoon.eot?rz0cfw');
+     src: url('../fonts/icomoon.eot?rz0cfw#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?rz0cfw') format('truetype'), url('../fonts/icomoon.woff?rz0cfw') format('woff'), url('../fonts/icomoon.svg?rz0cfw#icomoon') format('svg');
+     font-weight: normal;
+     font-style: normal;
+}
+ [class^="icon-"], [class*=" icon-"] {
+     font-family: 'icomoon';
+     speak: none;
+     font-style: normal;
+     font-weight: normal;
+     font-variant: normal;
+     text-transform: none;
+     line-height: 1;
+    /* Better Font Rendering =========== */
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+}
+ .icon-arrow-thin:before {
+     content: "\e800";
+}
+ .icon-arrow-left:before {
+     content: "\e801";
+}
+ .icon-arrow-right:before {
+     content: "\e802";
+}
+ .icon-cancel:before {
+     content: "\e803";
+}
+ .icon-check:before {
+     content: "\e804";
+}
+ h1, h2, h3, h4, h5, h6, label, .btn {
+     font-weight: bold;
+     letter-spacing: 0.05em;
+}
+ html {
+     font-size: 100%
+}
+ @media (min-width: 1281px) {
+     body {
+         font-size: 18px;
+    }
+}
+ @media (max-width: 1280px) {
+     body {
+         font-size: 16px;
+    }
+}
+ @media (max-width: 1024px) {
+     body {
+         font-size: 15px;
+    }
+}
+/*====================================CUSTOMS====================================*/
+/*===============================================================================*/
+ html, body {
+    /* background: white;
+     */
+     color: black;
+}
+ a, a:link, a:active, a:visited {
+     color: #006fb4;
+     text-decoration: none;
+     transition: all 0.2s ease;
+}
+ a:hover {
+     color: #006fb4;
+     text-decoration: underline;
+}
+ h3 {
+     color: #006fb4;
+}
+ h3:after {
+     background: #006fb4;
+}
+/*BTN*/
+ .btn {
+     color: #fff;
+     background: #006fb4;
+     border-color: #006fb4;
+}
+ .btn:hover {
+     color: #fff;
+     background: #00b3ff;
+     border-color: #00b3ff;
+     text-decoration:underline;
+}
+ .btn.active.focus, .btn.active:focus, .btn.active:hover, .btn:active.focus, .btn:active:focus, .btn:active:hover {
+    border-color: black;
+}
+ .btn.focus, .btn:focus {
+     border-color: black;
+     -moz-box-shadow: 0px 0px 0px -6px #d9f3f5;
+     -webkit-box-shadow: 0px 0px 0px -6px #d9f3f5;
+     box-shadow: 0px 0px 0px -6px #d9f3f5;
+}
+ .btn.btn-opposite {
+     color: #006fb4;
+     border-color: #006fb4;
+}
+ .btn.btn-opposite:hover {
+     color: #00b3ff;
+     border-color: #00b3ff;
+     text-decoration:underline;
+}
+ .col-left {
+     background: #006fb4;
+}
+ .col-right {
+    background:white;
+     border-top:1vh solid #006fb4;
+     border-right:1vh solid #006fb4;
+     border-bottom:1vh solid #006fb4;
+}
+ @media (max-width: 768px) {
+     .col-right {
+         border:1vh solid #006fb4;
+    }
+}
+ .demo-name, .eidas {
+     position:relative;
+     color: white;
+     background-color: #006fb4;
+}
+.demo-name {
+     margin-left:4vh;
+}
+ .demo-name:before, .eidas:after {
+     z-index:-1;
+     display:inline-block;
+     position:absolute;
+     content:" ";
+     margin:0 auto;
+}
+ .demo-name:before {
+     right:0;
+}
+ .eidas:after {
+     left:0;
+}
+ @media (orientation: landscape) {
+     .eidas:after {
+         padding-top:3vw;
+         bottom:-4vw;
+         width:13vw;
+         height:13vw;
+         background-color: white;
+         border:1vw solid white;
+    }
+     .demo-name:before {
+         padding-top:3vw;
+         bottom:-4vw;
+         width: 0;
+         height: 0;
+         border-left: 7vw solid transparent;
+         border-right: 7vw solid transparent;
+         border-bottom: 13vw solid white;
+    }
+}
+ @media (orientation: portrait) {
+     .eidas:after {
+         padding-top:3vh;
+         bottom:-4vh;
+         width:13vh;
+         height:13vh;
+         background-color: white;
+         border:1vh solid white;
+    }
+     .demo-name:before {
+         padding-top:3vh;
+         bottom:-4vh;
+         width: 0;
+         height: 0;
+         border-left: 7vh solid transparent;
+         border-right: 7vh solid transparent;
+         border-bottom: 13vh solid white;
+    }
+}
+/*-------------------------SELECTION-------------------------*/
+/*-----------------------------------------------------------*/
+ ::-moz-selection {
+     background:black;
+     color:#fff;
+     text-shadow:none;
+}
+ ::selection {
+     background: black;
+     color: #fff;
+     text-shadow: none;
+}
+/*-----------------------------LEFT--------------------------*/
+/*-----------------------------------------------------------*/
+ .v-align {
+     position: absolute;
+     top: 0;
+     height: 100vh;
+     width: 50vw;
+     z-index: 10;
+     display: table;
+}
+ h1.baseline {
+     margin: auto;
+     width: 100%;
+     padding: 0 1.5em;
+     font-size: 3em;
+     line-height: 120%;
+     text-align: center;
+     display: table-cell;
+     vertical-align: middle;
+}
+ h1.baseline span {
+     text-transform: lowercase;
+}
+ @media (max-width: 768px) {
+     .v-align {
+         position: relative;
+         height: auto;
+         width: 100%;
+    }
+     h1.baseline {
+         padding-top: 20px;
+         font-size: 2.5em;
+    }
+}
+/*-----------------------------RIGHT-------------------------*/
+/*-----------------------------------------------------------*/
+ .col-right {
+     display: inline-block;
+     position: relative;
+     z-index: 1;
+}
+ .col-right:before {
+     position: absolute;
+     z-index: -1;
+     opacity: 1;
+     background-image: inherit;
+     background-position: bottom left;
+     background-repeat: no-repeat;
+     content: '';
+     height: 100%;
+     width: 100%;
+}
+/*------ Menu ------*/
+ .menu-top {
+     float: right;
+     margin-top: 20px;
+}
+ .menu-top .item {
+     position: relative;
+     float: left;
+     display: block;
+     width: 36px;
+     height: 36px;
+     font-family: 'icomoon';
+     font-weight: normal;
+     font-style: normal;
+     text-align: center;
+     color: inherit;
+     border: 1px solid transparent;
+     cursor: pointer;
+}
+ .menu-top .item:hover {
+     border: 1px solid #333;
+     text-decoration: none
+}
+ .menu-top .text-minus {
+     padding-top: 5px;
+}
+ .menu-top .text-minus:after {
+     content: "\e903";
+     font-size: 0.6em;
+}
+ .menu-top .text-plus {
+     padding-top: 5px;
+     border-left: none;
+}
+ .menu-top .text-plus:after {
+     content: "\e903";
+}
+ .menu-top .contrast {
+     margin-left: 10px;
+     padding-top: 5px;
+}
+ .menu-top .contrast:after {
+     content: "\e902";
+}
+/*------ Heading ------*/
+ h1.title, h1.title span, h2.sub-title, h3 {
+     line-height: 110%;
+}
+ h1.title {
+     margin-top: 40px;
+     font-size: 1.8em;
+     text-align: center;
+}
+ h1.title span {
+     display: block;
+     font-size: 60%;
+}
+ h1.title span span {
+     display: inline;
+     font-size: inherit;
+     text-transform: lowercase;
+}
+ h2.sub-title {
+     margin-top: 5px;
+     font-size: 1.2em;
+}
+ h3 {
+     margin-top: 0;
+     margin-bottom: 20px;
+     padding-bottom: 15px;
+     font-size: 1.2em;
+}
+ h3:after {
+     content: "";
+     position: absolute;
+     bottom: -2px;
+     left: 0;
+     width: 50px;
+     height: 2px;
+}
+/*------ List ------*/
+ ul li {
+     padding: 3px 0 3px 0;
+     border-bottom: 1px solid #8a8a8a;
+}
+ ul li:last-child {
+     border-bottom: none;
+}
+ ul.check li {
+     padding-left: 25px;
+}
+ ul.check li:before {
+     position: absolute;
+     left: 0;
+     font-family: 'icomoon';
+     content: "\e901";
+     font-size: 0.5em;
+     line-height: 3em;
+     color: #B3B3B3;
+}
+ ul.resume li strong {
+     display: block;
+}
+ ul.resume li span, ul.check li span {
+     font-size: 85%;
+}
+/*------ Switchery = Checkbox Switch Toogle ------*/
+ .switchery {
+     float: right;
+}
+ ul.toogle-switch li {
+     padding: 7px 0;
+     border-bottom: 1px solid #b3b3b3;
+}
+ ul.toogle-switch li:last-child {
+     border-bottom: none;
+}
+ ul.toogle-switch li:before, ul.toogle-switch li:after {
+     display: table;
+     content: " ";
+     clear: both;
+}
+ ul.toogle-switch li p {
+     float: left;
+     margin: 0;
+     width: 75%;
+}
+/*------ Checkbox custom ------*/
+ .checkbox {
+     margin-top: 0;
+}
+ .checkbox-custom input[type="checkbox"]:checked + label::before {
+     background-color: #006fb4;
+     border-color: #006fb4;
+}
+ .checkbox label::after {
+     color: #fff !important;
+}
+ .checkbox-custom label::before, .checkbox-custom label::after, .checkbox-custom input[type=checkbox] {
+     width: 20px !important;
+     height: 20px !important;
+}
+ .checkbox-custom label::after {
+     line-height: 20px;
+     margin-left: -20px;
+     text-align: center;
+}
+ .checkbox-custom input[type=checkbox] {
+     cursor: pointer;
+}
+/*------ Button ------*/
+ .box-btn {
+     margin: 20px 0 0 0;
+     text-align: right;
+}
+/*BTN*/
+ .btn {
+     font-weight: bold;
+     transition: all 0.2s ease;
+     border-width:2px;
+     border-radius: 0;
+     padding: 10px 15px;
+}
+ .btn:hover {
+     text-shadow: none;
+}
+ .btn.focus, .btn:focus {
+     text-shadow: none;
+}
+ .btn.btn-opposite {
+     background: transparent;
+}
+ .btn.btn-opposite:hover {
+     background: transparent;
+}
+/*------ Information Message ------*/
+ .information-message {
+     padding: 5px 10px;
+     font-weight: bold;
+     border: 1px dashed #8a8a8a;
+}
+/*------ Steps ------*/
+ .step-number {
+     display: block;
+     margin: 20px auto 0 auto;
+     width: 40px;
+     height: 40px;
+     font-size: 26px;
+     font-weight: 700;
+     text-shadow: none;
+     text-align: center;
+     color: #fff;
+     background: #006fb4;
+     border-radius: 50%;
+}
+ .step-status {
+     text-align: right;
+}
+ .step-status span {
+     font-size: 1.8em;
+}
+/*------ Footer ------*/
+ .footer {
+     margin-top: 20px;
+     width: 100%;
+}
+ .footer .logo-cef {
+     margin: 10px auto;
+     display: block;
+}
+/*=======================================MODAL===================================*/
+/*===============================================================================*/
+ .modal-header {
+     padding: 10px 10px 20px;
+     border-bottom: 1px solid #bcbcbc;
+}
+ .modal-footer {
+     border-top: 1px solid #bcbcbc;
+}
+ .btn.btn-info {
+     padding: 0;
+     width: 18px;
+     height: 18px;
+     font-size: 12px;
+     font-weight: bold;
+     line-height: 12px;
+}
+ .btn-info:focus {
+     color: #fff;
+     background-color: #7C5BFD;
+     border-color: black;
+}
+/*====================================FEATURES===================================*/
+/*===============================================================================*/
+/*------ List 1 column------*/
+ .one-column {
+     float: none;
+     margin: 0 auto;
+}
+/*==================================HELPER CLASS=================================*/
+/*===============================================================================*/
+ .text-error {
+     color: #F44336;
+}
+ .text-highlight {
+     color: #F44336;
+}
+ .text-lowercase {
+     text-transform: lowercase !important;
+}
+ .wraps {
+     white-space: pre-wrap
+}
+/*===================================CONTRAST===============================+====*/
+/*===============================================================================*/
+ body.contrast {
+     background-color: black;
+     color: #fff !important;
+}
+ body.contrast h3 {
+     color: #fff !important;
+}
+ body.contrast h3:after {
+     background: #fff;
+}
+/*------ Arrow ------*/
+ body.contrast .arrow {
+     color:black;
+     background-color:white;
+}
+/*------ Right ------*/
+ body.contrast .col-right {
+    background: black;
+}
+/*------ Menu ------*/
+ body.contrast .menu-top .item {
+     border: 1px solid transparent;
+}
+ body.contrast .menu-top .item:hover {
+     border: 1px solid #fff;
+}
+/*------ Helper class ------*/
+ body.contrast .text-error, body.contrast .text-highlight {
+     color: #fff;
+}
+/*------ Button ------*/
+ body.contrast .btn {
+     color: black;
+     background: #fff;
+     border-color: #fff;
+}
+ body.contrast .btn.active.focus, body.contrast .btn.active:focus, body.contrast .btn.active:hover, body.contrast .btn:active.focus, body.contrast .btn:active:focus, body.contrast .btn:active:hover {
+     color: #fff;
+     background-color: black;
+     border-color: #fff;
+}
+ body.contrast .btn.focus, body.contrast .btn:focus {
+     color: #fff;
+     background-color: black;
+     border-color: #fff;
+}
+ body.contrast .btn.btn-opposite {
+     color: #fff;
+     background-color: black;
+     border-color: #fff;
+}
+/*------ Modal ------*/
+ body.contrast .btn-info:hover {
+     color: white;
+     background-color: transparent;
+     border-color: inherit;
+}
+ body.contrast .modal {
+     background-color: rgba(255, 255, 255, 0.3) !important;
+}
+ body.contrast .modal-content {
+     background-color: black;
+}
+ body.contrast .close {
+     color: #FFF;
+     opacity: 1;
+}
+ body.contrast .close:focus, body.contrast .close:hover {
+     opacity: 0.5;
+}
+/*===================================HACK IE9===============================+====*/
+/*===============================================================================*/
+ .ie9 .menu-top {
+     display: none
+}
+/*===================================Javascript ===================================*/
+/* initially hide and disable any javascript required content
+/*===============================================================================*/
+ .jsOK {
+     display: none;
+}

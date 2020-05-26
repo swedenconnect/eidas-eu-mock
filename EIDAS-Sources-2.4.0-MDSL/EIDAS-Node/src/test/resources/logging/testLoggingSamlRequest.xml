@@ -1,0 +1,23 @@
+<!--
+  ~
+  ~  Copyright (c) 2019 by European Commission
+  ~
+  ~  Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~  approved by the European Commission - subsequent versions of the
+  ~  EUPL (the "Licence");
+  ~  You may not use this work except in compliance with the Licence.
+  ~  You may obtain a copy of the Licence at:
+  ~  https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the Licence is distributed on an "AS IS" basis,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~  implied.
+  ~  See the Licence for the specific language governing permissions and
+  ~  limitations under the Licence
+  ~
+  -->
+
+<saml2p:AuthnRequest xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" AssertionConsumerServiceURL="http://sp.local:9090/SP/ReturnPage" Consent="urn:oasis:names:tc:SAML:2.0:consent:unspecified" Destination="http://peps.local:9090/PEPS/ServiceProvider" ForceAuthn="true" ID="_d048cb317813845b32a7a2b75f3bad59" IsPassive="false" IssueInstant="2011-11-30T16:09:57.824Z" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" ProviderName="DEMO-SP" Version="2.0">
+    <saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://S-PEPS.gov.xx</saml2:Issuer>
+</saml2p:AuthnRequest>

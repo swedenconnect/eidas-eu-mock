@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2019 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="igniteNode.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="igniteInstanceName" value="stillAnotherTestIgniteInstance"/>
+
+        <property name="cacheConfiguration">
+            <list>
+                <!-- Partitioned cache example configuration (Atomic mode). -->
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="stillAnotherDemoCacheName"/>
+                    <property name="atomicityMode" value="ATOMIC"/>
+                    <property name="backups" value="1"/>
+                    <property name="expiryPolicyFactory" ref="defaultCreatedExpiryPolicy"/>
+                </bean>
+            </list>
+        </property>
+
+        <!-- Explicitly configure TCP discovery SPI to provide list of initial nodes. -->
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <!--
+                        Ignite provides several options for automatic discovery that can be used
+                        instead os static IP based discovery. For information on all options refer
+                        to our documentation: http://apacheignite.readme.io/docs/cluster-config
+                    -->
+                    <!-- Static IP finder enables static-based discovery of initial nodes. -->
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <!--
+                                Explicitly specifying address of a local node to let it start and
+                                operate normally even if there is no more nodes in the cluster.
+                                You can also optionally specify an individual port or port range.
+                                -->
+                                <value>127.0.0.1</value>
+
+                                <!--
+                                IP Address and optional port range of a remote node.
+                                You can also optionally specify an individual port.
+                                -->
+                                <!-- In distributed environment, replace with actual host IP address. -->
+                                <value>127.0.0.1:48520..48529</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+
+        <!-- uncomment the following section to set, e.g., log4j as the logging library to be used-->
+        <!--property name="gridLogger">
+          <bean class="org.apache.ignite.logger.log4j.Log4JLogger">
+            <constructor-arg type="java.lang.String" value="log4j.xml"/>
+          </bean>
+        </property-->
+
+        <!-- how frequently Ignite will output basic node metrics into the log-->
+        <property name="metricsLogFrequency" value="#{60 * 10 * 1000}"/>
+    </bean>
+
+    <!--
+        Defines expiry policy based on moment of creation for ignite cache.
+    -->
+    <bean id="defaultCreatedExpiryPolicy" class="javax.cache.expiry.CreatedExpiryPolicy" factory-method="factoryOf" scope="prototype">
+        <constructor-arg>
+            <bean class="javax.cache.expiry.Duration">
+                <constructor-arg value="SECONDS"/>
+                <constructor-arg value="1"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+</beans>
