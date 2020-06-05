@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:PDPDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"><md:Extensions/><md:AuthzService/><md:AuthzService/><md:AuthzService/><md:AssertionIDRequestService/><md:AssertionIDRequestService/><md:NameIDFormat/></md:PDPDescriptor>

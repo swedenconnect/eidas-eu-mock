@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <!--
+
+    Configuration repository path either from ENVIRONMENT variable or COMMAND LINE -D option of
+            IDP_CONFIG_REPOSITORY
+         For any other option - like hard-coded values - modify this file.
+          Hard coding example:
+
+    <bean id="idpConfigRepository" class="java.lang.String">
+        <constructor-arg value="c:/PGM/projects/configEidas/glassfish/idp/" />
+    </bean>
+
+    -->
+
+    <bean id="idpConfigRepository" class="java.lang.String">
+        <constructor-arg value="#{ systemProperties['IDP_CONFIG_REPOSITORY'] ?: systemEnvironment['IDP_CONFIG_REPOSITORY'] }" />
+    </bean>
+
+</beans>

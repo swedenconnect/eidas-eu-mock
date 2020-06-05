@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- weblogic.xml -->
+<weblogic-web-app>
+    <container-descriptor>
+        <prefer-web-inf-classes>false</prefer-web-inf-classes>
+        <prefer-application-packages>
+            <package-name>org.bouncycastle.*</package-name>
+            <package-name>org.apache.commons.*</package-name>
+            <package-name>org.joda.time.*</package-name>
+            <package-name>org.opensaml.*</package-name>
+            <package-name>org.opensaml.common.*</package-name>
+            <package-name>org.opensaml.saml2.*</package-name>
+            <package-name>org.opensaml.xml.*</package-name>
+            <!-- guava -->
+            <package-name>com.google.common.*</package-name>
+        </prefer-application-packages>
+    </container-descriptor>
+    <session-descriptor>
+        <cookie-name>SESSIONID</cookie-name>
+		<cookie-path>/IdP</cookie-path>
+    </session-descriptor>
+    <context-root>/IdP</context-root>
+</weblogic-web-app>

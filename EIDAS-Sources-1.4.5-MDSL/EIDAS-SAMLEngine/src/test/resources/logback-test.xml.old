@@ -1,0 +1,67 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are  by default assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{dd MMM yyyy; HH:mm:ss.SSS} [%thread] %-5level %logger{66} -%X{remoteHost} %X{sessionId}- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="StorkLogger" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--<param name="Threshold" value="INFO" />
+        <param name="File" value="stork.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="500KB" />
+        <param name="MaxBackupIndex" value="1" />
+
+        &lt;!&ndash; Rollover at midnight each day &ndash;&gt;
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+
+        <layout class="org.apache.log4j.PatternLayout">
+            &lt;!&ndash; The default pattern: Date Priority [Category] Message\n &ndash;&gt;
+            <param name="ConversionPattern" value="%d %-5p [%c] %m%n" />
+        </layout>-->
+        <!-- Support multiple-JVM writing to the same log file -->
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>stork.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <logger name="org.opensaml">
+        <level value="ERROR" />
+    </logger>
+    <logger name="com.opensymphony.xwork2">
+        <level value="warn"/>
+    </logger>
+    <logger name=" org.apache.struts2">
+        <level value="warn"/>
+    </logger>
+    <logger name="org.opensaml">
+        <level value="ERROR" />
+    </logger>
+
+    <logger name="eu.stork">
+        <level value="trace" />
+    </logger>
+
+    <logger name="eu.stork.communication.requests">
+        <level value="info" />
+        <appender-ref ref="StorkLogger" />
+    </logger>
+
+    <logger name="eu.stork.communication.responses">
+        <level value="info" />
+        <appender-ref ref="StorkLogger" />
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

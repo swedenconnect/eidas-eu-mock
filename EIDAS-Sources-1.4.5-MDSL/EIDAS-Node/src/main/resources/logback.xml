@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  ~ Copyright (c) 2015 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or - as soon they will be approved by
+  ~ the European Commission - subsequent versions of the EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  ~
+  ~ This product combines work with different licenses. See the "NOTICE" text
+  ~ file for details on the various modules and licenses.
+  ~ The "NOTICE" text file is part of the distribution. Any derivative works
+  ~ that you distribute must include a readable copy of the "NOTICE" text file.
+  ~
+  ~ @author vanegdi
+  -->
+
+<!--
+        NOTE :
+            the environment variable LOG_HOME could be set to indicate the directory containing the log files
+            the log configuration files will be scanned periodically each 30 minutes
+            LOG level is defined as below :
+                Default level : INFO
+                    Console appender (STDOUT)   : inherits from default
+                    eIDASNodeDetail appender        : INFO
+                    eIDASNodeSystem appender        : INFO
+                    eIDASNodeSecurity appender      : INFO
+-->
+
+<configuration scan="true" scanPeriod="30 minutes">
+
+    <!--
+        This define the CONSOLE appender - the level of the console appender is based on the root level
+    -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+        This define the FULL Detailed log file appender - the level of the console appender is INFO by default
+    -->
+    <appender name="eIDASNodeDetail" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/eIDASNodeDetail.log</file>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+        </encoder>
+        <param name="Append" value="true" />
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>500KB</maxFileSize>
+        </triggeringPolicy>
+        <!-- Support multiple-JVM writing to the same log file -->
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/eIDASNodeDetail.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--
+        This define the SYSTEM Detailed log file appender - the default Filter is inherited from root level
+    -->
+    <appender name="eIDASNodeSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/eIDASNodeSystem.log</file>
+
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+                <marker>SYSTEM</marker>
+            </evaluator>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+        </filter>
+        <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+        </encoder>
+        <param name="Append" value="true" />
+        <!-- Support multiple-JVM writing to the same log file -->
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/eIDASNodeSystem.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--
+        This define the SECURITY Detailed log file appender - the default Filter is inherited from root level
+    -->
+    <appender name="eIDASNodeSecurity" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/eIDASNodeSecurity.log</file>
+
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+                <marker>SECURITY_SUCCESS</marker>
+                <marker>SECURITY_WARNING</marker>
+                <marker>SECURITY_FAILURE</marker>
+            </evaluator>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+        </filter>
+        <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+        </encoder>
+        <param name="Append" value="true" />
+        <!-- Support multiple-JVM writing to the same log file -->
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/eIDASNodeSecurity.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--
+        This define the SAML exchange Detailed log file appender - the default Filter is inherited from root level
+    -->
+    <appender name="eIDASNodeSAMLExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/eIDASNodeSAMLExchange.log</file>
+
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+                <marker>SAML_EXCHANGE</marker>
+            </evaluator>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+        </filter>
+        <encoder class="eu.eidas.node.logging.integrity.HashPatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd; HH:mm:ss.SSS} [%thread] %-5level %logger{66} %marker -%X{sessionId} -%X{remoteHost} -%msg%n</pattern>
+        </encoder>
+        <param name="Append" value="true" />
+        <!-- Support multiple-JVM writing to the same log file -->
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/eIDASNodeSAMLExchange.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--
+        This define the API fine grained level
+    -->
+    <logger name="org.opensaml">
+        <level value="ERROR" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+    </logger>
+    <logger name="com.opensymphony.xwork2">
+        <level value="WARN"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+    </logger>
+    <logger name=" org.apache.struts2">
+        <level value="WARN"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+    </logger>
+    <logger name="org.springframework">
+        <level value="WARN" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+    </logger>
+    <logger name="org.apache.xml.security">
+        <level value="WARN" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+    </logger>
+
+    <logger name="eu.eidas.communication.requests">
+        <level value="info" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+    </logger>
+
+    <logger name="eu.eidas.communication.responses">
+        <level value="info" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="eIDASNodeDetail"/>
+    </logger>
+
+    <!--
+        The root level is set to debug for development purposes, for production environment it could be set to INFO
+    -->
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="eIDASNodeSystem" />
+        <appender-ref ref="eIDASNodeSecurity" />
+        <appender-ref ref="eIDASNodeDetail" />
+        <appender-ref ref="eIDASNodeSAMLExchange" />
+    </root>
+</configuration>

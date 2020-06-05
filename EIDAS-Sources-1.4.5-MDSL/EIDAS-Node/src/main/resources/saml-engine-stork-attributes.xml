@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>STORK attributes</comment>
+
+    <entry key="1.NameUri">http://www.stork.gov.eu/1.0/eIdentifier</entry>
+    <entry key="1.FriendlyName">eIdentifier</entry>
+    <entry key="1.PersonType">NaturalPerson</entry>
+    <entry key="1.Required">true</entry>
+    <entry key="1.UniqueIdentifier">true</entry>
+    <entry key="1.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="1.XmlType.LocalPart">string</entry>
+    <entry key="1.XmlType.NamespacePrefix">xs</entry>
+    <entry key="1.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="2.NameUri">http://www.stork.gov.eu/1.0/givenName</entry>
+    <entry key="2.FriendlyName">givenName</entry>
+    <entry key="2.PersonType">NaturalPerson</entry>
+    <entry key="2.Required">true</entry>
+    <entry key="2.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="2.XmlType.LocalPart">string</entry>
+    <entry key="2.XmlType.NamespacePrefix">xs</entry>
+    <entry key="2.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="3.NameUri">http://www.stork.gov.eu/1.0/surname</entry>
+    <entry key="3.FriendlyName">surname</entry>
+    <entry key="3.PersonType">NaturalPerson</entry>
+    <entry key="3.Required">true</entry>
+    <entry key="3.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="3.XmlType.LocalPart">string</entry>
+    <entry key="3.XmlType.NamespacePrefix">xs</entry>
+    <entry key="3.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="4.NameUri">http://www.stork.gov.eu/1.0/inheritedFamilyName</entry>
+    <entry key="4.FriendlyName">inheritedFamilyName</entry>
+    <entry key="4.PersonType">NaturalPerson</entry>
+    <entry key="4.Required">true</entry>
+    <entry key="4.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="4.XmlType.LocalPart">string</entry>
+    <entry key="4.XmlType.NamespacePrefix">xs</entry>
+    <entry key="4.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="5.NameUri">http://www.stork.gov.eu/1.0/adoptedFamilyName</entry>
+    <entry key="5.FriendlyName">adoptedFamilyName</entry>
+    <entry key="5.PersonType">NaturalPerson</entry>
+    <entry key="5.Required">true</entry>
+    <entry key="5.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="5.XmlType.LocalPart">string</entry>
+    <entry key="5.XmlType.NamespacePrefix">xs</entry>
+    <entry key="5.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="6.NameUri">http://www.stork.gov.eu/1.0/gender</entry>
+    <entry key="6.FriendlyName">gender</entry>
+    <entry key="6.PersonType">NaturalPerson</entry>
+    <entry key="6.Required">true</entry>
+    <entry key="6.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="6.XmlType.LocalPart">string</entry>
+    <entry key="6.XmlType.NamespacePrefix">xs</entry>
+    <entry key="6.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="7.NameUri">http://www.stork.gov.eu/1.0/dateOfBirth</entry>
+    <entry key="7.FriendlyName">dateOfBirth</entry>
+    <entry key="7.PersonType">NaturalPerson</entry>
+    <entry key="7.Required">true</entry>
+    <entry key="7.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="7.XmlType.LocalPart">string</entry>
+    <entry key="7.XmlType.NamespacePrefix">xs</entry>
+    <entry key="7.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="8.NameUri">http://www.stork.gov.eu/1.0/countryCodeOfBirth</entry>
+    <entry key="8.FriendlyName">countryCodeOfBirth</entry>
+    <entry key="8.PersonType">NaturalPerson</entry>
+    <entry key="8.Required">true</entry>
+    <entry key="8.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="8.XmlType.LocalPart">string</entry>
+    <entry key="8.XmlType.NamespacePrefix">xs</entry>
+    <entry key="8.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="9.NameUri">http://www.stork.gov.eu/1.0/nationalityCode</entry>
+    <entry key="9.FriendlyName">nationalityCode</entry>
+    <entry key="9.PersonType">NaturalPerson</entry>
+    <entry key="9.Required">true</entry>
+    <entry key="9.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="9.XmlType.LocalPart">string</entry>
+    <entry key="9.XmlType.NamespacePrefix">xs</entry>
+    <entry key="9.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="10.NameUri">http://www.stork.gov.eu/1.0/maritalStatus</entry>
+    <entry key="10.FriendlyName">maritalStatus</entry>
+    <entry key="10.PersonType">NaturalPerson</entry>
+    <entry key="10.Required">true</entry>
+    <entry key="10.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="10.XmlType.LocalPart">string</entry>
+    <entry key="10.XmlType.NamespacePrefix">xs</entry>
+    <entry key="10.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="11.NameUri">http://www.stork.gov.eu/1.0/textResidenceAddress</entry>
+    <entry key="11.FriendlyName">textResidenceAddress</entry>
+    <entry key="11.PersonType">NaturalPerson</entry>
+    <entry key="11.Required">true</entry>
+    <entry key="11.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="11.XmlType.LocalPart">string</entry>
+    <entry key="11.XmlType.NamespacePrefix">xs</entry>
+    <entry key="11.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="12.NameUri">http://www.stork.gov.eu/1.0/canonicalResidenceAddress</entry>
+    <entry key="12.FriendlyName">canonicalResidenceAddress</entry>
+    <entry key="12.PersonType">NaturalPerson</entry>
+    <entry key="12.Required">true</entry>
+    <entry key="12.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="12.XmlType.LocalPart">string</entry>
+    <entry key="12.XmlType.NamespacePrefix">xs</entry>
+    <entry key="12.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="13.NameUri">http://www.stork.gov.eu/1.0/eMail</entry>
+    <entry key="13.FriendlyName">eMail</entry>
+    <entry key="13.PersonType">NaturalPerson</entry>
+    <entry key="13.Required">true</entry>
+    <entry key="13.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="13.XmlType.LocalPart">string</entry>
+    <entry key="13.XmlType.NamespacePrefix">xs</entry>
+    <entry key="13.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="14.NameUri">http://www.stork.gov.eu/1.0/title</entry>
+    <entry key="14.FriendlyName">title</entry>
+    <entry key="14.PersonType">NaturalPerson</entry>
+    <entry key="14.Required">true</entry>
+    <entry key="14.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="14.XmlType.LocalPart">string</entry>
+    <entry key="14.XmlType.NamespacePrefix">xs</entry>
+    <entry key="14.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="15.NameUri">http://www.stork.gov.eu/1.0/residencePermit</entry>
+    <entry key="15.FriendlyName">residencePermit</entry>
+    <entry key="15.PersonType">NaturalPerson</entry>
+    <entry key="15.Required">true</entry>
+    <entry key="15.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="15.XmlType.LocalPart">string</entry>
+    <entry key="15.XmlType.NamespacePrefix">xs</entry>
+    <entry key="15.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="16.NameUri">http://www.stork.gov.eu/1.0/pseudonym</entry>
+    <entry key="16.FriendlyName">pseudonym</entry>
+    <entry key="16.PersonType">NaturalPerson</entry>
+    <entry key="16.Required">true</entry>
+    <entry key="16.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="16.XmlType.LocalPart">string</entry>
+    <entry key="16.XmlType.NamespacePrefix">xs</entry>
+    <entry key="16.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="17.NameUri">http://www.stork.gov.eu/1.0/age</entry>
+    <entry key="17.FriendlyName">age</entry>
+    <entry key="17.PersonType">NaturalPerson</entry>
+    <entry key="17.Required">true</entry>
+    <entry key="17.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="17.XmlType.LocalPart">string</entry>
+    <entry key="17.XmlType.NamespacePrefix">xs</entry>
+    <entry key="17.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="18.NameUri">http://www.stork.gov.eu/1.0/isAgeOver</entry>
+    <entry key="18.FriendlyName">isAgeOver</entry>
+    <entry key="18.PersonType">NaturalPerson</entry>
+    <entry key="18.Required">true</entry>
+    <entry key="18.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="18.XmlType.LocalPart">string</entry>
+    <entry key="18.XmlType.NamespacePrefix">xs</entry>
+    <entry key="18.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="19.NameUri">http://www.stork.gov.eu/1.0/signedDoc</entry>
+    <entry key="19.FriendlyName">signedDoc</entry>
+    <entry key="19.PersonType">NaturalPerson</entry>
+    <entry key="19.Required">true</entry>
+    <entry key="19.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="19.XmlType.LocalPart">string</entry>
+    <entry key="19.XmlType.NamespacePrefix">xs</entry>
+    <entry key="19.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="20.NameUri">http://www.stork.gov.eu/1.0/citizenQAALevel</entry>
+    <entry key="20.FriendlyName">citizenQAALevel</entry>
+    <entry key="20.PersonType">NaturalPerson</entry>
+    <entry key="20.Required">true</entry>
+    <entry key="20.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="20.XmlType.LocalPart">string</entry>
+    <entry key="20.XmlType.NamespacePrefix">xs</entry>
+    <entry key="20.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+
+    <entry key="21.NameUri">http://www.stork.gov.eu/1.0/fiscalNumber</entry>
+    <entry key="21.FriendlyName">fiscalNumber</entry>
+    <entry key="21.PersonType">NaturalPerson</entry>
+    <entry key="21.Required">true</entry>
+    <entry key="21.XmlType.NamespaceUri">http://www.w3.org/2001/XMLSchema</entry>
+    <entry key="21.XmlType.LocalPart">string</entry>
+    <entry key="21.XmlType.NamespacePrefix">xs</entry>
+    <entry key="21.AttributeValueMarshaller">eu.eidas.auth.commons.attribute.impl.LiteralStringAttributeValueMarshaller</entry>
+</properties>

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NODEMetadata>
+    <categories>
+        <category name="parameter.category.label.general">Eidas Service parameters</category>
+        <category name="parameter.category.label.administer.connector">Eidas Connector parameters</category>
+        <category name="parameter.category.label.administer.service">Eidas Service parameters</category>
+        <category name="parameter.category.nodeutil">node specific parameters</category>
+        <category name="parameter.category.node.security">node security parameters</category>
+        <category name="parameter.category.metadata">metadata parameters</category>
+    </categories>
+    <files>
+        <file id="eidas.xml" name="eidas.xml" type="XML"/>
+        <file id="eidasUtil" name="eidasUtil.properties" type="properties"/>
+        <file id="specific" name="specific.properties" type="properties"/>
+    </files>
+    <parameters>
+        <parameter name="DEMO-SP.qaalevel">
+            <category>parameter.category.label.general</category>
+            <info>QAALevel of the Demo SP</info>
+            <label>SP QAA level</label>
+            <default>3</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="max.requests.ip">
+            <category>parameter.category.label.general</category>
+            <info>limit of requests per IP during max.time.ip (-1 unlimited)</info>
+            <label>Max requests per IP</label>
+            <default>-1</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="max.requests.sp">
+            <category>parameter.category.label.general</category>
+            <info>limit of requests per SP during max.time.ip (-1 unlimited)</info>
+            <label>Max requests per SP</label>
+            <default>-1</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="max.time.ip">
+            <category>parameter.category.label.general</category>
+            <info>time frame for IP requests (seconds)</info>
+            <label>Time frame for IP</label>
+            <default>1</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="max.time.sp">
+            <category>parameter.category.label.general</category>
+            <info>time frame for SP requests (seconds)</info>
+            <label>Time frame for SP</label>
+            <default>1</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="trusted.sp.domain">
+            <category>parameter.category.label.general</category>
+            <info>allowed SP domains (none|all|list;Of;Domains)</info>
+            <label>Trusted SP domains</label>
+            <default>all</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="validation.bypass">
+            <category>parameter.category.label.general</category>
+            <info>Bypass SP validation</info>
+            <label>Bypass SP validation</label>
+            <default>true</default>
+            <type>boolean</type>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="validation.method">
+            <category>parameter.category.label.general</category>
+            <info>Validate SP by ID and Domain or only by Domain (spid|domain)</info>
+            <label>Validation method</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="min.qaaLevel.value">
+            <category>parameter.category.label.general</category>
+            <info>min QAA level allowed</info>
+            <label>Minimum QAA level</label>
+            <default>1</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="max.qaaLevel.value">
+            <category>parameter.category.label.general</category>
+            <info>max QAA level allowed</info>
+            <label>Maximum QAA level</label>
+            <default>4</default>
+            <file>eidas.xml</file>
+        </parameter>
+
+        <parameter name="spId.qaalevel">
+            <category>parameter.category.label.general</category>
+            <info></info>
+            <label>QAA level of the Service Provider</label>
+            <default>all</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="sp.default.parameters">
+            <category>parameter.category.label.general</category>
+            <info>IF a SP is not listed, the DEFAULT parameters it can access might be
+                (none|all|list;Of;Parameters)</info>
+            <label>Default allowed attributes</label>
+            <default>all</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="eidasconnector.id">
+            <category>parameter.category.label.administer.connector</category>
+            <info>Id of this Connector </info>
+            <label>Connector Id</label>
+            <default>CB</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="connector.assertion.url">
+            <category>parameter.category.label.administer.connector</category>
+            <info>Connector assertion URL</info>
+            <label>Assertion (return) URL</label>
+            <default>http://connector.ip.address/eidas.deployment.name/ColleagueResponse</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="connector.destination.url">
+            <category>parameter.category.label.administer.connector</category>
+            <info>Connector destination URL</info>
+            <label>SP request handler</label>
+            <default>http://connector.ip.address/eidas.deployment.name/ServiceProvider</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="saml.sp">
+            <category>parameter.category.label.administer.connector</category>
+            <info></info>
+            <label>SP-Specific SAML configuration </label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="saml.service">
+            <category>parameter.category.label.administer.connector</category>
+            <info></info>
+            <label>Connector-Connector SAML configuration </label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+
+
+        <parameter name="active.module.service">
+            <category>parameter.category.label.administer.service</category>
+            <info></info>
+            <label>Activate ProxyService Module</label>
+            <default>true</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.number">
+            <category>parameter.category.label.administer.service</category>
+            <info>Number of known ProxyService</info>
+            <label>Number of ProxyService partners</label>
+            <default>5</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.id">
+            <category>parameter.category.label.administer.service</category>
+            <info>Id of this ProxyService</info>
+            <label>This ProxyService id</label>
+            <default>5</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.countrycode">
+            <category>parameter.category.label.administer.service</category>
+            <info>Country Code of this ProxyService</info>
+            <label>ProxyService' country ISO code</label>
+            <default>BE</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.maxQAAlevel">
+            <category>parameter.category.label.administer.service</category>
+            <info>QAALevel of this ProxyService</info>
+            <label>Max QAA Level that ProxyService can authenticate</label>
+            <default>8</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.askconsent.type">
+            <category>parameter.category.label.administer.service</category>
+            <info>Present consent-type form? (true/false)</info>
+            <label>Display consent type form</label>
+            <default>true</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.askconsent.value">
+            <category>parameter.category.label.administer.service</category>
+            <info>Present consent-value form? (true/false)</info>
+            <label>Display consent value form</label>
+            <default>true</default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.specificidpredirect.url">
+            <category>parameter.category.label.administer.service</category>
+            <info>Method to call after IdP</info>
+            <label>URL to be called by the IdP</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.citizenConsentUrl">
+            <category>parameter.category.label.administer.service</category>
+            <info>Action of Citizen Consent</info>
+            <label>Citizen consent URL</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="max.spUrl.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max size for SP return URL</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.invalidAttributeList.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Personal Attribute List size </label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.attrList.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Personal Attribute List HTTP parameter size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.attrName.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Personal Attribute Name size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.attrValue.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Personal Attribute Value size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.attrType.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Personal Attribute Type size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.callback.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum ProxyService callback URL size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.idp.url.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum IdP URL size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.spId.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Service Provider ID size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.providerName.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Service Provider size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.spName.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Service Provider Name size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.country.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum Country size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.qaaLevel.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum QAA Level size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.spQaaLevel.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum SP QAA Level size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.errorCode.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum SAML Response error code size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.errorMessage.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum SAML Response error message size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.username.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Maximum username (reference code) size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.connectorRedirectUrl.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max Connector configuration AssertionConsumerURL size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.connector.redirectUrl.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max Connector SAML Request (from Connector to ProxyService) AssertionConsumerURL</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.serviceRedirectUrl.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max ProxyService configuration AssertionConsumerURL’s size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.service.redirectUrl.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max ProxyService SAML Request (from Connector to ProxyService)  AssertionConsumerURL size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.SAMLRequest.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max SAML Request (from Connector to ProxyService)  HTTP Parameter</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.SAMLResponse.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max SAML Response HTTP Parameter size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.RelayState.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max RelayState HTTP Parameter size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.localAddr.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max Local Address HTTP header size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.localHost.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max Local Host HTTP header size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.remoteAddr.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max Remote Address HTTP header size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="max.remoteHost.size">
+            <category>parameter.category.nodeutil</category>
+            <info></info>
+            <label>Max Remote Host HTTP header size</label>
+            <default></default>
+            <file>nodeUtil</file>
+        </parameter>
+        <parameter name="security.header.CSP.enabled">
+            <category>parameter.category.node.security</category>
+            <info></info>
+            <label>Enable Content Security Policy (CSP) header</label>
+            <default></default>
+            <type>boolean</type>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="security.header.CSP.includeMozillaDirectives">
+            <category>parameter.category.node.security</category>
+            <info></info>
+            <label>Enable CSP backward compatibitlity for Mozilla</label>
+            <default></default>
+            <type>boolean</type>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="security.header.XXssProtection.block">
+            <category>parameter.category.node.security</category>
+            <info></info>
+            <label>Enable the cross-site-scripting (XSS) filter</label>
+            <type>boolean</type>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="security.header.XContentTypeOptions.noSniff">
+            <category>parameter.category.node.security</category>
+            <info></info>
+            <label>Prevent Internet Explorer and Google Chrome from 'MIME-sniffing'</label>
+            <default></default>
+            <type>boolean</type>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="security.header.XFrameOptions.sameOrigin">
+            <category>parameter.category.node.security</category>
+            <info></info>
+            <label>Enforce same origin for Service</label>
+            <default></default>
+            <type>boolean</type>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="security.header.HSTS.includeSubDomains">
+            <category>parameter.category.node.security</category>
+            <info></info>
+            <label>Prefer HTTP Strict-Transport-Security </label>
+            <default></default>
+            <file>eidas.xml</file>
+            <type>boolean</type>
+        </parameter>
+        <parameter name="metadata.activate">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Activate metadata retrieval and publishing</label>
+            <default></default>
+            <file>eidas.xml</file>
+            <type>boolean</type>
+        </parameter>
+        <parameter name="connector.metadata.url">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Metadata publishing URL (Connector)</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.metadata.url">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Metadata publishing URL (ProxyService)</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="connector.node.url">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Issuer URL (Connector)</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.node.url">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Issuer URL (ProxyService)</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="connector.contact.email">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Contact email (Connector)</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="service.contact.email">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Contact email (ProxyService)</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+        <parameter name="metadata.http.retrieval">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Retrieve metadata through http</label>
+            <default></default>
+            <file>eidas.xml</file>
+            <type>boolean</type>
+        </parameter>
+        <parameter name="metadata.file.repository">
+            <category>parameter.category.metadata</category>
+            <info></info>
+            <label>Metadata repository</label>
+            <default></default>
+            <file>eidas.xml</file>
+        </parameter>
+    </parameters>
+</NODEMetadata>

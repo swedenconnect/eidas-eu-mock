@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- weblogic.xml -->
+<weblogic-web-app>
+    <container-descriptor>
+
+        <prefer-web-inf-classes>false</prefer-web-inf-classes>
+        <prefer-application-packages>
+            <package-name>org.bouncycastle.*</package-name>
+            <package-name>org.apache.commons.*</package-name>
+            <package-name>org.apache.log4j.*</package-name>
+            <package-name>org.slf4j.*</package-name>
+            <package-name>org.apache.commons.logging.*</package-name>
+            <!-- adding new preferred packages-->
+            <package-name>org.apache.jcp.xml.dsig.*</package-name>
+            <package-name>org.apache.xalan.*</package-name>
+            <package-name>org.apache.xerces.*</package-name>
+            <package-name>org.apache.xml.*</package-name>
+            <!--<package-name>org.apache.xml.security.*</package-name>-->
+            <package-name>org.apache.xmlcommons.*</package-name>
+            <package-name>org.apache.xpath.*</package-name>
+            <!-- end adding new preferred packages-->
+            <package-name>org.joda.time.*</package-name>
+            <package-name>org.opensaml.*</package-name>
+            <package-name>org.opensaml.common.*</package-name>
+            <package-name>org.opensaml.saml2.*</package-name>
+            <package-name>org.opensaml.xml.*</package-name>
+            <package-name>org.eu.eidas.*</package-name>
+            <!-- guava -->
+            <package-name>com.google.common.*</package-name>
+        </prefer-application-packages>
+
+        <prefer-application-resources>
+            <resource-name>META-INF/services/javax.xml.*</resource-name>
+            <resource-name>META-INF/services/org.codehaus.stax2.*</resource-name>
+            <resource-name>META-INF/services/org.w3c.dom.*</resource-name>
+            <resource-name>META-INF/services/org.xml.sax.*</resource-name>
+            <resource-name>META-INF/services/org.apache.xalan.*</resource-name>
+            <resource-name>META-INF/services/org.apache.xml.*</resource-name>
+            <resource-name>org/slf4j/impl/StaticLoggerBinder.class</resource-name>
+            <resource-name>default-config.xml</resource-name>
+            <resource-name>schema-config.xml</resource-name>
+            <resource-name>signature-config.xml</resource-name>
+            <resource-name>signature-validation-config.xml</resource-name>
+            <resource-name>encryption-config.xml</resource-name>
+            <resource-name>encryption-validation-config.xml</resource-name>
+            <resource-name>soap11-config.xml</resource-name>
+            <resource-name>wsfed11-protocol-config.xml</resource-name>
+            <resource-name>saml1-assertion-config.xml</resource-name>
+            <resource-name>saml1-protocol-config.xml</resource-name>
+            <resource-name>saml1-core-validation-config.xml</resource-name>
+            <resource-name>saml2-assertion-config.xml</resource-name>
+            <resource-name>saml2-protocol-config.xml</resource-name>
+            <resource-name>saml2-core-validation-config.xml</resource-name>
+            <resource-name>saml1-metadata-config.xml</resource-name>
+            <resource-name>saml2-metadata-config.xml</resource-name>
+            <resource-name>saml2-metadata-validation-config.xml</resource-name>
+            <resource-name>saml2-metadata-attr-config.xml</resource-name>
+            <resource-name>saml2-metadata-idp-discovery-config.xml</resource-name>
+            <resource-name>saml2-metadata-ui-config.xml</resource-name>
+            <resource-name>saml2-protocol-aslo-config.xml</resource-name>
+            <resource-name>saml2-protocol-thirdparty-config.xml</resource-name>
+            <resource-name>saml2-metadata-query-config.xml</resource-name>
+            <resource-name>saml2-assertion-delegation-restriction-config.xml</resource-name>
+            <resource-name>saml2-ecp-config.xml</resource-name>
+            <resource-name>saml2-channel-binding-config.xml</resource-name>
+            <resource-name>saml-ec-gss-config.xml</resource-name>
+            <resource-name>xacml10-saml2-profile-config.xml</resource-name>
+            <resource-name>xacml11-saml2-profile-config.xml</resource-name>
+            <resource-name>xacml20-context-config.xml</resource-name>
+            <resource-name>xacml20-policy-config.xml</resource-name>
+            <resource-name>xacml2-saml2-profile-config.xml</resource-name>
+            <resource-name>xacml3-saml2-profile-config.xml</resource-name>
+            <resource-name>wsaddressing-config.xml</resource-name>
+            <resource-name>wssecurity-config.xml</resource-name>
+            <resource-name>wstrust-config.xml</resource-name>
+            <resource-name>wspolicy-config.xml</resource-name>
+            <resource-name>schema/*</resource-name>
+        </prefer-application-resources>
+
+    </container-descriptor>
+    <session-descriptor>
+        <!--cookies-enabled>false</cookies-enabled-->
+        <cookie-name>SESSIONID</cookie-name>
+        <cookie-path>/EidasNode</cookie-path>
+    </session-descriptor>
+    <context-root>/EidasNode</context-root>
+</weblogic-web-app>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2:SubjectConfirmationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xsi:type="saml2:KeyInfoConfirmationDataType"/>

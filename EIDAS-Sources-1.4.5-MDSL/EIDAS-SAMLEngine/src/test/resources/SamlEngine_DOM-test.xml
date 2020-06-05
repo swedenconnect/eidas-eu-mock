@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instances>
+
+    <!-- ******************** DOM-test ******************** -->
+    <!-- Configuration name-->
+    <instance name="DOM-test">
+        <!-- Configurations parameters ProtocolEngine  -->
+        <configuration name="SamlEngineConf">
+            <parameter name="fileConfiguration" value="SamlEngineConf_DOM-test.xml"/>
+        </configuration>
+
+        <!-- Settings module signature-->
+        <configuration name="SignatureConf">
+            <!-- Specific signature module -->
+            <parameter name="class" value="eu.eidas.auth.engine.core.impl.SignSW"/>
+            <!-- Settings specific module -->
+            <parameter name="fileConfiguration" value="SignModule_DOM-test.xml"/>
+        </configuration>
+
+        <configuration name="EncryptionConf">
+            <!-- Specific signature module -->
+            <parameter name="class"
+                       value="eu.eidas.auth.engine.core.impl.EncryptionSW" />
+            <!-- Settings specific module
+                 responseTo/FromPointAlias & requestTo/FromPointAlias parameters will be added -->
+            <parameter name="fileConfiguration" value="EncryptModule_DOM-test_empty.xml" />
+        </configuration>
+
+        <!-- Settings for the ExtensionProcessor module -->
+        <configuration name="ProtocolProcessorConf">
+            <!-- Specific ExtensionProcessor module -->
+            <parameter name="class"
+                       value="eu.eidas.auth.engine.core.eidas.EidasProtocolProcessor"/>
+            <!--
+            <parameter name="coreAttributeRegistryFile"
+                       value="saml-engine-eidas-attributes-TEMPLATE.xml" />
+            <parameter name="additionalAttributeRegistryFile"
+                       value="saml-engine-additional-attributes-TEMPLATE.xml" />
+            <parameter name="metadataFetcherClass"
+                       value="eu.eidas.node.auth.metadata.WrappedMetadataFetcher"/>
+            -->
+        </configuration>
+
+        <!-- Settings for the Clock module -->
+        <configuration name="ClockConf">
+            <!-- Specific Clock module -->
+            <parameter name="class"
+                       value="eu.eidas.auth.engine.SamlEngineSystemClock"/>
+        </configuration>
+    </instance>
+
+</instances>

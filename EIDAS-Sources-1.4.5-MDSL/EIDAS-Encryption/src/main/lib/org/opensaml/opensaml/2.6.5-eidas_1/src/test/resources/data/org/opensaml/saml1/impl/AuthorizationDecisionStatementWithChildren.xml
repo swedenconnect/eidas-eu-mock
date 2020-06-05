@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml:AuthorizationDecisionStatement xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion"><saml:Subject/><saml:Action/><saml:Action/><saml:Action/><saml:Evidence/></saml:AuthorizationDecisionStatement>

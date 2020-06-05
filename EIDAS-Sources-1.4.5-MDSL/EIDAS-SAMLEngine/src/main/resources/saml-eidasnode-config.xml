@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd"
+            xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol"
+            xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+            xmlns:stork="urn:eu:stork:names:tc:STORK:1.0:assertion"
+            xmlns:storkp="urn:eu:stork:names:tc:STORK:1.0:protocol"
+            xmlns:eidas="http://eidas.europa.eu/saml-extensions"
+            xmlns="http://www.opensaml.org/xmltooling-config">
+
+<!-- SAML 2.0 Protocol Object providers -->
+
+    <!--  SAML 2.0 Schema Validation Rules -->
+
+    <ValidatorSuites>
+        <!-- ValidatorSuite id="storkRequestValidatorSuiteId">
+            <Validator qualifiedName="stork:Institution"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSpInstitutionValidator"/>
+
+            <Validator qualifiedName="saml2:Issuer"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkIssuerValidator"/>
+
+            <Validator qualifiedName="storkp:SPID"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSPIDValidator"/>
+
+            <Validator qualifiedName="stork:QualityAuthenticationAssuranceLevel"
+                       className="eu.eidas.auth.engine.core.validator.stork.QAAAttributeSchemaValidator"/>
+
+            <Validator qualifiedName="saml2p:AuthnRequest"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkAuthnRequestValidator"/>
+
+            <Validator qualifiedName="saml2p:Extensions"
+                       className="eu.eidas.auth.engine.core.validator.stork.ExtensionsSchemaValidator"/>
+
+
+            <Validator qualifiedName="stork:spApplication"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSpApplicationValidator"/>
+
+            <Validator qualifiedName="stork:spCountry"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSpCountryValidator"/>
+
+            <Validator qualifiedName="stork:spSector"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSpSectorValidator"/>
+
+            <Validator qualifiedName="storkp:RequestedAttributes"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkRequestedAttributesValidator"/>
+
+
+
+        </ValidatorSuite -->
+
+        <!--ValidatorSuite id="storkResponseValidatorSuiteId">
+
+            <Validator qualifiedName="saml2p:Response"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkResponseValidator"/>
+
+            <Validator qualifiedName="saml2:Assertion"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkAssertionValidator"/>
+
+
+            <Validator qualifiedName="saml2:Subject"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSubjectValidator"/>
+
+            <Validator qualifiedName="saml2:SubjectConfirmation"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSubjectConfirmationValidator"/>
+
+            <Validator qualifiedName="saml2:Conditions"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkConditionsValidator"/>
+
+            <Validator qualifiedName="saml2:SubjectConfirmation"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSubjectConfirmationValidator"/>
+
+            <Validator qualifiedName="saml2:AuthnStatement"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkAuthnStatementValidator"/>
+
+            <Validator qualifiedName="saml2:AudienceRestriction"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkAudienceRestrictionValidator"/>
+
+            <Validator qualifiedName="saml2:SubjectLocality"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkSubjectLocalityValidator"/>
+
+            <Validator qualifiedName="saml2:Attribute"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkAttributeValidator"/>
+
+            <Validator qualifiedName="saml2:NameID"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkNameIDValidator"/>
+
+            <Validator qualifiedName="saml2p:Status"
+                       className="eu.eidas.auth.engine.core.validator.stork.StorkStatusValidator"/>
+
+        </ValidatorSuite-->
+
+        <ValidatorSuite id="eidasRequestValidatorSuiteId">
+            <Validator qualifiedName="saml2:Issuer"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasIssuerValidator"/>
+
+            <Validator qualifiedName="saml2p:AuthnRequest"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasAuthnRequestValidator"/>
+
+            <Validator qualifiedName="saml2p:Extensions"
+                       className="eu.eidas.auth.engine.core.validator.eidas.ExtensionsSchemaValidator"/>
+
+            <Validator qualifiedName="eidas:RequestedAttribute"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasRequestedAttributeValidator"/>
+
+        </ValidatorSuite>
+
+        <ValidatorSuite id="eidasResponseValidatorSuiteId">
+
+            <Validator qualifiedName="saml2p:Response"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasResponseOneAssertionValidator"/>
+
+            <Validator qualifiedName="saml2p:Response"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasResponseValidator"/>
+
+            <Validator qualifiedName="saml2:Assertion"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasAssertionValidator"/>
+
+
+            <Validator qualifiedName="saml2:Conditions"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasConditionsValidator"/>
+
+            <Validator qualifiedName="saml2:AuthnStatement"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasAuthnStatementValidator"/>
+
+            <Validator qualifiedName="saml2:Attribute"
+                       className="eu.eidas.auth.engine.core.validator.eidas.EidasAttributeValidator"/>
+
+
+        </ValidatorSuite>
+
+
+    </ValidatorSuites>
+
+
+</XMLTooling>

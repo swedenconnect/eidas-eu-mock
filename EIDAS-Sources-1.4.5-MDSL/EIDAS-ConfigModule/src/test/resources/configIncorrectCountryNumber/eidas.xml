@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- SPEPS -->
+	<!-- QAALevel of the Demo SP -->
+	<entry key="DEMO-SP.qaalevel">3</entry>
+	<!-- IF a SP is not listed, the DEFAULT parameters it can access might be 
+		(none|all|list;Of;Parameters) -->
+	<entry key="sp.default.parameters">all</entry>
+	<!-- Specific case for a listed SP (none|all|list;Of;Parameters) -->
+	<!-- <entry key="DEMO-SP">givenName;age;dateOfBirth;nationalityCode;isAgeOver;eIdentifier</entry> -->
+
+	<!-- Id of this connector -->
+	<entry key="connector.id">CB</entry>
+
+	<entry key="service.number">8</entry>
+    <entry key="service1.id">CA</entry>
+	<!-- Name of the second service -->
+	<entry key="service1.name">LOCAL-PEPS-CA</entry>
+	<!-- URL of the first service -->
+	<entry key="service1.url">http://localhost:9080/EidasNode/ColleagueRequest</entry>	
+	 <!-- Skew time for service-->
+        <entry key="service1.skew">1000</entry>
+	<entry key="service2.id">CB</entry>
+	<!-- Name of the second service -->
+	<entry key="service2.name">LOCAL-PEPS-CB</entry>
+	<!-- URL of the first service -->
+	<entry key="service2.url">https://local.ausweisapp.cec.eu.int:7002/EidasNode/ColleagueRequest</entry>	
+	<entry key="service2.skew">1000</entry>
+	
+</properties>

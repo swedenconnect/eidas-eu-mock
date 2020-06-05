@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   targetNamespace="urn:ietf:params:xml:ns:samlec"
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+   xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:samlec="urn:ietf:params:xml:ns:samlec"
+   elementFormDefault="unqualified"
+   attributeFormDefault="unqualified"
+   blockDefault="substitution"
+   version="1.0">
+
+    <import namespace="http://www.w3.org/2000/09/xmldsig#"
+        schemaLocation="classpath:/schema/xmldsig-core-schema.xsd"/>
+    <import namespace="http://schemas.xmlsoap.org/soap/envelope/"
+        schemaLocation="classpath:/schema/soap-envelope.xsd"/>
+
+  <element name="SessionKey" type="samlec:SessionKeyType"/>
+  <complexType name="SessionKeyType">
+    <sequence>
+      <element ref="samlec:EncType" maxOccurs="unbounded"/>
+      <element ref="ds:KeyInfo" minOccurs="0"/>
+    </sequence>
+    <attribute ref="S:mustUnderstand" use="required"/>
+    <attribute ref="S:actor" use="required"/>
+    <attribute name="Algorithm"/>
+  </complexType>
+
+  <element name="EncType" type="string"/>
+
+  <element name="GeneratedKey" type="samlec:GeneratedKeyType"/>
+  <complexType name="GeneratedKeyType">
+    <simpleContent>
+      <extension base="base64Binary">
+        <attribute ref="S:mustUnderstand"/>
+        <attribute ref="S:actor"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+ </schema>

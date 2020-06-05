@@ -1,0 +1,938 @@
+/*
+ _______  _______  _______             _______ _________ ______          
+(  ____ \(  ____ \(  ____ \           (  ____ \\__   __/(  __  \         
+| (    \/| (    \/| (    \/           | (    \/   ) (   | (  \  )        
+| |      | (__    | (__       _____   | (__       | |   | |   ) |   _____
+| |      |  __)   |  __)     (_____)  |  __)      | |   | |   | |  (_____)
+| |      | (      | (                 | (         | |   | |   ) |        
+| (____/\| (____/\| )                 | (____/\___) (___| (__/  )        
+(_______/(_______/|/                  (_______/\_______/(______/         
+                                                                         
+ _______ _________ ______   _______  _______
+(  ____ \\__   __/(  __  \ (  ___  )(  ____ \
+| (    \/   ) (   | (  \  )| (   ) || (    \/
+| (__       | |   | |   ) || (___) || (_____
+|  __)      | |   | |   | ||  ___  |(_____  )
+| (         | |   | |   ) || (   ) |      ) |
+| (____/\___) (___| (__/  )| )   ( |/\____) |
+(_______/\_______/(______/ |/     \|\_______)
+
+*/
+
+/*===================================STRUCTURE===================================*/
+/*===============================================================================*/
+html, body {
+	width: 100%;
+}
+@media (min-width: 769px) {
+	html, body {
+		height: 100%;
+		overflow: hidden;
+	}
+}
+*, *:after, *:before {
+	box-sizing: border-box;
+	outline: none
+}
+.rel, *, *:after, *:before {
+	position: relative
+}
+/*--MAIN--*/
+main {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 1em;
+}
+@media (min-width: 769px) {
+	main {
+		padding: 0
+	}
+}
+@media (max-width: 769px) {
+	main {
+		padding: 0;
+		*zoom:1;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center
+	}
+	main:after, main:before {
+		content: ""
+	}
+	main:after {
+		clear: both
+	}
+}
+/*--COLUMNS--*/
+.col-left, .col-right {
+	width: 100%
+}
+@media (min-width: 769px) {
+	.col-left {
+		left: 0;
+	}
+	.col-right {
+		left: 50%;
+	}
+	.col-left, .col-right {
+		position: absolute;
+		top: 0;
+		right: auto;
+		bottom: auto;
+		width: 50%;
+		height: 100%;
+		overflow: hidden
+	}
+}
+.wrapper, .col-left-inner, .col-right-inner {
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%
+}
+.col-left-inner {
+	left: 0
+}
+.col-right-inner {
+	right: 0
+}
+@media (max-width: 769px) {
+	.wrapper {
+		top: auto;
+		right: auto;
+		bottom: auto;
+		left: auto;
+		float: left;
+		margin: 0;
+	}
+	.col-right-inner {
+		padding: 0 2em;
+	}
+}
+@media (min-width: 769px) {
+	.wrapper {
+		position: absolute;
+		z-index: 1;
+	}
+	.col-right {
+		z-index: 1
+	}
+	.col-right-inner {
+		padding: 0 2em 0 3em;
+		width: 100%;
+		height: 100%;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
+}
+@media (min-width: 1281px) {
+	.col-right-content {
+		margin: auto;
+		width: 90%;
+	}
+}
+@media (max-width: 1281px) {
+	.col-right-content {
+		margin: auto;
+		width: 100%;
+	}
+}
+.illustration {
+	width: 100%;
+	height: 0;
+	padding-top: 100%;
+	background-image: url('../img/illustration.jpg');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+@media (min-width: 769px) {
+	.illustration {
+		height: 100%;
+		padding-top: 0;
+	}
+}
+@media (max-width: 769px) {
+	.col-left-inner {
+		padding: 60px 0;
+		height: auto;
+		background: url('../img/illustration.jpg');
+		background-position: 50% 50%;
+		background-size: cover;
+	}
+	.illustration {
+		display: none;
+	}
+}
+/*----------------------------FONT---------------------------*/
+/*-----------------------------------------------------------*/
+@font-face {
+	font-family: 'icomoon';
+	src: url('../fonts/icomoon.eot?rz0cfw');
+	src: url('../fonts/icomoon.eot?rz0cfw#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?rz0cfw') format('truetype'), url('../fonts/icomoon.woff?rz0cfw') format('woff'), url('../fonts/icomoon.svg?rz0cfw#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-arrow-thin:before {
+	content: "\e800";
+}
+.icon-arrow-left:before {
+	content: "\e801";
+}
+.icon-arrow-right:before {
+	content: "\e802";
+}
+.icon-cancel:before {
+	content: "\e803";
+}
+.icon-check:before {
+	content: "\e804";
+}
+h1, h2, h3, h4, h5, h6, label, .btn {
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+html {
+	font-size: 100%
+}
+@media (min-width: 1281px) {
+	body {
+		font-size: 18px;
+	}
+}
+@media (max-width: 1280px) {
+	body {
+		font-size: 16px;
+	}
+}
+@media (max-width: 1024px) {
+	body {
+		font-size: 15px;
+	}
+}
+/*====================================CUSTOMS====================================*/
+/*===============================================================================*/
+html, body {
+	background: #fff;
+	color: #404040;
+}
+a, a:link, a:active, a:visited {
+	color: #43C2CB;
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+a:hover {
+	color: #43C2CB;
+	text-decoration: underline;
+}
+
+.wraps {
+	white-space: pre-wrap
+}
+
+
+/*-------------------------SELECTION-------------------------*/
+/*-----------------------------------------------------------*/
+::-moz-selection {
+	background:#43C2CB;
+	color:#fff;
+	text-shadow:none;
+}
+::selection {
+	background: #43C2CB;
+	color: #fff;
+	text-shadow: none;
+}
+/*-----------------------------ARROW-------------------------*/
+/*-----------------------------------------------------------*/
+.arrow {
+	z-index: 9;
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	margin: -40px -40px 0 0;
+	display: block;
+	background: #404040;
+	width: 80px;
+	height: 80px;
+	font-size: 28px;
+	font-family: 'icomoon';
+	font-weight: normal;
+	font-style: normal;
+	text-align: center;
+	color: #fff;
+}
+.arrow:after {
+	content: "\e900";
+	line-height: 80px;
+	display: inline-block;
+}
+@media (max-width: 1280px) {
+	.arrow {
+		margin: -25px -25px 0 0;
+		width: 50px;
+		height: 50px;
+		font-size: 24px;
+	}
+	.arrow:after {
+		line-height: 50px;
+	}
+}
+@media (max-width: 768px) {
+	.arrow {
+		display: none;
+	}
+}
+/*-----------------------------LEFT--------------------------*/
+/*-----------------------------------------------------------*/
+.v-align {
+	position: absolute;
+	top: 0;
+	height: 100vh;
+	width: 50vw;
+	z-index: 10;
+	display: table;
+}
+h1.baseline {
+	margin: auto;
+	width: 100%;
+	padding: 0 1.5em;
+	font-size: 3em;
+	line-height: 120%;
+	color: #fff;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+h1.baseline span {
+	text-transform: lowercase;
+}
+@media (max-width: 768px) {
+	.v-align {
+		position: relative;
+		height: auto;
+		width: auto;
+	}
+	h1.baseline {
+		padding-top: 20px;
+		font-size: 2.5em;
+	}
+}
+/*-----------------------------RIGHT-------------------------*/
+/*-----------------------------------------------------------*/
+.col-right {
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+}
+.col-right:before {
+	position: absolute;
+	z-index: -1;
+	opacity: 1;
+	background-image: inherit;
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	content: '';
+	height: 100%;
+	width: 100%;
+}
+/*------ Menu ------*/
+.menu-top {
+	float: right;
+	margin-top: 20px;
+}
+.menu-top .item {
+	position: relative;
+	float: left;
+	display: block;
+	width: 36px;
+	height: 36px;
+	font-family: 'icomoon';
+	font-weight: normal;
+	font-style: normal;
+	text-align: center;
+	color: inherit;
+	border: 1px solid #404040;
+	cursor: pointer;
+}
+.menu-top .item:hover {
+	border: 1px solid #B3B3B3;
+	color: #B3B3B3;
+	text-decoration: none
+}
+.menu-top .text-minus {
+	padding-top: 5px;
+}
+.menu-top .text-minus:after {
+	content: "\e903";
+	font-size: 0.6em;
+}
+.menu-top .text-plus {
+	padding-top: 5px;
+	border-left: none;
+}
+.menu-top .text-plus:hover {
+	border-left: none;
+}
+.menu-top .text-plus:after {
+	content: "\e903";
+}
+.menu-top .contrast {
+	margin-left: 10px;
+	padding-top: 5px;
+}
+.menu-top .contrast:after {
+	content: "\e902";
+}
+/*------ Heading ------*/
+h1.title, h1.title span, h2.sub-title, h3 {
+	line-height: 110%;
+}
+h1.title {
+	margin-top: 40px;
+	font-size: 1.8em;
+	text-align: center;
+}
+h1.title span {
+	display: block;
+	font-size: 60%;
+}
+h1.title span span {
+	display: inline;
+	font-size: inherit;
+	text-transform: lowercase;
+}
+h2.sub-title {
+	margin-top: 5px;
+	font-size: 1.2em;
+	text-align: center;
+}
+h3 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	padding-bottom: 15px;
+	font-size: 1.2em;
+	color: #43C2CB;
+}
+h3:after {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 50px;
+	height: 1px;
+	background: #43C2CB;
+}
+/*------ List ------*/
+ul li {
+	padding: 3px 0 3px 0;
+	border-bottom: 1px solid #b3b3b3;
+}
+ul li:last-child {
+	border-bottom: none;
+}
+ul.check li {
+	padding-left: 25px;
+}
+ul.check li:before {
+	position: absolute;
+	left: 0;
+	font-family: 'icomoon';
+	content: "\e901";
+	font-size: 0.7em;
+	line-height: 1.8em;
+	color: #B3B3B3;
+}
+ul.resume li strong {
+	display: block;
+}
+ul.resume li span, ul.check li span {
+	font-size: 85%;
+}
+/*------ Switchery = Checkbox Switch Toogle ------*/
+.switchery {
+	float: right;
+}
+ul.toogle-switch li {
+	padding: 7px 0;
+	border-bottom: 1px solid #b3b3b3;
+}
+ul.toogle-switch li:last-child {
+	border-bottom: none;
+}
+ul.toogle-switch li:before, ul.toogle-switch li:after {
+	display: table;
+	content: " ";
+	clear: both;
+}
+ul.toogle-switch li p {
+	float: left;
+	margin: 0;
+	width: 75%;
+}
+/*------ Checkbox custom ------*/
+.checkbox {
+	margin-top: 0;
+}
+.checkbox-custom input[type="checkbox"]:checked + label::before {
+	background-color: #43C2CB;
+	border-color: #43C2CB;
+}
+.checkbox label::after {
+	color: #fff !important;
+}
+.checkbox-custom label::before, .checkbox-custom label::after, .checkbox-custom input[type=checkbox] {
+	width: 20px !important;
+	height: 20px !important;
+}
+.checkbox-custom label::after {
+	line-height: 20px;
+	margin-left: -20px;
+	text-align: center;
+}
+.checkbox-custom input[type=checkbox] {
+	cursor: pointer;
+}
+/*------ Button ------*/
+.box-btn {
+	margin: 20px 0 0 0;
+	text-align: right;
+}
+/*BTN*/
+.btn {
+	font-weight: bold;
+	color: #fff;
+	background: #42c1ca;
+	border-color: #42c1ca;
+	transition: all 0.3s ease;
+	border-radius: 0;
+	padding: 10px 15px;
+}
+.btn:hover {
+	color: #fff;
+	text-shadow: none;
+	background: #8edae0;
+	border-color: #8edae0;
+}
+.btn.active.focus, .btn.active:focus, .btn.active:hover, .btn:active.focus, .btn:active:focus, .btn:active:hover {
+	color: #42c1ca;
+	background: #d9f3f5;
+	border-color: #d9f3f5;
+}
+.btn.focus, .btn:focus {
+	color: #42c1ca;
+	text-shadow: none;
+	background-color: #d9f3f5;
+	border-color: #d9f3f5;
+	-moz-box-shadow: 0px 0px 0px -6px #d9f3f5;
+	-webkit-box-shadow: 0px 0px 0px -6px #d9f3f5;
+	box-shadow: 0px 0px 0px -6px #d9f3f5;
+}
+.btn.btn-opposite {
+	color: #42c1ca;
+	background: transparent;
+	border-color: #42c1ca;
+}
+.btn.btn-opposite:hover {
+	color: #8edae0;
+	background: transparent;
+	border-color: #8edae0;
+}
+/*------ Information Message ------*/
+.information-message {
+	padding: 10px 0;
+	font-weight: bold;
+	border-top: 1px solid #B3B3B3;
+	border-bottom: 1px solid #B3B3B3;
+}
+/*------ Steps ------*/
+.step-number {
+	display: block;
+	margin: 20px auto 0 auto;
+	width: 40px;
+	height: 40px;
+	font-size: 26px;
+	font-weight: 700;
+	text-shadow: none;
+	text-align: center;
+	color: #fff;
+	background: #6dbfa9;
+	border-radius: 50%;
+}
+.step-status {
+	text-align: right;
+}
+.step-status span {
+	font-size: 1.8em;
+}
+/*------ Footer ------*/
+.footer {
+	margin-top: 20px;
+	width: 100%;
+	border-top: 1px solid #B3B3B3;
+}
+.footer .logo-cef {
+	margin: 10px auto;
+	display: block;
+}
+/*=======================================MODAL===================================*/
+/*===============================================================================*/
+.btn.btn-info {
+	padding: 0;
+	width: 18px;
+	height: 18px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 12px;
+}
+.modal-header {
+	padding: 10px 10px 20px;
+	border-bottom: 1px solid #B3B3B3;
+}
+.modal-footer {
+	border-top: 1px solid #B3B3B3;
+}
+/*====================================FEATURES===================================*/
+/*===============================================================================*/
+/*------ List 1 column------*/
+.one-column {
+	float: none;
+	margin: 0 auto;
+}
+/*==================================HELPER CLASS=================================*/
+/*===============================================================================*/
+.text-error {
+	color: #f56680;
+}
+.text-highlight {
+	color: #43C2CB;
+}
+.text-lowercase {
+	text-transform: lowercase !important;
+}
+/*===================================CONTRAST===============================+====*/
+/*===============================================================================*/
+body.contrast {
+	background-color: #000;
+	color: #fff !important;
+}
+body.contrast h3 {
+	color: #fff !important;
+}
+body.contrast h3:after {
+	background: #fff;
+}
+/*------ Arrow ------*/
+body.contrast .arrow {
+	background: #fff;
+	color: #000;
+}
+/*------ Menu ------*/
+body.contrast .menu-top .item {
+	border: 1px solid #fff;
+}
+body.contrast .menu-top .item:hover {
+	border: 1px solid #fff;
+	color: #000;
+	background-color: #fff;
+}
+body.contrast .menu-top .text-plus {
+	border-left: none;
+}
+body.contrast .menu-top .text-plus:hover {
+	border-left: none;
+}
+/*------ Helper class ------*/
+body.contrast .text-error, body.contrast .text-highlight {
+	color: #fff;
+}
+/*------ Button ------*/
+body.contrast .btn {
+	color: #000;
+	background: #fff;
+	border-color: #fff;
+}
+body.contrast .btn:hover {
+	color: #fff;
+	background-color: #000;
+	border-color: #fff;
+}
+body.contrast .btn.active.focus, body.contrast .btn.active:focus, body.contrast .btn.active:hover, body.contrast .btn:active.focus, body.contrast .btn:active:focus, body.contrast .btn:active:hover {
+	color: #42c1ca;
+	color: #fff;
+	background-color: #000;
+	border-color: #fff;
+}
+body.contrast .btn.focus, body.contrast .btn:focus {
+	color: #fff;
+	background-color: #000;
+	border-color: #fff;
+}
+body.contrast .btn.btn-opposite {
+	color: #fff;
+	background-color: #000;
+	border-color: #fff;
+}
+body.contrast .btn.btn-opposite:hover {
+	color: #000;
+	background: #fff;
+	border-color: #fff;
+}
+/*------ Contrast ------*/
+body.contrast .modal {
+	background-color: rgba(255, 255, 255, 0.3) !important;
+}
+body.contrast .modal-content {
+	background-color: #000;
+}
+body.contrast .close {
+	color: #FFF;
+	opacity: 1;
+}
+body.contrast .close:focus, body.contrast .close:hover {
+	opacity: 0.5;
+}
+/*===================================HACK IE9===============================+====*/
+/*===============================================================================*/
+.ie9 .menu-top {
+	display: none
+}
+/*===================================ANIMATION===================================*/
+/*If you want, you can delete it!*/
+/*===============================================================================*/
+
+/*------------------------Arrow animation--------------------*/
+/*-----------------------------------------------------------*/
+.arrow {
+	animation: arrow-animation 1s 1s 1 normal forwards;
+	-moz-animation: arrow-animation 1s 1s 1 normal forwards;
+	-webkit-animation: arrow-animation 1s 1s 1 normal forwards;
+}
+@keyframes arrow-animation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+/*-------------------------Left animation--------------------*/
+/*-----------------------------------------------------------*/
+
+/*------ Baseline fade effect ------*/
+h1.baseline {
+	opacity: 0;
+}
+h1.baseline {
+	-webkit-animation: baseline-fade-effect .6s forwards;
+	-moz-animation: baseline-fade-effect .6s forwards;
+	animation: baseline-fade-effect .6s forwards;
+	-webkit-animation-delay: 0.5s;
+	-moz-animation-delay: 0.5s;
+	animation-delay: 0.5s;
+}
+@-webkit-keyframes baseline-fade-effect {
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+@-moz-keyframes baseline-fade-effect {
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+@keyframes baseline-fade-effect {
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+/*------ Illustration (image) zoom effect ------*/
+.col-left-inner {
+	-webkit-perspective: 1000px;
+	perspective: 1000px;
+}
+.illustration {
+	-webkit-animation: illustration-zoom-effect 1s 1 ease;
+	-moz-animation: illustration-zoom-effect 1s 1 ease;
+	animation: illustration-zoom-effect 1s 1 ease;
+}
+@-webkit-keyframes illustration-zoom-effect {
+	0% {
+		transform: translate3d(0, 0, 100px)
+	}
+	100% {
+		transform: translate3d(0, 0, 0)
+	}
+}
+@-moz-keyframes illustration-zoom-effect {
+	0% {
+		transform: translate3d(0, 0, 100px)
+	}
+	100% {
+		transform: translate3d(0, 0, 0)
+	}
+}
+@keyframes illustration-zoom-effect {
+	0% {
+		transform: translate3d(0, 0, 100px)
+	}
+	100% {
+		transform: translate3d(0, 0, 0)
+	}
+}
+/*------ Illustration (image) fade effect ------*/
+.illustration-fade-effect {
+	position: absolute;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 9;
+	background-color: rgba(067,194,203, 1);
+	-webkit-animation: illustration-fade-effect 1.5s 1s forwards;
+	-moz-animation: illustration-fade-effect 1.5s 1s forwards;
+	animation: illustration-fade-effect 1.5s 1s forwards;
+}
+@-webkit-keyframes illustration-fade-effect {
+	0% {
+		background-color: rgba(067,194,203, 1);
+	}
+	100% {
+		background-color: rgba(067,194,203, .0);
+	}
+}
+@-moz-keyframes illustration-fade-effect {
+	0% {
+		background-color: rgba(067,194,203, 1);
+	}
+	100% {
+		background-color: rgba(067,194,203, .0);
+	}
+}
+@keyframes illustration-fade-effect {
+	0% {
+		background-color: rgba(067,194,203, 1);
+	}
+	100% {
+		background-color: rgba(067,194,203,.0);
+	}
+}
+/*-------------------------Right animation-------------------*/
+/*-----------------------------------------------------------*/
+
+/*------ Texte fade effect ------*/
+.col-right-inner {
+	opacity: 0;
+}
+.col-right-inner {
+	-webkit-animation: texte-fade-effect .6s forwards;
+	-moz-animation: texte-fade-effect .6s forwards;
+	animation: texte-fade-effect .6s forwards;
+	-webkit-animation-delay: 1.6s;
+	-moz-animation-delay: 1.6s;
+	animation-delay: 1.6s;
+}
+@-webkit-keyframes texte-fade-effect {
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+@-moz-keyframes texte-fade-effect {
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+@keyframes texte-fade-effect {
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+/*===================================NO ANIMATION ===================================*/
+/*If you want, you can delete it!*/
+/*===============================================================================*/
+
+.arrow_noAnim, h1.baseline_noAnim, .illustration_noAnim, .col-right-inner_noAnim {
+	animation: none;
+	-moz-animation: none;
+	-webkit-animation: none;
+}
+.illustration-fade-effect_noAnim {
+	display: none;
+}
+h1.baseline_noAnim, .col-right-inner_noAnim {
+	opacity: 1;
+}
+/*------ ie9 ------*/
+.ie9 .arrow {
+	display: none;
+}
+.ie9 h1.baseline {
+	opacity: 1;
+}
+.ie9 .illustration-fade-effect {
+	display: none;
+}
+.ie9 .col-right-inner {
+	opacity: 1;
+}
+
+/*===================================Javascript ===================================*/
+/* initially hide and disable any javascript required content
+/*===============================================================================*/
+
+.jsOK {
+	display: none;
+}
+
