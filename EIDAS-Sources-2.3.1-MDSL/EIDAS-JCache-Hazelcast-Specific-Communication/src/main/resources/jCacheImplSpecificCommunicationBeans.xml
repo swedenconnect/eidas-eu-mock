@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2018 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- hazelcast instance name -->
+    <bean id="eidasSpecificCommunicationHazelcastInstance" class="java.lang.String">
+        <constructor-arg value="eidasSpecificCommunicationHazelcastInstance"/>
+    </bean>
+
+    <!-- hazelcast initializer bean - injected into map providers -->
+    <bean id="eidasSpecificCommunicationHazelcastInstanceInitializer" class=" eu.eidas.auth.cache.HazelcastInstanceInitializer" init-method="initializeInstance" lazy-init="true">
+        <property name="hazelcastConfigfileName" value="#{eidasConfigRepository}hazelcastSpecificCommunication.xml"/>
+        <property name="hazelcastInstanceName" ref="eidasSpecificCommunicationHazelcastInstance"/>
+    </bean>
+
+    <!-- Cache provided by Hazelcast for distributed environment -->
+    <bean id="specificNodeConnectorRequestCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+        <property name="hazelcastInstanceInitializer" ref="eidasSpecificCommunicationHazelcastInstanceInitializer"/>
+        <property name="cacheName" value="specificNodeConnectorRequestProviderCacheService"/>
+    </bean>
+    <bean id="specificNodeProxyserviceResponseCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+        <property name="hazelcastInstanceInitializer" ref="eidasSpecificCommunicationHazelcastInstanceInitializer"/>
+        <property name="cacheName" value="specificNodeProxyserviceResponseProviderCacheService"/>
+    </bean>
+    <bean id="nodeSpecificConnectorResponseCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+        <property name="hazelcastInstanceInitializer" ref="eidasSpecificCommunicationHazelcastInstanceInitializer"/>
+        <property name="cacheName" value="nodeSpecificConnectorResponseProviderCacheService"/>
+    </bean>
+    <bean id="nodeSpecificProxyserviceRequestCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapServiceDistributedImpl" lazy-init="true">
+        <property name="hazelcastInstanceInitializer" ref="eidasSpecificCommunicationHazelcastInstanceInitializer"/>
+        <property name="cacheName" value="nodeSpecificProxyserviceRequestProviderCacheService"/>
+    </bean>
+
+</beans>
