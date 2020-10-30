@@ -86,7 +86,7 @@ public class XmlSchemaUtilTest {
     @Test
     public void newSecureValidator() throws SAXException, IOException, ParserConfigurationException {
         exception.expect(SAXParseException.class);
-        exception.expectMessage("cvc-elt.1: Cannot find the declaration of element 'foo'.");
+        exception.expectMessage("cvc-elt.1.a: Cannot find the declaration of element 'foo'.");
 
         Schema schema = OpenSamlHelper.getSchema();
         DOMSource maliciousDomSource = createMaliciousDomSource();
@@ -138,7 +138,7 @@ public class XmlSchemaUtilTest {
     @Test
     public void validatorFromOpenSamlHelperIsSecured() throws ParserConfigurationException, SAXException, IOException {
         exception.expect(SAXParseException.class);
-        exception.expectMessage("cvc-elt.1: Cannot find the declaration of element 'foo'.");
+        exception.expectMessage("cvc-elt.1.a: Cannot find the declaration of element 'foo'.");
 
         DOMSource domSrc = createMaliciousDomSource();
         Schema schema = OpenSamlHelper.getSchema();

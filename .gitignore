@@ -1,5 +1,8 @@
 *.class
 
+# CEF 2.x
+ignite
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
