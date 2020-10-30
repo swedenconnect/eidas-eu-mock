@@ -42,7 +42,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//import eu.eidas.specificcommunication.CountryCode;
+import eu.eidas.specificcommunication.CountryCode;
 
 /**
  * Class to convert LightRequest and LightResponse message to XML JavaObjects.
@@ -58,7 +58,7 @@ public class LightMessagesConverter {
         LightRequest xmlLightRequest = new LightRequest();
 
         try {
-            String citizenCountryCode = getCountryCode(iLightRequest.getCitizenCountryCode());
+            CountryCode citizenCountryCode = getCountryCode(iLightRequest.getCitizenCountryCode());
             xmlLightRequest.setCitizenCountryCode(citizenCountryCode);
             xmlLightRequest.setId(iLightRequest.getId());
             xmlLightRequest.setIssuer(iLightRequest.getIssuer());
@@ -66,7 +66,7 @@ public class LightMessagesConverter {
             xmlLightRequest.setNameIdFormat(iLightRequest.getNameIdFormat());
             xmlLightRequest.setProviderName(iLightRequest.getProviderName());
             xmlLightRequest.setSpType(iLightRequest.getSpType());
-            final String spCountryCode = getCountryCode(iLightRequest.getSpCountryCode());
+            final CountryCode spCountryCode = getCountryCode(iLightRequest.getSpCountryCode());
             xmlLightRequest.setSpCountryCode(spCountryCode);
             xmlLightRequest.setRequesterId(iLightRequest.getRequesterId());
             xmlLightRequest.setRelayState(iLightRequest.getRelayState());
@@ -91,7 +91,7 @@ public class LightMessagesConverter {
                 eu.eidas.auth.commons.light.impl.LightRequest.builder();
 
         if (xmlLightRequest.getCitizenCountryCode() != null) {
-            lightRequestBuilder.citizenCountryCode(xmlLightRequest.getCitizenCountryCode());
+            lightRequestBuilder.citizenCountryCode(xmlLightRequest.getCitizenCountryCode().toString());
         }
         lightRequestBuilder.id(xmlLightRequest.getId());
         lightRequestBuilder.issuer(xmlLightRequest.getIssuer());
@@ -100,7 +100,7 @@ public class LightMessagesConverter {
         lightRequestBuilder.providerName(xmlLightRequest.getProviderName());
         lightRequestBuilder.spType(xmlLightRequest.getSpType());
         if (xmlLightRequest.getSpCountryCode() != null) {
-            lightRequestBuilder.spCountryCode(xmlLightRequest.getSpCountryCode());
+            lightRequestBuilder.spCountryCode(xmlLightRequest.getSpCountryCode().value());
         }
         lightRequestBuilder.requesterId(xmlLightRequest.getRequesterId());
         lightRequestBuilder.relayState(xmlLightRequest.getRelayState());
@@ -288,11 +288,11 @@ public class LightMessagesConverter {
         return lightResponseStatus;
     }
 
-    private String getCountryCode(String countryCodeValue) {
-        String countryCode = null;
+    private CountryCode getCountryCode(String countryCodeValue) {
+        CountryCode countryCode = null;
         try {
             if (countryCodeValue != null) {
-                countryCode = countryCodeValue;
+                countryCode = CountryCode.fromValue(countryCodeValue);
             }
         } catch (Exception e) {
             LOG.error("Country code " + countryCodeValue + " doesn't exist");
