@@ -25,7 +25,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<!-- <xs:element name="citizenCountryCode" minOccurs="1" maxOccurs="1" type="ep:countryCode"> -->
-				<xs:element name="citizenCountryCode" minOccurs="1" maxOccurs="1">
+				<xs:element name="citizenCountryCode" minOccurs="1" maxOccurs="1" type="xs:string">
 					<xs:annotation>
 						<xs:documentation xml:lang="en">Country code of the citizen, ie.: sending country code in
 							3166-1-alpha-2 format
@@ -110,7 +110,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="spCountryCode" minOccurs="0" maxOccurs="1" type="ep:countryCode">
+				<xs:element name="spCountryCode" minOccurs="0" maxOccurs="1" type="xs:string">
 					<xs:annotation>
 						<xs:documentation xml:lang="en">Country code of the SP, ie.: sending country code in 3166-1-alpha-2 format</xs:documentation>
 					</xs:annotation>
