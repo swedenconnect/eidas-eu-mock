@@ -34,7 +34,7 @@
     <!-- Key Encryption algorithm -->
     <entry key="key.encryption.algorithm">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</entry>
     <!-- Key store configuration -->
-    <entry key="keyStorePath">../keystore/eidasKeyStore_XA.jks</entry>
+    <entry key="keyStorePath">../keystore/eidasKeyStore_XA_3072.jks</entry>
     <entry key="keyStorePassword">local-demo</entry>
     <entry key="keyPassword">local-demo</entry>
     <entry key="keyStoreType">JKS</entry>
@@ -43,15 +43,15 @@
     <entry key="encryptionActivation">encryptionConf.xml</entry>
 
     <!--  If not present then no encryption will be applied on response -->
-    <entry key="responseToPointIssuer.XA">C=XA, O=Swedish E-Identification Board, CN=eIDAS Test XA</entry>
-    <entry key="responseToPointSerialNumber.XA">15ffa00d5b7</entry>
+    <entry key="responseToPointIssuer.XA">CN=Swedish eIDAS Test XA,O=Sweden Connect,C=XA</entry>
+    <entry key="responseToPointSerialNumber.XA">5FA11B23</entry>
 
     <entry key="responseToPointIssuer.SE">C=SE, O=Swedish E-Identification Board, CN=Swedish Test eIDAS Node - Rollover</entry>
     <entry key="responseToPointSerialNumber.SE">16042ffc89c</entry>
 
     <!--  If not present then no decryption will be applied on response -->
     <!-- Certificate containing instance private key-->
-    <entry key="responseDecryptionIssuer">C=XA, O=Swedish E-Identification Board, CN=eIDAS Test XA</entry>
-    <entry key="serialNumber">15ffa00d5b7</entry>
+    <entry key="responseDecryptionIssuer">CN=Swedish eIDAS Test XA,O=Sweden Connect,C=XA</entry>
+    <entry key="serialNumber">5FA11B23</entry>
 
 </properties>
