@@ -57,10 +57,12 @@
   <entry key="serialNumber">5FA11B23</entry>
   <entry key="keyStoreType">JKS</entry>
 
+<!--
   <entry key="metadata.keyStorePath">../keystore/eidasKeyStore_XA_3072.jks</entry>
   <entry key="metadata.keyStorePassword">local-demo</entry>
   <entry key="metadata.keyPassword">local-demo</entry>
   <entry key="metadata.issuer">CN=Swedish eIDAS Test XA,O=Sweden Connect,C=XA</entry>
   <entry key="metadata.serialNumber">5FA11B23</entry>
   <entry key="metadata.keyStoreType">JKS</entry>
+-->
 </properties>

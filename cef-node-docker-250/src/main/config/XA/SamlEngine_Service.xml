@@ -43,11 +43,11 @@
 	<!-- A friendly name for the attribute that can be displayed to a user -->
 	<entry key="friendlyName">false</entry>
 
-	<!--PEPS in the Service Provider's country -->
-	<entry key="requester">http://S-PEPS.gov.xx</entry>
+	<!-- Usage unclear -->
+	<!-- entry key="requester">http://localhost:8900/EidasNode/ConnectorMetadata</entry -->
 
-	<!--PEPS in the citizen's origin country -->
-	<entry key="responder">http://C-PEPS.gov.xx</entry>
+	<!-- Appears as NameQualifier in NameID -->
+	<entry key="responder">http://localhost:8900/EidasNode/ServiceMetadata</entry>
 
 	<!--Subject cannot be confirmed on or after this seconds time (positive
 		number) -->

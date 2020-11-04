@@ -38,18 +38,6 @@
     <entry key="keyStorePassword">local-demo</entry>
     <entry key="keyPassword">local-demo</entry>
     <entry key="keyStoreType">JKS</entry>
-
-    <!-- Management of the encryption activation -->
-    <entry key="encryptionActivation">encryptionConf.xml</entry>
-
-    <!--  If not present then no encryption will be applied on response -->
-    <entry key="responseToPointIssuer.XA">CN=Swedish eIDAS Test XA,O=Sweden Connect,C=XA</entry>
-    <entry key="responseToPointSerialNumber.XA">5FA11B23</entry>
-
-    <entry key="responseToPointIssuer.SE">C=SE, O=Swedish E-Identification Board, CN=Swedish Test eIDAS Node - Rollover</entry>
-    <entry key="responseToPointSerialNumber.SE">16042ffc89c</entry>
-
-    <!--  If not present then no decryption will be applied on response -->
     <!-- Certificate containing instance private key-->
     <entry key="responseDecryptionIssuer">CN=Swedish eIDAS Test XA,O=Sweden Connect,C=XA</entry>
     <entry key="serialNumber">5FA11B23</entry>
