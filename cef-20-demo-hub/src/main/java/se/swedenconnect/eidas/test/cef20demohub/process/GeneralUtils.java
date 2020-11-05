@@ -10,7 +10,6 @@ import se.swedenconnect.eidas.test.cef20demohub.configuration.SPConfigurationPro
 import se.swedenconnect.eidas.test.cef20demohub.data.CitizenCountry;
 import se.swedenconnect.eidas.test.cef20demohub.data.DemoLevelOfAssurance;
 import se.swedenconnect.eidas.test.cef20demohub.data.ValueAttribute;
-import sun.util.resources.cldr.bas.CalendarData_bas_CM;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;

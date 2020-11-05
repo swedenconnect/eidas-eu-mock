@@ -103,8 +103,7 @@ public class YamlUserFactory {
         TestAddressYaml ta = new TestAddressYaml();
         ta.setCity(address.getCity());
         ta.setCountry(address.getCountry());
-        ta.setFullAddress(address.getFullAddress());
-        ta.setId(address.getId());
+        ta.setRegion(address.getRegion());
         ta.setLocation(address.getLocation());
         ta.setPoBox(address.getPoBox());
         ta.setPostalCode(address.getPostalCode());
@@ -115,16 +114,15 @@ public class YamlUserFactory {
 
     public static ComplexAddressAttribute getTestAddress (TestAddressYaml preConfigAddressEnum){
         ComplexAddressAttribute address = new ComplexAddressAttribute();
-        address.setAddressId(preConfigAddressEnum.getId());
-        address.setFullCVAddress(preConfigAddressEnum.getFullAddress());
-        address.setThoroughFare(preConfigAddressEnum.getStreet());
-        address.setLocatorDesignator(preConfigAddressEnum.getStreetNumber());
-        address.setAdminUnitFirstLine(preConfigAddressEnum.getCountry());
-        address.setPostCode(preConfigAddressEnum.getPostalCode());
-        address.setAdminUnitSecondLine(preConfigAddressEnum.getCity());
-        address.setPostName(preConfigAddressEnum.getLocation()+ " "+ preConfigAddressEnum.getCity());
         address.setPoBox(preConfigAddressEnum.getPoBox());
+        address.setLocatorDesignator(preConfigAddressEnum.getStreetNumber());
         address.setLocatorName(preConfigAddressEnum.getLocation());
+        address.setAddressArea(preConfigAddressEnum.getRegion());
+        address.setThoroughFare(preConfigAddressEnum.getStreet());
+        address.setPostName(preConfigAddressEnum.getLocation()+ " "+ preConfigAddressEnum.getCity());
+        address.setAdminUnitFirstLine(preConfigAddressEnum.getCountry());
+        address.setAdminUnitSecondLine(preConfigAddressEnum.getCity());
+        address.setPostCode(preConfigAddressEnum.getPostalCode());
         return address;
     }
 

@@ -1,36 +1,28 @@
 package se.swedenconnect.eidas.test.cef20demohub.data;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+@Getter
+@AllArgsConstructor
 public enum DemoLevelOfAssurance {
-    low("http://eidas.europa.eu/LoA/low", Arrays.asList("A", "B"), "A"),
-    substantial("http://eidas.europa.eu/LoA/substantial", Arrays.asList("C", "D"), "C"),
-    high("http://eidas.europa.eu/LoA/high", Arrays.asList("E"), "E");
+    low("http://eidas.europa.eu/LoA/low", Arrays.asList("A", "B"), "A", true),
+    substantial("http://eidas.europa.eu/LoA/substantial", Arrays.asList("C", "D"), "C", true),
+    high("http://eidas.europa.eu/LoA/high", Arrays.asList("E"), "E", true),
+    nonNotifiedLow("http://eidas.europa.eu/NotNotified/LoA/low", Arrays.asList("http://eidas.europa.eu/NotNotified/LoA/low"), "http://eidas.europa.eu/NotNotified/LoA/low", false),
+    nonNotifiedSubstantial("http://eidas.europa.eu/NotNotified/LoA/substantial", Arrays.asList("http://eidas.europa.eu/NotNotified/LoA/substantial"), "http://eidas.europa.eu/NotNotified/LoA/substantial", false),
+    nonNotifiedHigh("http://eidas.europa.eu/NotNotified/LoA/high", Arrays.asList("http://eidas.europa.eu/NotNotified/LoA/high"), "http://eidas.europa.eu/NotNotified/LoA/high", false);
 
     String uri;
     List<String> matchList;
     String key;
+    boolean notified;
 
-    DemoLevelOfAssurance(String uri, List<String> matchList, String key) {
-        this.uri = uri;
-        this.matchList = matchList;
-        this.key = key;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public List<String> getMatchList() {
-        return matchList;
-    }
-
-    public String getKey() {
-        return key;
-    }
 
     public static List<DemoLevelOfAssurance> getList() {
         return Arrays.asList(values());

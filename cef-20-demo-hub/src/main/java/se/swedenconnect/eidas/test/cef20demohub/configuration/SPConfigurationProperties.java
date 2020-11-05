@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Configuration
 @PropertySource(value = "${cef20demohub.config.location}spconfig.properties", encoding = "Utf8")
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "")
 @Data
 @ToString
 public class SPConfigurationProperties {
@@ -26,6 +26,7 @@ public class SPConfigurationProperties {
         private String idpName;
         private String requestUrl;
         private String flagUrl;
+        private boolean nonNotified;
         private Map<String, PsCountry> country;
     }
 

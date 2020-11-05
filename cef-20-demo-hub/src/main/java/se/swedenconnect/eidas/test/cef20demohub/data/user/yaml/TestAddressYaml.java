@@ -5,15 +5,14 @@ import lombok.Data;
 @Data
 public class TestAddressYaml {
 
-    private String fullAddress;
+    private String location;
     private String street;
     private String streetNumber;
-    private String country;
+    private String poBox;
     private String postalCode;
     private String city;
-    private String poBox;
-    private String location;
-    private String id;
+    private String region;
+    private String country;
 
     public TestAddressYaml() {
     }
