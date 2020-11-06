@@ -74,6 +74,7 @@ public class IdpController {
         model.addAttribute("natUsers", natUsers);
         model.addAttribute("legalUsers", legalUsers);
         model.addAttribute("loaList", DemoLevelOfAssurance.getList());
+        model.addAttribute("nonNotified", spConfig.isNonNotified());
         model.addAttribute("reqLoa", reqLoa);
 
         return "sc-authenticate";

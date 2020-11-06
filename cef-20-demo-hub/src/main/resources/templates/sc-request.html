@@ -72,7 +72,7 @@
                             </div>
                         </td>
                     </tr>
-                    <!-- Selector for selecting requested LoA -->
+                    <!-- Selector for selecting requested notified LoA -->
                     <tr>
                         <td style="width: 100%">
                             <div class="row">
@@ -81,10 +81,28 @@
                                 </div>
                                 <div class="col-lg-8 col-sm-12">
                                     <select class="selectpicker show-menu-arrow" data-width="90%" name="reqLoa" id="reqLoa" data-style="btn-outline-secondary" onchange="saveSelectedLoa()">
-                                        <option value="A">http://eidas.europa.eu/LoA/low</option>
-                                        <option value="C" selected>http://eidas.europa.eu/LoA/substantial</option>
-                                        <option value="E">http://eidas.europa.eu/LoA/high</option>
+                                        <th:block th:each="loa:${loaList}">
+                                            <option th:if="${(!loa.isEmpty() && loa.isNotified()) || (loa.isEmpty() && nonNotified)}" th:value="${loa.getKey()}" th:text="${loa.getDisplayName()}"></option>
+                                        </th:block>
                                     </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Selector for selecting requested non notified LoA -->
+                    <tr th:if="${nonNotified}">
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
+                                    <label>Non Notified LoA</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <th:block th:each="loa,loaIdx:${loaList}">
+                                        <div class="form-check" th:if="${!loa.isNotified()}">
+                                            <input type="checkbox" class="form-check-input" th:id="'loa-check' + ${loaIdx.count}" th:name="'reqNNLoa-' + ${loaIdx.count - 1}">
+                                            <label class="form-check-label" th:for="'loa-check' + ${loaIdx.count}" th:text="${loa.getDisplayName()}"></label>
+                                        </div>
+                                    </th:block>
                                 </div>
                             </div>
                         </td>

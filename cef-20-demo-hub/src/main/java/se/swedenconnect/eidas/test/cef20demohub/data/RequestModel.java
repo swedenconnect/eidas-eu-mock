@@ -12,6 +12,7 @@ public class RequestModel {
     public static final String UNSPECIFIED = "unspecified";
 
     private String returnUrl, providerName, citizenCountry, eidasNameIdentifier, eidasloa;
+    private List<String> nnLoaList;
     private SpType eidasSPType;
     private LevelOfAssuranceComparison eidasloaCompareType;
     private List<Attribute> simpleAttributes;

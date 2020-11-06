@@ -72,7 +72,7 @@
                             <label for="loaSelect">Level of Assurance</label>
                             <select class="selectpicker show-menu-arrow" data-width="100%" name="loaSelect" id="loaSelect" onchange="saveSelectedLoa()" data-style="btn-outline-secondary">
                                 <th:block th:each="loa : ${loaList}">
-                                    <option th:value="${loa.getKey()}" th:data-content="${loa.getUri()}"  th:selected="${loa.getKey().equalsIgnoreCase(reqLoa)}"></option>
+                                    <option th:if="${!loa.isEmpty() && (loa.isNotified() || (!loa.isNotified() && nonNotified))}" th:value="${loa.getKey()}" th:data-content="${loa.getDisplayName()}"  th:selected="${loa.getKey().equalsIgnoreCase(reqLoa)}"></option>
                                 </th:block>
                             </select>
                         </div>

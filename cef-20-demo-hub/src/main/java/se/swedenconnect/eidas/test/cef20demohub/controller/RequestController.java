@@ -50,6 +50,7 @@ public class RequestController {
         model.addAttribute("legalAttr", Arrays.asList(EidasLegalAttributeFriendlyName.values()));
         model.addAttribute("countryList", utils.getCountryList(spConfig));
         model.addAttribute("loaList", DemoLevelOfAssurance.getList());
+        model.addAttribute("nonNotified", spConfig.isNonNotified());
         model.addAttribute("loaComparisonList", Arrays.asList(LevelOfAssuranceComparison.values()));
         model.addAttribute("spTypeList", Arrays.asList(SpType.values()));
         model.addAttribute("nameIdTypeList", Arrays.asList(RequestModel.UNSPECIFIED, RequestModel.PERSISTENT, RequestModel.TRANSIENT));
