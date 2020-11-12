@@ -1,6 +1,7 @@
 package se.swedenconnect.eidas.test.cef20demohub.data.user;
 
 import eu.eidas.SimpleProtocol.ComplexAddressAttribute;
+import org.apache.commons.lang.StringUtils;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasLegalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.EidasNaturalAttributeFriendlyName;
 import se.swedenconnect.eidas.test.cef20demohub.data.user.yaml.TestAddressYaml;
@@ -119,11 +120,22 @@ public class YamlUserFactory {
         address.setLocatorName(preConfigAddressEnum.getLocation());
         address.setAddressArea(preConfigAddressEnum.getRegion());
         address.setThoroughFare(preConfigAddressEnum.getStreet());
-        address.setPostName(preConfigAddressEnum.getLocation()+ " "+ preConfigAddressEnum.getCity());
+        address.setPostName(getPostName(preConfigAddressEnum));
         address.setAdminUnitFirstLine(preConfigAddressEnum.getCountry());
         address.setAdminUnitSecondLine(preConfigAddressEnum.getCity());
         address.setPostCode(preConfigAddressEnum.getPostalCode());
         return address;
+    }
+
+    private static String getPostName(TestAddressYaml preConfigAddressEnum) {
+        String street = preConfigAddressEnum.getStreet();
+        String number = preConfigAddressEnum.getStreetNumber();
+        boolean hasStreet = StringUtils.isNotEmpty(street);
+        boolean hasnumber = StringUtils.isNotEmpty(number);
+
+        if (hasStreet && hasnumber) return street + " " + number;
+        if (hasStreet) return street;
+        return null;
     }
 
     public static Map<EidasNaturalAttributeFriendlyName, User.AttributeData> getNaturalPersonAttributes (TestUserYaml person){

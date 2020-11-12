@@ -28,8 +28,10 @@ export EIDAS_TRUSTED_CERTS_CONSTRAINTS=$EIDAS_TRUSTED_CERTS_CONSTRAINTS
 : ${JVM_MAX_HEAP:=1536m}
 : ${JVM_START_HEAP:=512m}
 
-export JAVA_OPTS="-XX:MaxPermSize=512m"
-export CATALINA_OPTS="\
+export JAVA_OPTS="${JAVA_OPTS} \
+          -XX:MaxPermSize=512m \
+          -Dorg.apache.xml.security.ignoreLineBreaks=true"
+export CATALINA_OPTS="${CATALINA_OPTS} \
           -Xmx${JVM_MAX_HEAP}\
           -Xms${JVM_START_HEAP}\
 "
