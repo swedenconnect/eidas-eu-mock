@@ -3,7 +3,7 @@ package se.swedenconnect.eidas.test.cef20demohub.process;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eu.eidas.SimpleProtocol.*;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import se.swedenconnect.eidas.test.cef20demohub.configuration.SPConfigurationProperties;
@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Configuration
-@Log4j2
+@Slf4j
 public class GeneralUtils {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private final SPConfigurationProperties spConfigurationProperties;
