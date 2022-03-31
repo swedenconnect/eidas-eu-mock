@@ -42,7 +42,7 @@
         <samlspecacept.version>0.5.1</samlspecacept.version>
 
         <!-- 2) Library dependency versions -->
-        <spring.version>4.3.18.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
         <opensaml.not-yet-commons-ssl.version>0.3.9</opensaml.not-yet-commons-ssl.version>
         <opensaml.openws.version>1.5.5</opensaml.openws.version>
         <opensaml.version>3.4.3</opensaml.version>
