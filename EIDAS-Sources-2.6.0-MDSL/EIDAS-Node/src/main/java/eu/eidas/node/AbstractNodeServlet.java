@@ -22,6 +22,7 @@ import eu.eidas.auth.commons.EidasParameterKeys;
 import eu.eidas.node.auth.service.AUSERVICEUtil;
 import eu.eidas.node.logging.LoggingMarkerMDC;
 import eu.eidas.node.logging.LoggingUtil;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.MDC;
 
@@ -33,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.Security;
 
 /**
  * Generic EidasNode servlet ancestor.
@@ -41,6 +43,12 @@ import java.io.IOException;
  * @since 1.2.2
  */
 public abstract class AbstractNodeServlet extends HttpServlet {
+
+    static {
+        if (Security.getProvider("BC") == null){
+            Security.insertProviderAt(new BouncyCastleProvider(), 2);
+        }
+    }
 
     /**
      * Abstract logging impl.
