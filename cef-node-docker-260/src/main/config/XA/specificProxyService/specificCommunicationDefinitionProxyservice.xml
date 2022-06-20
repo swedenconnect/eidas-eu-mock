@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright (c) 2017 by European Commission
+<!-- 
+  ~ Copyright (c) 2020 by European Commission
   ~
   ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
   ~ approved by the European Commission - subsequent versions of the
@@ -14,7 +14,7 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
   ~ implied.
   ~ See the Licence for the specific language governing permissions and
-  ~ limitations under the Licence.
+  ~ limitations under the Licence
   -->
 
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright (c) 2018 by European Commission
+  ~ Copyright (c) 2021 by European Commission
   ~
   ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
   ~ approved by the European Commission - subsequent versions of the
@@ -53,37 +53,91 @@
                     <property name="name" value="specificNodeConnectorRequestCache"/>
                     <property name="atomicityMode" value="ATOMIC"/>
                     <property name="backups" value="1"/>
+                    <property name="expiryPolicyFactory" ref="7_minutes_duration"/>
                 </bean>
                 <!-- Partitioned cache example configuration (Atomic mode). -->
                 <bean class="org.apache.ignite.configuration.CacheConfiguration">
                     <property name="name" value="nodeSpecificProxyserviceRequestCache"/>
                     <property name="atomicityMode" value="ATOMIC"/>
                     <property name="backups" value="1"/>
+                    <property name="expiryPolicyFactory" ref="7_minutes_duration"/>
                 </bean>
                 <!-- Partitioned cache example configuration (Atomic mode). -->
                 <bean class="org.apache.ignite.configuration.CacheConfiguration">
                     <property name="name" value="specificNodeProxyserviceResponseCache"/>
                     <property name="atomicityMode" value="ATOMIC"/>
                     <property name="backups" value="1"/>
+                    <property name="expiryPolicyFactory" ref="7_minutes_duration"/>
                 </bean>
                 <!-- Partitioned cache example configuration (Atomic mode). -->
                 <bean class="org.apache.ignite.configuration.CacheConfiguration">
                     <property name="name" value="nodeSpecificConnectorResponseCache"/>
                     <property name="atomicityMode" value="ATOMIC"/>
                     <property name="backups" value="1"/>
+                    <property name="expiryPolicyFactory" ref="7_minutes_duration"/>
                 </bean>
 
             </list>
         </property>
 		
-        <!-- Explicitly configure TCP discovery SPI to provide list of initial nodes. -->
-        <property name="discoverySpi">
+        <!--Multicast discover of other nodes in the grid configuration-->
+        <!--property name="discoverySpi">
             <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
                 <property name="ipFinder">
                     <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder">
                         <property name="multicastGroup" value="228.10.10.164"/>
                     </bean>
                 </property>
+            </bean>
+        </property-->
+
+        <!--Explicitly configure TCP discovery SPI to provide list of initial nodes from the second cluster.-->
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <!-- Initial local port to listen to. -->
+                <property name="localPort" value="49500"/>
+
+                <!-- Changing local port range. This is an optional action. -->
+                <property name="localPortRange" value="3"/>
+
+                <!-- Setting up IP finder for this cluster -->
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <!--
+                                Addresses and port range of the nodes from the second cluster.
+                                127.0.0.1 can be replaced with actual IP addresses or host names. Port range is optional.
+                                -->
+                                <value>127.0.0.1:49500..49502</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+
+         <!--
+        Explicitly configure TCP communication SPI changing local port number
+        for the nodes from the second cluster.
+        -->
+        <property name="communicationSpi">
+            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
+                <property name="localPort" value="49100"/>
+            </bean>
+        </property>
+
+        <!-- Ssl/Tls context. -->
+        <!--IMPORTANT: THIS IS A DEMO CONFIGURATION AND DEMO KEYSTORES, IT NEEDS TO BE CHANGED FOR PRODUCTION ALSO THE KEYS IN THE KEYSTORES NEED TO BE CREATED AS WELL-->
+        <property name="sslContextFactory">
+            <bean class="org.apache.ignite.ssl.SslContextFactory">
+                <!--uncomment the below keyAlgorithm when IBM JRE is used e.g. websphere 8.5.5-->
+                <!--<property name="keyAlgorithm" value="IBMX509" />-->
+                <property name="keyStoreFilePath" value="${EIDAS_CONFIG_REPOSITORY}/ignite/KeyStore/server.jks"/>
+                <property name="keyStorePassword" value="123456"/>
+                <property name="trustStoreFilePath" value="${EIDAS_CONFIG_REPOSITORY}/ignite/KeyStore/trust.jks"/>
+                <property name="trustStorePassword" value="123456"/>
+                <property name="protocol" value="TLSv1.2"/>
             </bean>
        </property>
 
@@ -99,5 +153,18 @@
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_FALLBACK"/>
         <property name="searchSystemEnvironment" value="true"/>
     </bean>
+
+    <!--
+        Defines expiry policy based on moment of creation for ignite cache.
+    -->
+    <bean id="7_minutes_duration" class="javax.cache.expiry.CreatedExpiryPolicy" factory-method="factoryOf" scope="prototype">
+        <constructor-arg>
+            <bean class="javax.cache.expiry.Duration">
+                <constructor-arg value="MINUTES"/>
+                <constructor-arg value="7"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
 
 </beans>
