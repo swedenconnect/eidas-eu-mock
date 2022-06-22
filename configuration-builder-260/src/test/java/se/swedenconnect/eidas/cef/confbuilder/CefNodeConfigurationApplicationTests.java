@@ -16,15 +16,32 @@
 
 package se.swedenconnect.eidas.cef.confbuilder;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
+import java.io.File;
+
 @TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
 @ActiveProfiles("test")
 class CefNodeConfigurationApplicationTests {
+
+  @BeforeAll
+  static void init() throws Exception{
+    // Set test property
+    String testConfFilePath = CefNodeConfigurationApplication.class.getClassLoader()
+      .getResources("conf.properties")
+      .nextElement()
+      .getFile();
+    File testConfFile = new File(testConfFilePath);
+    System.setProperty("spring.config.additional-location", testConfFile.getParent() + "/");
+
+    File targetDir = new File(System.getProperty("user.dir"), "target/test-data/test-conf");
+    System.setProperty("option.target-dir", targetDir.getAbsolutePath());
+  }
 
   @Test
   void contextLoads() {

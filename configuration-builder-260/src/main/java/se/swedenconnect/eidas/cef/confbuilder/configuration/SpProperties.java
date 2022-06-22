@@ -20,6 +20,7 @@ import lombok.Data;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * Extracting essential configuration properties
@@ -28,11 +29,13 @@ import org.springframework.context.annotation.Configuration;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @Configuration
-@ConfigurationProperties(prefix = "ca-service.instance")
+@PropertySource(value = "file://${spring.config.additional-location}conf.properties", encoding = "Utf8")
+@ConfigurationProperties(prefix = "sp")
 @Data
 @ToString
-public class EIDASNodeConfigProperties {
+public class SpProperties {
 
-  /** Configuration property data map for hte eIDAS node */
+  private String name;
+  private String requesterId;
 
 }

@@ -24,9 +24,10 @@ import org.apache.commons.cli.Options;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 public class AppOptions {
-    public static final String OPTION_TARGET = "target";
-    public static final String OPTION_CONF = "conf";
-    public static final String OPTION_VERBOSE = "v";
+    public static final String OPTION_TARGET = "o";
+    public static final String OPTION_CONF = "c";
+    public static final String OPTION_PROFILE = "p";
+    public static final String OPTION_TEMPLATE_DIR = "t";
     public static final String OPTION_LOG = "log";
     public static final String OPTION_HELP = "help";
 
@@ -35,8 +36,9 @@ public class AppOptions {
     static{
         op = new Options();
         op.addOption(OPTION_TARGET, true, "Target directory where configuration data will be written.");
-        op.addOption(OPTION_CONF, false, "Directory where configuration input data is provided");
-        op.addOption(OPTION_VERBOSE, false, "Verbose output");
+        op.addOption(OPTION_CONF, true, "Directory where configuration input data is provided");
+        op.addOption(OPTION_TEMPLATE_DIR, true, "Directory where template files are located");
+        op.addOption(OPTION_PROFILE, true, "Profile identifier defining the function of the builder (default CEF26)");
         op.addOption(OPTION_LOG, false, "Include log information in the console output");
         op.addOption(OPTION_HELP, false, "Print this message");
     }
