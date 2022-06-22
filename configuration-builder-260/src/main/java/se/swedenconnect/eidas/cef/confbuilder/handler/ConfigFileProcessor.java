@@ -40,7 +40,7 @@ public class ConfigFileProcessor {
   }
 
   public void update(String id, int value) throws IOException {
-    update("id", String.valueOf(value));
+    update(id, String.valueOf(value));
   }
 
   public void update(String id, boolean value) throws IOException {

@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
 public class ConfigHandler {
 
   @Value("${spring.config.additional-location}") String configDirProp;
-  @Value("$option.target-dir") String targetDirProp;
+  @Value("${option.target-dir}") String targetDirProp;
 
   private final EIDASNodeConfigBuilderProvider eidasNodeConfigBuilderProvider;
 
@@ -94,7 +94,9 @@ public class ConfigHandler {
     System.out.println("Target directory: " + targetDir.getAbsolutePath());
 
     if (!cmd.hasOption(AppOptions.OPTION_TEMPLATE_DIR)) {
-      System.out.println("Template -t" + AppOptions.OPTION_TEMPLATE_DIR + " must be set.");
+      System.out.println("Template -" + AppOptions.OPTION_TEMPLATE_DIR + " must be set.");
+      HelpFormatter formatter = new HelpFormatter();
+      formatter.printHelp("java -jar confbuilder.jar [options]", AppOptions.getOptions());
       return;
     }
     String templateDirStr = cmd.getOptionValue(AppOptions.OPTION_TEMPLATE_DIR);

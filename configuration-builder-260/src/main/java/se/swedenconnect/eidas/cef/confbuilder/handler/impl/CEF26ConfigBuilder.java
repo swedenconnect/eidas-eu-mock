@@ -22,6 +22,9 @@ import se.swedenconnect.eidas.cef.confbuilder.handler.EIDASNodeConfigBuilder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Description
@@ -59,6 +62,29 @@ public class CEF26ConfigBuilder implements EIDASNodeConfigBuilder {
     eidasXml.update("metadata.organization.url", metadataProperties.getOrganization().getUrl());
     // Services
     eidasXml.update("config.service-count", servicesProperties.getService().size());
+
+    List<String> counties = new ArrayList<>(servicesProperties.getService().keySet());
+    StringBuilder b = new StringBuilder();
+    for (int i = 0; i<counties.size() ; i++) {
+      String country = counties.get(i);
+      ServicesProperties.ServiceData serviceData = servicesProperties.getService().get(country);
+      b.append(getServiceEntry(i, "id", country));
+      b.append(getServiceEntry(i, "name", serviceData.getName()));
+      b.append(getServiceEntry(i, "skew.notbefore", "0"));
+      b.append(getServiceEntry(i, "skew.notonorafter", "0"));
+      b.append(getServiceEntry(i, "metadata.url", serviceData.getMetadata()));
+    }
+    eidasXml.update("service.information", b.toString());
+
     int sdf=0;
+
+  }
+
+  private String getServiceEntry(int idx, String name, String val) {
+    StringBuilder b = new StringBuilder();
+    b.append("  <entry key=\"service")
+      .append(idx + 1).append(".")
+      .append(name).append("\">").append(val).append("</entry>\n");
+    return b.toString();
   }
 }
