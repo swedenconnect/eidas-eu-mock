@@ -10,6 +10,7 @@ ignite
 *.jar
 *.war
 *.ear
+!confbuilder.jar
 
 # Eclipse
 .metadata
