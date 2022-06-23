@@ -37,7 +37,7 @@ class CefNodeConfigurationApplicationTests {
       .nextElement()
       .getFile();
     File testConfFile = new File(testConfFilePath);
-    System.setProperty("spring.config.additional-location", testConfFile.getParent() + "/");
+    System.setProperty("option.config-file", testConfFile.getAbsolutePath() + "/");
 
     File targetDir = new File(System.getProperty("user.dir"), "target/test-data/test-conf");
     System.setProperty("option.target-dir", targetDir.getAbsolutePath());

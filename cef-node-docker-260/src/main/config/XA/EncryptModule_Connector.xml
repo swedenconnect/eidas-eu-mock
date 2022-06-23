@@ -24,27 +24,16 @@
     <entry key="check.certificate.validity.period">false</entry>
 
     <!-- Key store configuration -->
-    <entry key="keyStorePath">../keystore/eidasKeyStore_XA_3072.jks</entry>
-    <entry key="keyStorePassword">local-demo</entry>
-    <entry key="keyPassword">local-demo</entry>
+    <entry key="keyStorePath">keystores/xa-rsa.jks</entry>
+    <entry key="keyStorePassword">Test1234</entry>
+    <entry key="keyPassword">Test1234</entry>
     <entry key="keyStoreType">JKS</entry>
 
     <!-- Management of the encryption activation -->
     <entry key="encryptionActivation">encryptionConf.xml</entry>
 
-    <!--  If not present then no encryption will be applied on response -->
-    <!--<entry key="responseToPointIssuer.CA">CN=cpeps-ca-demo-certificate, OU=STORK, O=CPEPS, L=EU, ST=EU, C=CA</entry>
-    <entry key="responseToPointSerialNumber.CA">54C8F87D</entry>-->
-
-    <!-- Key transport config -->
-    <!--  If not present then no decryption will be applied on response -->
-    <entry key="responseDecryptionIssuer">CN=Swedish eIDAS Test XA,O=Sweden Connect,C=XA</entry>
-    <entry key="serialNumber">5FA11B23</entry>
-
-    <!-- Key Agreement config -->
-    <!--  If not present then no decryption will be applied on response -->
-
-    <!--entry key="responseDecryptionIssuer">CN=speps-ka-ca-demo-certificate,OU=STORK,O=SPEPS,L=EU,ST=EU,C=CA</entry>
-    <entry key="serialNumber">4D30C06D041650DEF5EB17005AF07B201D1AA948</entry-->
+    <!-- Decryption config -->
+    <entry key="responseDecryptionIssuer">CN=Test CEF node country XA, OU=eIDAS node unit, O=eIDAS node org, C=XA</entry>
+    <entry key="serialNumber">62B377EC</entry>
 
 </properties>

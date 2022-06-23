@@ -21,92 +21,86 @@
 <properties>
     <!-- Connector  -->
     <!-- Connector assertion URL -->
-	<entry key="connector.assertion.url">http://localhost:8900/EidasNode/ColleagueResponse</entry>
+  <entry key="connector.assertion.url">http://localhost:8900/EidasNode/ColleagueResponse</entry>
 
     <!--connector Metadata -->
-    <entry key="connector.contact.email">test@com</entry>
-    <entry key="connector.metadata.url">http://localhost:8900/EidasNode/ConnectorMetadata</entry>
+  <entry key="connector.contact.email">test@com</entry>
+  <entry key="connector.metadata.url">http://localhost:8900/EidasNode/ConnectorMetadata</entry>
 
     <!-- METADATA configuration -->
     <!-- Connector contact -->
-    <entry key="connector.contact.support.email">contact.support@eidas-connector.eu</entry>
-    <entry key="connector.contact.support.company">eIDAS Connector Operator</entry>
-    <entry key="connector.contact.support.givenname">John</entry>
-    <entry key="connector.contact.support.surname">Doe</entry>
-    <entry key="connector.contact.support.phone">+40 123456</entry>
-    <entry key="connector.contact.technical.email">contact.technical@eidas-connector.eu</entry>
-    <entry key="connector.contact.technical.company">eIDAS Connector Operator</entry>
-    <entry key="connector.contact.technical.givenname">John</entry>
-    <entry key="connector.contact.technical.surname">Doe</entry>
-    <entry key="connector.contact.technical.phone">+41 123456</entry>
+  <entry key="connector.contact.support.email">contact.support@eidas-connector.eu</entry>
+  <entry key="connector.contact.support.company">eIDAS Connector Operator</entry>
+  <entry key="connector.contact.support.givenname">John</entry>
+  <entry key="connector.contact.support.surname">Doe</entry>
+  <entry key="connector.contact.support.phone">+40 123456</entry>
+  <entry key="connector.contact.technical.email">contact.technical@eidas-connector.eu</entry>
+  <entry key="connector.contact.technical.company">eIDAS Connector Operator</entry>
+  <entry key="connector.contact.technical.givenname">John</entry>
+  <entry key="connector.contact.technical.surname">Doe</entry>
+  <entry key="connector.contact.technical.phone">+41 123456</entry>
     <!-- Connector organization -->
-    <entry key="connector.organization.name">Sample Country Connector</entry>
-    <entry key="connector.organization.displayname">Connector</entry>
-    <entry key="connector.organization.url">https://connector.sample/info</entry>
+  <entry key="connector.organization.name">Sample Country Connector</entry>
+  <entry key="connector.organization.displayname">Connector</entry>
+  <entry key="connector.organization.url">https://connector.sample/info</entry>
 
     <!-- Id of this Proxy-Service -->
-	<entry key="service.id">XA</entry>
+  <entry key="service.id">XA</entry>
     <!-- Country Code of this Proxy-Service -->
-	<entry key="service.countrycode">XA</entry>
+  <entry key="service.countrycode">XA</entry>
 
     <!--service Metadata -->
-    <entry key="service.contact.email">test@com</entry>
-    <entry key="service.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>
+  <entry key="service.contact.email">test@com</entry>
+  <entry key="service.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>
 
     <!-- ProxyService contact -->
-    <entry key="service.contact.support.email">contact.support@eidas-proxyservice.eu</entry>
-    <entry key="service.contact.support.company">eIDAS ProxyService Operator</entry>
-    <entry key="service.contact.support.givenname">John</entry>
-    <entry key="service.contact.support.surname">Doe</entry>
-    <entry key="service.contact.support.phone">+42 123456</entry>
-    <entry key="service.contact.technical.email">contact.technical@eidas-proxyservice.eu</entry>
-    <entry key="service.contact.technical.company">eIDAS ProxyService Operator</entry>
-    <entry key="service.contact.technical.givenname">John</entry>
-    <entry key="service.contact.technical.surname">Doe</entry>
-    <entry key="service.contact.technical.phone">+43 123456</entry>
+  <entry key="service.contact.support.email">contact.support@eidas-connector.eu</entry>
+  <entry key="service.contact.support.company">eIDAS Connector Operator</entry>
+  <entry key="service.contact.support.givenname">John</entry>
+  <entry key="service.contact.support.surname">Doe</entry>
+  <entry key="service.contact.support.phone">+40 123456</entry>
+  <entry key="service.contact.technical.email">contact.technical@eidas-connector.eu</entry>
+  <entry key="service.contact.technical.company">eIDAS Connector Operator</entry>
+  <entry key="service.contact.technical.givenname">John</entry>
+  <entry key="service.contact.technical.surname">Doe</entry>
+  <entry key="service.contact.technical.phone">+41 123456</entry>
     <!-- ProxyService organization -->
-    <entry key="service.organization.name">Sample Country Proxy Service</entry>
-    <entry key="service.organization.displayname">Service</entry>
-    <entry key="service.organization.url">https://service.sample/info</entry>
+  <entry key="service.organization.name">Sample Country Connector</entry>
+  <entry key="service.organization.displayname">Connector</entry>
+  <entry key="service.organization.url">https://connector.sample/info</entry>
 
     <!-- Eidas Node Service Metadata Single Sign On locations for ServiceMetadata-->
-	<entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
-	<entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
+  <entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
+  <entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8900/EidasNode/ColleagueRequest</entry>
 
-	<!-- Number of known Service -->
-	<entry key="service.number">2</entry>
+	  <!-- Number of known Service -->
+  <entry key="service.number">2</entry>
 
-	<entry key="service1.id">XA</entry>
-	<!-- Name of the first Service -->
-	<entry key="service1.name">LOCAL-EIDAS-XA</entry>
-	<!-- URL of the first Service -->
-	<!-- Skew time for Service-->
-	<entry key="service1.skew.notbefore">0</entry>
-	<entry key="service1.skew.notonorafter">0</entry>
-	<!-- the url under which  service11 is publishing its metadata -->
-	<entry key="service1.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>
+  <entry key="service1.id">SE</entry>
+  <entry key="service1.name">LOCAL-EIDAS-SE</entry>
+  <entry key="service1.skew.notbefore">0</entry>
+  <entry key="service1.skew.notonorafter">0</entry>
+  <entry key="service1.metadata.url">http://example.com/EidasNode/ServiceMetadata</entry>
+  <entry key="service2.id">XA</entry>
+  <entry key="service2.name">LOCAL-EIDAS-XA</entry>
+  <entry key="service2.skew.notbefore">0</entry>
+  <entry key="service2.skew.notonorafter">0</entry>
+  <entry key="service2.metadata.url">http://localhost:8900/EidasNode/ServiceMetadata</entry>
 
-	<entry key="service2.id">SE</entry>
-	<!-- Name of the second Service -->
-	<entry key="service2.name">LOCAL-EIDAS-SE</entry>
-	<!-- URL of the first Service -->
-	<entry key="service2.skew.notbefore">0</entry>
-	<entry key="service2.skew.notonorafter">0</entry>
-	<entry key="service2.metadata.url">http://localhost:8900/eidas-ps/ServiceMetadata</entry>
 	
-	<!-- SECURITY POLICY -->
+	  <!-- SECURITY POLICY -->
     <!-- uri used for the CSP reporting feature-->
-    <entry key="security.header.CSP.report.uri">http://localhost:8900/EidasNode</entry>
+  <entry key="security.header.CSP.report.uri">http://localhost:8900/EidasNode</entry>
 
-	<!-- value of the NodeCountry to be published in the metadata-->
-	<entry key="metadata.node.country">XA</entry>
+	  <!-- value of the NodeCountry to be published in the metadata-->
+  <entry key="metadata.node.country">XA</entry>
 
     <!-- Restrict metadata retrieval to https -->
-    <entry key="metadata.restrict.http">false</entry>
+  <entry key="metadata.restrict.http">false</entry>
 
     <!--URL for specific-proxyService requests receiver only needed when specific  -->
-	<entry key="specific.proxyservice.request.receiver">http://localhost:8900/SpecificProxyService/ProxyServiceRequest</entry>
-	<!--URL for specific-connector response receiver -->
-	<entry key="specific.connector.response.receiver">http://localhost:8900/SpecificConnector/ConnectorResponse</entry>
+  <entry key="specific.proxyservice.request.receiver">http://localhost:8900/SpecificProxyService/ProxyServiceRequest</entry>
+	  <!--URL for specific-connector response receiver -->
+  <entry key="specific.connector.response.receiver">http://localhost:8900/SpecificConnector/ConnectorResponse</entry>
 
 </properties>

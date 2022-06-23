@@ -45,7 +45,7 @@ import java.util.Optional;
 public class CEF26ConfigBuilder implements EIDASNodeConfigBuilder {
 
   @Override public void buildConfiguration(
-    File configDirectory, File templateDirectory, File targetDirectory,
+    File configFile, File templateDirectory, File targetDirectory,
     BaseProperties baseProperties, MetadataProperties metadataProperties,
     ServicesProperties servicesProperties, KeystoreProperties keystoreProperties,
     IdpProperties idpProperties, SpProperties spProperties
@@ -59,10 +59,10 @@ public class CEF26ConfigBuilder implements EIDASNodeConfigBuilder {
     // Get key and cert info
     File keyStoreDir = new File(targetDirectory, "keystores");
     keyStoreDir.mkdirs();
-    File serviceKeyStoreSource = getKeyStoreFile(configDirectory, keystoreProperties.getService().getLocation());
+    File serviceKeyStoreSource = getKeyStoreFile(configFile, keystoreProperties.getService().getLocation());
     File serviceKeyStoreFile = new File(keyStoreDir, serviceKeyStoreSource.getName());
     FileUtils.copyFile(serviceKeyStoreSource, serviceKeyStoreFile);
-    File connectorKeyStoreSource = getKeyStoreFile(configDirectory, keystoreProperties.getConnector().getLocation());
+    File connectorKeyStoreSource = getKeyStoreFile(configFile, keystoreProperties.getConnector().getLocation());
     File connectorKeyStoreFile = new File(keyStoreDir, connectorKeyStoreSource.getName());
     FileUtils.copyFile(connectorKeyStoreSource, connectorKeyStoreFile);
     EidasKeyConfigData serviceKeyData;
@@ -212,11 +212,11 @@ public class CEF26ConfigBuilder implements EIDASNodeConfigBuilder {
       .build();
   }
 
-  private File getKeyStoreFile(File configDirectory, String location) {
+  private File getKeyStoreFile(File configFile, String location) {
     if (location.startsWith("/")){
       return new File(location);
     }
-    return new File(configDirectory, location);
+    return new File(configFile.getParentFile(), location);
   }
 
   private String getServiceEntry(int idx, String name, String val) {

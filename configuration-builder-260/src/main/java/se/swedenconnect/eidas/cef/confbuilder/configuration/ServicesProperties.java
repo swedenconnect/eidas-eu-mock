@@ -33,7 +33,7 @@ import java.util.Map;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @Configuration
-@PropertySource(value = "file://${spring.config.additional-location}conf.properties", encoding = "Utf8")
+@PropertySource(value = "file://${option.config-file}", encoding = "Utf8")
 @ConfigurationProperties(prefix = "country")
 @Data
 @ToString

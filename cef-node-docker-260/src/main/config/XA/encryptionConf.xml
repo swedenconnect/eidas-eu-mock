@@ -16,8 +16,14 @@
 
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="EncryptTo.XA">true</entry>
 
+  <entry key="EncryptTo.SE">true</entry>
+  <entry key="EncryptTo.XA">true</entry>
+
+
+<!--
+	<entry key="EncryptTo.XA">true</entry>
 	<entry key="EncryptTo.SE">true</entry>
+-->
 
 </properties>

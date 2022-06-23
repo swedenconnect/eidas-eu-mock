@@ -30,11 +30,11 @@
     <entry key="default.specific.proxyservice.idp.response.service.url">http://localhost:8900/EidasNode/IdpResponse
     </entry>
     <!-- node's url to send the binary light token related to the response -->
-	<entry key="specific.proxyservice.response.url">http://localhost:8900/EidasNode/SpecificProxyServiceResponse</entry>
+    <entry key="specific.proxyservice.response.url">http://localhost:8900/EidasNode/SpecificProxyServiceResponse</entry>
     <!-- ask consent for the request -->
-	<entry key="ask.consent.request">true</entry>
+    <entry key="ask.consent.request">false</entry>
 	<!-- ask consent for the response -->
-	<entry key="ask.consent.response">true</entry>
+    <entry key="ask.consent.response">true</entry>
 	<!-- ask consent for the response: displaying or not eIDAS attributes-->
 	<entry key="ask.consent.response.show.only.eidas.attributes">true</entry>
 	<!-- ask consent for the response: displaying or not the attributes values-->

@@ -18,7 +18,6 @@ package se.swedenconnect.eidas.cef.confbuilder.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.*;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,7 +25,6 @@ import se.swedenconnect.eidas.cef.confbuilder.configuration.*;
 import se.swedenconnect.eidas.cef.confbuilder.options.AppOptions;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +40,7 @@ import java.util.stream.Collectors;
 @Component
 public class ConfigHandler {
 
-  @Value("${spring.config.additional-location}") String configDirProp;
+  @Value("${option.config-file}") String configFileProp;
   @Value("${option.target-dir}") String targetDirProp;
 
   private final EIDASNodeConfigBuilderProvider eidasNodeConfigBuilderProvider;
@@ -87,8 +85,8 @@ public class ConfigHandler {
 
   private void validateInput(CommandLine cmd) {
 
-    File configDir = new File(configDirProp);
-    System.out.println("Config data directory: " + configDir.getAbsolutePath());
+    File configFile = new File(configFileProp);
+    System.out.println("Config file: " + configFile.getAbsolutePath());
 
     File targetDir = new File(targetDirProp);
     System.out.println("Target directory: " + targetDir.getAbsolutePath());
@@ -111,7 +109,7 @@ public class ConfigHandler {
       System.out.println("No template directory " + templateDir.getAbsolutePath() + " exists");
       return;
     }
-    System.out.println("Template data directory: " + configDir.getAbsolutePath());
+    System.out.println("Template data directory: " + templateDir.getAbsolutePath());
 
     String profile = "CEF26";
     if (cmd.hasOption(AppOptions.OPTION_PROFILE)) {
@@ -121,7 +119,7 @@ public class ConfigHandler {
 
     try {
       EIDASNodeConfigBuilder configBuilder = eidasNodeConfigBuilderProvider.getConfigBuilder(profile);
-      configBuilder.buildConfiguration(configDir, templateDir, targetDir, baseProperties, metadataProperties,
+      configBuilder.buildConfiguration(configFile, templateDir, targetDir, baseProperties, metadataProperties,
         servicesProperties, keystoreProperties, idpProperties, spProperties);
     }
     catch (Exception e) {

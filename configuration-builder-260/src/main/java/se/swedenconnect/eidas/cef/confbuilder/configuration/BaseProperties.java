@@ -29,7 +29,7 @@ import org.springframework.context.annotation.PropertySource;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @Configuration
-@PropertySource(value = "file://${spring.config.additional-location}conf.properties", encoding = "Utf8")
+@PropertySource(value = "file://${option.config-file}", encoding = "Utf8")
 @ConfigurationProperties(prefix = "config")
 @Data
 @ToString

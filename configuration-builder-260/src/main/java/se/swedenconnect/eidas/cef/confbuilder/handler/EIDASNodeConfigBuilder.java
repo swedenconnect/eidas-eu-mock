@@ -30,7 +30,7 @@ import java.io.IOException;
 public interface EIDASNodeConfigBuilder {
 
   void buildConfiguration(
-    File configDirectory, File templateDirectory, File targetDirectory,
+    File configFile, File templateDirectory, File targetDirectory,
     BaseProperties baseProperties, MetadataProperties metadataProperties,
     ServicesProperties servicesProperties, KeystoreProperties keystoreProperties,
     IdpProperties idpProperties, SpProperties spProperties
