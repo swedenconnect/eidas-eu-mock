@@ -45,6 +45,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import se.swedenconnect.opensaml.xmlsec.config.ExtendedDefaultSecurityConfigurationBootstrap;
+import se.swedenconnect.opensaml.xmlsec.encryption.support.ConcatKDFParameters;
 import se.swedenconnect.opensaml.xmlsec.encryption.support.ECDHKeyAgreementParameters;
 
 import javax.annotation.Nonnull;
@@ -367,6 +368,10 @@ public final class SAMLAuthnResponseEncrypter {
                 ExtendedDefaultSecurityConfigurationBootstrap
                         .buildDefaultKeyAgreementKeyInfoGeneratorFactory()
                         .newInstance());
+        // Fix compliance with OpenSAML 4
+        String digestMethod = keyAgreementParameters.getConcatKDFParameters().getDigestMethod();
+        keyAgreementParameters.setConcatKDFParameters(new ConcatKDFParameters(digestMethod, new byte[]{00}, new byte[]{00}, new byte[]{00}));
+        // End fix
         return keyAgreementParameters;
     }
 
