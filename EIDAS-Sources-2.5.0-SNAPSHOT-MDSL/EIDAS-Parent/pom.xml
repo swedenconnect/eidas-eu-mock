@@ -48,7 +48,7 @@
         <opensaml.version>3.4.3</opensaml.version>
         <opensaml.api.version>3.4.3</opensaml.api.version>
         <opensaml-security-ext.version>1.0.8</opensaml-security-ext.version>
-        <xmlsec.version>2.1.4</xmlsec.version>
+        <xmlsec.version>2.1.7</xmlsec.version>
         <!--shibboleth.xmlsupport.version>8.0-SNAPSHOT</shibboleth.xmlsupport.version-->
         <shibboleth.xmlsupport.version>7.5.0</shibboleth.xmlsupport.version>
         <servlet.version>3.0.1</servlet.version>
