@@ -26,7 +26,7 @@
     <properties>
         <tomcat.version>9.0.64</tomcat.version>
         <docker.image.prefix>docker.eidastest.se:5000</docker.image.prefix>
-        <eidas.node.version>2.5.0-SNAPSHOT</eidas.node.version>
+        <eidas.node.version>2.5.0</eidas.node.version>
     </properties>
 
     <repositories>
@@ -171,18 +171,6 @@
                     </execution>
 
                 </executions>
-            </plugin>
-
-            <!-- Support for Docker -->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.3.6</version>
-                <configuration>
-                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
-                    <tag>latest</tag>
-                    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-                </configuration>
             </plugin>
 
         </plugins>
