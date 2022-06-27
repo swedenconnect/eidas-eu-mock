@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="http://cef.eidas.eu/LightRequest" elementFormDefault="qualified" version="1.2">
+	<xs:element name="lightRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="citizenCountryCode" minOccurs="1" maxOccurs="1" type="xs:string">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Country code of the citizen, ie.: sending country code in
+							3166-1-alpha-2 format
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Internal unique ID what will be used to correlate the response
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="issuer" type="xs:string">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Issuer of the LightRequest or originating SP - not used</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="levelOfAssurance" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Level of assurance required to fulfill the request</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:anyURI">
+								<xs:attribute name="type" default="notified">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="notified">
+												<xs:annotation>
+													<xs:documentation xml:lang="en">
+														Default value, only one notified level of assurance should be
+														given and should have a valid value (regarding specs).
+													</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="nonNotified">
+												<xs:annotation>
+													<xs:documentation xml:lang="en">
+														Non notified levels of Assurance, the prefix of notified
+														level of assurance cannot be used for these levels of assurance.
+													</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="nameIdFormat" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional instruction to the IdP what identifier format is requested (if supported).</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:entity"/>
+							<xs:enumeration value="urn:oasis:names:tc:SAML:2.0:nameid-format:encrypted"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="providerName" type="xs:string" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Free format text identifier of service provider initiating the request.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="spType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional element specifying the sector of the SP or the
+							Connector. Must not be used if the sector of the Connector is set up in the Metadata.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="public"/>
+							<xs:enumeration value="private"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="spCountryCode" minOccurs="0" maxOccurs="1" type="xs:string">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Country code of the SP, ie.: sending country code in
+							3166-1-alpha-2 format
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="requesterId" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional element specifying the Id of the SP. Must be unique
+							within the Connector MemberState.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="relayState" type="xs:string" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Optional state information expected to be returned with the LightResponse pair.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="requestedAttributes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="definition" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
