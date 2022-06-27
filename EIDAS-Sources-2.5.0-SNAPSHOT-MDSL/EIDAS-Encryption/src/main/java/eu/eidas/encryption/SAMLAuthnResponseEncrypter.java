@@ -369,8 +369,8 @@ public final class SAMLAuthnResponseEncrypter {
                         .buildDefaultKeyAgreementKeyInfoGeneratorFactory()
                         .newInstance());
         // Fix compliance with OpenSAML 4
-        String digestMethod = keyAgreementParameters.getConcatKDFParameters().getDigestMethod();
-        keyAgreementParameters.setConcatKDFParameters(new ConcatKDFParameters(digestMethod, new byte[]{00}, new byte[]{00}, new byte[]{00}));
+//        String digestMethod = keyAgreementParameters.getConcatKDFParameters().getDigestMethod();
+//        keyAgreementParameters.setConcatKDFParameters(new ConcatKDFParameters(digestMethod, new byte[]{00}, new byte[]{00}, new byte[]{00}));
         // End fix
         return keyAgreementParameters;
     }
