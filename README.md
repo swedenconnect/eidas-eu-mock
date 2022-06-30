@@ -1,18 +1,20 @@
+![Logo](docs/images/sweden-connect.png)
 # EU eIDAS node reference implementation mockups
 providing Docker images for running eIDAS nodes in a test environment
 ---
 ## Scope
-This project provide the means to build and deploy the EU reference eIDAS nodes as docker images.
-The eIDAS node code is currently the standard code version 1.4.5  or version 2.2.0 with only a few minor modifications.
+This repo provide implementation components for setting up eIDAS nodes for test representing one or more demonstration countries, and to run these services as docker images.
 
-Modification | Description
----|---
-Trust config | Affects 1.4.5 and 2.3.x. The modification allows configuration of trust via an external PEM certificates file holding one or more trusted certificates. (https://github.com/swedenconnect/eidas-eu-mock/commit/714b5b13f86f23f1b1f6629a6d28806a1fa42d4f).
-Required attr | Affects 1.4.5. The attribute definition is locked whether the attribute is required or not. The SP UI can't change whether an attribute is required or not, even if the demo UI suggests that this is possible. The `required` boolean of eIDAS-Light-Commons/src/main/java/eu/eidas/auth/commons/attribute/AttributeDefinition.java is not made final (https://github.com/swedenconnect/eidas-eu-mock/commit/10499d9b14b2fb86e8b6678b3289a69426ce77d6#diff-60d0edf58c3e4768ec41ea87e5804c2e).
-Struts version | Affects 1.4.5. Struts version is upgraded from 2.3.32 to 2.3.37 to avoid known vulnerabilities
-Build error | Affects 1.4.5 and 2.2.0. Code can't be built caused by an expired metadata sample in the project test data. The metadata signature check test is turned off as a temporary fix. (https://github.com/swedenconnect/eidas-eu-mock/commit/40ec61833d6ca8f2a324b832d6ddce42f2f15a76)
+A complete setup consists of one demo application hub (provided in the module cef-20-demo-hub) and one or more sets of national eIDAS nodes (provided by the module(s) cef-node-docker-nnn).
 
-The docker container or raw services can be deployed as specified below
+The current version of the node (versioni 2.6.0) is supported by the module cef-node-docker-260. Older versions of the CEF node are available but they are not supported.
+
+The full setup is illustrated bu the following image:
+![Logo](docs/images/demo-apps.png)
+
+## Overview
+
+
 
 ### CEF Digital eIDAS code and documentation
 This project just provides packaging and minor modification of the EU commission reference implementation. The original code and documentation is available here: [https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eIDAS-Node+-+Current+release](https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eIDAS-Node+-+Current+release).
