@@ -35,7 +35,7 @@ public class UserConfiguration {
 
     @Autowired
     public UserConfiguration(
-            @Value("${spring.config.location:#{null}}") String configLocation,
+            @Value("${spring.config.additional-location:#{null}}") String configLocation,
             SPConfigurationProperties configurationProperties, ObjectMapper yamlObjectMapper) {
         this.configLocation = configLocation;
         this.configurationProperties = configurationProperties;

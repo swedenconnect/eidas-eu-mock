@@ -110,6 +110,7 @@ public class CEF26ConfigBuilder implements EIDASNodeConfigBuilder {
       b.append(getServiceEntry(i, "metadata.url", serviceData.getMetadata()));
     }
     eidasXml.update("service.information", b.toString());
+    eidasXml.update("service.loa", getServiceLoa(metadataProperties.getServiceLoa()));
 
 
     // Build encryption config
@@ -181,6 +182,17 @@ public class CEF26ConfigBuilder implements EIDASNodeConfigBuilder {
 
 
     System.out.println("CEF eIDAS node configuration complete");
+  }
+
+  private String getServiceLoa(List<String> serviceLoaList) {
+    if (serviceLoaList == null || serviceLoaList.isEmpty()){
+      return "";
+    }
+    StringBuilder b = new StringBuilder();
+    b.append("  <entry key=\"service.LoA\">\n         ");
+    b.append(String.join(",\n         ", serviceLoaList));
+    b.append("\n  </entry>");
+    return b.toString();
   }
 
   private EidasKeyConfigData getEidasKeyConfigData(File keyStoreFile, KeystoreProperties.KeyStoreData keyStoreData)

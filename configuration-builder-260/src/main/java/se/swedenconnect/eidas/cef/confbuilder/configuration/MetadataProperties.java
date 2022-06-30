@@ -22,6 +22,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.List;
+
 /**
  * Extracting essential configuration properties
  *
@@ -37,6 +39,7 @@ public class MetadataProperties {
 
   MetadataContacts contact;
   MetadataOrganization organization;
+  List<String> serviceLoa;
 
   @Data
   public static class MetadataContacts {

@@ -93,4 +93,5 @@ ${service.information}
 	  <!--URL for specific-connector response receiver -->
   <entry key="specific.connector.response.receiver">${config.base-url}/SpecificConnector/ConnectorResponse</entry>
 
+${service.loa}
 </properties>
