@@ -94,4 +94,5 @@ ${service.information}
   <entry key="specific.connector.response.receiver">${config.base-url}/SpecificConnector/ConnectorResponse</entry>
 
 ${service.loa}
+${metadata.sector}
 </properties>

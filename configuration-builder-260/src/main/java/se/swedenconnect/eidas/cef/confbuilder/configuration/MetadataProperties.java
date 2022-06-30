@@ -40,6 +40,7 @@ public class MetadataProperties {
   MetadataContacts contact;
   MetadataOrganization organization;
   List<String> serviceLoa;
+  String spType;
 
   @Data
   public static class MetadataContacts {
