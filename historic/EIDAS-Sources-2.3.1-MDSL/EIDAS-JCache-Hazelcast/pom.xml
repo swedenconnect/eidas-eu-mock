@@ -26,7 +26,7 @@
     <description>Implements JCache using Hazelcast.</description>
 
     <properties>
-        <hazelcast.version>3.2</hazelcast.version>
+        <hazelcast.version>3.11</hazelcast.version>
     </properties>
 
     <parent>
