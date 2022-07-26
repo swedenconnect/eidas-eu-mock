@@ -13,6 +13,7 @@ RUN chmod a+x /opt/tomcat/bin/*.sh
 EXPOSE 8443
 EXPOSE 8900
 EXPOSE 8909
+EXPOSE 8000
 
 VOLUME /var/log/eidas-node
 CMD mkdir -p /var/log/eidas-node/ && /opt/tomcat/bin/dockerStart.sh
