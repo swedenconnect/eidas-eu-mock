@@ -93,7 +93,13 @@ public class IdpController {
         String errorMessage = "";
         try {
             authenticationRequest = (AuthenticationRequest) httpSession.getAttribute("authnRequest");
+            if (authenticationRequest == null) {
+                throw new RuntimeException("Unable to load authentication request from HTTP session");
+            }
             authenticationRequestServiceUrl = authenticationRequest.getServiceUrl();
+            if (authenticationRequestServiceUrl == null) {
+                throw new IllegalArgumentException("Authentication response url not specified in request");
+            }
             authnResponse = responseGenerator.getAuthnResponse(parameterMap, authenticationRequest, remoteIpAdress, country, cancel);
         } catch (Exception e) {
             authnResponse = new ResponseData();
@@ -101,10 +107,6 @@ public class IdpController {
             authnResponse.setErrorMessageTitle("Authentication failed");
             authnResponse.setErrorMessage(e.getMessage());
             log.warn("Authentication request failed: {}", e.getMessage());
-        }
-
-        if (authenticationRequestServiceUrl == null) {
-            throw new IllegalArgumentException("Authentication response url not specified in request");
         }
 
         List<FormPostData> formData = new ArrayList<>();

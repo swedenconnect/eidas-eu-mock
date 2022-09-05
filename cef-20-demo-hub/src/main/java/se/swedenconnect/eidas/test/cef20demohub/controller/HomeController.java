@@ -32,7 +32,9 @@ public class HomeController {
         final Map<String, SPConfigurationProperties.ExtSPConfig> extSpMap = spConfigurationProperties.getExtSp();
 
         List<String> countryCodeList = spMap.keySet().stream().collect(Collectors.toList());
-        List<String> extCountryCodeList = extSpMap.keySet().stream().collect(Collectors.toList());
+        List<String> extCountryCodeList = extSpMap == null
+          ? Collections.EMPTY_LIST
+          : extSpMap.keySet().stream().collect(Collectors.toList());
 
         Collections.sort(countryCodeList, new Comparator<String>() {
             @Override
