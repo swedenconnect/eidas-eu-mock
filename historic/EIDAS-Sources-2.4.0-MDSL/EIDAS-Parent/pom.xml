@@ -85,7 +85,7 @@
         <vaadin4spring.version>0.0.5.RELEASE</vaadin4spring.version>
         <jetty.plugin.version>9.2.3.v20140905</jetty.plugin.version>
         <guava.version>19.0</guava.version>
-        <jsr305.version>3.0.1</jsr305.version>
+        <jsr305.version>3.0.2</jsr305.version>
         <icu4j.version>57.1</icu4j.version>
 
         <!-- 3) maven plugin versions -->
