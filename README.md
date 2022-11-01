@@ -26,20 +26,17 @@ The description below describes how to setup a single CEF node version 2.6.0 sup
 
 In short the process to build and setup such node is:
 
-1. Build the EIDAS-SAMLEngine artifact from EIDAS-Sources-2.6.0-MDSL module
-2. Build the following modules from [GitHub - NOBID Metadata Import](https://github.com/idsec-solutions/nobid-mdimport)
-  - md-trust-core
-  - md-trust-cef-260-patch
-3. Build the CEF 2.6.0 eidas node from EIDAS-Sources-2.6.0-MDSL/EIDAS-Parent using build profiles `-P NodeOnly,DemoToolsOnly,nodeJcacheIgnite,specificCommunicationJcacheIgnite`
-4. Build the CEF node tomcat server by building the module cef-node-docker-260
-5. Build the CEF node docker image by building the Dockerfile in the module cef-node-docker-260
-6. Build the demo application hub spring boot application by building the module cef-20-demo-hub
-7. Build the demo application hub docker image by using the Dockerfile in the module cef-20-demo-hub
-8. Build the CEF node configuration data using the configuration builder provided in the configuration-builder-260 module
-9. Optionally configure trust data as described below to allow verification of messages from other eIDAS nodes.
-10. Configure the demo application hub SP and IdP services as described below.
-11. Create docker run commands with appropriate port exposure, volume mounts and environment variable settings
-12. Start docker images
+1. Build the md-trust mdoule (mvn clean install - java 11)
+2. Build the CEF 2.6.0 eidas node from EIDAS-Sources-2.6.0-MDSL/EIDAS-Parent using build profiles `-P NodeOnly,DemoToolsOnly,nodeJcacheIgnite,specificCommunicationJcacheIgnite`
+3. Build the CEF node tomcat server by building the module cef-node-docker-260
+4. Build the CEF node docker image by building the Dockerfile in the module cef-node-docker-260
+5. Build the demo application hub spring boot application by building the module cef-20-demo-hub
+6. Build the demo application hub docker image by using the Dockerfile in the module cef-20-demo-hub
+7. Build the CEF node configuration data using the configuration builder provided in the configuration-builder-260 module
+8. Optionally configure trust data as described below to allow verification of messages from other eIDAS nodes.
+9. Configure the demo application hub SP and IdP services as described below.
+10. Create docker run commands with appropriate port exposure, volume mounts and environment variable settings
+11. Start docker images
 
 ### CEF Digital eIDAS code and documentation
 This project just provides packaging and minor modification of the EU commission reference implementation. The original code and documentation is available here: [CEF eIDAS-Nose integration package version 2.6.0](https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eIDAS-Node+version+2.6).
