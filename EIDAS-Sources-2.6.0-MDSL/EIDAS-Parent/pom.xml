@@ -822,7 +822,7 @@
         <module>../EIDAS-Commons</module>
         <module>../EIDAS-Encryption</module>
         <module>../EIDAS-Metadata</module>
-        <module>../EIDAS-SpecificCommunicationDefinition</module>
+        <!--<module>../EIDAS-SpecificCommunicationDefinition</module>-->
         <!--start of TODO remove when/if EIDAS-Node pom does not depend on eidas-jcache-dev-node artifact to test-->
         <module>../EIDAS-JCache-Dev</module>
         <module>../EIDAS-JCache-Dev-Node</module>
