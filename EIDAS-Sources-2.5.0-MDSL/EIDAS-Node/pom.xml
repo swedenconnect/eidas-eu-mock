@@ -47,8 +47,8 @@
             <artifactId>eidas-configmodule</artifactId>
         </dependency>
         <dependency>
-            <groupId>se.idsec.eidas.cef</groupId>
-            <artifactId>eidas-saml-engine-mdsl</artifactId>
+            <groupId>eu.eidas</groupId>
+            <artifactId>eidas-saml-engine</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

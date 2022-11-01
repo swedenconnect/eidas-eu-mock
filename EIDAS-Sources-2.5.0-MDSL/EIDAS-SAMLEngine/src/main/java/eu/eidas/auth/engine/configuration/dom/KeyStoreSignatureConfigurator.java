@@ -23,6 +23,7 @@ import eu.eidas.auth.engine.core.eidas.spec.EidasSignatureConstants;
 import eu.eidas.auth.engine.core.impl.CertificateValidator;
 import eu.eidas.auth.engine.core.impl.WhiteListConfigurator;
 import org.apache.commons.lang.StringUtils;
+import se.idsec.eidas.cef.trustconfig.EidasTrustedCertificates;
 
 import javax.annotation.Nullable;
 import java.security.KeyStore;
@@ -37,6 +38,12 @@ import java.util.Map;
 public final class KeyStoreSignatureConfigurator {
 
     private static final String PROPERTY_PREFIX_DEFAULT = "";
+    /**
+     * This is a customized object which append the trusted certificate list with certificates hold in a PEM file
+     * The location of the PEM file is determined by the environment variable "EIDAS_TRUSTED_CERTS_FILE".
+     * This file can hold 1 or more trusted certificates.
+     */
+    private static final EidasTrustedCertificates externalTrustConfig = new EidasTrustedCertificates();
 
     private KeyStore.PrivateKeyEntry getPrivateSigningKeyAndCertificate(Map<String, String> properties,
                                                                         String propertyPrefix,
@@ -136,6 +143,12 @@ public final class KeyStoreSignatureConfigurator {
         KeyStore.PrivateKeyEntry signatureKeyAndCertificate =
                 keyStoreContent.getMatchingPrivateKeyEntry(serialNumber, issuer);
         ImmutableSet<X509Certificate> trustedCertificates = keyStoreContent.getCertificates();
+
+        /*
+         * Customized addition by SE for injecting trusted MDSL and PEM certificates
+         */
+        trustedCertificates = externalTrustConfig.addTrustedCertificates(trustedCertificates, properties);
+
         String signatureAlgorithmWhiteListStr = SignatureKey.SIGNATURE_ALGORITHM_WHITE_LIST.getAsString(properties);
         String signatureAlgorithm = SignatureKey.SIGNATURE_ALGORITHM.getAsString(properties);
 
