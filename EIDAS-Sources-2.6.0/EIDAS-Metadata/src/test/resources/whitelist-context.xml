@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+						http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.1.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+    <context:property-placeholder location="classpath:test.properties" />
+
+    <bean id="metadataCacheMock" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="eu.eidas.auth.engine.metadata.IMetadataCachingService" />
+    </bean>
+
+    <bean id="nodeFileMetadataProcessorMock" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="eu.eidas.auth.engine.metadata.MetadataLoaderPlugin" />
+    </bean>
+
+    <bean id="eidasConfigRepository" class="java.lang.String">
+        <constructor-arg value="src/test/resources"/>
+    </bean>
+
+    <bean id="connectorMetadataFilePath" class="java.lang.String">
+        <constructor-arg value="/whitelisting-fetcher.properties"/>
+    </bean>
+
+    <bean id="connectorMetadataWhitelistProps" class="eu.eidas.auth.commons.io.ReloadableProperties">
+        <constructor-arg value="#{connectorMetadataFilePath}" />
+        <constructor-arg value="#{eidasConfigRepository}" />
+    </bean>
+
+    <bean id="connectorMetadataFetcher" class="eu.eidas.auth.engine.metadata.impl.CachingMetadataFetcher" init-method="initProcessor">
+        <property name="cache" ref="metadataCacheMock"/>
+        <property name="metadataLoaderPlugin" ref="nodeFileMetadataProcessorMock"/>
+        <property name="httpRetrievalEnabled" value="${metadata.http.retrieval}"/>
+        <property name="restrictHttp" value="${metadata.restrict.http}"/>
+        <property name="tlsEnabledProtocols" value="${tls.enabled.protocols}"/>
+        <property name="tlsEnabledCiphers" value="${tls.enabled.ciphers}"/>
+        <property name="validateEidasMetadataSignature" value="${metadata.check.signature}"/>
+        <property name="trustedEidasMetadataUrls" value="${node.metadata.not.signed.descriptors:}"/>
+        <property name="whitelistConfigProperties" ref="connectorMetadataWhitelistProps" />
+    </bean>
+</beans>

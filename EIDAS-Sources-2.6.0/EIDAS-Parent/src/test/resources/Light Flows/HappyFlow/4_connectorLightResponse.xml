@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright (c) 2020 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<ns2:lightResponse xmlns:ns2="http://cef.eidas.eu/LightResponse"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://cef.eidas.eu/LightRequest"
+                   xsi:schemaLocation="http://cef.eidas.eu/LightResponse ../../../../main/resources/xsds/lightResponse.xsd">
+    <ns2:id>_9TMyoKmu0ntgpudeYT.xCYj_HVAtO0hryU06itiS96J5c.5fXOLHWVfC6vzxlYh</ns2:id>
+    <ns2:inResponseToId>018d1b8b-954f-467c-98dc-c876884904dd</ns2:inResponseToId>
+    <ns2:issuer>http://localhost:8080/EidasNode/ConnectorMetadata</ns2:issuer>
+    <ns2:relayState>8e1a9d0e-d95e-4889-8ffd-61f34abe3301</ns2:relayState>
+    <ns2:subject>0123456</ns2:subject>
+    <ns2:subjectNameIdFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</ns2:subjectNameIdFormat>
+    <ns2:levelOfAssurance>http://eidas.europa.eu/LoA/low</ns2:levelOfAssurance>
+    <ns2:status>
+        <ns2:failure>false</ns2:failure>
+        <ns2:statusCode>urn:oasis:names:tc:SAML:2.0:status:Success</ns2:statusCode>
+        <ns2:statusMessage>urn:oasis:names:tc:SAML:2.0:status:Success</ns2:statusMessage>
+    </ns2:status>
+    <ns2:attributes>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/legalperson/LegalName</ns2:definition>
+            <ns2:value>Current Legal Name</ns2:value>
+        </ns2:attribute>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/legalperson/LegalPersonIdentifier</ns2:definition>
+            <ns2:value>CA/CA/125457487Company</ns2:value>
+        </ns2:attribute>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/naturalperson/BirthName</ns2:definition>
+            <ns2:value>Onases</ns2:value>
+            <ns2:value>Ωνάσης</ns2:value>
+        </ns2:attribute>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/naturalperson/CurrentAddress</ns2:definition>
+            <ns2:value>
+                PGVpZGFzLW5hdHVyYWw6UG9Cb3g+MTIzNDwvZWlkYXMtbmF0dXJhbDpQb0JveD4KPGVpZGFzLW5hdHVyYWw6TG9jYXRvckRlc2lnbmF0b3I+Mjg8L2VpZGFzLW5hdHVyYWw6TG9jYXRvckRlc2lnbmF0b3I+CjxlaWRhcy1uYXR1cmFsOkxvY2F0b3JOYW1lPkRJR0lUIGJ1aWxkaW5nPC9laWRhcy1uYXR1cmFsOkxvY2F0b3JOYW1lPgo8ZWlkYXMtbmF0dXJhbDpDdmFkZHJlc3NBcmVhPkV0dGVyYmVlazwvZWlkYXMtbmF0dXJhbDpDdmFkZHJlc3NBcmVhPgo8ZWlkYXMtbmF0dXJhbDpUaG9yb3VnaGZhcmU+UnVlIEJlbGxpYXJkPC9laWRhcy1uYXR1cmFsOlRob3JvdWdoZmFyZT4KPGVpZGFzLW5hdHVyYWw6UG9zdE5hbWU+RVRURVJCRUVLIENIQVNTRTwvZWlkYXMtbmF0dXJhbDpQb3N0TmFtZT4KPGVpZGFzLW5hdHVyYWw6QWRtaW51bml0Rmlyc3RsaW5lPkJFPC9laWRhcy1uYXR1cmFsOkFkbWludW5pdEZpcnN0bGluZT4KPGVpZGFzLW5hdHVyYWw6QWRtaW51bml0U2Vjb25kbGluZT5FVFRFUkJFRUs8L2VpZGFzLW5hdHVyYWw6QWRtaW51bml0U2Vjb25kbGluZT4KPGVpZGFzLW5hdHVyYWw6UG9zdENvZGU+MTA0MDwvZWlkYXMtbmF0dXJhbDpQb3N0Q29kZT4K
+            </ns2:value>
+        </ns2:attribute>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName</ns2:definition>
+            <ns2:value>Garcia</ns2:value>
+        </ns2:attribute>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName</ns2:definition>
+            <ns2:value>javier</ns2:value>
+        </ns2:attribute>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/naturalperson/DateOfBirth</ns2:definition>
+            <ns2:value>1965-01-01</ns2:value>
+        </ns2:attribute>
+        <ns2:attribute>
+            <ns2:definition>http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier</ns2:definition>
+            <ns2:value>CA/CA/12345</ns2:value>
+        </ns2:attribute>
+    </ns2:attributes>
+</ns2:lightResponse>

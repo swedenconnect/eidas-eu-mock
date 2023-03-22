@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+#   Copyright (c) 2017 European Commission  
+#   Licensed under the EUPL, Version 1.2 or – as soon they will be 
+#   approved by the European Commission - subsequent versions of the 
+#    EUPL (the "Licence"); 
+#    You may not use this work except in compliance with the Licence. 
+#    You may obtain a copy of the Licence at: 
+#    * https://joinup.ec.europa.eu/page/eupl-text-11-12  
+#    *
+#    Unless required by applicable law or agreed to in writing, software 
+#    distributed under the Licence is distributed on an "AS IS" basis, 
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+#    See the Licence for the specific language governing permissions and limitations under the Licence.
+ -->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="MainLogger" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
+  <appender name="EidasLogger" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="eidasAudit.log" />
+    <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+    <param name="Append" value="true"/>
+    <param name="Threshold" value="INFO"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} %-5p %C - %m%n"/>
+    </layout>
+  </appender>
+
+	<logger name="org.opensaml">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="eu.eidas">
+		<level value="trace" />
+	</logger>
+
+	<logger name="eu.eidas.communication.requests">
+		<level value="info" />
+		<appender-ref ref="EidasLogger" />
+	</logger>
+
+	<logger name="eu.eidas.communication.responses">
+		<level value="info" />
+		<appender-ref ref="EidasLogger" />
+	</logger>
+
+	<root>
+		<priority value="info" />
+		<appender-ref ref="MainLogger" />
+	</root>
+
+</log4j:configuration>
