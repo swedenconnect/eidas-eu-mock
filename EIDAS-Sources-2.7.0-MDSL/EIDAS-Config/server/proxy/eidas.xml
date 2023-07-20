@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2023 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!-- Country Code of this Proxy-Service -->
+    <entry key="service.countrycode">CA</entry>
+
+    <!--service Metadata -->
+    <entry key="service.metadata.url">http://localhost:8080/EidasNodeProxy/ServiceMetadata</entry>
+
+    <!-- ProxyService contact -->
+    <entry key="service.contact.support.email">contact.support@eidas-proxyservice.eu</entry>
+    <entry key="service.contact.support.company">eIDAS ProxyService Operator</entry>
+    <entry key="service.contact.support.givenname">John</entry>
+    <entry key="service.contact.support.surname">Doe</entry>
+    <entry key="service.contact.support.phone">+42 123456</entry>
+    <entry key="service.contact.technical.email">contact.technical@eidas-proxyservice.eu</entry>
+    <entry key="service.contact.technical.company">eIDAS ProxyService Operator</entry>
+    <entry key="service.contact.technical.givenname">John</entry>
+    <entry key="service.contact.technical.surname">Doe</entry>
+    <entry key="service.contact.technical.phone">+43 123456</entry>
+    <!-- ProxyService organization -->
+    <entry key="service.organization.name">Sample Country Proxy Service</entry>
+    <entry key="service.organization.displayname">Service</entry>
+    <entry key="service.organization.url">https://service.sample/info</entry>
+
+    <!-- Eidas Node Service Metadata Single Sign On locations for ServiceMetadata-->
+    <entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8080/EidasNodeProxy/ColleagueRequest</entry>
+    <entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8080/EidasNodeProxy/ColleagueRequest</entry>
+
+    <!-- SECURITY POLICY -->
+    <!-- uri used for the CSP reporting feature-->
+    <entry key="security.header.CSP.report.uri">http://localhost:8080/EidasNodeProxy</entry>
+
+    <!-- value of the NodeCountry to be published in the metadata-->
+    <entry key="metadata.node.country">CA</entry>
+
+    <!--URL for specific-proxyService requests receiver only needed when specific  -->
+    <entry key="specific.proxyservice.request.receiver">http://localhost:8080/SpecificProxyService/ProxyServiceRequest</entry>
+
+</properties>

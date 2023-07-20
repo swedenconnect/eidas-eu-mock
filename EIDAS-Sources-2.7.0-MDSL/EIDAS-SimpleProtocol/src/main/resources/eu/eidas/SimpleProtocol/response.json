@@ -1,0 +1,57 @@
+{
+    "response" : {
+        "version" : "1",
+        "id" : "0a88c46e-24a7-4194-90f1-35485977bb18",
+        "inresponse_to" : "e7d5db08-0818-449f-bec2-d257bf9593d7",
+        "created_on" : "2012-04-23T18:28:43.511Z",
+        "authentication_context_class" : "high",
+        "issuer" : "DEMO-IDP",
+        "status" : {
+            "status_code" : "success",
+            "sub_status_code" : "AuthnFailed",
+            "status_message" : "all hands on deck"
+        },
+        "attribute_list" : [
+            {
+                "name" : "gender",
+                "type" : "string",
+                "value" : "Male"
+            },
+            {
+                "name" : "birth_name",
+                "type" : "string_list",
+                "values" : [
+                	{
+                        "latin_script" : "false",
+                        "value" : "Árvíztûrõ Tükörfúrógép"
+                    },
+                    {
+                        "value" : "Arvizturo Tukorfurogep"
+                    }                   
+                ]
+            },
+            {
+                "name" : "date_of_birth",
+                "type" : "date",
+                "value" : "1905-04-20"
+            },
+ 			{
+                "name" : "current_address",
+                "type" : "address",
+                "value" : {
+                    "address" : "Rue Belliard  28",
+                    "po_box" : "1234",
+                    "locator_designator" : "2",
+                    "locator_name" : "Floor",
+                    "cv_address_area" : "Etterbeek",
+                    "thoroughfare" : "N23",
+                    "post_name" : "ETTERBEEK CHASSE",
+                    "admin_unit_first_line" : "ETTERBEEK",
+                    "admin_unit_second_line" :  "BE",
+                    "post_code" : "1040",
+                    "full_cvaddress" : "Rue Belliard  28\nFloor 2\nBE-1040 Etterbeek"
+                }
+            }            
+        ]        
+    }
+}

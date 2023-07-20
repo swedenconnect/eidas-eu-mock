@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2023 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <!--
+
+    Configuration repository path either from ENVIRONMENT variable or COMMAND LINE -D option of
+            EIDAS_CONNECTOR_CONFIG_REPOSITORY and
+         For any other option - like hard-coded values - modify this file.
+          Hard coding example:
+
+    <bean id="eidasConfigRepository" class="java.lang.String">
+        <constructor-arg value="c:/PGM/projects/configEidas/glassfish/" />
+    </bean>
+
+    -->
+
+    <!--mandatory ENV-->
+    <!--exported to: multiple modules-->
+    <bean id="eidasConfigRepository" class="java.lang.String">
+        <constructor-arg
+                value="#{ systemProperties['EIDAS_CONNECTOR_CONFIG_REPOSITORY'] ?:
+                (systemEnvironment['EIDAS_CONNECTOR_CONFIG_REPOSITORY'].endsWith(systemProperties['file.separator']) ?
+                systemEnvironment['EIDAS_CONNECTOR_CONFIG_REPOSITORY'] :
+                (systemEnvironment['EIDAS_CONNECTOR_CONFIG_REPOSITORY'] + systemProperties['file.separator'])) }"/>
+    </bean>
+
+    <!--conditional ENV: Monolithic build-->
+    <!--exported to: eidas-specific-connector module-->
+    <bean id="specificConnectorConfigRepository" class="java.lang.String">
+        <constructor-arg
+                value="#{ systemProperties['SPECIFIC_CONNECTOR_CONFIG_REPOSITORY'] ?:
+                (systemEnvironment['SPECIFIC_CONNECTOR_CONFIG_REPOSITORY'] != null ?
+                systemEnvironment['SPECIFIC_CONNECTOR_CONFIG_REPOSITORY'].endsWith(systemProperties['file.separator']) ?
+                systemEnvironment['SPECIFIC_CONNECTOR_CONFIG_REPOSITORY'] :
+                (systemEnvironment['SPECIFIC_CONNECTOR_CONFIG_REPOSITORY'] + systemProperties['file.separator']): '') }"/>
+    </bean>
+
+    <!--exported to: eidas-specific-communication-definition module-->
+    <bean id="specificCommunicationConfigRepository" class="java.lang.String">
+        <constructor-arg value="#{ eidasConfigRepository }"/>
+    </bean>
+
+
+    <!--Connector to specific-->
+    <import resource="classpath:connectorSpecificCommunicationCaches.xml" />
+
+    <bean id="connectorCommunicationService" class="eu.eidas.specificcommunication.protocol.impl.SpecificCommunicationAdapterService" scope="prototype">
+        <constructor-arg index="0" ref="connectorRequestService"/>
+        <constructor-arg index="1" ref="connectorResponseService"/>
+    </bean>
+
+    <bean id="connectorRequestService" class="eu.eidas.specificcommunication.protocol.impl.RequestSpecificCommunicationServiceImpl" scope="prototype">
+        <constructor-arg index="0" type="java.lang.String" value="${lightToken.connector.request.issuer.name}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${lightToken.connector.request.secret}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${lightToken.connector.request.algorithm}"/>
+        <constructor-arg index="3" ref="specificNodeConnectorRequestCache"/>
+    </bean>
+
+    <bean id="connectorResponseService" class="eu.eidas.specificcommunication.protocol.impl.ResponseSpecificCommunicationServiceImpl" scope="prototype">
+        <constructor-arg index="0" type="java.lang.String" value="${lightToken.connector.response.issuer.name}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${lightToken.connector.response.secret}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${lightToken.connector.response.algorithm}"/>
+        <constructor-arg index="3" ref="nodeSpecificConnectorResponseCache"/>
+    </bean>
+
+</beans>
