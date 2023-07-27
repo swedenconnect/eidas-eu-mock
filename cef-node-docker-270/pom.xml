@@ -7,7 +7,7 @@
     <groupId>se.elegnamnden.eidas</groupId>
     <artifactId>cef-node-docker-260</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>CEF-eIDAS-Node-2.6.0-Docker</name>
+    <name>CEF-eIDAS-Node-2.7.0-Docker</name>
     
     <developers>
         <developer>
@@ -25,9 +25,9 @@
     </developers>
 
     <properties>
-        <tomcat.version>9.0.64</tomcat.version>
+        <tomcat.version>9.0.78</tomcat.version>
         <docker.image.prefix>docker.eidastest.se:5000</docker.image.prefix>
-        <eidas.node.version>2.6.0</eidas.node.version>
+        <eidas.node.version>2.7.0-SNAPSHOT</eidas.node.version>
     </properties>
 
     <repositories>
@@ -79,10 +79,17 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>eu.eidas</groupId>
-                                    <artifactId>eidas-node</artifactId>
+                                    <artifactId>eidas-node-connector</artifactId>
                                     <version>${eidas.node.version}</version>
                                     <type>war</type>
-                                    <destFileName>EidasNode.war</destFileName>
+                                    <destFileName>EidasConnector.war</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>eu.eidas</groupId>
+                                    <artifactId>eidas-node-proxy</artifactId>
+                                    <version>${eidas.node.version}</version>
+                                    <type>war</type>
+                                    <destFileName>EidasProxy.war</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>eu.eidas</groupId>
@@ -124,8 +131,9 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
+                <version>3.1.0</version>
                 <executions>
 
                     <execution>
@@ -198,10 +206,17 @@
                                     <artifactItems>
                                         <artifactItem>
                                             <groupId>eu.eidas</groupId>
-                                            <artifactId>eidas-node</artifactId>
+                                            <artifactId>eidas-node-connector</artifactId>
                                             <version>${eidas.node.version}</version>
                                             <type>war</type>
-                                            <destFileName>EidasNode.war</destFileName>
+                                            <destFileName>EidasConnector.war</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>eu.eidas</groupId>
+                                            <artifactId>eidas-node-proxy</artifactId>
+                                            <version>${eidas.node.version}</version>
+                                            <type>war</type>
+                                            <destFileName>EidasProxy.war</destFileName>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>eu.eidas</groupId>
@@ -246,8 +261,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>exec-maven-plugin</artifactId>
                         <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
                         <executions>
                             <execution><!-- Run our version calculation script -->
                                 <id>Version Calculation</id>
