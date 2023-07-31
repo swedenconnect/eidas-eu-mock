@@ -32,7 +32,7 @@
             <!-- Signature configuration with RSA -->
 			<!-- <parameter name="fileConfiguration" value="SignModule_Connector.xml" />-->
             <!-- Signature configuration with ECDSA -->
-            <parameter name="fileConfiguration" value="SignModule_Connector_EC.xml"/>
+            <parameter name="fileConfiguration" value="SignModule_Connector.xml"/>
 		</configuration>
 
         <configuration name="EncryptionConf">
@@ -69,5 +69,5 @@
 
 	</instance>
 
-	
+
 </instances>

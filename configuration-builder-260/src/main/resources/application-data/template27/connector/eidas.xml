@@ -43,6 +43,7 @@
   <entry key="connector.organization.displayname">${metadata.organization.displayname}</entry>
   <entry key="connector.organization.url">${metadata.organization.url}</entry>
 
+${metadata.sector}
 
     <!-- Number of known Proxy-Service -->
   <entry key="service.number">${config.service-count}</entry>

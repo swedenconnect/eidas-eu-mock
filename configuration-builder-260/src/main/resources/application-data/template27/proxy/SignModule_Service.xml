@@ -20,7 +20,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 
 <properties>
-	<comment>SWModule sign with JKS.</comment
+	<comment>SWModule sign with JKS.</comment>
 
 	<!-- Certificates -->
 	<entry key="check.certificate.validity.period">false</entry>
@@ -46,5 +46,5 @@
 	<entry key="metadata.issuer">${issuerName}</entry>
 	<entry key="metadata.serialNumber">${certSerial}</entry>
 	<entry key="metadata.keyStoreType">${keyStoreType}</entry>
-		
+
 </properties>

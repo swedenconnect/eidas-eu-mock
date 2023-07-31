@@ -31,7 +31,7 @@
 
     <!-- SECURITY POLICY -->
     <!-- uri used for the CSP reporting feature-->
-    <entry key="security.header.CSP.report.uri">http://localhost:8080/EidasNodeProxy</entry>
+    <entry key="security.header.CSP.report.uri">${config.base-url}/EidasNodeProxy</entry>
 
     <!-- value of the NodeCountry to be published in the metadata-->
     <entry key="metadata.node.country">${config.country}</entry>
@@ -40,5 +40,7 @@
     <entry key="metadata.restrict.http">false</entry>
     <!--URL for specific-proxyService requests receiver only needed when specific  -->
     <entry key="specific.proxyservice.request.receiver">${config.base-url}/SpecificProxyService/ProxyServiceRequest</entry>
+
+${service.loa}
 
 </properties>

@@ -18,6 +18,7 @@ package se.swedenconnect.eidas.cef.confbuilder.handler;
 
 import org.springframework.stereotype.Component;
 import se.swedenconnect.eidas.cef.confbuilder.handler.impl.CEF26ConfigBuilder;
+import se.swedenconnect.eidas.cef.confbuilder.handler.impl.CEF27ConfigBuilder;
 
 /**
  * Provides a configuration builder
@@ -34,6 +35,8 @@ public class EIDASNodeConfigBuilderProvider {
     switch (profile) {
     case "CEF26" :
       return new CEF26ConfigBuilder();
+    case "CEF27" :
+      return new CEF27ConfigBuilder();
     default:
       throw new IllegalArgumentException("Unrecognized profile: " + profile);
     }
