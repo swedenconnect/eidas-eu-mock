@@ -30,6 +30,8 @@ usage: java -jar confbuilder.jar [options]
  -t <arg>   Directory where template files are located
 ```
 
+The -p option selects the version of te CEF node for which the configuration data is to be used. Fo version 2.7 versions use the profile "CEF27".
+
 The -c option provides the .properties file that contains the data that determines the content of the fial confguration data being built by this application.
 
 The -t otpion provides the location of the template files used to construct configuration data.

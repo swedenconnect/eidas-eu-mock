@@ -7,7 +7,7 @@ This repo provide implementation components for setting up eIDAS nodes for test 
 
 A complete setup consists of one demo application hub (provided in the module cef-20-demo-hub) and one or more sets of national eIDAS nodes (provided by the module(s) cef-node-docker-nnn).
 
-The current version of the node (versioni 2.6.0) is supported by the module cef-node-docker-260. Older versions of the CEF node are available but they are not supported.
+The current version of the node (versioni 2.7.0 pre-release) is supported by the module cef-node-docker-270. Older versions of the CEF node are available but they are not supported.
 
 The full setup is illustrated bu the following image:
 ![Logo](docs/images/demo-apps.png)
@@ -22,22 +22,22 @@ The eIDAS nodes being setup using these application is a demo deployment of eIDA
 
 A full demo of these applications are available here: [https://cef20hub.eidastest.se/test/home](https://cef20hub.eidastest.se/test/home)
 
-The description below describes how to setup a single CEF node version 2.6.0 supported by an SP and an IdP provided by the demo application hub service.
+The description below describes how to setup a single CEF node version 2.7.0 pre-release supported by an SP and an IdP provided by the demo application hub service.
 
 In short the process to build and setup such node is:
 
-1. Build all artifacs and the CEF node tomcat server by building the module cef-node-docker-260 using the command: "mvn clean install -P buildwars"
-2. Build the CEF node docker image by building the Dockerfile in the module cef-node-docker-260
+1. Build all artifacs and the CEF node tomcat server by building the module cef-node-docker-270 using the command: "mvn clean install -P buildwars"
+2. Build the CEF node docker image by building the Dockerfile in the module cef-node-docker-270
 3. Build the demo application hub spring boot application by building the module cef-20-demo-hub
 4. Build the demo application hub docker image by using the Dockerfile in the module cef-20-demo-hub
-5. Build the CEF node configuration data using the configuration builder provided in the configuration-builder-260 module
+5. Build the CEF node configuration data using the configuration builder provided in the configuration-builder module
 6. Optionally configure trust data as described below to allow verification of messages from other eIDAS nodes.
 7. Configure the demo application hub SP and IdP services as described below.
 8. Create docker run commands with appropriate port exposure, volume mounts and environment variable settings
 9. Start docker images
 
 ### CEF Digital eIDAS code and documentation
-This project just provides packaging and minor modification of the EU commission reference implementation. The original code and documentation is available here: [CEF eIDAS-Nose integration package version 2.6.0](https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eIDAS-Node+version+2.6).
+This project just provides packaging and minor modification of the EU commission reference implementation. The original code and documentation is available here: [CEF eIDAS-Nose integration package version 2.7.0 pre-release](https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eIDAS-Node+PRE-Release+version+2.7).
 
 The License of the code from CEF Digital ([European Union Public License 1.2](https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eIDAS-Node+version+2.6?preview=/467109300/467109327/EUROPEAN%20UNION%20PUBLIC%20LICENCE%20v1.2.pdf) is linked on the linked page above.
 
@@ -47,41 +47,25 @@ The CEF node docker image depends on a number of artifacs that need to be built 
 
 module | Depends on
 ---|---
-cef-node-docker-260  | This module builds the eIDAS node Tomcat server as well as the docker image used to run the node. This module depends on the CEF node artifacts provided by the EIDAS-Sources-2.6.0-MDSL module.
-EIDAS-Sources-2.6.0-MDSL  |  The eIDAS node code has been modified to use an updated version of the EIDAS-SAMLEngine in order to allow import of trusted metadata signer certificates from MDSL source as well as PEM based trust store. This modified EIDAS-SAMLEnging is provided by  [NOBID Metadata Import](https://github.com/idsec-solutions/nobid-mdimport)
-NOBID Metadata Import  |  The NOBID metadata import depends on the original EIDAS-SAMLEnging module in order to update it with metadata certificate import capabilities.
+cef-node-docker-270  | This module builds the eIDAS node Tomcat server as well as the docker image used to run the node. This module depends on the CEF node artifacts provided by the EIDAS-Sources-2.7.0-MDSL module.
+EIDAS-Sources-2.7.0-MDSL  |  The eIDAS node code has been modified to use an updated version of the EIDAS-SAMLEngine in order to allow import of trusted metadata signer certificates from MDSL source as well as PEM based trust store. This modified EIDAS-SAMLEnging is provided by  [NOBID Metadata Import](https://github.com/idsec-solutions/nobid-mdimport)
+Metadata Import  | Addding the capability of CEF eiDAS nodes to import trusted metadata certificates from one or more MetadataServiceList (MDSL) sources. Only depends on public repositories from maven central.
 
 
 ### Build instructions:
 
 Build artifacts in the following arder (All artifacts can be build using Java 11 and higher):
 
->**Objective:** Build EIDAS-SAMLEngine<br>
->**Location:** EIDAS-Sources-2.6.0-MDSL/EIDAS-SAMLEngine<br>
->**Command:** mvn clean install
-
->**Objective:** Build NOBID metadata import artifacts<br>
->**Location:** [https://github.com/idsec-solutions/nobid-mdimport](https://github.com/idsec-solutions/nobid-mdimport) | md-trust-core<br>
->**Command:** mvn clean install
-
->**Objective:** Build NOBID metadata import artifacts<br>
->**Location:** [https://github.com/idsec-solutions/nobid-mdimport](https://github.com/idsec-solutions/nobid-mdimport) | md-trust-cef-260-patch<br>
->**Command:** mvn clean install
-
->**Objective:** Build EIDAS node artifacts<br>
->**Location:** EIDAS-Sources-2.6.0-MDSL/EIDAS-PArent<br>
->**Command:** mvn clean install -P NodeOnly,DemoToolsOnly,nodeJcacheIgnite,specificCommunicationJcacheIgnite -Dmaven.test.skip=true
-
->**Objective:** Build EIDAS node tomcat server<br>
->**Location:** cef-node-docker-260<br>
->**Command:** mvn clean install
+>**Objective:** Build EIDAS nodes<br>
+>**Location:** cef-node-docker-270<br>
+>**Command:** mvn clean install -P buildwars
 
 >**Objective:** Build EIDAS node docker image<br>
->**Location:** cef-node-docker-260<br>
->**Command:** docker build -t cef-node-docker-260 .
+>**Location:** cef-node-docker-270<br>
+>**Command:** docker build -t cef-node-docker-270 .
 
 >**Objective:** Build EIDAS node configuration builder<br>
->**Location:** configuration-builder-260<br>
+>**Location:** configuration-builder<br>
 >**Command:** mvn clean install
 
 >**Objective:** Build EIDAS node demo application hub Spring Boot application<br>
@@ -91,9 +75,6 @@ Build artifacts in the following arder (All artifacts can be build using Java 11
 >**Objective:** Build EIDAS node demo application hub docker image<br>
 >**Location:** cef-20-demo-hub<br>
 >**Command:** docker build -t cef-node-application-hub .
-
-
-
 
 
 
@@ -126,9 +107,9 @@ A basic configuration example is provided under docs/hub-config-example. Most va
 The file spconfig.properties holds the information used by the SP application. This file provides SP configuration for one or more SP countries using property name convention sp.{country code}.{property}
 
 E.g:
-> sp.XA.cefVersion=2.6.0
+> sp.XA.cefVersion=2.7.0
 
-This means the the XA country SP application use a CEF node of version 2.6.0.
+This means the the XA country SP application use a CEF node of version 2.7.0.
 
 Countries this SP can connect to is listed as: sp.{node country}.country.{target country}.name and sp.{node country}.country.{target country}.flag
 
@@ -148,9 +129,10 @@ The following environment variables influence the operation of eIDAS node instan
 
 Environment variable | Value
 ---|---
-EIDAS_CONFIG_REPOSITORY | The location of eIDAS node config files (Must end with "/").
-SPECIFIC_CONNECTOR_CONFIG_REPOSITORY | The location of eIDAS node config files (Must end with "/").
-SPECIFIC_PROXY_SERVICE_CONFIG_REPOSITORY | The location of eIDAS node config files (Must end with "/").
+EIDAS_CONNECTOR_CONFIG_REPOSITORY | The location of eIDAS connector node config files.
+EIDAS_PROXY_CONFIG_REPOSITORY  | The location of eIDAS proxy node config files.
+SPECIFIC_CONNECTOR_CONFIG_REPOSITORY | The location of eIDAS specific connector config files.
+SPECIFIC_PROXY_SERVICE_CONFIG_REPOSITORY | The location of eIDAS specific proxy service config files (Must end with "/").
 EIDAS_TRUSTED_CERTS_FILE | Optional Absolute path to a PEM file holding additional trusted certificates
 MDSL_CONFIG_FOLDER  |   Optional path to a folder holding MDSL config data
 
@@ -163,14 +145,17 @@ The following example runs the docker container under localhost:8080 using exter
 ```
 docker run -d --name cefnode260 --restart=always \
   -p 8080:8900 \
-  -e "EIDAS_CONFIG_REPOSITORY=/opt/configEidas/" \
-  -e "SPECIFIC_CONNECTOR_CONFIG_REPOSITORY=/opt/configEidas/specificConnector" \
-  -e "SPECIFIC_PROXY_SERVICE_CONFIG_REPOSITORY=/opt/configEidas/specificProxyService" \
-  -e "EIDAS_TRUSTED_CERTS_FILE=/opt/configEidas/trust/trustedCerts.pem" \
-  -e "MDSL_CONFIG_FOLDER=/opt/configEidas/trust/mdsl" \
+  -e "EIDAS_CONNECTOR_CONFIG_REPOSITORY=/opt/webapp/configEidas/connector" \
+  -e "EIDAS_PROXY_CONFIG_REPOSITORY=/opt/webapp/configEidas/proxy" \
+  -e "SPECIFIC_CONNECTOR_CONFIG_REPOSITORY=/opt/webapp/configEidas/specificConnector" \
+  -e "SPECIFIC_PROXY_SERVICE_CONFIG_REPOSITORY=/opt/webapp/configEidas/specificProxyService" \
+  -e "EIDAS_TRUSTED_CERTS_CONSTRAINTS=" \
+  -e "MDSL_CONFIG_FOLDER=/opt/webapp/trust/mdsl" \
+  -e "DEBUG_MODE=true" \
   -v /etc/localtime:/etc/localtime:ro \
-  -v /opt/docker/XA/configEidas:/opt/configEidas \
-cef-node-docker-260
+  -v /opt/docker/configEidas20/XA-270:/opt/webapp/configEidas \
+  -v /opt/docker/configEidas20/trust:/opt/webapp/trust \
+  cef-node-docker-270
 ```
 
 ### Deploying demo application hub docker container
