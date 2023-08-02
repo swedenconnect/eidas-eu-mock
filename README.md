@@ -94,7 +94,7 @@ The original code from CEF Digital use certificates from configured key stores, 
 
 In a test environments and, in particular, in production it is desirable to add trusted certificates in a separate store or PEM file. Or to import them from an MDSL source as specified by the eIDAS technical specifications.
 
-To suppor this, the eIDAS node CEF code is exteneded using the NOBID metadata import project [https://github.com/idsec-solutions/nobid-mdimport](https://github.com/idsec-solutions/nobid-mdimport).
+To suppor this, the eIDAS node CEF code is exteneded using the metadata import project [https://github.com/swedenconnect/eidas-eu-mock/tree/master/md-trust).
 
 This GitHub repo provides the code and the instruction on how to build the trust configuration data for the CEF nodes.
 
