@@ -82,14 +82,14 @@
                                     <artifactId>eidas-node-connector</artifactId>
                                     <version>${eidas.node.version}</version>
                                     <type>war</type>
-                                    <destFileName>EidasConnector.war</destFileName>
+                                    <destFileName>EidasNodeConnector.war</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>eu.eidas</groupId>
                                     <artifactId>eidas-node-proxy</artifactId>
                                     <version>${eidas.node.version}</version>
                                     <type>war</type>
-                                    <destFileName>EidasProxy.war</destFileName>
+                                    <destFileName>EidasNodeProxy.war</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>eu.eidas</groupId>
@@ -245,7 +245,8 @@
                                             <version>${eidas.node.version}</version>
                                             <type>war</type>
                                             <destFileName>SpecificProxyService.war</destFileName>
-                                        </artifactItem>                                    </artifactItems>
+                                        </artifactItem>
+                                    </artifactItems>
                                     <outputDirectory>
                                         ${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/webapps
                                     </outputDirectory>
