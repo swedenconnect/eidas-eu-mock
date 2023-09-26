@@ -83,7 +83,7 @@
         <vaadin-spring.version>1.0.0.beta1</vaadin-spring.version>
         <vaadin4spring.version>0.0.5.RELEASE</vaadin4spring.version>
         <jetty.plugin.version>9.2.3.v20140905</jetty.plugin.version>
-        <guava.version>28.1-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <jsr305.version>3.0.1</jsr305.version>
         <icu4j.version>57.1</icu4j.version>
 
