@@ -4,6 +4,7 @@ import eu.eidas.SimpleProtocol.Response;
 import eu.eidas.SimpleProtocol.ResponseStatus;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,9 @@ public class RequestController {
     private final SPConfigurationProperties spConfigurationProperties;
     private final GeneralUtils utils;
 
+    @Value("${name-id-select}") boolean nameIdSelect;
+    @Value("${name-id-default}") String nameIdDefault;
+
     @Autowired
     public RequestController(RequestGenerator requestGenerator, ResponseParser responseParser, HttpSession httpSession, SPConfigurationProperties spConfigurationProperties, GeneralUtils utils) {
         this.requestGenerator = requestGenerator;
@@ -54,15 +58,18 @@ public class RequestController {
         model.addAttribute("loaComparisonList", Arrays.asList(LevelOfAssuranceComparison.values()));
         model.addAttribute("spTypeList", Arrays.asList(SpType.values()));
         model.addAttribute("nameIdTypeList", Arrays.asList(RequestModel.UNSPECIFIED, RequestModel.PERSISTENT, RequestModel.TRANSIENT));
+        model.addAttribute("nameIdSelect", nameIdSelect);
+        model.addAttribute("nameIdDefault", nameIdDefault);
         return "sc-request";
     }
 
     @RequestMapping("/request/**")
-    public String getRequest(Model model, HttpServletRequest request) throws JAXBException {
+    public String getRequest(Model model, HttpServletRequest request, @RequestParam(required = false) String nidFormat) throws JAXBException {
         Map<String, String[]> parameterMap = request.getParameterMap();
+        nidFormat = nidFormat == null ? nameIdDefault : nidFormat;
         String spCountry = utils.getCountry(request);
         final SPConfigurationProperties.SpConfig spConfig = spConfigurationProperties.getSp().get(spCountry);
-        RequestData requestData = requestGenerator.getRequest(parameterMap, spConfigurationProperties.getBaseReturnUrl() + spCountry, spConfig.getName());
+        RequestData requestData = requestGenerator.getRequest(parameterMap, spConfigurationProperties.getBaseReturnUrl() + spCountry, spConfig.getName(), nidFormat);
         httpSession.setAttribute("requestData", requestData);
         String jsonRequest = requestData.getBase64Request();
         List<FormPostData> formData = new ArrayList<>();

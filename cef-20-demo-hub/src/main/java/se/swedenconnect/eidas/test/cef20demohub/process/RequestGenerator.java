@@ -34,7 +34,7 @@ public class RequestGenerator {
     public static final String NAME_ID_REGEXP = "^("+RequestModel.UNSPECIFIED+"|"+RequestModel.TRANSIENT+"|"+RequestModel.PERSISTENT+")$";
 
 
-    public RequestData getRequest(Map<String, String[]> parameterMap, String returnUrl, String serviceName) throws JAXBException, IllegalArgumentException {
+    public RequestData getRequest(Map<String, String[]> parameterMap, String returnUrl, String serviceName, String nameIDFormat) throws JAXBException, IllegalArgumentException {
         RequestModel rm = new RequestModel();
         rm.setReturnUrl(returnUrl);
         rm.setCitizenCountry(getParamValue(CITIZEN_COUNTRY_PARAM, parameterMap, COUNTRY_REGEXP));
@@ -42,7 +42,7 @@ public class RequestGenerator {
         List<String> nonNotifiedLoaList = getNonNotifiedLoaList(REQ_NON_NOTIFIED_LOA_PARAM, parameterMap);
         rm.setNnLoaList(nonNotifiedLoaList);
         rm.setEidasloaCompareType(nonNotifiedLoaList.isEmpty() ? LevelOfAssuranceComparison.MINIMUM : LevelOfAssuranceComparison.EXACT);
-        rm.setEidasNameIdentifier(RequestModel.UNSPECIFIED);
+        rm.setEidasNameIdentifier(nameIDFormat);
         rm.setEidasSPType(SpType.getEnumFromValue(getParamValue(SP_TYPE_PARAM, parameterMap, SP_TYPE_REGEXP)).get());
         rm.setProviderName(serviceName);
 

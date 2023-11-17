@@ -72,6 +72,23 @@
                             </div>
                         </td>
                     </tr>
+                    <!-- Selector for selecting NameID format in request -->
+                    <tr th:if="${nameIdSelect}">
+                        <td style="width: 100%">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 6px">
+                                    <label for="reqLoa">NameID Format</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-12">
+                                    <select class="selectpicker show-menu-arrow" data-width="90%" name="nidFormat" id="nidFormat" data-style="btn-outline-secondary" onchange="saveSelectedLoa()">
+                                        <option value="persistent" th:selected="${nameIdDefault.equals('persistent')}">Persistent</option>
+                                        <option value="transient" th:selected="${nameIdDefault.equals('transient')}">Transient</option>
+                                        <option value="undefined" th:selected="${nameIdDefault.equals('undefined')}">Undefined</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     <!-- Selector for selecting requested notified LoA -->
                     <tr>
                         <td style="width: 100%">
