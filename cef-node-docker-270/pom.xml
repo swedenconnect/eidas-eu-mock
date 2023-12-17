@@ -258,6 +258,35 @@
             </build>
         </profile>
         <profile>
+            <id>localenv</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy local environment server.xml with tls support</id>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <echo>Copy tomcat server.xml with tls support</echo>
+                                        <copy file="${project.basedir}/src/main/tomcat/conf-localenv/server_local-environment-tls.xml"
+                                              tofile="${project.build.directory}/dependency/apache-tomcat-${tomcat.version}/conf/server.xml"
+                                              overwrite="true"/>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>buildwars</id>
             <build>
                 <plugins>
