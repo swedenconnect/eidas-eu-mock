@@ -1,0 +1,391 @@
+/*
+ * Copyright (c) 2017 by European Commission
+ *
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be
+ * approved by the European Commission - subsequent versions of the
+ * EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence.
+ * You may obtain a copy of the Licence at:
+ * https://joinup.ec.europa.eu/page/eupl-text-11-12
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+ */
+
+/*
+ _______  _______  _______             _______ _________ ______           
+(  ____ \(  ____ \(  ____ \           (  ____ \\__   __/(  __  \          
+| (    \/| (    \/| (    \/           | (    \/   ) (   | (  \  )         
+| |      | (__    | (__       _____   | (__       | |   | |   ) |   _____ 
+| |      |  __)   |  __)     (_____)  |  __)      | |   | |   | |  (_____)
+| |      | (      | (                 | (         | |   | |   ) |         
+| (____/\| (____/\| )                 | (____/\___) (___| (__/  )         
+(_______/(_______/|/                  (_______/\_______/(______/          
+                                                                          
+ _______ _________ ______   _______  _______          
+(  ____ \\__   __/(  __  \ (  ___  )(  ____ \         
+| (    \/   ) (   | (  \  )| (   ) || (    \/         
+| (__       | |   | |   ) || (___) || (_____    _____ 
+|  __)      | |   | |   | ||  ___  |(_____  )  (_____)
+| (         | |   | |   ) || (   ) |      ) |         
+| (____/\___) (___| (__/  )| )   ( |/\____) |         
+(_______/\_______/(______/ |/     \|\_______)         
+                                                      
+ ______   _______  _______  _______ 
+(  __  \ (  ____ \(       )(  ___  )
+| (  \  )| (    \/| () () || (   ) |
+| |   ) || (__    | || || || |   | |
+| |   | ||  __)   | |(_)| || |   | |
+| |   ) || (      | |   | || |   | |
+| (__/  )| (____/\| )   ( || (___) |
+(______/ (_______/|/     \|(_______)
+
+*/
+
+html {
+  font-size: 100%
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: black;
+  background-color: white;
+}
+/*---------------------------HEADER--------------------------*/
+/*-----------------------------------------------------------*/
+.header .container {
+  border-bottom: 2px solid #006fb4;
+}
+/*---------------------------FOOTER--------------------------*/
+/*-----------------------------------------------------------*/
+.footer .container {
+  border-top: 2px solid #bcbcbc;
+}
+.footer .logo-cef {
+  margin: 10px auto;
+  display: block;
+}
+/* STICKY FOOTER */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 66px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 66px;
+  background-color: white;
+}
+/*---------------------------LINKS---------------------------*/
+/*-----------------------------------------------------------*/
+a, a:link, a:active, a:visited, a:hover {
+  color: #006fb4;
+  text-decoration: underline;
+}
+a:hover {
+  color: #006fb4;
+  background-color: transparent !important;
+  text-decoration: none;
+}
+/*----------------------------FONT---------------------------*/
+/*-----------------------------------------------------------*/
+h1 {
+  font-size: 2.4em;
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.6em;
+}
+h4 {
+  font-size: 1.2em;
+}
+h1 {
+  display: inline-block;
+  margin-top : 20px;
+  margin-bottom: 10px;
+  padding-right: 50px;
+}
+h2 {
+  margin-top : 20px;
+  margin-bottom: 20px;
+}
+h3 {
+  margin-top : 20px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  color: #006fb4;
+  border-bottom: 2px solid #006fb4;
+}
+h4 {
+  margin-top : 20px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  position: relative;
+}
+h4 a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+h4:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: #006fb4;
+}
+h1, h2, h3, h4, h5, h6, label, form button.btn-default {
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+.sub-title {
+  display: block;
+  font-size: 50%;
+}
+/*------------------------ILLUSTRATION-----------------------*/
+/*-----------------------------------------------------------*/
+.illustration {
+  position: relative;
+}
+.illustration h1 {
+  padding: 0 1.5em;
+  color: #fff;
+  width: 100%;
+  line-height: 120%;
+  text-align: center;
+  background: none;
+}
+.illustration h1 span {
+  text-transform: lowercase;
+}
+.demo-name {
+  position:relative;
+  color: #006fb4;
+  background-color: white;
+ }
+.demo-name:before {
+  z-index:-1;
+  display:inline-block;
+  position:absolute;
+  right:0;
+  content:" ";
+  margin:0 auto;
+}
+
+@media (orientation: landscape) {
+.illustration h1 { margin: 10vw auto;}
+
+.demo-name:before {
+    padding-top:0vw;
+    bottom:-2vw;
+    width: 0;
+	height: 0;
+	border-left: 5vw solid transparent;
+	border-right: 5vw solid transparent;
+	border-bottom: 10vw solid #006fb4;
+}
+}
+@media (orientation: portrait) {
+.illustration h1 {
+  margin: 10vh auto;
+}
+.demo-name:before {
+  padding-top:0vh;
+  bottom:-2vh;
+  width: 0;
+  height: 0;
+  border-left: 5vh solid transparent;
+  border-right: 5vh solid transparent;
+  border-bottom: 10vh solid #006fb4;}
+}
+/*-----------------------------TAB---------------------------*/
+/*-----------------------------------------------------------*/
+.nav-tabs {
+  margin-top: 20px;
+  padding-left: 15px;
+  font-size: 1.6em;
+  border-bottom: 2px solid #404040;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+  color: inherit;
+  border-color: #404040 #404040 transparent;
+}
+.nav-tabs > li > a {
+  color: #bcbcbc;
+  border-radius: 0;
+}
+.nav-tabs > li > a:hover {
+  border-color: #bcbcbc #bcbcbc #bcbcbc;
+}
+/*-----------------------------FORM--------------------------*/
+/*-----------------------------------------------------------*/
+
+/*INPUT*/
+.form-control {
+  color:black;
+  background-color: #fff;
+  border: 1px solid #bcbcbc;
+}
+.form-control:hover, .form-control:focus {
+  border-color: #006fb4;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #bcbcbc;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #bcbcbc;
+}
+/*RADIO*/
+.radio-inline-group {
+  margin-top: 5px;
+}
+/*BTN*/
+.btn {
+  color: #fff;
+  background: #006fb4;
+  border-color: #006fb4;
+}
+.btn:hover {
+  color: #fff;
+  background: #006fb4;
+  border-color: #006fb4;
+  text-decoration:underline;
+ }
+form button.btn-default, .input-group-addon {
+  font-weight: bold;
+  color: #fff;
+  background: #006fb4;
+  border-color: #006fb4;
+  transition: all 0.2s ease;
+}
+form button.btn-default {
+  margin-bottom: 20px;
+  font-size: inherit;
+  width: 100%;
+}
+form button.btn-default:hover {
+  text-decoration:underline;
+  text-shadow: none;
+  color:white;
+  background: #00b3ff;
+  border-color: #00b3ff;
+}
+.btn, .form-control {
+  border-radius: 0;
+}
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
+  color: #006fb4;
+  background: transparent;
+  border-color: black;
+}
+.btn-default.focus, .btn-default:focus {
+  color: #006fb4;
+  background: transparent;
+  border-color: black;
+  text-shadow: none;
+  -moz-box-shadow: 0px 0px 0px -6px #bcbcbc;
+  -webkit-box-shadow: 0px 0px 0px -6px #bcbcbc;
+  box-shadow: 0px 0px 0px -6px #bcbcbc;
+}
+.button-group {
+  margin-bottom: 40px;
+}
+.button-group .btn {
+  margin-bottom: 10px;
+}
+/*COLLAPSE*/
+h4 a {
+  color: #006fb4 !important;
+  cursor: pointer;
+}
+.toggle:after {
+  content: "(Show)"
+}
+.toggle.expanded:after {
+  content: "(Hide)"
+}
+.toggle:hover:after, .toggle.expanded:hover:after {
+  text-decoration:underline
+}
+/*---------------------------TABLE---------------------------*/
+/*-----------------------------------------------------------*/
+.table > thead > tr > th {
+  border-bottom: 2px solid #bcbcbc;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #f2f2f2;
+}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  border-top: 2px solid #bcbcbc;
+}
+/*-----------------------HELPER CLASS------------------------*/
+/*-----------------------------------------------------------*/
+.m-top-0 {
+  margin-top: 0;
+}
+.text-error {
+  color: #F44336;
+}
+h3.text-error {
+  color: #F44336;
+  border-color: #F44336;
+}
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+/*-------------------------SELECTION-------------------------*/
+/*-----------------------------------------------------------*/
+::-moz-selection {
+  background:black;
+  color: white;
+  text-shadow:none;
+}
+::selection {
+  background:black;
+  color: white;
+  text-shadow: none;
+}
+
+/*=======================================MODAL===================================*/
+/*===============================================================================*/
+.modal-header {
+  padding: 10px 10px 20px;
+  border-bottom: 2px solid #bcbcbc;
+}
+.modal-footer {
+  border-top: 2px solid #bcbcbc;
+}
+.btn-info {
+  color: #fff;
+  background-color: #006fb4;
+  border-color: #006fb4;
+}
+.btn.btn-info {
+  padding: 0;
+  width: auto;
+  height: 18px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 12px;
+}
+.btn.btn-info:hover {
+  background-color: #00b3ff;
+  border-color: #00b3ff;
+  text-decoration:underline;
+}
+.btn.btn-info:focus, .btn.btn-info:active {
+  color: #006fb4;
+  background: transparent;
+  border-color: black;
+}
