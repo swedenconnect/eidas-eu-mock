@@ -48,6 +48,7 @@ export JPDA_TRANSPORT=dt_socket
 
 if [ $DEBUG_MODE == true ]; then
     echo "Running in debug"
+    export JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
     ${TOMCAT_HOME}/bin/catalina.sh jpda run
 else
     echo "Running in normal mode"
