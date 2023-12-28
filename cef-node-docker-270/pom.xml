@@ -7,7 +7,7 @@
     <groupId>se.elegnamnden.eidas</groupId>
     <artifactId>cef-node-docker-270</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>CEF-eIDAS-Node-2.7.0-Docker</name>
+    <name>CEF-eIDAS-Node-2.7.1-Docker</name>
     
     <developers>
         <developer>
@@ -25,9 +25,9 @@
     </developers>
 
     <properties>
-        <tomcat.version>9.0.78</tomcat.version>
+        <tomcat.version>9.0.84</tomcat.version>
         <docker.image.prefix>docker.eidastest.se:5000</docker.image.prefix>
-        <eidas.node.version>2.7.0-SNAPSHOT</eidas.node.version>
+        <eidas.node.version>2.7.1</eidas.node.version>
     </properties>
 
     <repositories>

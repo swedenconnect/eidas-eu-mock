@@ -2,7 +2,7 @@ FROM openjdk:11-jre
 
 RUN mkdir /opt/docker
 RUN mkdir /opt/docker/internal
-ADD target/dependency/apache-tomcat-9.0.78 /opt/tomcat/
+ADD target/dependency/apache-tomcat-9.0.84 /opt/tomcat/
 
 # Redirecting log directories
 RUN rm -rf /opt/tomcat/logs && ln -s /var/log/eidas-node/ /opt/tomcat/logs
