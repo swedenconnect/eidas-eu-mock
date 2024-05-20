@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright (c) 2023 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<lightResponse>
+    <id>cc4d37fa-5204-4276-aedc-3c40fd0bf3a0</id>
+    <relayState>2545c11c-fb2c-447e-8680-6c281ce3e1de</relayState>
+    <issuer>DEMO-IDP</issuer>
+    <ipAddress>172.17.0.1</ipAddress>
+    <subject>0123456</subject>
+    <subjectNameIdFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</subjectNameIdFormat>
+    <status>
+        <failure>false</failure>
+        <statusCode>urn:oasis:names:tc:SAML:2.0:status:Success</statusCode>
+    </status>
+    <inResponseToId>_5RkktFSPtCkrQ.6zNrWtLdb0ws53yFPQ-tAFKgG07A4eemZ9.hKeTc4N0awg.f.</inResponseToId>
+    <levelOfAssurance>http://eidas.europa.eu/LoA/low</levelOfAssurance>
+    <attributes>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/LegalName</definition>
+            <value>Current Legal Name</value>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/LegalPersonIdentifier</definition>
+            <value>125457487Company</value>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName</definition>
+            <value>Garcia</value>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName</definition>
+            <value>javier</value>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/DateOfBirth</definition>
+            <value>1965-01-01</value>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier</definition>
+            <value>12345</value>
+        </attribute>
+    </attributes>
+</lightResponse>

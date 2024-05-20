@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2024 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="saml.connector">Connector</entry>
+
+    <entry key="interconnection.graph.enabled">false</entry>
+
+    <entry key="tls.enabled.protocols">TLSv1.2</entry>
+    <entry key="tls.enabled.ciphers">
+        TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,
+        TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+        TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,
+        TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+        TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,
+        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,
+        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+        TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,
+        TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
+        TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,
+        TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,
+        TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+    </entry>
+
+    <entry key="security.header.CSP.enabled">true</entry>
+    <entry key="security.header.CSP.includeMozillaDirectives">true</entry>
+    <entry key="security.header.XXssProtection.block">true</entry>
+    <entry key="security.header.XContentTypeOptions.noSniff">true</entry>
+    <entry key="security.header.XFrameOptions.sameOrigin">true</entry>
+    <entry key="security.header.HSTS.includeSubDomains">true</entry>
+
+    <entry key="trusted.sp.domains">all</entry>
+
+    <entry key="validation.bypass">true</entry>
+    <entry key="max.requests.sp">-1</entry>
+    <entry key="max.time.sp">60</entry>
+    <entry key="max.requests.ip">-1</entry>
+    <entry key="max.time.ip">60</entry>
+
+    <entry key="eidas.protocol.version">1.4;1.3;1.2</entry>
+    <entry key="eidas.application.identifier">eIDAS-ref:2.8.0</entry>
+
+    <entry key="check.citizenCertificate.serviceCertificate">true</entry>
+    <entry key="validate.prefix.country.code.identifiers">true</entry>
+
+    <entry key="metadata.activate">true</entry>
+    <entry key="metadata.http.retrieval">true</entry>
+    <entry key="metadata.restrict.http">true</entry>
+    <entry key="metadata.check.signature">true</entry>
+    <entry key="metadata.validity.duration">86400</entry>
+    <entry key="nonDistributedMetadata.retention">86400</entry>
+
+    <entry key="saml.audit">true</entry>
+    <entry key="full.message.logging">false</entry>
+    <entry key="logging.hash.digest.algorithm">SHA-512</entry>
+    <entry key="logging.hash.digest.provider"/>
+
+    <entry key="allow.redirect.binding">true</entry>
+    <entry key="validate.binding">true</entry>
+    <entry key="metadata.file.repository"></entry>
+</properties>

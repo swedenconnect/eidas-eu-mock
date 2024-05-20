@@ -1,0 +1,197 @@
+/*
+ * Copyright (c) 2024 by European Commission
+ *
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be
+ * approved by the European Commission - subsequent versions of the
+ * EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence.
+ * You may obtain a copy of the Licence at:
+ * https://joinup.ec.europa.eu/page/eupl-text-11-12
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+ */
+
+package eu.eidas.node.connector.logger.request.outgoing;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
+import eu.eidas.auth.commons.EidasStringUtil;
+import eu.eidas.logging.IFullMessageLogger;
+import eu.eidas.logging.MessageLoggerUtils;
+import eu.eidas.logging.logger.EidasRequestLogger;
+import eu.eidas.node.connector.logger.LevelFilter;
+import eu.eidas.node.connector.logger.LoggerTestUtils;
+import eu.eidas.node.connector.logger.request.ConnectorOutgoingEidasRequestLogger;
+import eu.eidas.node.connector.servlet.binding.ConnectorSamlRequestViewMapping;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
+import static eu.eidas.node.utils.ReadFileUtils.readFileAsByteArray;
+import static org.mockito.Mockito.mock;
+
+/**
+ * Tests for the {@link ConnectorOutgoingEidasRequestLogger}.
+ */
+public class IFullMessageLoggerEidasRequestLoggerTest {
+
+    private EidasRequestLogger connectorOutgoingEidasRequestLogger;
+    private MessageLoggerUtils mockedMessageLoggerUtils;
+
+    private final Logger fullMessageLogger = (Logger) LoggerFactory.getLogger(
+            IFullMessageLogger.getLoggerName(ConnectorOutgoingEidasRequestLogger.class)
+    );
+    private ListAppender<ILoggingEvent> logAppender;
+
+    @Before
+    public void setup() {
+        connectorOutgoingEidasRequestLogger = new ConnectorOutgoingEidasRequestLogger();
+        mockedMessageLoggerUtils = mockMessageLoggerUtils();
+        Mockito.when(mockedMessageLoggerUtils.isLogCompleteMessage()).thenReturn(true);
+        connectorOutgoingEidasRequestLogger.setMessageLoggerUtils(mockedMessageLoggerUtils);
+
+        logAppender = LoggerTestUtils.createStartListAppender(new LevelFilter(Level.INFO, Level.ERROR));
+        fullMessageLogger.addAppender(logAppender);
+    }
+
+    @After
+    public void teardown() {
+        fullMessageLogger.detachAndStopAllAppenders();
+    }
+
+    /**
+     * Test method for {@link ConnectorOutgoingEidasRequestLogger#logFullMessage(HttpServletRequest)}.
+     * Check logging occurs when full logging flag is activated
+     * Must succeed.
+     */
+    @Test
+    public void logFullMessageActive() {
+        String request = new String(readFileAsByteArray("logging/testFullLoggingEidasRequest.xml"));
+        HttpServletRequest testRequest = mockHttpServletRequest(request);
+
+        connectorOutgoingEidasRequestLogger.logFullMessage(testRequest);
+
+        Assert.assertFalse(logAppender.list.isEmpty());
+        ILoggingEvent actualLogEvent = logAppender.list.get(0);
+        LoggerTestUtils.verifyILoggingEvent(actualLogEvent, Level.INFO, request);
+    }
+
+    /**
+     * Test method for {@link ConnectorOutgoingEidasRequestLogger#logFullMessage(HttpServletRequest)}.
+     * Check logging occurs and is correct when full logging flag is activated and request is encoded in UTF_16BE
+     * Must succeed.
+     */
+    @Test
+    public void logFullMessageUTF16_BE() {
+        String request = new String(readFileAsByteArray("logging/testFullLoggingEidasRequest.xml"));
+
+        request = "<?xml version=\"1.0\" encoding=\"UTF-16BE\" ?>" + request;
+        ByteBuffer requestTransformEncodingBuffer = StandardCharsets.UTF_16BE.encode(request);
+        String requestInUTF16BE = new String(requestTransformEncodingBuffer.array());
+
+        HttpServletRequest testRequest = mockHttpServletRequest(requestInUTF16BE, StandardCharsets.UTF_16BE);
+
+        connectorOutgoingEidasRequestLogger.logFullMessage(testRequest);
+
+        Assert.assertFalse(logAppender.list.isEmpty());
+        ILoggingEvent actualLogEvent = logAppender.list.get(0);
+        LoggerTestUtils.verifyILoggingEvent(actualLogEvent, Level.INFO, request);
+    }
+
+    /**
+     * Test method for {@link ConnectorOutgoingEidasRequestLogger#logFullMessage(HttpServletRequest)}.
+     * Check logging doesn't occur when full logging flag is inactive
+     * Must succeed.
+     */
+    @Test
+    public void logFullMessageInactive() {
+        String request = new String(readFileAsByteArray("logging/testFullLoggingEidasRequest.xml"));
+        HttpServletRequest testRequest = mockHttpServletRequest(request);
+
+        Mockito.when(mockedMessageLoggerUtils.isLogCompleteMessage()).thenReturn(false);
+
+        connectorOutgoingEidasRequestLogger.logFullMessage(testRequest);
+
+        Assert.assertTrue(logAppender.list.isEmpty());
+    }
+
+    /**
+     * Test method for {@link ConnectorOutgoingEidasRequestLogger#logFullMessage(HttpServletRequest)}.
+     * Test full logging when receiving an invalid SAML in the request
+     * By checking information concerning the failure of the logging that appears in the log.
+     * <p>
+     * Error scenario.
+     */
+    @Test
+    public void logFullMessageInvalidSaml() {
+        String request = new String(readFileAsByteArray("logging/testFullLoggingEidasRequest.xml"));
+
+        ByteBuffer requestTransformEncodingBuffer = StandardCharsets.UTF_16BE.encode(request);
+        String requestInUTF16BE = new String(requestTransformEncodingBuffer.array());
+
+        HttpServletRequest testRequest = mockHttpServletRequest(requestInUTF16BE, StandardCharsets.UTF_16BE);
+
+        connectorOutgoingEidasRequestLogger.logFullMessage(testRequest);
+
+        Assert.assertFalse(logAppender.list.isEmpty());
+        ILoggingEvent actualLogEvent = logAppender.list.get(0);
+        Level expectedErrorLevel = Level.ERROR;
+        String expectedMessage = "SAML Request is not valid";
+
+        LoggerTestUtils.verifyILoggingEvent(actualLogEvent, expectedErrorLevel, expectedMessage);
+    }
+
+
+    /**
+     * Test method for {@link ConnectorOutgoingEidasRequestLogger#logFullMessage(HttpServletRequest)}.
+     * Test full logging when receiving an invalid request
+     * By checking information concerning the failure of the logging that appears in the log.
+     * <p>
+     * Error scenario.
+     */
+    @Test
+    public void logFullMessageInvalidRequest() {
+        HttpServletRequest testRequest = mock(HttpServletRequest.class);
+
+        connectorOutgoingEidasRequestLogger.logFullMessage(testRequest);
+
+        Assert.assertFalse(logAppender.list.isEmpty());
+        ILoggingEvent actualLogEvent = logAppender.list.get(0);
+        Level expectedErrorLevel = Level.ERROR;
+        String expectedMessage = "SAML Request is not valid";
+
+        LoggerTestUtils.verifyILoggingEvent(actualLogEvent, expectedErrorLevel, expectedMessage);
+    }
+
+    private MessageLoggerUtils mockMessageLoggerUtils() {
+        MessageLoggerUtils mockMessageLoggerUtils = mock(MessageLoggerUtils.class);
+        return mockMessageLoggerUtils;
+    }
+
+    private HttpServletRequest mockHttpServletRequest(String testRequest) {
+        return mockHttpServletRequest(testRequest, StandardCharsets.UTF_8);
+    }
+
+    private HttpServletRequest mockHttpServletRequest(String testRequest, Charset charset) {
+        HttpServletRequest mockHttpServletRequest = mock(HttpServletRequest.class);
+        final String tokenBase64 = EidasStringUtil.encodeToBase64(testRequest);
+        Mockito.when(mockHttpServletRequest.getAttribute(ConnectorSamlRequestViewMapping.SAML_REQUEST)).thenReturn(tokenBase64);
+        Mockito.when(mockHttpServletRequest.getCharacterEncoding()).thenReturn(charset.toString());
+        return mockHttpServletRequest;
+    }
+}
