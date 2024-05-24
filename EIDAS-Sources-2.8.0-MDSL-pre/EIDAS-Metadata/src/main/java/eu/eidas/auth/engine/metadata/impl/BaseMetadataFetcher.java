@@ -45,8 +45,12 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.X509TrustManager;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -248,7 +252,20 @@ public abstract class BaseMetadataFetcher implements MetadataFetcherI {
 
         final TLSSocketFactoryBuilder tlsSocketFactoryBuilder = new TLSSocketFactoryBuilder()
                 .setHostnameVerifier(hostnameVerifier)
-                .setEnabledProtocols(Arrays.asList(getTlsEnabledProtocols()));
+                .setEnabledProtocols(Arrays.asList(getTlsEnabledProtocols()))
+          .setTrustManagers(List.of(new X509TrustManager() {
+              @Override public void checkClientTrusted(X509Certificate[] x509Certificates, String s)
+                throws CertificateException {
+              }
+
+              @Override public void checkServerTrusted(X509Certificate[] x509Certificates, String s)
+                throws CertificateException {
+              }
+
+              @Override public X509Certificate[] getAcceptedIssuers() {
+                  return new X509Certificate[0];
+              }
+          }));
 
         setTlsEnabledCipherSuites(tlsSocketFactoryBuilder);
 
