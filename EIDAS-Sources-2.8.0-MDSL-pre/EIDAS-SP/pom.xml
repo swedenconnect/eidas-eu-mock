@@ -131,11 +131,11 @@
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <replace replacefilterfile="../EIDAS-Parent/dev.properties" dir="target/classes">
                                     <include name="**/sp.properties"/>
                                 </replace>
-                            </tasks>
+                            </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>
