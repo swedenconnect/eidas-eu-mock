@@ -111,7 +111,7 @@ public class ConfigHandler {
     }
     System.out.println("Template data directory: " + templateDir.getAbsolutePath());
 
-    String profile = "CEF26";
+    String profile = "latest";
     if (cmd.hasOption(AppOptions.OPTION_PROFILE)) {
       profile = cmd.getOptionValue(AppOptions.OPTION_PROFILE);
     }

@@ -29,20 +29,14 @@ import se.swedenconnect.eidas.cef.confbuilder.handler.impl.CEF27ConfigBuilder;
 @Component
 public class EIDASNodeConfigBuilderProvider {
 
-
   public EIDASNodeConfigBuilder getConfigBuilder(String profile) throws IllegalArgumentException {
 
-    switch (profile) {
-    case "CEF26" :
-      return new CEF26ConfigBuilder();
-    case "CEF27" :
-      return new CEF27ConfigBuilder();
-    default:
-      throw new IllegalArgumentException("Unrecognized profile: " + profile);
-    }
-
+    return switch (profile) {
+      case "CEF26" -> new CEF26ConfigBuilder();
+      case "CEF27", "latest" -> new CEF27ConfigBuilder();
+      default -> throw new IllegalArgumentException("Unrecognized profile: " + profile);
+    };
 
   }
-
 
 }

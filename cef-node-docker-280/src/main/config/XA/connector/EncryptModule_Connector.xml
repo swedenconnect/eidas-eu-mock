@@ -24,10 +24,10 @@
   <entry key="check.certificate.validity.period">false</entry>
 
   <!-- Key store configuration -->
-  <entry key="keyStorePath">./keystore/xa-rsa.jks</entry>
-  <entry key="keyStorePassword">Test1234</entry>
-  <entry key="keyPassword">Test1234</entry>
-  <entry key="keyStoreType">JKS</entry>
+  <entry key="1.keyStorePath">./keystore/xa-rsa.jks</entry>
+  <entry key="1.keyStorePassword">Test1234</entry>
+  <entry key="1.keyPassword">Test1234</entry>
+  <entry key="1.keyStoreType">JKS</entry>
 
   <!-- Key transport config -->
   <!--  If not present then no decryption will be applied on response -->

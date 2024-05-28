@@ -1,4 +1,5 @@
 FROM openjdk:11-jre
+#FROM openjdk:17-jdk-slim
 
 RUN mkdir /opt/docker
 RUN mkdir /opt/docker/internal

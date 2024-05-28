@@ -207,7 +207,7 @@ public class CEF27ConfigBuilder implements EIDASNodeConfigBuilder {
     spSpProperties.update("config.country", baseProperties.getCountry());
 
 
-    System.out.println("CEF 2.7 eIDAS node configuration complete");
+    System.out.println("CEF 2.7+ eIDAS node configuration complete");
   }
 
   private EidasKeyConfigData storeKey(File configFile, KeystoreProperties.KeyStoreData keyStoreData, File targetKeyStoreDir)

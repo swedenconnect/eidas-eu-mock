@@ -25,26 +25,22 @@
 	<!-- Certificates -->
 	<entry key="check.certificate.validity.period">false</entry>
 
-
-	<!-- Signature with RSA -->
+	<!-- Algorithms -->
 	<entry key="signature.algorithm">http://www.w3.org/2007/05/xmldsig-more#sha512-rsa-MGF1</entry>
 	<entry key="metadata.signature.algorithm">http://www.w3.org/2007/05/xmldsig-more#sha512-rsa-MGF1</entry>
 
-	<!-- Request signature -->
-	<entry key="keyStorePath">./keystore/xa-rsa.jks</entry>
-	<entry key="keyStorePassword">Test1234</entry>
-	<entry key="keyPassword">Test1234</entry>
+	<!-- Assigned keystores and algorithms -->
 	<entry key="issuer">CN=Test CEF node country XA, OU=eIDAS node unit, O=eIDAS node org, C=XA</entry>
 	<entry key="serialNumber">62B377EC</entry>
-	<entry key="keyStoreType">JKS</entry>
-	<entry key="keyStorePurpose">TRUSTSTORE</entry>
-
-	<!-- Metadata signature configuration -->
-	<entry key="metadata.keyStorePath">./keystore/xa-rsa.jks</entry>
-	<entry key="metadata.keyStorePassword">Test1234</entry>
-	<entry key="metadata.keyPassword">Test1234</entry>
 	<entry key="metadata.issuer">CN=Test CEF node country XA, OU=eIDAS node unit, O=eIDAS node org, C=XA</entry>
 	<entry key="metadata.serialNumber">62B377EC</entry>
-	<entry key="metadata.keyStoreType">JKS</entry>
+
+
+	<!-- First keystore configuration -->
+	<entry key="1.keyStorePath">./keystore/xa-rsa.jks</entry>
+	<entry key="1.keyStorePassword">Test1234</entry>
+	<entry key="1.keyPassword">Test1234</entry>
+	<entry key="1.keyStoreType">JKS</entry>
+	<entry key="1.keyStorePurpose">TRUSTSTORE</entry>
 
 </properties>

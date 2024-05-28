@@ -30,21 +30,19 @@
 	<entry key="signature.algorithm">http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</entry>
 	<entry key="metadata.signature.algorithm">http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</entry>
 
-	<!-- Configuration for response assertion signature -->
-	<entry key="keyStorePath">./keystore/xa-ec.jks</entry>
-	<entry key="keyStorePassword">Test1234</entry>
-	<entry key="keyPassword">Test1234</entry>
+	<!-- Assigned keystores and algorithms -->
 	<entry key="issuer">CN=Test CEF eIDAS node XA, OU=eIDAS node org unit, O=eIDAS node org, C=XA</entry>
 	<entry key="serialNumber">62B37992</entry>
-	<entry key="keyStoreType">JKS</entry>
-	<entry key="keyStorePurpose">TRUSTSTORE</entry>
-
-	<!-- Metadata signature configuration -->
-	<entry key="metadata.keyStorePath">./keystore/xa-ec.jks</entry>
-	<entry key="metadata.keyStorePassword">Test1234</entry>
-	<entry key="metadata.keyPassword">Test1234</entry>
 	<entry key="metadata.issuer">CN=Test CEF eIDAS node XA, OU=eIDAS node org unit, O=eIDAS node org, C=XA</entry>
 	<entry key="metadata.serialNumber">62B37992</entry>
-	<entry key="metadata.keyStoreType">JKS</entry>
+
+
+	<!-- First keystore configuration -->
+	<entry key="1.keyStorePath">./keystore/xa-ec.jks</entry>
+	<entry key="1.keyStorePassword">Test1234</entry>
+	<entry key="1.keyPassword">Test1234</entry>
+	<entry key="1.keyStoreType">JKS</entry>
+	<entry key="1.keyStorePurpose">TRUSTSTORE</entry>
+
 
 </properties>
