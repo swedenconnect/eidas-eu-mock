@@ -4,10 +4,10 @@
 <properties>
 
     <!-- Country Code of this Proxy-Service -->
-    <entry key="service.countrycode">${config.country}</entry>
+  <entry key="service.countrycode">${config.country}</entry>
 
     <!--service Metadata -->
-    <entry key="service.metadata.url">${config.base-url}/EidasNodeProxy/ServiceMetadata</entry>
+  <entry key="service.metadata.url">${config.metadata-url}/EidasNodeProxy/ServiceMetadata</entry>
 
     <!-- ProxyService contact -->
   <entry key="service.contact.support.email">${metadata.contact.support.email}</entry>

@@ -21,10 +21,10 @@
 <properties>
     <!-- Connector  -->
     <!-- Connector assertion URL -->
-    <entry key="connector.assertion.url">${config.base-url}/EidasNodeConnector/ColleagueResponse</entry>
+  <entry key="connector.assertion.url">${config.base-url}/EidasNodeConnector/ColleagueResponse</entry>
 
     <!--connector Metadata -->
-    <entry key="connector.metadata.url">${config.base-url}/EidasNodeConnector/ConnectorMetadata</entry>
+  <entry key="connector.metadata.url">${config.metadata-url}/EidasNodeConnector/ConnectorMetadata</entry>
 
     <!-- METADATA configuration -->
     <!-- Connector contact -->

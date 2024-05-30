@@ -59,7 +59,15 @@ public class CEF27ConfigBuilder implements EIDASNodeConfigBuilder {
     ServicesProperties servicesProperties, KeystoreProperties keystoreProperties,
     IdpProperties idpProperties, SpProperties spProperties
   ) throws IOException {
-    System.out.println("Building configuration data for CEF node version 2.7.0");
+    System.out.println("Building configuration data for CEF node version 2.7.0 and later");
+
+    boolean localEnvironment = baseProperties.getLocalEnvironmentUrl() != null;
+    String metadataUrl = localEnvironment
+      ? baseProperties.getLocalEnvironmentUrl()
+      : baseProperties.getBaseUrl();
+    if (localEnvironment) {
+      System.out.println("Building config for local environment internal URL: " + metadataUrl);
+    }
 
     // Copy config file directory
     System.out.println("Copying template files to target directory");
@@ -86,6 +94,7 @@ public class CEF27ConfigBuilder implements EIDASNodeConfigBuilder {
     System.out.println("Patching Connector eidas.xml config file");
     ConfigFileProcessor connectorEidasXml = new ConfigFileProcessor("eidas.xml", dirTemplateConnector, dirTargetConnector);
     connectorEidasXml.update("config.base-url", baseProperties.getBaseUrl());
+    connectorEidasXml.update("config.metadata-url", metadataUrl);
     connectorEidasXml.update("config.country", baseProperties.getCountry());
     // contact
     connectorEidasXml.update("metadata.contact.support.email", metadataProperties.getContact().getSupport().getEmail());
@@ -126,6 +135,7 @@ public class CEF27ConfigBuilder implements EIDASNodeConfigBuilder {
     System.out.println("Patching Proxy Service eidas.xml config file");
     ConfigFileProcessor serviceEidasXml = new ConfigFileProcessor("eidas.xml", dirTemplateService, dirTargetService);
     serviceEidasXml.update("config.base-url", baseProperties.getBaseUrl());
+    serviceEidasXml.update("config.metadata-url", metadataUrl);
     serviceEidasXml.update("config.country", baseProperties.getCountry());
     // contact
     serviceEidasXml.update("metadata.contact.support.email", metadataProperties.getContact().getSupport().getEmail());

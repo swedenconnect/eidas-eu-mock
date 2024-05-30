@@ -26,7 +26,7 @@
     </parent>
     <groupId>se.swedenconnect.eidas.cef</groupId>
     <artifactId>config-builder-260</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>CEF Node configuration builder</name>

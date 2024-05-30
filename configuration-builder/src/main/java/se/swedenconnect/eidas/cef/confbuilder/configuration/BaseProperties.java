@@ -36,6 +36,7 @@ import org.springframework.context.annotation.PropertySource;
 public class BaseProperties {
 
   String baseUrl;
+  String localEnvironmentUrl;
   String country;
 
 }

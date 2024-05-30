@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!-- Country Code of this Proxy-Service -->
+    <entry key="service.countrycode">${config.country}</entry>
+
+    <!--service Metadata -->
+    <entry key="service.metadata.url">${config.metadata-url}/EidasNodeProxy/ServiceMetadata</entry>
+
+    <!-- ProxyService contact -->
+  <entry key="service.contact.support.email">${metadata.contact.support.email}</entry>
+  <entry key="service.contact.support.company">${metadata.contact.support.company}</entry>
+  <entry key="service.contact.support.givenname">${metadata.contact.support.givenname}</entry>
+  <entry key="service.contact.support.surname">${metadata.contact.support.surname}</entry>
+  <entry key="service.contact.support.phone">${metadata.contact.support.phone}</entry>
+  <entry key="service.contact.technical.email">${metadata.contact.technical.email}</entry>
+  <entry key="service.contact.technical.company">${metadata.contact.technical.company}</entry>
+  <entry key="service.contact.technical.givenname">${metadata.contact.technical.givenname}</entry>
+  <entry key="service.contact.technical.surname">${metadata.contact.technical.surname}</entry>
+  <entry key="service.contact.technical.phone">${metadata.contact.technical.phone}</entry>
+    <!-- ProxyService organization -->
+  <entry key="service.organization.name">${metadata.organization.name}</entry>
+  <entry key="service.organization.displayname">${metadata.organization.displayname}</entry>
+  <entry key="service.organization.url">${metadata.organization.url}</entry>
+
+    <!-- Eidas Node Service Metadata Single Sign On locations for ServiceMetadata-->
+    <entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">${config.base-url}/EidasNodeProxy/ColleagueRequest</entry>
+    <entry key="ssos.serviceMetadataGeneratorIDP.post.location">${config.base-url}/EidasNodeProxy/ColleagueRequest</entry>
+
+    <!-- SECURITY POLICY -->
+    <!-- uri used for the CSP reporting feature-->
+    <entry key="security.header.CSP.report.uri">${config.base-url}/EidasNodeProxy</entry>
+
+    <!-- value of the NodeCountry to be published in the metadata-->
+    <entry key="metadata.node.country">${config.country}</entry>
+
+    <!-- Restrict metadata retrieval to https -->
+    <entry key="metadata.restrict.http">false</entry>
+    <!--URL for specific-proxyService requests receiver only needed when specific  -->
+    <entry key="specific.proxyservice.request.receiver">${config.base-url}/SpecificProxyService/ProxyServiceRequest</entry>
+
+${service.loa}
+
+</properties>
