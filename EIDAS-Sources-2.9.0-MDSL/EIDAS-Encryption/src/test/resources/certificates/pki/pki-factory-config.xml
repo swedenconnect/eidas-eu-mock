@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright (c) 2024 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<pki xmlns="http://pki-factory.nowina.lu/pki-factory" name="good-pki">
+
+    <certificate>
+        <serialNumber>1</serialNumber>
+        <subject>root-ca</subject>
+        <issuer serialNumber="1">root-ca</issuer>
+        <notBefore year="-1"/>
+        <notAfter year="1"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>crlSign</keyUsage>
+            <keyUsage>keyCertSign</keyUsage>
+        </keyUsages>
+        <ca/>
+        <trustAnchor/>
+    </certificate>
+
+    <certificate>
+        <serialNumber>2</serialNumber>
+        <subject>ocsp-responder</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore year="-1"/>
+        <notAfter year="1"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>digitalSignature</keyUsage>
+        </keyUsages>
+        <extendedKeyUsages>
+            <extendedKeyUsage>1.3.6.1.5.5.7.3.9</extendedKeyUsage> <!-- ocsp-signing -->
+        </extendedKeyUsages>
+        <ocspNoCheck/>
+    </certificate>
+
+    <certificate>
+        <serialNumber>4</serialNumber>
+        <subject>good-ca</subject>
+        <issuer serialNumber="1">root-ca</issuer>
+        <ocspResponder serialNumber="2">good-ca</ocspResponder>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>crlSign</keyUsage>
+            <keyUsage>keyCertSign</keyUsage>
+        </keyUsages>
+        <ca/>
+        <crl>root-ca</crl>
+        <caIssuers>root-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>5</serialNumber>
+        <subject>good-ca-ocsp-only</subject>
+        <issuer serialNumber="1">root-ca</issuer>
+        <ocspResponder serialNumber="2">good-ca</ocspResponder>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>crlSign</keyUsage>
+            <keyUsage>keyCertSign</keyUsage>
+        </keyUsages>
+        <ca/>
+        <caIssuers>root-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>6</serialNumber>
+        <subject>revoked-ca</subject>
+        <issuer serialNumber="1">root-ca</issuer>
+        <ocspResponder serialNumber="2">good-ca</ocspResponder>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>crlSign</keyUsage>
+            <keyUsage>keyCertSign</keyUsage>
+        </keyUsages>
+        <ca/>
+        <crl>root-ca</crl>
+        <caIssuers>root-ca</caIssuers>
+        <revocation month="-1" reason="keyCompromise"/>
+    </certificate>
+
+    <certificate>
+        <serialNumber>10</serialNumber>
+        <subject>good-user</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <ocsp>good-ca</ocsp>
+        <caIssuers>good-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>12</serialNumber>
+        <subject>revoked-user</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <ocsp>good-ca</ocsp>
+        <caIssuers>good-ca</caIssuers>
+        <revocation month="-1" reason="keyCompromise"/>
+    </certificate>
+
+    <certificate>
+        <serialNumber>13</serialNumber>
+        <subject>revoked-user-root-ocsp-response</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <ocsp>root-ca</ocsp>
+        <caIssuers>good-ca</caIssuers>
+        <revocation month="-1" reason="keyCompromise"/>
+    </certificate>
+
+    <certificate>
+        <serialNumber>16</serialNumber>
+        <subject>good-user-no-revocation</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <caIssuers>good-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>18</serialNumber>
+        <subject>good-user-revoked-ca</subject>
+        <issuer serialNumber="6">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <ocsp>revoked-ca</ocsp>
+        <caIssuers>revoked-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>21</serialNumber>
+        <subject>good-user-ocsp-fail</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <ocsp>fail/good-ca</ocsp>
+        <caIssuers>good-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>22</serialNumber>
+        <subject>good-user-ocsp-only-fail</subject>
+        <issuer serialNumber="5">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <ocsp>fail/good-ca-ocsp-only</ocsp>
+        <caIssuers>good-ca-ocsp-only</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>23</serialNumber>
+        <subject>good-user-crl-ocsp</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <crl>good-ca</crl>
+        <ocsp>good-ca</ocsp>
+        <caIssuers>good-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>24</serialNumber>
+        <subject>good-user-crl</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <crl>good-ca</crl>
+        <caIssuers>good-ca</caIssuers>
+    </certificate>
+
+    <certificate>
+        <serialNumber>25</serialNumber>
+        <subject>revoked-user-crl</subject>
+        <issuer serialNumber="4">root-ca</issuer>
+        <notBefore month="-11"/>
+        <notAfter month="11"/>
+        <keyAlgo encryption="ECDSA" length="256"/>
+        <digestAlgo>SHA256</digestAlgo>
+        <keyUsages>
+            <keyUsage>nonRepudiation</keyUsage>
+        </keyUsages>
+        <crl>good-ca</crl>
+        <caIssuers>good-ca</caIssuers>
+        <revocation month="-1" reason="keyCompromise"/>
+    </certificate>
+
+</pki>

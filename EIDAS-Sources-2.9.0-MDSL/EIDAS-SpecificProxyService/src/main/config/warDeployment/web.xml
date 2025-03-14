@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2024 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Restricted methods</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+    <security-constraint>
+        <display-name>"Includes" folder access to application only</display-name>
+        <web-resource-collection>
+            <web-resource-name>Restricted folder</web-resource-name>
+            <url-pattern>/internal/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+    <filter>
+        <filter-name>securityFilter</filter-name>
+        <filter-class>eu.eidas.security.SecurityRequestFilter</filter-class>
+        <!--        <init-param>
+                    <param-name>includedServlets</param-name>
+                    <param-value>IdpResponseServlet</param-value>
+                </init-param>-->
+    </filter>
+    <filter>
+        <filter-name>contentSecurityPolicyApplier</filter-name>
+        <filter-class>eu.eidas.security.csp.ContentSecurityPolicyFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>removeHeadersFilter</filter-name>
+        <filter-class>eu.eidas.security.header.RemoveHttpHeadersFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>securityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>contentSecurityPolicyApplier</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>removeHeadersFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- session logging listener -->
+    <listener>
+        <listener-class>member_country_specific.specific.proxyservice.utils.SessionLogListener</listener-class>
+    </listener>
+    <!-- Spring context listener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:specificProxyServiceApplicationContext.xml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+        <param-value>en_UK</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.providers</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.resources</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>buildDate</param-name>
+        <param-value>${timestamp}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>projectVersion</param-name>
+        <param-value>${project.version}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>samlVersion</param-name>
+        <param-value>${project.version}</param-value>
+    </context-param>
+
+    <!-- Spring request listener : used by struts -->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <!-- ****************** -->
+    <!-- Servlet definition -->
+    <!-- ****************** -->
+
+    <!--specific proxy servlets -->
+    <servlet>
+        <description>AfterCitizenConsentRequestServlet</description>
+        <display-name>AfterCitizenConsentRequestServlet</display-name>
+        <servlet-name>AfterCitizenConsentRequestServlet</servlet-name>
+        <servlet-class>member_country_specific.specific.proxyservice.servlet.AfterCitizenConsentRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>AfterCitizenConsentResponseServlet</description>
+        <display-name>AfterCitizenConsentResponseServlet</display-name>
+        <servlet-name>AfterCitizenConsentResponseServlet</servlet-name>
+        <servlet-class>member_country_specific.specific.proxyservice.servlet.AfterCitizenConsentResponseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>IdpResponseServlet</description>
+        <display-name>IdpResponseServlet</display-name>
+        <servlet-name>IdpResponseServlet</servlet-name>
+        <servlet-class>member_country_specific.specific.proxyservice.servlet.IdpResponseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>ProxyServiceRequestServlet</description>
+        <display-name>ProxyServiceRequestServlet</display-name>
+        <servlet-name>ProxyServiceRequestServlet</servlet-name>
+        <servlet-class>member_country_specific.specific.proxyservice.servlet.ProxyServiceRequestServlet</servlet-class>
+    </servlet>
+
+    <!-- Specific servlets -->
+
+    <servlet>
+        <description>ContentSecurityPolicyReport</description>
+        <display-name>ContentSecurityPolicyReportServlet</display-name>
+        <servlet-name>ContentSecurityPolicyReportServlet</servlet-name>
+        <servlet-class>eu.eidas.security.csp.ContentSecurityPolicyReportServlet</servlet-class>
+    </servlet>
+
+    <!-- ****************** -->
+    <!-- Servlet mapping    -->
+    <!-- ****************** -->
+    <!--ProxyService servlet -->
+    <servlet-mapping>
+        <servlet-name>AfterCitizenConsentRequestServlet</servlet-name>
+        <url-pattern>/AfterCitizenConsentRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfterCitizenConsentResponseServlet</servlet-name>
+        <url-pattern>/AfterCitizenConsentResponse</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>IdpResponseServlet</servlet-name>
+        <url-pattern>/IdpResponse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProxyServiceRequestServlet</servlet-name>
+        <url-pattern>/ProxyServiceRequest</url-pattern>
+    </servlet-mapping>
+
+    <!-- Specific servlet -->
+    <servlet-mapping>
+        <servlet-name>ContentSecurityPolicyReportServlet</servlet-name>
+        <url-pattern>/cspReportHandler</url-pattern>
+    </servlet-mapping>
+
+    <!-- ****************** -->
+    <!-- Error handlers     -->
+    <!-- ****************** -->
+    <error-page>
+        <location>/ErrorPage.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorPage.jsp</location>
+    </error-page>
+
+</web-app>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2022 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<web-fragment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
+              id="WebAppFragment_ID" version="3.0">
+    <!-- ****************** -->
+    <!--Session config      -->
+    <!-- ****************** -->
+    <!-- the session should last 15 min. -->
+    <session-config>
+        <session-timeout>15</session-timeout>
+        <!-- Available for SERVLET 3.0 containers -->
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>true</secure>
+            <max-age>900</max-age>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+    <!--<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+             id="WebApp_ID" version="2.5">-->
+
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Restricted methods</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+    <security-constraint>
+        <display-name>"Includes" folder access to application only</display-name>
+        <web-resource-collection>
+            <web-resource-name>Restricted folder</web-resource-name>
+            <url-pattern>/internal/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+    <filter>
+        <filter-name>securityFilter</filter-name>
+        <filter-class>eu.eidas.security.SecurityRequestFilter</filter-class>
+        <init-param>
+            <param-name>includedServlets</param-name>
+            <param-value>ServiceProvider</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>contentSecurityPolicyApplier</filter-name>
+        <filter-class>eu.eidas.security.csp.ContentSecurityPolicyFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>removeHeadersFilter</filter-name>
+        <filter-class>eu.eidas.security.header.RemoveHttpHeadersFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>securityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>contentSecurityPolicyApplier</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>removeHeadersFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- session logging listener -->
+    <listener>
+        <listener-class>eu.eidas.node.utils.SessionLogListener</listener-class>
+    </listener>
+    <!-- Spring context listener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+        <param-value>en_UK</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.providers</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan.resources</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>buildDate</param-name>
+        <param-value>${timestamp}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>projectVersion</param-name>
+        <param-value>${project.version}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>samlVersion</param-name>
+        <param-value>${project.version}</param-value>
+    </context-param>
+
+    <!-- Spring request listener : used by struts -->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <!-- ****************** -->
+    <!-- Servlet definition -->
+    <!-- ****************** -->
+
+    <!--Connector servlets -->
+    <servlet>
+        <description>SpecificConnectorRequest</description>
+        <display-name>SpecificConnectorRequestServlet</display-name>
+        <servlet-name>SpecificConnectorRequestServlet</servlet-name>
+        <servlet-class>eu.eidas.node.connector.SpecificConnectorRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>ColleagueResponse</description>
+        <display-name>ColleagueResponseServlet</display-name>
+        <servlet-name>ColleagueResponseServlet</servlet-name>
+        <servlet-class>eu.eidas.node.connector.ColleagueResponseServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <description>Connector MetadataGenerator</description>
+        <display-name>ConnectorMetadataGeneratorServlet</display-name>
+        <servlet-name>ConnectorMetadataGeneratorServlet</servlet-name>
+        <servlet-class>eu.eidas.node.connector.ConnectorMetadataGeneratorServlet</servlet-class>
+    </servlet>
+
+    <!-- Specific servlets -->
+
+    <servlet>
+        <description>ContentSecurityPolicyReport</description>
+        <display-name>ContentSecurityPolicyReportServlet</display-name>
+        <servlet-name>ContentSecurityPolicyReportServlet</servlet-name>
+        <servlet-class>eu.eidas.security.csp.ContentSecurityPolicyReportServlet</servlet-class>
+    </servlet>
+
+
+    <!-- Error Handler Servlets-->
+    <servlet>
+        <servlet-name>ConnectorErrorServlet</servlet-name>
+        <servlet-class>eu.eidas.node.connector.ConnectorErrorServlet</servlet-class>
+    </servlet>
+
+    <!-- ****************** -->
+    <!-- Servlet mapping    -->
+    <!-- ****************** -->
+    <!--Connector servlets -->
+    <servlet-mapping>
+        <servlet-name>SpecificConnectorRequestServlet</servlet-name>
+        <url-pattern>/SpecificConnectorRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ColleagueResponseServlet</servlet-name>
+        <url-pattern>/ColleagueResponse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConnectorMetadataGeneratorServlet</servlet-name>
+        <url-pattern>/ConnectorMetadata</url-pattern>
+    </servlet-mapping>
+
+    <!--servlet-mapping>
+        <servlet-name>BkuAuthenticationServlet</servlet-name>
+        <url-pattern>/Bku-anmeldung</url-pattern>
+    </servlet-mapping-->
+
+    <!-- Specific servlet -->
+    <servlet-mapping>
+        <servlet-name>ContentSecurityPolicyReportServlet</servlet-name>
+        <url-pattern>/cspReportHandler</url-pattern>
+    </servlet-mapping>
+
+    <!-- Handles the exceptions thrown by the Connector -->
+    <servlet-mapping>
+        <servlet-name>ConnectorErrorServlet</servlet-name>
+        <url-pattern>/ConnectorError</url-pattern>
+    </servlet-mapping>
+
+    <!-- ****************** -->
+    <!-- Error handlers     -->
+    <!-- ****************** -->
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/internalError.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/internalError.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/internalError.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>eu.eidas.node.connector.exceptions.ConnectorError</exception-type>
+        <location>/ConnectorError</location>
+    </error-page>
+</web-fragment>

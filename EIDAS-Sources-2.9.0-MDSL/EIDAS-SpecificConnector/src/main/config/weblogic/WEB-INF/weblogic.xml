@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2024 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<!-- weblogic.xml -->
+<weblogic-web-app>
+    <container-descriptor>
+        <prefer-web-inf-classes>false</prefer-web-inf-classes>
+
+        <prefer-application-resources>
+            <resource-name>META-INF/services/com.sun.xml.ws.spi.db.BindingContextFactory</resource-name>
+            <resource-name>META-INF/services/javax.xml.bind.JAXBContext</resource-name>
+        </prefer-application-resources>
+    </container-descriptor>
+    <session-descriptor>
+        <cookie-name>SESSIONID</cookie-name>
+        <cookie-path>/SpecificConnector</cookie-path>
+    </session-descriptor>
+    <context-root>/SpecificConnector</context-root>
+</weblogic-web-app>

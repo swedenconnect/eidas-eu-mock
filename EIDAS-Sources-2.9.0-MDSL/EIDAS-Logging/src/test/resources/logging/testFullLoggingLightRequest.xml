@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright (c) 2023 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<lightRequest>
+    <citizenCountryCode>CA</citizenCountryCode>
+    <id>a144fbb9-9d71-416d-ad29-e15ccca6f3f0</id>
+    <issuer>specificConnector</issuer>
+    <levelOfAssurance>http://eidas.europa.eu/LoA/low</levelOfAssurance>
+    <nameIdFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</nameIdFormat>
+    <providerName>DEMO-SP-CD</providerName>
+    <spType>public</spType>
+    <relayState>cb3e403f-e8c1-4698-bcc2-201d8977c968</relayState>
+    <requestedAttributes>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/D-2012-17-EUIdentifier</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/EORI</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/LEI</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/LegalName</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/LegalPersonAddress</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/LegalPersonIdentifier</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/SEED</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/SIC</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/TaxReference</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/VATRegistrationNumber</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/BirthName</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/CurrentAddress</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/DateOfBirth</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/Gender</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/PlaceOfBirth</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/legalperson/LegalAdditionalAttribute</definition>
+        </attribute>
+        <attribute>
+            <definition>http://eidas.europa.eu/attributes/naturalperson/AdditionalAttribute</definition>
+        </attribute>
+    </requestedAttributes>
+</lightRequest>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright (c) 2020 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<ns2:lightResponse xmlns:ns2="http://cef.eidas.eu/LightResponse"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://cef.eidas.eu/LightRequest"
+                   xsi:schemaLocation="http://cef.eidas.eu/LightResponse ../../../../main/resources/xsds/lightResponse.xsd">
+    <ns2:id>_qCfZ5Iv5tJgHFEZ7tTYKJ-pA91NazVoqQSdtsPHPkxYPIFyHoOteM.SL86jmKlG</ns2:id>
+    <ns2:inResponseToId>9ecf8995-1df3-4ed5-91d2-6acfbcace22d</ns2:inResponseToId>
+    <ns2:issuer>http://localhost:8080/EidasNode/ConnectorMetadata</ns2:issuer>
+    <ns2:relayState>c2c04325-62ad-45f6-966f-a4576f5828fb</ns2:relayState>
+    <ns2:status>
+        <ns2:failure>true</ns2:failure>
+        <ns2:statusCode>urn:oasis:names:tc:SAML:2.0:status:Responder</ns2:statusCode>
+        <ns2:subStatusCode>urn:oasis:names:tc:SAML:2.0:status:AuthnFailed</ns2:subStatusCode>
+        <ns2:statusMessage>003002 - Authentication Failed.</ns2:statusMessage>
+    </ns2:status>
+    <ns2:attributes/>
+</ns2:lightResponse>
