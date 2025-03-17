@@ -44,6 +44,12 @@
     </repositories>
 
     <dependencies>
+        <!-- Metadata trust dependencies -->
+        <dependency>
+            <groupId>se.idsec.eidas.cef</groupId>
+            <artifactId>md-tust-core</artifactId>
+            <version>1.0.2</version>
+        </dependency>
         <!-- 1) Dependencies on other modules: -->
         <dependency>
             <groupId>eu.eidas</groupId>
