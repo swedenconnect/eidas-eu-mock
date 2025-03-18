@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,7 +86,7 @@ public class EidasTrustedCertificates {
    * @param properties   The eIDAS node parameters relevant to this request
    * @return The list of trusted certificates amended with PEM certificates matching the defined constraints
    */
-  public ImmutableSet<X509Certificate> addTrustedCertificates(ImmutableSet<X509Certificate> trustedCerts, Map<String, String> properties) {
+  public Set<X509Certificate> addTrustedCertificates(Set<X509Certificate> trustedCerts, Map<String, String> properties) {
     List<X509Certificate> compiledCertList = new ArrayList<>(trustedCerts);
 
     if (!isConstraintsMatch(properties)) {
