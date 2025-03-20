@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>se.elegnamnden.eidas</groupId>
-    <artifactId>cef-node-docker-280</artifactId>
+    <artifactId>cef-node-docker-290</artifactId>
     <version>1.0.0</version>
-    <name>CEF-eIDAS-Node-2.0.0-Docker</name>
+    <name>CEF-eIDAS-Node-2.9.0-Docker</name>
     
     <developers>
         <developer>
