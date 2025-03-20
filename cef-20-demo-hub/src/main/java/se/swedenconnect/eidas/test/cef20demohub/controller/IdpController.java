@@ -3,6 +3,9 @@ package se.swedenconnect.eidas.test.cef20demohub.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eu.eidas.SimpleProtocol.AuthenticationRequest;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.xml.bind.JAXBException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +24,6 @@ import se.swedenconnect.eidas.test.cef20demohub.process.AuthnResponseGenerator;
 import se.swedenconnect.eidas.test.cef20demohub.process.GeneralUtils;
 import se.swedenconnect.eidas.test.cef20demohub.process.StaticUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +50,8 @@ public class IdpController {
     }
 
     @RequestMapping("/idp/**")
-    public String authenticateUser(Model model, HttpServletRequest request, @RequestParam("SMSSPRequest") String b64request) throws JAXBException {
+    public String authenticateUser(Model model, HttpServletRequest request, @RequestParam("SMSSPRequest") String b64request) throws
+        JAXBException {
         String spCountry = generalUtils.getCountry(request);
         AuthenticationRequest authenticationRequest = authnRequestParser.parseAuthnRequest(b64request);
         httpSession.setAttribute("authnRequest", authenticationRequest);

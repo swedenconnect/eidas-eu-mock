@@ -4,10 +4,10 @@ import eu.eidas.SimpleProtocol.Attribute;
 import eu.eidas.SimpleProtocol.AuthenticationRequest;
 import eu.eidas.SimpleProtocol.RequestedAuthenticationContext;
 import eu.eidas.SimpleProtocol.utils.SimpleProtocolProcess;
+import jakarta.xml.bind.JAXBException;
 import org.springframework.stereotype.Component;
 import se.swedenconnect.eidas.test.cef20demohub.data.*;
 
-import javax.xml.bind.JAXBException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -34,7 +34,8 @@ public class RequestGenerator {
     public static final String NAME_ID_REGEXP = "^("+RequestModel.UNSPECIFIED+"|"+RequestModel.TRANSIENT+"|"+RequestModel.PERSISTENT+")$";
 
 
-    public RequestData getRequest(Map<String, String[]> parameterMap, String returnUrl, String serviceName, String nameIDFormat) throws JAXBException, IllegalArgumentException {
+    public RequestData getRequest(Map<String, String[]> parameterMap, String returnUrl, String serviceName, String nameIDFormat) throws
+        JAXBException, IllegalArgumentException {
         RequestModel rm = new RequestModel();
         rm.setReturnUrl(returnUrl);
         rm.setCitizenCountry(getParamValue(CITIZEN_COUNTRY_PARAM, parameterMap, COUNTRY_REGEXP));

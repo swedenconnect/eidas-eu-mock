@@ -3,6 +3,7 @@ package se.swedenconnect.eidas.test.cef20demohub.process;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eu.eidas.SimpleProtocol.*;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +12,6 @@ import se.swedenconnect.eidas.test.cef20demohub.data.CitizenCountry;
 import se.swedenconnect.eidas.test.cef20demohub.data.DemoLevelOfAssurance;
 import se.swedenconnect.eidas.test.cef20demohub.data.ValueAttribute;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 

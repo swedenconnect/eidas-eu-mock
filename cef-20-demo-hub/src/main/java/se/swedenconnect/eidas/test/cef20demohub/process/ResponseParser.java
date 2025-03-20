@@ -2,9 +2,9 @@ package se.swedenconnect.eidas.test.cef20demohub.process;
 
 import eu.eidas.SimpleProtocol.Response;
 import eu.eidas.SimpleProtocol.utils.SimpleProtocolProcess;
+import jakarta.xml.bind.JAXBException;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.JAXBException;
 import java.io.StringReader;
 
 @Component
