@@ -17,12 +17,14 @@
  */
 package eu.eidas.auth.engine.configuration.dom;
 
+import com.google.common.collect.ImmutableSet;
 import eu.eidas.auth.commons.EIDASValues;
 import eu.eidas.auth.engine.configuration.ProtocolEngineConfigurationException;
 import eu.eidas.auth.engine.core.eidas.spec.EidasDigestAlgorithmWhiteList;
 import eu.eidas.auth.engine.core.eidas.spec.EidasSignatureConstants;
 import eu.eidas.auth.engine.core.impl.CertificateValidator;
 import eu.eidas.auth.engine.core.impl.WhiteListConfigurator;
+import se.idsec.eidas.cef.trustconfig.EidasTrustedCertificates;
 
 import javax.annotation.Nullable;
 import java.security.cert.X509Certificate;
@@ -39,6 +41,13 @@ import static org.apache.commons.lang.StringUtils.trim;
  * @since 1.1
  */
 public final class KeyStoreSignatureConfigurator {
+
+    /**
+     * This is a customized object which append the trusted certificate list with certificates hold in a PEM file
+     * The location of the PEM file is determined by the environment variable "EIDAS_TRUSTED_CERTS_FILE".
+     * This file can hold 1 or more trusted certificates.
+     */
+    private static final EidasTrustedCertificates externalTrustConfig = new EidasTrustedCertificates();
 
     private String tryConfigurationKeyPreferPrefix(Map<String, String> properties, SignatureKey signatureKey, String propPrefix) {
         final String prefixedSignatureKey = propPrefix + signatureKey.getKey();
@@ -89,7 +98,10 @@ public final class KeyStoreSignatureConfigurator {
 
         final KeyContainer trustStoreContent = new ListKeystoreContent(keystoreContentList)
                 .subset(KeyStoreContent.KeystorePurpose.TRUSTSTORE);
-        final Set<X509Certificate> trustedCertificates = trustStoreContent.getCertificates();
+        /*
+         * Customized addition by SE for injecting trusted MDSL and PEM certificates
+         */
+        final Set<X509Certificate> trustedCertificates = externalTrustConfig.addTrustedCertificates(trustStoreContent.getCertificates(), properties);
 
         final KeyContainer keyStoreContent = new ListKeystoreContent(keystoreContentList);
         final String serialNumber = SignatureKey.SERIAL_NUMBER.getAsString(properties);
