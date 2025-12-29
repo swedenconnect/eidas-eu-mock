@@ -86,7 +86,7 @@ export EIDAS_TRUSTED_CERTS_CONSTRAINTS=${TRUSTED_CERTS_CONSTRAINTS}
 #
 # System settings
 #
-export JAVA_OPTS="-XX:MaxPermSize=512m"
+export JAVA_OPTS="-XX:MaxMetaspaceSize=512m"
 export CATALINA_OPTS="-Xms512m -Xmx1536m"
 
 #

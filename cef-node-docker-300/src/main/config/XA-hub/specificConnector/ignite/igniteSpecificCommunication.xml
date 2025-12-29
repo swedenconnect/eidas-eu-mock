@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright (c) 2023 by European Commission
+  ~ Copyright (c) 2025 by European Commission
   ~
   ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
   ~ approved by the European Commission - subsequent versions of the
@@ -54,6 +54,7 @@
                     <property name="atomicityMode" value="ATOMIC"/>
                     <property name="backups" value="1"/>
                     <property name="expiryPolicyFactory" ref="7_minutes_duration"/>
+                    <property name="statisticsEnabled" value="true"/>
                 </bean>
                 <!-- Partitioned cache example configuration (Atomic mode). -->
                 <bean class="org.apache.ignite.configuration.CacheConfiguration">
@@ -61,6 +62,7 @@
                     <property name="atomicityMode" value="ATOMIC"/>
                     <property name="backups" value="1"/>
                     <property name="expiryPolicyFactory" ref="7_minutes_duration"/>
+                    <property name="statisticsEnabled" value="true"/>
                 </bean>
 
             </list>
