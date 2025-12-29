@@ -6,7 +6,7 @@
 
     <groupId>se.idsec.eidas.cef</groupId>
     <artifactId>md-tust-core</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>md-trust-core</name>
 
     <properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk18on</artifactId>
-            <version>1.80</version>
+            <version>1.82</version>
         </dependency>
         <dependency>
             <groupId>com.google.collections</groupId>
