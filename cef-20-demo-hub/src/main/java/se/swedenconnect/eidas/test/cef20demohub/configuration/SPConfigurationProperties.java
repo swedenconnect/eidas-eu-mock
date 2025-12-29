@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Configuration
 @PropertySource(value = "${cef20demohub.config.location}spconfig.properties", encoding = "Utf8")
-@ConfigurationProperties(prefix = "")
+@ConfigurationProperties
 @Data
 @ToString
 public class SPConfigurationProperties {

@@ -2,6 +2,7 @@ package se.swedenconnect.eidas.test.cef20demohub.process;
 
 import eu.eidas.SimpleProtocol.*;
 import eu.eidas.SimpleProtocol.utils.SimpleProtocolProcess;
+import jakarta.xml.bind.JAXBException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.swedenconnect.eidas.test.cef20demohub.configuration.SPConfigurationProperties;
@@ -11,7 +12,6 @@ import se.swedenconnect.eidas.test.cef20demohub.data.EidasNaturalAttributeFriend
 import se.swedenconnect.eidas.test.cef20demohub.data.ResponseData;
 import se.swedenconnect.eidas.test.cef20demohub.data.user.User;
 
-import javax.xml.bind.JAXBException;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
