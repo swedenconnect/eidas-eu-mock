@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2025 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- production environment ignite initializer bean - injected into cache providers -->
+    <bean id="eidasIgniteInstanceInitializerNode" class="eu.eidas.auth.cache.IgniteInstanceInitializerNode"
+          init-method="initializeInstance" lazy-init="true">
+        <property name="configFileName" value="#{eidasConfigRepository}/ignite/igniteNode.xml"/>
+    </bean>
+
+    <!-- Cache for distributed environment -->
+    <!-- Clustered and production ready implementation (use this in real world !) -->
+    <!-- AntiReplay cache -->
+
+    <bean id="connectorCacheProvider" class="eu.eidas.ignite.IgniteNodeCacheManager">
+        <constructor-arg ref="eidasIgniteInstanceInitializerNode"/>
+        <constructor-arg>
+            <map>
+                <entry key="antiReplayConnector" value="antiReplayCacheConnector"/>
+                <entry key="specificCorrelationConnector" value="specificConnectorLtRequestCorrelationCacheService"/>
+                <entry key="samlCorrelationConnector" value="connectorRequestCorrelationCacheService"/>
+                <entry key="flowIdConnector" value="connectorFlowIdCacheService"/>
+                <entry key="metadataConnector" value="eidasmetadata"/>
+                <entry key="metadataRolloverConnector" value="eidasmetadatarollover"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="proxyCacheProvider" class="eu.eidas.ignite.IgniteNodeCacheManager">
+        <constructor-arg ref="eidasIgniteInstanceInitializerNode"/>
+        <constructor-arg>
+            <map>
+                <entry key="antiReplayProxy" value="antiReplayCacheService"/>
+                <entry key="samlCorrelationProxy" value="proxyServiceRequestCorrelationCacheService"/>
+                <entry key="flowIdProxy" value="proxyServiceFlowIdCacheService"/>
+                <entry key="metadataProxy" value="eidasmetadata"/>
+                <entry key="metadataRolloverProxy" value="eidasmetadatarollover"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="connectorCacheMetricsBinder" class="eu.eidas.metrics.IgniteCacheMetricsBinder" lazy-init="true">
+        <constructor-arg ref="connectorCacheProvider"/>
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+    </bean>
+    <bean id="proxyCacheMetricsBinder" class="eu.eidas.metrics.IgniteCacheMetricsBinder" lazy-init="true">
+        <constructor-arg ref="proxyCacheProvider"/>
+        <property name="igniteInstanceInitializer" ref="eidasIgniteInstanceInitializerNode"/>
+    </bean>
+</beans>

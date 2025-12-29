@@ -1,0 +1,32 @@
+{
+    "authentication_request" : {
+        "version" : "1",
+        "id" : "e7d5db08-0818-449f-bec2-d257bf9593d7",
+        "created_on" : "2012-04-23T18:25:43.511Z",
+        "force_authentication" : "true",
+        "provider_name" : "DEMO-SP",
+        "sp_type" : "public",
+        "requested_authentication_context" : {
+            "comparison" : "minimum",
+            "context_class" : [ "high" ]
+        },
+        "attribute_list" : [
+        	{
+        		"name" : "gender",
+                "required" : "true"
+           },
+           {
+                "name" : "birth_name",
+                "required" : "true"
+           },
+           {
+                "name" : "date_of_birth",
+                "required" : "true"
+           },
+ 			{
+                "name" : "current_address",
+                "required" : "false"
+           }            
+        ]
+    }
+}

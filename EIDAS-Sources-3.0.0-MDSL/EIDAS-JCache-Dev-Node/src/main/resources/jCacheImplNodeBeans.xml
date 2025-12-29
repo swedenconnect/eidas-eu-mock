@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2025 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- For testing usage only : this implementation should not be the default one, only for development, there is no expiration implemented-->
+    <bean id="connectorCacheProvider" class="eu.eidas.auth.cache.DevCacheManager">
+        <constructor-arg>
+            <map>
+                <entry key="antiReplayConnector" value-ref="springConnectorCMapAntiReplayProviderImpl"/>
+                <entry key="specificCorrelationConnector" value-ref="springConnectorCMapspecificLightCorProviderImpl"/>
+                <entry key="samlCorrelationConnector" value-ref="springConnectorCMapCorProviderImpl"/>
+                <entry key="flowIdConnector" value-ref="connectorFlowIdCacheImpl"/>
+                <entry key="metadataConnector" value-ref="metadataCacheImpl"/>
+                <entry key="metadataRolloverConnector" value-ref="metadataRolloverCacheImpl"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="proxyCacheProvider" class="eu.eidas.auth.cache.DevCacheManager">
+        <constructor-arg>
+            <map>
+                <entry key="antiReplayProxy" value-ref="springServiceCMapAntiReplayProviderImpl"/>
+                <entry key="samlCorrelationProxy" value-ref="springServiceCMapCorProviderImpl"/>
+                <entry key="flowIdProxy" value-ref="proxyServiceFlowIdCacheImpl"/>
+                <entry key="metadataProxy" value-ref="metadataCacheImpl"/>
+                <entry key="metadataRolloverProxy" value-ref="metadataRolloverCacheImpl"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="connectorCacheMetricsBinder" class="eu.eidas.auth.cache.DevCacheMetricsBinder" lazy-init="true">
+        <constructor-arg ref="connectorCacheProvider"/>
+    </bean>
+
+    <bean id="proxyCacheMetricsBinder" class="eu.eidas.auth.cache.DevCacheMetricsBinder" lazy-init="true">
+        <constructor-arg ref="proxyCacheProvider"/>
+    </bean>
+
+    <bean id="springConnectorCMapAntiReplayProviderImpl"
+          class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+    <bean id="springServiceCMapAntiReplayProviderImpl"
+          class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+    <!-- Correlation maps for simple dev mode -->
+    <bean id="springConnectorCMapCorProviderImpl" class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+    <bean id="springServiceCMapCorProviderImpl" class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+    <bean id="springConnectorCMapspecificLightCorProviderImpl"
+          class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+    <bean id="connectorFlowIdCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+    <bean id="proxyServiceFlowIdCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl">
+        <property name="expireAfterAccess" value="1800"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+    <!-- for development environment -->
+    <bean id="metadataCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl" lazy-init="true">
+        <property name="expireAfterAccess" value="${nonDistributedMetadata.retention}"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+
+    <bean id="metadataRolloverCacheImpl" class="eu.eidas.auth.cache.ConcurrentMapJcacheServiceDefaultImpl" lazy-init="true">
+        <property name="expireAfterAccess" value="420"/>
+        <property name="maximumSize" value="1000"/>
+    </bean>
+</beans>

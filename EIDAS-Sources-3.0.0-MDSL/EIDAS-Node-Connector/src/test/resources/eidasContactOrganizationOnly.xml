@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2017 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Connector contact -->
+    <entry key="connector.contact.support.email">contact.support@eidas-connector.eu</entry>
+    <entry key="connector.contact.support.company">eIDAS Connector Operator</entry>
+    <entry key="connector.contact.support.givenname">John</entry>
+    <entry key="connector.contact.support.surname">Doe</entry>
+    <entry key="connector.contact.support.phone">+40 123456</entry>
+    <entry key="connector.contact.technical.email">contact.technical@eidas-connector.eu</entry>
+    <entry key="connector.contact.technical.company">eIDAS Connector Operator</entry>
+    <entry key="connector.contact.technical.givenname">John</entry>
+    <entry key="connector.contact.technical.surname">Doe</entry>
+    <entry key="connector.contact.technical.phone">+41 123456</entry>
+    <!-- Connector organization -->
+    <entry key="connector.organization.name">Sample Country Connector</entry>
+    <entry key="connector.organization.displayname">Connector</entry>
+    <entry key="connector.organization.url">https://connector.sample/info</entry>
+    <!-- ProxyService contact -->
+    <entry key="service.contact.support.email">contact.support@eidas-proxyservice.eu</entry>
+    <entry key="service.contact.support.company">eIDAS ProxyService Operator</entry>
+    <entry key="service.contact.support.givenname">John</entry>
+    <entry key="service.contact.support.surname">Doe</entry>
+    <entry key="service.contact.support.phone">+42 123456</entry>
+    <entry key="service.contact.technical.email">contact.technical@eidas-proxyservice.eu</entry>
+    <entry key="service.contact.technical.company">eIDAS ProxyService Operator</entry>
+    <entry key="service.contact.technical.givenname">John</entry>
+    <entry key="service.contact.technical.surname">Doe</entry>
+    <entry key="service.contact.technical.phone">+43 123456</entry>
+    <!-- ProxyService organization -->
+    <entry key="service.organization.name">Sample Country Proxy Service</entry>
+    <entry key="service.organization.displayname">Service</entry>
+    <entry key="service.organization.url">https://service.sample/info</entry>
+</properties>

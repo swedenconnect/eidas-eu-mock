@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+	<import resource="classpath:spEnvironmentContext.xml" />
+
+	<bean id="eidasNodeConfigDirectory" class="java.lang.String">
+		<constructor-arg value=""/>
+	</bean>
+	<bean id="applicationContextProvider" class="member_country_specific.sp.ApplicationContextProvider"/>
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="ignoreResourceNotFound" value="true"/>
+		<property name="order" value="0"/>
+		<property name="locations">
+			<list>
+				<ref bean="specificConnectorConfigFile"/>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+	<bean id="specificConnectorConfigFile" class="java.lang.String">
+		<constructor-arg value="classpath:deploymentSpecificConnectorConfig.properties"/>
+	</bean>
+
+	<bean id="specificConnectorJar" class="java.lang.Boolean">
+		<constructor-arg value="${specificConnectorDeployedJar:false}" />
+	</bean>
+
+</beans>

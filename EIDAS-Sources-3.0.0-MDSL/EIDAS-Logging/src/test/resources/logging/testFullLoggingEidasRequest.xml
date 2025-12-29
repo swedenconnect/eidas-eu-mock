@@ -1,0 +1,41 @@
+<!--
+  ~ Copyright (c) 2023 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<saml2p:AuthnRequest
+        xmlns:eidas="http://eidas.europa.eu/saml-extensions"
+        xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+        xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol"
+        Consent="urn:oasis:names:tc:SAML:2.0:consent:unspecified"
+        Destination="http://cef-eid-build-1:8085/EidasNode/ColleagueRequest"
+        ForceAuthn="true" ID="_cjDLF_aH1QfI9yA10MXMKpzPEHXDGTAuzPaOWvP9Vz25jMWEj_LEDqa44RPTDh8"
+        IsPassive="false" IssueInstant="2020-01-03T14:05:27.155Z"
+        ProviderName="DEMO-SP-CC" Version="2.0">
+    <saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://cef-eid-build-1:8085/EidasNode/ConnectorMetadata</saml2:Issuer>
+    <saml2p:Extensions>
+        <eidas:RequestedAttributes>
+            <eidas:RequestedAttribute FriendlyName="EORI" Name="http://eidas.europa.eu/attributes/legalperson/EORI" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="false"/>
+            <eidas:RequestedAttribute FriendlyName="PersonIdentifier" Name="http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="true"/>
+            <eidas:RequestedAttribute FriendlyName="PlaceOfBirth" Name="http://eidas.europa.eu/attributes/naturalperson/PlaceOfBirth" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="false"/>
+            <eidas:RequestedAttribute FriendlyName="LegalAdditionalAttribute" Name="http://eidas.europa.eu/attributes/legalperson/LegalAdditionalAttribute" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="false"/>
+            <eidas:RequestedAttribute FriendlyName="AdditionalAttribute" Name="http://eidas.europa.eu/attributes/naturalperson/AdditionalAttribute" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" isRequired="false"/>
+        </eidas:RequestedAttributes>
+    </saml2p:Extensions>
+    <saml2p:NameIDPolicy AllowCreate="true" Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"/>
+    <saml2p:RequestedAuthnContext Comparison="minimum">
+        <saml2:AuthnContextClassRef>http://eidas.europa.eu/LoA/low</saml2:AuthnContextClassRef>
+    </saml2p:RequestedAuthnContext>
+</saml2p:AuthnRequest>

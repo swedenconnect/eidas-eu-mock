@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020 by European Commission
+  ~
+  ~ Licensed under the EUPL, Version 1.2 or - as soon they will be
+  ~ approved by the European Commission - subsequent versions of the
+  ~ EUPL (the "Licence");
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~ https://joinup.ec.europa.eu/page/eupl-text-11-12
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the Licence is distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~ implied.
+  ~ See the Licence for the specific language governing permissions and
+  ~ limitations under the Licence.
+  -->
+<lightResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cef.eidas.eu/LightResponse"
+               xsi:schemaLocation="http://cef.eidas.eu/LightResponse ../../../../main/resources/xsds/lightResponse.xsd">
+    <id>f5e7e0f5-b9b8-4256-a7d0-4090141b326d</id>
+    <inResponseToId>x4e7e0f5-b9b8-4256-a7d0-4090141b320u</inResponseToId>
+    <issuer>http://localhost:7001/SP/metadata</issuer>
+    <ipAddress>127.0.0.1</ipAddress>
+    <relayState>MyRelayState</relayState>
+    <consent>urn:oasis:names:tc:SAML:2.0:consent:current-explicit</consent>
+    <subject>ES/FI/0123456</subject>
+    <subjectNameIdFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</subjectNameIdFormat>
+    <levelOfAssurance>http://eidas.europa.eu/LoA/low</levelOfAssurance>
+    <status>
+        <failure>false</failure>
+        <statusCode>urn:oasis:names:tc:SAML:2.0:status:Success</statusCode>
+    </status>
+    <attributes>
+    </attributes>
+</lightResponse>

@@ -1,0 +1,4 @@
+eu.eidas.auth.engine.metadata.impl.EidasMetadataParameters
+eu.eidas.auth.commons.tx.StoredAuthenticationRequest
+eu.eidas.auth.commons.tx.StoredAuthenticationRequest$Builder
+eu.eidas.auth.cache.ClassWithNestedObject
