@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!-- Country Code of this Proxy-Service -->
+    <entry key="service.countrycode">XA</entry>
+
+    <!--service Metadata -->
+    <entry key="service.metadata.url">http://localhost:8900/EidasNodeProxy/ServiceMetadata</entry>
+
+    <!-- ProxyService contact -->
+  <entry key="service.contact.support.email">contact.support@eidas-connector.eu</entry>
+  <entry key="service.contact.support.company">eIDAS Connector Operator</entry>
+  <entry key="service.contact.support.givenname">John</entry>
+  <entry key="service.contact.support.surname">Doe</entry>
+  <entry key="service.contact.support.phone">+40 123456</entry>
+  <entry key="service.contact.technical.email">contact.technical@eidas-connector.eu</entry>
+  <entry key="service.contact.technical.company">eIDAS Connector Operator</entry>
+  <entry key="service.contact.technical.givenname">John</entry>
+  <entry key="service.contact.technical.surname">Doe</entry>
+  <entry key="service.contact.technical.phone">+41 123456</entry>
+    <!-- ProxyService organization -->
+  <entry key="service.organization.name">Sample Country Connector</entry>
+  <entry key="service.organization.displayname">Connector</entry>
+  <entry key="service.organization.url">https://connector.sample/info</entry>
+
+    <!-- Eidas Node Service Metadata Single Sign On locations for ServiceMetadata-->
+    <entry key="ssos.serviceMetadataGeneratorIDP.redirect.location">http://localhost:8900/EidasNodeProxy/ColleagueRequest</entry>
+    <entry key="ssos.serviceMetadataGeneratorIDP.post.location">http://localhost:8900/EidasNodeProxy/ColleagueRequest</entry>
+
+    <!-- SECURITY POLICY -->
+    <!-- uri used for the CSP reporting feature-->
+    <entry key="security.header.CSP.report.uri">http://localhost:8900/EidasNodeProxy</entry>
+
+    <!-- value of the NodeCountry to be published in the metadata-->
+    <entry key="metadata.node.country">XA</entry>
+
+    <!-- Restrict metadata retrieval to https -->
+    <entry key="metadata.restrict.http">false</entry>
+    <!--URL for specific-proxyService requests receiver only needed when specific  -->
+    <entry key="specific.proxyservice.request.receiver">http://localhost:8900/SpecificProxyService/ProxyServiceRequest</entry>
+
+  <entry key="service.LoA">
+         http://eidas.europa.eu/LoA/high,
+         http://eidas.europa.eu/LoA/substantial,
+         http://eidas.europa.eu/LoA/low,
+         http://eidas.europa.eu/NotNotified/LoA/high,
+         http://eidas.europa.eu/NotNotified/LoA/substantial,
+         http://eidas.europa.eu/NotNotified/LoA/low
+  </entry>
+
+</properties>
