@@ -33,11 +33,11 @@ export DEBUG_MODE=$DEBUG_MODE
 : ${JVM_START_HEAP:=512m}
 
 export JAVA_OPTS="${JAVA_OPTS} \
-          -XX:MaxPermSize=512m \
-          -Dorg.apache.xml.security.ignoreLineBreaks=true"
+  -XX:MaxMetaspaceSize=512m \
+  -Dorg.apache.xml.security.ignoreLineBreaks=true"
 export CATALINA_OPTS="${CATALINA_OPTS} \
-          -Xmx${JVM_MAX_HEAP}\
-          -Xms${JVM_START_HEAP}\
+  -Xmx${JVM_MAX_HEAP}\
+  -Xms${JVM_START_HEAP}\
 "
 
 #
@@ -46,11 +46,14 @@ export CATALINA_OPTS="${CATALINA_OPTS} \
 export JPDA_ADDRESS=8000
 export JPDA_TRANSPORT=dt_socket
 
-if [ $DEBUG_MODE == true ]; then
-    echo "Running in debug"
-    export JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
-    ${TOMCAT_HOME}/bin/catalina.sh jpda run
-else
-    echo "Running in normal mode"
-    ${TOMCAT_HOME}/bin/catalina.sh run
-fi
+case "${DEBUG_MODE:-}" in
+true | TRUE | 1 | yes | YES)
+  echo "Running in debug"
+  export JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
+  "${TOMCAT_HOME}/bin/catalina.sh" jpda run
+  ;;
+*)
+  echo "Running in normal mode"
+  "${TOMCAT_HOME}/bin/catalina.sh" run
+  ;;
+esac

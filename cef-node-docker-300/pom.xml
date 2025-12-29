@@ -30,17 +30,6 @@
         <eidas.node.version>3.0.0</eidas.node.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>aaasecrl</id>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <name>eIDAS releases</name>
-            <url>https://maven.eidastest.se/artifactory/libs-release-local</url>
-        </repository>
-    </repositories>
-
     <dependencies>
     </dependencies>
     <build>
