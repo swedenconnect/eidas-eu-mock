@@ -2,6 +2,9 @@ package se.swedenconnect.eidas.test.cef20demohub.controller;
 
 import eu.eidas.SimpleProtocol.Response;
 import eu.eidas.SimpleProtocol.ResponseStatus;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.xml.bind.JAXBException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +18,6 @@ import se.swedenconnect.eidas.test.cef20demohub.process.GeneralUtils;
 import se.swedenconnect.eidas.test.cef20demohub.process.RequestGenerator;
 import se.swedenconnect.eidas.test.cef20demohub.process.ResponseParser;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.xml.bind.JAXBException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -64,7 +64,8 @@ public class RequestController {
     }
 
     @RequestMapping("/request/**")
-    public String getRequest(Model model, HttpServletRequest request, @RequestParam(required = false) String nidFormat) throws JAXBException {
+    public String getRequest(Model model, HttpServletRequest request, @RequestParam(required = false) String nidFormat) throws
+        JAXBException {
         Map<String, String[]> parameterMap = request.getParameterMap();
         nidFormat = nidFormat == null ? nameIdDefault : nidFormat;
         String spCountry = utils.getCountry(request);

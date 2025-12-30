@@ -1,6 +1,6 @@
 package se.swedenconnect.eidas.test.cef20demohub.process;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class StaticUtils {
 
