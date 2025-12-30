@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <div th:fragment="scripts">
+    <th:block th:fragment="scripts">
         <!-- meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,21 +13,20 @@
         <meta http-equiv="Expires" content="-1"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <!-- Scripts -->
-        <script src="../webjars/jquery/3.6.0/jquery.min.js"></script>
-        <script src="../webjars/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="../webjars/bootstrap/4.6.1/js/bootstrap.min.js"></script>
-    </div>
-    <div th:fragment="favicon">
+        <script src="../webjars/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../webjars/popper.js/1.16.1/dist/umd/popper.min.js"></script>
+        <script src="../webjars/bootstrap/5.3.8/js/bootstrap.min.js"></script>
+    </th:block>
+    <th:block th:fragment="favicon">
         <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png"/>
-        <link rel="manifest" href="../../favicon/site.webmanifest"/>
         <link rel="mask-icon" href="../../favicon/safari-pinned-tab.svg" color="#5bbad5"/>
         <link rel="shortcut icon" href="../../favicon/favicon.ico"/>
         <meta name="msapplication-TileColor" content="#da532c"/>
         <meta name="msapplication-config" content="../../favicon/browserconfig.xml"/>
         <meta name="theme-color" content="#ffffff"/>
-    </div>
+    </th:block>
     <title>Title</title>
 </head>
 <body>
