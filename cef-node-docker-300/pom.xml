@@ -6,7 +6,7 @@
 
     <groupId>se.elegnamnden.eidas</groupId>
     <artifactId>cef-node-docker-300</artifactId>
-    <version>1.0.0</version>
+    <version>3.0.0</version>
     <name>CEF-eIDAS-Node-3.0.0-Docker</name>
     
     <developers>

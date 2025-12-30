@@ -2,14 +2,14 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/default :: scripts}"></th:block>
     <script src="../webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
     <script src="../webjars/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
     <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../webjars/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../css/sc-main.css">
     <link rel="stylesheet" href="../css/sc-cef-sp.css">
-    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/default :: favicon}"></th:block>
     <script th:inline="javascript">
         var spCountry = /*[[${spCountry}]]*/'xx';
     </script>
@@ -18,10 +18,10 @@
 </head>
 <body>
 
-<div th:include="fragments/sc-default :: sp-header"/>
+<div th:insert="~{fragments/sc-default :: sp-header}"></div>
 
 <div class="container main">
-    <div th:include="fragments/sc-default :: sp-lang-mock"/>
+    <div th:insert="~{fragments/sc-default :: sp-lang-mock}"></div>
 
     <div class="row">
         <div class="col-sm-12 content-container">
@@ -49,7 +49,7 @@
                                 <div class="col-lg-8 col-sm-12">
                                     <select class="selectpicker show-menu-arrow" data-width="90%" name="citizenCountry" id="citizenCountry" data-style="btn-outline-secondary" onchange="storeCountry()">
                                         <th:block th:each="country : ${countryList}">
-                                            <option th:value="${country.getCountryCode()}" th:data-content="${country.getCountryImage()}+'&nbsp;&nbsp;'+${country.getCountryName()}"/>
+                                            <option th:value="${country.getCountryCode()}" th:data-content="${country.getCountryImage()}+'&nbsp;&nbsp;'+${country.getCountryName()}"></option>
                                         </th:block>
                                     </select>
                                 </div>
@@ -238,9 +238,7 @@
             </form>
         </div>
     </div>
-    <div th:include="fragments/sc-default :: footer"/>
-
-</div>
+    <div th:insert="~{fragments/sc-default :: footer}"></div>
 
 </div>
 

@@ -2,11 +2,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <div th:include="fragments/direct :: scripts" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/direct :: scripts}"></th:block>
     <script src="webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
     <link href="css/flatly-bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="css/sc-main.css">
-    <div th:include="fragments/direct :: favicon" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/direct :: favicon}"></th:block>
     <title>CEF eIDAS nodes for test - Home</title>
 
     <style>
@@ -29,10 +29,10 @@
 </head>
 <body>
 
-<div th:include="fragments/sc-direct :: sp-header"/>
+<div th:insert="~{fragments/sc-direct :: sp-header}"></div>
 
 <div class="container main">
-    <div th:include="fragments/sc-direct :: sp-lang-mock"/>
+    <div th:insert="~{fragments/sc-direct :: sp-lang-mock}"></div>
 
     <div class="row">
         <div class="col-sm-12 content-container">
@@ -41,9 +41,9 @@
                 <div class="col-sm-12 content-heading">
                     <br/>
                     <h2 class="article-header">Sweden CEF eIDAS nodes for test</h2>
-                    <p>The services listed below are eIDAS nodes for test based on specified version of the <a href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eIDAS-Node+Integration+Package">eIDAS-Node integration package</a> provided by
+                    <p>The services listed below are eIDAS nodes for test based on a specified version of the <a href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eIDAS-Node+Integration+Package">eIDAS-Node integration package</a> provided by
                         <a href="https://ec.europa.eu/inea/en/connecting-europe-facility">CEF</a> (Connecting Europe Facility).</p>
-                    <p>Each test eIDAS Node represent a test country and the selectable services below are Demo Service Provider (SP) applications for each test country.</p>
+                    <p>Each test eIDAS Node represents a test country, and the selectable services below are Demo Service Provider (SP) applications for each test country.</p>
                 </div>
             </div>
 
@@ -92,9 +92,7 @@
             </div> <!-- /.providers -->
         </div>
     </div>
-    <div th:include="fragments/sc-direct :: footer"/>
-
-</div>
+    <div th:insert="~{fragments/sc-direct :: footer}"></div>
 
 </div>
 

@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/default :: scripts}"></th:block>
     <script src="../webjars/highlightjs/11.5.0/highlight.min.js"></script>
     <script src="../js/sp-result.js"></script>
 
@@ -11,15 +11,15 @@
     <link rel="stylesheet" href="../css/sc-main.css">
     <link rel="stylesheet" href="../css/sc-cef-sp.css">
 
-    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/default :: favicon}"></th:block>
     <title>CEF eIDAS 2.2.0 - Test - Result page</title>
 </head>
 <body>
 
-<div th:include="fragments/sc-default :: sp-header"/>
+<div th:insert="~{fragments/sc-default :: sp-header}"></div>
 
 <div class="container main">
-    <div th:include="fragments/sc-default :: sp-lang-mock"/>
+    <div th:insert="~{fragments/sc-default :: sp-lang-mock}"></div>
 
     <div class="row">
         <div class="col-sm-12 content-container">
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div th:include="fragments/sc-default :: footer"/>
+    <div th:insert="~{fragments/sc-default :: footer}"></div>
 
 </div>
 

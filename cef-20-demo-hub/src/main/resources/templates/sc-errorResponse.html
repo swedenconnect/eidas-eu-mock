@@ -2,20 +2,20 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <div th:include="fragments/default :: scripts" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/default :: scripts}" th:remove="tag"></th:block>
     <link href="../css/flatly-bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/sc-main.css">
 
-    <div th:include="fragments/default :: favicon" th:remove="tag"></div>
+    <th:block th:insert="~{fragments/default :: favicon}" th:remove="tag"></th:block>
     <title>CEF eIDAS 2.0.0 - Demo application hub</title>
 </head>
 <body>
 
 
-<div th:include="fragments/sc-default :: sp-header"/>
+<div th:insert="~{fragments/sc-default :: sp-header}"></div>
 
 <div class="container main">
-    <div th:include="fragments/sc-default :: sp-lang-mock"/>
+    <div th:insert="~{fragments/sc-default :: sp-lang-mock}"><div>
 
     <div class="row">
         <div class="col-sm-12 content-container">
@@ -38,7 +38,7 @@
             <a th:href="'../sp/'+${spCountry}" class="btn btn-primary link-button">Return</a>
         </div>
     </div>
-    <div th:include="fragments/sc-default :: footer"/>
+    <div th:insert="~{fragments/sc-default :: footer}"></div>
 </div>
 
 </body>
