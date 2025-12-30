@@ -76,11 +76,6 @@
             <version>5.3.8</version>
         </dependency>
         <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>popper.js</artifactId>
-            <version>1.16.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
             <version>3.7.1</version>
@@ -96,9 +91,9 @@
             <version>11.10.0</version>
         </dependency>
         <dependency>
-            <groupId>org.webjars</groupId>
+            <groupId>org.webjars.npm</groupId>
             <artifactId>bootstrap-select</artifactId>
-            <version>1.13.18</version>
+            <version>1.14.0-beta3</version>
         </dependency>
         <!-- CEF 2.0.0 dependencies -->
         <dependency>

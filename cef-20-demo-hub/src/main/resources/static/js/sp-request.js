@@ -21,20 +21,31 @@ $(document).ready(function(){
     processAttrs("reqNpAttr");
     processAttrs("reqLpAttr");
 
-    var selectedCountry = $.cookie(selectCountryCookie);
-    if (selectedCountry != undefined){
-        $('#citizenCountry').val(selectedCountry);
+    const $els = $('.selectpicker');
+
+    // Destroy per-element (your previous check only handled the first one)
+    if ($els.data('selectpicker')) {
+        $els.selectpicker('destroy');
     }
-    var selectedSector = $.cookie(selectSectorCookie);
-    if (selectedSector != undefined){
-        $('#spType').val(selectedSector);
-    }
-    var selectedLoa = $.cookie(selectLoaCookie);
-    if (selectedLoa != undefined){
-        $('#reqLoa').val(selectedLoa);
-    }
-    $('.selectpicker').selectpicker('refresh');
+
+    setSelectpickerValue($('#citizenCountry'), $.cookie(selectCountryCookie));
+    setSelectpickerValue($('#spType'),        $.cookie(selectSectorCookie));
+    setSelectpickerValue($('#reqLoa'),        $.cookie(selectLoaCookie));
+    $els.selectpicker();
 });
+
+function setSelectpickerValue($sel, value) {
+    if (!value) return;
+
+    // hard-clear any existing selected options
+    $sel.find('option').prop('selected', false);
+
+    // set the one we want
+    $sel.val(value);
+
+    // update bootstrap-select UI (render updates the button text)
+    $sel.selectpicker('render');
+}
 
 function processAttrs(prefix){
     $("input[name^='"+prefix+"']:checked").each(function (index) {
