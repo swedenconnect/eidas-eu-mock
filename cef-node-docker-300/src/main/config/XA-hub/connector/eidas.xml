@@ -48,11 +48,11 @@
     <!-- Number of known Proxy-Service -->
   <entry key="service.number">2</entry>
 
-  <entry key="service1.id">SE</entry>
-  <entry key="service1.name">LOCAL-EIDAS-SE</entry>
+  <entry key="service1.id">XE</entry>
+  <entry key="service1.name">LOCAL-EIDAS-XE</entry>
   <entry key="service1.skew.notbefore">0</entry>
   <entry key="service1.skew.notonorafter">0</entry>
-  <entry key="service1.metadata.url">http://example.com/EidasNodeProxy/ServiceMetadata</entry>
+  <entry key="service1.metadata.url">http://localhost:8880/eidas-ps/ServiceMetadata</entry>
   <entry key="service2.id">XA</entry>
   <entry key="service2.name">LOCAL-EIDAS-XA</entry>
   <entry key="service2.skew.notbefore">0</entry>
