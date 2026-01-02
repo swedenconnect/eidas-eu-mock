@@ -51,6 +51,7 @@ public class ConfigHandler {
   private final KeystoreProperties keystoreProperties;
   private final IdpProperties idpProperties;
   private final SpProperties spProperties;
+  private final ConnectorProperties connectorProperties;
 
   @Autowired
   public ConfigHandler(
@@ -59,7 +60,8 @@ public class ConfigHandler {
     MetadataProperties metadataProperties,
     ServicesProperties servicesProperties,
     KeystoreProperties keystoreProperties,
-    IdpProperties idpProperties, SpProperties spProperties) {
+    IdpProperties idpProperties, SpProperties spProperties,
+    ConnectorProperties connectorProperties) {
     this.eidasNodeConfigBuilderProvider = eidasNodeConfigBuilderProvider;
     this.baseProperties = baseProperties;
     this.metadataProperties = metadataProperties;
@@ -67,6 +69,7 @@ public class ConfigHandler {
     this.keystoreProperties = keystoreProperties;
     this.idpProperties = idpProperties;
     this.spProperties = spProperties;
+    this.connectorProperties = connectorProperties;
   }
 
   public void run(String... args) throws Exception {
@@ -120,7 +123,7 @@ public class ConfigHandler {
     try {
       EIDASNodeConfigBuilder configBuilder = eidasNodeConfigBuilderProvider.getConfigBuilder(profile);
       configBuilder.buildConfiguration(configFile, templateDir, targetDir, baseProperties, metadataProperties,
-        servicesProperties, keystoreProperties, idpProperties, spProperties);
+        servicesProperties, keystoreProperties, idpProperties, spProperties, connectorProperties);
     }
     catch (Exception e) {
       System.out.println("Error merging CA repositories: " + e.getMessage());

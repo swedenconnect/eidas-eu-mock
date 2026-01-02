@@ -48,7 +48,7 @@ public class CEF26ConfigBuilder implements EIDASNodeConfigBuilder {
     File configFile, File templateDirectory, File targetDirectory,
     BaseProperties baseProperties, MetadataProperties metadataProperties,
     ServicesProperties servicesProperties, KeystoreProperties keystoreProperties,
-    IdpProperties idpProperties, SpProperties spProperties
+    IdpProperties idpProperties, SpProperties spProperties, ConnectorProperties connectorProperties
   ) throws IOException {
     System.out.println("Building configuration data for CEF node version 2.6.0");
 

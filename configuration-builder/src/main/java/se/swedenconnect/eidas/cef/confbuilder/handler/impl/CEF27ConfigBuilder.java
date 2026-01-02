@@ -36,6 +36,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import se.swedenconnect.eidas.cef.confbuilder.configuration.BaseProperties;
+import se.swedenconnect.eidas.cef.confbuilder.configuration.ConnectorProperties;
 import se.swedenconnect.eidas.cef.confbuilder.configuration.IdpProperties;
 import se.swedenconnect.eidas.cef.confbuilder.configuration.KeystoreProperties;
 import se.swedenconnect.eidas.cef.confbuilder.configuration.MetadataProperties;
@@ -57,7 +58,7 @@ public class CEF27ConfigBuilder implements EIDASNodeConfigBuilder {
     File configFile, File templateDirectory, File targetDirectory,
     BaseProperties baseProperties, MetadataProperties metadataProperties,
     ServicesProperties servicesProperties, KeystoreProperties keystoreProperties,
-    IdpProperties idpProperties, SpProperties spProperties
+    IdpProperties idpProperties, SpProperties spProperties, ConnectorProperties connectorProperties
   ) throws IOException {
     System.out.println("Building configuration data for CEF node version 2.7.0 and later");
 

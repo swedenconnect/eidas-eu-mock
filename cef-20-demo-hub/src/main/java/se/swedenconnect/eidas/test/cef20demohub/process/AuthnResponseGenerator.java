@@ -75,9 +75,7 @@ public class AuthnResponseGenerator {
 
   private void setNameIdAndSubject(ResponseData responseData, AuthenticationRequest authenticationRequest) {
     List<Attribute> attributeList = responseData.getResponse().getAttributes();
-    String nameIdPolicy = authenticationRequest.getNameIdPolicy() == null
-        ? "transient"
-        : authenticationRequest.getNameIdPolicy();
+    String nameIdPolicy = authenticationRequest.getNameIdPolicy();
     responseData.getResponse().setNameId(nameIdPolicy);
 
     Optional<Attribute> natId = attributeList.stream()

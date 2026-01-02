@@ -33,7 +33,7 @@ public interface EIDASNodeConfigBuilder {
     File configFile, File templateDirectory, File targetDirectory,
     BaseProperties baseProperties, MetadataProperties metadataProperties,
     ServicesProperties servicesProperties, KeystoreProperties keystoreProperties,
-    IdpProperties idpProperties, SpProperties spProperties
+    IdpProperties idpProperties, SpProperties spProperties, ConnectorProperties connectorProperties
   ) throws IOException;
 
 }
