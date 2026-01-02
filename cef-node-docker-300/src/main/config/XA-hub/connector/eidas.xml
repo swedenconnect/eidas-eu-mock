@@ -25,12 +25,9 @@
 
     <!--connector Metadata -->
   <entry key="connector.metadata.url">http://localhost:8900/EidasNodeConnector/ConnectorMetadata</entry>
-  <!-- Connector acceptable NameIDPolicy -->
-  <entry key="connector.nameid.formats">
-    urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified,
-    urn:oasis:names:tc:SAML:2.0:nameid-format:transient,
-    urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-  </entry>
+
+    <!-- Connector allowed NameID policies -->
+  <entry key="connector.nameid.formats">urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified,urn:oasis:names:tc:SAML:2.0:nameid-format:transient,urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</entry>
 
     <!-- METADATA configuration -->
     <!-- Connector contact -->
@@ -54,11 +51,11 @@
     <!-- Number of known Proxy-Service -->
   <entry key="service.number">2</entry>
 
-  <entry key="service1.id">XE</entry>
-  <entry key="service1.name">LOCAL-EIDAS-XE</entry>
+  <entry key="service1.id">SE</entry>
+  <entry key="service1.name">LOCAL-EIDAS-SE</entry>
   <entry key="service1.skew.notbefore">0</entry>
   <entry key="service1.skew.notonorafter">0</entry>
-  <entry key="service1.metadata.url">http://localhost:8880/eidas-ps/ServiceMetadata</entry>
+  <entry key="service1.metadata.url">http://example.com/EidasNodeProxy/ServiceMetadata</entry>
   <entry key="service2.id">XA</entry>
   <entry key="service2.name">LOCAL-EIDAS-XA</entry>
   <entry key="service2.skew.notbefore">0</entry>
