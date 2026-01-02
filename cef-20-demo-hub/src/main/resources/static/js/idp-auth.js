@@ -18,24 +18,32 @@ $(document).ready(function(){
     });
 
     // Set preselected values
+    const $els = $('.selectpicker');
 
-    //Nat person
-    var selectedNat = $.cookie(natSelectCookie);
-    if (selectedNat != undefined){
-        $('#userSelect').val(selectedNat);
+    // Destroy per-element (your previous check only handled the first one)
+    if ($els.data('selectpicker')) {
+        $els.selectpicker('destroy');
     }
-    //Legal person
-    var selectedLegal = $.cookie(legSelectCookie);
-    if (selectedLegal != undefined){
-        $('#orgSelect').val(selectedLegal);
-    }
-    var selectedLoa = $.cookie(loaSelectCookie);
-    if (selectedLoa != undefined){
-        $('#loaSelect').val(selectedLoa);
-    }
-    $('.selectpicker').selectpicker('refresh');
+
+    setSelectpickerValue($('#userSelect'), $.cookie(natSelectCookie));
+    setSelectpickerValue($('#orgSelect'),$.cookie(legSelectCookie));
+    setSelectpickerValue($('#loaSelect'),$.cookie(loaSelectCookie));
+    $els.selectpicker();
 
 });
+
+function setSelectpickerValue($sel, value) {
+    if (!value) return;
+
+    // hard-clear any existing selected options
+    $sel.find('option').prop('selected', false);
+
+    // set the one we want
+    $sel.val(value);
+
+    // update bootstrap-select UI (render updates the button text)
+    $sel.selectpicker('render');
+}
 
 
 

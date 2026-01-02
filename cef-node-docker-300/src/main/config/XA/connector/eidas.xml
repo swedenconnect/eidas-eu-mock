@@ -26,6 +26,9 @@
     <!--connector Metadata -->
   <entry key="connector.metadata.url">http://localhost:8900/EidasNodeConnector/ConnectorMetadata</entry>
 
+    <!-- Connector allowed NameID policies -->
+  <entry key="connector.nameid.formats">urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified,urn:oasis:names:tc:SAML:2.0:nameid-format:transient,urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</entry>
+
     <!-- METADATA configuration -->
     <!-- Connector contact -->
   <entry key="connector.contact.support.email">contact.support@eidas-connector.eu</entry>
