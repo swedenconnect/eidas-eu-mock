@@ -219,7 +219,7 @@ public class CEF30ConfigBuilder implements EIDASNodeConfigBuilder {
     spSpProperties.update("config.country", baseProperties.getCountry());
 
 
-    System.out.println("CEF 2.7+ eIDAS node configuration complete");
+    System.out.println("CEF 3.0+ eIDAS node configuration complete");
   }
 
   private String getAcceptableNameIdPoliciesList(ConnectorProperties connectorProperties) {

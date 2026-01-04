@@ -1,5 +1,4 @@
 FROM eclipse-temurin:17-jre-jammy
-#FROM openjdk:17-jdk-slim
 
 RUN mkdir /opt/docker
 RUN mkdir /opt/docker/internal

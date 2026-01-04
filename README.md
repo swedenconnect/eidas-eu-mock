@@ -3,7 +3,7 @@
 providing Docker images for running eIDAS nodes in a test environment
 ---
 ## Scope
-This repo provide implementation components for setting up eIDAS nodes for test representing one or more demonstration countries, and to run these services as docker images.
+This repo provides implementation components for setting up eIDAS nodes for test representing one or more demonstration countries, and to run these services as docker images.
 
 A complete setup consists of one demo application hub (provided in the module cef-20-demo-hub) and one or more sets of national eIDAS nodes (provided by the module(s) cef-node-docker-nnn).
 
@@ -16,22 +16,22 @@ The full setup is illustrated bu the following image:
 
 The eIDAS nodes being setup using these application is a demo deployment of eIDAS nodes povided by the CEF integration package provided here:
 
-> [CEF eIDAS-Node integration package](https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eIDAS-Node+Integration+Package)
+> [CEF eIDAS-Node integration package](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467109296/eIDAS-Node+Integration+Package)
 
-**Important Note:** The eIDAS nodes being setup using this project is only suitable for test and demonstration as the setup is using components that are not fit for production.
+**Important Note:** The eIDAS nodes being set up using this project are only suitable for test and demonstration as the setup is using components that are not fit for production.
 
-A full demo of these applications are available here: [https://cef20hub.eidastest.se/test/home](https://cef20hub.eidastest.se/test/home)
+A full demo of these applications is available here: [https://cef20hub.eidastest.se/test/home](https://cef20hub.eidastest.se/test/home)
 
-The description below describes how to setup a single CEF node version 2.7.0 pre-release supported by an SP and an IdP provided by the demo application hub service.
+The description below describes how to set up a single CEF node version 3.0.0 supported by an SP and an IdP provided by the demo application hub service.
 
-In short the process to build and setup such node is:
+In short, the process to build and setup such a node is:
 
-1. Build all artifacs and the CEF node tomcat server by building the module cef-node-docker-270 using the command: "mvn clean install -P buildwars"
-2. Build the CEF node docker image by building the Dockerfile in the module cef-node-docker-270
+1. Build all artifacts and the CEF node tomcat server by building the module cef-node-docker-300 using the command: "mvn clean install -P buildwars"
+2. Build the CEF node docker image by building the Dockerfile in the module cef-node-docker-300
 3. Build the demo application hub spring boot application by building the module cef-20-demo-hub
 4. Build the demo application hub docker image by using the Dockerfile in the module cef-20-demo-hub
 5. Build the CEF node configuration data using the configuration builder provided in the configuration-builder module
-6. Optionally configure trust data as described below to allow verification of messages from other eIDAS nodes.
+6. Optionally, configure trust data as described below to allow verification of messages from other eIDAS nodes.
 7. Configure the demo application hub SP and IdP services as described below.
 8. Create docker run commands with appropriate port exposure, volume mounts and environment variable settings
 9. Start docker images
@@ -47,22 +47,22 @@ The CEF node docker image depends on a number of artifacs that need to be built 
 
 module | Depends on
 ---|---
-cef-node-docker-270  | This module builds the eIDAS node Tomcat server as well as the docker image used to run the node. This module depends on the CEF node artifacts provided by the EIDAS-Sources-2.7.0-MDSL module.
-EIDAS-Sources-2.7.0-MDSL  |  The eIDAS node code has been modified to use an updated version of the EIDAS-SAMLEngine in order to allow import of trusted metadata signer certificates from MDSL source as well as PEM based trust store. This modified EIDAS-SAMLEnging is provided by  [NOBID Metadata Import](https://github.com/idsec-solutions/nobid-mdimport)
+cef-node-docker-300  | This module builds the eIDAS node Tomcat server as well as the docker image used to run the node. This module depends on the CEF node artifacts provided by the EIDAS-Sources-3.0.0-MDSL module.
+EIDAS-Sources-3.0.0-MDSL  |  The eIDAS node code has been modified to use an updated version of the EIDAS-SAMLEngine in order to allow import of trusted metadata signer certificates from MDSL source as well as PEM based trust store. This modified EIDAS-SAMLEnging is provided by  [NOBID Metadata Import](https://github.com/idsec-solutions/nobid-mdimport)
 Metadata Import  | Addding the capability of CEF eiDAS nodes to import trusted metadata certificates from one or more MetadataServiceList (MDSL) sources. Only depends on public repositories from maven central.
 
 
 ### Build instructions:
 
-Build artifacts in the following arder (All artifacts can be build using Java 11 and higher):
+Build artifacts in the following order (The CEF node projects requires JAVA 17 and the Demo application hub requires Java 21):
 
 >**Objective:** Build EIDAS nodes<br>
->**Location:** cef-node-docker-270<br>
+>**Location:** cef-node-docker-300<br>
 >**Command:** mvn clean install -P buildwars
 
 >**Objective:** Build EIDAS node docker image<br>
->**Location:** cef-node-docker-270<br>
->**Command:** docker build -t cef-node-docker-270 .
+>**Location:** cef-node-docker-300<br>
+>**Command:** docker build -t cef-node-docker-300 .
 
 >**Objective:** Build EIDAS node configuration builder<br>
 >**Location:** configuration-builder<br>
@@ -90,9 +90,9 @@ Information about how to use this tool is available here: [docs/config-builder.m
 
 ### Externalised trust data configuration
 
-The original code from CEF Digital use certificates from configured key stores, holding private keys of the service, as source for all trusted certificates. This means that the sensible key stores holding the service private key must be updated and changed on a frequent basis when new eIDAS nodes are added to the list of trusted services.
+The original code from CEF Digital uses certificates from configured key stores, holding private keys of the service as the source for all trusted certificates. This means that the sensible key stores holding the service private key must be updated and changed on a frequent basis when new eIDAS nodes are added to the list of trusted services.
 
-In a test environments and, in particular, in production it is desirable to add trusted certificates in a separate store or PEM file. Or to import them from an MDSL source as specified by the eIDAS technical specifications.
+In a test environment and, in particular, in production, it is desirable to add trusted certificates in a separate store or PEM file. Or to import them from an MDSL source as specified by the eIDAS technical specifications.
 
 To suppor this, the eIDAS node CEF code is exteneded using the metadata import project [https://github.com/swedenconnect/eidas-eu-mock/tree/master/md-trust).
 
@@ -102,24 +102,24 @@ This GitHub repo provides the code and the instruction on how to build the trust
 
 The application hub shall have a configuration directory. The location of this directory is provided by the Spring property `spring.config.additional-location` set by the environment vairable SPRING_CONFIG_ADDITIONAL_LOCATION as docker run.
 
-A basic configuration example is provided under docs/hub-config-example. Most values here are self explanatory.
+A basic configuration example is provided under docs/hub-config-example. Most values here are self-explanatory.
 
 The file spconfig.properties holds the information used by the SP application. This file provides SP configuration for one or more SP countries using property name convention sp.{country code}.{property}
 
 E.g:
-> sp.XA.cefVersion=2.7.0
+> sp.XA.cefVersion=3.0.0
 
-This means the the XA country SP application use a CEF node of version 2.7.0.
+This means that the XA country SP application uses a CEF node of version 3.0.0.
 
-Countries this SP can connect to is listed as: sp.{node country}.country.{target country}.name and sp.{node country}.country.{target country}.flag
+Countries this SP can connect to are listed as: sp.{node country}.country.{target country}.name and sp.{node country}.country.{target country}.flag
 
-The name is a display name for each country that can be selected and flasg is specified as {country code}.png
+The name is a display name for each country that can be selected, and flags are specified as {country code}.png
 
 This flag image is obtained from internal resources.
 
-Not that the propety sp.{country}.requestUrl specifies the URL at the eIDAS node where the request to the eIDAS node should be forwarded. This is allways the eIDAS node URL host name + "SpecificConnector/ServiceProvider".
+Not that the property sp.{country}.requestUrl specifies the URL at the eIDAS node where the request to the eIDAS node should be forwarded. This is always the eIDAS node URL host name + "SpecificConnector/ServiceProvider".
 
-Test users can be speicified for the IdP as demonstrated by the user-data-XA-leal.yaml and user-data-XA-natural.yaml files.
+Test users can be specified for the IdP as demonstrated by the user-data-XA-leal.yaml and user-data-XA-natural.yaml files.
 Such user configuration files should be named exactly like this with the only difference that the country name reflects the country for this IdP.
 
 
@@ -143,7 +143,7 @@ The following example runs the docker container under localhost:8080 using exter
 **Note:** The internal Tomcat in the docker image exposes the eidas node on port 8900
 
 ```
-docker run -d --name cefnode260 --restart=always \
+docker run -d --name cefnode300 --restart=always \
   -p 8080:8900 \
   -e "EIDAS_CONNECTOR_CONFIG_REPOSITORY=/opt/webapp/configEidas/connector" \
   -e "EIDAS_PROXY_CONFIG_REPOSITORY=/opt/webapp/configEidas/proxy" \
@@ -153,9 +153,9 @@ docker run -d --name cefnode260 --restart=always \
   -e "MDSL_CONFIG_FOLDER=/opt/webapp/trust/mdsl" \
   -e "DEBUG_MODE=true" \
   -v /etc/localtime:/etc/localtime:ro \
-  -v /opt/docker/configEidas20/XA-270:/opt/webapp/configEidas \
+  -v /opt/docker/configEidas20/XA-300:/opt/webapp/configEidas \
   -v /opt/docker/configEidas20/trust:/opt/webapp/trust \
-  cef-node-docker-270
+  cef-node-docker-300
 ```
 
 ### Deploying demo application hub docker container
