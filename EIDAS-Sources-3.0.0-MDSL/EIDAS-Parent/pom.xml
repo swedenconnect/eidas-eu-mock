@@ -105,7 +105,7 @@
         <enforcer.plugin.version>3.5.0</enforcer.plugin.version>
         <jaxb.plugin.version>3.2.0</jaxb.plugin.version>
         <micrometer.core.version>1.14.5</micrometer.core.version>
-        <tomcat-embed-core.version>11.0.4</tomcat-embed-core.version>
+        <tomcat-embed-core.version>11.0.14</tomcat-embed-core.version>
     </properties>
 
     <dependencyManagement>
