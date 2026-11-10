@@ -12,6 +12,7 @@ usage() {
     echo "   -f, --folder           Configuration folder (default is XA)"
     echo "   -h, --help             Prints this help"
     echo "   -t, --contraints       Set the trusted certs constraints (Comma separated line of key store path endings)"
+    echo "   -l, --localtrust       Apply a local TLS trust store configured in the trust folder)"
     echo
 }
 
@@ -32,6 +33,7 @@ BASE_CONFIG_PATH=$CATALINA_HOME/configEidas
 CONFIG_FOLDER=XA
 TRUSTED_CERTS_CONSTRAINTS=
 DEBUG_MODE=false
+TLS_LOCAL_TRUST_STORE=false
 
 while :
 do
@@ -52,6 +54,10 @@ do
 	    TRUSTED_CERTS_CONSTRAINTS="$2"
 	    shift 2
 	    ;;
+  -l | --localtrust)
+			TLS_LOCAL_TRUST_STORE=true
+			shift
+			;;
 	--)
 	    shift
 	    break;
@@ -59,7 +65,6 @@ do
 	-d)
         DEBUG_MODE=true
 	    shift
-	    break;
 	    ;;
 	-*)
 	    echo "Error: Unknown option: $1" >&2
@@ -83,11 +88,19 @@ export IDP_CONFIG_REPOSITORY=${BASE_CONFIG_PATH}/${CONFIG_FOLDER}/idp/
 export EIDAS_TRUSTED_CERTS_FILE=${BASE_CONFIG_PATH}/trust/trustedCerts.pem
 export EIDAS_TRUSTED_CERTS_CONSTRAINTS=${TRUSTED_CERTS_CONSTRAINTS}
 
+
 #
 # System settings
 #
 export JAVA_OPTS="-XX:MaxMetaspaceSize=512m"
 export CATALINA_OPTS="-Xms512m -Xmx1536m"
+
+# External TLS Config
+if [ "$TLS_LOCAL_TRUST_STORE" == true ]; then
+	export CATALINA_OPTS="${CATALINA_OPTS} \
+  -Djavax.net.ssl.trustStore=${BASE_CONFIG_PATH}/trust/tlsTrust.jks \
+  -Djavax.net.ssl.trustStorePassword=secret"
+fi
 
 #
 # Debug
